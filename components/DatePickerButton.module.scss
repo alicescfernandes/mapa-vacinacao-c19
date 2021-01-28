@@ -1,0 +1,23 @@
+.datepicker {
+	appearance: none;
+	background: none;
+	border: none;
+	font-weight: 400;
+	color: #444444;
+	vertical-align: middle;
+	svg {
+		fill: var(--foreground);
+	}
+	&:first-child {
+		svg {
+			transform: rotate(180deg);
+		}
+	}
+	&:disabled {
+		opacity: 0.3;
+
+		svg {
+			fill: #ddd;
+		}
+	}
+}

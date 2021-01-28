@@ -1,5 +1,6 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { Counter } from '../components/Counter';
+import { DatePickerButton } from '../components/DatePickerButton';
 import { Header } from '../components/Header';
 import { LineChart } from '../components/LineChart';
 import styles from '../styles/Home.module.scss';
@@ -10,9 +11,9 @@ export default function Home() {
 			<Header></Header>
 
 			<Container>
-				<Row>
-					<Col>
-						<p>date counter</p>
+				<Row className={styles.datepickerRow}>
+					<Col style={{ textAlign: 'center' }}>
+						<DatePickerButton minDate={1609027200000} maxDate={1611792000000} />
 					</Col>
 				</Row>
 
