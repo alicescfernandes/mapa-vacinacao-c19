@@ -59,12 +59,10 @@ export function LineChart() {
 			tooltips: {
 				callbacks: {
 					label: (tooltipItem, data) => {
-						console.log(tooltipItem, tooltipItem);
 						var label = data.datasets[tooltipItem.datasetIndex].label;
 						return label + ': ' + numberFormatter.format(tooltipItem.value).replace(',', ' ');
 					},
 					title: (tooltipItem, data) => {
-						console.log(tooltipItem[0], tooltipItem[0]);
 						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
 					},
