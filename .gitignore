@@ -2,7 +2,8 @@
 
 # dependencies
 /node_modules
-automation/node_modules
+/automation/node_modules
+
 /.pnp
 .pnp.js
 
