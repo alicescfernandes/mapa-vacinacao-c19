@@ -54,7 +54,7 @@ export function LineChart() {
 			},
 
 			animation: {
-				duration: 3000,
+				duration: 1000,
 			},
 			tooltips: {
 				callbacks: {

@@ -8,13 +8,40 @@ import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 export default function Home() {
 	let { statistics } = useData();
+	let rawData = statistics.getRaw();
+
+	let [selectedItem, setSelectedItem] = useState({});
+	let [previousItem, setPreviousItem] = useState({});
+	let [previousSelectedItem, setPreviousSelectedItem] = useState({});
+
 	let [last, setLast] = useState({});
 	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
-	let rawData = statistics.getRaw();
+
+	function onDateSelect(d) {
+		let item = rawData.filter((el, elIdx) => {
+			if (el.Data == d.getTime()) {
+				debugger;
+				if (elIdx - 1 >= 0) {
+					setPreviousItem(rawData[elIdx - 1]);
+				} else {
+					setPreviousItem(el);
+				}
+				return true;
+			}
+		});
+
+		if (selectedItem.Data != item[0].Data) {
+			setPreviousSelectedItem(selectedItem);
+			setSelectedItem(item[0]);
+		}
+	}
+
 	// console.log(JSON.parse(JSON.stringify(rawData)));
 	useEffect(() => {
 		setLast(rawData[rawData.length - 1]);
+		setSelectedItem(rawData[rawData.length - 1]);
+		setPreviousItem(selectedItem);
 		setFirst(rawData[0]);
 		setLoaded(true);
 	}, []);
@@ -24,18 +51,18 @@ export default function Home() {
 
 			<Container>
 				<Row className={styles.datepickerRow}>
-					<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={(d) => console.log(d)} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
+					<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
 				</Row>
 
 				<Row>
 					<Col lg={4} xs={12}>
-						<Counter title="Numero total de vacinados" subtitle="Vacina Pfizer/BioNTech" to={last?.Vacinados_Ac}></Counter>
+						<Counter title="Numero total de vacinados" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
 					</Col>
 					<Col lg={4} xs={12}>
-						<Counter title="Numero de vacinados - 1ª Dose" subtitle="Vacina Pfizer/BioNTech" to={last.Inoculacao2_Ac}></Counter>
+						<Counter title="Numero de vacinados - 1ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
 					</Col>
 					<Col lg={4} xs={12}>
-						<Counter title="Numero de vacinados - 2ª Dose" subtitle="Vacina Pfizer/BioNTech" to={last.Inoculacao1_Ac}></Counter>
+						<Counter title="Numero de vacinados - 2ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
 					</Col>
 				</Row>
 
