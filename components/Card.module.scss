@@ -6,6 +6,7 @@
 		border-radius: 5px;
 		margin: 15px 0px;
 		min-height: 225px;
+		overflow: scroll;
 		.counter {
 			font-size: 50px;
 			color: var(--foreground);
