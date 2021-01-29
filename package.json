@@ -3,11 +3,17 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"no-commit-to-master": "if [ \"$(git rev-parse --abbrev-ref HEAD)\" = 'master' ]; then echo 'You cant commit directly to master branch';exit 1; fi;",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"export": "next build && next export -o out2"
+		"export": "next build && next export -o out2",
+		"image": "cd automation/ && node make_image.js"
 	},
+	"pre-commit": [
+		"image",
+		"no-commit-to-master"
+	],
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^11.1.0",
@@ -24,5 +30,8 @@
 		"react-dom": "17.0.1",
 		"sass": "^1.32.5",
 		"web-vitals": "^0.2.4"
+	},
+	"devDependencies": {
+		"pre-commit": "^1.2.2"
 	}
 }
