@@ -27,13 +27,13 @@ export function useData() {
 		getMediaMovel: (dias) => {
 			let medias = [];
 			let labelsMedias = [];
-			for (let start = 1; start < dias; start++) {
+			for (let start = 1; start <= dias; start++) {
 				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
 				medias.push(sum);
 				labelsMedias.push(labels[start]);
 			}
 
-			for (let start = dias; start < values.length; start++) {
+			for (let start = dias; start <= values.length; start++) {
 				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
 				medias.push(sum);
 				labelsMedias.push(labels[start]);
@@ -69,21 +69,17 @@ export function useData() {
 		},
 
 		getVacinadosPorDia: () => {
-			let vacinadosPorDia = values.map((val, idx) => {
-				let nextDay = idx + 1;
-
-				if (values[nextDay] == null || val == null) {
-					return 0;
+			let vacinadosPorDia = values.map((val, idx, vals) => {
+				//The first one
+				if (idx === 0) {
+					return val;
 				}
 
-				if (idx > 0 && nextDay < values.length && values[nextDay] != null) {
-					return values[nextDay] - val;
-				} else {
-					if (idx == 0) {
-						return val;
-					}
+				let nextDay = idx - 1;
+				if (vals[nextDay] == null || val == null) {
 					return 0;
 				}
+				return val - vals[nextDay];
 			});
 			return {
 				values: vacinadosPorDia,
