@@ -45,7 +45,7 @@ export function LineChart() {
 			],
 		};
 	};
-
+	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
 			legend: {
@@ -56,7 +56,20 @@ export function LineChart() {
 			animation: {
 				duration: 3000,
 			},
-
+			tooltips: {
+				callbacks: {
+					label: (tooltipItem, data) => {
+						console.log(tooltipItem, tooltipItem);
+						var label = data.datasets[tooltipItem.datasetIndex].label;
+						return label + ': ' + numberFormatter.format(tooltipItem.value).replace(',', ' ');
+					},
+					title: (tooltipItem, data) => {
+						console.log(tooltipItem[0], tooltipItem[0]);
+						var label = data.datasets[tooltipItem[0].datasetIndex];
+						return 'Dia ' + tooltipItem[0].label;
+					},
+				},
+			},
 			scales: {
 				yAxes: [
 					{
@@ -68,9 +81,10 @@ export function LineChart() {
 						},
 						ticks: {
 							beginAtZero: false,
-							min: Math.min(...values) - 500,
-							max: Math.max(...values) + 500,
-							stepSize: Math.max(...values) / 5,
+							min: Math.min(...values),
+							max: Math.max(...values) + Math.max(...values) * 0.05,
+							stepSize: (Math.max(...values) / 5).toFixed(0),
+							callback: (value) => numberFormatter.format(value),
 						},
 					},
 				],

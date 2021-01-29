@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import styles from './DatePickerButton.module.scss';
 
 import Arrow from '../assets/arrow.svg';
 
-export function DatePickerButton({ minDate, maxDate }) {
+export function DatePickerButton({ minDate, maxDate, onDateSelect }) {
 	const [startDate, setStartDate] = useState(new Date());
 	startDate.setMinutes(0);
 	startDate.setMilliseconds(0);
@@ -17,8 +17,13 @@ export function DatePickerButton({ minDate, maxDate }) {
 		month: 'long',
 		day: 'numeric',
 	};
+
 	let f = new Intl.DateTimeFormat('pt-PT', options);
-	console.log(startDate, minDate, startDate.getTime() == minDate);
+
+	useEffect(() => {
+		onDateSelect?.(startDate);
+	}, [startDate]);
+
 	const ExampleCustomInput = ({ value, onClick }) => (
 		<>
 			<button
@@ -47,5 +52,15 @@ export function DatePickerButton({ minDate, maxDate }) {
 			</button>
 		</>
 	);
-	return <DatePicker minDate={minDate} maxDate={maxDate} selected={startDate} onChange={(date) => setStartDate(date)} customInput={<ExampleCustomInput />} />;
+	return (
+		<DatePicker
+			minDate={minDate}
+			maxDate={maxDate}
+			selected={startDate}
+			onChange={(date) => {
+				setStartDate(date);
+			}}
+			customInput={<ExampleCustomInput />}
+		/>
+	);
 }
