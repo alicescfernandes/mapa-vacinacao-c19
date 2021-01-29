@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Counter } from '../components/Counter';
 import { DatePickerButton } from '../components/DatePickerButton';
+import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { LineChart } from '../components/LineChart';
 import { useData } from '../hooks/useData';
@@ -71,8 +72,25 @@ export default function Home() {
 						<LineChart></LineChart>
 					</Col>
 				</Row>
+
+				<Row>
+					<Col className={styles.sources_block}>
+						<h3 className={styles.title}>Fontes</h3>
+						<p className={styles.text}>
+							Os dados apresentados retirados do portal{' '}
+							<a className={styles.link} target="_blank" href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/">
+								Monitorização do SNS da Direção-Geral da Saude
+							</a>{' '}
+							e do sítio{' '}
+							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
+								Ponto de Situação Direção-Geral da Saude
+							</a>
+						</p>
+					</Col>
+				</Row>
 				<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
 			</Container>
+			<Footer></Footer>
 		</>
 	);
 }

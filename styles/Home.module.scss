@@ -2,3 +2,23 @@
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+
+.link {
+	border-bottom: 2px solid var(--foreground);
+}
+
+.sources_block {
+	padding: 20px 15px;
+}
+
+.title {
+	font-weight: bold;
+	color: #444;
+	font-size: 20px;
+	margin-bottom: 11px;
+}
+
+.text {
+	color: #444;
+	font-size: 15px;
+}
