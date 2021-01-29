@@ -28,7 +28,7 @@ export function Footer() {
 						<li>
 							<a href="mailto:alicescfernandes+mapa@gmail.com">Contacto</a>
 						</li>
-						<li>Ultima Atualização: {f.format(new Date(json.date))}</li>
+						<li>Última Atualização: {f.format(new Date(json.date))}</li>
 					</ul>
 				</p>
 			</Container>
