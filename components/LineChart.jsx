@@ -48,6 +48,14 @@ export function LineChart() {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
+			onResize: (a, b, c) => {
+				if (window.outerWidth < 600) {
+					console.log(a);
+					a.canvas.parentNode.style.width = '1000px';
+				} else {
+					a.canvas.parentNode.style.width = 'auto';
+				}
+			},
 			legend: {
 				position: 'bottom',
 				align: 'start',
@@ -101,5 +109,9 @@ export function LineChart() {
 		}
 	}, [values, labels, height]);
 
-	return <Card>{!loading ? <Line height={100} ref={canvasRef} options={options()} data={data} /> : ''}</Card>;
+	return (
+		<Card>
+			<div> {!loading ? <Line height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+		</Card>
+	);
 }

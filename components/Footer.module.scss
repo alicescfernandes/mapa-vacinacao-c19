@@ -39,3 +39,14 @@
 		margin: 0;
 	}
 }
+
+@media screen and (max-width: 1090px) {
+	.footer {
+		.content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+}
