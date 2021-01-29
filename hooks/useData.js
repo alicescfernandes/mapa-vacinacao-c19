@@ -28,12 +28,43 @@ export function useData() {
 		getMediaMovel: (dias) => {
 			let medias = [];
 			let labelsMedias = [];
-			for (let start = 0, end = dias; end < values.length; start += dias, end += dias) {
-				let sum = Math.round(values.slice(start, end).reduce((prev, current) => prev + current, 0) / dias);
+			for (let start = 1; start < dias; start++) {
+				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
 				medias.push(sum);
-				labelsMedias.push(labels[end]);
-				console.log(labels[start], labels[end]);
+				labelsMedias.push(labels[start]);
 			}
+
+			for (let start = dias; start < values.length; start++) {
+				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
+				console.log(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0));
+				medias.push(sum);
+				labelsMedias.push(labels[start]);
+			}
+
+			return {
+				values: medias,
+				labels: labelsMedias,
+			};
+		},
+
+		getMediaMovelDiaria: (dias) => {
+			let medias = [];
+			let labelsMedias = [];
+			let { values } = statistics.getVacinadosPorDia();
+
+			for (let start = 1; start < dias; start++) {
+				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+				medias.push(sum);
+				labelsMedias.push(labels[start]);
+			}
+
+			for (let start = dias; start < values.length; start++) {
+				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
+				console.log(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0));
+				medias.push(sum);
+				labelsMedias.push(labels[start]);
+			}
+
 			return {
 				values: medias,
 				labels: labelsMedias,
@@ -43,10 +74,17 @@ export function useData() {
 		getVacinadosPorDia: () => {
 			let vacinadosPorDia = values.map((val, idx) => {
 				let nextDay = idx + 1;
+
+				if (values[nextDay] == null || val == null) {
+					return 0;
+				}
+
 				if (idx > 0 && nextDay < values.length && values[nextDay] != null) {
-					console.log({ diaAaSeguir: [nextDay, values[nextDay]], diaAtua: [idx, val], diferenca: values[nextDay] - val });
 					return values[nextDay] - val;
 				} else {
+					if (idx == 0) {
+						return val;
+					}
 					return 0;
 				}
 			});

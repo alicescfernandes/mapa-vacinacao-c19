@@ -15,7 +15,9 @@ export function Header() {
 							<Link href="/">Gráficos</Link>
 						</li>
 						<li>
-							<Link href="/fases">Fases de Vacinação</Link>
+							<a target="_blank" href="https://covid19estamoson.gov.pt/vacinacao-covid19/">
+								Fases de Vacinação
+							</a>
 						</li>
 						<li>
 							<a target="_blank" href="https://pandemiaclara.sapo.pt/plano-de-vacinacao/">
