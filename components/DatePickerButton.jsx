@@ -12,13 +12,12 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect }) {
 	startDate.setSeconds(0);
 	startDate.setHours(0);
 	let options = {
-		month: 'long',
 		year: 'numeric',
 		month: 'long',
-		day: 'numeric',
+		day: '2-digit',
 	};
 
-	let f = new Intl.DateTimeFormat('pt-PT', options);
+	let f = new Intl.DateTimeFormat('pt', options);
 
 	useEffect(() => {
 		onDateSelect?.(startDate);

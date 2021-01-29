@@ -16,6 +16,12 @@ export function LineChart() {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
+		if (window.outerWidth < 750) {
+			canvas.parentNode.style.width = '1000px';
+		} else {
+			canvas.parentNode.style.width = 'auto';
+		}
+
 		gradient.addColorStop(0, 'rgba(1,174,151,30%)');
 		gradient.addColorStop(1, 'rgba(1,174,151,0%)');
 
@@ -23,7 +29,7 @@ export function LineChart() {
 			labels: labels,
 			datasets: [
 				{
-					label: 'Vacinados por dia',
+					label: 'Total de vacinas administradas',
 					fill: true,
 					lineTension: 0.5,
 					lineBorder: 1,
@@ -49,8 +55,7 @@ export function LineChart() {
 	const options = () => {
 		return {
 			onResize: (a, b, c) => {
-				if (window.outerWidth < 600) {
-					console.log(a);
+				if (window.outerWidth < 750) {
 					a.canvas.parentNode.style.width = '1000px';
 				} else {
 					a.canvas.parentNode.style.width = 'auto';

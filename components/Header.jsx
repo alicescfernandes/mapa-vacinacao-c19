@@ -9,7 +9,7 @@ export function Header() {
 				<div>
 					<h1 className={styles.logo}>Plano de vacinação - COVID 19</h1>
 				</div>
-				<nav>
+				<nav className={styles.nav}>
 					<ul>
 						<li>
 							<a target="_blank" href="https://covid19estamoson.gov.pt/vacinacao-covid19/">

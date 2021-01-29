@@ -20,7 +20,6 @@ export function useData() {
 
 	let statistics = {
 		getRaw: () => {
-			// console.log('vaccines', JSON.parse(JSON.stringify(vaccines)));
 			return vaccines;
 		},
 		getDesvioPadrao: () => {},
@@ -36,7 +35,6 @@ export function useData() {
 
 			for (let start = dias; start < values.length; start++) {
 				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
-				console.log(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0));
 				medias.push(sum);
 				labelsMedias.push(labels[start]);
 			}
@@ -60,7 +58,6 @@ export function useData() {
 
 			for (let start = dias; start < values.length; start++) {
 				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
-				console.log(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0));
 				medias.push(sum);
 				labelsMedias.push(labels[start]);
 			}
