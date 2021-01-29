@@ -8,7 +8,7 @@
 		"build": "next build",
 		"start": "next start",
 		"export": "next build && next export -o out2",
-		"image": "cd automation/ && node make_image.js"
+		"image": "cd automation/ && node make_image.js && cd - && git add ."
 	},
 	"pre-commit": [
 		"image",
