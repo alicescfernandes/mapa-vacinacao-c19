@@ -37,6 +37,10 @@
 		font-size: 20px;
 		margin: 0;
 	}
+
+	.nav {
+		display: none;
+	}
 }
 
 @media screen and (max-width: 1090px) {
@@ -46,6 +50,14 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-between;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.header {
+		.nav {
+			display: block;
 		}
 	}
 }

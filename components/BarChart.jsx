@@ -18,6 +18,12 @@ export function BarChart() {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
+		if (window.outerWidth < 750) {
+			canvas.parentNode.style.width = '1000px';
+		} else {
+			canvas.parentNode.style.width = 'auto';
+		}
+
 		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
 		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 
@@ -72,8 +78,7 @@ export function BarChart() {
 	const options = () => {
 		return {
 			onResize: (a, b, c) => {
-				if (window.outerWidth < 600) {
-					console.log(a);
+				if (window.outerWidth < 750) {
 					a.canvas.parentNode.style.width = '1000px';
 				} else {
 					a.canvas.parentNode.style.width = 'auto';
