@@ -6,7 +6,7 @@ import styles from './DatePickerButton.module.scss';
 import Arrow from '../assets/arrow.svg';
 
 export function DatePickerButton({ minDate, maxDate, onDateSelect }) {
-	const [startDate, setStartDate] = useState(new Date());
+	const [startDate, setStartDate] = useState(new Date(maxDate));
 	startDate.setMinutes(0);
 	startDate.setMilliseconds(0);
 	startDate.setSeconds(0);
