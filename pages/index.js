@@ -8,6 +8,7 @@ import { Header } from '../components/Header';
 import { LineChart } from '../components/LineChart';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
+import json from './../data/last-update.json';
 export default function Home() {
 	let { statistics } = useData();
 	let rawData = statistics.getRaw();
@@ -87,7 +88,7 @@ export default function Home() {
 					<Col className={styles.sources_block}>
 						<h3 className={styles.title}>Fontes</h3>
 						<p className={styles.text}>
-							Os dados apresentados retirados do portal{' '}
+							Os dados apresentados são retirados do portal{' '}
 							<a className={styles.link} target="_blank" href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/">
 								Monitorização do SNS da Direção-Geral da Saude
 							</a>{' '}
@@ -95,6 +96,7 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
 								Ponto de Situação Direção-Geral da Saude
 							</a>
+							. A atualização destes dados é diária.
 						</p>
 					</Col>
 				</Row>

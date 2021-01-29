@@ -5,8 +5,12 @@
 	font-weight: 400;
 	color: #444444;
 	vertical-align: middle;
+	line-height: 12px;
+
 	svg {
 		fill: var(--foreground);
+		display: inline;
+		vertical-align: middle;
 	}
 	&:first-child {
 		svg {
