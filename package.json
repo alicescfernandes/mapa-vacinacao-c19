@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"update": "node update.js && git add data/last-update.json",
 		"no-commit-to-master": "if [ \"$(git rev-parse --abbrev-ref HEAD)\" = 'master' ]; then echo 'You cant commit directly to master branch';exit 1; fi;",
 		"dev": "next dev",
 		"build": "next build",
@@ -11,8 +12,9 @@
 		"image": "cd automation/ && node make_image.js && cd - && git add ."
 	},
 	"pre-commit": [
+		"no-commit-to-master",
 		"image",
-		"no-commit-to-master"
+		"update"
 	],
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.4",
