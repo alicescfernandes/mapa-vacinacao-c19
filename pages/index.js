@@ -34,6 +34,7 @@ export default function Home() {
 						<LineChart></LineChart>
 					</Col>
 				</Row>
+				<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
 			</Container>
 		</>
 	);
