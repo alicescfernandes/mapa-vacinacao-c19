@@ -5,6 +5,7 @@
 		text-align: center;
 		border-radius: 5px;
 		margin: 15px;
+		min-height: 225px;
 		.counter {
 			font-size: 50px;
 			color: var(--foreground);
@@ -22,6 +23,13 @@
 		&_subtitle {
 			margin-bottom: 0px;
 			font-size: 13px;
+
+			&_counter {
+				margin-bottom: 0px;
+				font-size: 14px;
+				color: var(--foreground);
+				font-weight: bold;
+			}
 		}
 	}
 }
