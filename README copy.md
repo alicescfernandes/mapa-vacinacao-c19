@@ -1,26 +1,8 @@
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-
-# Mapa de Vacinação - COVID19
-Descriccao
-
-## Origem dos dados
-➡ [Monitorização do SNS da Direção-Geral da SaÚde](https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/)  
-➡ [Ponto de Situação Direção-Geral da SaÚde](https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/)  
-➡ [Our World of Data](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Portugal.csv)  
-
-## Outros links
-➡ Plausible
-## Stack
-➡ ChartJS  
-➡ React  
-➡ NextJS  
-➡ JSON como serviço de dados  
-➡ Vercel  
 ## TODO: 
-➡ click on graph triggers day
-➡ Desvio padrão
-➡ Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)
-➡ Notícias (widget de noticias recentes relacionadas com as vacinas)
+- click on graph triggers day
+- Desvio padrão
 
 ## Getting Started
 
