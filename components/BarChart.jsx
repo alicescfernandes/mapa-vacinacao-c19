@@ -138,7 +138,7 @@ export function BarChart() {
 	}, [values, labels, height]);
 
 	return (
-		<Card>
+		<Card allowOverflow={true}>
 			<div>{!loading ? <Bar height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
