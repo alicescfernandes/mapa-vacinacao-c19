@@ -94,11 +94,11 @@ export default function Home() {
 						<p className={styles.text}>
 							Os dados apresentados são retirados do portal{' '}
 							<a className={styles.link} target="_blank" href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/">
-								Monitorização do SNS da Direção-Geral da Saude
+								Monitorização do SNS da Direção-Geral da Saúde
 							</a>{' '}
 							e do sítio{' '}
 							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
-								Ponto de Situação Direção-Geral da Saude
+								Ponto de Situação Direção-Geral da Saúde
 							</a>
 							. A atualização destes dados é diária.
 						</p>
