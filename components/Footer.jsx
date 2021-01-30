@@ -14,7 +14,7 @@ export function Footer() {
 		second: 'numeric',
 	};
 	let f = new Intl.DateTimeFormat('pt-PT', options);
-
+	console.log(styles);
 	return (
 		<footer className={`${styles.footer} card-shadow`}>
 			<Container className={styles.content}>
@@ -39,9 +39,9 @@ export function Footer() {
 								Analytics
 							</a>
 						</li>
-						<li>Última Atualização: {f.format(new Date(json.date))}</li>
 					</ul>
 				</p>
+				<p className={styles.last_update}>Última Atualização: {f.format(new Date(json.date))}</p>
 			</Container>
 		</footer>
 	);
