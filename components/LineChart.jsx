@@ -16,7 +16,7 @@ export function LineChart() {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
-		if (window.innerWidth < 750) {
+		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
 			canvas.parentNode.style.width = 'auto';
@@ -55,7 +55,7 @@ export function LineChart() {
 	const options = () => {
 		return {
 			onResize: (a, b, c) => {
-				if (window.innerWidth < 750) {
+				if (window.innerWidth <= 800) {
 					a.canvas.parentNode.style.width = '1000px';
 				} else {
 					a.canvas.parentNode.style.width = 'auto';
@@ -115,7 +115,7 @@ export function LineChart() {
 	}, [values, labels, height]);
 
 	return (
-		<Card>
+		<Card allowOverflow={true}>
 			<div> {!loading ? <Line height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
