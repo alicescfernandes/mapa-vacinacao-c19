@@ -32,7 +32,7 @@
 				margin-right: 0px;
 			}
 
-			&.last_update {
+			&.update {
 				font-weight: 400;
 				margin-top: 5px;
 			}
@@ -48,4 +48,9 @@
 		font-size: 20px;
 		margin: 0;
 	}
+}
+
+p.update {
+	font-weight: 400;
+	margin-top: 5px;
 }
