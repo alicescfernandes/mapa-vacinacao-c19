@@ -14,7 +14,6 @@ export function Footer() {
 		second: 'numeric',
 	};
 	let f = new Intl.DateTimeFormat('pt-PT', options);
-	console.log(styles);
 	return (
 		<footer className={`${styles.footer} card-shadow`}>
 			<Container className={styles.content}>

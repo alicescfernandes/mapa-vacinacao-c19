@@ -39,7 +39,6 @@ export default function Home() {
 		}
 	}
 
-	// console.log(JSON.parse(JSON.stringify(rawData)));
 	useEffect(() => {
 		setLast(rawData[rawData.length - 1]);
 		setSelectedItem(rawData[rawData.length - 1]);
