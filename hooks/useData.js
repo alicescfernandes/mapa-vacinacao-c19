@@ -50,14 +50,26 @@ export function useData() {
 			let labelsMedias = [];
 			let { values } = statistics.getVacinadosPorDia();
 
-			for (let start = 1; start < dias; start++) {
+			for (let start = 1; start <= dias; start++) {
+				if (values[start] === null) {
+					medias.push(null);
+					continue;
+				}
+
 				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
 				medias.push(sum);
 				labelsMedias.push(labels[start]);
 			}
 
-			for (let start = dias; start < values.length; start++) {
-				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
+			for (let start = dias; start <= values.length; start++) {
+				let slice = values.slice(start - dias, start);
+
+				if (values[start] === null || slice.includes(null) > 0) {
+					medias.push(null);
+					continue;
+				}
+
+				let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
 				medias.push(sum);
 				labelsMedias.push(labels[start]);
 			}
@@ -77,7 +89,7 @@ export function useData() {
 
 				let nextDay = idx - 1;
 				if (vals[nextDay] == null || val == null) {
-					return 0;
+					return null;
 				}
 				return val - vals[nextDay];
 			});
