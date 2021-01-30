@@ -21,12 +21,23 @@ export function Footer() {
 				<p>
 					<ul>
 						<li>
+							<a target="_blank" href="/api/vaccines">
+								API
+							</a>
+						</li>
+
+						<li>
 							<a target="_blank" href="https://github.com/alicescfernandes/mapa-vacinacao-c19">
 								Código-Fonte
 							</a>
 						</li>
 						<li>
 							<a href="mailto:alicescfernandes+mapa@gmail.com">Contacto</a>
+						</li>
+						<li>
+							<a target="_blank" href="https://plausible.io/vacinacaocovid19.pt">
+								Analytics
+							</a>
 						</li>
 						<li>Última Atualização: {f.format(new Date(json.date))}</li>
 					</ul>
