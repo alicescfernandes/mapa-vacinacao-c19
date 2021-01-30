@@ -6,7 +6,7 @@
 		border-radius: 5px;
 		margin: 15px 0px;
 		min-height: 225px;
-		overflow: scroll;
+		overflow: hidden;
 		.counter {
 			font-size: 50px;
 			color: var(--foreground);
@@ -31,6 +31,18 @@
 				color: var(--foreground);
 				font-weight: bold;
 			}
+		}
+	}
+
+	&_chart {
+		overflow-x: scroll;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.card {
+		&_chart {
+			overflow-x: hidden;
 		}
 	}
 }
