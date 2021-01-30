@@ -65,5 +65,5 @@
 	},
 	{ "Data": 1611792000000, "Inoculacao1": null, "Inoculacao1_Ac": null, "Inoculacao2": null, "Inoculacao2_Ac": null, "Vacinados": 296004, "Vacinados_Ac": 296004, "FID": 1 },
 	{ "Data": 1611878400000, "Inoculacao1": null, "Inoculacao1_Ac": null, "Inoculacao2": null, "Inoculacao2_Ac": null, "Vacinados": 315737, "Vacinados_Ac": 315737, "FID": 1 },
-	{ "Data": 1611964800000, "Inoculacao1": null, "Inoculacao1_Ac": null, "Inoculacao2": null, "Inoculacao2_Ac": null, "Vacinados": 330233, "Vacinados_Ac": 330233, "FID": 1 }
+	{ "Data": 1611964800000, "Inoculacao1": null, "Inoculacao1_Ac": 264772, "Inoculacao2": null, "Inoculacao2_Ac": 65461, "Vacinados": 330233, "Vacinados_Ac": 330233, "FID": 1 }
 ]
