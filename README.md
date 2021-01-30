@@ -1,7 +1,6 @@
 
 
 # Mapa de Vacinação - COVID19
-<img src="https://www.google-analytics.com/collect?v=1&amp;t=event&amp;tid=UA-100869248-2&amp;cid=555&amp;ec=github&amp;ea=pageview&amp;el=plano-vacinacao-c19&amp;ev=1" alt=""> 
 Descrição
 
 ## Origem dos dados
@@ -24,3 +23,4 @@ Descrição
 ➡ Notícias (widget de noticias recentes relacionadas com as vacinas)  
 ➡ Serviço de embeds de gráficos  
 ➡ Partilhas nas redes sociais de gráficos  
+<img src="https://www.google-analytics.com/collect?v=1&amp;t=event&amp;tid=UA-100869248-2&amp;cid=555&amp;ec=github&amp;ea=pageview&amp;el=plano-vacinacao-c19&amp;ev=1" alt=""> 
