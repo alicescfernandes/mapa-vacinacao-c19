@@ -8,7 +8,7 @@ import { Header } from '../components/Header';
 import { LineChart } from '../components/LineChart';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
-import json from './../data/last-update.json';
+import Head from 'next/head';
 export default function Home() {
 	let { statistics } = useData();
 	let rawData = statistics.getRaw();
@@ -49,6 +49,10 @@ export default function Home() {
 	}, []);
 	return (
 		<>
+			<Head>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<title>Plano de Vacinação - COVID 19</title>
+			</Head>
 			<Header></Header>
 
 			<Container>
