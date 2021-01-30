@@ -14,34 +14,31 @@ export function Footer() {
 		second: 'numeric',
 	};
 	let f = new Intl.DateTimeFormat('pt-PT', options);
-	console.log(styles);
 	return (
 		<footer className={`${styles.footer} card-shadow`}>
 			<Container className={styles.content}>
-				<p>
-					<ul>
-						<li>
-							<a target="_blank" href="/api/vaccines">
-								API
-							</a>
-						</li>
+				<ul>
+					<li>
+						<a target="_blank" href="/api/vaccines">
+							API
+						</a>
+					</li>
 
-						<li>
-							<a target="_blank" href="https://github.com/alicescfernandes/mapa-vacinacao-c19">
-								Código-Fonte
-							</a>
-						</li>
-						<li>
-							<a href="mailto:alicescfernandes+mapa@gmail.com">Contacto</a>
-						</li>
-						<li>
-							<a target="_blank" href="https://plausible.io/vacinacaocovid19.pt">
-								Analytics
-							</a>
-						</li>
-					</ul>
-				</p>
-				<p className={styles.last_update}>Última Atualização: {f.format(new Date(json.date))}</p>
+					<li>
+						<a target="_blank" href="https://github.com/alicescfernandes/mapa-vacinacao-c19">
+							Código-Fonte
+						</a>
+					</li>
+					<li>
+						<a href="mailto:alicescfernandes+mapa@gmail.com">Contacto</a>
+					</li>
+					<li>
+						<a target="_blank" href="https://plausible.io/vacinacaocovid19.pt">
+							Analytics
+						</a>
+					</li>
+				</ul>
+				<p className={styles.update}>Última Atualização: {f.format(new Date(json.date))}</p>
 			</Container>
 		</footer>
 	);
