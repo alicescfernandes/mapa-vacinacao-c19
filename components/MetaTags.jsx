@@ -1,5 +1,6 @@
 import { useData } from '../hooks/useData';
 import vaccines from '../data/vaccines.json';
+import date from '../data/last-update.json';
 export function Metatags() {
 	let options = {
 		month: '2-digit',
@@ -19,6 +20,7 @@ export function Metatags() {
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="https://vacinacaocovid19.pt/" />
 			<meta property="og:title" content="Plano de Vacinação - COVID 19" />
+			<meta property="og:updated_time" content={new Date(date.date).toISOString()} />
 			<meta property="og:description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
 			<meta property="og:image" content="https://vacinacaocovid19.pt/assets/imagem.png" />
 			<meta property="twitter:card" content="summary_large_image" />
