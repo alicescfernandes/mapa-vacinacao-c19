@@ -28,3 +28,4 @@ Descrição
 ➡ Fase do Plano de Vacinação
 ➡ Notícias (widget de noticias recentes relacionadas com as vacinas)  
 
+<img src="https://www.google-analytics.com/collect?v=1&amp;t=event&amp;tid=UA-100869248-2&amp;cid=555&amp;ec=github&amp;ea=pageview&amp;el=plano-vacinacao-c19&amp;ev=1" alt=""> 
