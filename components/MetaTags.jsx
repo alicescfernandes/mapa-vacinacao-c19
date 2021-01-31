@@ -22,12 +22,12 @@ export function Metatags() {
 			<meta property="og:title" content="Plano de Vacinação - COVID 19" />
 			<meta property="og:updated_time" content={new Date(date.date).toISOString()} />
 			<meta property="og:description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
-			<meta property="og:image" content="https://vacinacaocovid19.pt/assets/imagem.png" />
+			<meta property="og:image" content="https://vacinacaocovid19.pt/imagem.png" />
 			<meta property="twitter:card" content="summary_large_image" />
 			<meta property="twitter:url" content="https://vacinacaocovid19.pt/" />
 			<meta property="twitter:title" content="Plano de Vacinação - COVID 19" />
 			<meta property="twitter:description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
-			<meta property="twitter:image" content="https://vacinacaocovid19.pt/assets/imagem.png" />
+			<meta property="twitter:image" content="https://vacinacaocovid19.pt/imagem.png" />
 		</>
 	);
 }
