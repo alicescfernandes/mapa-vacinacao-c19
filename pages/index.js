@@ -49,9 +49,7 @@ export default function Home() {
 	}, []);
 	return (
 		<>
-			<Head>
-				<Metatags></Metatags>
-			</Head>
+			<Metatags></Metatags>
 			<Header></Header>
 
 			<Container>
