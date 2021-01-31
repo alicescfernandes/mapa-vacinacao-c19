@@ -15,6 +15,7 @@ export function Counter({ from, to, yesterday, title, subtitle }) {
 		<>
 			<Card>
 				<h2 className={styles.card_graph_title}>{title}</h2>
+				{subtitle == '' ? <div style={{ height: 20 }} /> : ''}
 				<p className={styles.card_graph_subtitle}>{subtitle}</p>
 
 				{to === null ? (

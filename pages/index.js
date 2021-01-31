@@ -9,6 +9,7 @@ import { LineChart } from '../components/LineChart';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import Head from 'next/head';
+import { Metatags } from '../components/MetaTags';
 export default function Home() {
 	let { statistics } = useData();
 	let rawData = statistics.getRaw();
@@ -49,8 +50,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<title>Plano de Vacinação - COVID 19</title>
+				<Metatags></Metatags>
 			</Head>
 			<Header></Header>
 

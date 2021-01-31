@@ -19,7 +19,12 @@ Descrição
 ## TODO: 
 ➡ Carregar nos pontos do gráfico muda o dia    
 ➡ Desvio padrão  
-➡ Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)  
-➡ Notícias (widget de noticias recentes relacionadas com as vacinas)  
 ➡ Serviço de embeds de gráficos  
 ➡ Partilhas nas redes sociais de gráficos  
+
+
+## Gráficos
+➡ Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)  
+➡ Fase do Plano de Vacinação
+➡ Notícias (widget de noticias recentes relacionadas com as vacinas)  
+
