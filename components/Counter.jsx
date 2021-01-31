@@ -6,11 +6,7 @@ export function Counter({ from, to, yesterday, title, subtitle }) {
 	let numberFormatter = new Intl.NumberFormat();
 	let difference = to - yesterday;
 	const fn = (value) => <span className={styles.counter}>{numberFormatter.format(value).replace(',', ' ')}</span>;
-	const subcounter = (value) => (
-		<span className={styles.card_graph_subtitle_counter}>
-			{Math.sign(difference) == 1 ? '+' : '-'} {numberFormatter.format(Math.abs(difference)).replace(',', ' ')}
-		</span>
-	);
+
 	return (
 		<>
 			<Card>
@@ -30,11 +26,11 @@ export function Counter({ from, to, yesterday, title, subtitle }) {
 							<>
 								<p>
 									<span className={styles.card_graph_subtitle_counter}>
-										<CountTo delay={1} from={from} to={to} speed={500}>
-											{subcounter}
-										</CountTo>{' '}
+										<span className={styles.card_graph_subtitle_counter}>
+											{Math.sign(difference) == 1 ? '+' : '-'} {numberFormatter.format(Math.abs(difference)).replace(',', ' ')}
+										</span>
 									</span>
-									que no dia anterior
+									&nbsp; que no dia anterior
 								</p>
 							</>
 						) : (
