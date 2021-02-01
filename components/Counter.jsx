@@ -4,7 +4,7 @@ import styles from './Card.module.scss';
 
 export function Counter({ from, to, yesterday, title, subtitle }) {
 	let numberFormatter = new Intl.NumberFormat();
-	let difference = to - yesterday;
+	let difference = to - yesterday || 0;
 	const fn = (value) => <span className={styles.counter}>{numberFormatter.format(value).replace(',', ' ')}</span>;
 
 	return (
@@ -18,7 +18,7 @@ export function Counter({ from, to, yesterday, title, subtitle }) {
 					<span className={styles.counter}>N/A</span>
 				) : (
 					<>
-						<CountTo delay={1} from={from} to={to} speed={500}>
+						<CountTo delay={1} from={from || 0} to={to || 0} speed={500}>
 							{fn}
 						</CountTo>
 
