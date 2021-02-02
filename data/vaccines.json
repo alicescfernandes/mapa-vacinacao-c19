@@ -67,5 +67,6 @@
 	{ "Data": 1611878400000, "Inoculacao1": null, "Inoculacao1_Ac": null, "Inoculacao2": null, "Inoculacao2_Ac": null, "Vacinados": 315737, "Vacinados_Ac": 315737, "FID": 1 },
 	{ "Data": 1611964800000, "Inoculacao1": null, "Inoculacao1_Ac": 264772, "Inoculacao2": null, "Inoculacao2_Ac": 65461, "Vacinados": 330233, "Vacinados_Ac": 330233, "FID": 1 },
 	{ "Data": 1612051200000, "Inoculacao1": null, "Inoculacao1_Ac": 268386, "Inoculacao2": null, "Inoculacao2_Ac": 68385, "Vacinados": 336771, "Vacinados_Ac": 336771, "FID": 1 },
-	{ "Data": 1612137600000, "Inoculacao1": null, "Inoculacao1_Ac": 269814, "Inoculacao2": null, "Inoculacao2_Ac": 68752, "Vacinados": 338566, "Vacinados_Ac": 338566, "FID": 1 }
+	{ "Data": 1612137600000, "Inoculacao1": null, "Inoculacao1_Ac": 269814, "Inoculacao2": null, "Inoculacao2_Ac": 68752, "Vacinados": 338566, "Vacinados_Ac": 338566, "FID": 1 },
+	{ "Data": 1612224000000, "Inoculacao1": 271424, "Inoculacao1_Ac": 271424, "Inoculacao2": 70695, "Inoculacao2_Ac": 70695, "Vacinados": 342119, "Vacinados_Ac": 342119, "FID": 1 }
 ]
