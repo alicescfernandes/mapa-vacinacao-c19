@@ -98,6 +98,45 @@ export function useData() {
 				labels,
 			};
 		},
+
+		getDiariosInoculacoes: () => {
+			let in1 = [];
+			let in2 = [];
+			let total = values.map((val, idx, vals) => {
+				debugger;
+				//The first one
+				if (idx === 0) {
+					in1.push(vaccines[idx].Inoculacao1_Ac);
+					in2.push(vaccines[idx].Inoculacao2_Ac);
+					return val;
+				}
+
+				let prevDay = idx - 1;
+
+				if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
+					in1.push(null);
+				} else {
+					in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
+				}
+
+				if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
+					in2.push(null);
+				} else {
+					in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
+				}
+
+				if (vals[prevDay] == null || val == null) {
+					return null;
+				}
+				return val - vals[prevDay];
+			});
+			return {
+				valuesIn1: in1,
+				valuesIn2: in2,
+				values: total,
+				labels,
+			};
+		},
 	};
 
 	useEffect(() => {
