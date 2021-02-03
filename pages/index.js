@@ -45,7 +45,7 @@ export default function Home() {
 		setPreviousItem(selectedItem);
 		setSelectedItem(rawData[rawData.length - 1]);
 		setLast(rawData[rawData.length - 1]);
-	}, [labels, values, statistics]);
+	}, [values]);
 
 	useEffect(() => {
 		setLast(rawData[rawData.length - 1]);
