@@ -60,7 +60,10 @@ export default function Home() {
 			<Header></Header>
 			<Row className={`card-shadow-bottom ${styles.alert}`}>
 				<Col style={{ textAlign: 'center' }}>
-					<p>Veja aqui os últimos números relacionados com a vacinação para a COVID-19. Estes dados são atualizados diariamente entre as 13h e as 14h.</p>
+					<p>
+						Veja aqui os últimos números relacionados com a vacinação para a COVID-19. <br />
+						Os dados são atualizados diariamente entre as 13h e as 14h, e este <em>dashboard</em> é atualizado a cada 5 minutos
+					</p>
 				</Col>
 			</Row>
 
