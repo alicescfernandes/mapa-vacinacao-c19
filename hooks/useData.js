@@ -17,7 +17,6 @@ export function useData() {
 		let values = [];
 		let labels = [];
 
-		console.count('parseData');
 		data.forEach((el) => {
 			labels.push(f.format(new Date(el.Data)));
 			values.push(el.Vacinados_Ac);
