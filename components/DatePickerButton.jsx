@@ -23,6 +23,10 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect }) {
 		onDateSelect?.(startDate);
 	}, [startDate]);
 
+	useEffect(() => {
+		setStartDate(new Date(maxDate));
+	}, [maxDate]);
+
 	const ExampleCustomInput = ({ value, onClick }) => (
 		<>
 			<button

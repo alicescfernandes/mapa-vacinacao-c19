@@ -1,14 +1,11 @@
 import { useEffect, createRef, useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { useData } from '../hooks/useData';
 import { Bar } from 'react-chartjs-2';
 import { FOREGROUND_COLOR } from '../constants';
 import { Card } from './Card';
 
-export function BarChart() {
+export function BarChart({ statistics }) {
 	let [loading, setLoading] = useState(true);
-	let { statistics } = useData();
-	let { values, labels } = statistics.getVacinadosPorDia();
+	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
 	let [height, setHeight] = useState(400);
 
@@ -34,6 +31,8 @@ export function BarChart() {
 					label: 'Vacinas diárias - Média movel de 7 dias',
 					fill: false,
 					lineTension: 0.5,
+					overlayBars: true,
+
 					type: 'line',
 					lineBorder: 1,
 					borderWidth: 2,
@@ -50,26 +49,34 @@ export function BarChart() {
 					pointRadius: 3,
 					pointHitRadius: 10,
 					data: values2,
+					order: 1,
 				},
 				{
-					label: 'Vacinas diárias',
+					label: 'Inoculação - 2ª Dose',
 					fill: false,
-					lineTension: 0.5,
-					lineBorder: 1,
-					borderWidth: 3,
+					type: 'bar',
+					overlayBars: true,
+					backgroundColor: '#006d5f',
+					data: valuesIn2,
+					order: 2,
+					display: false,
+				},
+				{
+					label: 'Inoculação - 1ª Dose',
 					backgroundColor: FOREGROUND_COLOR,
 					borderColor: FOREGROUND_COLOR,
-					borderJoinStyle: 'miter',
-					pointBorderColor: 'rgba(75,192,192,1)',
-					pointBackgroundColor: '#fff',
-					pointBorderWidth: 1,
-					pointHoverRadius: 5,
-					pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-					pointHoverBorderColor: 'rgba(220,220,220,1)',
-					pointHoverBorderWidth: 2,
-					pointRadius: 3,
-					pointHitRadius: 10,
+					data: valuesIn1,
+					overlayBars: true,
+					order: 3,
+				},
+				{
+					label: 'Vacinas Totais',
+					type: 'bar',
+					overlayBars: true,
+					backgroundColor: '#caeae4',
 					data: values,
+					order: 4,
+					yAxisID: 'total',
 				},
 			],
 		};
@@ -107,6 +114,7 @@ export function BarChart() {
 			scales: {
 				yAxes: [
 					{
+						stacked: true,
 						scaleLabel: {
 							display: true,
 						},
@@ -115,10 +123,20 @@ export function BarChart() {
 						},
 						ticks: {
 							beginAtZero: false,
-							//min: Math.min(...values),
-							//max: Math.max(...values) + Math.max(...values) * 0.05,
-							//stepSize: (Math.max(...values) / 5).toFixed(0),
 							callback: (value) => numberFormatter.format(value),
+						},
+					},
+					{
+						stacked: true,
+						id: 'total',
+						display: false,
+					},
+				],
+				xAxes: [
+					{
+						stacked: true,
+						ticks: {
+							beginAtZero: true,
 						},
 					},
 				],
