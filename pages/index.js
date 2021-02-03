@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.scss';
 import Head from 'next/head';
 import { Metatags } from '../components/MetaTags';
 export default function Home() {
-	let { statistics } = useData();
+	let { labels, values, statistics } = useData();
 	let rawData = statistics.getRaw();
 
 	let [selectedItem, setSelectedItem] = useState({});
@@ -41,6 +41,13 @@ export default function Home() {
 	}
 
 	useEffect(() => {
+		let rawData = statistics.getRaw();
+		setPreviousItem(selectedItem);
+		setSelectedItem(rawData[rawData.length - 1]);
+		setLast(rawData[rawData.length - 1]);
+	}, [labels, values, statistics]);
+
+	useEffect(() => {
 		setLast(rawData[rawData.length - 1]);
 		setSelectedItem(rawData[rawData.length - 1]);
 		setPreviousItem(selectedItem);
@@ -51,6 +58,11 @@ export default function Home() {
 		<>
 			<Metatags></Metatags>
 			<Header></Header>
+			<Row className={`card-shadow-bottom ${styles.alert}`}>
+				<Col style={{ textAlign: 'center' }}>
+					<p>Veja aqui os últimos números relacionados com a vacinação para a COVID-19. Estes dados são atualizados diariamente entre as 13h e as 14h.</p>
+				</Col>
+			</Row>
 
 			<Container>
 				<Row className={styles.datepickerRow}>
@@ -73,15 +85,14 @@ export default function Home() {
 					<Col>
 						<h3 className={styles.title}>Número vacinas administradas</h3>
 
-						<LineChart></LineChart>
+						<LineChart labels={labels} values={values}></LineChart>
 					</Col>
 				</Row>
 
 				<Row>
 					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
-
-						<BarChart></BarChart>
+						<BarChart labels={labels} values={values} statistics={statistics}></BarChart>
 					</Col>
 				</Row>
 

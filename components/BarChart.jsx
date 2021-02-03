@@ -1,13 +1,10 @@
 import { useEffect, createRef, useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { useData } from '../hooks/useData';
 import { Bar } from 'react-chartjs-2';
 import { FOREGROUND_COLOR } from '../constants';
 import { Card } from './Card';
 
-export function BarChart() {
+export function BarChart({ statistics }) {
 	let [loading, setLoading] = useState(true);
-	let { statistics } = useData();
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
 	let [height, setHeight] = useState(400);

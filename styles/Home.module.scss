@@ -23,3 +23,13 @@
 	font-size: 15px;
 	line-height: 28px;
 }
+
+.alert {
+	border-radius: 5px;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 15px 5px;
+	p {
+		margin: 0px;
+		font-size: 13px;
+	}
+}

@@ -1,13 +1,11 @@
 import { useEffect, createRef, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { useData } from '../hooks/useData';
 import { Line } from 'react-chartjs-2';
 import { FOREGROUND_COLOR } from '../constants';
 import { Card } from './Card';
 
-export function LineChart() {
+export function LineChart({ labels, values }) {
 	let [loading, setLoading] = useState(true);
-	let { values, labels } = useData();
 	let [height, setHeight] = useState(400);
 
 	const canvasRef = createRef(null);

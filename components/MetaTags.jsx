@@ -1,4 +1,3 @@
-import { useData } from '../hooks/useData';
 import vaccines from '../data/vaccines.json';
 import date from '../data/last-update.json';
 import Head from 'next/head';

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import vaccines from '../data/vaccines.json';
+import vaccinesData from '../data/vaccines.json';
 
 export function useData() {
-	let vals = [];
-	let labls = [];
+	let [vaccines, setVaccines] = useState(vaccinesData);
 	let [labels, setLabels] = useState([]);
 	let [values, setValues] = useState([]);
+	let [intervalId, setIntervalId] = useState(null);
 
 	let options = {
 		month: 'short',
@@ -13,10 +13,23 @@ export function useData() {
 	};
 	let f = new Intl.DateTimeFormat('pt-PT', options);
 
-	vaccines.forEach((el) => {
-		labls.push(f.format(new Date(el.Data)));
-		vals.push(el.Vacinados_Ac);
-	});
+	function parseData(data) {
+		let values = [];
+		let labels = [];
+
+		console.count('parseData');
+		data.forEach((el) => {
+			labels.push(f.format(new Date(el.Data)));
+			values.push(el.Vacinados_Ac);
+		});
+
+		return {
+			values,
+			labels,
+		};
+	}
+
+	let { labels: labls, values: vals } = parseData(vaccines);
 
 	let statistics = {
 		getRaw: () => {
@@ -103,7 +116,6 @@ export function useData() {
 			let in1 = [];
 			let in2 = [];
 			let total = values.map((val, idx, vals) => {
-				debugger;
 				//The first one
 				if (idx === 0) {
 					in1.push(vaccines[idx].Inoculacao1_Ac);
@@ -143,6 +155,27 @@ export function useData() {
 		setValues(vals);
 		setLabels(labls);
 	}, []);
+
+	useEffect(() => {
+		let { labels: labls, values: vals } = parseData(vaccines);
+		setValues(vals);
+		setLabels(labls);
+	}, [vaccines]);
+
+	useEffect(() => {
+		if (intervalId === null) {
+			let interval = window.setInterval(() => {
+				fetch('/api/vaccines')
+					.then((data) => data.json())
+					.then((d) => {
+						if (d.length != vaccines.length && vaccines.length > 0) {
+							setVaccines(d);
+						}
+					});
+			}, 5 * 60 * 1000);
+			setIntervalId(interval);
+		}
+	}, [vaccines]);
 
 	return { labels, values, statistics };
 }
