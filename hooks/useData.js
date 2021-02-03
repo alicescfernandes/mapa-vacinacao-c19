@@ -171,7 +171,7 @@ export function useData() {
 							setVaccines(d);
 						}
 					});
-			}, 5 * 60 * 1000);
+			}, 15 * 1000);
 			setIntervalId(interval);
 		}
 	}, [vaccines]);
