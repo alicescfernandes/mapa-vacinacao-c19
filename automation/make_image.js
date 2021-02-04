@@ -11,9 +11,8 @@ d.setSeconds(0);
 d.setMilliseconds(0);
 
 (async () => {
-	console.log(d.getTime() > lastupdate.date);
 	if (d.getTime() > lastupdate.date) {
-		d.lastupdate = d.getTime();
+		lastupdate.date = d.getTime();
 		const browser = await puppeteer.launch({ headless: true });
 		const page = await browser.newPage();
 		await page.setContent(contentHtml);
@@ -21,6 +20,6 @@ d.setMilliseconds(0);
 		await page.waitForTimeout(1000);
 		await page.screenshot({ path: `ig/image-${d.getTime()}.png` });
 		await browser.close();
-		fs.writeFile('./ig/last-update.json', JSON.stringify(d), () => {});
+		fs.writeFile('./ig/last-update.json', JSON.stringify(lastupdate), () => {});
 	}
 })();
