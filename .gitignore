@@ -4,6 +4,8 @@
 /node_modules
 /automation/node_modules
 
+.env
+
 /.pnp
 .pnp.js
 

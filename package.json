@@ -10,7 +10,8 @@
 		"build": "next build",
 		"start": "next start",
 		"export": "next build && next export -o out2",
-		"image": "cd automation/ && node make_image.js && cd - && git add automation"
+		"image": "cd automation/ && node instagram.js && cd - && git add automation",
+		"twitter": "cd automation/ && node twitter.js && cd - "
 	},
 	"pre-commit": [
 		"no-commit-to-master",
@@ -24,8 +25,10 @@
 		"bootstrap": "^4.6.0",
 		"chart.js": "^2.9.4",
 		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
+		"puppeteer": "^7.0.1",
 		"react": "17.0.1",
 		"react-bootstrap": "^1.4.3",
 		"react-chartjs-2": "^2.11.1",
@@ -33,6 +36,7 @@
 		"react-datepicker": "^3.4.1",
 		"react-dom": "17.0.1",
 		"sass": "^1.32.5",
+		"twitter": "^1.7.1",
 		"web-vitals": "^0.2.4"
 	},
 	"devDependencies": {
