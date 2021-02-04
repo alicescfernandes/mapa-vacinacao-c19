@@ -11,7 +11,8 @@ import styles from '../styles/Home.module.scss';
 import Head from 'next/head';
 import { Metatags } from '../components/MetaTags';
 export default function Home() {
-	let { labels, values, statistics } = useData();
+	let { statistics, labels, values } = useData();
+	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let rawData = statistics.getRaw();
 
 	let [selectedItem, setSelectedItem] = useState({});
@@ -88,7 +89,7 @@ export default function Home() {
 					<Col>
 						<h3 className={styles.title}>Número vacinas administradas</h3>
 
-						<LineChart labels={labels} values={values}></LineChart>
+						<LineChart labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
 					</Col>
 				</Row>
 

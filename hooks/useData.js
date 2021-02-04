@@ -111,6 +111,23 @@ export function useData() {
 			};
 		},
 
+		getVacinadosAcum: () => {
+			let in1 = [];
+			let in2 = [];
+			let total = [];
+			values.forEach((val, idx, vals) => {
+				in1.push(vaccines[idx].Inoculacao1_Ac);
+				in2.push(vaccines[idx].Inoculacao2_Ac);
+				total.push(vaccines[idx].Vacinados_Ac);
+			});
+
+			return {
+				valuesIn1: in1,
+				valuesIn2: in2,
+				values: total,
+				labels,
+			};
+		},
 		getDiariosInoculacoes: () => {
 			let in1 = [];
 			let in2 = [];
