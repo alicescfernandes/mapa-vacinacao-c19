@@ -43,9 +43,8 @@ export default function Home() {
 
 	useEffect(() => {
 		let rawData = statistics.getRaw();
-		setPreviousItem(selectedItem);
-		setSelectedItem(rawData[rawData.length - 1]);
 		setLast(rawData[rawData.length - 1]);
+		onDateSelect(new Date(rawData[rawData.length - 1].Data));
 	}, [values]);
 
 	useEffect(() => {
