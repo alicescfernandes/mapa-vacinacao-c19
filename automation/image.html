@@ -50,7 +50,7 @@
 					</clipPath>
 				</defs>
 				<g clip-path="">
-					<text id="data" x="540" y="950" style="font-family: 'Open Sans'; font-weight: 400; font-size: 40px; font-style: normal; fill: #515151; stroke: none" text-anchor="middle">Dados até asdas/01/01 00:00:00</text>
+					<text id="ultimoupdate" x="540" y="950" style="font-family: 'Open Sans'; font-weight: 400; font-size: 40px; font-style: normal; fill: #515151; stroke: none" text-anchor="middle">Dados até asdas/01/01 00:00:00</text>
 					<text id="data" x="540" y="1010" style="font-family: 'Open Sans'; font-weight: 400; font-size: 30px; font-style: normal; fill: #515151; stroke: none" text-anchor="middle">Fonte: Direção Geral da Saúde</text>
 				</g>
 				<defs>
@@ -70,11 +70,27 @@
 		</svg>
 
 		<script>
-			window.setTimeout(function () {
-				window.vaccines.innerHTML = '52,222';
-				window.dados.innerHTML = '+23,421';
-				window.data.innerHTML = 'Dados até todo/01/01 00:00:00';
-			}, 100);
+			let d = new Date();
+			d.setHours(0);
+			d.setMinutes(0);
+			d.setSeconds(0);
+			d.setMilliseconds(0);
+
+			let options = {
+				month: 'numeric',
+				year: 'numeric',
+				day: 'numeric',
+			};
+			let dateFormatter = new Intl.DateTimeFormat('pt-PT', options);
+			let numberFormatter = new Intl.NumberFormat();
+
+			fetch('http://localhost:3000/api/vaccines')
+				.then((res) => res.json())
+				.then((data) => {
+					window.vaccines.innerHTML = numberFormatter.format(data[data.length - 1].Vacinados_Ac).replace(',', ' ');
+					window.dados.innerHTML = '+' + numberFormatter.format(data[data.length - 1].Vacinados_Ac - data[data.length - 2].Vacinados_Ac).replace(',', ' ');
+					window.ultimoupdate.innerHTML = 'Dados até ' + dateFormatter.format(new Date(data[data.length - 1].Data), options) + ' 00:00:00';
+				});
 		</script>
 	</body>
 </html>

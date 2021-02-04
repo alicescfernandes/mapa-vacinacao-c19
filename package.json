@@ -23,6 +23,7 @@
 		"@testing-library/user-event": "^12.1.10",
 		"bootstrap": "^4.6.0",
 		"chart.js": "^2.9.4",
+		"cors": "^2.8.5",
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
 		"react": "17.0.1",
