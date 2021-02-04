@@ -390,5 +390,6 @@
 		"Vacinados": 350945,
 		"Vacinados_Ac": 350945,
 		"FID": 1
-	}
+	},
+	{ "Data": 1612396800000, "Inoculacao1": 279236, "Inoculacao1_Ac": 279236, "Inoculacao2": 84975, "Inoculacao2_Ac": 84975, "Vacinados": 364211, "Vacinados_Ac": 364211, "FID": 1 }
 ]
