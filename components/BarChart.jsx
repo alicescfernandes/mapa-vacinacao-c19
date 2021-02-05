@@ -3,7 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import { FOREGROUND_COLOR } from '../constants';
 import { Card } from './Card';
 
-export function BarChart({ statistics }) {
+export function BarChart({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
@@ -37,14 +37,14 @@ export function BarChart({ statistics }) {
 					lineBorder: 1,
 					borderWidth: 2,
 					backgroundColor: gradient,
-					borderColor: 'rgb(220,220,200)',
+					borderColor: '#' + colors[0] || 'rgb(220,220,200)',
 					borderJoinStyle: 'miter',
-					pointBorderColor: 'rgb(220,220,200)',
+					pointBorderColor: '#' + colors[0] || 'rgb(220,220,200)',
 					pointBackgroundColor: '#fff',
 					pointBorderWidth: 1,
 					pointHoverRadius: 5,
-					pointHoverBackgroundColor: 'rgb(220,220,200)',
-					pointHoverBorderColor: 'rgba(220,220,220,1)',
+					pointHoverBackgroundColor: '#' + colors[0] || 'rgb(220,220,200)',
+					pointHoverBorderColor: '#' + colors[0] || 'rgb(220,220,200)',
 					pointHoverBorderWidth: 2,
 					pointRadius: 3,
 					pointHitRadius: 10,
@@ -56,15 +56,15 @@ export function BarChart({ statistics }) {
 					fill: false,
 					type: 'bar',
 					overlayBars: true,
-					backgroundColor: '#006d5f',
+					backgroundColor: '#' + colors[1] || '#006d5f',
 					data: valuesIn2,
 					order: 2,
 					display: false,
 				},
 				{
 					label: 'Inoculação - 1ª Dose',
-					backgroundColor: FOREGROUND_COLOR,
-					borderColor: FOREGROUND_COLOR,
+					backgroundColor: '#' + colors[2] || FOREGROUND_COLOR,
+					borderColor: '#' + colors[2] || FOREGROUND_COLOR,
 					data: valuesIn1,
 					overlayBars: true,
 					order: 3,
@@ -73,7 +73,7 @@ export function BarChart({ statistics }) {
 					label: 'Vacinas Totais',
 					type: 'bar',
 					overlayBars: true,
-					backgroundColor: '#caeae4',
+					backgroundColor: '#' + colors[3] || '#caeae4',
 					data: values,
 					order: 4,
 					yAxisID: 'total',

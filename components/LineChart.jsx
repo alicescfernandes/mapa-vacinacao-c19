@@ -3,8 +3,9 @@ import { Doughnut } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 import { FOREGROUND_COLOR } from '../constants';
 import { Card } from './Card';
+import convert from 'color-convert';
 
-export function LineChart({ labels, values, valuesIn1, valuesIn2 }) {
+export function LineChart({ labels, values, valuesIn1, valuesIn2, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [height, setHeight] = useState(400);
 
@@ -13,8 +14,15 @@ export function LineChart({ labels, values, valuesIn1, valuesIn2 }) {
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
-		gradient.addColorStop(0, 'rgba(1,174,151,15%)');
-		gradient.addColorStop(1, 'rgba(1,174,151,0%)');
+		if (colors[0]) {
+			let [r, g, b] = convert.hex.rgb('#' + colors[0]);
+			console.log(r, g, b);
+			gradient.addColorStop(0, `rgba(${r},${g},${b},15%)`);
+			gradient.addColorStop(1, `rgba(${r},${g},${b},0%)`);
+		} else {
+			gradient.addColorStop(0, 'rgba(1,174,151,15%)');
+			gradient.addColorStop(1, 'rgba(1,174,151,0%)');
+		}
 
 		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
@@ -32,14 +40,14 @@ export function LineChart({ labels, values, valuesIn1, valuesIn2 }) {
 					lineBorder: 1,
 					borderWidth: 3,
 					backgroundColor: gradient,
-					borderColor: FOREGROUND_COLOR,
+					borderColor: '#' + colors[0] || FOREGROUND_COLOR,
 					borderJoinStyle: 'miter',
-					pointBorderColor: 'rgba(75,192,192,1)',
+					pointBorderColor: '#' + colors[0] || 'rgba(75,192,192,1)',
 					pointBackgroundColor: '#fff',
 					pointBorderWidth: 1,
 					pointHoverRadius: 5,
-					pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-					pointHoverBorderColor: 'rgba(220,220,220,1)',
+					pointHoverBackgroundColor: '#' + colors[0] || 'rgba(75,192,192,1)',
+					pointHoverBorderColor: '#' + colors[0] || 'rgba(220,220,220,1)',
 					pointHoverBorderWidth: 2,
 					pointRadius: 3,
 					pointHitRadius: 10,
@@ -51,14 +59,14 @@ export function LineChart({ labels, values, valuesIn1, valuesIn2 }) {
 					lineTension: 0.5,
 					lineBorder: 1,
 					borderWidth: 3,
-					borderColor: 'rgba(3,109,95,1)',
+					borderColor: '#' + colors[1] || 'rgba(3,109,95,1)',
 					borderJoinStyle: 'miter',
-					pointBorderColor: 'rgba(3,109,95,1)',
+					pointBorderColor: '#' + colors[1] || 'rgba(3,109,95,1)',
 					pointBackgroundColor: '#fff',
 					pointBorderWidth: 1,
 					pointHoverRadius: 5,
-					pointHoverBackgroundColor: 'rgba(3,109,95,1)',
-					pointHoverBorderColor: 'rgba(220,220,220,1)',
+					pointHoverBackgroundColor: '#' + colors[1] || 'rgba(3,109,95,1)',
+					pointHoverBorderColor: '#' + colors[1] || 'rgba(220,220,220,1)',
 					pointHoverBorderWidth: 2,
 					pointRadius: 3,
 					pointHitRadius: 10,
@@ -70,14 +78,14 @@ export function LineChart({ labels, values, valuesIn1, valuesIn2 }) {
 					lineTension: 0.5,
 					lineBorder: 1,
 					borderWidth: 3,
-					borderColor: 'rgba(1,76,67,1)',
+					borderColor: '#' + colors[2] || 'rgba(1,76,67,1)',
 					borderJoinStyle: 'miter',
-					pointBorderColor: 'rgba(1,76,67,1)',
+					pointBorderColor: '#' + colors[2] || 'rgba(1,76,67,1)',
 					pointBackgroundColor: '#fff',
 					pointBorderWidth: 1,
 					pointHoverRadius: 5,
-					pointHoverBackgroundColor: 'rgba(1,76,67,1)',
-					pointHoverBorderColor: 'rgba(220,220,220,1)',
+					pointHoverBackgroundColor: '#' + colors[2] || 'rgba(1,76,67,1)',
+					pointHoverBorderColor: '#' + colors[2] || 'rgba(220,220,220,1)',
 					pointHoverBorderWidth: 2,
 					pointRadius: 3,
 					pointHitRadius: 10,

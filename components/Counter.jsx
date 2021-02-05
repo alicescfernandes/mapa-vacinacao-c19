@@ -6,11 +6,6 @@ export function Counter({ from, to, yesterday, title, subtitle }) {
 	let numberFormatter = new Intl.NumberFormat();
 	let difference = to - yesterday || 0;
 	const fn = (value) => <span className={styles.counter}>{numberFormatter.format(value).replace(',', ' ')}</span>;
-	/*
-	{subtitle == '' ? <div style={{ height: 20 }} /> : ''}
-				<p className={styles.card_graph_subtitle}>{subtitle}</p>
-
-				*/
 	return (
 		<>
 			<Card>
