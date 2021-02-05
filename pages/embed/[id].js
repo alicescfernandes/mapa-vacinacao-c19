@@ -72,53 +72,61 @@ export default function Embed() {
 		}
 	}, [queryColors]);
 
-	let content = '';
+	let content = (
+		<Row>
+			<Col>
+				<p style={{ padding: '20px', textAlign: 'center' }}>A carregar...</p>
+			</Col>
+		</Row>
+	);
 	let css = `:root{
 		--foreground:${colors[0]}
 		}`;
-	switch (id) {
-		case 'counter':
-			content = (
-				<>
+
+	if (id) {
+		switch (id) {
+			case 'counter':
+				content = (
 					<>
-						<style>{css}</style>
+						<>
+							<style>{css}</style>
+						</>
+						<Row className={styles.datepickerRow}>
+							<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton colors={colors} onDateSelect={onDateSelect} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
+						</Row>
+						<Row>
+							<Col lg={4} xs={12}>
+								<Counter colors={colors} title="Número total de vacinados" subtitle="" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
+							</Col>
+							<Col lg={4} xs={12}>
+								<Counter colors={colors} title="Número de vacinados - 1ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
+							</Col>
+							<Col lg={4} xs={12}>
+								<Counter colors={colors} title="Número de vacinados - 2ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
+							</Col>
+						</Row>
 					</>
-					<Row className={styles.datepickerRow}>
-						<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton colors={colors} onDateSelect={onDateSelect} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
-					</Row>
-					<Row>
-						<Col lg={4} xs={12}>
-							<Counter colors={colors} title="Número total de vacinados" subtitle="" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
-						</Col>
-						<Col lg={4} xs={12}>
-							<Counter colors={colors} title="Número de vacinados - 1ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
-						</Col>
-						<Col lg={4} xs={12}>
-							<Counter colors={colors} title="Número de vacinados - 2ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
-						</Col>
-					</Row>
-				</>
-			);
-			break;
-		case 'line':
-			content = (
-				<>
-					<LineChart colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
-				</>
-			);
-			break;
+				);
+				break;
+			case 'line':
+				content = (
+					<>
+						<LineChart colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
+					</>
+				);
+				break;
 
-		case 'bar':
-			content = (
-				<>
-					<BarChart colors={colors} labels={labels} values={values} statistics={statistics}></BarChart>
-				</>
-			);
-			break;
-		default:
-			content = <Error statusCode={404} />;
+			case 'bar':
+				content = (
+					<>
+						<BarChart colors={colors} labels={labels} values={values} statistics={statistics}></BarChart>
+					</>
+				);
+				break;
+			default:
+				content = <Error statusCode={404} />;
+		}
 	}
-
 	return <>{content}</>;
 	// <Footer></Footer>
 }
