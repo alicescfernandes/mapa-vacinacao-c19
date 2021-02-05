@@ -9,6 +9,8 @@ import { LineChart } from '../components/LineChart';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import Head from 'next/head';
+import { useColors } from '../hooks/useColors';
+
 import { Metatags } from '../components/MetaTags';
 export default function Home() {
 	let { statistics, labels, values } = useData();
@@ -23,6 +25,7 @@ export default function Home() {
 	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
 
+	let { colors, setColors } = useColors();
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
 			if (el.Data == d.getTime()) {
@@ -88,14 +91,14 @@ export default function Home() {
 					<Col>
 						<h3 className={styles.title}>Número vacinas administradas</h3>
 
-						<LineChart labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
+						<LineChart colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
 					</Col>
 				</Row>
 
 				<Row>
 					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
-						<BarChart labels={labels} values={values} statistics={statistics}></BarChart>
+						<BarChart colors={colors} labels={labels} values={values} statistics={statistics}></BarChart>
 					</Col>
 				</Row>
 

@@ -11,10 +11,12 @@ import styles from '../../styles/Home.module.scss';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 
+import { useColors } from './../../hooks/useColors';
 export default function Embed() {
 	const router = useRouter();
-	const { id, colors } = router.query;
-	console.log(colors);
+	const { id, colors: queryColors } = router.query;
+	let { colors, setColors } = useColors();
+
 	let { statistics, labels, values } = useData();
 	let rawData = statistics.getRaw();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
@@ -58,6 +60,17 @@ export default function Embed() {
 		setFirst(rawData[0]);
 		setLoaded(true);
 	}, []);
+
+	useEffect(() => {
+		console.log(queryColors);
+		if (queryColors != undefined) {
+			console.log(
+				1,
+				queryColors.map((c) => '#' + c)
+			);
+			setColors([...queryColors.map((c) => '#' + c)]);
+		}
+	}, [queryColors]);
 
 	let content = '';
 
