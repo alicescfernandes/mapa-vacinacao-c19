@@ -21,7 +21,7 @@ Descrição
 ➡ Desvio padrão  
 ➡ Serviço de embeds de gráficos  
 ➡ Partilhas nas redes sociais de gráficos  
-
+- cenas
 
 ## Gráficos
 ➡ Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)  
