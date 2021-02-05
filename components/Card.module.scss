@@ -9,7 +9,7 @@
 		overflow: hidden;
 		.counter {
 			font-size: 50px;
-			color: var(--foreground);
+			// color: var(--foreground);
 			font-weight: bold;
 		}
 
@@ -28,7 +28,7 @@
 			&_counter {
 				margin-bottom: 0px;
 				font-size: 14px;
-				color: var(--foreground);
+				// color: var(--foreground);
 				font-weight: bold;
 			}
 		}

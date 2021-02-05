@@ -12,6 +12,26 @@ Todo o código é público, para que seja possível ser adaptado para outras uti
 - [Ponto de Situação Direção-Geral da Saúde](https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/)  
 - [Our World of Data](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Portugal.csv)  
 
+## Embeds
+É possivel fazer _embeds_ aos gráficos mostrados no dashboard. Também dá para personalizar as cores dos gráficos
+```html
+<iframe src="https://vacinacaocovid19.pt/embed/bar?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
+```
+### Tipos de Embeds
+#### Números atuais
+```html
+<iframe src="https://vacinacaocovid19.pt/embed/counter?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
+```
+#### Número vacinas administradas
+```html
+<iframe src="https://vacinacaocovid19.pt/embed/line?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
+```
+#### Número de vacinas administradas por dia
+```html
+<iframe src="https://vacinacaocovid19.pt/embed/bar?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
+```
+
+
 ## Stack
 - ChartJS  
 - React  
@@ -24,7 +44,7 @@ Todo o código é público, para que seja possível ser adaptado para outras uti
 - Labels todas juntas
 - Melhorar experiencia em Mobile
 - Minor refactor para contemplar novos gráficos
-- Serviço de embeds de gráficos  
+- ~~Serviço de embeds de gráficos~~  
 - Partilhas nas redes sociais de gráficos  
 
 ## Backlog - Gráficos
