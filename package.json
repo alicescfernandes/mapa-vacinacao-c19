@@ -12,6 +12,9 @@
 		"export": "next build && next export -o out2",
 		"image": "cd automation/ && node make_image.js && cd - && git add automation"
 	},
+	"bin": {
+		"daemon_data": "./daemon.js"
+	},
 	"pre-commit": [
 		"no-commit-to-master",
 		"update"
@@ -25,6 +28,8 @@
 		"cors": "^2.8.5",
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
+		"node-fetch": "^2.6.1",
+		"node-schedule": "^2.0.0",
 		"react": "17.0.1",
 		"react-bootstrap": "^1.4.3",
 		"react-chartjs-2": "^2.11.1",
@@ -32,6 +37,7 @@
 		"react-datepicker": "^3.4.1",
 		"react-dom": "17.0.1",
 		"sass": "^1.32.5",
+		"shelljs": "^0.8.4",
 		"web-vitals": "^0.2.4"
 	},
 	"devDependencies": {
