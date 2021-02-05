@@ -17,6 +17,7 @@ Todo o código é público, para que seja possível ser adaptado para outras uti
 ```html
 <iframe src="https://vacinacaocovid19.pt/embed/bar?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
 ```
+![](./_readme/exemplo.png)
 ### Tipos de Embeds
 #### Números atuais
 ```html
