@@ -52,8 +52,8 @@ function updateJSON() {
 }
 
 console.log(new Date().toLocaleString(), 'daemon running');
-// ““At every 2nd minute from 20 through 40 past hour 13.”
-// https://crontab.guru/#20-40/2_13_*_*_*
-schedule.scheduleJob('20-40/2 13 * * *', function () {
+// ““At every 2nd minute from 20 through 50 past hour 13.”
+// https://crontab.guru/#20-50/2_13_*_*_*
+schedule.scheduleJob('20-50/2 13 * * *', function () {
 	updateJSON();
 });
