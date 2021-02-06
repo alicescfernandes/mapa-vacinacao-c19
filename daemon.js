@@ -20,7 +20,7 @@ let f = new Intl.DateTimeFormat('pt', options);
 let formatted = f.format(new Date());
 
 function gitCommit() {
-	shell.exec('git add vaccines.json');
+	shell.exec('git add data/*');
 	if (shell.exec(`git commit -m  "covid update - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
 		shell.exit(1);
