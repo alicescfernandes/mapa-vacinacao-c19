@@ -1,7 +1,8 @@
 import vaccines from '../data/vaccines.json';
 import date from '../data/last-update.json';
 import Head from 'next/head';
-export function Metatags() {
+import { useEffect } from 'react';
+export function Metatags({ isUpdating }) {
 	let options = {
 		month: '2-digit',
 		day: 'numeric',
@@ -11,10 +12,17 @@ export function Metatags() {
 	let dateFormater = new Intl.DateTimeFormat('pt-PT', options);
 	let parts = dateFormater.formatToParts(vacinas.Data);
 	let num = numberFormatter.format(vacinas.Vacinados_Ac).replace(',', ' ');
+	let title = 'Plano de Vacinação - COVID 19';
+	useEffect(() => {
+		if (isUpdating) {
+			document.title = 'Atualizado - ' + title;
+		}
+	}, [isUpdating]);
+
 	return (
 		<Head>
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-			<meta name="title" content="Plano de Vacinação - COVID 19" />
+			<meta name="title" content={title} />
 			<meta name="description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="https://vacinacaocovid19.pt/" />

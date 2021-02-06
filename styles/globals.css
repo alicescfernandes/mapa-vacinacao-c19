@@ -40,3 +40,43 @@ a:hover{
  text-decoration: none;
  color:var(--foreground)
 }
+
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+/*  No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */ 
+@media (min-width: 576px) { 
+  .container{
+    max-width: 95vw;
+  }
+ }
+
+/* Medium devices (tablets, 768px and up) */ 
+@media (min-width: 768px) {
+  .container{
+    max-width: 90vw;
+  }
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container{
+    max-width: 90vw;
+  }
+ }
+
+/* Extra large devices (large desktops, 1200px and up)*/ 
+@media (min-width: 1200px) {  
+  .container{
+    max-width: 80vw;
+  }
+}
+
+/* XXL large devices (large desktops, 1920  and up)*/ 
+@media (min-width: 1921px) {  
+  .container{
+    max-width: 1520px;
+  }
+}
