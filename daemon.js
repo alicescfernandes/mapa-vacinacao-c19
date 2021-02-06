@@ -29,7 +29,10 @@ function gitCommit() {
 	}
 
 	shell.exec('git push');
-	shell.exec('yarn deploy');
+	shell.exec('git checkout master');
+	shell.exec('git pull --rebase');
+	shell.exec('git merge develop');
+	shell.exec('git checkout develop');
 }
 function updateJSON() {
 	let date = new Date();
@@ -42,27 +45,34 @@ function updateJSON() {
 		fetch('http://localhost:3000/api/vaccines').then((res) => res.json()),
 	];
 	console.log(new Date().toLocaleString(), 'checking');
-	Promise.all(promises).then(([dataArcgis, dataLocal]) => {
-		let sourceData = dataArcgis.features[0].attributes;
-		if (parseInt(sourceData.Vacinados_Ac) > dataLocal[dataLocal.length - 1].Vacinados_Ac) {
-			console.log(new Date().toLocaleString(), 'updating');
-			sourceData.Data = date.getTime();
-			dataLocal.push(sourceData);
-			fs.writeFile('./data/vaccines.json', JSON.stringify(dataLocal), () => {
-				console.log(new Date().toLocaleString(), 'success');
-				gitCommit();
-			});
-		} else {
-			console.log('not updating', parseInt(sourceData.Vacinados_Ac), dataLocal.Vacinados_Ac);
-		}
-	});
+	Promise.all(promises)
+		.then(([dataArcgis, dataLocal]) => {
+			let sourceData = dataArcgis.features[0].attributes;
+			if (parseInt(sourceData.Vacinados_Ac) > dataLocal[dataLocal.length - 1].Vacinados_Ac) {
+				console.log(new Date().toLocaleString(), 'updating');
+
+				shell.exec('git checkout develop');
+				shell.exec('git pull --rebase');
+
+				sourceData.Data = date.getTime();
+				dataLocal.push(sourceData);
+				fs.writeFile('./data/vaccines.json', JSON.stringify(dataLocal), () => {
+					console.log(new Date().toLocaleString(), 'success');
+					gitCommit();
+				});
+			} else {
+				console.log('not updating', parseInt(sourceData.Vacinados_Ac), dataLocal.Vacinados_Ac);
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 }
 
 console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
 
-updateJSON();
 schedule.scheduleJob('0-59/5 13 * * *', function () {
 	updateJSON();
 });
