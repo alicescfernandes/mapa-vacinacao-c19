@@ -29,7 +29,10 @@ function gitCommit() {
 	}
 
 	shell.exec('git push');
-	shell.exec('yarn deploy');
+	shell.exec('git checkout master');
+	shell.exec('git pull --rebase');
+	shell.exec('git merge develop');
+	shell.exec('git checkout develop');
 }
 function updateJSON() {
 	let date = new Date();
@@ -46,6 +49,10 @@ function updateJSON() {
 		let sourceData = dataArcgis.features[0].attributes;
 		if (parseInt(sourceData.Vacinados_Ac) > dataLocal[dataLocal.length - 1].Vacinados_Ac) {
 			console.log(new Date().toLocaleString(), 'updating');
+
+			shell.exec('git checkout develop');
+			shell.exec('git pull --rebase');
+
 			sourceData.Data = date.getTime();
 			dataLocal.push(sourceData);
 			fs.writeFile('./data/vaccines.json', JSON.stringify(dataLocal), () => {
