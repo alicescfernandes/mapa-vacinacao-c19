@@ -1,0 +1,143 @@
+import { useEffect, createRef, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import { Card } from './../Card';
+import convert from 'color-convert';
+
+export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, colors }) {
+	let [loading, setLoading] = useState(true);
+	let [height, setHeight] = useState(400);
+	let [foreground, color_1, color_2] = colors;
+	const canvasRef = createRef(null);
+	let commonProps = {
+		fill: true,
+		lineTension: 0.5,
+		lineBorder: 1,
+		borderWidth: 3,
+		borderJoinStyle: 'miter',
+		pointBorderWidth: 1,
+		pointHoverRadius: 5,
+		pointHoverBorderWidth: 2,
+		pointRadius: 3,
+		pointHitRadius: 10,
+	};
+	const data = (canvas) => {
+		const ctx = canvas.getContext('2d');
+		const gradient = ctx.createLinearGradient(0, 0, 0, height);
+		let [r, g, b] = convert.hex.rgb(foreground);
+		gradient.addColorStop(0, `rgba(${r},${g},${b},15%)`);
+		gradient.addColorStop(1, `rgba(${r},${g},${b},0%)`);
+
+		if (window.innerWidth <= 800) {
+			canvas.parentNode.style.width = '1000px';
+		} else {
+			canvas.parentNode.style.width = 'auto';
+		}
+
+		return {
+			labels: labels,
+			datasets: [
+				{
+					...commonProps,
+					label: 'Total vacinas administradas',
+					backgroundColor: gradient,
+					borderColor: foreground,
+					pointBorderColor: foreground,
+					pointBackgroundColor: foreground,
+					pointHoverBackgroundColor: foreground,
+					pointHoverBorderColor: foreground,
+					data: values,
+				},
+				{
+					...commonProps,
+					label: 'Total de vacinas administradas - 1ª Dose',
+					fill: false,
+					borderColor: color_1,
+					pointBorderColor: color_1,
+					pointBackgroundColor: color_1,
+					pointHoverBackgroundColor: color_1,
+					pointHoverBorderColor: color_1,
+					data: valuesIn1,
+				},
+				{
+					...commonProps,
+					label: 'Total de vacinas administradas - 2ª Dose',
+					fill: false,
+					borderColor: color_2,
+					pointBorderColor: color_2,
+					pointBackgroundColor: color_2,
+					pointHoverBackgroundColor: color_2,
+					pointHoverBorderColor: color_2,
+					data: valuesIn2,
+				},
+			],
+		};
+	};
+	let numberFormatter = new Intl.NumberFormat();
+	const options = () => {
+		return {
+			onResize: (a, b, c) => {
+				if (window.innerWidth <= 800) {
+					a.canvas.parentNode.style.width = '1000px';
+				} else {
+					a.canvas.parentNode.style.width = 'auto';
+				}
+			},
+			legend: {
+				position: 'bottom',
+				align: 'start',
+			},
+
+			animation: {
+				duration: 1000,
+			},
+			tooltips: {
+				callbacks: {
+					label: (tooltipItem, data) => {
+						var label = data.datasets[tooltipItem.datasetIndex].label;
+						return label + ': ' + numberFormatter.format(tooltipItem.value).replace(',', ' ');
+					},
+					title: (tooltipItem, data) => {
+						var label = data.datasets[tooltipItem[0].datasetIndex];
+						return 'Dia ' + tooltipItem[0].label;
+					},
+				},
+			},
+			scales: {
+				yAxes: [
+					{
+						scaleLabel: {
+							display: true,
+						},
+						gridLines: {
+							drawBorder: false,
+						},
+						ticks: {
+							beginAtZero: false,
+							min: Math.min(...values),
+							max: Math.max(...values) + Math.max(...values) * 0.05,
+							stepSize: (Math.max(...values) / 5).toFixed(0),
+							callback: (value) => numberFormatter.format(value),
+						},
+					},
+				],
+			},
+		};
+	};
+	useEffect(() => {
+		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
+			setHeight(canvasRef?.current?.chartInstance?.canvas?.height);
+		}
+	}, [canvasRef.current]);
+
+	useEffect(() => {
+		if (values.length > 0 && height > 0) {
+			setLoading(false);
+		}
+	}, [values, labels, height]);
+
+	return (
+		<Card allowOverflow={true}>
+			<div> {!loading ? <Line height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+		</Card>
+	);
+}

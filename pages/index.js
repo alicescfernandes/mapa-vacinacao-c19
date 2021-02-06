@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { BarChart } from '../components/BarChart';
+import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
 import { DatePickerButton } from '../components/DatePickerButton';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-import { LineChart } from '../components/LineChart';
+import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import Head from 'next/head';
@@ -91,14 +91,14 @@ export default function Home() {
 					<Col>
 						<h3 className={styles.title}>Número vacinas administradas</h3>
 
-						<LineChart colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
+						<NumeroTotalVacinados colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></NumeroTotalVacinados>
 					</Col>
 				</Row>
 
 				<Row>
 					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
-						<BarChart colors={colors} labels={labels} values={values} statistics={statistics}></BarChart>
+						<VacinadosPorDia colors={colors} labels={labels} values={values} statistics={statistics}></VacinadosPorDia>
 					</Col>
 				</Row>
 
@@ -114,7 +114,15 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
 								Ponto de Situação Direção-Geral da Saúde
 							</a>
-							. A atualização destes dados é diária.
+							. Os dados relativos à média da União Europeia são atualizados pelo{' '}
+							<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+								Our World In Data
+							</a>{' '}
+							e estão disponíveis{' '}
+							<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
+								no repositório de Github
+							</a>
+							.<br /> A atualização destes dados é diária.
 						</p>
 					</Col>
 				</Row>

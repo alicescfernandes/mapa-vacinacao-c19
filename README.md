@@ -46,10 +46,10 @@ Todo o código é público, para que seja possível ser adaptado para outras uti
 - Melhorar experiencia em Mobile
 - Minor refactor para contemplar novos gráficos
 - ~~Serviço de embeds de gráficos~~  
-- Partilhas nas redes sociais de gráficos  
+- Partilhas nas redes sociais de dados  
 
 ## Backlog - Gráficos
-- Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)  
+- ~~Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)~~
 - Fase do Plano de Vacinação
-- Notícias (widget de noticias recentes relacionadas com as vacinas)  
+- ~~Notícias (widget de noticias recentes relacionadas com as vacinas)~~  
 

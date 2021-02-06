@@ -1,10 +1,8 @@
 import { useEffect, createRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { FOREGROUND_COLOR } from '../constants';
-import { useColors } from '../hooks/useColors';
-import { Card } from './Card';
+import { Card } from './../Card';
 
-export function BarChart({ statistics, colors }) {
+export function VacinadosPorDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);

@@ -1,11 +1,9 @@
 import { useEffect, createRef, useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
-import { Card } from './Card';
+import { Card } from './../Card';
 import convert from 'color-convert';
-import { useColors } from './../hooks/useColors';
 
-export function LineChart({ labels, values, valuesIn1, valuesIn2, colors }) {
+export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [height, setHeight] = useState(400);
 	let [foreground, color_1, color_2] = colors;
