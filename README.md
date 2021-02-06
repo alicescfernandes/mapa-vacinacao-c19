@@ -39,6 +39,7 @@ Todo o código é público, para que seja possível ser adaptado para outras uti
 - NextJS  
 - JSON como serviço de dados  
 - Vercel  
+- Docker (para automatizar o processo de recolha de dados diários, num *container* que tem os portos & git isolados)  
 
 ## Backlog: 
 - Carregar nos pontos do gráfico muda o dia 
