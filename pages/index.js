@@ -194,7 +194,7 @@ export default function Home() {
 				</Row>
 				<Row>
 					<Col xs={12}>
-						<h3 className={styles.title}>Proporção do número de vacinas administradas por dia com o número de infectados e de recuperados e óbitos</h3>
+						<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos</h3>
 						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
 					</Col>
 				</Row>
