@@ -34,9 +34,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					backgroundColor: main,
 					data: valuesIn2.slice(valuesIn1.length - 14, valuesIn1.length),
 					stack: 'stack0',
-					yAxisID: 'total',
-
-					//	xAxisID: 'group1',
 				},
 				{
 					label: 'Inoculação - 1ª Dose',
@@ -51,10 +48,9 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					backgroundColor: shades[1],
 					data: values.slice(valuesIn1.length - 14, valuesIn1.length),
 					stack: 'stack0',
-					yAxisID: 'total',
 				},
 				{
-					label: 'Numero de infectados diário',
+					label: 'Número de infectados diário',
 					type: 'bar',
 					backgroundColor: complements[1],
 					data: valueCasesDiarios.slice(valuesIn1.length - 14, valuesIn1.length).map((el) => el.confirmados_novos),
@@ -62,7 +58,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					yAxisID: 'total',
 				},
 				{
-					label: 'Numero de recuperados diário',
+					label: 'Número de recuperados diário',
 					type: 'bar',
 					backgroundColor: complements[2],
 					data: valueCasesDiarios.slice(valuesIn1.length - 14, valuesIn1.length).map((el) => el.recuperados_novos),
@@ -75,6 +71,12 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
+			plugins: {
+				datalabels: {
+					display: false,
+					color: 'blue',
+				},
+			},
 			onResize: (a, b, c) => {
 				if (window.innerWidth <= 800) {
 					a.canvas.parentNode.style.width = '1000px';

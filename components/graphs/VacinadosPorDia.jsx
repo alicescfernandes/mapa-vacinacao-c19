@@ -88,6 +88,12 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
+			plugins: {
+				datalabels: {
+					display: false,
+					color: 'blue',
+				},
+			},
 			onResize: (a, b, c) => {
 				if (window.innerWidth <= 800) {
 					a.canvas.parentNode.style.width = '1000px';

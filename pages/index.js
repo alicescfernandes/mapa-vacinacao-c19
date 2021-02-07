@@ -16,6 +16,8 @@ import cardStyles from '../components/Card.module.scss';
 import generic from './../data/generic.json';
 import fases from './../data/fases.json';
 import { Card } from '../components/Card';
+import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
+import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
 export default function Home() {
 	let { statistics, labels, values } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
@@ -40,7 +42,7 @@ export default function Home() {
 		},
 	});
 
-	let { colors, setColors } = useColors();
+	let { colors, colors_v2, setColors } = useColors();
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
 			if (el.Data == d.getTime()) {
@@ -64,7 +66,7 @@ export default function Home() {
 		prevCountRef.current = derivedNumbers;
 	});
 	const prevCount = prevCountRef.current;
-	console.log(1, prevCount, derivedNumbers);
+
 	useEffect(() => {
 		let rawData = statistics.getRaw();
 		if (rawData[rawData.length - 1]?.Data != last.Data) {
@@ -184,6 +186,19 @@ export default function Home() {
 				</Row>
 
 				<Row>
+					<Col>
+						<h3 className={styles.title}>Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias</h3>
+						<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
+					</Col>
+				</Row>
+				<Row>
+					<Col xs={12}>
+						<h3 className={styles.title}>Proporção do número de vacinas administradas por dia com o número de infectados e de recuperados e óbitos</h3>
+						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
+					</Col>
+				</Row>
+
+				<Row>
 					<Col xs={12} className={styles.sources_block}>
 						<h3 className={styles.title}>Notas</h3>
 						<p className={styles.text}>
@@ -197,10 +212,10 @@ export default function Home() {
 							</a>{' '}
 							Os valores apresentados aqui foram calculados com uma percentagem de 60%.
 						</p>
-						<p className={styles.text}>
+						{/*	<p className={styles.text}>
 							A média de evolução de casos da União Europeia foi calculada com os números reportados por cada país, mesmo que alguns países não tenham ainda reportado para o dia de hoje. No gráfico de o numero total de vacinas administradas por dia de cada só são mostrados os dados que
 							foram reportados por cada país, sendo que nem todos os paises reportam em simultâneo os dados.
-						</p>
+						</p>*/}
 					</Col>
 
 					<Col xs={12} className={styles.sources_block}>
