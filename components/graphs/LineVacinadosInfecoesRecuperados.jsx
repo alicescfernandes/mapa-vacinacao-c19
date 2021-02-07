@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Card } from './../Card';
-
-export function VacinadosPorDia({ statistics, colors }) {
+export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
-
-	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
-	let [foreground, color_1, color_2, color_3, color_4] = colors;
+	let { values: valueCasesDiarios } = statistics.getDiariosCases();
+	let { main, shades, tints, complements } = colors;
 
 	let [height, setHeight] = useState(400);
 
@@ -27,60 +25,49 @@ export function VacinadosPorDia({ statistics, colors }) {
 		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 
 		return {
-			labels: labels,
+			labels: labels.slice(valuesIn1.length - 14, valuesIn1.length),
 			datasets: [
-				{
-					label: 'Vacinas diárias - Média movel de 7 dias',
-					fill: false,
-					lineTension: 0.5,
-					overlayBars: true,
-					type: 'line',
-					lineBorder: 1,
-					borderWidth: 2,
-					borderColor: color_4,
-					borderJoinStyle: 'miter',
-					pointBorderColor: color_4,
-					pointBackgroundColor: color_4,
-					pointBorderWidth: 1,
-					pointHoverRadius: 5,
-					pointHoverBackgroundColor: color_4,
-					pointHoverBorderColor: color_4,
-					pointHoverBorderWidth: 2,
-					pointRadius: 3,
-					pointHitRadius: 10,
-					data: values2,
-					order: 1,
-				},
 				{
 					label: 'Inoculação - 2ª Dose',
 					fill: false,
 					type: 'bar',
-					overlayBars: true,
-					backgroundColor: foreground,
-					data: valuesIn2,
-					order: 2,
-					display: false,
+					backgroundColor: main,
+					data: valuesIn2.slice(valuesIn1.length - 14, valuesIn1.length),
 					stack: 'stack0',
+					yAxisID: 'total',
+
+					//	xAxisID: 'group1',
 				},
 				{
 					label: 'Inoculação - 1ª Dose',
-					backgroundColor: color_1,
-					borderColor: color_1,
-					data: valuesIn1,
-					overlayBars: true,
-					order: 3,
+					backgroundColor: shades[0],
+					borderColor: shades[0],
+					data: valuesIn1.slice(valuesIn1.length - 14, valuesIn1.length),
 					stack: 'stack0',
 				},
 				{
 					label: 'Vacinas Totais',
 					type: 'bar',
-					overlayBars: true,
-					overlayBars: true,
-					backgroundColor: color_2,
-					data: values,
-					order: 4,
-					yAxisID: 'total',
+					backgroundColor: shades[1],
+					data: values.slice(valuesIn1.length - 14, valuesIn1.length),
 					stack: 'stack0',
+					yAxisID: 'total',
+				},
+				{
+					label: 'Numero de infectados diário',
+					type: 'bar',
+					backgroundColor: complements[1],
+					data: valueCasesDiarios.slice(valuesIn1.length - 14, valuesIn1.length).map((el) => el.confirmados_novos),
+					stack: 'stack1',
+					yAxisID: 'total',
+				},
+				{
+					label: 'Numero de recuperados diário',
+					type: 'bar',
+					backgroundColor: complements[2],
+					data: valueCasesDiarios.slice(valuesIn1.length - 14, valuesIn1.length).map((el) => el.recuperados_novos),
+					stack: 'stack2',
+					yAxisID: 'total',
 				},
 			],
 		};
@@ -109,7 +96,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value)).replace(',', ' ');
+						return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value) || 0).replace(',', ' ');
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
@@ -121,16 +108,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 				yAxes: [
 					{
 						stacked: true,
-						scaleLabel: {
-							display: true,
-						},
-						gridLines: {
-							drawBorder: false,
-						},
-						ticks: {
-							beginAtZero: false,
-							callback: (value) => numberFormatter.format(value),
-						},
 					},
 					{
 						stacked: true,

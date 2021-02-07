@@ -15,7 +15,7 @@ import { useColors } from './../../hooks/useColors';
 export default function Embed() {
 	const router = useRouter();
 	const { id, colors: queryColors } = router.query;
-	let { colors, setColors } = useColors();
+	let { colors, tints, shades, complement, setColors } = useColors();
 
 	let { statistics, labels, values } = useData();
 	let rawData = statistics.getRaw();

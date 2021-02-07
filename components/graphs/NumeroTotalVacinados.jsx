@@ -1,4 +1,4 @@
-import { useEffect, createRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Card } from './../Card';
 import convert from 'color-convert';
@@ -7,7 +7,7 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 	let [loading, setLoading] = useState(true);
 	let [height, setHeight] = useState(400);
 	let [foreground, color_1, color_2] = colors;
-	const canvasRef = createRef(null);
+	const canvasRef = useRef(null);
 	let commonProps = {
 		fill: true,
 		lineTension: 0.5,
@@ -91,6 +91,8 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 				duration: 1000,
 			},
 			tooltips: {
+				mode: 'index',
+				intersect: false,
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
