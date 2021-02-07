@@ -1,18 +1,17 @@
-import { useEffect, createRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { FOREGROUND_COLOR } from '../constants';
-import { useColors } from '../hooks/useColors';
-import { Card } from './Card';
+import { Card } from './../Card';
 
-export function BarChart({ statistics, colors }) {
+export function VacinadosPorDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
+
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
 	let [height, setHeight] = useState(400);
 
-	const canvasRef = createRef(null);
+	const canvasRef = useRef(null);
 
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
@@ -61,6 +60,7 @@ export function BarChart({ statistics, colors }) {
 					data: valuesIn2,
 					order: 2,
 					display: false,
+					stack: 'stack0',
 				},
 				{
 					label: 'Inoculação - 1ª Dose',
@@ -69,15 +69,18 @@ export function BarChart({ statistics, colors }) {
 					data: valuesIn1,
 					overlayBars: true,
 					order: 3,
+					stack: 'stack0',
 				},
 				{
 					label: 'Vacinas Totais',
 					type: 'bar',
 					overlayBars: true,
+					overlayBars: true,
 					backgroundColor: color_2,
 					data: values,
 					order: 4,
 					yAxisID: 'total',
+					stack: 'stack0',
 				},
 			],
 		};
@@ -85,6 +88,12 @@ export function BarChart({ statistics, colors }) {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
+			plugins: {
+				datalabels: {
+					display: false,
+					color: 'blue',
+				},
+			},
 			onResize: (a, b, c) => {
 				if (window.innerWidth <= 800) {
 					a.canvas.parentNode.style.width = '1000px';
@@ -101,10 +110,12 @@ export function BarChart({ statistics, colors }) {
 				duration: 1000,
 			},
 			tooltips: {
+				mode: 'index',
+				intersect: false,
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + numberFormatter.format(tooltipItem.value).replace(',', ' ');
+						return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value)).replace(',', ' ');
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];

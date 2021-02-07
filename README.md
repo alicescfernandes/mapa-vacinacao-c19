@@ -50,10 +50,10 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - Melhorar experiencia em Mobile
 - Minor refactor para contemplar novos gráficos
 - ~~Serviço de embeds de gráficos~~  
-- Partilhas nas redes sociais de gráficos  
+- Partilhas nas redes sociais de dados  
 
 ## Backlog - Gráficos
-- Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)  
+- ~~Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)~~
 - Fase do Plano de Vacinação
-- Notícias (widget de noticias recentes relacionadas com as vacinas)  
+- ~~Notícias (widget de noticias recentes relacionadas com as vacinas)~~  
 
