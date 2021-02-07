@@ -165,7 +165,7 @@ export default function Home() {
 								{fases.fases[fases.fase_atual].nome} de Vacinação
 							</h1>
 							<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
-								Ver mais informação o plano de vacinação
+								Ver mais informação sobre o plano de vacinação
 							</a>
 						</Card>
 					</Col>
