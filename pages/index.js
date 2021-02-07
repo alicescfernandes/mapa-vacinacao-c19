@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
@@ -21,7 +21,6 @@ export default function Home() {
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
-	let [percentagem, setPercentagem] = useState(0);
 	let [previousItem, setPreviousItem] = useState({});
 	let [previousSelectedItem, setPreviousSelectedItem] = useState({});
 	let [updating, setUpdating] = useState(false);
@@ -30,7 +29,17 @@ export default function Home() {
 	let [loaded, setLoaded] = useState(false);
 	let numberFormatter = new Intl.NumberFormat();
 
-	let pessoasAVacinar = numberFormatter.format(generic.populacao.valor * 0.6 - rawData[rawData.length - 1].Vacinados_Ac);
+	let [derivedNumbers, setDerivedNumbers] = useState({
+		pessoasAVacinar: {
+			prev: 0,
+			current: 0,
+		},
+		percentagem: {
+			prev: 0,
+			current: 0,
+		},
+	});
+
 	let { colors, setColors } = useColors();
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
@@ -50,6 +59,12 @@ export default function Home() {
 		}
 	}
 
+	const prevCountRef = useRef();
+	useEffect(() => {
+		prevCountRef.current = derivedNumbers;
+	});
+	const prevCount = prevCountRef.current;
+	console.log(1, prevCount, derivedNumbers);
 	useEffect(() => {
 		let rawData = statistics.getRaw();
 		if (rawData[rawData.length - 1]?.Data != last.Data) {
@@ -65,7 +80,20 @@ export default function Home() {
 	}, [values, loaded]);
 
 	useEffect(() => {
-		setPercentagem((rawData[rawData.length - 1].Vacinados_Ac / generic.populacao.valor) * 100);
+		let object = {
+			pessoasAVacinar: {
+				prev: derivedNumbers.pessoasAVacinar.current,
+				current: numberFormatter.format(generic.populacao.valor * 0.6 - selectedItem.Vacinados_Ac),
+			},
+			percentagem: {
+				prev: derivedNumbers.percentagem.current,
+				current: (selectedItem.Vacinados_Ac / generic.populacao.valor) * 100,
+			},
+		};
+		setDerivedNumbers(object);
+	}, [selectedItem]);
+
+	useEffect(() => {
 		setLast(rawData[rawData.length - 1]);
 		setSelectedItem(rawData[rawData.length - 1]);
 		setPreviousItem(selectedItem);
@@ -110,20 +138,20 @@ export default function Home() {
 
 				<Row>
 					<Col lg={4} xs={12}>
-						<Card>
-							<Counter ps="Percentagem calculada com base no número total de vacinados" digits={10} suffix={'%'} colors={colors} title="Percentagem de população vacinada" from={0} to={percentagem}></Counter>
+						<Card isUpdating={updating}>
+							<Counter ps="Percentagem calculada com base no número total de vacinados" digits={10} suffix={'%'} colors={colors} title="Percentagem de população vacinada" from={derivedNumbers.percentagem.prev} to={derivedNumbers.percentagem.current}></Counter>
 						</Card>
 					</Col>
 					<Col lg={4} xs={12}>
-						<Card>
+						<Card isUpdating={updating}>
 							<Counter
-								ps={`Ou, será preciso vacinar mais  ${pessoasAVacinar} pessoas. Percentagem calculada com em previsões do Instituto Ricardo Jorge`}
+								ps={`Ou seja, será preciso vacinar mais  ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
 								digits={10}
 								suffix={'%'}
 								colors={colors}
 								title="Percentagem para atingir imunidade de grupo"
-								from={0}
-								to={60 - percentagem}
+								from={60 - derivedNumbers.percentagem.prev}
+								to={60 - derivedNumbers.percentagem.current}
 							></Counter>
 						</Card>
 					</Col>
@@ -134,7 +162,7 @@ export default function Home() {
 								{fases.fases[fases.fase_atual].nome} de Vacinação
 							</h1>
 							<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
-								Mais informação sobre esta fase do plano de vacinação
+								Ver mais informação o plano de vacinação
 							</a>
 						</Card>
 					</Col>
@@ -165,8 +193,9 @@ export default function Home() {
 							</a>
 							. De acordo com o&nbsp;
 							<a className={styles.link} target="_blank" href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/">
-								Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo
-							</a>
+								Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo.
+							</a>{' '}
+							Os valores apresentados aqui foram calculados com uma percentagem de 60%.
 						</p>
 						<p className={styles.text}>
 							A média de evolução de casos da União Europeia foi calculada com os números reportados por cada país, mesmo que alguns países não tenham ainda reportado para o dia de hoje. No gráfico de o numero total de vacinas administradas por dia de cada só são mostrados os dados que
