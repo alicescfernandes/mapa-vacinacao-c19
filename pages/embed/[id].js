@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Counter } from '../../components/Counter';
 import { DatePickerButton } from '../../components/DatePickerButton';
-import { NumeroTotalVacinados } from '../../components/NumeroTotalVacinados';
+import { NumeroTotalVacinados } from '../../components/graphs/NumeroTotalVacinados';
 
-import { VacinadosPorDia } from '../../components/VacinadosPorDia';
+import { VacinadosPorDia } from '../../components/graphs/VacinadosPorDia';
 
 import { useData } from '../../hooks/useData';
 import styles from '../../styles/Home.module.scss';

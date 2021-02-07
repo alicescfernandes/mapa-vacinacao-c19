@@ -6,6 +6,7 @@ import { DatePickerButton } from '../components/DatePickerButton';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
+
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import { useColors } from '../hooks/useColors';
