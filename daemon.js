@@ -61,7 +61,7 @@ function updateJSON() {
 					gitCommit();
 				});
 			} else {
-				console.log('not updating', parseInt(sourceData.Vacinados_Ac), dataLocal.Vacinados_Ac);
+				console.log('not updating', parseInt(sourceData.Vacinados_Ac), dataLocal[dataLocal.length - 1].Vacinados_Ac);
 			}
 		})
 		.catch((err) => {
@@ -72,6 +72,7 @@ function updateJSON() {
 console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
+updateJSON();
 
 schedule.scheduleJob('0-59/5 13 * * *', function () {
 	updateJSON();
