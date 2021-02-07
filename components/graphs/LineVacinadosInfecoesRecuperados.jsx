@@ -25,14 +25,14 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 
 		return {
-			labels: labels.slice(valuesIn1.length - 14, valuesIn1.length),
+			labels: labels.slice(labels.length - 14, labels.length),
 			datasets: [
 				{
 					label: 'Inoculação - 2ª Dose',
 					fill: false,
 					type: 'bar',
 					backgroundColor: main,
-					data: valuesIn2.slice(valuesIn1.length - 14, valuesIn1.length),
+					data: valuesIn2.slice(valuesIn2.length - 14, valuesIn2.length),
 					stack: 'stack0',
 				},
 				{
@@ -46,14 +46,14 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					label: 'Vacinas Totais',
 					type: 'bar',
 					backgroundColor: shades[1],
-					data: values.slice(valuesIn1.length - 14, valuesIn1.length),
+					data: values.slice(values.length - 14, values.length),
 					stack: 'stack0',
 				},
 				{
 					label: 'Número de infectados diário',
 					type: 'bar',
 					backgroundColor: complements[1],
-					data: valueCasesDiarios.slice(valuesIn1.length - 14, valuesIn1.length).map((el) => el.confirmados_novos),
+					data: valueCasesDiarios.slice(valueCasesDiarios.length - 14, valueCasesDiarios.length).map((el) => el.confirmados_novos),
 					stack: 'stack1',
 					yAxisID: 'total',
 				},
@@ -61,7 +61,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					label: 'Número de recuperados diário',
 					type: 'bar',
 					backgroundColor: complements[2],
-					data: valueCasesDiarios.slice(valuesIn1.length - 14, valuesIn1.length).map((el) => el.recuperados_novos),
+					data: valueCasesDiarios.slice(valueCasesDiarios.length - 14, valueCasesDiarios.length).map((el) => el.recuperados_novos),
 					stack: 'stack2',
 					yAxisID: 'total',
 				},
