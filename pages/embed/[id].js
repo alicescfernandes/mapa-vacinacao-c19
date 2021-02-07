@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Counter } from '../../components/Counter';
 import { DatePickerButton } from '../../components/DatePickerButton';
-import { LineChart } from '../../components/LineChart';
+import { NumeroTotalVacinados } from '../../components/NumeroTotalVacinados';
 
-import { BarChart } from '../../components/BarChart';
+import { VacinadosPorDia } from '../../components/VacinadosPorDia';
 
 import { useData } from '../../hooks/useData';
 import styles from '../../styles/Home.module.scss';
@@ -15,7 +15,7 @@ import { useColors } from './../../hooks/useColors';
 export default function Embed() {
 	const router = useRouter();
 	const { id, colors: queryColors } = router.query;
-	let { colors, setColors } = useColors();
+	let { colors, tints, shades, complement, setColors } = useColors();
 
 	let { statistics, labels, values } = useData();
 	let rawData = statistics.getRaw();
@@ -111,7 +111,7 @@ export default function Embed() {
 			case 'line':
 				content = (
 					<>
-						<LineChart colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
+						<NumeroTotalVacinados colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></NumeroTotalVacinados>
 					</>
 				);
 				break;
@@ -119,7 +119,7 @@ export default function Embed() {
 			case 'bar':
 				content = (
 					<>
-						<BarChart colors={colors} labels={labels} values={values} statistics={statistics}></BarChart>
+						<VacinadosPorDia colors={colors} labels={labels} values={values} statistics={statistics}></VacinadosPorDia>
 					</>
 				);
 				break;

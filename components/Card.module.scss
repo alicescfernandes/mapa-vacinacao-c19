@@ -1,36 +1,47 @@
 .card {
 	&_graph {
 		background: white;
+
 		padding: 30px 15px;
 		text-align: center;
 		border-radius: 5px;
 		margin: 15px 0px;
 		min-height: 225px;
 		overflow: hidden;
-		.counter {
-			font-size: 50px;
+		transition: background linear 500ms;
+	}
+
+	&_graph_updated {
+		background: #f3fffd;
+		transition: background linear 500ms;
+	}
+
+	&_highlight {
+		font-size: 50px;
+		// color: var(--foreground);
+		font-weight: bold;
+	}
+	&_highlight_2 {
+		font-size: 30px;
+		// color: var(--foreground);
+		font-weight: bold;
+	}
+	&_title {
+		margin-bottom: 0px;
+		color: #444;
+		font-weight: bold;
+		font-size: 15px;
+		margin-bottom: 5px;
+	}
+
+	&_subtitle {
+		margin-bottom: 0px;
+		font-size: 14px;
+
+		&_highlight {
+			margin-bottom: 0px;
 			// color: var(--foreground);
 			font-weight: bold;
-		}
-
-		&_title {
-			margin-bottom: 0px;
-			color: #444;
-			font-weight: bold;
-			font-size: 15px;
-			margin-bottom: 5px;
-		}
-
-		&_subtitle {
-			margin-bottom: 0px;
-			font-size: 13px;
-
-			&_counter {
-				margin-bottom: 0px;
-				font-size: 14px;
-				// color: var(--foreground);
-				font-weight: bold;
-			}
 		}
 	}
 

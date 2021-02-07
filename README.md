@@ -50,11 +50,11 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - Melhorar experiencia em Mobile
 - Minor refactor para contemplar novos gráficos
 - ~~Serviço de embeds de gráficos~~  
-- Partilhas nas redes sociais de gráficos  
+- Partilhas nas redes sociais de dados  
 
 ## Backlog - Gráficos
-- Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)  
+- ~~Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)~~
 - Fase do Plano de Vacinação
-- Notícias (widget de noticias recentes relacionadas com as vacinas)  
+- ~~Notícias (widget de noticias recentes relacionadas com as vacinas)~~  
 
 <img src="https://www.google-analytics.com/collect?v=1&amp;t=event&amp;tid=UA-100869248-2&amp;cid=555&amp;ec=github&amp;ea=pageview&amp;el=plano-vacinacao-c19&amp;ev=1" alt=""> 

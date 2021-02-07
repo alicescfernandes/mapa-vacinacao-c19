@@ -1,15 +1,13 @@
-import { useEffect, createRef, useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Card } from './Card';
+import { Card } from './../Card';
 import convert from 'color-convert';
-import { useColors } from './../hooks/useColors';
 
-export function LineChart({ labels, values, valuesIn1, valuesIn2, colors }) {
+export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [height, setHeight] = useState(400);
 	let [foreground, color_1, color_2] = colors;
-	const canvasRef = createRef(null);
+	const canvasRef = useRef(null);
 	let commonProps = {
 		fill: true,
 		lineTension: 0.5,
@@ -77,6 +75,12 @@ export function LineChart({ labels, values, valuesIn1, valuesIn2, colors }) {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
+			plugins: {
+				datalabels: {
+					display: false,
+					color: 'blue',
+				},
+			},
 			onResize: (a, b, c) => {
 				if (window.innerWidth <= 800) {
 					a.canvas.parentNode.style.width = '1000px';
@@ -93,6 +97,8 @@ export function LineChart({ labels, values, valuesIn1, valuesIn2, colors }) {
 				duration: 1000,
 			},
 			tooltips: {
+				mode: 'index',
+				intersect: false,
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
