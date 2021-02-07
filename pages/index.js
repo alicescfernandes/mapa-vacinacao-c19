@@ -242,7 +242,7 @@ export default function Home() {
 						</p>
 					</Col>
 				</Row>
-				{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
+				<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
 			</Container>
 			<Footer></Footer>
 		</>
