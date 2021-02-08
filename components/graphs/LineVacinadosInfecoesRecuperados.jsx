@@ -34,6 +34,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					backgroundColor: main,
 					data: valuesIn2.slice(valuesIn2.length - 14, valuesIn2.length),
 					stack: 'stack0',
+					order: 1,
 				},
 				{
 					label: 'Inoculação - 1ª Dose',
@@ -41,6 +42,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					borderColor: shades[0],
 					data: valuesIn1.slice(valuesIn1.length - 14, valuesIn1.length),
 					stack: 'stack0',
+					order: 2,
 				},
 				{
 					label: 'Vacinas Totais',
@@ -48,6 +50,9 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					backgroundColor: shades[1],
 					data: values.slice(values.length - 14, values.length),
 					stack: 'stack0',
+					yAxisID: 'total',
+
+					order: 3,
 				},
 				{
 					label: 'Número de infectados diário',
@@ -56,6 +61,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					data: valueCasesDiarios.slice(valueCasesDiarios.length - 14, valueCasesDiarios.length).map((el) => el.confirmados_novos),
 					stack: 'stack1',
 					yAxisID: 'total',
+					order: 4,
 				},
 				{
 					label: 'Número de recuperados diário',
@@ -64,6 +70,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					data: valueCasesDiarios.slice(valueCasesDiarios.length - 14, valueCasesDiarios.length).map((el) => el.recuperados_novos),
 					stack: 'stack2',
 					yAxisID: 'total',
+					order: 5,
 				},
 			],
 		};
@@ -112,7 +119,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: true,
 					},
 					{
-						stacked: true,
+						stacked: false,
 						id: 'total',
 						display: false,
 					},
