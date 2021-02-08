@@ -19,7 +19,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 			datasets: [
 				{
 					backgroundColor: [main, tints[0], shades[0], shades[2]],
-					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].ativos, valueCasesDiarios.reverse()[0].recuperados, valueCasesDiarios.reverse()[0].obitos],
+					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos],
 				},
 			],
 		};
