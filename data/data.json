@@ -397,11 +397,11 @@
   },
   {
     "data_dados": "08-02-2021 00:00",
-    "confirmados": 0,
-    "recuperados": 0,
-    "obitos": 0,
-    "ativos": 0,
-    "confirmados_novos": 0,
-    "recuperados_novos": 0
+    "confirmados": 767919,
+    "recuperados": 612921,
+    "obitos": 14354,
+    "ativos": 140664,
+    "confirmados_novos": 2505,
+    "recuperados_novos": 6755
   }
 ]
