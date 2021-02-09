@@ -528,15 +528,15 @@
         "OBJECTID": 4184
     },
     {
-        "Data": 1612828800000,
-        "ConfirmadosAcumulado": 0,
-        "ConfirmadosNovos": 0,
-        "Recuperados": 0,
-        "Obitos": 0,
-        "ObitosNovos": 0,
-        "RecuperadosNovos": 0,
-        "VarRecuperados": 0,
-        "Activos": 0,
-        "OBJECTID": 0
+        "Data": 1612872000000,
+        "ConfirmadosAcumulado": 770502,
+        "ConfirmadosNovos": 2583,
+        "Recuperados": 628078,
+        "Obitos": 14557,
+        "ObitosNovos": 3201,
+        "RecuperadosNovos": 647513,
+        "VarRecuperados": 15157,
+        "Activos": 127867,
+        "OBJECTID": 4192
     }
 ]
