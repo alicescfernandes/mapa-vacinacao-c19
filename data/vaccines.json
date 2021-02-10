@@ -466,5 +466,19 @@
 		"Column9": null,
 		"Column10": null,
 		"FID": 1
+	},
+	{
+		"Data": 1612915200000,
+		"Inoculacao1": 298724,
+		"Inoculacao1_Ac": 298724,
+		"Inoculacao2": 116559,
+		"Inoculacao2_Ac": 116559,
+		"Vacinados": 415283,
+		"Vacinados_Ac": 415283,
+		"Column7": null,
+		"Column8": null,
+		"Column9": null,
+		"Column10": null,
+		"FID": 1
 	}
 ]
