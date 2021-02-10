@@ -10,7 +10,8 @@
 		"build": "next build",
 		"start": "next start",
 		"export": "next build && next export -o out2",
-		"image": "cd automation/ && node make_image.js && cd - && git add automation"
+		"image": "cd automation/ && node instagram.js && cd - && git add automation",
+		"twitter": "cd automation/ && node twitter.js && cd - "
 	},
 	"bin": {
 		"daemon_data": "./daemon.js"
