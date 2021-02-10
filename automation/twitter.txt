@@ -1,5 +1,5 @@
 Estatísticas de para 04/02/2021
-👉 {{novas_total}} doses  ({{total_total}} no total)
+👉 +{{novas_total}} doses  ({{total_total}} no total)
 👉 +{{novas_in1}} inoculções (1ª dose) (total: {{total_in1}})
 👉 +{{novas_in2}} inoculções (2ª dose) (total: {{total_in2}} )
 ￼
