@@ -25,6 +25,12 @@ export function Footer() {
 					</li>
 
 					<li>
+						<a target="_blank" href="https://github.com/alicescfernandes/mapa-vacinacao-c19#embeds">
+							Embeds
+						</a>
+					</li>
+
+					<li>
 						<a target="_blank" href="https://github.com/alicescfernandes/mapa-vacinacao-c19">
 							Código-Fonte
 						</a>

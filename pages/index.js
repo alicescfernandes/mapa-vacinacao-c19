@@ -1,28 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { BarChart } from '../components/BarChart';
+import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
 import { DatePickerButton } from '../components/DatePickerButton';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-import { LineChart } from '../components/LineChart';
+import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
+
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
-import Head from 'next/head';
+import { useColors } from '../hooks/useColors';
 import { Metatags } from '../components/MetaTags';
+import cardStyles from '../components/Card.module.scss';
+
+//data
+import generic from './../data/generic.json';
+import fases from './../data/fases.json';
+import { Card } from '../components/Card';
+import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
+import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
 export default function Home() {
 	let { statistics, labels, values } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let rawData = statistics.getRaw();
-
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
 	let [previousSelectedItem, setPreviousSelectedItem] = useState({});
-
+	let [updating, setUpdating] = useState(false);
 	let [last, setLast] = useState({});
 	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
+	let numberFormatter = new Intl.NumberFormat();
 
+	let [derivedNumbers, setDerivedNumbers] = useState({
+		pessoasAVacinar: {
+			prev: 0,
+			current: 0,
+		},
+		percentagem: {
+			prev: 0,
+			current: 0,
+		},
+	});
+
+	let { colors, colors_v2, setColors } = useColors();
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
 			if (el.Data == d.getTime()) {
@@ -41,12 +62,39 @@ export default function Home() {
 		}
 	}
 
+	const prevCountRef = useRef();
+	useEffect(() => {
+		prevCountRef.current = derivedNumbers;
+	});
+	const prevCount = prevCountRef.current;
+
 	useEffect(() => {
 		let rawData = statistics.getRaw();
-		setPreviousItem(selectedItem);
-		setSelectedItem(rawData[rawData.length - 1]);
-		setLast(rawData[rawData.length - 1]);
-	}, [values]);
+		if (rawData[rawData.length - 1]?.Data != last.Data) {
+			onDateSelect(new Date(rawData[rawData.length - 1].Data));
+			setLast(rawData[rawData.length - 1]);
+			if (loaded == true) {
+				setUpdating(true);
+				setTimeout(() => {
+					setUpdating(false);
+				}, 1000);
+			}
+		}
+	}, [values, loaded]);
+
+	useEffect(() => {
+		let object = {
+			pessoasAVacinar: {
+				prev: derivedNumbers.pessoasAVacinar.current,
+				current: numberFormatter.format(generic.populacao.valor * 0.6 - selectedItem.Vacinados_Ac),
+			},
+			percentagem: {
+				prev: derivedNumbers.percentagem.current,
+				current: (selectedItem.Vacinados_Ac / generic.populacao.valor) * 100,
+			},
+		};
+		setDerivedNumbers(object);
+	}, [selectedItem]);
 
 	useEffect(() => {
 		setLast(rawData[rawData.length - 1]);
@@ -57,7 +105,7 @@ export default function Home() {
 	}, []);
 	return (
 		<>
-			<Metatags></Metatags>
+			<Metatags isUpdating={updating}></Metatags>
 			<Header></Header>
 			<Row className={`card-shadow-bottom ${styles.alert}`}>
 				<Col style={{ textAlign: 'center' }}>
@@ -68,20 +116,58 @@ export default function Home() {
 				</Col>
 			</Row>
 
-			<Container>
+			<Container className="container-fluid">
 				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
 				</Row>
 
 				<Row>
 					<Col lg={4} xs={12}>
-						<Counter title="Número total de vacinados" subtitle="" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
+						<Card isUpdating={updating}>
+							<Counter colors={colors} title="Número total de vacinados" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
+						</Card>
 					</Col>
 					<Col lg={4} xs={12}>
-						<Counter title="Número de vacinados - 1ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
+						<Card isUpdating={updating}>
+							<Counter colors={colors} title="Número de vacinados - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
+						</Card>
 					</Col>
 					<Col lg={4} xs={12}>
-						<Counter title="Número de vacinados - 2ª Dose" subtitle="Vacina Pfizer/BioNTech" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
+						<Card isUpdating={updating}>
+							<Counter colors={colors} title="Número de vacinados - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
+						</Card>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col lg={4} xs={12}>
+						<Card isUpdating={updating}>
+							<Counter ps="Percentagem calculada com base no número total de vacinados" digits={10} suffix={'%'} colors={colors} title="Percentagem de população vacinada" from={derivedNumbers.percentagem.prev} to={derivedNumbers.percentagem.current}></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={12}>
+						<Card isUpdating={updating}>
+							<Counter
+								ps={`Ou seja, será preciso vacinar mais  ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
+								digits={10}
+								suffix={'%'}
+								colors={colors}
+								title="Percentagem para atingir imunidade de grupo"
+								from={60 - derivedNumbers.percentagem.prev}
+								to={60 - derivedNumbers.percentagem.current}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={12}>
+						<Card>
+							<h2 className={cardStyles.card_title}>Fase atual do plano de vacinação</h2>
+							<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+								{fases.fases[fases.fase_atual].nome} de Vacinação
+							</h1>
+							<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+								Ver mais informação sobre o plano de vacinação
+							</a>
+						</Card>
 					</Col>
 				</Row>
 
@@ -89,30 +175,70 @@ export default function Home() {
 					<Col>
 						<h3 className={styles.title}>Número vacinas administradas</h3>
 
-						<LineChart labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></LineChart>
+						<NumeroTotalVacinados colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></NumeroTotalVacinados>
 					</Col>
 				</Row>
 
 				<Row>
 					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
-						<BarChart labels={labels} values={values} statistics={statistics}></BarChart>
+						<VacinadosPorDia colors={colors} labels={labels} values={values} statistics={statistics}></VacinadosPorDia>
 					</Col>
 				</Row>
 
 				<Row>
-					<Col className={styles.sources_block}>
+					<Col>
+						<h3 className={styles.title}>Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias</h3>
+						<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
+					</Col>
+				</Row>
+				<Row>
+					<Col xs={12}>
+						<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos</h3>
+						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col xs={12} className={styles.sources_block}>
+						<h3 className={styles.title}>Notas</h3>
+						<p className={styles.text}>
+							A percentagem de população vacinada foi calculada com base no número total de vacinados e com o &nbsp;
+							<a className={styles.link} target="_blank" href="https://www.pordata.pt/Portugal">
+								número de população de Portugal (dados do PORDATA)
+							</a>
+							. De acordo com o&nbsp;
+							<a className={styles.link} target="_blank" href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/">
+								Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo.
+							</a>{' '}
+							Os valores apresentados aqui foram calculados com uma percentagem de 60%.
+						</p>
+						{/*	<p className={styles.text}>
+							A média de evolução de casos da União Europeia foi calculada com os números reportados por cada país, mesmo que alguns países não tenham ainda reportado para o dia de hoje. No gráfico de o numero total de vacinas administradas por dia de cada só são mostrados os dados que
+							foram reportados por cada país, sendo que nem todos os paises reportam em simultâneo os dados.
+						</p>*/}
+					</Col>
+
+					<Col xs={12} className={styles.sources_block}>
 						<h3 className={styles.title}>Fontes</h3>
 						<p className={styles.text}>
-							Os dados apresentados são retirados do portal{' '}
+							Os dados apresentados são retirados do portal&nbsp;
 							<a className={styles.link} target="_blank" href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/">
 								Monitorização do SNS da Direção-Geral da Saúde
-							</a>{' '}
-							e do sítio{' '}
+							</a>
+							&nbsp;e do sítio&nbsp;
 							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
 								Ponto de Situação Direção-Geral da Saúde
 							</a>
-							. A atualização destes dados é diária.
+							. Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
+							<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+								Our World In Data
+							</a>
+							&nbsp; e estão disponíveis&nbsp;
+							<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
+								no repositório de Github
+							</a>
+							.<br /> A atualização destes dados é diária.
 						</p>
 					</Col>
 				</Row>

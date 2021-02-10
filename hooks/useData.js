@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import vaccinesData from '../data/vaccines.json';
-
+import casesData from '../data/cases.json';
 export function useData() {
 	let [vaccines, setVaccines] = useState(vaccinesData);
 	let [labels, setLabels] = useState([]);
@@ -164,6 +164,17 @@ export function useData() {
 				values: total,
 				labels,
 			};
+		},
+		getDiariosCases: () => {
+			let labels2 = [];
+			let values2 = [];
+
+			casesData.forEach((el) => {
+				labels2.push(new Date(el.Data));
+				values2.push(el);
+			});
+
+			return { labels: labels2, values: values2 };
 		},
 	};
 

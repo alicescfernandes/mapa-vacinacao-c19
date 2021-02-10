@@ -13,9 +13,11 @@
 		"image": "cd automation/ && node instagram.js && cd - && git add automation",
 		"twitter": "cd automation/ && node twitter.js && cd - "
 	},
+	"bin": {
+		"daemon_data": "./daemon.js"
+	},
 	"pre-commit": [
 		"no-commit-to-master",
-		"image",
 		"update"
 	],
 	"dependencies": {
@@ -24,11 +26,14 @@
 		"@testing-library/user-event": "^12.1.10",
 		"bootstrap": "^4.6.0",
 		"chart.js": "^2.9.4",
+		"chartjs-plugin-datalabels": "^0.7.0",
+		"color-convert": "^2.0.1",
 		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
+		"csvtojson": "^2.0.10",
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
-		"puppeteer": "^7.0.1",
+		"node-fetch": "^2.6.1",
+		"node-schedule": "^2.0.0",
 		"react": "17.0.1",
 		"react-bootstrap": "^1.4.3",
 		"react-chartjs-2": "^2.11.1",
@@ -36,8 +41,9 @@
 		"react-datepicker": "^3.4.1",
 		"react-dom": "17.0.1",
 		"sass": "^1.32.5",
-		"twitter": "^1.7.1",
-		"web-vitals": "^0.2.4"
+		"shelljs": "^0.8.4",
+		"web-vitals": "^0.2.4",
+		"yarn": "^1.22.10"
 	},
 	"devDependencies": {
 		"pre-commit": "^1.2.2"

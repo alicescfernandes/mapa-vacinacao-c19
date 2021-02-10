@@ -5,7 +5,7 @@ import styles from './DatePickerButton.module.scss';
 
 import Arrow from '../assets/arrow.svg';
 
-export function DatePickerButton({ minDate, maxDate, onDateSelect }) {
+export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 	const [startDate, setStartDate] = useState(new Date(maxDate));
 	startDate.setMinutes(0);
 	startDate.setMilliseconds(0);
@@ -15,10 +15,12 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect }) {
 		year: 'numeric',
 		month: 'long',
 		day: '2-digit',
+		weekday: 'long',
 	};
 
 	let f = new Intl.DateTimeFormat('pt', options);
-
+	let [first, ...restDate] = f.format(startDate).replace('-feira', '').split('');
+	let d = [first.toUpperCase(), ...restDate].join('');
 	useEffect(() => {
 		onDateSelect?.(startDate);
 	}, [startDate]);
@@ -40,8 +42,8 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect }) {
 				<Arrow className={styles.svg} />
 			</button>
 
-			<button className={styles.datepicker} onClick={onClick}>
-				Dia {f.format(startDate)}
+			<button style={{ width: 300 }} className={styles.datepicker} onClick={onClick}>
+				{d}
 			</button>
 			<button
 				className={styles.datepicker}
