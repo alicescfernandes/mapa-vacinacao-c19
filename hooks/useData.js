@@ -162,6 +162,7 @@ export function useData() {
 				valuesIn1: in1,
 				valuesIn2: in2,
 				values: total,
+				raw: vaccines,
 				labels,
 			};
 		},
@@ -174,7 +175,7 @@ export function useData() {
 				values2.push(el);
 			});
 
-			return { labels: labels2, values: values2 };
+			return { labels: labels2, values: values2, raw: casesData };
 		},
 	};
 

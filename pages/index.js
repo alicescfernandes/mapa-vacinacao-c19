@@ -30,7 +30,7 @@ export default function Home() {
 	let [last, setLast] = useState({});
 	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
-	let numberFormatter = new Intl.NumberFormat();
+	let numberFormatter = new Intl.NumberFormat('pt-PT');
 
 	let [derivedNumbers, setDerivedNumbers] = useState({
 		pessoasAVacinar: {
@@ -86,11 +86,11 @@ export default function Home() {
 		let object = {
 			pessoasAVacinar: {
 				prev: derivedNumbers.pessoasAVacinar.current,
-				current: numberFormatter.format(generic.populacao.valor * 0.6 - selectedItem.Vacinados_Ac),
+				current: numberFormatter.format(generic.populacao.valor * 0.6 - selectedItem.Inoculacao1_Ac),
 			},
 			percentagem: {
 				prev: derivedNumbers.percentagem.current,
-				current: (selectedItem.Vacinados_Ac / generic.populacao.valor) * 100,
+				current: (selectedItem.Inoculacao1_Ac / generic.populacao.valor) * 100,
 			},
 		};
 		setDerivedNumbers(object);
@@ -124,17 +124,17 @@ export default function Home() {
 				<Row>
 					<Col lg={4} xs={12}>
 						<Card isUpdating={updating}>
-							<Counter colors={colors} title="Número total de vacinados" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
+							<Counter colors={colors} title="Número total de vacinas administradas" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
 						</Card>
 					</Col>
 					<Col lg={4} xs={12}>
 						<Card isUpdating={updating}>
-							<Counter colors={colors} title="Número de vacinados - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
+							<Counter colors={colors} title="Número de doses administradas - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
 						</Card>
 					</Col>
 					<Col lg={4} xs={12}>
 						<Card isUpdating={updating}>
-							<Counter colors={colors} title="Número de vacinados - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
+							<Counter colors={colors} title="Número de doses administradas - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
 						</Card>
 					</Col>
 				</Row>
@@ -142,13 +142,21 @@ export default function Home() {
 				<Row>
 					<Col lg={4} xs={12}>
 						<Card isUpdating={updating}>
-							<Counter ps="Percentagem calculada com base no número total de vacinados" digits={10} suffix={'%'} colors={colors} title="Percentagem de população vacinada" from={derivedNumbers.percentagem.prev} to={derivedNumbers.percentagem.current}></Counter>
+							<Counter
+								ps="Percentagem calculada com base no número total de segundas doses administradas"
+								digits={10}
+								suffix={'%'}
+								colors={colors}
+								title="Percentagem de população inoculada com a 2ª dose "
+								from={derivedNumbers.percentagem.prev}
+								to={derivedNumbers.percentagem.current}
+							></Counter>
 						</Card>
 					</Col>
 					<Col lg={4} xs={12}>
 						<Card isUpdating={updating}>
 							<Counter
-								ps={`Ou seja, será preciso vacinar mais  ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
+								ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
 								digits={10}
 								suffix={'%'}
 								colors={colors}
@@ -203,7 +211,7 @@ export default function Home() {
 					<Col xs={12} className={styles.sources_block}>
 						<h3 className={styles.title}>Notas</h3>
 						<p className={styles.text}>
-							A percentagem de população vacinada foi calculada com base no número total de vacinados e com o &nbsp;
+							A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o &nbsp;
 							<a className={styles.link} target="_blank" href="https://www.pordata.pt/Portugal">
 								número de população de Portugal (dados do PORDATA)
 							</a>
@@ -230,14 +238,14 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
 								Ponto de Situação Direção-Geral da Saúde
 							</a>
-							. Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
+							{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
 							<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
 								Our World In Data
 							</a>
 							&nbsp; e estão disponíveis&nbsp;
 							<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
 								no repositório de Github
-							</a>
+							</a> */}
 							.<br /> A atualização destes dados é diária.
 						</p>
 					</Col>

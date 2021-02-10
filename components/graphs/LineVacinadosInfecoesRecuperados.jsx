@@ -3,13 +3,37 @@ import { Bar } from 'react-chartjs-2';
 import { Card } from './../Card';
 export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
-	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
-	let { values: valueCasesDiarios } = statistics.getDiariosCases();
+	let marriedData = {};
+	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
+	let { values: valueCasesDiarios, raw: rawCasos } = statistics.getDiariosCases();
 	let { main, shades, tints, complements } = colors;
-
 	let [height, setHeight] = useState(400);
 
 	const canvasRef = useRef(null);
+
+	//map the last 30 days in data
+	//Marry the data pls
+	if (labels.length > 0) {
+		let datesVaccines = Array.from(rawDiarios).reverse().slice(0, 14);
+		let datesCases = Array.from(rawCasos).reverse().slice(0, 14);
+		datesVaccines.forEach((element) => {
+			let date = new Date(element.Data);
+			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
+			marriedData[key] = element;
+		});
+
+		datesCases.forEach((element, i) => {
+			let date = new Date(element.Data);
+			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
+			if (marriedData[key] !== undefined) {
+				marriedData[key] = {
+					...element,
+					...marriedData[key],
+				};
+			}
+		});
+	}
+	marriedData = Object.values(marriedData).reverse();
 
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
@@ -58,7 +82,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					label: 'Número de infectados diário',
 					type: 'bar',
 					backgroundColor: complements[1],
-					data: valueCasesDiarios.slice(valueCasesDiarios.length - 14, valueCasesDiarios.length).map((el) => el.ConfirmadosNovos),
+					data: marriedData.map((el) => el.ConfirmadosNovos),
 					stack: 'stack1',
 					yAxisID: 'total',
 					order: 4,
@@ -67,7 +91,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					label: 'Número de recuperados diário',
 					type: 'bar',
 					backgroundColor: complements[2],
-					data: valueCasesDiarios.slice(valueCasesDiarios.length - 14, valueCasesDiarios.length).map((el) => el.VarRecuperados),
+					data: marriedData.map((el) => el.VarRecuperados),
 					stack: 'stack2',
 					yAxisID: 'total',
 					order: 5,
