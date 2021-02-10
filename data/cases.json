@@ -538,5 +538,17 @@
         "VarRecuperados": 15157,
         "Activos": 127867,
         "OBJECTID": 4192
+    },
+    {
+        "Data": 1612915200000,
+        "ConfirmadosAcumulado": 0,
+        "ConfirmadosNovos": 0,
+        "Recuperados": 0,
+        "Obitos": 0,
+        "ObitosNovos": 0,
+        "RecuperadosNovos": 0,
+        "VarRecuperados": 0,
+        "Activos": 0,
+        "OBJECTID": 0,
     }
 ]
