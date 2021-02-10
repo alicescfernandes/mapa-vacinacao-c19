@@ -5,11 +5,11 @@ let twitterLastUpdate = JSON.parse(fs.readFileSync('./twitter-conf.json')); //do
 let twitterText = fs.readFileSync('./twitter.txt').toString();
 let numberFormatter = new Intl.NumberFormat();
 
-let today = new Date();
-today.setMinutes(0);
-today.setMilliseconds(0);
-today.setSeconds(0);
-today.setHours(0);
+let todayDate = new Date();
+todayDate.setMinutes(0);
+todayDate.setMilliseconds(0);
+todayDate.setSeconds(0);
+todayDate.setHours(0);
 
 let Twitter = require('twitter');
 
@@ -20,28 +20,35 @@ var client = new Twitter({
 	access_token_secret: process.env.ACCESS_TOKEN_SECRET,
 });
 
-if (data[data.length - 1].Data >= twitterLastUpdate.last_update) {
-	fs.writeFileSync('./twitter-conf.json', JSON.stringify(twitterLastUpdate));
-	let today = data[data.length - 1];
+if (data[data.length - 1].Data > twitterLastUpdate.last_update) {
 	let yesterday = data[data.length - 2];
+	let today = data[data.length - 1];
+	twitterLastUpdate.last_update = today.Data;
+	fs.writeFileSync('./twitter-conf.json', JSON.stringify(twitterLastUpdate));
+
 	let postVariables = {
-		'{{novas_total}}': today.Vacinados_Ac - yesterday.Vacinados_Ac,
-		'{{total_total}}': today.Vacinados_Ac,
-		'{{novas_in1}}': today.Inoculacao1_Ac - yesterday.Inoculacao1_Ac,
-		'{{novas_in2}}': today.Inoculacao2_Ac - yesterday.Inoculacao2_Ac,
-		'{{total_in1}}': today.Inoculacao1_Ac,
-		'{{total_in2}}': today.Inoculacao2_Ac,
+		'{{novas_total}}': numberFormatter.format(today.Vacinados_Ac - yesterday.Vacinados_Ac).replace(',', ' '),
+		'{{total_total}}': numberFormatter.format(today.Vacinados_Ac).replace(',', ' '),
+		'{{novas_in1}}': numberFormatter.format(today.Inoculacao1_Ac - yesterday.Inoculacao1_Ac).replace(',', ' '),
+		'{{novas_in2}}': numberFormatter.format(today.Inoculacao2_Ac - yesterday.Inoculacao2_Ac).replace(',', ' '),
+		'{{total_in1}}': numberFormatter.format(today.Inoculacao1_Ac).replace(',', ' '),
+		'{{total_in2}}': numberFormatter.format(today.Inoculacao2_Ac).replace(',', ' '),
+		'{{dia}}': todayDate.getDate().toLocaleString('en-US', {
+			minimumIntegerDigits: 2,
+		}),
+		'{{mes}}': (todayDate.getMonth() + 1).toLocaleString('en-US', {
+			minimumIntegerDigits: 2,
+		}),
+		'{{ano}}': todayDate.getFullYear(),
 	};
 	let post = twitterText;
 
 	for (let key of Object.keys(postVariables)) {
-		post = post.replace(key, numberFormatter.format(postVariables[key]).replace(',', ' '));
+		post = post.replace(key, postVariables[key]);
 	}
-
-	/* 	client.post('statuses/update', { status: `test` }, function (error, tweet, response) {
+	client.post('statuses/update', { status: post }, function (error, tweet, response) {
 		if (!error) {
-			console.log(tweet);
+			console.log(post);
 		}
 	});
- */
 }
