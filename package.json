@@ -30,6 +30,7 @@
 		"color-convert": "^2.0.1",
 		"cors": "^2.8.5",
 		"csvtojson": "^2.0.10",
+		"dotenv": "^8.2.0",
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
 		"node-fetch": "^2.6.1",
@@ -42,6 +43,7 @@
 		"react-dom": "17.0.1",
 		"sass": "^1.32.5",
 		"shelljs": "^0.8.4",
+		"twitter": "^1.7.1",
 		"web-vitals": "^0.2.4",
 		"yarn": "^1.22.10"
 	},
