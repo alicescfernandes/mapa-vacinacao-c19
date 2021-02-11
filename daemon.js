@@ -68,19 +68,19 @@ function updateJSON() {
 			} else {
 				console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 			}
-
 			//Update cases
-			sourceData = dataCasos.features[0].attributes;
-			if (parseInt(sourceData.Data) > dataLocalCases[dataLocalCases.length - 1].Data) {
-				console.log(new Date().toLocaleString(), 'updating');
-				sourceData.Data = date.getTime();
-				dataLocalCases.push(sourceData);
-				fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
-				updatedCases = true;
-			} else {
-				console.log('not updating', 'cases', parseInt(sourceData.Data), dataLocalCases[dataLocalCases.length - 1].Data);
+			if (dataCasos.features.length > 1) {
+				sourceData = dataCasos.features[0].attributes;
+				if (parseInt(sourceData.Data) > dataLocalCases[dataLocalCases.length - 1].Data) {
+					console.log(new Date().toLocaleString(), 'updating');
+					sourceData.Data = date.getTime();
+					dataLocalCases.push(sourceData);
+					fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
+					updatedCases = true;
+				} else {
+					console.log('not updating', 'cases', parseInt(sourceData.Data), dataLocalCases[dataLocalCases.length - 1].Data);
+				}
 			}
-
 			if (updatedCases || updatedVaccines) {
 				gitCommit();
 			}
