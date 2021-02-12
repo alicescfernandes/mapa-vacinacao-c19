@@ -214,6 +214,10 @@ export function useData() {
 				casos.push(data);
 				setCasos(casos);
 				break;
+
+			case 'reload':
+				window.location.reload();
+				break;
 		}
 	}
 
