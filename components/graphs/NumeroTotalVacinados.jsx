@@ -20,12 +20,27 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 		pointRadius: 3,
 		pointHitRadius: 10,
 	};
+
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 		let [r, g, b] = convert.hex.rgb(foreground);
 		gradient.addColorStop(0, `rgba(${r},${g},${b},15%)`);
 		gradient.addColorStop(1, `rgba(${r},${g},${b},0%)`);
+
+		if (window.outerWidth <= 800) {
+			canvas.parentNode.style.width = '1000px';
+		} else {
+			canvas.parentNode.style.width = '100%';
+		}
+
+		window.addEventListener('resize', () => {
+			if (window.outerWidth <= 800) {
+				canvas.parentNode.style.width = '1000px';
+			} else {
+				canvas.parentNode.style.width = '100%';
+			}
+		});
 
 		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
@@ -80,13 +95,6 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 					display: false,
 					color: 'blue',
 				},
-			},
-			onResize: (a, b, c) => {
-				if (window.innerWidth <= 800) {
-					a.canvas.parentNode.style.width = '1000px';
-				} else {
-					a.canvas.parentNode.style.width = 'auto';
-				}
 			},
 			legend: {
 				position: 'bottom',

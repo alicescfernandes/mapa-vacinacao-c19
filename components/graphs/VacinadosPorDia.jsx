@@ -17,11 +17,21 @@ export function VacinadosPorDia({ statistics, colors }) {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
-		if (window.innerWidth <= 800) {
+		if (window.outerWidth <= 800) {
+			console.log(1);
 			canvas.parentNode.style.width = '1000px';
 		} else {
-			canvas.parentNode.style.width = 'auto';
+			console.log(2);
+			canvas.parentNode.style.width = '100%';
 		}
+
+		window.addEventListener('resize', () => {
+			if (window.outerWidth <= 800) {
+				canvas.parentNode.style.width = '1000px';
+			} else {
+				canvas.parentNode.style.width = '100%';
+			}
+		});
 
 		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
 		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
@@ -93,13 +103,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
-			},
-			onResize: (a, b, c) => {
-				if (window.innerWidth <= 800) {
-					a.canvas.parentNode.style.width = '1000px';
-				} else {
-					a.canvas.parentNode.style.width = 'auto';
-				}
 			},
 			legend: {
 				position: 'bottom',
