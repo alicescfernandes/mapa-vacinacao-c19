@@ -12,6 +12,11 @@ export function Header() {
 				<nav className={styles.nav}>
 					<ul>
 						<li>
+							<a className={styles.highlight} target="_blank" href="https://twitter.com/vacinacaocovid1">
+								Twitter
+							</a>
+						</li>
+						<li>
 							<a target="_blank" href="https://covid19estamoson.gov.pt/vacinacao-covid19/">
 								Fases de Vacinação
 							</a>

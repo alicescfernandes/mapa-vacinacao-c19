@@ -2,7 +2,7 @@ import { Card } from './Card';
 import CountTo from 'react-count-to';
 import styles from './Card.module.scss';
 import { useEffect, useState } from 'react';
-
+import * as React from 'react';
 export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digits, suffix }) {
 	if (!digits) {
 		digits = 0;
@@ -47,10 +47,10 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 					{ps != null ? (
 						<>
 							<p className={styles.card_subtitle}>
-								{ps.split('\n').map((el) => (
-									<>
+								{ps.split('\n').map((el, idx) => (
+									<React.Fragment key={idx}>
 										{el} <br />
-									</>
+									</React.Fragment>
 								))}
 							</p>
 						</>
