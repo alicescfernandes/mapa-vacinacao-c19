@@ -5,6 +5,7 @@
             "nome": "1ª Fase",
             "inicio": 1609027200000,
             "fim": null,
+            "objetivo":950000,
             "bullet_points": [
                 "Profissionais de saúde envolvidos na prestação de cuidados a doentes",
                 "Profissionais das forças armadas, forças de segurança e serviços críticos",
@@ -22,6 +23,7 @@
             "nome": "1ª Fase",
             "inicio": 1580515200000,
             "fim": null,
+            "objetivo":950000,
             "bullet_points": [
                 "Pessoas com 80 ou mais anos de idade",
                 "Pessoas com 50 ou mais anos de idade, que sofram de infsuficiência cardíaca, doença coronária, insuficiência renal (TFG < 60ml/min) ou doença respiratória crónicas "
@@ -41,6 +43,7 @@
             "nome": "2ª Fase",
             "inicio": 1585699200000,
             "fim": null,
+            "objetivo":1800000,
             "bullet_points": [
                 "Pessoas com 65 anos ou mais que não tenham sido vacinadas previamente",
                 "Pessoas entre os 50 e os 64 anos de idade que sofram de diabetes, neoplasia maligna ativa, doença renal crónica, insuficiência hepática, hipertensão arterial ou obesidade"
@@ -60,6 +63,7 @@
             "nome": "3ª Fase",
             "inicio": null,
             "fim": null,
+            "objetivo":null,
             "bullet_points": [
                 "TBA"
             ],
