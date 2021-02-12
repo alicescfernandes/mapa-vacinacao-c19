@@ -119,7 +119,7 @@ export default function Home() {
 				<Col style={{ textAlign: 'center' }}>
 					<p>
 						Veja aqui os últimos números relacionados com a vacinação para a COVID-19. <br />
-						Os dados são atualizados diariamente entre as 13h e as 14h, e este <em>dashboard</em> é atualizado a cada 5 minutos
+						Os dados são atualizados diariamente entre as 13h e as 14h, e este <em>dashboard</em> é atualizado assim que houver atualizações disponíveis.
 					</p>
 				</Col>
 			</Row>
