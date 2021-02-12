@@ -3,6 +3,7 @@ import vaccinesData from '../data/vaccines.json';
 import casesData from '../data/cases.json';
 export function useData() {
 	let [vaccines, setVaccines] = useState(vaccinesData);
+	let [casos, setCasos] = useState({});
 	let [labels, setLabels] = useState([]);
 	let [values, setValues] = useState([]);
 	let [intervalId, setIntervalId] = useState(null);
@@ -190,20 +191,31 @@ export function useData() {
 		setLabels(labls);
 	}, [vaccines]);
 
-	useEffect(() => {
-		if (intervalId === null) {
-			let interval = window.setInterval(() => {
-				fetch('/api/vaccines')
-					.then((data) => data.json())
-					.then((d) => {
-						if (d.length != vaccines.length && vaccines.length > 0) {
-							setVaccines(d);
-						}
-					});
-			}, 5 * 60 * 1000);
-			setIntervalId(interval);
-		}
-	}, [vaccines]);
+	function updateXHR() {
+		fetch('/api/vaccines')
+			.then((data) => data.json())
+			.then((d) => {
+				if (d.length != vaccines.length && vaccines.length > 0) {
+					setVaccines(d);
+				}
+			});
+	}
 
-	return { labels, values, statistics };
+	function update(type, data) {
+		switch (type) {
+			case 'vacinas':
+				let arr = Array.from(vaccines);
+				arr.push(data);
+				console.log(arr);
+				setVaccines(arr);
+				break;
+
+			case 'casos':
+				casos.push(data);
+				setCasos(casos);
+				break;
+		}
+	}
+
+	return { labels, values, statistics, update };
 }
