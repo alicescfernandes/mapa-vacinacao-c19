@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 require('dotenv').config();
-
 const schedule = require('node-schedule');
 var shell = require('shelljs');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
+
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
 	shell.exit(1);
@@ -16,6 +16,7 @@ let options = {
 	month: '2-digit',
 	day: '2-digit',
 };
+
 let f = new Intl.DateTimeFormat('pt', options);
 let formatted = f.format(new Date());
 
@@ -51,6 +52,7 @@ function publishEvent(type, data) {
 		data,
 	});
 }
+
 function updateJSON() {
 	let updatedCases = false;
 	let updatedVaccines = false;
