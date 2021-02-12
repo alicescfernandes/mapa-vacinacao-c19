@@ -1,10 +1,11 @@
 #!/usr/bin/env node
+require('dotenv').config();
 
 const schedule = require('node-schedule');
 var shell = require('shelljs');
 const fetch = require('node-fetch');
 const fs = require('fs');
-
+const Pusher = require('pusher');
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
 	shell.exit(1);
@@ -17,6 +18,14 @@ let options = {
 };
 let f = new Intl.DateTimeFormat('pt', options);
 let formatted = f.format(new Date());
+
+const pusher = new Pusher({
+	appId: process.env.PUSHER_APP_ID,
+	key: process.env.PUSHER_APP_KEY,
+	secret: process.env.PUSHER_APP_SECRET,
+	cluster: 'eu',
+	useTLS: true,
+});
 
 function gitCommit(data) {
 	shell.exec('git add data/*');
@@ -34,6 +43,13 @@ function gitCommit(data) {
 	shell.exec('git merge develop --no-ff --no-edit');
 	shell.exec('git push');
 	shell.exec('git checkout develop');
+}
+
+function publishEvent(type, data) {
+	pusher.trigger('covid19', 'update', {
+		type,
+		data,
+	});
 }
 function updateJSON() {
 	let updatedCases = false;
@@ -66,6 +82,7 @@ function updateJSON() {
 				dataLocalVacinas.push(sourceData);
 				fs.writeFileSync('./data/vaccines.json', JSON.stringify(dataLocalVacinas));
 				updatedVaccines = true;
+				publishEvent('vacinas', dataVacinas.features[0].attributes);
 			} else {
 				console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 			}
@@ -78,6 +95,7 @@ function updateJSON() {
 					dataLocalCases.push(sourceData);
 					fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
 					updatedCases = true;
+					publishEvent('casos', dataCasos.features[0].attributes);
 				} else {
 					console.log('not updating', 'cases', sourceData.OBJECTID, dataLocalCases[dataLocalCases.length - 1].OBJECTID);
 				}
