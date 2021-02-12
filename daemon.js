@@ -31,7 +31,8 @@ function gitCommit(data) {
 	shell.exec('git push');
 	shell.exec('git checkout master');
 	shell.exec('git pull --rebase');
-	shell.exec('git merge develop');
+	shell.exec('git merge develop --no-ff --no-edit');
+	shell.exec('git push');
 	shell.exec('git checkout develop');
 }
 function updateJSON() {
@@ -69,7 +70,7 @@ function updateJSON() {
 				console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 			}
 			//Update cases
-			if (dataCasos.features.length > 1) {
+			if (dataCasos.features.length > 0) {
 				sourceData = dataCasos.features[0].attributes;
 				if (parseInt(sourceData.Data) > dataLocalCases[dataLocalCases.length - 1].Data) {
 					console.log(new Date().toLocaleString(), 'updating');
@@ -78,8 +79,10 @@ function updateJSON() {
 					fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
 					updatedCases = true;
 				} else {
-					console.log('not updating', 'cases', parseInt(sourceData.Data), dataLocalCases[dataLocalCases.length - 1].Data);
+					console.log('not updating', 'cases', dataCasos.features[0].Data, dataLocalCases[dataLocalCases.length - 1].Data);
 				}
+			} else {
+				console.log('not updating', 'cases', dataCasos.features.length, dataLocalCases[dataLocalCases.length - 1].Data);
 			}
 			if (updatedCases || updatedVaccines) {
 				gitCommit();
