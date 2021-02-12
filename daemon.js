@@ -86,6 +86,8 @@ function updateJSON() {
 			}
 			if (updatedCases || updatedVaccines) {
 				gitCommit();
+				//Update twitter
+				shell.exec('yarn twitter');
 			}
 		})
 		.catch((err) => {

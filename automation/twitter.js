@@ -46,6 +46,8 @@ if (data[data.length - 1].Data > twitterLastUpdate.last_update) {
 	for (let key of Object.keys(postVariables)) {
 		post = post.replace(key, postVariables[key]);
 	}
+	client.post('account/update_profile', { description: `Sabia que até dia ${postVariables['{{dia}}']}/${postVariables['{{mes}}']} foram administradas ${postVariables['{{total_total}}']} vacinas? Veja aqui mais info sobre plano de vacinação contra a covid 19. Não somos um site do governo` });
+
 	client.post('statuses/update', { status: post }, function (error, tweet, response) {
 		if (!error) {
 			console.log(post);
