@@ -19,6 +19,11 @@ export function Footer() {
 			<Container className={styles.content}>
 				<ul>
 					<li>
+						<a target="_blank" href="https://twitter.com/vacinacaocovid1">
+							Twitter
+						</a>
+					</li>
+					<li>
 						<a target="_blank" href="/api/vaccines">
 							API
 						</a>

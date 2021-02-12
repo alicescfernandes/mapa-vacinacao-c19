@@ -19,6 +19,10 @@
 			color: inherit;
 		}
 
+		a.highlight {
+			color: var(--foreground);
+		}
+
 		li {
 			display: inline-block;
 			margin: 0px 15px;
