@@ -1,10 +1,11 @@
 #!/usr/bin/env node
+require('dotenv').config();
 
 const schedule = require('node-schedule');
 var shell = require('shelljs');
 const fetch = require('node-fetch');
 const fs = require('fs');
-
+const Pusher = require('pusher');
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
 	shell.exit(1);
@@ -17,6 +18,14 @@ let options = {
 };
 let f = new Intl.DateTimeFormat('pt', options);
 let formatted = f.format(new Date());
+
+const pusher = new Pusher({
+	appId: process.env.PUSHER_APP_ID,
+	key: process.env.PUSHER_APP_KEY,
+	secret: process.env.PUSHER_APP_SECRET,
+	cluster: 'eu',
+	useTLS: true,
+});
 
 function gitCommit(data) {
 	shell.exec('git add data/*');
@@ -34,6 +43,13 @@ function gitCommit(data) {
 	shell.exec('git merge develop --no-ff --no-edit');
 	shell.exec('git push');
 	shell.exec('git checkout develop');
+}
+
+function publishEvent(type, data) {
+	pusher.trigger('covid19', 'update', {
+		type,
+		data,
+	});
 }
 function updateJSON() {
 	let updatedCases = false;
@@ -66,26 +82,30 @@ function updateJSON() {
 				dataLocalVacinas.push(sourceData);
 				fs.writeFileSync('./data/vaccines.json', JSON.stringify(dataLocalVacinas));
 				updatedVaccines = true;
+				publishEvent('vacinas', dataVacinas.features[0].attributes);
 			} else {
 				console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 			}
 			//Update cases
 			if (dataCasos.features.length > 0) {
 				sourceData = dataCasos.features[0].attributes;
-				if (parseInt(sourceData.Data) > dataLocalCases[dataLocalCases.length - 1].Data) {
+				if (parseInt(sourceData.OBJECTID) > dataLocalCases[dataLocalCases.length - 1].OBJECTID) {
 					console.log(new Date().toLocaleString(), 'updating');
 					sourceData.Data = date.getTime();
 					dataLocalCases.push(sourceData);
 					fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
 					updatedCases = true;
+					publishEvent('casos', dataCasos.features[0].attributes);
 				} else {
-					console.log('not updating', 'cases', dataCasos.features[0].Data, dataLocalCases[dataLocalCases.length - 1].Data);
+					console.log('not updating', 'cases', sourceData.OBJECTID, dataLocalCases[dataLocalCases.length - 1].OBJECTID);
 				}
 			} else {
 				console.log('not updating', 'cases', dataCasos.features.length, dataLocalCases[dataLocalCases.length - 1].Data);
 			}
 			if (updatedCases || updatedVaccines) {
 				gitCommit();
+				//Update twitter
+				shell.exec('yarn twitter');
 			}
 		})
 		.catch((err) => {
@@ -97,6 +117,6 @@ console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
 updateJSON();
-schedule.scheduleJob('0-59/5 13-16 * * *', function () {
+schedule.scheduleJob('0-59/5 13-15 * * *', function () {
 	updateJSON();
 });

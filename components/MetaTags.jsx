@@ -12,7 +12,7 @@ export function Metatags({ isUpdating }) {
 	let dateFormater = new Intl.DateTimeFormat('pt-PT', options);
 	let parts = dateFormater.formatToParts(vacinas.Data);
 	let num = numberFormatter.format(vacinas.Vacinados_Ac).replace(',', ' ');
-	let title = 'Plano de Vacinação - COVID 19';
+	let title = 'Vacinação COVID-19';
 	useEffect(() => {
 		if (isUpdating) {
 			document.title = 'Atualizado - ' + title;
@@ -22,7 +22,7 @@ export function Metatags({ isUpdating }) {
 	return (
 		<Head>
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-			<meta name="title" content={title} />
+			<meta name="title" content="Plano de Vacinação - COVID 19" />
 			<meta name="description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="https://vacinacaocovid19.pt/" />
@@ -41,7 +41,7 @@ export function Metatags({ isUpdating }) {
 			<link rel="manifest" href="/site.webmanifest" />
 			<meta name="msapplication-TileColor" content="#01AE97" />
 			<meta name="theme-color" content="#01AE97" />
-			<title>Plano de Vacinação - COVID 19</title>
+			<title>{title}</title>
 		</Head>
 	);
 }

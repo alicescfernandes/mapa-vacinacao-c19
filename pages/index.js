@@ -20,7 +20,7 @@ import { Card } from '../components/Card';
 import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
 export default function Home() {
-	let { statistics, labels, values } = useData();
+	let { statistics, labels, values, update: updateData } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
@@ -73,12 +73,6 @@ export default function Home() {
 		if (rawData[rawData.length - 1]?.Data != last.Data) {
 			onDateSelect(new Date(rawData[rawData.length - 1].Data));
 			setLast(rawData[rawData.length - 1]);
-			if (loaded == true) {
-				setUpdating(true);
-				setTimeout(() => {
-					setUpdating(false);
-				}, 1000);
-			}
 		}
 	}, [values, loaded]);
 
@@ -102,7 +96,21 @@ export default function Home() {
 		setPreviousItem(selectedItem);
 		setFirst(rawData[0]);
 		setLoaded(true);
+
+		var pusher = new Pusher('4dd4d1d504254af64544', {
+			cluster: 'eu',
+		});
+
+		var channel = pusher.subscribe('covid19');
+		channel.bind('update', function (data) {
+			updateData(data.type, data.data);
+			setUpdating(true);
+			setTimeout(() => {
+				setUpdating(false);
+			}, 1000);
+		});
 	}, []);
+
 	return (
 		<>
 			<Metatags isUpdating={updating}></Metatags>
@@ -120,7 +128,6 @@ export default function Home() {
 				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
 				</Row>
-
 				<Row>
 					<Col lg={4} xs={12}>
 						<Card isUpdating={updating}>
@@ -138,7 +145,6 @@ export default function Home() {
 						</Card>
 					</Col>
 				</Row>
-
 				<Row>
 					<Col lg={4} xs={12}>
 						<Card isUpdating={updating}>
@@ -178,7 +184,6 @@ export default function Home() {
 						</Card>
 					</Col>
 				</Row>
-
 				<Row>
 					<Col>
 						<h3 className={styles.title}>Número vacinas administradas</h3>
@@ -186,14 +191,12 @@ export default function Home() {
 						<NumeroTotalVacinados colors={colors} labels={labels} values={values} valuesIn1={valuesIn1} valuesIn2={valuesIn2}></NumeroTotalVacinados>
 					</Col>
 				</Row>
-
 				<Row>
 					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
 						<VacinadosPorDia colors={colors} labels={labels} values={values} statistics={statistics}></VacinadosPorDia>
 					</Col>
 				</Row>
-
 				<Row>
 					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias</h3>
@@ -206,7 +209,6 @@ export default function Home() {
 						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
 					</Col>
 				</Row>
-
 				<Row>
 					<Col xs={12} className={styles.sources_block}>
 						<h3 className={styles.title}>Notas</h3>
@@ -251,6 +253,7 @@ export default function Home() {
 					</Col>
 				</Row>
 				<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
+				<script src="https://js.pusher.com/7.0/pusher.min.js"></script>{' '}
 			</Container>
 			<Footer></Footer>
 		</>
