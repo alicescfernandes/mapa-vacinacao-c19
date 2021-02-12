@@ -9,9 +9,8 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: valueCasesDiarios } = statistics.getDiariosCases();
 	let vaccines = statistics.getRaw();
-	let [height, setHeight] = useState(400);
-	let { main, shades, tints, complements } = colors;
 
+	let { main, shades, tints, complements } = colors;
 	const canvasRef = useRef(null);
 	const data = (canvas) => {
 		return {
@@ -24,9 +23,9 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 			],
 		};
 	};
-	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
+			maintainAspectRatio: false,
 			plugins: {
 				datalabels: {
 					color: 'white',
@@ -43,13 +42,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 					},
 				},
 			},
-			onResize: (a, b, c) => {
-				if (window.innerWidth <= 800) {
-					a.canvas.parentNode.style.width = '1000px';
-				} else {
-					a.canvas.parentNode.style.width = 'auto';
-				}
-			},
+			onResize: (a, b, c) => {},
 			legend: {
 				position: 'bottom',
 				align: 'start',
@@ -66,19 +59,18 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 	};
 	useEffect(() => {
 		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-			setHeight(canvasRef?.current?.chartInstance?.canvas?.height);
 		}
 	}, [canvasRef.current]);
 
 	useEffect(() => {
-		if (values.length > 0 && height > 0) {
+		if (values.length > 0) {
 			setLoading(false);
 		}
-	}, [values, labels, height]);
+	}, [values, labels]);
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[ChartDataLabels]} height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Pie plugins={[ChartDataLabels]} width={'100%'} height={'400'} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
