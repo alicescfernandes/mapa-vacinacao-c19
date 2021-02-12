@@ -72,14 +72,14 @@ function updateJSON() {
 			//Update cases
 			if (dataCasos.features.length > 0) {
 				sourceData = dataCasos.features[0].attributes;
-				if (parseInt(sourceData.Data) > dataLocalCases[dataLocalCases.length - 1].Data) {
+				if (parseInt(sourceData.OBJECTID) > dataLocalCases[dataLocalCases.length - 1].OBJECTID) {
 					console.log(new Date().toLocaleString(), 'updating');
 					sourceData.Data = date.getTime();
 					dataLocalCases.push(sourceData);
 					fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
 					updatedCases = true;
 				} else {
-					console.log('not updating', 'cases', dataCasos.features[0].Data, dataLocalCases[dataLocalCases.length - 1].Data);
+					console.log('not updating', 'cases', sourceData.OBJECTID, dataLocalCases[dataLocalCases.length - 1].OBJECTID);
 				}
 			} else {
 				console.log('not updating', 'cases', dataCasos.features.length, dataLocalCases[dataLocalCases.length - 1].Data);
