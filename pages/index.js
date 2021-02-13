@@ -110,6 +110,9 @@ export default function Home() {
 				setUpdating(false);
 			}, 1000);
 		});
+		statistics.getTotalAdministredDosesByAgeByWeek();
+		statistics.getTotalAdministredDosesByAgeByWeek();
+		statistics.getTotalAdministredDosesByAgeByWeek();
 	}, []);
 
 	return (
