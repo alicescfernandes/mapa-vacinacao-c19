@@ -119,6 +119,6 @@ console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
 updateJSON();
-schedule.scheduleJob('0-59/5 13-15 * * *', function () {
+schedule.scheduleJob('0-59/5 12-15 * * *', function () {
 	updateJSON();
 });
