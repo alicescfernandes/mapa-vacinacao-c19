@@ -11,7 +11,14 @@
 		fill: var(--foreground);
 		display: inline;
 		vertical-align: middle;
+
+		&:hover {
+			fill: scale-color(#01ae97, $blackness: 35%); // #81717fd;
+			display: inline;
+			vertical-align: middle;
+		}
 	}
+
 	&:first-child {
 		svg {
 			transform: rotate(180deg);
