@@ -19,6 +19,7 @@ import fases from './../data/fases.json';
 import { Card } from '../components/Card';
 import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
+import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
 export default function Home() {
 	let { statistics, labels, values, update: updateData } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
@@ -204,9 +205,13 @@ export default function Home() {
 					</Col>
 				</Row>
 				<Row>
-					<Col xs={12}>
+					<Col lg={6} xs={12}>
 						<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos</h3>
 						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
+					</Col>
+					<Col lg={6} xs={12}>
+						<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível.</h3>
+						<PieSuscetiveisProporcao colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieSuscetiveisProporcao>
 					</Col>
 				</Row>
 				<Row>
@@ -222,6 +227,12 @@ export default function Home() {
 								Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo.
 							</a>{' '}
 							Os valores apresentados aqui foram calculados com uma percentagem de 60%.
+						</p>
+						<p className={styles.text}>
+							A população sucetivel a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
+							<a className={styles.link} href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/" target=":blank">
+								Até 09/02 foram confirmados 49 casos de reinfecção com o novo coronavírus.
+							</a>
 						</p>
 						{/*	<p className={styles.text}>
 							A média de evolução de casos da União Europeia foi calculada com os números reportados por cada país, mesmo que alguns países não tenham ainda reportado para o dia de hoje. No gráfico de o numero total de vacinas administradas por dia de cada só são mostrados os dados que

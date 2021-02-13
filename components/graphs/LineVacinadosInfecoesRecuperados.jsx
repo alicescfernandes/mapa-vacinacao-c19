@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
@@ -107,7 +108,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 			],
 		};
 	};
-	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
 			plugins: {
@@ -137,7 +137,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value) || 0).replace(',', ' ');
+						return label + ': ' + formatNumber(parseInt(tooltipItem.value) || 0);
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];

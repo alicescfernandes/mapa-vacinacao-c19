@@ -2,16 +2,16 @@ import vaccines from '../data/vaccines.json';
 import date from '../data/last-update.json';
 import Head from 'next/head';
 import { useEffect } from 'react';
+import { formatNumber } from '../utils';
 export function Metatags({ isUpdating }) {
 	let options = {
 		month: '2-digit',
 		day: 'numeric',
 	};
 	let vacinas = vaccines[vaccines.length - 1];
-	let numberFormatter = new Intl.NumberFormat();
 	let dateFormater = new Intl.DateTimeFormat('pt-PT', options);
 	let parts = dateFormater.formatToParts(vacinas.Data);
-	let num = numberFormatter.format(vacinas.Vacinados_Ac).replace(',', ' ');
+	let num = formatNumber(vacinas.Vacinados_Ac);
 	let title = 'Vacinação COVID-19';
 	useEffect(() => {
 		if (isUpdating) {
