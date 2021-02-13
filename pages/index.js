@@ -150,7 +150,7 @@ export default function Home() {
 						<Card isUpdating={updating}>
 							<Counter
 								ps="Percentagem calculada com base no número total de segundas doses administradas"
-								digits={10}
+								digits={2}
 								suffix={'%'}
 								colors={colors}
 								title="Percentagem de população inoculada com a 2ª dose "
@@ -163,7 +163,7 @@ export default function Home() {
 						<Card isUpdating={updating}>
 							<Counter
 								ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
-								digits={10}
+								digits={2}
 								suffix={'%'}
 								colors={colors}
 								title="Percentagem para atingir imunidade de grupo"
