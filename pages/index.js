@@ -254,6 +254,16 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
 								Ponto de Situação Direção-Geral da Saúde
 							</a>
+							. A atualização destes dados é diária.
+							<br />
+							Os dados relativos à distribuição das vacinas e administração das mesmas por grupo etária são disponibilizados pelo{' '}
+							<a className={styles.link} href="https://www.ecdc.europa.eu/en" target="_blank">
+								ECDC (European Centre for Disease Prevention and Control)
+							</a>
+							&nbsp; e são atualizados através dos&nbsp;
+							<a className={styles.link} target="_blank" href="https://covid19-vaccine-report.ecdc.europa.eu/#6_Reported_data">
+								relatórios publicados semanalmente.
+							</a>
 							{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
 							<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
 								Our World In Data
@@ -262,7 +272,6 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
 								no repositório de Github
 							</a> */}
-							.<br /> A atualização destes dados é diária.
 						</p>
 					</Col>
 				</Row>
