@@ -22,6 +22,7 @@ import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/Pi
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
+import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
 export default function Home() {
 	let { statistics, labels, values, update: updateData } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
@@ -211,8 +212,14 @@ export default function Home() {
 				</Row>
 				<Row>
 					<Col>
-						<h3 className={styles.title}>Número de vacinas administradas semana e faixa etária</h3>
+						<h3 className={styles.title}>Número de doses administradas por semana e faixa etária</h3>
 						<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h3 className={styles.title}>Doses totais administradas por faíxa etária</h3>
+						<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
 					</Col>
 				</Row>
 				<Row>

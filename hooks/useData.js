@@ -238,7 +238,6 @@ export function useData() {
 					groups[el['Group']].dose_2[el['Week']] = (groups[el['Group']].dose_2[el['Week']] || 0) + el['Second dose'];
 				}
 			});
-			console.log('labels', JSON.stringify(labels));
 			return {
 				maxValue,
 				labels,
@@ -256,6 +255,7 @@ export function useData() {
 					groups[el['Group']] = groups[el['Group']] || {
 						mod: [],
 						com: [],
+						target: 0,
 					};
 
 					if (el['Vaccine brand'] === 'COM') {
@@ -267,6 +267,8 @@ export function useData() {
 						groups[el['Group']].mod[0] = (groups[el['Group']].mod[0] || 0) + el['First dose'];
 						groups[el['Group']].mod[1] = (groups[el['Group']].mod[1] || 0) + el['Second dose'];
 					}
+
+					groups[el['Group']].target = (groups[el['Group']].target || 0) + el['Group population'];
 				}
 			});
 

@@ -106,3 +106,10 @@ button.toggle_button {
   text-align: left;
   margin-bottom: 15px;
 }
+
+
+.subchart-data p {
+  font-weight: bold;
+  font-size: 13px;
+  text-align: left;
+}

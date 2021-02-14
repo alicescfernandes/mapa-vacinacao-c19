@@ -18,10 +18,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
 		if (window.outerWidth <= 800) {
-			console.log(1);
 			canvas.parentNode.style.width = '1000px';
 		} else {
-			console.log(2);
 			canvas.parentNode.style.width = '100%';
 		}
 

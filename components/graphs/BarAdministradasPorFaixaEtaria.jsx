@@ -13,17 +13,13 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
-		console.log(activeDose);
-
 		if (canvasRef?.current?.chartInstance) {
-			debugger;
 			canvasRef.current.chartInstance.data.datasets.forEach((dataset) => {
 				if (dataset.customDose == activeDose) {
 					dataset.hidden = false;
 				} else {
 					dataset.hidden = true;
 				}
-				console.log(dataset, dataset.hidden);
 				canvasRef.current.chartInstance.update();
 			});
 		}
@@ -33,7 +29,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 	const data = (canvas) => {
 		let { labels, groups, maxValue } = graphData;
-		console.log(labels);
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
@@ -53,7 +48,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
 		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
-		console.log(graphData.labels, Object.keys(graphData.labels));
 		return {
 			labels: Object.keys(graphData.labels).map((key) => {
 				let fromDate = new Date(labels[key].from);
@@ -304,7 +298,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	useEffect(() => {
 		statistics.getAdministredDosesByAgeByWeek().then((data) => {
 			setGraphData(data);
-			console.log(data);
 			setLoading(false);
 			setActiveDose(1);
 		});

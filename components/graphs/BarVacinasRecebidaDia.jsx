@@ -18,10 +18,8 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 		let { labels, mod, com } = graphData;
 		if (window.outerWidth <= 800) {
-			console.log(1);
 			canvas.parentNode.style.width = '1000px';
 		} else {
-			console.log(2);
 			canvas.parentNode.style.width = '100%';
 		}
 
@@ -90,7 +88,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						console.log(formatNumber(parseInt(tooltipItem.value)));
 						return label + ': ' + (parseInt(tooltipItem.value) ? formatNumber(parseInt(tooltipItem.value)) : 0);
 					},
 					title: (tooltipItem, data) => {
