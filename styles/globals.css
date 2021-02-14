@@ -41,7 +41,9 @@ a:hover{
  color:var(--foreground)
 }
 
-
+.mouse-pointer{
+  cursor: pointer;
+}
 
 /* Extra small devices (portrait phones, less than 576px) */
 /*  No media query for `xs` since this is the default in Bootstrap */
@@ -79,4 +81,28 @@ a:hover{
   .container{
     max-width: 1520px;
   }
+}
+
+button.toggle_button {
+  color: var(--foreground);
+  border:none; 
+  background-color:white;
+  border:1px solid var(--foreground);
+  margin:0px 5px;
+  padding:5px 15px;
+  border-radius: 3px;
+  transition: all 250ms;
+  font-size: 15px;
+
+}
+
+.toggle_button.active {
+  background-color: var(--foreground);
+  color:white;
+}
+
+
+.toggle_buttons {
+  text-align: left;
+  margin-bottom: 15px;
 }

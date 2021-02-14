@@ -180,7 +180,6 @@ export function useData() {
 			return { labels: labels2, values: values2, raw: casesData };
 		},
 		getReceivedDosesByBrandByWeek: async () => {
-			console.clear();
 			let labels = {};
 
 			let [data, weeks] = await Promise.all([fetch('/api/ecdc').then((res) => res.json()), fetch('/api/weeks').then((res) => res.json())]);
@@ -210,12 +209,6 @@ export function useData() {
 
 			labels = Object.values(labels);
 
-			console.table({
-				com,
-				mod,
-				labels,
-			});
-
 			return {
 				com,
 				mod,
@@ -224,24 +217,30 @@ export function useData() {
 		},
 		getAdministredDosesByAgeByWeek: async () => {
 			let labels = {};
+			let maxValue = 0;
 			let [data, weeks] = await Promise.all([fetch('/api/ecdc').then((res) => res.json()), fetch('/api/weeks').then((res) => res.json())]);
 
 			let groups = {};
 
 			data.forEach((el) => {
 				if (el['Doses received'] == '') {
-					labels[el['Week']] = weeks[el['Week']];
+					if (!labels.hasOwnProperty(el['Week'])) {
+						labels[el['Week'].replace('-', '')] = weeks[el['Week']];
+					}
+
 					groups[el['Group']] = groups[el['Group']] || {
 						dose_1: [],
 						dose_2: [],
 					};
 
+					maxValue = Math.max(el['First dose'], el['Second dose']);
 					groups[el['Group']].dose_1[el['Week']] = (groups[el['Group']].dose_1[el['Week']] || 0) + el['First dose'];
 					groups[el['Group']].dose_2[el['Week']] = (groups[el['Group']].dose_2[el['Week']] || 0) + el['Second dose'];
 				}
 			});
-
+			console.log('labels', JSON.stringify(labels));
 			return {
+				maxValue,
 				labels,
 				groups,
 			};
@@ -291,7 +290,7 @@ export function useData() {
 			case 'vacinas':
 				let arr = Array.from(vaccines);
 				arr.push(data);
-				console.log(arr);
+
 				setVaccines(arr);
 				break;
 

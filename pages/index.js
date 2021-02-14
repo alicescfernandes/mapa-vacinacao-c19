@@ -20,6 +20,8 @@ import { Card } from '../components/Card';
 import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
+import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
+import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 export default function Home() {
 	let { statistics, labels, values, update: updateData } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
@@ -199,6 +201,18 @@ export default function Home() {
 					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
 						<VacinadosPorDia colors={colors} labels={labels} values={values} statistics={statistics}></VacinadosPorDia>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h3 className={styles.title}>Número de doses recebidas por semana</h3>
+						<BarVacinasRecebidaDia colors={colors} labels={labels} values={values} statistics={statistics}></BarVacinasRecebidaDia>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h3 className={styles.title}>Número de vacinas administradas semana e faixa etária</h3>
+						<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
 					</Col>
 				</Row>
 				<Row>
