@@ -7,6 +7,8 @@
 /.pnp
 .pnp.js
 
+automation/twitter-conf.json
+automation/hootsuite-conf.json
 # testing
 /coverage
 
