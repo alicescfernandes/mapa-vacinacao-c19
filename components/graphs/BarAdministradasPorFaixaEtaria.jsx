@@ -6,8 +6,6 @@ import classNames from 'classnames';
 export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let marriedData = {};
-	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
-	let { values: valueCasesDiarios, raw: rawCasos } = statistics.getDiariosCases();
 	let { main, shades, tints, complements } = colors;
 	let [height, setHeight] = useState(400);
 	let [graphData, setGraphData] = useState({});
@@ -30,28 +28,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 			});
 		}
 	}, [activeDose]);
-	//map the last 30 days in data
-	//Marry the data pls
-	if (labels.length > 0) {
-		let datesVaccines = Array.from(rawDiarios).reverse().slice(0, 14);
-		let datesCases = Array.from(rawCasos).reverse().slice(0, 14);
-		datesVaccines.forEach((element) => {
-			let date = new Date(element.Data);
-			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
-			marriedData[key] = element;
-		});
 
-		datesCases.forEach((element, i) => {
-			let date = new Date(element.Data);
-			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
-			if (marriedData[key] !== undefined) {
-				marriedData[key] = {
-					...element,
-					...marriedData[key],
-				};
-			}
-		});
-	}
 	marriedData = Object.values(marriedData).reverse();
 
 	const data = (canvas) => {
@@ -91,7 +68,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					type: 'bar',
 					backgroundColor: shades[0],
 					data: Object.values(groups['Age18_24'].dose_2),
-					stack: 'stack0',
+					stack: 'stack',
 					order: 1,
 					hidden: true,
 					display: false,
@@ -102,7 +79,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 18/24',
 					backgroundColor: shades[0],
 					data: Object.values(groups['Age18_24'].dose_1),
-					stack: 'stack0',
+					stack: 'stack',
 					order: 2,
 					hidden: false,
 					display: true,
@@ -115,7 +92,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					type: 'bar',
 					backgroundColor: tints[0],
 					data: Object.values(groups['Age25_49'].dose_2),
-					stack: 'stack1',
+					stack: 'stack',
 					order: 3,
 					hidden: true,
 					display: false,
@@ -126,7 +103,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 25/49',
 					backgroundColor: tints[0],
 					data: Object.values(groups['Age25_49'].dose_1),
-					stack: 'stack1',
+					stack: 'stack',
 					order: 4,
 					hidden: false,
 					display: true,
@@ -140,7 +117,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					type: 'bar',
 					backgroundColor: '#edb203',
 					data: Object.values(groups['Age50_59'].dose_2),
-					stack: 'stack2	',
+					stack: 'stack',
 					order: 5,
 					hidden: true,
 					display: false,
@@ -151,7 +128,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 50/59',
 					backgroundColor: '#edb203',
 					data: Object.values(groups['Age50_59'].dose_1),
-					stack: 'stack2	',
+					stack: 'stack',
 					order: 6,
 					hidden: false,
 					display: true,
@@ -165,7 +142,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					type: 'bar',
 					backgroundColor: complements[1],
 					data: Object.values(groups['Age60_69'].dose_2),
-					stack: 'stack4	',
+					stack: 'stack',
 					order: 7,
 					hidden: true,
 					display: false,
@@ -176,7 +153,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 60/69',
 					backgroundColor: complements[1],
 					data: Object.values(groups['Age60_69'].dose_1),
-					stack: 'stack4	',
+					stack: 'stack',
 					order: 8,
 					hidden: false,
 					display: true,
@@ -190,7 +167,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					type: 'bar',
 					backgroundColor: complements[2],
 					data: Object.values(groups['Age70_79'].dose_2),
-					stack: 'stack5	',
+					stack: 'stack',
 					order: 9,
 					hidden: true,
 					display: false,
@@ -201,7 +178,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 70/79',
 					backgroundColor: complements[2],
 					data: Object.values(groups['Age70_79'].dose_1),
-					stack: 'stack5	',
+					stack: 'stack',
 					order: 10,
 					hidden: false,
 					display: true,
@@ -214,7 +191,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					type: 'bar',
 					backgroundColor: complements[0],
 					data: Object.values(groups['Age80+'].dose_2),
-					stack: 'stack6	',
+					stack: 'stack',
 					order: 11,
 					hidden: true,
 					display: false,
@@ -225,7 +202,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 80+',
 					backgroundColor: complements[0],
 					data: Object.values(groups['Age80+'].dose_1),
-					stack: 'stack6	',
+					stack: 'stack',
 					order: 12,
 					hidden: false,
 					display: true,
@@ -235,7 +212,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 		};
 	};
 	const options = () => {
-		let maxValue = 40000;
+		let maxValue = 90000;
 		return {
 			//maintainAspectRatio: false,
 
