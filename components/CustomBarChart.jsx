@@ -2,7 +2,6 @@ import { HorizontalBar } from 'react-chartjs-2';
 import { formatNumber } from '../utils';
 
 export function CustomBarChart({ type, total, colors, data, showHeading }) {
-	console.log(data);
 	let { main, shades, tints, complements } = colors;
 
 	const graphData = () => {

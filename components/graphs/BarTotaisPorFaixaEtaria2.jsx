@@ -38,7 +38,6 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 		statistics.getTotalAdministredDosesByAgeByWeek().then((data) => {
 			setGraphData(data);
 			setLoading(false);
-			console.log(data);
 		});
 	}, []);
 

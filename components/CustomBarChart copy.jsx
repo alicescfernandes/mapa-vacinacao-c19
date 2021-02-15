@@ -1,6 +1,5 @@
 import ReactTooltip from 'react-tooltip';
 export function CustomBarChart({ data, options, showHeading }) {
-	console.log('data', data);
 	let bar3_percentage = '100%';
 	let bar2_percentage = (data.datasets.dose_2.data / data.datasets.total.data) * 100 + '%';
 	let bar1_percentage = (data.datasets.dose_1.data / data.datasets.total.data) * 100 + '%';

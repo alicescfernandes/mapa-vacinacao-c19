@@ -117,10 +117,17 @@ export default function Home() {
 		statistics.getTotalAdministredDosesByAgeByWeek();
 		statistics.getTotalAdministredDosesByAgeByWeek();
 	}, []);
-
 	return (
 		<>
 			<Metatags isUpdating={updating}></Metatags>
+			<Row className={`${styles.alert} ${styles.alert_fill} `}>
+				<Col style={{ textAlign: 'center' }}>
+					<p>
+						Contamos agora com dados retirados do Centro Europeu de Controlo de Doenças e com quatro novos gráficos relacionados com a administração de vacinas em Portugal. <br />
+						Para estares par dos novos <em>updates</em> segue-nos no Twitter.
+					</p>
+				</Col>
+			</Row>
 			<Header></Header>
 			<Row className={`card-shadow-bottom ${styles.alert}`}>
 				<Col style={{ textAlign: 'center' }}>

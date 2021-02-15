@@ -62,12 +62,7 @@ export default function Embed() {
 	}, []);
 
 	useEffect(() => {
-		console.log(queryColors);
 		if (queryColors != undefined) {
-			console.log(
-				1,
-				queryColors.map((c) => '#' + c)
-			);
 			setColors([...queryColors.map((c) => '#' + c)]);
 		}
 	}, [queryColors]);
