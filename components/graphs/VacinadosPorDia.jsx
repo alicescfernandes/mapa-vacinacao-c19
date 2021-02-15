@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 
 export function VacinadosPorDia({ statistics, colors }) {
@@ -96,6 +97,9 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
+			layout: {
+				padding: -5,
+			},
 			plugins: {
 				datalabels: {
 					display: false,
@@ -136,7 +140,9 @@ export function VacinadosPorDia({ statistics, colors }) {
 						},
 						ticks: {
 							beginAtZero: false,
-							callback: (value) => numberFormatter.format(value),
+							callback: function (value, index, values) {
+								return formatNumber(value);
+							},
 						},
 					},
 					{
@@ -150,6 +156,9 @@ export function VacinadosPorDia({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							beginAtZero: true,
+							callback: function (value, index, values) {
+								return formatNumber(value);
+							},
 						},
 					},
 				],

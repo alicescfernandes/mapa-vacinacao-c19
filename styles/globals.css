@@ -84,21 +84,20 @@ a:hover{
 }
 
 button.toggle_button {
-  color: var(--foreground);
-  border:none; 
-  background-color:white;
-  border:1px solid var(--foreground);
-  margin:0px 5px;
-  padding:5px 15px;
-  border-radius: 3px;
-  transition: all 250ms;
-  font-size: 15px;
+  color: #444;
+  border: none;
+  background-color: white;
+  border-bottom: 1px solid #d8d8d8;
+  padding: 5px 15px;
+  -moz-transition: all 200ms;
+  transition: all 200ms;
+  font-size: 14px;
 
 }
 
 .toggle_button.active {
-  background-color: var(--foreground);
-  color:white;
+  border-bottom-color: var(--foreground);
+  color: var(--foreground);
 }
 
 
@@ -112,4 +111,40 @@ button.toggle_button {
   font-weight: bold;
   font-size: 13px;
   text-align: left;
+}
+
+.legends {
+  font-size: 12px;
+  text-align: left;
+}
+
+
+.legend {
+
+  margin-right: 10px;
+}
+
+/* temp */
+span.color_sample {
+  width: 40px;
+  height: 13px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  box-sizing: border-box;
+}
+
+
+
+.vaccine-label {
+  text-align: right;
+  font-size: 12px;
+  line-height: 55PX;
+}
+
+sup.new {
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--foreground);
+  font-size: 10px;
 }

@@ -13,105 +13,29 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 	let [activeDose, setActiveDose] = useState(1);
 	const canvasRef = useRef(null);
 
-	const data = (canvas) => {
-		let { labels, groups, maxValue } = graphData;
-
-		if (window.innerWidth <= 800) {
-			//canvas.parentNode.style.width = '1000px';
-		} else {
-			//canvas.parentNode.style.width = 'auto';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.outerWidth <= 800) {
-				//canvas.parentNode.style.width = '1000px';
-			} else {
-				//canvas.parentNode.style.width = '100%';
-			}
-		});
-
+	const data = (group) => {
 		return {
 			labels: ['Pfizer/BioNTech'],
 			datasets: [
 				{
 					label: '2ª Dose',
-					labelGroup: 'Grupo 18/24',
 					type: 'horizontalBar',
-					backgroundColor: 'blue',
+					backgroundColor: main,
 					data: [200],
 					stack: 'stack1',
 				},
 
 				{
 					label: '1ª Dose',
-					labelGroup: 'Grupo 18/24',
 					type: 'horizontalBar',
-					backgroundColor: 'red',
+					backgroundColor: shades[1],
 					data: [300],
 					stack: 'stack1',
-				},
-				{
-					label: 'População-Alvo',
-					labelGroup: 'Grupo 18/24',
-					type: 'horizontalBar',
-					backgroundColor: 'green',
-					data: [500],
-					stack: 'stack1',
-					order: 1,
 				},
 			],
 		};
 	};
 
-	const data2 = (canvas) => {
-		let { labels, groups, maxValue } = graphData;
-
-		if (window.innerWidth <= 800) {
-			//canvas.parentNode.style.width = '1000px';
-		} else {
-			//canvas.parentNode.style.width = 'auto';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.outerWidth <= 800) {
-				//canvas.parentNode.style.width = '1000px';
-			} else {
-				//canvas.parentNode.style.width = '100%';
-			}
-		});
-
-		return {
-			labels: ['Moderna'],
-			datasets: [
-				{
-					label: '2ª Dose',
-					labelGroup: 'Grupo 18/24',
-					type: 'horizontalBar',
-					backgroundColor: 'blue',
-					data: [200],
-					stack: 'stack1',
-				},
-
-				{
-					label: '1ª Dose',
-					labelGroup: 'Grupo 18/24',
-					type: 'horizontalBar',
-					backgroundColor: 'red',
-					data: [300],
-					stack: 'stack1',
-				},
-				{
-					label: 'População-Alvo',
-					labelGroup: 'Grupo 18/24',
-					type: 'horizontalBar',
-					backgroundColor: 'green',
-					data: [500],
-					stack: 'stack1',
-					order: 1,
-				},
-			],
-		};
-	};
 	const options = () => {
 		return {
 			maintainAspectRatio: false,
@@ -122,9 +46,10 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 				},
 			},
 			layout: {
-				padding: -10,
+				padding: -5,
 			},
 			legend: {
+				display: false,
 				position: 'top',
 				align: 'start',
 				onHover: function (event, legend) {
@@ -155,43 +80,28 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 				yAxes: [
 					{
 						gridLines: {
-							display: false,
+							display: true,
 						},
 						ticks: {
-							display: false,
+							display: true,
 						},
 					},
 				],
 				xAxes: [
 					{
-						stacked: false,
+						stacked: true,
 						gridLines: {
-							display: false,
+							display: true,
 						},
 
 						ticks: {
 							beginAtZero: true,
-							display: false,
+							display: true,
+							max: 1000,
+							stepSize: 1000 / 5,
 						},
 					},
 				],
-			},
-		};
-	};
-
-	const options2 = () => {
-		return {
-			...options(),
-			legend: {
-				display: false,
-				position: 'top',
-				align: 'start',
-				onHover: function (event, legend) {
-					document.body.classList.add('mouse-pointer');
-				},
-				onLeave: function (event, legend) {
-					document.body.classList.remove('mouse-pointer');
-				},
 			},
 		};
 	};
@@ -208,51 +118,65 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 			<div>
 				{!loading ? (
 					<>
-						<div className={'subchart-data'}>
+						<div className={'legends'}>
 							<p>
-								Legenda:
-								<span>
-									<span></span>1ª Dose
-								</span>{' '}
-								<span>
-									<span></span>2ª Dose
-								</span>{' '}
-								<span>
-									<span></span>População-Alvo
+								<span className={'legend'}>
+									<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>1ª Dose
 								</span>
+								<span className={'legend'}>
+									<span style={{ backgroundColor: main }} className={'color_sample'}></span>2ª Dose
+								</span>
+								{/*<span>
+									<span></span>População-Alvo
+								</span>*/}
 							</p>
 						</div>
-
 						<Row>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Entre os 18 e 24 anos</p>
 								</div>
-								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
-								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
-									<p>Entre os 18 e 24 anos</p>
+									<p>Entre os 25 e 49 anos</p>
 								</div>
-								<CustomBarChart options={options2()} data={data}></CustomBarChart>
-								<CustomBarChart options={options2()} data={data}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
 							</Col>
 						</Row>
 						<Row>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
-									<p>Entre os 18 e 24 anos</p>
+									<p>Entre os 50 e 59 anos</p>
 								</div>
-								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
-								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age50_59'].target} data={graphData['Age50_59'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age50_59'].target} data={graphData['Age50_59'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
-									<p>Entre os 18 e 24 anos</p>
+									<p>Entre os 60 e 69 anos</p>
 								</div>
-								<CustomBarChart options={options2()} data={data}></CustomBarChart>
-								<CustomBarChart options={options2()} data={data}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age60_69'].target} data={graphData['Age60_69'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age60_69'].target} data={graphData['Age60_69'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>Entre os 70 e 79 anos</p>
+								</div>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age70_79'].target} data={graphData['Age70_79'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age70_79'].target} data={graphData['Age70_79'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+							</Col>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>Com mais de 80 anos</p>
+								</div>
+								<CustomBarChart colors={colors} total={graphData['Age80+'].target} data={graphData['Age80+'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age80+'].target} data={graphData['Age80+'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
 							</Col>
 						</Row>
 					</>

@@ -109,13 +109,17 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						},
 						ticks: {
 							beginAtZero: false,
-							callback: (value) => numberFormatter.format(value),
+							callback: (value) => formatNumber(value),
 						},
 					},
 					{
 						stacked: true,
 						id: 'total',
 						display: false,
+						ticks: {
+							beginAtZero: false,
+							callback: (value) => formatNumber(value),
+						},
 					},
 				],
 				xAxes: [

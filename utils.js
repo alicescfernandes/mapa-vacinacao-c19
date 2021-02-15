@@ -3,5 +3,8 @@ let numberFormatter = new Intl.NumberFormat('pt-PT', {
 });
 
 export const formatNumber = (number) => {
-	return numberFormatter.format(number).replace(/,/gm, ' ');
+	if (number > 9) {
+		return numberFormatter.format(number).replace(/,/gm, ' ');
+	}
+	return 0;
 };

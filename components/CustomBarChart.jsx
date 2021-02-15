@@ -1,32 +1,113 @@
-import ReactTooltip from 'react-tooltip';
-export function CustomBarChart({ datas, options, showHeading }) {
-	let tooltop;
-	function makeTooltip() {
-		return '<em>asd</em>';
-	}
+import { HorizontalBar } from 'react-chartjs-2';
+import { formatNumber } from '../utils';
+
+export function CustomBarChart({ type, total, colors, data, showHeading }) {
+	console.log(data);
+	let { main, shades, tints, complements } = colors;
+
+	const graphData = () => {
+		return {
+			labels: [type],
+			datasets: [
+				{
+					label: '2ª Dose',
+					type: 'horizontalBar',
+					backgroundColor: main,
+					data: [data[1]],
+					stack: 'stack1',
+				},
+
+				{
+					label: '1ª Dose',
+					type: 'horizontalBar',
+					backgroundColor: shades[1],
+					data: [data[0]],
+					stack: 'stack1',
+				},
+			],
+		};
+	};
+
+	const options = () => {
+		return {
+			maintainAspectRatio: false,
+			plugins: {
+				datalabels: {
+					display: false,
+					color: 'white',
+				},
+			},
+			layout: {
+				padding: -5,
+			},
+			legend: {
+				display: false,
+				position: 'top',
+				align: 'start',
+				onHover: function (event, legend) {
+					document.body.classList.add('mouse-pointer');
+				},
+				onLeave: function (event, legend) {
+					document.body.classList.remove('mouse-pointer');
+				},
+			},
+
+			animation: {
+				duration: 1000,
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+				callbacks: {
+					label: (tooltipItem, data) => {
+						var label = data.datasets[tooltipItem.datasetIndex].label;
+						return label + ': ' + formatNumber(parseInt(tooltipItem.value));
+					},
+					title: (tooltipItem, data) => {
+						var label = data.datasets[tooltipItem[0].datasetIndex];
+					},
+				},
+			},
+			scales: {
+				yAxes: [
+					{
+						gridLines: {
+							display: true,
+						},
+						ticks: {
+							display: false,
+						},
+					},
+				],
+				xAxes: [
+					{
+						stacked: true,
+						gridLines: {
+							display: true,
+						},
+
+						ticks: {
+							beginAtZero: true,
+							display: true,
+							max: 500_000,
+							stepSize: 500_000 / 5,
+							callback: function (value, index, values) {
+								return formatNumber(value);
+							},
+						},
+					},
+				],
+			},
+		};
+	};
+
 	return (
 		<>
-			<ReactTooltip getContent={makeTooltip} html={true} clickable={true} />
-			{showHeading ? (
-				<>
-					<div style={{ padding: '0px 5px', display: 'inline-block', lineHeight: '40px', position: 'relative', width: '19%', height: 40, overflow: 'hidden' }}>
-						<p>sometext</p>
-					</div>
-				</>
-			) : (
-				''
-			)}
-
-			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: showHeading ? '80%' : '100%', height: 40, overflow: 'hidden' }}>
-				<div data-tip="hello world1" style={{ position: 'absolute', top: 0, left: 0, backgroundColor: 'red', width: '100%', height: 65, overflow: 'hidden' }}></div>
-				<div data-tip="hello world2" style={{ position: 'absolute', top: 0, left: 0, backgroundColor: 'blue', width: '30%', height: 65, overflow: 'hidden' }}></div>
-				<div data-tip="hello world3" style={{ position: 'absolute', top: 0, left: 0, backgroundColor: 'green', width: '10%', height: 65, overflow: 'hidden' }}></div>
-
-				<div className={'asd'} style={{ pointerEvents: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: 65, overflow: 'hidden' }}>
-					<p style={{ pointerEvents: 'none', position: 'absolute', top: 0, paddingLeft: 5, left: '30%', height: '100%', width: '100%', textAlign: 'left' }}>graph1</p>
-					<p style={{ pointerEvents: 'none', position: 'absolute', top: 0, paddingLeft: 5, left: '10%', height: '100%', width: '100%', textAlign: 'left' }}>graph2</p>
-					<p style={{ pointerEvents: 'none', position: 'absolute', top: 0, paddingLeft: 5, left: 0, height: '100%', width: '100%', textAlign: 'left' }}>graph3</p>
-				</div>
+			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '19%', height: 80, overflow: 'hidden' }}>
+				<p className={'vaccine-label'}>{type}</p>
+			</div>
+			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '80%', height: 80, overflow: 'hidden' }}>
+				<HorizontalBar options={options()} data={graphData()}></HorizontalBar>
 			</div>
 		</>
 	);

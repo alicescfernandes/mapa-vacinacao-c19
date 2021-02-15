@@ -206,19 +206,25 @@ export default function Home() {
 				</Row>
 				<Row>
 					<Col>
-						<h3 className={styles.title}>Número de doses recebidas por semana</h3>
+						<h3 className={styles.title}>
+							Número de doses recebidas por semana <sup className={'new'}>novo</sup>{' '}
+						</h3>
 						<BarVacinasRecebidaDia colors={colors} labels={labels} values={values} statistics={statistics}></BarVacinasRecebidaDia>
 					</Col>
 				</Row>
 				<Row>
 					<Col>
-						<h3 className={styles.title}>Número de doses administradas por semana e faixa etária</h3>
+						<h3 className={styles.title}>
+							Número de doses administradas por semana e faixa etária<sup className={'new'}>novo</sup>
+						</h3>
 						<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
 					</Col>
 				</Row>
 				<Row>
 					<Col>
-						<h3 className={styles.title}>Doses totais administradas por faíxa etária</h3>
+						<h3 className={styles.title}>
+							Doses totais administradas por faixa etária <sup className={'new'}>novo</sup>
+						</h3>
 						<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
 					</Col>
 				</Row>
@@ -234,7 +240,9 @@ export default function Home() {
 						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
 					</Col>
 					<Col lg={6} xs={12}>
-						<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível.</h3>
+						<h3 className={styles.title}>
+							Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível<sup className={'new'}>novo</sup>
+						</h3>
 						<PieSuscetiveisProporcao colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieSuscetiveisProporcao>
 					</Col>
 				</Row>
