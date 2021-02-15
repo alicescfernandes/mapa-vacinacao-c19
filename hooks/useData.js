@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import vaccinesData from '../data/vaccines.json';
 import casesData from '../data/cases.json';
+import ecdcData from '../data/ecdc.json';
 export function useData() {
 	let [vaccines, setVaccines] = useState(vaccinesData);
 	let [casos, setCasos] = useState({});
@@ -178,6 +179,101 @@ export function useData() {
 
 			return { labels: labels2, values: values2, raw: casesData };
 		},
+		getReceivedDosesByBrandByWeek: async () => {
+			let labels = {};
+
+			let [data, weeks] = await Promise.all([fetch('/api/ecdc').then((res) => res.json()), fetch('/api/weeks').then((res) => res.json())]);
+
+			let com = {};
+			let mod = {};
+
+			data.forEach((el) => {
+				var obj = {};
+				if (el['Doses received'] > 0) {
+					com[el['Week']] = com[el['Week']] || null;
+					mod[el['Week']] = mod[el['Week']] || null;
+					labels[el['Week']] = weeks[el['Week']];
+
+					if (el['Vaccine brand'] === 'COM') {
+						com[el['Week']] = el['Doses received'];
+					}
+
+					if (el['Vaccine brand'] === 'MOD') {
+						mod[el['Week']] = el['Doses received'];
+					}
+				}
+			});
+
+			com = Object.values(com);
+			mod = Object.values(mod);
+
+			labels = Object.values(labels);
+
+			return {
+				com,
+				mod,
+				labels,
+			};
+		},
+		getAdministredDosesByAgeByWeek: async () => {
+			let labels = {};
+			let maxValue = 0;
+			let [data, weeks] = await Promise.all([fetch('/api/ecdc').then((res) => res.json()), fetch('/api/weeks').then((res) => res.json())]);
+
+			let groups = {};
+
+			data.forEach((el) => {
+				if (el['Doses received'] == '') {
+					if (!labels.hasOwnProperty(el['Week'])) {
+						labels[el['Week'].replace('-', '')] = weeks[el['Week']];
+					}
+
+					groups[el['Group']] = groups[el['Group']] || {
+						dose_1: [],
+						dose_2: [],
+					};
+
+					maxValue = Math.max(el['First dose'], el['Second dose']);
+					groups[el['Group']].dose_1[el['Week']] = (groups[el['Group']].dose_1[el['Week']] || 0) + el['First dose'];
+					groups[el['Group']].dose_2[el['Week']] = (groups[el['Group']].dose_2[el['Week']] || 0) + el['Second dose'];
+				}
+			});
+			return {
+				maxValue,
+				labels,
+				groups,
+			};
+		},
+		getTotalAdministredDosesByAgeByWeek: async () => {
+			let labels = {};
+
+			let data = await fetch('/api/ecdc').then((res) => res.json());
+			let groups = {};
+
+			data.forEach((el) => {
+				if (el['Doses received'] == '') {
+					groups[el['Group']] = groups[el['Group']] || {
+						mod: [],
+						com: [],
+						target: 0,
+					};
+
+					if (el['Vaccine brand'] === 'COM') {
+						groups[el['Group']].com[0] = (groups[el['Group']].com[0] || 0) + el['First dose'];
+						groups[el['Group']].com[1] = (groups[el['Group']].com[1] || 0) + el['Second dose'];
+					}
+
+					if (el['Vaccine brand'] === 'MOD') {
+						groups[el['Group']].mod[0] = (groups[el['Group']].mod[0] || 0) + el['First dose'];
+						groups[el['Group']].mod[1] = (groups[el['Group']].mod[1] || 0) + el['Second dose'];
+					}
+
+					groups[el['Group']].target = (groups[el['Group']].target || 0) + el['Group population'];
+				}
+			});
+
+			return groups;
+		},
 	};
 
 	useEffect(() => {
@@ -191,22 +287,12 @@ export function useData() {
 		setLabels(labls);
 	}, [vaccines]);
 
-	function updateXHR() {
-		fetch('/api/vaccines')
-			.then((data) => data.json())
-			.then((d) => {
-				if (d.length != vaccines.length && vaccines.length > 0) {
-					setVaccines(d);
-				}
-			});
-	}
-
 	function update(type, data) {
 		switch (type) {
 			case 'vacinas':
 				let arr = Array.from(vaccines);
 				arr.push(data);
-				console.log(arr);
+
 				setVaccines(arr);
 				break;
 

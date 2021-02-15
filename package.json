@@ -21,20 +21,15 @@
 		"update"
 	],
 	"dependencies": {
-		"@testing-library/jest-dom": "^5.11.4",
-		"@testing-library/react": "^11.1.0",
-		"@testing-library/user-event": "^12.1.10",
 		"bootstrap": "^4.6.0",
 		"chart.js": "^2.9.4",
 		"chartjs-plugin-datalabels": "^0.7.0",
+		"classnames": "^2.2.6",
 		"color-convert": "^2.0.1",
 		"cors": "^2.8.5",
-		"csvtojson": "^2.0.10",
-		"dotenv": "^8.2.0",
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
 		"node-fetch": "^2.6.1",
-		"node-schedule": "^2.0.0",
 		"pusher": "^4.0.2",
 		"react": "17.0.1",
 		"react-bootstrap": "^1.4.3",
@@ -42,13 +37,13 @@
 		"react-count-to": "^0.12.0",
 		"react-datepicker": "^3.4.1",
 		"react-dom": "17.0.1",
-		"sass": "^1.32.5",
-		"shelljs": "^0.8.4",
-		"twitter": "^1.7.1",
-		"web-vitals": "^0.2.4",
-		"yarn": "^1.22.10"
+		"sass": "^1.32.5"
 	},
 	"devDependencies": {
+		"dotenv": "^8.2.0",
+		"node-schedule": "^2.0.0",
+		"twitter": "^1.7.1",
+		"shelljs": "^0.8.4",
 		"pre-commit": "^1.2.2"
 	}
 }

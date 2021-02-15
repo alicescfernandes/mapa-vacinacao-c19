@@ -34,4 +34,13 @@
 		font-size: 13px;
 		line-height: 20px;
 	}
+
+	&_fill {
+		color: white;
+		margin: 0px;
+		border-radius: 0px;
+		background-color: var(--foreground);
+		border-bottom: 0px;
+		font-weight: 500;
+	}
 }

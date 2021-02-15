@@ -7,7 +7,9 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 	if (!digits) {
 		digits = 0;
 	}
-	let numberFormatter = new Intl.NumberFormat();
+	let numberFormatter = new Intl.NumberFormat('en-US', {
+		maximumFractionDigits: 2,
+	});
 	let difference = to - yesterday || 0;
 	let [foreground] = colors;
 	const fn = (value) => (
@@ -27,7 +29,7 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 				</span>
 			) : (
 				<>
-					<CountTo digits={digits} delay={1} from={from || 0} to={to || 0} speed={500}>
+					<CountTo digits={digits} delay={1} from={from || 0} to={to || 0} speed={800}>
 						{fn}
 					</CountTo>
 

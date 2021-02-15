@@ -3,11 +3,10 @@ import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 
-export function VacinadosPorDia({ statistics, colors }) {
+export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
-	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
+	let [graphData, setGraphData] = useState({});
 
-	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
 	let [height, setHeight] = useState(400);
@@ -17,7 +16,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
-
+		let { labels, mod, com } = graphData;
 		if (window.outerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
@@ -36,59 +35,31 @@ export function VacinadosPorDia({ statistics, colors }) {
 		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 
 		return {
-			labels: labels,
+			labels: labels.map(({ from, to }) => {
+				let fromDate = new Date(from);
+				let toDate = new Date(to);
+
+				return `De ${formatNumber(fromDate.getDate())}/${formatNumber(fromDate.getMonth() + 1)} a ${formatNumber(toDate.getDate())}/${formatNumber(toDate.getMonth() + 1)}`;
+			}),
 			datasets: [
 				{
-					label: 'Vacinas diárias - Média movel de 7 dias',
-					fill: false,
-					lineTension: 0.5,
-					overlayBars: true,
-					type: 'line',
-					lineBorder: 1,
-					borderWidth: 2,
-					borderColor: color_4,
-					borderJoinStyle: 'miter',
-					pointBorderColor: color_4,
-					pointBackgroundColor: color_4,
-					pointBorderWidth: 1,
-					pointHoverRadius: 5,
-					pointHoverBackgroundColor: color_4,
-					pointHoverBorderColor: color_4,
-					pointHoverBorderWidth: 2,
-					pointRadius: 3,
-					pointHitRadius: 10,
-					data: values2,
-					order: 1,
-				},
-				{
-					label: 'Inoculação - 2ª Dose',
+					label: 'Comirnaty (Pfizer/BioNTech)',
 					fill: false,
 					type: 'bar',
 					overlayBars: true,
 					backgroundColor: foreground,
-					data: valuesIn2,
+					data: com,
 					order: 2,
 					display: false,
 					stack: 'stack0',
 				},
 				{
-					label: 'Inoculação - 1ª Dose',
+					label: 'Moderna',
 					backgroundColor: color_1,
 					borderColor: color_1,
-					data: valuesIn1,
+					data: mod,
 					overlayBars: true,
 					order: 3,
-					stack: 'stack0',
-				},
-				{
-					label: 'Vacinas Totais',
-					type: 'bar',
-					overlayBars: true,
-					overlayBars: true,
-					backgroundColor: color_2,
-					data: values,
-					order: 4,
-					yAxisID: 'total',
 					stack: 'stack0',
 				},
 			],
@@ -97,9 +68,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
-			layout: {
-				padding: -5,
-			},
 			plugins: {
 				datalabels: {
 					display: false,
@@ -120,11 +88,12 @@ export function VacinadosPorDia({ statistics, colors }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value)).replace(',', ' ');
+						return label + ': ' + (parseInt(tooltipItem.value) ? formatNumber(parseInt(tooltipItem.value)) : 0);
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
-						return 'Dia ' + tooltipItem[0].label;
+
+						return tooltipItem[0].label;
 					},
 				},
 			},
@@ -140,15 +109,17 @@ export function VacinadosPorDia({ statistics, colors }) {
 						},
 						ticks: {
 							beginAtZero: false,
-							callback: function (value, index, values) {
-								return formatNumber(value);
-							},
+							callback: (value) => formatNumber(value),
 						},
 					},
 					{
 						stacked: true,
 						id: 'total',
 						display: false,
+						ticks: {
+							beginAtZero: false,
+							callback: (value) => formatNumber(value),
+						},
 					},
 				],
 				xAxes: [
@@ -156,9 +127,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							beginAtZero: true,
-							callback: function (value, index, values) {
-								return formatNumber(value);
-							},
 						},
 					},
 				],
@@ -172,10 +140,11 @@ export function VacinadosPorDia({ statistics, colors }) {
 	}, [canvasRef.current]);
 
 	useEffect(() => {
-		if (values.length > 0 && height > 0) {
+		statistics.getReceivedDosesByBrandByWeek().then((recievedData) => {
+			setGraphData(recievedData);
 			setLoading(false);
-		}
-	}, [values, labels, height]);
+		});
+	}, []);
 
 	return (
 		<Card allowOverflow={true}>

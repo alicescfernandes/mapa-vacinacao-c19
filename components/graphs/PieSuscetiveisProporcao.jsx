@@ -4,22 +4,23 @@ import { Pie } from 'react-chartjs-2';
 import { COLOR_1 } from '../../constants';
 import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { formatNumber } from '../../utils';
-export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) {
+import { formatNumber } from './../../utils';
+export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: valueCasesDiarios } = statistics.getDiariosCases();
 	let vaccines = statistics.getRaw();
+	let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + valueCasesDiarios.reverse()[0].Activos + valueCasesDiarios.reverse()[0].Recuperados + valueCasesDiarios.reverse()[0].Obitos);
 
 	let { main, shades, tints, complements } = colors;
 	const canvasRef = useRef(null);
 	const data = (canvas) => {
 		return {
-			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
+			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
 			datasets: [
 				{
-					backgroundColor: [main, complements[0], complements[2], shades[2]],
-					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos],
+					backgroundColor: [main, complements[0], complements[2], shades[2], complements[1]],
+					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
 				},
 			],
 		};
