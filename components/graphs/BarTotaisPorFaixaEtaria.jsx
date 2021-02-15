@@ -121,6 +121,9 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 					color: 'white',
 				},
 			},
+			layout: {
+				padding: -10,
+			},
 			legend: {
 				position: 'top',
 				align: 'start',
@@ -204,15 +207,55 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 		<Card allowOverflow={true}>
 			<div>
 				{!loading ? (
-					<Row>
-						<Col xs={12} lg={4}>
-							<div className={'subchart-data'}>
-								<p>Entre os 18 e 24 anos</p>
-							</div>
-							<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
-							<CustomBarChart options={options2()} data={data}></CustomBarChart>
-						</Col>
-					</Row>
+					<>
+						<div className={'subchart-data'}>
+							<p>
+								Legenda:
+								<span>
+									<span></span>1ª Dose
+								</span>{' '}
+								<span>
+									<span></span>2ª Dose
+								</span>{' '}
+								<span>
+									<span></span>População-Alvo
+								</span>
+							</p>
+						</div>
+
+						<Row>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>Entre os 18 e 24 anos</p>
+								</div>
+								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
+								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
+							</Col>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>Entre os 18 e 24 anos</p>
+								</div>
+								<CustomBarChart options={options2()} data={data}></CustomBarChart>
+								<CustomBarChart options={options2()} data={data}></CustomBarChart>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>Entre os 18 e 24 anos</p>
+								</div>
+								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
+								<CustomBarChart options={options2()} showHeading={true} data={data}></CustomBarChart>
+							</Col>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>Entre os 18 e 24 anos</p>
+								</div>
+								<CustomBarChart options={options2()} data={data}></CustomBarChart>
+								<CustomBarChart options={options2()} data={data}></CustomBarChart>
+							</Col>
+						</Row>
+					</>
 				) : (
 					''
 				)}
