@@ -13,6 +13,7 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - [Monitorização do SNS da Direção-Geral da Saúde](https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/)  
 - [Ponto de Situação Direção-Geral da Saúde](https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/)  
 - [Our World of Data](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Portugal.csv)  
+- [Centro Europeu de Controlo de Doenças](https://covid19-vaccine-report.ecdc.europa.eu/)  
 
 ## Embeds
 É possivel fazer _embeds_ aos gráficos mostrados no dashboard. Também dá para personalizar as cores dos gráficos
@@ -45,14 +46,15 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 
 ## Backlog: 
 - Carregar nos pontos do gráfico muda o dia 
-- Labels todas juntas
+- ~~Labels todas juntas~~
 - Melhorar experiencia em Mobile
 - Minor refactor para contemplar novos gráficos
-- ~~Serviço de embeds de gráficos~~  
+- Serviço de embeds de gráficos (V2)
 - Partilhas nas redes sociais de dados  
+- Refazer todo a parte dos dados: Neste momento são disparados demasiados pedidos cujo os dados podem ser _cachados_
 
 ## Backlog - Gráficos
 - ~~Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)~~
-- Fase do Plano de Vacinação
+- ~~Fase do Plano de Vacinação~~
 - ~~Notícias (widget de noticias recentes relacionadas com as vacinas)~~  
 
