@@ -11,6 +11,9 @@ body {
   /* background-color: #FBFBFB; */
 }
 
+.scrollable{
+  overflow-x: scroll !important;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -64,6 +67,9 @@ a:hover{
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  .scrollable{
+    overflow-x: hidden;
+  }
   .container{
     max-width: 90vw;
   }

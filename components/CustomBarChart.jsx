@@ -4,7 +4,21 @@ import { formatNumber } from '../utils';
 export function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
 
-	const graphData = () => {
+	const graphData = (canvas) => {
+		if (window.outerWidth <= 800) {
+			canvas.parentNode.style.width = '800px';
+		} else {
+			canvas.parentNode.style.width = '100%';
+		}
+
+		window.addEventListener('resize', () => {
+			if (window.outerWidth <= 800) {
+				canvas.parentNode.style.width = '800px';
+			} else {
+				canvas.parentNode.style.width = '100%';
+			}
+		});
+
 		return {
 			labels: [type],
 			datasets: [
@@ -105,8 +119,10 @@ export function CustomBarChart({ type, total, colors, data, showHeading }) {
 			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '19%', height: 80, overflow: 'hidden' }}>
 				<p className={'vaccine-label'}>{type}</p>
 			</div>
-			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '80%', height: 80, overflow: 'hidden' }}>
-				<HorizontalBar options={options()} data={graphData()}></HorizontalBar>
+			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '80%', height: 80, overflow: 'hidden' }} className={'scrollable'}>
+				<div style={{ height: '100%' }}>
+					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
+				</div>
 			</div>
 		</>
 	);
