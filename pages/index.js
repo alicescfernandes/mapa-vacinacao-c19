@@ -19,6 +19,10 @@ import fases from './../data/fases.json';
 import { Card } from '../components/Card';
 import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
+import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
+import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
+import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
+import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
 export default function Home() {
 	let { statistics, labels, values, update: updateData } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
@@ -80,11 +84,11 @@ export default function Home() {
 		let object = {
 			pessoasAVacinar: {
 				prev: derivedNumbers.pessoasAVacinar.current,
-				current: numberFormatter.format(generic.populacao.valor * 0.6 - selectedItem.Inoculacao1_Ac),
+				current: numberFormatter.format(generic.populacao.valor * 0.7 - selectedItem.Inoculacao2_Ac),
 			},
 			percentagem: {
 				prev: derivedNumbers.percentagem.current,
-				current: (selectedItem.Inoculacao1_Ac / generic.populacao.valor) * 100,
+				current: (selectedItem.Inoculacao2_Ac / generic.populacao.valor) * 100,
 			},
 		};
 		setDerivedNumbers(object);
@@ -109,11 +113,21 @@ export default function Home() {
 				setUpdating(false);
 			}, 1000);
 		});
+		statistics.getTotalAdministredDosesByAgeByWeek();
+		statistics.getTotalAdministredDosesByAgeByWeek();
+		statistics.getTotalAdministredDosesByAgeByWeek();
 	}, []);
-
 	return (
 		<>
 			<Metatags isUpdating={updating}></Metatags>
+			<Row className={`${styles.alert} ${styles.alert_fill} `}>
+				<Col style={{ textAlign: 'center' }}>
+					<p>
+						Contamos agora com dados retirados do Centro Europeu de Controlo de Doenças e com quatro novos gráficos relacionados com a administração de vacinas em Portugal. <br />
+						Para estares par dos novos <em>updates</em> segue-nos no Twitter.
+					</p>
+				</Col>
+			</Row>
 			<Header></Header>
 			<Row className={`card-shadow-bottom ${styles.alert}`}>
 				<Col style={{ textAlign: 'center' }}>
@@ -167,8 +181,8 @@ export default function Home() {
 								suffix={'%'}
 								colors={colors}
 								title="Percentagem para atingir imunidade de grupo"
-								from={60 - derivedNumbers.percentagem.prev}
-								to={60 - derivedNumbers.percentagem.current}
+								from={70 - derivedNumbers.percentagem.prev}
+								to={70 - derivedNumbers.percentagem.current}
 							></Counter>
 						</Card>
 					</Col>
@@ -199,14 +213,44 @@ export default function Home() {
 				</Row>
 				<Row>
 					<Col>
+						<h3 className={styles.title}>
+							Número de doses recebidas por semana <sup className={'new'}>novo</sup>{' '}
+						</h3>
+						<BarVacinasRecebidaDia colors={colors} labels={labels} values={values} statistics={statistics}></BarVacinasRecebidaDia>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h3 className={styles.title}>
+							Número de doses administradas por semana e faixa etária <sup className={'new'}>novo</sup>
+						</h3>
+						<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h3 className={styles.title}>
+							Doses totais administradas por faixa etária <sup className={'new'}>novo</sup>
+						</h3>
+						<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
 						<h3 className={styles.title}>Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias</h3>
 						<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
 					</Col>
 				</Row>
 				<Row>
-					<Col xs={12}>
+					<Col lg={6} xs={12}>
 						<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos</h3>
 						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
+					</Col>
+					<Col lg={6} xs={12}>
+						<h3 className={styles.title}>
+							Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível <sup className={'new'}>novo</sup>
+						</h3>
+						<PieSuscetiveisProporcao colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieSuscetiveisProporcao>
 					</Col>
 				</Row>
 				<Row>
@@ -221,7 +265,13 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/">
 								Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo.
 							</a>{' '}
-							Os valores apresentados aqui foram calculados com uma percentagem de 60%.
+							Os valores apresentados aqui foram calculados com uma percentagem de 70%.
+						</p>
+						<p className={styles.text}>
+							A população sucetivel a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
+							<a className={styles.link} href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/" target=":blank">
+								Até 09/02 foram confirmados 49 casos de reinfecção com o novo coronavírus.
+							</a>
 						</p>
 						{/*	<p className={styles.text}>
 							A média de evolução de casos da União Europeia foi calculada com os números reportados por cada país, mesmo que alguns países não tenham ainda reportado para o dia de hoje. No gráfico de o numero total de vacinas administradas por dia de cada só são mostrados os dados que
@@ -240,6 +290,16 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
 								Ponto de Situação Direção-Geral da Saúde
 							</a>
+							. A atualização destes dados é diária.
+							<br />
+							Os dados relativos à distribuição das vacinas e administração das mesmas por grupo etária são disponibilizados pelo{' '}
+							<a className={styles.link} href="https://www.ecdc.europa.eu/en" target="_blank">
+								ECDC (European Centre for Disease Prevention and Control)
+							</a>
+							&nbsp; e são atualizados através dos&nbsp;
+							<a className={styles.link} target="_blank" href="https://covid19-vaccine-report.ecdc.europa.eu/#6_Reported_data">
+								relatórios publicados semanalmente.
+							</a>
 							{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
 							<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
 								Our World In Data
@@ -248,7 +308,6 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
 								no repositório de Github
 							</a> */}
-							.<br /> A atualização destes dados é diária.
 						</p>
 					</Col>
 				</Row>

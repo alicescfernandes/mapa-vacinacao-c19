@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Card } from './../Card';
 import convert from 'color-convert';
+import { formatNumber } from '../../utils';
 
 export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, colors }) {
 	let [loading, setLoading] = useState(true);
@@ -87,7 +88,6 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 			],
 		};
 	};
-	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
 			plugins: {
@@ -110,7 +110,7 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + numberFormatter.format(tooltipItem.value).replace(',', ' ');
+						return label + ': ' + formatNumber(tooltipItem.value);
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
@@ -132,7 +132,7 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 							min: Math.min(...values),
 							max: Math.max(...values) + Math.max(...values) * 0.05,
 							stepSize: (Math.max(...values) / 5).toFixed(0),
-							callback: (value) => numberFormatter.format(value),
+							callback: (value) => formatNumber(value),
 						},
 					},
 				],
