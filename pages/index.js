@@ -84,11 +84,11 @@ export default function Home() {
 		let object = {
 			pessoasAVacinar: {
 				prev: derivedNumbers.pessoasAVacinar.current,
-				current: numberFormatter.format(generic.populacao.valor * 0.6 - selectedItem.Inoculacao1_Ac),
+				current: numberFormatter.format(generic.populacao.valor * 0.7 - selectedItem.Inoculacao2_Ac),
 			},
 			percentagem: {
 				prev: derivedNumbers.percentagem.current,
-				current: (selectedItem.Inoculacao1_Ac / generic.populacao.valor) * 100,
+				current: (selectedItem.Inoculacao2_Ac / generic.populacao.valor) * 100,
 			},
 		};
 		setDerivedNumbers(object);
@@ -174,8 +174,8 @@ export default function Home() {
 								suffix={'%'}
 								colors={colors}
 								title="Percentagem para atingir imunidade de grupo"
-								from={60 - derivedNumbers.percentagem.prev}
-								to={60 - derivedNumbers.percentagem.current}
+								from={70 - derivedNumbers.percentagem.prev}
+								to={70 - derivedNumbers.percentagem.current}
 							></Counter>
 						</Card>
 					</Col>
@@ -258,7 +258,7 @@ export default function Home() {
 							<a className={styles.link} target="_blank" href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/">
 								Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo.
 							</a>{' '}
-							Os valores apresentados aqui foram calculados com uma percentagem de 60%.
+							Os valores apresentados aqui foram calculados com uma percentagem de 70%.
 						</p>
 						<p className={styles.text}>
 							A população sucetivel a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
