@@ -1,10 +1,6 @@
-let numberFormatter = new Intl.NumberFormat('pt-PT', {
-	minimumIntegerDigits: 2,
-});
-
-export const formatNumber = (number) => {
-	if (number > 9) {
-		return numberFormatter.format(number).replace(/,/gm, ' ');
-	}
-	return 0;
+export const formatNumber = (number, isDate = true) => {
+	let numberFormatter = new Intl.NumberFormat('pt-PT', {
+		minimumIntegerDigits: isDate ? 2 : 1,
+	});
+	return numberFormatter.format(number).replace(/,/gm, ' ');
 };

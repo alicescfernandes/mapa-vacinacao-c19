@@ -141,7 +141,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 						ticks: {
 							beginAtZero: false,
 							callback: function (value, index, values) {
-								return formatNumber(value);
+								return formatNumber(value, false);
 							},
 						},
 					},
@@ -156,9 +156,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							beginAtZero: true,
-							callback: function (value, index, values) {
-								return formatNumber(value);
-							},
 						},
 					},
 				],

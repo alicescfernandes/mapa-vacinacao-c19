@@ -74,7 +74,7 @@ export function CustomBarChart({ type, total, colors, data, showHeading }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + formatNumber(parseInt(tooltipItem.value));
+						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];

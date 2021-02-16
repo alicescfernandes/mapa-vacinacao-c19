@@ -7,7 +7,7 @@ export function Header() {
 		<header className={`${styles.header} card-shadow`}>
 			<Container className={styles.content}>
 				<div>
-					<h1 className={styles.logo}>Plano de vacinação - COVID 19</h1>
+					<h1 className={styles.logo}>vacinação COVID 19</h1>
 				</div>
 				<nav className={styles.nav}>
 					<ul>

@@ -12,7 +12,6 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 	let vaccines = statistics.getRaw();
 
 	let { main, shades, tints, complements } = colors;
-	const canvasRef = useRef(null);
 	const data = (canvas) => {
 		return {
 			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
@@ -63,10 +62,6 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 			},
 		};
 	};
-	useEffect(() => {
-		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-		}
-	}, [canvasRef.current]);
 
 	useEffect(() => {
 		if (values.length > 0) {
@@ -76,7 +71,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[ChartDataLabels]} width={'100%'} height={'400'} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Pie plugins={[ChartDataLabels]} width={'100%'} height={'400'} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

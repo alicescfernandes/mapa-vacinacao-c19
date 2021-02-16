@@ -8,9 +8,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
 	let { values: valueCasesDiarios, raw: rawCasos } = statistics.getDiariosCases();
 	let { main, shades, tints, complements } = colors;
-	let [height, setHeight] = useState(400);
-
-	const canvasRef = useRef(null);
 
 	//map the last 30 days in data
 	//Marry the data pls
@@ -38,9 +35,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	marriedData = Object.values(marriedData).reverse();
 
 	const data = (canvas) => {
-		const ctx = canvas.getContext('2d');
-		const gradient = ctx.createLinearGradient(0, 0, 0, height);
-
 		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
@@ -54,9 +48,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-
-		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
-		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 
 		return {
 			labels: labels.slice(labels.length - 14, labels.length),
@@ -138,7 +129,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + formatNumber(parseInt(tooltipItem.value) || 0);
+						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
@@ -152,7 +143,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							callback: function (value, index, values) {
-								return formatNumber(value);
+								return formatNumber(value, false);
 							},
 						},
 					},
@@ -160,11 +151,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: false,
 						id: 'total',
 						display: false,
-						ticks: {
-							callback: function (value, index, values) {
-								return formatNumber(value);
-							},
-						},
+						ticks: {},
 					},
 				],
 				xAxes: [
@@ -172,30 +159,22 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							beginAtZero: true,
-							callback: function (value, index, values) {
-								return formatNumber(value);
-							},
 						},
 					},
 				],
 			},
 		};
 	};
-	useEffect(() => {
-		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-			setHeight(canvasRef?.current?.chartInstance?.canvas?.height);
-		}
-	}, [canvasRef.current]);
 
 	useEffect(() => {
-		if (values.length > 0 && height > 0) {
+		if (values.length > 0) {
 			setLoading(false);
 		}
-	}, [values, labels, height]);
+	}, [values, labels]);
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Bar height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Bar options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

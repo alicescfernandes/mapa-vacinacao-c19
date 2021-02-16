@@ -7,7 +7,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let marriedData = {};
 	let { main, shades, tints, complements } = colors;
-	let [height, setHeight] = useState(400);
 	let [graphData, setGraphData] = useState({});
 	let [activeDose, setActiveDose] = useState(1);
 	const canvasRef = useRef(null);
@@ -29,8 +28,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 	const data = (canvas) => {
 		let { labels, groups, maxValue } = graphData;
-		const ctx = canvas.getContext('2d');
-		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
 		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
@@ -46,8 +43,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 			}
 		});
 
-		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
-		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 		return {
 			labels: Object.keys(graphData.labels).map((key) => {
 				let fromDate = new Date(labels[key].from);
@@ -84,7 +79,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 25/49',
 					fill: false,
 					type: 'bar',
-					backgroundColor: tints[0],
+					backgroundColor: tints[1],
 					data: Object.values(groups['Age25_49'].dose_2),
 					stack: 'stack',
 					order: 3,
@@ -95,7 +90,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					label: 'Grupo 25/49 - 1ª Dose',
 					labelGroup: 'Grupo 25/49',
-					backgroundColor: tints[0],
+					backgroundColor: tints[1],
 					data: Object.values(groups['Age25_49'].dose_1),
 					stack: 'stack',
 					order: 4,
@@ -109,7 +104,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 50/59',
 					fill: false,
 					type: 'bar',
-					backgroundColor: '#edb203',
+					backgroundColor: main,
 					data: Object.values(groups['Age50_59'].dose_2),
 					stack: 'stack',
 					order: 5,
@@ -120,7 +115,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					label: 'Grupo 50/59 - 1ª Dose',
 					labelGroup: 'Grupo 50/59',
-					backgroundColor: '#edb203',
+					backgroundColor: main,
 					data: Object.values(groups['Age50_59'].dose_1),
 					stack: 'stack',
 					order: 6,
@@ -134,7 +129,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 60/69',
 					fill: false,
 					type: 'bar',
-					backgroundColor: complements[1],
+					backgroundColor: shades[2],
 					data: Object.values(groups['Age60_69'].dose_2),
 					stack: 'stack',
 					order: 7,
@@ -145,7 +140,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					label: 'Grupo 60/69 - 1ª Dose',
 					labelGroup: 'Grupo 60/69',
-					backgroundColor: complements[1],
+					backgroundColor: shades[2],
 					data: Object.values(groups['Age60_69'].dose_1),
 					stack: 'stack',
 					order: 8,
@@ -183,7 +178,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 80+ - 2ª Dose',
 					labelGroup: 'Grupo 80+',
 					type: 'bar',
-					backgroundColor: complements[0],
+					backgroundColor: complements[1],
 					data: Object.values(groups['Age80+'].dose_2),
 					stack: 'stack',
 					order: 11,
@@ -194,7 +189,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					label: 'Grupo 80+ - 1ª Dose',
 					labelGroup: 'Grupo 80+',
-					backgroundColor: complements[0],
+					backgroundColor: complements[1],
 					data: Object.values(groups['Age80+'].dose_1),
 					stack: 'stack',
 					order: 12,
@@ -248,7 +243,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + formatNumber(parseInt(tooltipItem.value) || 0);
+						return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + formatNumber(parseInt(tooltipItem.value, false));
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
@@ -265,7 +260,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 							min: 0,
 							max: maxValue,
 							stepSize: (maxValue / 5).toFixed(0),
-							callback: (value) => formatNumber(value),
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 					{
@@ -277,7 +272,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 							min: 0,
 							max: maxValue,
 							stepSize: (maxValue / 5).toFixed(0),
-							callback: (value) => formatNumber(value),
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 				],
