@@ -152,7 +152,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							callback: function (value, index, values) {
-								return formatNumber(value);
+								return formatNumber(value, false);
 							},
 						},
 					},
@@ -160,11 +160,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: false,
 						id: 'total',
 						display: false,
-						ticks: {
-							callback: function (value, index, values) {
-								return formatNumber(value);
-							},
-						},
+						ticks: {},
 					},
 				],
 				xAxes: [
@@ -172,9 +168,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							beginAtZero: true,
-							callback: function (value, index, values) {
-								return formatNumber(value);
-							},
 						},
 					},
 				],
