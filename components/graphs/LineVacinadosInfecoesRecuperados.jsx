@@ -138,7 +138,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 				callbacks: {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + formatNumber(parseInt(tooltipItem.value) || 0);
+						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
