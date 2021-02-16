@@ -265,7 +265,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 							min: 0,
 							max: maxValue,
 							stepSize: (maxValue / 5).toFixed(0),
-							callback: (value) => formatNumber(value),
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 					{
@@ -277,7 +277,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 							min: 0,
 							max: maxValue,
 							stepSize: (maxValue / 5).toFixed(0),
-							callback: (value) => formatNumber(value),
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 				],

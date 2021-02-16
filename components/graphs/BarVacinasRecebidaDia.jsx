@@ -109,7 +109,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						},
 						ticks: {
 							beginAtZero: false,
-							callback: (value) => formatNumber(value),
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 					{
@@ -118,7 +118,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						display: false,
 						ticks: {
 							beginAtZero: false,
-							callback: (value) => formatNumber(value),
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 				],

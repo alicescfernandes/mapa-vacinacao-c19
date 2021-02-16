@@ -132,6 +132,7 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 							min: Math.min(...values),
 							max: Math.max(...values) + Math.max(...values) * 0.05,
 							stepSize: (Math.max(...values) / 5).toFixed(0),
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 				],
