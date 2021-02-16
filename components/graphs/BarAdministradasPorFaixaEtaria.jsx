@@ -183,7 +183,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 80+ - 2ª Dose',
 					labelGroup: 'Grupo 80+',
 					type: 'bar',
-					backgroundColor: complements[0],
+					backgroundColor: complements[1],
 					data: Object.values(groups['Age80+'].dose_2),
 					stack: 'stack',
 					order: 11,
@@ -194,7 +194,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					label: 'Grupo 80+ - 1ª Dose',
 					labelGroup: 'Grupo 80+',
-					backgroundColor: complements[0],
+					backgroundColor: complements[1],
 					data: Object.values(groups['Age80+'].dose_1),
 					stack: 'stack',
 					order: 12,
