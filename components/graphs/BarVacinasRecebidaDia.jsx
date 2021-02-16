@@ -9,13 +9,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
-	let [height, setHeight] = useState(400);
-
-	const canvasRef = useRef(null);
-
 	const data = (canvas) => {
-		const ctx = canvas.getContext('2d');
-		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 		let { labels, mod, com } = graphData;
 		if (window.outerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
@@ -30,9 +24,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-
-		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
-		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 
 		return {
 			labels: labels.map(({ from, to }) => {
@@ -65,7 +56,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			],
 		};
 	};
-	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
 			plugins: {
@@ -133,11 +123,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			},
 		};
 	};
-	useEffect(() => {
-		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-			setHeight(canvasRef?.current?.chartInstance?.canvas?.height);
-		}
-	}, [canvasRef.current]);
 
 	useEffect(() => {
 		statistics.getReceivedDosesByBrandByWeek().then((recievedData) => {
@@ -148,7 +133,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Bar height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Bar options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

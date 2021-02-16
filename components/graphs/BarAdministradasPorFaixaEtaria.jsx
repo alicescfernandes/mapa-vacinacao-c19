@@ -7,7 +7,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let marriedData = {};
 	let { main, shades, tints, complements } = colors;
-	let [height, setHeight] = useState(400);
 	let [graphData, setGraphData] = useState({});
 	let [activeDose, setActiveDose] = useState(1);
 	const canvasRef = useRef(null);
@@ -29,8 +28,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 	const data = (canvas) => {
 		let { labels, groups, maxValue } = graphData;
-		const ctx = canvas.getContext('2d');
-		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
 		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
@@ -46,8 +43,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 			}
 		});
 
-		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
-		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 		return {
 			labels: Object.keys(graphData.labels).map((key) => {
 				let fromDate = new Date(labels[key].from);

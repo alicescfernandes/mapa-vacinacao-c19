@@ -13,7 +13,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + valueCasesDiarios.reverse()[0].Activos + valueCasesDiarios.reverse()[0].Recuperados + valueCasesDiarios.reverse()[0].Obitos);
 
 	let { main, shades, tints, complements } = colors;
-	const canvasRef = useRef(null);
+
 	const data = (canvas) => {
 		return {
 			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
@@ -64,10 +64,6 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 			},
 		};
 	};
-	useEffect(() => {
-		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-		}
-	}, [canvasRef.current]);
 
 	useEffect(() => {
 		if (values.length > 0) {
@@ -77,7 +73,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[ChartDataLabels]} width={'100%'} height={'400'} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Pie plugins={[ChartDataLabels]} width={'100%'} height={'400'} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
