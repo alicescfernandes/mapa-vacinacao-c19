@@ -1,3 +1,6 @@
+@import '../styles/colors.scss';
+
+
 .datepicker {
 	appearance: none;
 	background: none;
@@ -8,12 +11,12 @@
 	line-height: 12px;
 
 	svg {
-		fill: var(--foreground);
+		fill: $main;
 		display: inline;
 		vertical-align: middle;
 
 		&:hover {
-			fill: scale-color(#01ae97, $blackness: 35%); // #81717fd;
+			fill: scale-color($main, $blackness: 35%); // #81717fd;
 			display: inline;
 			vertical-align: middle;
 		}

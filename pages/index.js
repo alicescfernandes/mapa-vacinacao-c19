@@ -66,11 +66,6 @@ export default function Home() {
 		}
 	}
 
-	const prevCountRef = useRef();
-	useEffect(() => {
-		prevCountRef.current = derivedNumbers;
-	});
-	const prevCount = prevCountRef.current;
 
 	useEffect(() => {
 		let rawData = statistics.getRaw();
@@ -80,7 +75,7 @@ export default function Home() {
 		}
 	}, [values, loaded]);
 
-	useEffect(() => {
+	 useEffect(() => {
 		let object = {
 			pessoasAVacinar: {
 				prev: derivedNumbers.pessoasAVacinar.current,
@@ -101,6 +96,7 @@ export default function Home() {
 		setFirst(rawData[0]);
 		setLoaded(true);
 
+
 		var pusher = new Pusher('4dd4d1d504254af64544', {
 			cluster: 'eu',
 		});
@@ -113,13 +109,10 @@ export default function Home() {
 				setUpdating(false);
 			}, 1000);
 		});
-		statistics.getTotalAdministredDosesByAgeByWeek();
-		statistics.getTotalAdministredDosesByAgeByWeek();
-		statistics.getTotalAdministredDosesByAgeByWeek();
 	}, []);
 	return (
 		<>
-			<Metatags isUpdating={updating}></Metatags>
+		<Metatags isUpdating={updating}></Metatags>
 			<Row className={`${styles.alert} ${styles.alert_fill} `}>
 				<Col style={{ textAlign: 'center' }}>
 					<p>
@@ -139,7 +132,7 @@ export default function Home() {
 			</Row>
 
 			<Container className="container-fluid">
-				<Row className={styles.datepickerRow}>
+			<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
 				</Row>
 				<Row>
@@ -311,10 +304,10 @@ export default function Home() {
 						</p>
 					</Col>
 				</Row>
-				<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
+			<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
 				<script src="https://js.pusher.com/7.0/pusher.min.js"></script>{' '}
-			</Container>
-			<Footer></Footer>
+				</Container>
+		<Footer></Footer>
 		</>
 	);
 }

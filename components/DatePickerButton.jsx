@@ -1,9 +1,40 @@
-import { useEffect, useState } from 'react';
+import React, {Component, useEffect, useState, createRef } from 'react';
 import DatePicker from 'react-datepicker';
 
 import styles from './DatePickerButton.module.scss';
 
 import Arrow from '../assets/arrow.svg';
+
+	
+const ExampleCustomInput2 = ({ value, onClick }) => (
+	<>
+		<button
+			className={styles.datepicker}
+			disabled={startDate.getTime() <= minDate}
+			onClick={() => {
+				let prevDay = startDate.getTime() - 86400 * 1000;
+				return setStartDate(new Date(prevDay));
+			}}
+		>
+			<Arrow className={styles.svg} />
+		</button>
+
+		<button style={{ width: 300 }} className={styles.datepicker} onClick={onClick}>
+			{d}
+		</button>
+		<button
+			className={styles.datepicker}
+			disabled={startDate.getTime() >= maxDate}
+			onClick={() => {
+				let prevDay = startDate.getTime() + 86400 * 1000;
+				return setStartDate(new Date(prevDay));
+			}}
+		>
+			<Arrow className={styles.svg} />
+		</button>
+	</>
+);
+
 
 export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 	const [startDate, setStartDate] = useState(new Date(maxDate));
@@ -29,8 +60,14 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 		setStartDate(new Date(maxDate));
 	}, [maxDate]);
 
-	const ExampleCustomInput = ({ value, onClick }) => (
-		<>
+	class ExampleCustomInput extends Component {
+		constructor(props){
+			super(props)
+		}
+	
+		render(){
+			let { value, onClick } = this.props;
+			return <>
 			<button
 				className={styles.datepicker}
 				disabled={startDate.getTime() <= minDate}
@@ -41,7 +78,7 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 			>
 				<Arrow className={styles.svg} />
 			</button>
-
+	
 			<button style={{ width: 300 }} className={styles.datepicker} onClick={onClick}>
 				{d}
 			</button>
@@ -56,7 +93,11 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 				<Arrow className={styles.svg} />
 			</button>
 		</>
-	);
+	
+		}
+	}
+
+
 	return (
 		<DatePicker
 			minDate={minDate}
@@ -65,7 +106,7 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 			onChange={(date) => {
 				setStartDate(date);
 			}}
-			customInput={<ExampleCustomInput />}
+			customInput={<ExampleCustomInput></ExampleCustomInput>}
 		/>
 	);
 }
