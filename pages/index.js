@@ -60,12 +60,11 @@ export default function Home() {
 			}
 		});
 
-		if (selectedItem.Data != item[0].Data) {
+		if (item && selectedItem.Data != item[0].Data) {
 			setPreviousSelectedItem(selectedItem);
 			setSelectedItem(item[0]);
 		}
 	}
-
 
 	useEffect(() => {
 		let rawData = statistics.getRaw();
@@ -75,7 +74,7 @@ export default function Home() {
 		}
 	}, [values, loaded]);
 
-	 useEffect(() => {
+	useEffect(() => {
 		let object = {
 			pessoasAVacinar: {
 				prev: derivedNumbers.pessoasAVacinar.current,
@@ -96,7 +95,6 @@ export default function Home() {
 		setFirst(rawData[0]);
 		setLoaded(true);
 
-
 		var pusher = new Pusher('4dd4d1d504254af64544', {
 			cluster: 'eu',
 		});
@@ -112,15 +110,7 @@ export default function Home() {
 	}, []);
 	return (
 		<>
-		<Metatags isUpdating={updating}></Metatags>
-			<Row className={`${styles.alert} ${styles.alert_fill} `}>
-				<Col style={{ textAlign: 'center' }}>
-					<p>
-						Contamos agora com dados retirados do Centro Europeu de Controlo de Doenças e com quatro novos gráficos relacionados com a administração de vacinas em Portugal. <br />
-						Para estares par dos novos <em>updates</em> segue-nos no Twitter.
-					</p>
-				</Col>
-			</Row>
+			<Metatags isUpdating={updating}></Metatags>
 			<Header></Header>
 			<Row className={`card-shadow-bottom ${styles.alert}`}>
 				<Col style={{ textAlign: 'center' }}>
@@ -132,7 +122,7 @@ export default function Home() {
 			</Row>
 
 			<Container className="container-fluid">
-			<Row className={styles.datepickerRow}>
+				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first.Data} maxDate={last.Data} /> : ''}</Col>
 				</Row>
 				<Row>
@@ -206,25 +196,19 @@ export default function Home() {
 				</Row>
 				<Row>
 					<Col>
-						<h3 className={styles.title}>
-							Número de doses recebidas por semana <sup className={'new'}>novo</sup>{' '}
-						</h3>
+						<h3 className={styles.title}>Número de doses recebidas por semana </h3>
 						<BarVacinasRecebidaDia colors={colors} labels={labels} values={values} statistics={statistics}></BarVacinasRecebidaDia>
 					</Col>
 				</Row>
 				<Row>
 					<Col>
-						<h3 className={styles.title}>
-							Número de doses administradas por semana e faixa etária <sup className={'new'}>novo</sup>
-						</h3>
+						<h3 className={styles.title}>Número de doses administradas por semana e faixa etária</h3>
 						<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
 					</Col>
 				</Row>
 				<Row>
 					<Col>
-						<h3 className={styles.title}>
-							Doses totais administradas por faixa etária <sup className={'new'}>novo</sup>
-						</h3>
+						<h3 className={styles.title}>Doses totais administradas por faixa etária</h3>
 						<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
 					</Col>
 				</Row>
@@ -240,9 +224,7 @@ export default function Home() {
 						<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
 					</Col>
 					<Col lg={6} xs={12}>
-						<h3 className={styles.title}>
-							Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível <sup className={'new'}>novo</sup>
-						</h3>
+						<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível</h3>
 						<PieSuscetiveisProporcao colors={colors_v2} labels={labels} values={values} statistics={statistics}></PieSuscetiveisProporcao>
 					</Col>
 				</Row>
@@ -304,10 +286,10 @@ export default function Home() {
 						</p>
 					</Col>
 				</Row>
-			<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
+				<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
 				<script src="https://js.pusher.com/7.0/pusher.min.js"></script>{' '}
-				</Container>
-		<Footer></Footer>
+			</Container>
+			<Footer></Footer>
 		</>
 	);
 }
