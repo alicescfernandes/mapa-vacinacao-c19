@@ -2,6 +2,7 @@
 	"name": "c19-app",
 	"version": "0.1.0",
 	"private": true,
+	"browserslist": "last 10 versions and > 0.05% or ie>9",
 	"scripts": {
 		"deploy": "git checkout master && git merge develop --no-ff --no-edit && git push",
 		"update": "node update.js && git add data/last-update.json",
@@ -21,6 +22,7 @@
 		"update"
 	],
 	"dependencies": {
+		"@babel/polyfill": "^7.12.1",
 		"bootstrap": "^4.6.0",
 		"chart.js": "^2.9.4",
 		"chartjs-plugin-datalabels": "^0.7.0",
@@ -42,8 +44,8 @@
 	"devDependencies": {
 		"dotenv": "^8.2.0",
 		"node-schedule": "^2.0.0",
-		"twitter": "^1.7.1",
+		"pre-commit": "^1.2.2",
 		"shelljs": "^0.8.4",
-		"pre-commit": "^1.2.2"
+		"twitter": "^1.7.1"
 	}
 }
