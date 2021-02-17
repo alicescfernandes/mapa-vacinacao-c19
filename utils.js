@@ -16,3 +16,8 @@ export function hexToRgb(hex) {
 		  }
 		: null;
 }
+
+export function dateWithoutTimezone(unix) {
+	const dt = new Date(unix);
+	return new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+}

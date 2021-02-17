@@ -23,7 +23,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		datesCases.forEach((element, i) => {
 			let date = new Date(element.Data);
 			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
-			console.log(key, marriedData[key]);
 			if (marriedData[key] !== undefined) {
 				marriedData[key] = {
 					...element,

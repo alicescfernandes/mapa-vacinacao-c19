@@ -6,6 +6,7 @@ import { DatePickerButton } from '../components/DatePickerButton';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
+import { isSameDay, format } from 'date-fns';
 
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
@@ -50,17 +51,19 @@ export default function Home() {
 	let { colors, colors_v2, setColors } = useColors();
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
-			if (el.Data == d.getTime()) {
+			console.log(isSameDay(el.Data, d.getTime()));
+			if (isSameDay(el.Data, d.getTime())) {
 				if (elIdx - 1 >= 0) {
+					console.log(1);
 					setPreviousItem(rawData[elIdx - 1]);
 				} else {
+					console.log(2);
 					setPreviousItem(el);
 				}
 				return true;
 			}
 		});
-
-		if (item && selectedItem.Data != item[0].Data) {
+		if (item.length > 0 && selectedItem.Data != item[0].Data) {
 			setPreviousSelectedItem(selectedItem);
 			setSelectedItem(item[0]);
 		}
@@ -71,6 +74,7 @@ export default function Home() {
 		if (rawData[rawData.length - 1]?.Data != last.Data) {
 			onDateSelect(new Date(rawData[rawData.length - 1].Data));
 			setLast(rawData[rawData.length - 1]);
+			setPreviousItem(rawData[rawData.length - 2]);
 		}
 	}, [values, loaded]);
 
@@ -94,7 +98,6 @@ export default function Home() {
 		setPreviousItem(selectedItem);
 		setFirst(rawData[0]);
 		setLoaded(true);
-
 		var pusher = new Pusher('4dd4d1d504254af64544', {
 			cluster: 'eu',
 		});
