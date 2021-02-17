@@ -27,7 +27,6 @@
 		"chart.js": "^2.9.4",
 		"chartjs-plugin-datalabels": "^0.7.0",
 		"classnames": "^2.2.6",
-		"color-convert": "^2.0.1",
 		"core-js": "2",
 		"cors": "^2.8.5",
 		"next": "10.0.5",

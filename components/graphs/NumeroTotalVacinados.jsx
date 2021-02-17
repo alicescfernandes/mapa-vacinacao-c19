@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Card } from './../Card';
-import convert from 'color-convert';
-import { formatNumber } from '../../utils';
+import { formatNumber, hexToRgb } from '../../utils';
 
 export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, colors }) {
 	let [loading, setLoading] = useState(true);
@@ -25,7 +24,7 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
-		let [r, g, b] = convert.hex.rgb(foreground);
+		let { r, g, b } = hexToRgb(foreground);
 		gradient.addColorStop(0, `rgba(${r},${g},${b},15%)`);
 		gradient.addColorStop(1, `rgba(${r},${g},${b},0%)`);
 
