@@ -22,15 +22,13 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 	};
 
 	const data = (canvas) => {
-		debugger;
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 		let { r, g, b } = hexToRgb(foreground);
-		console.log(r,b,g)
-		try{
-			gradient.addColorStop(0, 'rgba('+r+','+g+','+b+',15%)');
-			gradient.addColorStop(1, 'rgba('+r+','+g+','+b+',0)');
-		}catch(e){
+		try {
+			gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
+			gradient.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0)');
+		} catch (e) {
 			gradient.addColorStop(0, '#d9f3ef');
 			gradient.addColorStop(1, '#ffffff');
 		}
