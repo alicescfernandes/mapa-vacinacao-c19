@@ -9,8 +9,7 @@ export function Metatags({ isUpdating }) {
 		day: 'numeric',
 	};
 	let vacinas = vaccines[vaccines.length - 1];
-	let dateFormater = new Intl.DateTimeFormat('pt-PT', options);
-	let parts = dateFormater.formatToParts(vacinas.Data);
+	let data = new Date(vacinas.Data);
 	let num = formatNumber(vacinas.Vacinados_Ac);
 	let title = 'Vacinação COVID-19';
 	useEffect(() => {
@@ -23,17 +22,17 @@ export function Metatags({ isUpdating }) {
 		<Head>
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			<meta name="title" content="Vacinação - COVID 19" />
-			<meta name="description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
+			<meta name="description" content={`Sabia que até dia ${data.getDate()}/${data.getMonth()+1} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="https://vacinacaocovid19.pt/" />
 			<meta property="og:title" content="Vacinação - COVID 19" />
 			<meta property="og:updated_time" content={new Date(date.date).toISOString()} />
-			<meta property="og:description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
+			<meta property="og:description" content={`Sabia que até dia ${data.getDate()}/${data.getMonth()+1} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
 			<meta property="og:image" content="https://vacinacaocovid19.pt/imagem.png" />
 			<meta property="twitter:card" content="summary_large_image" />
 			<meta property="twitter:url" content="https://vacinacaocovid19.pt/" />
 			<meta property="twitter:title" content="Vacinação - COVID 19" />
-			<meta property="twitter:description" content={`Sabia que até dia ${parts[2].value}/${parts[0].value} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
+			<meta property="twitter:description" content={`Sabia que até dia ${data.getDate()}/${data.getMonth()+1} foram administradas ${num} vacinas? Veja esta e mais informação aqui mais informação sobre o plano de vacinação contra a covid 19.`} />
 			<meta property="twitter:image" content="https://vacinacaocovid19.pt/imagem.png" />
 			<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
 			<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />

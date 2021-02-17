@@ -1,3 +1,5 @@
+@import '../styles/colors.scss';
+
 .card {
 	&_graph {
 		background: white;
@@ -18,12 +20,12 @@
 
 	&_highlight {
 		font-size: 50px;
-		// color: var(--foreground);
+		// color: $main;
 		font-weight: bold;
 	}
 	&_highlight_2 {
 		font-size: 30px;
-		// color: var(--foreground);
+		// color: $main;
 		font-weight: bold;
 	}
 	&_title {
@@ -40,7 +42,7 @@
 
 		&_highlight {
 			margin-bottom: 0px;
-			// color: var(--foreground);
+			// color: $main;
 			font-weight: bold;
 		}
 	}

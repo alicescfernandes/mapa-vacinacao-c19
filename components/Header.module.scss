@@ -1,3 +1,5 @@
+@import '../styles/colors.scss';
+
 .header {
 	background-color: white;
 	height: 80px;
@@ -20,7 +22,7 @@
 		}
 
 		a.highlight {
-			color: var(--foreground);
+			color: $main;
 		}
 
 		li {
@@ -35,7 +37,7 @@
 		}
 	}
 	.logo {
-		color: var(--foreground);
+		color: $main;
 		font-weight: 900;
 		text-transform: uppercase;
 		font-size: 20px;

@@ -73,7 +73,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[ChartDataLabels]} width={'100%'} height={'400'} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Pie plugins={[ChartDataLabels]} height={400} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

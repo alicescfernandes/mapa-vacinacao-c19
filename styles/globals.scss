@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+@import 'colors.scss';
 
-$main: #01ae97;
-$shade: scale-color($main, $blackness: 40%);
-$tint: scale-color($main, $whiteness: 80%);
 :root {
-	--foreground: #01ae97;
+	--foreground: $main;
 	--shade: $shade;
 	--tint: $tint;
 }
@@ -45,7 +43,7 @@ a {
 
 a:hover {
 	text-decoration: none;
-	color: var(--foreground);
+	color: $main;
 }
 
 .mouse-pointer {
@@ -64,8 +62,8 @@ button.toggle_button {
 }
 
 .toggle_button.active {
-	border-bottom-color: var(--foreground);
-	color: var(--foreground);
+	border-bottom-color: $main;
+	color: $main;
 }
 
 .toggle_button:hover {
@@ -111,7 +109,7 @@ span.color_sample {
 sup.new {
 	text-transform: uppercase;
 	font-weight: 900;
-	color: var(--foreground);
+	color: $main;
 	font-size: 10px;
 }
 

@@ -16,7 +16,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
-		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
 		if (window.outerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
@@ -31,9 +30,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-
-		gradient.addColorStop(0, 'rgba(1,174,151,60%)');
-		gradient.addColorStop(1, 'rgba(1,174,151,20%)');
 
 		return {
 			labels: labels,
