@@ -28,7 +28,7 @@ export function trackPlausible(req) {
 	let host = req.headers.host;
 	let url = req.url;
 	let userAgent = req.headers['user-agent'];
-
+	let referer = req.headers?.referer || '';
 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	if (ip.substr(0, 7) == '::ffff:') {
 		ip = ip.substr(7);
@@ -37,10 +37,11 @@ export function trackPlausible(req) {
 	let headers = {
 		'user-agent': userAgent,
 		'x-forwarded-for': ip,
+		referer: referer,
 	};
-	if (host.match('localhost')) return;
-	let data = { n: 'pageview', u: 'https://www.vacinacaocovid19.pt' + url, d: 'vacinacaocovid19.pt', r: null, w: 0 };
+	let data = { name: 'pageview', url: 'https://www.vacinacaocovid19.pt' + url, domain: 'vacinacaocovid19.pt', referrer: referer, screen_width: null };
 
+	//if (host.match('localhost')) return;
 	fetchNode('https://plausible.io/api/event', {
 		method: 'post',
 		headers,
