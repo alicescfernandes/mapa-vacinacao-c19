@@ -10,7 +10,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: valueCasesDiarios } = statistics.getDiariosCases();
 	let vaccines = statistics.getRaw();
-
+	let firstItem = valueCasesDiarios.reverse()[0];
 	let { main, shades, tints, complements } = colors;
 	const data = (canvas) => {
 		return {
@@ -18,7 +18,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 			datasets: [
 				{
 					backgroundColor: [main, complements[0], complements[2], shades[2]],
-					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos],
+					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, firstItem.Activos, firstItem.Recuperados, firstItem.Obitos],
 				},
 			],
 		};
@@ -35,7 +35,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 						}, 0);
 						sum = (value / sum) * 100;
 
-						if (sum > 10) {
+						if (sum > 5) {
 							return sum.toFixed(2) + '%';
 						}
 						return '';
@@ -71,7 +71,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[ChartDataLabels]}  height={400} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Pie plugins={[ChartDataLabels]} height={400} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
