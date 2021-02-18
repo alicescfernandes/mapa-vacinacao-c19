@@ -105,7 +105,7 @@ export function CustomBarChart({ type, total, colors, data, showHeading }) {
 							max: 500_000,
 							stepSize: 500_000 / 5,
 							callback: function (value, index, values) {
-								return formatNumber(value);
+								return formatNumber(value, false);
 							},
 						},
 					},
