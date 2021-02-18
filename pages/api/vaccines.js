@@ -1,5 +1,5 @@
 import Cors from 'cors';
-import vaccines from './../../data/vaccines.json';
+import vaccines from './../../data/vaccines_v2.json';
 // Initialize the cors middleware
 
 function initMiddleware(middleware) {
