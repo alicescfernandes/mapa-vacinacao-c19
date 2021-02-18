@@ -35,6 +35,7 @@
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
 		"node-fetch": "^2.6.1",
+		"plausible-tracker": "^0.3.1",
 		"pusher": "^4.0.2",
 		"react": "17.0.1",
 		"react-bootstrap": "^1.4.3",
@@ -47,11 +48,11 @@
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
 		"@babel/preset-env": "^7.12.16",
+		"csvtojson": "^2.0.10",
 		"dotenv": "^8.2.0",
 		"node-schedule": "^2.0.0",
 		"pre-commit": "^1.2.2",
 		"shelljs": "^0.8.4",
-		"twitter": "^1.7.1",
-		"csvtojson": "^2.0.10"
+		"twitter": "^1.7.1"
 	}
 }

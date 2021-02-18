@@ -1,3 +1,5 @@
+import fetchNode from 'node-fetch';
+
 export const formatNumber = (number, isDate = true) => {
 	let numberFormatter = new Intl.NumberFormat('pt-PT', {
 		minimumIntegerDigits: isDate ? 2 : 1,
@@ -20,4 +22,34 @@ export function hexToRgb(hex) {
 export function dateWithoutTimezone(unix) {
 	const dt = new Date(unix);
 	return new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+}
+
+export function trackPlausible(req) {
+	let host = req.headers.host;
+	let url = req.url;
+	let userAgent = req.headers['user-agent'];
+
+	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	if (ip.substr(0, 7) == '::ffff:') {
+		ip = ip.substr(7);
+	}
+
+	let headers = {
+		'user-agent': userAgent,
+		'x-forwarded-for': ip,
+	};
+	if (host.match('localhost')) return;
+	let data = { n: 'pageview', u: 'https://www.vacinacaocovid19.pt' + url, d: 'vacinacaocovid19.pt', r: null, w: 0 };
+
+	fetchNode('https://plausible.io/api/event', {
+		method: 'post',
+		headers,
+		body: JSON.stringify(data),
+	})
+		.then(() => {
+			console.log('request', 'post', JSON.stringify(data), headers);
+		})
+		.catch(() => {
+			console.log('err');
+		});
 }
