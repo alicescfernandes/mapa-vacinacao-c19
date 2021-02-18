@@ -51,6 +51,7 @@
 		"node-schedule": "^2.0.0",
 		"pre-commit": "^1.2.2",
 		"shelljs": "^0.8.4",
-		"twitter": "^1.7.1"
+		"twitter": "^1.7.1",
+		"csvtojson": "^2.0.10"
 	}
 }

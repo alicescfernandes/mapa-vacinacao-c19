@@ -10,7 +10,8 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
 	const data = (canvas) => {
-		let { labels, mod, com } = graphData;
+		let { labels, mod, com, az } = graphData;
+
 		if (window.outerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
@@ -49,6 +50,15 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					backgroundColor: color_1,
 					borderColor: color_1,
 					data: mod,
+					overlayBars: true,
+					order: 3,
+					stack: 'stack0',
+				},
+				{
+					label: 'AstraZeneca',
+					backgroundColor: color_3,
+					borderColor: color_3,
+					data: az,
 					overlayBars: true,
 					order: 3,
 					stack: 'stack0',
