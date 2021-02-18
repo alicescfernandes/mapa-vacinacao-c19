@@ -13,7 +13,8 @@
 		"export": "next build && next export -o out2",
 		"image": "cd automation/ && node instagram.js && cd - && git add automation",
 		"twitter": "cd automation/ && node twitter.js && cd - ",
-		"pusher": "cd automation/ && node pusher.js && cd - "
+		"pusher": "cd automation/ && node pusher.js && cd - ",
+		"deploy:manual": "yarn deploy && yarn twitter && yarn pusher"
 	},
 	"bin": {
 		"daemon_data": "./daemon.js"
