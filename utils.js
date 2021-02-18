@@ -41,7 +41,7 @@ export function trackPlausible(req) {
 	};
 	let data = { name: 'pageview', url: 'https://www.vacinacaocovid19.pt' + url, domain: 'vacinacaocovid19.pt', referrer: referer, screen_width: null };
 
-	//if (host.match('localhost')) return;
+	if (host.match('localhost')) return;
 	fetchNode('https://plausible.io/api/event', {
 		method: 'post',
 		headers,
