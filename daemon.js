@@ -66,7 +66,9 @@ function updateJSON() {
 	date.setSeconds(0);
 	date.setHours(0);
 	let dataLocalVacinas = JSON.parse(fs.readFileSync('./data/vaccines.json'));
+	let dataLocalVacinasV2 = JSON.parse(fs.readFileSync('./data/vaccines_v2.json'));
 	let dataLocalCases = JSON.parse(fs.readFileSync('./data/cases.json'));
+
 	let promises = [
 		fetch('https://services5.arcgis.com/eoFbezv6KiXqcnKq/arcgis/rest/services/Covid19_Total_Vacinados/FeatureServer/0/query?f=json&where=FID=1&outFields=*&resultType=standard&cacheHint=true').then((res) => res.json()),
 		fetch(
@@ -83,8 +85,14 @@ function updateJSON() {
 				sourceData.Data = date.getTime();
 				dataLocalVacinas.push(sourceData);
 				fs.writeFileSync('./data/vaccines.json', JSON.stringify(dataLocalVacinas));
-				updatedVaccines = true;
+				let item = dataLocalVacinas[dataLocalVacinas.length - 1];
+				item.Inoculacao1 = item.Inoculacao1_Ac - dataLocalVacinas[dataLocalVacinas.length - 2].Inoculacao1_Ac;
+				item.Inoculacao2 = item.Inoculacao2_Ac - dataLocalVacinas[dataLocalVacinas.length - 2].Inoculacao2_Ac;
+				item.Vacinados = item.Vacinados_Ac - dataLocalVacinas[dataLocalVacinas.length - 2].Vacinados_Ac;
+				dataLocalVacinasV2.push(item);
+				fs.writeFileSync('./data/vaccines_v2.json', JSON.stringify(dataLocalVacinasV2));
 				publishEvent('vacinas', dataVacinas.features[0].attributes);
+				updatedVaccines = true;
 			} else {
 				console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 			}
