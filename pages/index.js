@@ -24,6 +24,14 @@ import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProp
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
+import { trackPlausible } from '../utils';
+import Plausible from 'plausible-tracker';
+
+const plausible = Plausible({
+	domain: 'vacinacaocovid19.pt',
+	trackLocalhost: true,
+});
+
 export default function Home() {
 	let { statistics, labels, values, update: updateData } = useData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
@@ -110,6 +118,7 @@ export default function Home() {
 				setUpdating(false);
 			}, 1000);
 		});
+		plausible.trackPageview();
 	}, []);
 	return (
 		<>
@@ -289,7 +298,7 @@ export default function Home() {
 						</p>
 					</Col>
 				</Row>
-				<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>
+				{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
 				<script src="https://js.pusher.com/7.0/pusher.min.js"></script>{' '}
 			</Container>
 			<Footer></Footer>
