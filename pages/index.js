@@ -24,6 +24,7 @@ import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProp
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
+import { trackPlausible } from '../utils';
 import Plausible from 'plausible-tracker';
 
 const plausible = Plausible({
