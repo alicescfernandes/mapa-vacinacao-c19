@@ -284,11 +284,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 			},
 		};
 	};
-	useEffect(() => {
-		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-			setHeight(canvasRef?.current?.chartInstance?.canvas?.height);
-		}
-	}, [canvasRef.current]);
 
 	useEffect(() => {
 		statistics.getAdministredDosesByAgeByWeek().then((data) => {

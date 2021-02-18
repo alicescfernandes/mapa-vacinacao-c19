@@ -143,7 +143,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Bar options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
