@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import vaccinesData from '../data/vaccines.json';
 import casesData from '../data/cases.json';
-import ecdcData from '../data/ecdc.json';
 export function useData() {
 	let [vaccines, setVaccines] = useState(vaccinesData);
 	let [casos, setCasos] = useState({});
@@ -186,12 +185,14 @@ export function useData() {
 
 			let com = {};
 			let mod = {};
+			let az = {};
 
 			data.forEach((el) => {
 				var obj = {};
 				if (el['Doses received'] > 0) {
 					com[el['Week']] = com[el['Week']] || null;
 					mod[el['Week']] = mod[el['Week']] || null;
+					az[el['Week']] = az[el['Week']] || null;
 					labels[el['Week']] = weeks[el['Week']];
 
 					if (el['Vaccine brand'] === 'COM') {
@@ -201,17 +202,22 @@ export function useData() {
 					if (el['Vaccine brand'] === 'MOD') {
 						mod[el['Week']] = el['Doses received'];
 					}
+					if (el['Vaccine brand'] === 'AZ') {
+						az[el['Week']] = el['Doses received'];
+					}
 				}
 			});
 
 			com = Object.values(com);
 			mod = Object.values(mod);
+			az = Object.values(az);
 
 			labels = Object.values(labels);
 
 			return {
 				com,
 				mod,
+				az,
 				labels,
 			};
 		},
@@ -232,12 +238,12 @@ export function useData() {
 						dose_1: [],
 						dose_2: [],
 					};
-
 					maxValue = Math.max(el['First dose'], el['Second dose']);
-					groups[el['Group']].dose_1[el['Week']] = (groups[el['Group']].dose_1[el['Week']] || 0) + el['First dose'];
-					groups[el['Group']].dose_2[el['Week']] = (groups[el['Group']].dose_2[el['Week']] || 0) + el['Second dose'];
+					groups[el['Group']].dose_1[el['Week']] = (groups[el['Group']].dose_1[el['Week']] || 0) + parseInt(el['First dose']);
+					groups[el['Group']].dose_2[el['Week']] = (groups[el['Group']].dose_2[el['Week']] || 0) + parseInt(el['Second dose']);
 				}
 			});
+			console.log(groups);
 			return {
 				maxValue,
 				labels,
@@ -255,20 +261,26 @@ export function useData() {
 					groups[el['Group']] = groups[el['Group']] || {
 						mod: [],
 						com: [],
+						az: [],
 						target: 0,
 					};
 
 					if (el['Vaccine brand'] === 'COM') {
-						groups[el['Group']].com[0] = (groups[el['Group']].com[0] || 0) + el['First dose'];
-						groups[el['Group']].com[1] = (groups[el['Group']].com[1] || 0) + el['Second dose'];
+						groups[el['Group']].com[0] = parseInt((groups[el['Group']].com[0] || 0) + parseInt(el['First dose']));
+						groups[el['Group']].com[1] = (groups[el['Group']].com[1] || 0) + parseInt(el['Second dose']);
 					}
 
 					if (el['Vaccine brand'] === 'MOD') {
-						groups[el['Group']].mod[0] = (groups[el['Group']].mod[0] || 0) + el['First dose'];
-						groups[el['Group']].mod[1] = (groups[el['Group']].mod[1] || 0) + el['Second dose'];
+						groups[el['Group']].mod[0] = (groups[el['Group']].mod[0] || 0) + parseInt(el['First dose']);
+						groups[el['Group']].mod[1] = (groups[el['Group']].mod[1] || 0) + parseInt(el['Second dose']);
 					}
 
-					groups[el['Group']].target = (groups[el['Group']].target || 0) + el['Group population'];
+					if (el['Vaccine brand'] === 'AZ') {
+						groups[el['Group']].az[0] = (groups[el['Group']].az[0] || 0) + parseInt(el['First dose']);
+						groups[el['Group']].az[1] = (groups[el['Group']].az[1] || 0) + parseInt(el['Second dose']);
+					}
+
+					groups[el['Group']].target = (groups[el['Group']].target || 0) + parseInt(el['Group population']);
 				}
 			});
 

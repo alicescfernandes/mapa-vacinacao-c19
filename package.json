@@ -12,7 +12,9 @@
 		"start": "next start",
 		"export": "next build && next export -o out2",
 		"image": "cd automation/ && node instagram.js && cd - && git add automation",
-		"twitter": "cd automation/ && node twitter.js && cd - "
+		"twitter": "cd automation/ && node twitter.js && cd - ",
+		"pusher": "cd automation/ && node pusher.js && cd - ",
+		"deploy:manual": "yarn deploy && yarn twitter && yarn pusher"
 	},
 	"bin": {
 		"daemon_data": "./daemon.js"
@@ -49,6 +51,7 @@
 		"node-schedule": "^2.0.0",
 		"pre-commit": "^1.2.2",
 		"shelljs": "^0.8.4",
-		"twitter": "^1.7.1"
+		"twitter": "^1.7.1",
+		"csvtojson": "^2.0.10"
 	}
 }
