@@ -42,6 +42,8 @@ export function trackPlausible(req) {
 	let data = { name: 'pageview', url: 'https://www.vacinacaocovid19.pt' + url, domain: 'vacinacaocovid19.pt', referrer: referer, screen_width: null };
 
 	if (host.match('localhost')) return;
+	if (host.match('vacinacaocovid19.pt')) return;
+	if (host.match('mapa-vacinacao-c19.vercel.app')) return;
 	fetchNode('https://plausible.io/api/event', {
 		method: 'post',
 		headers,
@@ -53,4 +55,26 @@ export function trackPlausible(req) {
 		.catch(() => {
 			console.log('err');
 		});
+}
+
+export function fetchWithLocalCache(url, options, useCache = false) {
+	try {
+		if (window && localStorage.getItem(url) && useCache === true) {
+			let data = JSON.parse(localStorage.getItem(url));
+			return Promise.resolve(data);
+		} else {
+			return fetch(url, options)
+				.then((res) => res.json())
+				.then((data) => {
+					localStorage.setItem(url, JSON.stringify(data));
+					return data;
+				});
+		}
+	} catch (err) {
+		return fetch(url, options)
+			.then((res) => res.json())
+			.then((data) => {
+				return data;
+			});
+	}
 }

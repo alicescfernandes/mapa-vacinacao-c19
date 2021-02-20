@@ -6,7 +6,6 @@ import { Card } from './../Card';
 export function VacinadosPorDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
-
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
