@@ -294,7 +294,7 @@ export function useData() {
 
 			return groups;
 		},
-		getTotalArs: async () => {
+		getTotalArs: () => {
 			return sns.filter((el) => {
 				return el.TYPE === 'REGIONAL';
 			});

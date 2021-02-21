@@ -25,6 +25,7 @@ import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDi
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
 import Plausible from 'plausible-tracker';
+import { BarArs } from '../components/graphs/BarArs';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -237,6 +238,12 @@ export default function Home() {
 							<Col lg={6} xs={12}>
 								<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível</h3>
 								<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h3 className={styles.title}>Ponto de situação por ARS</h3>
+								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
 						<Row>
