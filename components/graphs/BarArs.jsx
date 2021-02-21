@@ -5,6 +5,24 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 import { Col, Row } from 'react-bootstrap';
 
+let styles = {
+	'labels-container': {
+		display: 'inline-block',
+		position: 'relative',
+		width: '15%',
+		height: '126px',
+		overflow: 'hidden',
+		'vertical-align': 'top',
+		padding: '15px 0px',
+	},
+	'labels-label': {
+		'text-align': 'right',
+		'font-size': '12px',
+		'margin-bottom': '0px',
+		'line-height': 'calc(100px / 3)',
+	},
+};
+
 function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
 
@@ -24,29 +42,30 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 		});
 
 		return {
-			labels: [type],
+			//labels: ['Inoculados', 'Casos Ativos', 'cenas3'],
 			datasets: [
 				{
 					label: 'Inoculados',
 					type: 'horizontalBar',
 					backgroundColor: main,
+
 					data: [100_000],
 					stack: 'stack1',
 				},
 				{
 					label: 'Casos Ativos',
 					type: 'horizontalBar',
-					backgroundColor: 'red',
+					backgroundColor: tints[1],
 					data: [300_00],
 					fill: false,
-					stack: 'stack1',
+					stack: 'stack2',
 				},
 				{
 					label: 'Casos Recuperados',
 					type: 'horizontalBar',
 					backgroundColor: shades[1],
 					data: [300_00],
-					stack: 'stack1',
+					stack: 'stack3',
 				},
 			],
 		};
@@ -105,7 +124,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				],
 				xAxes: [
 					{
-						stacked: true,
+						stacked: false,
 						gridLines: {
 							display: true,
 						},
@@ -127,7 +146,13 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 	return (
 		<>
-			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '100%', height: 80, overflow: 'hidden' }} className={'scrollable'}>
+			<div style={styles['labels-container']}>
+				<p style={styles['labels-label']}>{'abc'}</p>
+				<p style={styles['labels-label']}>{'abcde'}</p>
+				<p style={styles['labels-label']}>{'asdfghh'}</p>
+			</div>
+
+			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '84%', height: 150, overflow: 'hidden' }} className={'scrollable'}>
 				<div style={{ height: '100%' }}>
 					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
 				</div>
@@ -138,7 +163,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 export function BarArs({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
-	let { main, shades } = colors;
+	let { main, shades, tints } = colors;
 	//let [graphData, setGraphData] = useState({});
 	let { values: valueCasesDiarios } = statistics.getDiariosCases();
 	let snsData = statistics.getTotalArs();
@@ -165,7 +190,7 @@ export function BarArs({ statistics, colors }) {
 	useEffect(() => {
 		statistics.getTotalAdministredDosesByAgeByWeek().then((data) => {
 			//setGraphData(data);
-			//setLoading(false);
+			setLoading(false);
 		});
 	}, []);
 
@@ -177,11 +202,15 @@ export function BarArs({ statistics, colors }) {
 						<div className={'legends'}>
 							<p>
 								<span className={'legend'}>
-									<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>1ª Dose
+									<span style={{ backgroundColor: main }} className={'color_sample'}></span>Inoculados
 								</span>
 								<span className={'legend'}>
-									<span style={{ backgroundColor: main }} className={'color_sample'}></span>2ª Dose
+									<span style={{ backgroundColor: tints[1] }} className={'color_sample'}></span>Casos Recuperados
 								</span>
+								<span className={'legend'}>
+									<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>Casos Ativos
+								</span>
+
 								{/*<span>
 									<span></span>População-Alvo
 								</span>*/}
@@ -192,13 +221,13 @@ export function BarArs({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>Nacional</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24'].az} type={'AstraZeneca'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={400} data={'cenas'} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>ARS Lisboa</p>
 								</div>
-								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49'].az} type={'AstraZeneca'}></CustomBarChart>
+								<CustomBarChart colors={colors} data={'cenas'} total={5000} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 						</Row>
 					</>
