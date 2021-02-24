@@ -1,5 +1,7 @@
 import fetchNode from 'node-fetch';
+var https = require('follow-redirects').https;
 
+require('dotenv').config();
 export const formatNumber = (number, isDate = true) => {
 	let numberFormatter = new Intl.NumberFormat('pt-PT', {
 		minimumIntegerDigits: isDate ? 2 : 1,
@@ -45,6 +47,7 @@ export function trackPlausible(req) {
 	if (host.match('localhost')) return;
 	if (host.match('vacinacaocovid19.pt')) return;
 	if (host.match('mapa-vacinacao-c19.vercel.app')) return;
+	trackLogFlare(headers, data);
 	fetchNode('https://plausible.io/api/event', {
 		method: 'post',
 		headers,
@@ -56,4 +59,31 @@ export function trackPlausible(req) {
 		.catch(() => {
 			console.log('err');
 		});
+}
+
+function trackLogFlare(headers, body) {
+	var options = {
+		method: 'POST',
+		hostname: 'api.logflare.app',
+		path: '/logs?api_key=&source=' + process.env.LOGFLARE_SOURCE,
+		headers: {
+			'Content-Type': 'application/json',
+			'X-API-KEY': process.env.LOGFLARE_API_KEY,
+		},
+		maxRedirects: 20,
+	};
+
+	var req = https.request(options, function (res) {});
+
+	var postData = JSON.stringify({
+		log_entry: `API ACCESS - ${headers['x-forwarded-for']} - ${body.url}`,
+		metadata: {
+			...headers,
+			...body,
+		},
+	});
+
+	req.write(postData);
+
+	req.end();
 }
