@@ -16,7 +16,11 @@
 		"pusher": "cd automation/ && node pusher.js && cd - ",
 		"deploy:manual": "yarn deploy && yarn twitter && yarn pusher"
 	},
-	"browser": { "fs": false, "path": false, "os": false},
+	"browser": {
+		"fs": false,
+		"path": false,
+		"os": false
+	},
 	"bin": {
 		"daemon_data": "./daemon.js"
 	},
@@ -33,6 +37,7 @@
 		"core-js": "2",
 		"cors": "^2.8.5",
 		"date-fns": "^2.17.0",
+		"follow-redirects": "^1.13.2",
 		"next": "10.0.5",
 		"next-react-svg": "^1.1.2",
 		"node-fetch": "^2.6.1",
