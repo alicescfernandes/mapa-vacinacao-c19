@@ -1,8 +1,6 @@
-var fs = require('fs');
 import fetchNode from 'node-fetch';
 var https = require('follow-redirects').https;
 
-require('dotenv').config();
 export const formatNumber = (number, isDate = true) => {
 	let numberFormatter = new Intl.NumberFormat('pt-PT', {
 		minimumIntegerDigits: isDate ? 2 : 1,
