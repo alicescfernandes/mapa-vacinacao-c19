@@ -1,3 +1,4 @@
+var fs = require('fs');
 import fetchNode from 'node-fetch';
 var https = require('follow-redirects').https;
 
@@ -44,9 +45,9 @@ export function trackPlausible(req) {
 	let data = { name: 'pageview', url: 'https://www.vacinacaocovid19.pt' + url, domain: 'vacinacaocovid19.pt', referrer: referer, screen_width: null };
 
 	console.log('own app sending');
-	if (host.match('localhost')) return;
-	if (host.match('vacinacaocovid19.pt')) return;
-	if (host.match('mapa-vacinacao-c19.vercel.app')) return;
+	//if (host.match('localhost')) return;
+	//if (host.match('vacinacaocovid19.pt')) return;
+	//if (host.match('mapa-vacinacao-c19.vercel.app')) return;
 	trackLogFlare(headers, data);
 	fetchNode('https://plausible.io/api/event', {
 		method: 'post',

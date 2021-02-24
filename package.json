@@ -16,6 +16,7 @@
 		"pusher": "cd automation/ && node pusher.js && cd - ",
 		"deploy:manual": "yarn deploy && yarn twitter && yarn pusher"
 	},
+	"browser": { "fs": false, "path": false, "os": false},
 	"bin": {
 		"daemon_data": "./daemon.js"
 	},
