@@ -46,7 +46,7 @@ export function trackPlausible(req) {
 	if (host.match('localhost')) return;
 	if (host.match('vacinacaocovid19.pt')) return;
 	if (host.match('mapa-vacinacao-c19.vercel.app')) return;
-	trackLogFlare(headers, data);
+	//trackLogFlare(headers, data);
 	fetchNode('https://plausible.io/api/event', {
 		method: 'post',
 		headers,
