@@ -329,12 +329,6 @@ export function useData() {
 		});
 	}, []);
 
-	useEffect(() => {
-		/* let { labels: labls, values: vals } = parseData(vaccines);
-		setValues(vals);
-		setLabels(labls); */
-	}, [vaccines]);
-
 	function update(type, data) {
 		switch (type) {
 			case 'vacinas':
@@ -345,8 +339,8 @@ export function useData() {
 				break;
 
 			case 'casos':
-				casos.push(data);
-				setCasos(casos);
+				//casos.push(data);
+				//setCasos(casos);
 				bumpVersioning(versioning + 1);
 				break;
 

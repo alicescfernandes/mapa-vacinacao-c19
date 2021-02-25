@@ -196,7 +196,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número vacinas administradas</h3>
+								<h3 className={styles.title}>Número de vacinas administradas</h3>
 
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
@@ -295,7 +295,7 @@ export default function Home() {
 									</a>
 									&nbsp;e do sítio&nbsp;
 									<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
-										Ponto de Situação Direção-Geral da Saúde
+										Ponto de Situação da Direção-Geral da Saúde
 									</a>
 									. A atualização destes dados é diária.
 									<br />
@@ -305,6 +305,16 @@ export default function Home() {
 									</a>
 									&nbsp; e são atualizados através dos&nbsp;
 									<a className={styles.link} target="_blank" href="https://covid19-vaccine-report.ecdc.europa.eu/#6_Reported_data">
+										relatórios publicados semanalmente.
+									</a>
+								</p>
+								<p className={styles.text}>
+									Os dados relativos à vacinação por ARS é tirada do portal sobre{' '}
+									<a className={styles.link} href="https://covid19.min-saude.pt/" target="_blank">
+										a COVID-19 da Direção-Geral da Saúde
+									</a>
+									&nbsp; e são atualizados através dos&nbsp;
+									<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">
 										relatórios publicados semanalmente.
 									</a>
 									{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
