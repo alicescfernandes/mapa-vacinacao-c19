@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react';
 import vaccinesData from '../data/vaccines.json';
 import casesData from '../data/cases.json';
+import { fetcher, fetchWithLocalCache } from '../utils';
+import { set } from 'core-js/fn/dict';
 export function useData() {
-	let [vaccines, setVaccines] = useState(vaccinesData);
+	let [ready, setReady] = useState(false);
+	let [versioning, bumpVersioning] = useState(false);
+	let [weeks, setWeeks] = useState(false);
+	let [sns, setSns] = useState(false);
+	let [ecdc, setECDC] = useState(false);
+	let [ars, setArs] = useState(false);
+	let [vaccines, setVaccines] = useState(false);
 	let [casos, setCasos] = useState({});
 	let [labels, setLabels] = useState([]);
 	let [values, setValues] = useState([]);
@@ -13,11 +21,10 @@ export function useData() {
 		day: 'numeric',
 	};
 	let f = new Intl.DateTimeFormat('pt-PT', options);
-
 	function parseData(data) {
+		if (!ready) return;
 		let values = [];
 		let labels = [];
-
 		data.forEach((el) => {
 			labels.push(f.format(new Date(el.Data)));
 			values.push(el.Vacinados_Ac);
@@ -29,17 +36,20 @@ export function useData() {
 		};
 	}
 
-	let { labels: labls, values: vals } = parseData(vaccines);
-
 	let statistics = {
 		getRaw: () => {
 			return vaccines;
+		},
+		getDailyData: () => {
+			return parseData(vaccines);
 		},
 		getDesvioPadrao: () => {},
 
 		getMediaMovel: (dias) => {
 			let medias = [];
 			let labelsMedias = [];
+			let { labels, values } = parseData(vaccines);
+
 			for (let start = 1; start <= dias; start++) {
 				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
 				medias.push(sum);
@@ -94,6 +104,7 @@ export function useData() {
 		},
 
 		getVacinadosPorDia: () => {
+			let { labels, values } = statistics.getDailyData();
 			let vacinadosPorDia = values.map((val, idx, vals) => {
 				//The first one
 				if (idx === 0) {
@@ -116,6 +127,7 @@ export function useData() {
 			let in1 = [];
 			let in2 = [];
 			let total = [];
+			let { labels, values } = statistics.getDailyData();
 			values.forEach((val, idx, vals) => {
 				in1.push(vaccines[idx].Inoculacao1_Ac);
 				in2.push(vaccines[idx].Inoculacao2_Ac);
@@ -132,6 +144,8 @@ export function useData() {
 		getDiariosInoculacoes: () => {
 			let in1 = [];
 			let in2 = [];
+			let { labels, values } = parseData(vaccines);
+
 			let total = values.map((val, idx, vals) => {
 				//The first one
 				if (idx === 0) {
@@ -181,13 +195,11 @@ export function useData() {
 		getReceivedDosesByBrandByWeek: async () => {
 			let labels = {};
 
-			let [data, weeks] = await Promise.all([fetch('/api/ecdc').then((res) => res.json()), fetch('/api/weeks').then((res) => res.json())]);
-
 			let com = {};
 			let mod = {};
 			let az = {};
 
-			data.forEach((el) => {
+			ecdc.forEach((el) => {
 				var obj = {};
 				if (el['Doses received'] > 0) {
 					com[el['Week']] = com[el['Week']] || null;
@@ -224,11 +236,10 @@ export function useData() {
 		getAdministredDosesByAgeByWeek: async () => {
 			let labels = {};
 			let maxValue = 0;
-			let [data, weeks] = await Promise.all([fetch('/api/ecdc').then((res) => res.json()), fetch('/api/weeks').then((res) => res.json())]);
 
 			let groups = {};
 
-			data.forEach((el) => {
+			ecdc.forEach((el) => {
 				if (el['Doses received'] == '') {
 					if (!labels.hasOwnProperty(el['Week'])) {
 						labels[el['Week'].replace('-', '')] = weeks[el['Week']];
@@ -243,7 +254,6 @@ export function useData() {
 					groups[el['Group']].dose_2[el['Week']] = (groups[el['Group']].dose_2[el['Week']] || 0) + parseInt(el['Second dose']);
 				}
 			});
-			console.log(groups);
 			return {
 				maxValue,
 				labels,
@@ -253,10 +263,9 @@ export function useData() {
 		getTotalAdministredDosesByAgeByWeek: async () => {
 			let labels = {};
 
-			let data = await fetch('/api/ecdc').then((res) => res.json());
 			let groups = {};
 
-			data.forEach((el) => {
+			ecdc.forEach((el) => {
 				if (el['Doses received'] == '') {
 					groups[el['Group']] = groups[el['Group']] || {
 						mod: [],
@@ -286,31 +295,53 @@ export function useData() {
 
 			return groups;
 		},
+		getTotalSNS: () => {
+			return sns.filter((el) => {
+				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == '15/02/2021';
+			});
+		},
+		getTotalARS: () => {
+			let data = {};
+			ars.features.forEach((el) => {
+				if (el.attributes.ARSNome === 'Nacional') el.attributes.ARSNome = 'All';
+				if (!(el.attributes.ARSNome in data)) {
+					data[el.attributes.ARSNome] = {
+						obitosNovos7Dias: 0,
+						casosNovos7Dias: 0,
+					};
+				}
+
+				data[el.attributes.ARSNome].obitosNovos7Dias += el.attributes.VarObitos;
+				data[el.attributes.ARSNome].casosNovos7Dias += el.attributes.ConfirmadosNovos;
+			});
+			return data;
+		},
 	};
 
 	useEffect(() => {
-		setValues(vals);
-		setLabels(labls);
+		Promise.all([fetchWithLocalCache('/api/ecdc'), fetchWithLocalCache('/api/weeks'), fetchWithLocalCache('/api/sns'), fetchWithLocalCache('/api/vaccinesold'), fetchWithLocalCache('/api/ars')]).then(([ecdc, weeks, sns, vaccines, ars]) => {
+			setSns(sns);
+			setWeeks(weeks);
+			setECDC(ecdc);
+			setVaccines(vaccines);
+			setArs(ars);
+			setReady(true);
+		});
 	}, []);
-
-	useEffect(() => {
-		let { labels: labls, values: vals } = parseData(vaccines);
-		setValues(vals);
-		setLabels(labls);
-	}, [vaccines]);
 
 	function update(type, data) {
 		switch (type) {
 			case 'vacinas':
 				let arr = Array.from(vaccines);
 				arr.push(data);
-
 				setVaccines(arr);
+				bumpVersioning(versioning + 1);
 				break;
 
 			case 'casos':
-				casos.push(data);
-				setCasos(casos);
+				//casos.push(data);
+				//setCasos(casos);
+				bumpVersioning(versioning + 1);
 				break;
 
 			case 'reload':
@@ -319,5 +350,5 @@ export function useData() {
 		}
 	}
 
-	return { labels, values, statistics, update };
+	return { versioning, statistics, ready, update };
 }

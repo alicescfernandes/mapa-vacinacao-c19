@@ -6,7 +6,6 @@ import { Card } from './../Card';
 export function VacinadosPorDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
-
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
@@ -17,14 +16,14 @@ export function VacinadosPorDia({ statistics, colors }) {
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 
-		if (window.outerWidth <= 800) {
+		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.outerWidth <= 800) {
+			if (window.innerWidth <= 800) {
 				canvas.parentNode.style.width = '1000px';
 			} else {
 				canvas.parentNode.style.width = '100%';
