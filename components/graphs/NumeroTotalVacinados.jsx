@@ -6,7 +6,6 @@ import { formatNumber, hexToRgb } from '../../utils';
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let { labels, values } = statistics.getDailyData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
-	console.log({ valuesIn1, valuesIn2 });
 	let [loading, setLoading] = useState(true);
 	let [height, setHeight] = useState(400);
 	let [foreground, color_1, color_2] = colors;

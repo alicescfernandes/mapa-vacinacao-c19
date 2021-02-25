@@ -9,23 +9,32 @@ let styles = {
 	'labels-container': {
 		display: 'inline-block',
 		position: 'relative',
-		width: '15%',
+		//width: '15%',
+		width: '0%',
 		height: '126px',
 		overflow: 'hidden',
-		'vertical-align': 'top',
+		verticalAlign: 'top',
 		padding: '15px 0px',
 	},
 	'labels-label': {
-		'text-align': 'right',
-		'font-size': '12px',
-		'margin-bottom': '0px',
-		'line-height': 'calc(100px / 3)',
+		textAlign: 'right',
+		fontSize: '12px',
+		marginBottom: '0px',
+		lineHeight: 'calc(100px / 3)',
+	},
+	'graph-container': {
+		display: 'inline-block',
+		lineHeight: '40px',
+		position: 'relative',
+		width: '100%',
+		height: 150,
+		overflow: 'hidden',
 	},
 };
 
 function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
-
+	console.log(data);
 	const graphData = (canvas) => {
 		if (window.outerWidth <= 800) {
 			canvas.parentNode.style.width = '800px';
@@ -42,29 +51,29 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 		});
 
 		return {
-			//labels: ['Inoculados', 'Casos Ativos', 'cenas3'],
+			//labels: ['Inoculados', 'Óbitos Novos', 'cenas3'],
 			datasets: [
 				{
-					label: 'Inoculados',
+					label: 'Inoculados Totais Novos (Acumulado 7 dias)',
 					type: 'horizontalBar',
 					backgroundColor: main,
 
-					data: [100_000],
+					data: [data['TOTAL_VAC_2']],
 					stack: 'stack1',
 				},
 				{
-					label: 'Casos Ativos',
+					label: 'Casos Novos (Acumulado 7 dias)',
 					type: 'horizontalBar',
 					backgroundColor: tints[1],
-					data: [300_00],
+					data: [data['casosNovos7Dias']],
 					fill: false,
 					stack: 'stack2',
 				},
 				{
-					label: 'Casos Recuperados',
+					label: 'Óbitos Novos (Acumulado 7 dias)',
 					type: 'horizontalBar',
 					backgroundColor: shades[1],
-					data: [300_00],
+					data: [data['obitosNovos7Dias']],
 					stack: 'stack3',
 				},
 			],
@@ -118,7 +127,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 							display: true,
 						},
 						ticks: {
-							display: false,
+							display: true,
 						},
 					},
 				],
@@ -132,8 +141,8 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 						ticks: {
 							beginAtZero: true,
 							display: true,
-							max: 500_000,
-							stepSize: 500_000 / 5,
+							max: 100_000,
+							stepSize: 100_000 / 5,
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
@@ -147,12 +156,12 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 	return (
 		<>
 			<div style={styles['labels-container']}>
-				<p style={styles['labels-label']}>{'abc'}</p>
-				<p style={styles['labels-label']}>{'abcde'}</p>
-				<p style={styles['labels-label']}>{'asdfghh'}</p>
+				<p style={styles['labels-label']}>Inoculados</p>
+				<p style={styles['labels-label']}>Casos Novos</p>
+				<p style={styles['labels-label']}>Casos Recuperados</p>
 			</div>
 
-			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '84%', height: 150, overflow: 'hidden' }} className={'scrollable'}>
+			<div style={styles['graph-container']}>
 				<div style={{ height: '100%' }}>
 					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
 				</div>
@@ -166,11 +175,11 @@ export function BarArs({ statistics, colors }) {
 	let { main, shades, tints } = colors;
 	//let [graphData, setGraphData] = useState({});
 	let { values: valueCasesDiarios } = statistics.getDiariosCases();
-	let snsData = statistics.getTotalArs();
-	console.log(snsData);
+	let snsData = statistics.getTotalSNS();
+	let ars = statistics.getTotalARS();
 	let firstItem = valueCasesDiarios.reverse()[0];
 	let graphData = {
-		Nacional: {},
+		All: {},
 		'ARS Alentejo': {},
 		'ARS Algarve': {},
 		'ARS Centro': {},
@@ -180,13 +189,12 @@ export function BarArs({ statistics, colors }) {
 
 	//map the data
 	for (let key in graphData) {
-		console.log(key);
-		let obj1 = Object.assign({}, snsData.filter((el) => el.REGION == key)[0]);
-		let obj2 = { 1: 2 };
+		let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION == key)[0]);
+		let obj2 = ars[key];
 
 		graphData[key] = { ...obj2, ...obj1 };
 	}
-	console.log(firstItem);
+
 	useEffect(() => {
 		statistics.getTotalAdministredDosesByAgeByWeek().then((data) => {
 			//setGraphData(data);
@@ -199,35 +207,61 @@ export function BarArs({ statistics, colors }) {
 			<div>
 				{!loading ? (
 					<>
-						<div className={'legends'}>
-							<p>
-								<span className={'legend'}>
-									<span style={{ backgroundColor: main }} className={'color_sample'}></span>Inoculados
-								</span>
-								<span className={'legend'}>
-									<span style={{ backgroundColor: tints[1] }} className={'color_sample'}></span>Casos Recuperados
-								</span>
-								<span className={'legend'}>
-									<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>Casos Ativos
-								</span>
-
-								{/*<span>
-									<span></span>População-Alvo
-								</span>*/}
-							</p>
-						</div>
+						{
+							<div className={'legends'}>
+								<p>
+									<span className={'legend'}>
+										<span style={{ backgroundColor: main }} className={'color_sample'}></span>Inoculados Novos
+									</span>
+									<span className={'legend'}>
+										<span style={{ backgroundColor: tints[1] }} className={'color_sample'}></span>Casos Novos
+									</span>
+									<span className={'legend'}>
+										<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>Óbitos Novos
+									</span>
+								</p>
+							</div>
+						}
 						<Row>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Nacional</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={400} data={'cenas'} type={'AstraZeneca'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={400} data={graphData['All']}></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
-									<p>ARS Lisboa</p>
+									<p>{graphData['ARS Algarve'].REGION}</p>
 								</div>
-								<CustomBarChart colors={colors} data={'cenas'} total={5000} type={'AstraZeneca'}></CustomBarChart>
+								<CustomBarChart colors={colors} data={graphData['ARS Algarve']} total={5000}></CustomBarChart>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>{graphData['ARS Alentejo'].REGION}</p>
+								</div>
+								<CustomBarChart colors={colors} showHeading={true} total={400} data={graphData['ARS Alentejo']}></CustomBarChart>
+							</Col>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>{graphData['ARS Centro'].REGION}</p>
+								</div>
+								<CustomBarChart colors={colors} data={graphData['ARS Centro']} total={5000}></CustomBarChart>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>{graphData['ARS Lisboa e Vale do Tejo'].REGION}</p>
+								</div>
+								<CustomBarChart colors={colors} showHeading={true} total={400} data={graphData['ARS Lisboa e Vale do Tejo']}></CustomBarChart>
+							</Col>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>{graphData['ARS Norte'].REGION}</p>
+								</div>
+								<CustomBarChart colors={colors} data={graphData['ARS Norte']} total={5000}></CustomBarChart>
 							</Col>
 						</Row>
 					</>

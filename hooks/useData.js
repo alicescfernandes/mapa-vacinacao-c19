@@ -9,6 +9,7 @@ export function useData() {
 	let [weeks, setWeeks] = useState(false);
 	let [sns, setSns] = useState(false);
 	let [ecdc, setECDC] = useState(false);
+	let [ars, setArs] = useState(false);
 	let [vaccines, setVaccines] = useState(false);
 	let [casos, setCasos] = useState({});
 	let [labels, setLabels] = useState([]);
@@ -294,21 +295,36 @@ export function useData() {
 
 			return groups;
 		},
-		getTotalArs: () => {
+		getTotalSNS: () => {
 			return sns.filter((el) => {
-				return el.TYPE === 'REGIONAL';
+				return el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL';
 			});
+		},
+		getTotalARS: () => {
+			let data = {};
+			ars.features.forEach((el) => {
+				if (el.attributes.ARSNome === 'Nacional') el.attributes.ARSNome = 'All';
+				if (!(el.attributes.ARSNome in data)) {
+					data[el.attributes.ARSNome] = {
+						obitosNovos7Dias: 0,
+						casosNovos7Dias: 0,
+					};
+				}
+
+				data[el.attributes.ARSNome].obitosNovos7Dias += el.attributes.VarObitos;
+				data[el.attributes.ARSNome].casosNovos7Dias += el.attributes.ConfirmadosNovos;
+			});
+			return data;
 		},
 	};
 
 	useEffect(() => {
-		/* 		setValues(vals);
-		setLabels(labls); */
-		Promise.all([fetchWithLocalCache('/api/ecdc'), fetchWithLocalCache('/api/weeks'), fetchWithLocalCache('/api/sns'), fetchWithLocalCache('/api/vaccinesold')]).then(([ecdc, weeks, sns, vaccines]) => {
+		Promise.all([fetchWithLocalCache('/api/ecdc'), fetchWithLocalCache('/api/weeks'), fetchWithLocalCache('/api/sns'), fetchWithLocalCache('/api/vaccinesold'), fetchWithLocalCache('/api/ars')]).then(([ecdc, weeks, sns, vaccines, ars]) => {
 			setSns(sns);
 			setWeeks(weeks);
 			setECDC(ecdc);
 			setVaccines(vaccines);
+			setArs(ars);
 			setReady(true);
 		});
 	}, []);

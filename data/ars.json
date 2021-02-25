@@ -4,806 +4,57 @@
         "name": "OBJECTID",
         "isSystemMaintained": true
     },
-    "globalIdFieldName": "GlobalID",
-    "geometryProperties": {
-        "shapeAreaFieldName": "Shape__Area",
-        "shapeLengthFieldName": "Shape__Length",
-        "units": "esriMeters"
-    },
-    "geometryType": "esriGeometryPolygon",
+    "globalIdFieldName": "",
+    "geometryType": "esriGeometryPoint",
     "spatialReference": {
         "wkid": 102100,
         "latestWkid": 3857
     },
     "fields": [
         {
-            "name": "OBJECTID",
-            "type": "esriFieldTypeOID",
-            "alias": "OBJECTID",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
             "name": "ARSNome",
             "type": "esriFieldTypeString",
             "alias": "ARSNome",
             "sqlType": "sqlTypeOther",
-            "length": 255,
+            "length": 254,
             "domain": null,
             "defaultValue": null
         },
         {
-            "name": "ConfirmadosAcumulado_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "ConfirmadosAcumulado_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "ConfirmadosNovos_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "ConfirmadosNovos_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "AguardarResultadosLab_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "AguardarResultadosLab_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "Internados_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "Internados_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "InternadosUCI_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "InternadosUCI_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "Recuperados_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "Recuperados_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "Obitos_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "Obitos_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "ConfirmadosAcuHomem_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "ConfirmadosAcuHomem_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "ConfirmadosAcuMulher_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "ConfirmadosAcuMulher_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "URL1_ARS",
-            "type": "esriFieldTypeString",
-            "alias": "URL1_ARS",
-            "sqlType": "sqlTypeOther",
-            "length": 255,
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "URL2_ARS",
-            "type": "esriFieldTypeString",
-            "alias": "URL2_ARS",
-            "sqlType": "sqlTypeOther",
-            "length": 255,
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Outros1_ARS",
-            "type": "esriFieldTypeString",
-            "alias": "Outros1_ARS",
-            "sqlType": "sqlTypeOther",
-            "length": 255,
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Outros2_ARS",
-            "type": "esriFieldTypeString",
-            "alias": "Outros2_ARS",
-            "sqlType": "sqlTypeOther",
-            "length": 255,
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Obs1_ARS",
-            "type": "esriFieldTypeString",
-            "alias": "Obs1_ARS",
-            "sqlType": "sqlTypeOther",
-            "length": 255,
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "ARS_ID",
-            "type": "esriFieldTypeInteger",
-            "alias": "ARS_ID",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "PercentagemAcu_ARS",
-            "type": "esriFieldTypeDouble",
-            "alias": "PercentagemAcu_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "Fonte1_ARS",
-            "type": "esriFieldTypeString",
-            "alias": "Fonte1_ARS",
-            "sqlType": "sqlTypeOther",
-            "length": 255,
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Fonte2_ARS",
-            "type": "esriFieldTypeString",
-            "alias": "Fonte2_ARS",
-            "sqlType": "sqlTypeOther",
-            "length": 255,
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Suspeitos_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "Suspeitos_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "Data_ARS",
+            "name": "Data",
             "type": "esriFieldTypeDate",
-            "alias": "Data_ARS",
+            "alias": "Data",
             "sqlType": "sqlTypeOther",
             "length": 8,
             "domain": null,
-            "defaultValue": null
+            "defaultValue": "-2209161600000"
         },
         {
-            "name": "ObitosNovos_ARS",
+            "name": "ConfirmadosAcumulado",
             "type": "esriFieldTypeInteger",
-            "alias": "ObitosNovos_ARS",
+            "alias": "ConfirmadosAcumulado",
             "sqlType": "sqlTypeOther",
             "domain": null
         },
         {
-            "name": "RecuperadosNovos_ARS",
+            "name": "ConfirmadosNovos",
             "type": "esriFieldTypeInteger",
-            "alias": "RecuperadosNovos_ARS",
+            "alias": "ConfirmadosNovos",
             "sqlType": "sqlTypeOther",
             "domain": null
         },
         {
-            "name": "PercentagemSuspeitos_ARS",
+            "name": "VarObitos",
             "type": "esriFieldTypeInteger",
-            "alias": "PercentagemSuspeitos_ARS",
+            "alias": "Variação de Óbitos",
             "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "Y",
-            "type": "esriFieldTypeDouble",
-            "alias": "Y",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "X",
-            "type": "esriFieldTypeDouble",
-            "alias": "X",
-            "sqlType": "sqlTypeOther",
-            "domain": null
-        },
-        {
-            "name": "Shape__Area",
-            "type": "esriFieldTypeDouble",
-            "alias": "Shape__Area",
-            "sqlType": "sqlTypeDouble",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Shape__Length",
-            "type": "esriFieldTypeDouble",
-            "alias": "Shape__Length",
-            "sqlType": "sqlTypeDouble",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Letalidade_ARS",
-            "type": "esriFieldTypeDouble",
-            "alias": "Letalidade_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "MediaMovel_ARS",
-            "type": "esriFieldTypeDouble",
-            "alias": "MediaMovel_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "PercentagemD_ARS",
-            "type": "esriFieldTypeDouble",
-            "alias": "PercentagemD_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "PercentagemObitosD_ARS",
-            "type": "esriFieldTypeDouble",
-            "alias": "PercentagemObitosD_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "PercentagemRecuperadosD_ARS",
-            "type": "esriFieldTypeDouble",
-            "alias": "PercentagemRecuperadosD_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Populacao_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "Populacao_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "InternadosEnfermaria_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "InternadosEnfermaria_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "VarConfirmados_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "VarConfirmados_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "VarObitos_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "VarObitos_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "Activos_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "Activos_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "VarActivos_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "VarActivos_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "VarRecuperados_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "VarRecuperados_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "EmVigil_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "EmVigil_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf0009m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf0009m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf0009f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf0009f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf1019m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf1019m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf1019f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf1019f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf2029m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf2029m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf2029f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf2029f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf3039m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf3039m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf3039f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf3039f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf4049m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf4049m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf4049f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf4049f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf5059m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf5059m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf5059f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf5059f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf6069m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf6069m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf6069f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf6069f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf7079m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf7079m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf7079f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf7079f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf80m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf80m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf80f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf80f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos0009m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos0009m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos0009f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos0009f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos1019m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos1019m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos1019f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos1019f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos2029m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos2029m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos2029f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos2029f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos3039m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos3039m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos3039f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos3039f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos4049m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos4049m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos4049f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos4049f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos5059m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos5059m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos5059f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos5059f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos6069m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos6069m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos6069f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos6069f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos7079m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos7079m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos7079f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos7079f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos80m_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos80m_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos80f_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos80f_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conftotalm_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conftotalm_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conftotalf_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conftotalf_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitostotalm_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitostotalm_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitostotalf_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitostotalf_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf0009total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf0009total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf1019total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf1019total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf2029total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf2029total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf3039total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf3039total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf4049total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf4049total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf5059total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf5059total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf6069total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf6069total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf7079total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf7079total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "conf80total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "conf80total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos0009total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos0009total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos1019total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos1019total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos2029total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos2029total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos3039total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos3039total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos4049total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos4049total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos5059total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos5059total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos6069total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos6069total_ARS",
-            "sqlType": "sqlTypeOther",
             "domain": null,
             "defaultValue": null
         },
         {
-            "name": "obitos7079total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos7079total_ARS",
-            "sqlType": "sqlTypeOther",
-            "domain": null,
-            "defaultValue": null
-        },
-        {
-            "name": "obitos80total_ARS",
-            "type": "esriFieldTypeInteger",
-            "alias": "obitos80total_ARS",
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID",
             "sqlType": "sqlTypeOther",
             "domain": null,
             "defaultValue": null
@@ -812,730 +63,562 @@
     "features": [
         {
             "attributes": {
-                "OBJECTID": 1,
-                "ARSNome": "ARS Alentejo",
-                "ConfirmadosAcumulado_ARS": 28068,
-                "ConfirmadosNovos_ARS": 49,
-                "AguardarResultadosLab_ARS": 0,
-                "Internados_ARS": 0,
-                "InternadosUCI_ARS": 0,
-                "Recuperados_ARS": 0,
-                "Obitos_ARS": 915,
-                "ConfirmadosAcuHomem_ARS": null,
-                "ConfirmadosAcuMulher_ARS": null,
-                "URL1_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/ars_info/COVID19INFOGRAFICOARS_AlentejoV2.html",
-                "URL2_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?ars=4&abc=1#/94d9961e8b37448382de173fddf787c9?ars=4",
-                "Outros1_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?p1=4&abc=1#/7af6f91b922d480390b202e0903106e4?p1=4",
-                "Outros2_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/logoARS/logoARSAlentejo.png",
-                "Obs1_ARS": "",
-                "ARS_ID": 4,
-                "PercentagemAcu_ARS": 59.7191489361702,
-                "Fonte1_ARS": "",
-                "Fonte2_ARS": "",
-                "Suspeitos_ARS": 0,
-                "Data_ARS": 1613736000000,
-                "ObitosNovos_ARS": 122,
-                "RecuperadosNovos_ARS": 0,
-                "PercentagemSuspeitos_ARS": null,
-                "Y": 4634399.6143,
-                "X": -882198.191199999,
-                "Shape__Area": 44563729070.1738,
-                "Shape__Length": 1423853.8105656,
-                "Letalidade_ARS": 0.0325994014536127,
-                "MediaMovel_ARS": 74.5714285714286,
-                "PercentagemD_ARS": 0.00174881330525715,
-                "PercentagemObitosD_ARS": 0.153846153846154,
-                "PercentagemRecuperadosD_ARS": 0,
-                "Populacao_ARS": 470631,
-                "InternadosEnfermaria_ARS": 0,
-                "VarConfirmados_ARS": 49,
-                "VarObitos_ARS": 4,
-                "Activos_ARS": 0,
-                "VarActivos_ARS": 0,
-                "VarRecuperados_ARS": 0,
-                "EmVigil_ARS": 0,
-                "conf0009m_ARS": 0,
-                "conf0009f_ARS": 0,
-                "conf1019m_ARS": 0,
-                "conf1019f_ARS": 0,
-                "conf2029m_ARS": 0,
-                "conf2029f_ARS": 0,
-                "conf3039m_ARS": 0,
-                "conf3039f_ARS": 0,
-                "conf4049m_ARS": 0,
-                "conf4049f_ARS": 0,
-                "conf5059m_ARS": 0,
-                "conf5059f_ARS": 0,
-                "conf6069m_ARS": 0,
-                "conf6069f_ARS": 0,
-                "conf7079m_ARS": 0,
-                "conf7079f_ARS": 0,
-                "conf80m_ARS": 0,
-                "conf80f_ARS": 0,
-                "obitos0009m_ARS": 0,
-                "obitos0009f_ARS": 0,
-                "obitos1019m_ARS": 0,
-                "obitos1019f_ARS": 0,
-                "obitos2029m_ARS": 0,
-                "obitos2029f_ARS": 0,
-                "obitos3039m_ARS": 0,
-                "obitos3039f_ARS": 0,
-                "obitos4049m_ARS": 0,
-                "obitos4049f_ARS": 0,
-                "obitos5059m_ARS": 0,
-                "obitos5059f_ARS": 0,
-                "obitos6069m_ARS": 0,
-                "obitos6069f_ARS": 0,
-                "obitos7079m_ARS": 0,
-                "obitos7079f_ARS": 0,
-                "obitos80m_ARS": 0,
-                "obitos80f_ARS": 0,
-                "conftotalm_ARS": 0,
-                "conftotalf_ARS": 0,
-                "obitostotalm_ARS": 0,
-                "obitostotalf_ARS": 0,
-                "conf0009total_ARS": 0,
-                "conf1019total_ARS": 0,
-                "conf2029total_ARS": 0,
-                "conf3039total_ARS": 0,
-                "conf4049total_ARS": 0,
-                "conf5059total_ARS": 0,
-                "conf6069total_ARS": 0,
-                "conf7079total_ARS": 0,
-                "conf80total_ARS": 0,
-                "obitos0009total_ARS": 0,
-                "obitos1019total_ARS": 0,
-                "obitos2029total_ARS": 0,
-                "obitos3039total_ARS": 0,
-                "obitos4049total_ARS": 0,
-                "obitos5059total_ARS": 0,
-                "obitos6069total_ARS": 0,
-                "obitos7079total_ARS": 0,
-                "obitos80total_ARS": 0
+                "ARSNome": "Nacional",
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 787059,
+                "ConfirmadosNovos": 1303,
+                "VarObitos": 90,
+                "OBJECTID": 4240
             }
         },
         {
             "attributes": {
-                "OBJECTID": 2,
-                "ARSNome": "ARS Algarve",
-                "ConfirmadosAcumulado_ARS": 19704,
-                "ConfirmadosNovos_ARS": 75,
-                "AguardarResultadosLab_ARS": 0,
-                "Internados_ARS": 0,
-                "InternadosUCI_ARS": 0,
-                "Recuperados_ARS": 0,
-                "Obitos_ARS": 322,
-                "ConfirmadosAcuHomem_ARS": null,
-                "ConfirmadosAcuMulher_ARS": null,
-                "URL1_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/ars_info/COVID19INFOGRAFICOARS_AlgarveV2.html",
-                "URL2_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?ars=5&abc=1#/94d9961e8b37448382de173fddf787c9?ars=5",
-                "Outros1_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?p1=5&abc=1#/7af6f91b922d480390b202e0903106e4?p1=5",
-                "Outros2_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/logoARS/logoARSAlgarve.png",
-                "Obs1_ARS": "",
-                "ARS_ID": 5,
-                "PercentagemAcu_ARS": 44.986301369863,
-                "Fonte1_ARS": "",
-                "Fonte2_ARS": "",
-                "Suspeitos_ARS": 0,
-                "Data_ARS": 1613736000000,
-                "ObitosNovos_ARS": 213,
-                "RecuperadosNovos_ARS": 0,
-                "PercentagemSuspeitos_ARS": null,
-                "Y": 4473211.5009,
-                "X": -905246.0869,
-                "Shape__Area": 7899823178.45361,
-                "Shape__Length": 665279.330801461,
-                "Letalidade_ARS": 0.0163418595209095,
-                "MediaMovel_ARS": 65,
-                "PercentagemD_ARS": 0.00382087727342198,
-                "PercentagemObitosD_ARS": 1.95412844036697,
-                "PercentagemRecuperadosD_ARS": 0,
-                "Populacao_ARS": 438220,
-                "InternadosEnfermaria_ARS": 0,
-                "VarConfirmados_ARS": 75,
-                "VarObitos_ARS": 2,
-                "Activos_ARS": 0,
-                "VarActivos_ARS": 0,
-                "VarRecuperados_ARS": 0,
-                "EmVigil_ARS": 0,
-                "conf0009m_ARS": 0,
-                "conf0009f_ARS": 0,
-                "conf1019m_ARS": 0,
-                "conf1019f_ARS": 0,
-                "conf2029m_ARS": 0,
-                "conf2029f_ARS": 0,
-                "conf3039m_ARS": 0,
-                "conf3039f_ARS": 0,
-                "conf4049m_ARS": 0,
-                "conf4049f_ARS": 0,
-                "conf5059m_ARS": 0,
-                "conf5059f_ARS": 0,
-                "conf6069m_ARS": 0,
-                "conf6069f_ARS": 0,
-                "conf7079m_ARS": 0,
-                "conf7079f_ARS": 0,
-                "conf80m_ARS": 0,
-                "conf80f_ARS": 0,
-                "obitos0009m_ARS": 0,
-                "obitos0009f_ARS": 0,
-                "obitos1019m_ARS": 0,
-                "obitos1019f_ARS": 0,
-                "obitos2029m_ARS": 0,
-                "obitos2029f_ARS": 0,
-                "obitos3039m_ARS": 0,
-                "obitos3039f_ARS": 0,
-                "obitos4049m_ARS": 0,
-                "obitos4049f_ARS": 0,
-                "obitos5059m_ARS": 0,
-                "obitos5059f_ARS": 0,
-                "obitos6069m_ARS": 0,
-                "obitos6069f_ARS": 0,
-                "obitos7079m_ARS": 0,
-                "obitos7079f_ARS": 0,
-                "obitos80m_ARS": 0,
-                "obitos80f_ARS": 0,
-                "conftotalm_ARS": 0,
-                "conftotalf_ARS": 0,
-                "obitostotalm_ARS": 0,
-                "obitostotalf_ARS": 0,
-                "conf0009total_ARS": 0,
-                "conf1019total_ARS": 0,
-                "conf2029total_ARS": 0,
-                "conf3039total_ARS": 0,
-                "conf4049total_ARS": 0,
-                "conf5059total_ARS": 0,
-                "conf6069total_ARS": 0,
-                "conf7079total_ARS": 0,
-                "conf80total_ARS": 0,
-                "obitos0009total_ARS": 0,
-                "obitos1019total_ARS": 0,
-                "obitos2029total_ARS": 0,
-                "obitos3039total_ARS": 0,
-                "obitos4049total_ARS": 0,
-                "obitos5059total_ARS": 0,
-                "obitos6069total_ARS": 0,
-                "obitos7079total_ARS": 0,
-                "obitos80total_ARS": 0
-            }
-        },
-        {
-            "attributes": {
-                "OBJECTID": 3,
-                "ARSNome": "ARS Centro",
-                "ConfirmadosAcumulado_ARS": 113635,
-                "ConfirmadosNovos_ARS": 287,
-                "AguardarResultadosLab_ARS": 0,
-                "Internados_ARS": 0,
-                "InternadosUCI_ARS": 0,
-                "Recuperados_ARS": 0,
-                "Obitos_ARS": 2816,
-                "ConfirmadosAcuHomem_ARS": null,
-                "ConfirmadosAcuMulher_ARS": null,
-                "URL1_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/ars_info/COVID19INFOGRAFICOARS_CentroV2.html",
-                "URL2_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?ars=2&abc=1#/94d9961e8b37448382de173fddf787c9?ars=2",
-                "Outros1_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?p1=2&abc=1#/7af6f91b922d480390b202e0903106e4?p1=2",
-                "Outros2_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/logoARS/logoARSCentro.png",
-                "Obs1_ARS": null,
-                "ARS_ID": 2,
-                "PercentagemAcu_ARS": 70.4931761786601,
-                "Fonte1_ARS": null,
-                "Fonte2_ARS": null,
-                "Suspeitos_ARS": 0,
-                "Data_ARS": 1613736000000,
-                "ObitosNovos_ARS": 395,
-                "RecuperadosNovos_ARS": 1,
-                "PercentagemSuspeitos_ARS": null,
-                "Y": 4907289.7193,
-                "X": -873018.935600001,
-                "Shape__Area": 40030931368.5867,
-                "Shape__Length": 1426215.3360814,
-                "Letalidade_ARS": 0.0247810973731685,
-                "MediaMovel_ARS": 296.285714285714,
-                "PercentagemD_ARS": 0.00253202526731835,
-                "PercentagemObitosD_ARS": 0.163155720776539,
-                "PercentagemRecuperadosD_ARS": 0,
-                "Populacao_ARS": 1612489,
-                "InternadosEnfermaria_ARS": 0,
-                "VarConfirmados_ARS": 287,
-                "VarObitos_ARS": 13,
-                "Activos_ARS": 0,
-                "VarActivos_ARS": 0,
-                "VarRecuperados_ARS": 0,
-                "EmVigil_ARS": 0,
-                "conf0009m_ARS": 0,
-                "conf0009f_ARS": 0,
-                "conf1019m_ARS": 0,
-                "conf1019f_ARS": 0,
-                "conf2029m_ARS": 0,
-                "conf2029f_ARS": 0,
-                "conf3039m_ARS": 0,
-                "conf3039f_ARS": 0,
-                "conf4049m_ARS": 0,
-                "conf4049f_ARS": 0,
-                "conf5059m_ARS": 0,
-                "conf5059f_ARS": 0,
-                "conf6069m_ARS": 0,
-                "conf6069f_ARS": 0,
-                "conf7079m_ARS": 0,
-                "conf7079f_ARS": 0,
-                "conf80m_ARS": 0,
-                "conf80f_ARS": 0,
-                "obitos0009m_ARS": 0,
-                "obitos0009f_ARS": 0,
-                "obitos1019m_ARS": 0,
-                "obitos1019f_ARS": 0,
-                "obitos2029m_ARS": 0,
-                "obitos2029f_ARS": 0,
-                "obitos3039m_ARS": 0,
-                "obitos3039f_ARS": 0,
-                "obitos4049m_ARS": 0,
-                "obitos4049f_ARS": 0,
-                "obitos5059m_ARS": 0,
-                "obitos5059f_ARS": 0,
-                "obitos6069m_ARS": 0,
-                "obitos6069f_ARS": 0,
-                "obitos7079m_ARS": 0,
-                "obitos7079f_ARS": 0,
-                "obitos80m_ARS": 0,
-                "obitos80f_ARS": 0,
-                "conftotalm_ARS": 0,
-                "conftotalf_ARS": 0,
-                "obitostotalm_ARS": 0,
-                "obitostotalf_ARS": 0,
-                "conf0009total_ARS": 0,
-                "conf1019total_ARS": 0,
-                "conf2029total_ARS": 0,
-                "conf3039total_ARS": 0,
-                "conf4049total_ARS": 0,
-                "conf5059total_ARS": 0,
-                "conf6069total_ARS": 0,
-                "conf7079total_ARS": 0,
-                "conf80total_ARS": 0,
-                "obitos0009total_ARS": 0,
-                "obitos1019total_ARS": 0,
-                "obitos2029total_ARS": 0,
-                "obitos3039total_ARS": 0,
-                "obitos4049total_ARS": 0,
-                "obitos5059total_ARS": 0,
-                "obitos6069total_ARS": 0,
-                "obitos7079total_ARS": 0,
-                "obitos80total_ARS": 0
-            }
-        },
-        {
-            "attributes": {
-                "OBJECTID": 5,
                 "ARSNome": "ARS Norte",
-                "ConfirmadosAcumulado_ARS": 323885,
-                "ConfirmadosNovos_ARS": 403,
-                "AguardarResultadosLab_ARS": 0,
-                "Internados_ARS": 0,
-                "InternadosUCI_ARS": 0,
-                "Recuperados_ARS": 0,
-                "Obitos_ARS": 5122,
-                "ConfirmadosAcuHomem_ARS": null,
-                "ConfirmadosAcuMulher_ARS": null,
-                "URL1_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/ars_info/COVID19INFOGRAFICOARS_NorteV2.html",
-                "URL2_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?ars=1&abc=1#/94d9961e8b37448382de173fddf787c9?ars=1",
-                "Outros1_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?p1=1&abc=1#/7af6f91b922d480390b202e0903106e4?p1=1",
-                "Outros2_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/logoARS/logoARSNorte.png",
-                "Obs1_ARS": "",
-                "ARS_ID": 1,
-                "PercentagemAcu_ARS": 90.6732922732363,
-                "Fonte1_ARS": "",
-                "Fonte2_ARS": "",
-                "Suspeitos_ARS": 0,
-                "Data_ARS": 1613736000000,
-                "ObitosNovos_ARS": 288,
-                "RecuperadosNovos_ARS": 0,
-                "PercentagemSuspeitos_ARS": null,
-                "Y": 5080166.3594,
-                "X": -854789.530699998,
-                "Shape__Area": 37929382988.8726,
-                "Shape__Length": 1368413.69614766,
-                "Letalidade_ARS": 0.0158142550596662,
-                "MediaMovel_ARS": 475.571428571429,
-                "PercentagemD_ARS": 0.00124581893273814,
-                "PercentagemObitosD_ARS": 0.0595779892428631,
-                "PercentagemRecuperadosD_ARS": 0,
-                "Populacao_ARS": 3572639,
-                "InternadosEnfermaria_ARS": 0,
-                "VarConfirmados_ARS": 403,
-                "VarObitos_ARS": 10,
-                "Activos_ARS": 0,
-                "VarActivos_ARS": 0,
-                "VarRecuperados_ARS": 0,
-                "EmVigil_ARS": 0,
-                "conf0009m_ARS": 0,
-                "conf0009f_ARS": 0,
-                "conf1019m_ARS": 0,
-                "conf1019f_ARS": 0,
-                "conf2029m_ARS": 0,
-                "conf2029f_ARS": 0,
-                "conf3039m_ARS": 0,
-                "conf3039f_ARS": 0,
-                "conf4049m_ARS": 0,
-                "conf4049f_ARS": 0,
-                "conf5059m_ARS": 0,
-                "conf5059f_ARS": 0,
-                "conf6069m_ARS": 0,
-                "conf6069f_ARS": 0,
-                "conf7079m_ARS": 0,
-                "conf7079f_ARS": 0,
-                "conf80m_ARS": 0,
-                "conf80f_ARS": 0,
-                "obitos0009m_ARS": 0,
-                "obitos0009f_ARS": 0,
-                "obitos1019m_ARS": 0,
-                "obitos1019f_ARS": 0,
-                "obitos2029m_ARS": 0,
-                "obitos2029f_ARS": 0,
-                "obitos3039m_ARS": 0,
-                "obitos3039f_ARS": 0,
-                "obitos4049m_ARS": 0,
-                "obitos4049f_ARS": 0,
-                "obitos5059m_ARS": 0,
-                "obitos5059f_ARS": 0,
-                "obitos6069m_ARS": 0,
-                "obitos6069f_ARS": 0,
-                "obitos7079m_ARS": 0,
-                "obitos7079f_ARS": 0,
-                "obitos80m_ARS": 0,
-                "obitos80f_ARS": 0,
-                "conftotalm_ARS": 0,
-                "conftotalf_ARS": 0,
-                "obitostotalm_ARS": 0,
-                "obitostotalf_ARS": 0,
-                "conf0009total_ARS": 0,
-                "conf1019total_ARS": 0,
-                "conf2029total_ARS": 0,
-                "conf3039total_ARS": 0,
-                "conf4049total_ARS": 0,
-                "conf5059total_ARS": 0,
-                "conf6069total_ARS": 0,
-                "conf7079total_ARS": 0,
-                "conf80total_ARS": 0,
-                "obitos0009total_ARS": 0,
-                "obitos1019total_ARS": 0,
-                "obitos2029total_ARS": 0,
-                "obitos3039total_ARS": 0,
-                "obitos4049total_ARS": 0,
-                "obitos5059total_ARS": 0,
-                "obitos6069total_ARS": 0,
-                "obitos7079total_ARS": 0,
-                "obitos80total_ARS": 0
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 322105,
+                "ConfirmadosNovos": 288,
+                "VarObitos": 18,
+                "OBJECTID": 4241
             }
         },
         {
             "attributes": {
-                "OBJECTID": 6,
-                "ARSNome": "Açores",
-                "ConfirmadosAcumulado_ARS": 3707,
-                "ConfirmadosNovos_ARS": 11,
-                "AguardarResultadosLab_ARS": 0,
-                "Internados_ARS": 0,
-                "InternadosUCI_ARS": 0,
-                "Recuperados_ARS": 0,
-                "Obitos_ARS": 28,
-                "ConfirmadosAcuHomem_ARS": null,
-                "ConfirmadosAcuMulher_ARS": null,
-                "URL1_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/ars_info/COVID19INFOGRAFICOARS_RAAV2.html",
-                "URL2_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?ars=6&abc=1#/94d9961e8b37448382de173fddf787c9?ars=6",
-                "Outros1_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?p1=6&abc=1#/7af6f91b922d480390b202e0903106e4?p1=6",
-                "Outros2_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/logoARS/logoRAA.png",
-                "Obs1_ARS": "",
-                "ARS_ID": 6,
-                "PercentagemAcu_ARS": 15.2551440329218,
-                "Fonte1_ARS": "",
-                "Fonte2_ARS": "",
-                "Suspeitos_ARS": 0,
-                "Data_ARS": 1613736000000,
-                "ObitosNovos_ARS": -10,
-                "RecuperadosNovos_ARS": 0,
-                "PercentagemSuspeitos_ARS": null,
-                "Y": 4552624.6164,
-                "X": -2862112.37,
-                "Shape__Area": 3783616564.82422,
-                "Shape__Length": 1155245.00886106,
-                "Letalidade_ARS": 0.00755327758295117,
-                "MediaMovel_ARS": 6.71428571428571,
-                "PercentagemD_ARS": 0.00297619047619048,
-                "PercentagemObitosD_ARS": -0.263157894736842,
-                "PercentagemRecuperadosD_ARS": 0,
-                "Populacao_ARS": 243047,
-                "InternadosEnfermaria_ARS": 0,
-                "VarConfirmados_ARS": 11,
-                "VarObitos_ARS": 0,
-                "Activos_ARS": 0,
-                "VarActivos_ARS": 0,
-                "VarRecuperados_ARS": 0,
-                "EmVigil_ARS": 0,
-                "conf0009m_ARS": 0,
-                "conf0009f_ARS": 0,
-                "conf1019m_ARS": 0,
-                "conf1019f_ARS": 0,
-                "conf2029m_ARS": 0,
-                "conf2029f_ARS": 0,
-                "conf3039m_ARS": 0,
-                "conf3039f_ARS": 0,
-                "conf4049m_ARS": 0,
-                "conf4049f_ARS": 0,
-                "conf5059m_ARS": 0,
-                "conf5059f_ARS": 0,
-                "conf6069m_ARS": 0,
-                "conf6069f_ARS": 0,
-                "conf7079m_ARS": 0,
-                "conf7079f_ARS": 0,
-                "conf80m_ARS": 0,
-                "conf80f_ARS": 0,
-                "obitos0009m_ARS": 0,
-                "obitos0009f_ARS": 0,
-                "obitos1019m_ARS": 0,
-                "obitos1019f_ARS": 0,
-                "obitos2029m_ARS": 0,
-                "obitos2029f_ARS": 0,
-                "obitos3039m_ARS": 0,
-                "obitos3039f_ARS": 0,
-                "obitos4049m_ARS": 0,
-                "obitos4049f_ARS": 0,
-                "obitos5059m_ARS": 0,
-                "obitos5059f_ARS": 0,
-                "obitos6069m_ARS": 0,
-                "obitos6069f_ARS": 0,
-                "obitos7079m_ARS": 0,
-                "obitos7079f_ARS": 0,
-                "obitos80m_ARS": 0,
-                "obitos80f_ARS": 0,
-                "conftotalm_ARS": 0,
-                "conftotalf_ARS": 0,
-                "obitostotalm_ARS": 0,
-                "obitostotalf_ARS": 0,
-                "conf0009total_ARS": 0,
-                "conf1019total_ARS": 0,
-                "conf2029total_ARS": 0,
-                "conf3039total_ARS": 0,
-                "conf4049total_ARS": 0,
-                "conf5059total_ARS": 0,
-                "conf6069total_ARS": 0,
-                "conf7079total_ARS": 0,
-                "conf80total_ARS": 0,
-                "obitos0009total_ARS": 0,
-                "obitos1019total_ARS": 0,
-                "obitos2029total_ARS": 0,
-                "obitos3039total_ARS": 0,
-                "obitos4049total_ARS": 0,
-                "obitos5059total_ARS": 0,
-                "obitos6069total_ARS": 0,
-                "obitos7079total_ARS": 0,
-                "obitos80total_ARS": 0
+                "ARSNome": "ARS Centro",
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 112394,
+                "ConfirmadosNovos": 98,
+                "VarObitos": 15,
+                "OBJECTID": 4242
             }
         },
         {
             "attributes": {
-                "OBJECTID": 7,
-                "ARSNome": "Madeira",
-                "ConfirmadosAcumulado_ARS": 5782,
-                "ConfirmadosNovos_ARS": 140,
-                "AguardarResultadosLab_ARS": 0,
-                "Internados_ARS": 0,
-                "InternadosUCI_ARS": 0,
-                "Recuperados_ARS": 0,
-                "Obitos_ARS": 59,
-                "ConfirmadosAcuHomem_ARS": null,
-                "ConfirmadosAcuMulher_ARS": null,
-                "URL1_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/ars_info/COVID19INFOGRAFICOARS_RAMV2.html",
-                "URL2_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?ars=7&abc=1#/94d9961e8b37448382de173fddf787c9?ars=7",
-                "Outros1_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?p1=7&abc=1#/7af6f91b922d480390b202e0903106e4?p1=7",
-                "Outros2_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/logoARS/logoRAM.png",
-                "Obs1_ARS": "",
-                "ARS_ID": 7,
-                "PercentagemAcu_ARS": 22.8537549407115,
-                "Fonte1_ARS": "",
-                "Fonte2_ARS": "",
-                "Suspeitos_ARS": 0,
-                "Data_ARS": 1613736000000,
-                "ObitosNovos_ARS": 111,
-                "RecuperadosNovos_ARS": 0,
-                "PercentagemSuspeitos_ARS": null,
-                "Y": 3862264.3987,
-                "X": -1887012.9551,
-                "Shape__Area": 1136258269.46045,
-                "Shape__Length": 447598.114481183,
-                "Letalidade_ARS": 0.0102040816326531,
-                "MediaMovel_ARS": 59.1428571428571,
-                "PercentagemD_ARS": 0.0248138957816377,
-                "PercentagemObitosD_ARS": 0,
-                "PercentagemRecuperadosD_ARS": 0,
-                "Populacao_ARS": 253710,
-                "InternadosEnfermaria_ARS": 0,
-                "VarConfirmados_ARS": 140,
-                "VarObitos_ARS": 0,
-                "Activos_ARS": 0,
-                "VarActivos_ARS": 0,
-                "VarRecuperados_ARS": 0,
-                "EmVigil_ARS": 0,
-                "conf0009m_ARS": 0,
-                "conf0009f_ARS": 0,
-                "conf1019m_ARS": 0,
-                "conf1019f_ARS": 0,
-                "conf2029m_ARS": 0,
-                "conf2029f_ARS": 0,
-                "conf3039m_ARS": 0,
-                "conf3039f_ARS": 0,
-                "conf4049m_ARS": 0,
-                "conf4049f_ARS": 0,
-                "conf5059m_ARS": 0,
-                "conf5059f_ARS": 0,
-                "conf6069m_ARS": 0,
-                "conf6069f_ARS": 0,
-                "conf7079m_ARS": 0,
-                "conf7079f_ARS": 0,
-                "conf80m_ARS": 0,
-                "conf80f_ARS": 0,
-                "obitos0009m_ARS": 0,
-                "obitos0009f_ARS": 0,
-                "obitos1019m_ARS": 0,
-                "obitos1019f_ARS": 0,
-                "obitos2029m_ARS": 0,
-                "obitos2029f_ARS": 0,
-                "obitos3039m_ARS": 0,
-                "obitos3039f_ARS": 0,
-                "obitos4049m_ARS": 0,
-                "obitos4049f_ARS": 0,
-                "obitos5059m_ARS": 0,
-                "obitos5059f_ARS": 0,
-                "obitos6069m_ARS": 0,
-                "obitos6069f_ARS": 0,
-                "obitos7079m_ARS": 0,
-                "obitos7079f_ARS": 0,
-                "obitos80m_ARS": 0,
-                "obitos80f_ARS": 0,
-                "conftotalm_ARS": 0,
-                "conftotalf_ARS": 0,
-                "obitostotalm_ARS": 0,
-                "obitostotalf_ARS": 0,
-                "conf0009total_ARS": 0,
-                "conf1019total_ARS": 0,
-                "conf2029total_ARS": 0,
-                "conf3039total_ARS": 0,
-                "conf4049total_ARS": 0,
-                "conf5059total_ARS": 0,
-                "conf6069total_ARS": 0,
-                "conf7079total_ARS": 0,
-                "conf80total_ARS": 0,
-                "obitos0009total_ARS": 0,
-                "obitos1019total_ARS": 0,
-                "obitos2029total_ARS": 0,
-                "obitos3039total_ARS": 0,
-                "obitos4049total_ARS": 0,
-                "obitos5059total_ARS": 0,
-                "obitos6069total_ARS": 0,
-                "obitos7079total_ARS": 0,
-                "obitos80total_ARS": 0
-            }
-        },
-        {
-            "attributes": {
-                "OBJECTID": 54,
                 "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "ConfirmadosAcumulado_ARS": 299988,
-                "ConfirmadosNovos_ARS": 975,
-                "AguardarResultadosLab_ARS": 0,
-                "Internados_ARS": 0,
-                "InternadosUCI_ARS": 0,
-                "Recuperados_ARS": 0,
-                "Obitos_ARS": 6559,
-                "ConfirmadosAcuHomem_ARS": null,
-                "ConfirmadosAcuMulher_ARS": null,
-                "URL1_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/ars_info/COVID19INFOGRAFICOARS_LVTV2.html",
-                "URL2_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?ars=3&abc=1#/94d9961e8b37448382de173fddf787c9?ars=3",
-                "Outros1_ARS": "https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html?p1=3&abc=1#/7af6f91b922d480390b202e0903106e4?p1=3",
-                "Outros2_ARS": "https://covidsuporte.esri-portugal.pt/covid-concelhos/logoARS/logoARSLVT.png",
-                "Obs1_ARS": null,
-                "ARS_ID": 3,
-                "PercentagemAcu_ARS": 81.3637103336046,
-                "Fonte1_ARS": null,
-                "Fonte2_ARS": null,
-                "Suspeitos_ARS": 0,
-                "Data_ARS": 1613736000000,
-                "ObitosNovos_ARS": 2688,
-                "RecuperadosNovos_ARS": 7,
-                "PercentagemSuspeitos_ARS": null,
-                "Y": 4744545.0809,
-                "X": -973677.888999999,
-                "Shape__Area": 20343919639.1497,
-                "Shape__Length": 1298303.60690119,
-                "Letalidade_ARS": 0.0218642079016494,
-                "MediaMovel_ARS": 957.857142857143,
-                "PercentagemD_ARS": 0.00326072779444372,
-                "PercentagemObitosD_ARS": 0.694394213381555,
-                "PercentagemRecuperadosD_ARS": 0,
-                "Populacao_ARS": 3687034,
-                "InternadosEnfermaria_ARS": 0,
-                "VarConfirmados_ARS": 975,
-                "VarObitos_ARS": 38,
-                "Activos_ARS": 0,
-                "VarActivos_ARS": 0,
-                "VarRecuperados_ARS": 0,
-                "EmVigil_ARS": 0,
-                "conf0009m_ARS": 0,
-                "conf0009f_ARS": 0,
-                "conf1019m_ARS": 0,
-                "conf1019f_ARS": 0,
-                "conf2029m_ARS": 0,
-                "conf2029f_ARS": 0,
-                "conf3039m_ARS": 0,
-                "conf3039f_ARS": 0,
-                "conf4049m_ARS": 0,
-                "conf4049f_ARS": 0,
-                "conf5059m_ARS": 0,
-                "conf5059f_ARS": 0,
-                "conf6069m_ARS": 0,
-                "conf6069f_ARS": 0,
-                "conf7079m_ARS": 0,
-                "conf7079f_ARS": 0,
-                "conf80m_ARS": 0,
-                "conf80f_ARS": 0,
-                "obitos0009m_ARS": 0,
-                "obitos0009f_ARS": 0,
-                "obitos1019m_ARS": 0,
-                "obitos1019f_ARS": 0,
-                "obitos2029m_ARS": 0,
-                "obitos2029f_ARS": 0,
-                "obitos3039m_ARS": 0,
-                "obitos3039f_ARS": 0,
-                "obitos4049m_ARS": 0,
-                "obitos4049f_ARS": 0,
-                "obitos5059m_ARS": 0,
-                "obitos5059f_ARS": 0,
-                "obitos6069m_ARS": 0,
-                "obitos6069f_ARS": 0,
-                "obitos7079m_ARS": 0,
-                "obitos7079f_ARS": 0,
-                "obitos80m_ARS": 0,
-                "obitos80f_ARS": 0,
-                "conftotalm_ARS": 0,
-                "conftotalf_ARS": 0,
-                "obitostotalm_ARS": 0,
-                "obitostotalf_ARS": 0,
-                "conf0009total_ARS": 0,
-                "conf1019total_ARS": 0,
-                "conf2029total_ARS": 0,
-                "conf3039total_ARS": 0,
-                "conf4049total_ARS": 0,
-                "conf5059total_ARS": 0,
-                "conf6069total_ARS": 0,
-                "conf7079total_ARS": 0,
-                "conf80total_ARS": 0,
-                "obitos0009total_ARS": 0,
-                "obitos1019total_ARS": 0,
-                "obitos2029total_ARS": 0,
-                "obitos3039total_ARS": 0,
-                "obitos4049total_ARS": 0,
-                "obitos5059total_ARS": 0,
-                "obitos6069total_ARS": 0,
-                "obitos7079total_ARS": 0,
-                "obitos80total_ARS": 0
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 296210,
+                "ConfirmadosNovos": 779,
+                "VarObitos": 48,
+                "OBJECTID": 4243
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 27787,
+                "ConfirmadosNovos": 70,
+                "VarObitos": 3,
+                "OBJECTID": 4244
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 19398,
+                "ConfirmadosNovos": 30,
+                "VarObitos": 6,
+                "OBJECTID": 4245
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 3671,
+                "ConfirmadosNovos": 0,
+                "VarObitos": 0,
+                "OBJECTID": 4246
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1613390400000,
+                "ConfirmadosAcumulado": 5494,
+                "ConfirmadosNovos": 38,
+                "VarObitos": 0,
+                "OBJECTID": 4247
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 788561,
+                "ConfirmadosNovos": 1502,
+                "VarObitos": 111,
+                "OBJECTID": 4248
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 322511,
+                "ConfirmadosNovos": 406,
+                "VarObitos": 20,
+                "OBJECTID": 4249
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 112694,
+                "ConfirmadosNovos": 300,
+                "VarObitos": 20,
+                "OBJECTID": 4250
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 296820,
+                "ConfirmadosNovos": 610,
+                "VarObitos": 59,
+                "OBJECTID": 4251
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 27852,
+                "ConfirmadosNovos": 65,
+                "VarObitos": 10,
+                "OBJECTID": 4252
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 19472,
+                "ConfirmadosNovos": 74,
+                "VarObitos": 2,
+                "OBJECTID": 4253
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 3672,
+                "ConfirmadosNovos": 1,
+                "VarObitos": 0,
+                "OBJECTID": 4254
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1613476800000,
+                "ConfirmadosAcumulado": 5540,
+                "ConfirmadosNovos": 46,
+                "VarObitos": 0,
+                "OBJECTID": 4255
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 790885,
+                "ConfirmadosNovos": 2324,
+                "VarObitos": 127,
+                "OBJECTID": 4256
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 322993,
+                "ConfirmadosNovos": 482,
+                "VarObitos": 22,
+                "OBJECTID": 4257
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 113061,
+                "ConfirmadosNovos": 367,
+                "VarObitos": 21,
+                "OBJECTID": 4258
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 298044,
+                "ConfirmadosNovos": 1224,
+                "VarObitos": 71,
+                "OBJECTID": 4259
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 27960,
+                "ConfirmadosNovos": 108,
+                "VarObitos": 7,
+                "OBJECTID": 4260
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 19573,
+                "ConfirmadosNovos": 101,
+                "VarObitos": 6,
+                "OBJECTID": 4261
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 3680,
+                "ConfirmadosNovos": 8,
+                "VarObitos": 0,
+                "OBJECTID": 4262
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1613563200000,
+                "ConfirmadosAcumulado": 5574,
+                "ConfirmadosNovos": 34,
+                "VarObitos": 0,
+                "OBJECTID": 4263
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 792829,
+                "ConfirmadosNovos": 1944,
+                "VarObitos": 105,
+                "OBJECTID": 4264
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 323482,
+                "ConfirmadosNovos": 489,
+                "VarObitos": 20,
+                "OBJECTID": 4265
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 113348,
+                "ConfirmadosNovos": 287,
+                "VarObitos": 17,
+                "OBJECTID": 4266
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 299013,
+                "ConfirmadosNovos": 969,
+                "VarObitos": 56,
+                "OBJECTID": 4267
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 28019,
+                "ConfirmadosNovos": 59,
+                "VarObitos": 6,
+                "OBJECTID": 4268
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 19629,
+                "ConfirmadosNovos": 56,
+                "VarObitos": 6,
+                "OBJECTID": 4269
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 3696,
+                "ConfirmadosNovos": 16,
+                "VarObitos": 0,
+                "OBJECTID": 4270
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1613649600000,
+                "ConfirmadosAcumulado": 5642,
+                "ConfirmadosNovos": 68,
+                "VarObitos": 0,
+                "OBJECTID": 4271
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 794769,
+                "ConfirmadosNovos": 1940,
+                "VarObitos": 67,
+                "OBJECTID": 4272
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 323885,
+                "ConfirmadosNovos": 403,
+                "VarObitos": 10,
+                "OBJECTID": 4273
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 113635,
+                "ConfirmadosNovos": 287,
+                "VarObitos": 13,
+                "OBJECTID": 4274
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 299988,
+                "ConfirmadosNovos": 975,
+                "VarObitos": 38,
+                "OBJECTID": 4275
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 28068,
+                "ConfirmadosNovos": 49,
+                "VarObitos": 4,
+                "OBJECTID": 4276
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 19704,
+                "ConfirmadosNovos": 75,
+                "VarObitos": 2,
+                "OBJECTID": 4277
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 3707,
+                "ConfirmadosNovos": 11,
+                "VarObitos": 0,
+                "OBJECTID": 4278
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1613736000000,
+                "ConfirmadosAcumulado": 5782,
+                "ConfirmadosNovos": 140,
+                "VarObitos": 0,
+                "OBJECTID": 4279
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 796339,
+                "ConfirmadosNovos": 1570,
+                "VarObitos": 76,
+                "OBJECTID": 4280
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 324254,
+                "ConfirmadosNovos": 369,
+                "VarObitos": 18,
+                "OBJECTID": 4281
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 113849,
+                "ConfirmadosNovos": 214,
+                "VarObitos": 13,
+                "OBJECTID": 4282
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 300758,
+                "ConfirmadosNovos": 770,
+                "VarObitos": 36,
+                "OBJECTID": 4283
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 28099,
+                "ConfirmadosNovos": 31,
+                "VarObitos": 6,
+                "OBJECTID": 4284
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 19788,
+                "ConfirmadosNovos": 84,
+                "VarObitos": 3,
+                "OBJECTID": 4285
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 3710,
+                "ConfirmadosNovos": 3,
+                "VarObitos": 0,
+                "OBJECTID": 4286
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1613822400000,
+                "ConfirmadosAcumulado": 5881,
+                "ConfirmadosNovos": 99,
+                "VarObitos": 0,
+                "OBJECTID": 4287
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 797525,
+                "ConfirmadosNovos": 1186,
+                "VarObitos": 65,
+                "OBJECTID": 4288
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 324612,
+                "ConfirmadosNovos": 358,
+                "VarObitos": 11,
+                "OBJECTID": 4289
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 114051,
+                "ConfirmadosNovos": 202,
+                "VarObitos": 15,
+                "OBJECTID": 4290
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 301242,
+                "ConfirmadosNovos": 484,
+                "VarObitos": 35,
+                "OBJECTID": 4291
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 28141,
+                "ConfirmadosNovos": 42,
+                "VarObitos": 1,
+                "OBJECTID": 4292
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 19810,
+                "ConfirmadosNovos": 22,
+                "VarObitos": 3,
+                "OBJECTID": 4293
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 3717,
+                "ConfirmadosNovos": 7,
+                "VarObitos": 0,
+                "OBJECTID": 4294
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1613908800000,
+                "ConfirmadosAcumulado": 5952,
+                "ConfirmadosNovos": 71,
+                "VarObitos": 0,
+                "OBJECTID": 4295
             }
         }
     ]

@@ -243,6 +243,7 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h3 className={styles.title}>Ponto de situação por ARS</h3>
+								<h3 className={styles.subtitle}>Dados acumulados relativos à semana de 15 até 21 de Fevereiro de 2021</h3>
 								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
