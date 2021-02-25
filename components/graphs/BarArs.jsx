@@ -36,14 +36,14 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
 	console.log(data);
 	const graphData = (canvas) => {
-		if (window.outerWidth <= 800) {
+		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '800px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.outerWidth <= 800) {
+			if (window.innerWidth <= 800) {
 				canvas.parentNode.style.width = '800px';
 			} else {
 				canvas.parentNode.style.width = '100%';

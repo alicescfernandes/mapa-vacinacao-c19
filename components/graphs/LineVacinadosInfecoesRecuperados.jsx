@@ -41,7 +41,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.outerWidth <= 800) {
+			if (window.innerWidth <= 800) {
 				canvas.parentNode.style.width = '1000px';
 			} else {
 				canvas.parentNode.style.width = '100%';

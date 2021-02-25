@@ -297,7 +297,7 @@ export function useData() {
 		},
 		getTotalSNS: () => {
 			return sns.filter((el) => {
-				return el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL';
+				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == '15/02/2021';
 			});
 		},
 		getTotalARS: () => {

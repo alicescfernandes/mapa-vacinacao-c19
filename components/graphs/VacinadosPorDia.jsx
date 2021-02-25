@@ -16,14 +16,14 @@ export function VacinadosPorDia({ statistics, colors }) {
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 
-		if (window.outerWidth <= 800) {
+		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.outerWidth <= 800) {
+			if (window.innerWidth <= 800) {
 				canvas.parentNode.style.width = '1000px';
 			} else {
 				canvas.parentNode.style.width = '100%';

@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
 import { isSameDay, format } from 'date-fns';
-
+import { GooSpinner, ImpulseSpinner, JellyfishSpinner, PushSpinner, RotateSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import { useColors } from '../hooks/useColors';
@@ -20,6 +20,7 @@ import fases from './../data/fases.json';
 import { Card } from '../components/Card';
 import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
+import { BarsVacinacaoArs } from '../components/graphs/BarsVacinacaoArs';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
@@ -130,10 +131,10 @@ export default function Home() {
 					</p>
 				</Col>
 			</Row>
-			{loaded ? (
-				<>
-					{' '}
-					<Container className="container-fluid">
+			<Container className="container-fluid app">
+				{loaded ? (
+					<>
+						{' '}
 						<Row className={styles.datepickerRow}>
 							<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}</Col>
 						</Row>
@@ -221,6 +222,7 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h3 className={styles.title}>Doses totais administradas por faixa etária</h3>
+								<h3 className={styles.subtitle}>Dados acumulados deste 21 de Dezembro de 2021 até 21 de Fevereiro de 2021</h3>
 								<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
 							</Col>
 						</Row>
@@ -242,7 +244,18 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Ponto de situação por ARS</h3>
+								<h3 className={styles.title}>
+									Evolução do programa de vacinação por ARS <sup className={'new'}>novo</sup>
+								</h3>
+								<h3 className={styles.subtitle}>Dados acumulados deste 21 de Dezembro de 2021 até 21 de Fevereiro de 2021</h3>
+								<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h3 className={styles.title}>
+									Ponto de situação por ARS <sup className={'new'}>novo</sup>
+								</h3>
 								<h3 className={styles.subtitle}>Dados acumulados relativos à semana de 15 até 21 de Fevereiro de 2021</h3>
 								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
@@ -305,11 +318,13 @@ export default function Home() {
 								</p>
 							</Col>
 						</Row>
-					</Container>{' '}
-				</>
-			) : (
-				''
-			)}
+					</>
+				) : (
+					<div style={{ display: 'block', width: 50, margin: 'auto ' }}>
+						<GooSpinner size={50} color={colors_v2.main} />
+					</div>
+				)}
+			</Container>
 			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
 			<script src="https://js.pusher.com/7.0/pusher.min.js"></script> <Footer></Footer>
 		</>
