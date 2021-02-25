@@ -1,6 +1,14 @@
 @import '../styles/colors.scss';
 
 .card {
+	.container {
+		padding: 0;
+		.collapsed {
+			height: 0;
+			overflow: hidden;
+		}
+	}
+
 	&_graph {
 		background: white;
 

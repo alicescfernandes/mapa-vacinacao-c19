@@ -3,7 +3,9 @@ import { Line } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber, hexToRgb } from '../../utils';
 
-export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, colors }) {
+export function NumeroTotalVacinados({ colors, statistics }) {
+	let { labels, values } = statistics.getDailyData();
+	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let [loading, setLoading] = useState(true);
 	let [height, setHeight] = useState(400);
 	let [foreground, color_1, color_2] = colors;
@@ -33,14 +35,14 @@ export function NumeroTotalVacinados({ labels, values, valuesIn1, valuesIn2, col
 			gradient.addColorStop(1, '#ffffff');
 		}
 
-		if (window.outerWidth <= 800) {
+		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.outerWidth <= 800) {
+			if (window.innerWidth <= 800) {
 				canvas.parentNode.style.width = '1000px';
 			} else {
 				canvas.parentNode.style.width = '100%';

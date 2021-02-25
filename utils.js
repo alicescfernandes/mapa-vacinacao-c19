@@ -57,3 +57,25 @@ export function trackPlausible(req) {
 			console.log('err');
 		});
 }
+
+export function fetchWithLocalCache(url, options, useCache = false) {
+	try {
+		if (window && localStorage.getItem(url) && useCache === true) {
+			let data = JSON.parse(localStorage.getItem(url));
+			return Promise.resolve(data);
+		} else {
+			return fetch(url, options)
+				.then((res) => res.json())
+				.then((data) => {
+					localStorage.setItem(url, JSON.stringify(data));
+					return data;
+				});
+		}
+	} catch (err) {
+		return fetch(url, options)
+			.then((res) => res.json())
+			.then((data) => {
+				return data;
+			});
+	}
+}
