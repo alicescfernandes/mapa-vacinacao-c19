@@ -58,3 +58,6 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - ~~Fase do Plano de Vacinação~~
 - ~~Notícias (widget de noticias recentes relacionadas com as vacinas)~~  
 
+
+
+
