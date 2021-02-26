@@ -30,7 +30,7 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - Minor refactor para contemplar novos gráficos
 - Serviço de embeds de gráficos (V2)
 - Partilhas nas redes sociais de dados  
-- Refazer todo a parte dos dados: Neste momento são disparados demasiados pedidos cujo os dados podem ser _cachados_
+- ~~Refazer todo a parte dos dados: Neste momento são disparados demasiados pedidos cujo os dados podem ser _cachados_~~
 
 ## Backlog - Gráficos
 - ~~Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)~~
