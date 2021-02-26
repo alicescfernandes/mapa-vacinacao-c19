@@ -10,6 +10,12 @@ import { useData } from '../../hooks/useData';
 import styles from '../../styles/Home.module.scss';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
+import Plausible from 'plausible-tracker';
+
+const plausible = Plausible({
+	domain: 'vacinacaocovid19.pt',
+	trackLocalhost: true,
+});
 
 import { useColors } from './../../hooks/useColors';
 export default function Embed() {
@@ -59,6 +65,7 @@ export default function Embed() {
 		setPreviousItem(rawData[rawData.length - 2]);
 		setFirst(rawData[0]);
 		setLoaded(true);
+		plausible.trackPageview();
 	}, []);
 
 	useEffect(() => {
