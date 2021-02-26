@@ -15,27 +15,6 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - [Our World of Data](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Portugal.csv)  
 - [Centro Europeu de Controlo de Doenças](https://covid19-vaccine-report.ecdc.europa.eu/)  
 
-## Embeds
-É possivel fazer _embeds_ aos gráficos mostrados no dashboard. Também dá para personalizar as cores dos gráficos
-```html
-<iframe src="https://vacinacaocovid19.pt/embed/bar?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
-```
-![](./_readme/exemplo.png)
-### Tipos de Embeds
-#### Números atuais
-```html
-<iframe src="https://vacinacaocovid19.pt/embed/counter?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
-```
-#### Número vacinas administradas
-```html
-<iframe src="https://vacinacaocovid19.pt/embed/line?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
-```
-#### Número de vacinas administradas por dia
-```html
-<iframe src="https://vacinacaocovid19.pt/embed/bar?colors=ff00ff&colors=ffff00&colors=ff0000&colors=0000ff&colors=00ff00"/>
-```
-
-
 ## Stack
 - ChartJS  
 - React  
