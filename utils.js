@@ -42,9 +42,8 @@ export function trackPlausible(req) {
 	let data = { name: 'pageview', url: 'https://www.vacinacaocovid19.pt' + url, domain: 'vacinacaocovid19.pt', referrer: referer, screen_width: null };
 
 	if (host.match('localhost')) return;
-	//if (host.match('vacinacaocovid19.pt')) return;
-	//if (host.match('mapa-vacinacao-c19.vercel.app')) return;
-	console.log(headers, JSON.stringify(data));
+	if (req.headers['x-request-self'] === 'true') return;
+	console.log('track', headers, JSON.stringify(data));
 	fetchNode('https://plausible.io/api/event', {
 		method: 'post',
 		headers,
@@ -64,7 +63,12 @@ export function fetchWithLocalCache(url, options, useCache = false) {
 			let data = JSON.parse(localStorage.getItem(url));
 			return Promise.resolve(data);
 		} else {
-			return fetch(url, options)
+			return fetch(url, {
+				...options,
+				headers: {
+					'X-Request-Self': true,
+				},
+			})
 				.then((res) => res.json())
 				.then((data) => {
 					localStorage.setItem(url, JSON.stringify(data));
@@ -72,7 +76,12 @@ export function fetchWithLocalCache(url, options, useCache = false) {
 				});
 		}
 	} catch (err) {
-		return fetch(url, options)
+		return fetch(url, {
+			...options,
+			headers: {
+				'X-Request-Self': true,
+			},
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				return data;
