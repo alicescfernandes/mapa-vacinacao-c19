@@ -34,7 +34,6 @@ let styles = {
 
 function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
-	console.log(data);
 	const graphData = (canvas) => {
 		if (window.innerWidth <= 800) {
 			canvas.parentNode.style.width = '800px';
