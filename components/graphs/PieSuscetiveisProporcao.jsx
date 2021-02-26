@@ -10,8 +10,15 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: valueCasesDiarios } = statistics.getDiariosCases();
 	let vaccines = statistics.getRaw();
-	let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + valueCasesDiarios.reverse()[0].Activos + valueCasesDiarios.reverse()[0].Recuperados + valueCasesDiarios.reverse()[0].Obitos);
+	let firstItem = valueCasesDiarios.reverse()[0];
+	let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + firstItem.Activos + firstItem.Recuperados + firstItem.Obitos);
+	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + firstItem.Activos + firstItem.Recuperados + firstItem()[0].Obitos);
+	/*
 
+	// (234160 / 10286300) * 100
+	781223 - 234160
+	poptotal - inoculados2a - infetatosnvacinados - obitos
+*/
 	let { main, shades, tints, complements } = colors;
 
 	const data = (canvas) => {
