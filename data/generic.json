@@ -6,5 +6,13 @@
             "nome": "PORDATA",
             "permalink": "https://www.pordata.pt/Portugal"
         }
+    },
+    "doses":{
+        "valor":31000000,
+        "legenda":"cerca de 31 milhões de doses",
+        "fonte":{
+            "nome":"Jornal Económico",
+            "permalink":"https://jornaleconomico.sapo.pt/noticias/covid-19-portugal-comprou-doses-de-vacinas-para-mais-de-18-milhoes-de-pessoas-691186"
+        }
     }
 }
