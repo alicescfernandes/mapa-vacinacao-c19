@@ -5,14 +5,6 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 import { Col, Row } from 'react-bootstrap';
 
-let styles = {
-	'vaccine-label': {
-		textAlign: 'right',
-		fontSize: '12px',
-		lineHeight: '59px',
-		margin: '0px',
-	},
-};
 function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
 
@@ -32,13 +24,13 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 		});
 
 		return {
-			labels: ['moderna', 'cenas', 'cenas'],
+			labels: [type],
 			datasets: [
 				{
 					label: '2ª Dose',
 					type: 'horizontalBar',
 					backgroundColor: main,
-					data: [data.mod[1], data.com[1], data.az[1]],
+					data: [data[1]],
 					stack: 'stack1',
 				},
 
@@ -46,7 +38,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 					label: '1ª Dose',
 					type: 'horizontalBar',
 					backgroundColor: shades[1],
-					data: [data.mod[0], data.com[0], data.az[0]],
+					data: [data[0]],
 					stack: 'stack1',
 				},
 			],
@@ -128,12 +120,10 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 	return (
 		<>
-			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '19%', height: 200, overflow: 'hidden' }}>
-				<p style={styles['vaccine-label']}>{type}</p>
-				<p style={styles['vaccine-label']}>Pfizer/BioNTech</p>
-				<p style={styles['vaccine-label']}>AstraZeneca</p>
+			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '19%', height: 80, overflow: 'hidden' }}>
+				<p className={'vaccine-label'}>{type}</p>
 			</div>
-			<div style={{ display: 'inline-block', lineHeight: '40200', position: 'relative', width: '80%', height: 200, overflow: 'hidden' }} className={'scrollable'}>
+			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '80%', height: 80, overflow: 'hidden' }} className={'scrollable'}>
 				<div style={{ height: '100%' }}>
 					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
 				</div>
@@ -177,13 +167,17 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>Entre os 18 e 24 anos</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24'].az} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Entre os 25 e 49 anos</p>
 								</div>
-								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49'].az} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 						</Row>
 						<Row>
@@ -191,13 +185,17 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>Entre os 50 e 59 anos</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age50_59'].target} data={graphData['Age50_59']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age50_59'].target} data={graphData['Age50_59'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age50_59'].target} data={graphData['Age50_59'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age50_59'].target} data={graphData['Age50_59'].az} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Entre os 60 e 69 anos</p>
 								</div>
-								<CustomBarChart colors={colors} total={graphData['Age60_69'].target} data={graphData['Age60_69']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age60_69'].target} data={graphData['Age60_69'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age60_69'].target} data={graphData['Age60_69'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age60_69'].target} data={graphData['Age60_69'].az} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 						</Row>
 						<Row>
@@ -205,13 +203,17 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>Entre os 70 e 79 anos</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age70_79'].target} data={graphData['Age70_79']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age70_79'].target} data={graphData['Age70_79'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age70_79'].target} data={graphData['Age70_79'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age70_79'].target} data={graphData['Age70_79'].az} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Com mais de 80 anos</p>
 								</div>
-								<CustomBarChart colors={colors} total={graphData['Age80+'].target} data={graphData['Age80+']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age80+'].target} data={graphData['Age80+'].mod} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age80+'].target} data={graphData['Age80+'].com} type={'Pfizer/BioNTech'}></CustomBarChart>
+								<CustomBarChart colors={colors} total={graphData['Age80+'].target} data={graphData['Age80+'].az} type={'AstraZeneca'}></CustomBarChart>
 							</Col>
 						</Row>
 					</>
