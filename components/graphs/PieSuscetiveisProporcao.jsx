@@ -11,23 +11,21 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let { values: valueCasesDiarios } = statistics.getDiariosCases();
 	let vaccines = statistics.getRaw();
 	let firstItem = valueCasesDiarios.reverse()[0];
+	let infetadosVacinados = vaccines[vaccines.length - 1].Inoculacao2_Ac - firstItem.ConfirmadosAcumulado;
 	let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + firstItem.Activos + firstItem.Recuperados + firstItem.Obitos);
-	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + firstItem.Activos + firstItem.Recuperados + firstItem()[0].Obitos);
-	/*
+	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
 
-	// (234160 / 10286300) * 100
-	781223 - 234160
-	poptotal - inoculados2a - infetatosnvacinados - obitos
-*/
 	let { main, shades, tints, complements } = colors;
 
 	const data = (canvas) => {
 		return {
+			//labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
 			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
 			datasets: [
 				{
 					backgroundColor: [main, complements[0], complements[2], shades[2], complements[1]],
 					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
+					//data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
 				},
 			],
 		};

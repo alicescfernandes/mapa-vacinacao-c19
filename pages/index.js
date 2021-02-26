@@ -277,7 +277,7 @@ export default function Home() {
 								<p className={styles.text}>
 									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
 									<a className={styles.link} href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/" target=":blank">
-										Até 09/02 foram confirmados 49 casos de reinfecção com o novo coronavírus.
+										Até 25/02 foram confirmados 57 casos de reinfecção com o novo coronavírus.
 									</a>
 								</p>
 								{/*	<p className={styles.text}>
