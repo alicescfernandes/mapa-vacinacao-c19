@@ -12,9 +12,9 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 
 - [Monitorização do SNS da Direção-Geral da Saúde](https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/)  
 - [Ponto de Situação Direção-Geral da Saúde](https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/)  
+- [Relatórios de Vacinação - Direção-Geral da Saúde](https://covid19.min-saude.pt/relatorio-de-vacinacao/)  
 - [Our World of Data](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Portugal.csv)  
 - [Centro Europeu de Controlo de Doenças](https://covid19-vaccine-report.ecdc.europa.eu/)  
-
 ## Stack
 - ChartJS  
 - React  
