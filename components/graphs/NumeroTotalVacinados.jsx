@@ -17,9 +17,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		borderWidth: 3,
 		borderJoinStyle: 'miter',
 		pointBorderWidth: 1,
-		pointHoverRadius: 5,
+		pointHoverRadius: 3,
 		pointHoverBorderWidth: 2,
-		pointRadius: 3,
+		pointRadius: 1,
 		pointHitRadius: 10,
 	};
 
