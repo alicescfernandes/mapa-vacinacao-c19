@@ -742,5 +742,17 @@
         "ObitosNovos": 3978,
         "Activos": 72037,
         "OBJECTID": 4328
+    },
+    {
+        "Data": 1614384000000,
+        "ConfirmadosAcumulado": 803844,
+        "ConfirmadosNovos": 1071,
+        "Recuperados": 717313,
+        "RecuperadosNovos": 714932,
+        "VarRecuperados": 2820,
+        "Obitos": 16276,
+        "ObitosNovos": 33,
+        "Activos": 70255,
+        "OBJECTID": 4329
     }
 ]
