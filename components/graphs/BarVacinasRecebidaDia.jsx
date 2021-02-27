@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import 'chartjs-plugin-annotation';
+//import 'chartjs-plugin-annotation';
 import { Bar, Line } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
@@ -51,7 +51,10 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					hidden: true,
 					pointHoverBorderWidth: 0,
 					pointRadius: 0,
+					offset: false,
 					pointHitRadius: 0,
+					borderDash: [10, 5],
+					xAxisID: 'unstacked',
 				},
 
 				{
@@ -145,9 +148,24 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				],
 				xAxes: [
 					{
-						stacked: false,
+						stacked: true,
 						ticks: {
 							beginAtZero: true,
+						},
+					},
+					{
+						stacked: false,
+						id: 'unstacked',
+						ticks: {
+							beginAtZero: true,
+							display: false,
+						},
+						scaleLabel: {
+							display: false,
+						},
+						gridLines: {
+							display: false,
+							drawBorder: false,
 						},
 					},
 				],
@@ -164,7 +182,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Line height={100} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
