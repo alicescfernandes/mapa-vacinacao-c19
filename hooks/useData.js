@@ -201,21 +201,21 @@ export function useData() {
 
 			ecdc.forEach((el) => {
 				var obj = {};
-				if (el['Doses received'] > 0) {
+				if (parseInt(el['Doses received']) > 0) {
 					com[el['Week']] = com[el['Week']] || null;
 					mod[el['Week']] = mod[el['Week']] || null;
 					az[el['Week']] = az[el['Week']] || null;
 					labels[el['Week']] = weeks[el['Week']];
 
 					if (el['Vaccine brand'] === 'COM') {
-						com[el['Week']] = el['Doses received'];
+						com[el['Week']] = parseInt(el['Doses received']);
 					}
 
 					if (el['Vaccine brand'] === 'MOD') {
-						mod[el['Week']] = el['Doses received'];
+						mod[el['Week']] = parseInt(el['Doses received']);
 					}
 					if (el['Vaccine brand'] === 'AZ') {
-						az[el['Week']] = el['Doses received'];
+						az[el['Week']] = parseInt(el['Doses received']);
 					}
 				}
 			});
@@ -315,6 +315,71 @@ export function useData() {
 				data[el.attributes.ARSNome].casosNovos7Dias += el.attributes.ConfirmadosNovos;
 			});
 			return data;
+		},
+		getDosesRecebidasAcum: async () => {
+			if (ecdc == false) return;
+			let labels = {};
+			let data = {};
+			let com = {};
+			let mod = {};
+			let az = {};
+
+			let ecdcCopy = JSON.parse(JSON.stringify(ecdc));
+			console.log(ecdcCopy);
+
+			let numbers = [1, 1, 1, 1];
+
+			function sumArray(array) {
+				return array.reduce((prev, current) => {
+					return prev + current;
+				}, 0);
+			}
+
+			ecdcCopy
+				.filter((el) => el['Doses received'] > 0)
+				.forEach((el) => {
+					if (!labels.hasOwnProperty(el['Week'])) {
+						labels[el['Week']] = weeks[el['Week']];
+					}
+
+					com[el['Week']] = com[el['Week']] || 0;
+					mod[el['Week']] = mod[el['Week']] || 0;
+					az[el['Week']] = az[el['Week']] || 0;
+
+					if (el['Vaccine brand'] === 'COM') {
+						com[el['Week']] = parseInt(el['Doses received']);
+					}
+
+					if (el['Vaccine brand'] === 'MOD') {
+						mod[el['Week']] = parseInt(el['Doses received']);
+					}
+
+					if (el['Vaccine brand'] === 'AZ') {
+						az[el['Week']] = parseInt(el['Doses received']);
+					}
+				});
+
+			com = Object.values(com)
+				.reverse()
+				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
+				.reverse();
+
+			az = Object.values(az)
+				.reverse()
+				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
+				.reverse();
+
+			mod = Object.values(mod)
+				.reverse()
+				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
+				.reverse();
+
+			return {
+				mod,
+				com,
+				az,
+				labels,
+			};
 		},
 	};
 

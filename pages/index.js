@@ -118,6 +118,7 @@ export default function Home() {
 			}, 1000);
 		});
 		plausible.trackPageview();
+		statistics.getDosesRecebidasAcum();
 	}, [dataReady]);
 	return (
 		<>
