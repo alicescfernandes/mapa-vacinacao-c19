@@ -3,7 +3,7 @@ import 'chartjs-plugin-annotation';
 import { Bar, Line } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
-
+import generic from '../../data/generic.json';
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
@@ -41,7 +41,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					overlayBars: true,
 					backgroundColor: '#0A9DD1',
 					borderColor: '#0A9DD1',
-					data: com.map((el) => 31000000),
+					data: com.map((el) => generic.doses.valor),
 					order: 1,
 					display: false,
 					stack: 'stack0',
