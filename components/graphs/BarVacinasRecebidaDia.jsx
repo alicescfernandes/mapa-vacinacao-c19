@@ -4,11 +4,15 @@ import { Bar, Line } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import generic from '../../data/generic.json';
+import { CustomCheckbox } from '../CustomCheckbox';
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
-
+	let [annotationsToggle, setAnnotationsToggle] = useState({
+		dose: true,
+		dose2: true,
+	});
 	const data = (canvas) => {
 		let { labels, mod, com, az } = graphData;
 
@@ -34,29 +38,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				return `De ${formatNumber(fromDate.getDate())}/${formatNumber(fromDate.getMonth() + 1)} a ${formatNumber(toDate.getDate())}/${formatNumber(toDate.getMonth() + 1)}`;
 			}),
 			datasets: [
-				{
-					label: 'Número total de doses encomendadas',
-					fill: false,
-					type: 'line',
-					overlayBars: true,
-					backgroundColor: '#0A9DD1',
-					borderColor: '#0A9DD1',
-					data: com.map((el) => generic.doses.valor),
-					order: 1,
-					display: false,
-					stack: 'stack0',
-					pointBackgroundColor: color_4,
-					pointBorderWidth: 0,
-					pointHoverRadius: 0,
-					hidden: true,
-					pointHoverBorderWidth: 0,
-					pointRadius: 0,
-					offset: false,
-					pointHitRadius: 0,
-					borderDash: [10, 5],
-					xAxisID: 'unstacked',
-				},
-
 				{
 					label: 'Comirnaty (Pfizer/BioNTech)',
 					fill: false,
@@ -102,7 +83,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				},
 			},
 			legend: {
-				position: 'top',
+				position: 'bottom',
 				align: 'start',
 				onHover: function (event, legend) {
 					document.body.classList.add('mouse-pointer');
@@ -113,6 +94,71 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			},
 			animation: {
 				duration: 1000,
+			},
+			annotation: {
+				annotations: [
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: annotationsToggle.dose ? generic.doses.valor : null,
+						borderColor: '#0A9DD1',
+						borderWidth: 2,
+						borderDash: [5, 5],
+
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							fontSize: 13,
+
+							textAlign: 'left',
+							fontColor: '#0A9DD1',
+							position: 'left',
+							xAdjust: 10,
+							yAdjust: -10,
+							fontSize: '13px',
+							fontStyle: 'bold',
+
+							enabled: true,
+							content: 'Doses compradas - ' + generic.doses.legenda,
+							content: `Doses compradas - ${generic.doses.legenda} (21/01/2021) `,
+						},
+					},
+
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: annotationsToggle.dose2 ? generic.doses2.valor : null,
+						borderColor: '#D17615',
+						borderWidth: 2,
+						borderDash: [5, 5],
+
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							fontSize: 13,
+
+							textAlign: 'left',
+							font: {
+								style: 'bold',
+							},
+							fontStyle: 'bold',
+
+							fontColor: '#D17615',
+							fontSize: '13px',
+							position: 'left',
+							xAdjust: 10,
+							yAdjust: -10,
+							enabled: true,
+							content: `Doses compradas - ${generic.doses2.legenda} (04/12/2020) `,
+						},
+					},
+				],
 			},
 			tooltips: {
 				mode: 'index',
@@ -182,6 +228,28 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
+			<div style={{ textAlign: 'left' }}>
+				<CustomCheckbox
+					checked={annotationsToggle.dose}
+					label={'Doses compradas (21/01)'}
+					onChange={(checked) => {
+						setAnnotationsToggle({
+							...annotationsToggle,
+							dose: checked,
+						});
+					}}
+				/>
+				<CustomCheckbox
+					checked={annotationsToggle.dose2}
+					label={'Doses compradas (04/12/2020)'}
+					onChange={(checked) => {
+						setAnnotationsToggle({
+							...annotationsToggle,
+							dose2: checked,
+						});
+					}}
+				/>
+			</div>
 			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);

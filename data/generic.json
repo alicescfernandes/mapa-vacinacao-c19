@@ -14,5 +14,14 @@
             "nome":"Jornal Económico",
             "permalink":"https://jornaleconomico.sapo.pt/noticias/covid-19-portugal-comprou-doses-de-vacinas-para-mais-de-18-milhoes-de-pessoas-691186"
         }
+    },
+    "doses2":{
+        "valor":22000000,
+        "legenda":"cerca de 22 milhões de doses",
+        "fonte":{
+            "nome":"Jornal Económico",
+            "permalink":"https://jornaleconomico.sapo.pt/noticias/covid-19-portugal-comprou-doses-de-vacinas-para-mais-de-18-milhoes-de-pessoas-691186"
+        }
     }
+
 }

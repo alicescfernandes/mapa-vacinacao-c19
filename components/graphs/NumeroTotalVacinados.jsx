@@ -133,13 +133,14 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 							fontSize: 13,
 
-							fontStyle: 'normal',
 							textAlign: 'left',
 							fontColor: '#0A9DD1',
 							position: 'left',
 							xAdjust: 10,
 							yAdjust: -10,
 							fontSize: '13px',
+							fontStyle: 'bold',
+
 							enabled: true,
 							content: '1ª Fase',
 						},
@@ -154,6 +155,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 							enabled: false,
 						},
 					},
+
 					{
 						type: 'line',
 						mode: 'horizontal',
@@ -170,8 +172,12 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 							fontSize: 13,
 
-							fontStyle: 'normal',
 							textAlign: 'left',
+							font: {
+								style: 'bold',
+							},
+							fontStyle: 'bold',
+
 							fontColor: '#D17615',
 							fontSize: '13px',
 							position: 'left',
@@ -231,22 +237,22 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		<Card allowOverflow={true}>
 			<div style={{ textAlign: 'left' }}>
 				<CustomCheckbox
-					checked={annotationsToggle.imunidade}
-					label={'Imunidade de Grupo'}
-					onChange={(checked) => {
-						setAnnotationsToggle({
-							...annotationsToggle,
-							imunidade: checked,
-						});
-					}}
-				/>
-				<CustomCheckbox
 					checked={annotationsToggle.primeira_fase}
 					label={'1ª Fase'}
 					onChange={(checked) => {
 						setAnnotationsToggle({
 							...annotationsToggle,
 							primeira_fase: checked,
+						});
+					}}
+				/>
+				<CustomCheckbox
+					checked={annotationsToggle.imunidade}
+					label={'Imunidade de Grupo'}
+					onChange={(checked) => {
+						setAnnotationsToggle({
+							...annotationsToggle,
+							imunidade: checked,
 						});
 					}}
 				/>
