@@ -9,7 +9,7 @@ let styles = {
 	'vaccine-label': {
 		textAlign: 'right',
 		fontSize: '12px',
-		lineHeight: '59px',
+		lineHeight: '40px',
 		margin: '0px',
 	},
 };
@@ -128,12 +128,12 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 	return (
 		<>
-			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '19%', height: 200, overflow: 'hidden' }}>
+			<div style={{ display: 'inline-block', lineHeight: '40px', position: 'relative', width: '19%', height: 150, overflow: 'hidden' }}>
 				<p style={styles['vaccine-label']}>{type}</p>
 				<p style={styles['vaccine-label']}>Pfizer/BioNTech</p>
 				<p style={styles['vaccine-label']}>AstraZeneca</p>
 			</div>
-			<div style={{ display: 'inline-block', lineHeight: '40200', position: 'relative', width: '80%', height: 200, overflow: 'hidden' }} className={'scrollable'}>
+			<div style={{ display: 'inline-block', lineHeight: '40200', position: 'relative', width: '80%', height: 150, overflow: 'hidden' }} className={'scrollable'}>
 				<div style={{ height: '100%' }}>
 					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
 				</div>
