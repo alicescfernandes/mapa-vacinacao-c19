@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import 'chartjs-plugin-annotation';
+import { Bar, Line } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
-
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
 	const data = (canvas) => {
@@ -35,6 +35,26 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			}),
 			datasets: [
 				{
+					label: 'Número total de doses encomendadas',
+					fill: false,
+					type: 'line',
+					overlayBars: true,
+					backgroundColor: '#0A9DD1',
+					borderColor: '#0A9DD1',
+					data: com.map((el) => 31000000),
+					order: 1,
+					display: false,
+					stack: 'stack0',
+					pointBackgroundColor: color_4,
+					pointBorderWidth: 0,
+					pointHoverRadius: 0,
+					hidden: true,
+					pointHoverBorderWidth: 0,
+					pointRadius: 0,
+					pointHitRadius: 0,
+				},
+
+				{
 					label: 'Comirnaty (Pfizer/BioNTech)',
 					fill: false,
 					type: 'bar',
@@ -45,11 +65,14 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					display: false,
 					stack: 'stack0',
 				},
+
 				{
 					label: 'Moderna',
 					backgroundColor: color_1,
 					borderColor: color_1,
 					data: mod,
+					type: 'bar',
+
 					overlayBars: true,
 					order: 3,
 					stack: 'stack0',
@@ -58,6 +81,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					label: 'AstraZeneca',
 					backgroundColor: color_3,
 					borderColor: color_3,
+					type: 'bar',
 					data: az,
 					overlayBars: true,
 					order: 3,
@@ -75,10 +99,15 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				},
 			},
 			legend: {
-				position: 'bottom',
+				position: 'top',
 				align: 'start',
+				onHover: function (event, legend) {
+					document.body.classList.add('mouse-pointer');
+				},
+				onLeave: function (event, legend) {
+					document.body.classList.remove('mouse-pointer');
+				},
 			},
-
 			animation: {
 				duration: 1000,
 			},
@@ -97,6 +126,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					},
 				},
 			},
+
 			scales: {
 				yAxes: [
 					{
@@ -108,23 +138,14 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 							drawBorder: false,
 						},
 						ticks: {
-							beginAtZero: false,
-							callback: (value) => formatNumber(value, false),
-						},
-					},
-					{
-						stacked: true,
-						id: 'total',
-						display: false,
-						ticks: {
-							beginAtZero: false,
+							beginAtZero: true,
 							callback: (value) => formatNumber(value, false),
 						},
 					},
 				],
 				xAxes: [
 					{
-						stacked: true,
+						stacked: false,
 						ticks: {
 							beginAtZero: true,
 						},
@@ -143,7 +164,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Line height={100} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

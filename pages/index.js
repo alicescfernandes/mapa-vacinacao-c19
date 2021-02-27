@@ -210,6 +210,8 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h3 className={styles.title}>Número de doses recebidas por semana </h3>
+								<h3 className={styles.subtitle}>Clica nas cores para mudar para mudar a escala</h3>
+
 								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
 							</Col>
 						</Row>
