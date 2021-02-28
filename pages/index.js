@@ -6,7 +6,7 @@ import { DatePickerButton } from '../components/DatePickerButton';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
-import { isSameDay, format } from 'date-fns';
+import { isSameDay, format, parseISO } from 'date-fns';
 import { GooSpinner, ImpulseSpinner, JellyfishSpinner, PushSpinner, RotateSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
@@ -55,6 +55,13 @@ export default function Home() {
 			prev: 0,
 			current: 0,
 		},
+	});
+	let [doses, setDoses] = useState({
+		encomendadas: generic.doses.valor,
+		recebidas: 0,
+		administradas: 0,
+		data: '',
+		dataLong: '',
 	});
 
 	let { colors, colors_v2, setColors } = useColors();
@@ -107,6 +114,8 @@ export default function Home() {
 		setPreviousItem(selectedItem);
 		setFirst(rawData[0]);
 		setLoaded(true);
+		plausible.trackPageview();
+
 		var pusher = new Pusher('4dd4d1d504254af64544', {
 			cluster: 'eu',
 		});
@@ -119,8 +128,23 @@ export default function Home() {
 				setUpdating(false);
 			}, 1000);
 		});
-		plausible.trackPageview();
-		statistics.getDosesRecebidasAcum();
+
+		let { sum } = statistics?.getDosesRecebidasAcum();
+		sum = sum.reverse()[0];
+		let item = rawData.filter((el) => {
+			return isSameDay(el.Data, new Date(json.dateSnsStart));
+		});
+		setDoses({
+			...doses,
+			recebidas: sum,
+			administradas: item[0].Vacinados_Ac,
+			data: format(new Date(json.dateSns).getTime(), 'dd/LL/yyyy', {
+				locale: pt,
+			}),
+			dataLong: format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+				locale: pt,
+			}),
+		});
 	}, [dataReady]);
 	return (
 		<>
@@ -200,45 +224,38 @@ export default function Home() {
 						<Row>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter
-										ps="Percentagem calculada com base no número total de segundas doses administradas"
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem de população inoculada com a 2ª dose "
-										from={derivedNumbers.percentagem.prev}
-										to={derivedNumbers.percentagem.current}
-									></Counter>
+									<h2 className={cardStyles.card_title}>Número de doses adquiridas</h2>
+									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+										31 milhões de doses
+									</h1>
+									<a target="_blank" href={generic.doses.fonte.permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+										Número divulgado pela Direção-Geral da Saúde a 21 de Janeiro de 2020
+									</a>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter
-										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem para atingir imunidade de grupo"
-										from={70 - derivedNumbers.percentagem.prev}
-										to={70 - derivedNumbers.percentagem.current}
-									></Counter>
+									<Counter ps={`Até ${doses.dataLong}, foram recebidas ${((doses.recebidas / doses.encomendadas) * 100).toFixed(1)}% das doses encomendadas`} colors={colors} title={`Doses recebidas até ${doses.data}`} from={500_000} to={doses.recebidas}></Counter>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card>
-									<h2 className={cardStyles.card_title}>Fase atual do plano de vacinação</h2>
-									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
-										{fases.fases[fases.fase_atual].nome} de Vacinação
-									</h1>
-									<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
-										Ver mais informação sobre o plano de vacinação
-									</a>
+									<Counter
+										ps={`Até ${doses.dataLong} foram administradas ${((doses.administradas / doses.recebidas) * 100).toFixed(1)}% das doses recebidas. `}
+										digits={2}
+										colors={colors}
+										title={`Doses administradas até ${doses.data}`}
+										from={200_000}
+										to={doses.administradas}
+									></Counter>
 								</Card>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de vacinas administradas</h3>
+								<h3 className={styles.title}>
+									Número de vacinas administradas <sup className={'new'}>atualizado</sup>
+								</h3>
 
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
@@ -251,7 +268,9 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de doses recebidas por semana </h3>
+								<h3 className={styles.title}>
+									Número de doses recebidas por semana <sup className={'new'}>atualizado</sup>
+								</h3>
 
 								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
 							</Col>

@@ -316,16 +316,16 @@ export function useData() {
 			});
 			return data;
 		},
-		getDosesRecebidasAcum: async () => {
+		getDosesRecebidasAcum: () => {
 			if (ecdc == false) return;
 			let labels = {};
 			let data = {};
 			let com = {};
 			let mod = {};
 			let az = {};
+			let sum = [];
 
 			let ecdcCopy = JSON.parse(JSON.stringify(ecdc));
-			console.log(ecdcCopy);
 
 			let numbers = [1, 1, 1, 1];
 
@@ -374,10 +374,15 @@ export function useData() {
 				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
 				.reverse();
 
+			sum = mod.map((el, idx, arr) => {
+				return com[idx] + az[idx] + mod[idx];
+			});
+
 			return {
 				mod,
 				com,
 				az,
+				sum,
 				labels,
 			};
 		},
