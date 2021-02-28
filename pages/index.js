@@ -229,7 +229,7 @@ export default function Home() {
 										31 milhões de doses
 									</h1>
 									<a target="_blank" href={generic.doses.fonte.permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
-										Número divulgado pela Direção-Geral da Saúde a 21 de Janeiro de 2020
+										Número divulgado pelo Governo de Portugal a 21 de Janeiro de 2020
 									</a>
 								</Card>
 							</Col>
@@ -361,6 +361,15 @@ export default function Home() {
 										Até 25/02 foram confirmados 57 casos de reinfecção com o novo coronavírus.
 									</a>
 								</p>
+
+								<p className={styles.text}>
+									No início da campanha de vacinação foi anunciadas que ia haver 3 fases de vacinação, e que a primeria iria ser dividida em duas partes. A partir de Dezembro iriam ser administradas vacinas a Profissionais de saúde envolvidos na prestação de cuidados a doentes,
+									profissionais das forças armadas, forças de segurança e serviços críticos, profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de Fevereiro iriam ser administradas vacinas a pessoas com mais de 50 ano, e
+									com Insuficiência cardíaca, Doença coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória crónica.{' '}
+									<a className={styles.link} href="https://covid19.min-saude.pt/vacinacao/" target=":blank">
+										Mais informação sobre o plano de vacinação pode ser consultada aqui.
+									</a>
+								</p>
 								{/*	<p className={styles.text}>
 							A média de evolução de casos da União Europeia foi calculada com os números reportados por cada país, mesmo que alguns países não tenham ainda reportado para o dia de hoje. No gráfico de o numero total de vacinas administradas por dia de cada só são mostrados os dados que
 							foram reportados por cada país, sendo que nem todos os paises reportam em simultâneo os dados.
@@ -398,7 +407,20 @@ export default function Home() {
 									<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">
 										relatórios publicados semanalmente.
 									</a>
-									{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
+								</p>
+								<p className={styles.text}>
+									O número total de vacinas administradas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado feito no sítio do Governo de Portugal, que{' '}
+									<a
+										className={styles.link}
+										href="https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C"
+										target="_blank"
+									>
+										pode ser consultado aqui.
+									</a>
+									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 31 milhões de doses, mesmo que no comunicado esteja referido já foram adquiridas mais do que esse número de doses.
+								</p>
+
+								{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
                                 <a className={styles.link} target="_blank" href="https://ourworldindata.org/">
                                     Our World In Data
                                 </a>
@@ -406,7 +428,6 @@ export default function Home() {
                                 <a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
                                     no repositório de Github
                                 </a> */}
-								</p>
 							</Col>
 						</Row>
 					</>
