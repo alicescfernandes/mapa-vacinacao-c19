@@ -744,15 +744,27 @@
         "OBJECTID": 4328
     },
     {
-        "Data": 1614384000000,
+        "Data": 1614427200000,
         "ConfirmadosAcumulado": 803844,
         "ConfirmadosNovos": 1071,
         "Recuperados": 717313,
-        "RecuperadosNovos": 714932,
-        "VarRecuperados": 2820,
         "Obitos": 16276,
-        "ObitosNovos": 33,
+        "ObitosNovos": 4011,
+        "RecuperadosNovos": 690198,
+        "VarRecuperados": 2820,
         "Activos": 70255,
-        "OBJECTID": 4329
+        "OBJECTID": 4344
+    },
+    {
+        "Data": 1614513600000,
+        "ConfirmadosAcumulado": 804562 ,
+        "ConfirmadosNovos": 718,
+        "Recuperados": 717313,
+        "Obitos": 16317,
+        "ObitosNovos": 41,
+        "RecuperadosNovos": 718977,
+        "VarRecuperados": 1664,
+        "Activos": 69268,
+        "OBJECTID": 4344
     }
 ]
