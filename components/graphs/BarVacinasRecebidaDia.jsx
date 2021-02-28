@@ -216,7 +216,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			<div style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={annotationsToggle.dose}
-					label={'Doses compradas (21/01)'}
+					label={'Doses adquiridas (21/01)'}
 					onChange={(checked) => {
 						setAnnotationsToggle({
 							...annotationsToggle,
@@ -226,7 +226,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				/>
 				<CustomCheckbox
 					checked={annotationsToggle.dose2}
-					label={'Doses compradas (04/12/2020)'}
+					label={'Doses adquiridas (04/12/2020)'}
 					onChange={(checked) => {
 						setAnnotationsToggle({
 							...annotationsToggle,
