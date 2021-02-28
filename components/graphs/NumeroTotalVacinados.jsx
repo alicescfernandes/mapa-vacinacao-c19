@@ -257,7 +257,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					}}
 				/>
 			</div>
-			<div> {!loading ? <Line height={100} ref={chartRef} options={options()} data={data} /> : ''}</div>
+			<div> {!loading ? <Line height={80} ref={chartRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

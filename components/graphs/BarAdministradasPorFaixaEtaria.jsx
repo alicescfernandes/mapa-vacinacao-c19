@@ -323,7 +323,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 							</p>
 						</div>
 						<div>
-							<Bar height={100} ref={canvasRef} options={options()} data={data} />
+							<Bar height={80} ref={canvasRef} options={options()} data={data} />
 						</div>
 					</>
 				) : (

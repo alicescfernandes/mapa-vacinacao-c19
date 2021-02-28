@@ -173,7 +173,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Bar height={80} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

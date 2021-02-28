@@ -156,7 +156,7 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 					<>
 						<Row>
 							<Col xs={12}>
-								<Bar height={100} options={options()} data={data}></Bar>
+								<Bar height={80} options={options()} data={data}></Bar>
 							</Col>
 						</Row>
 					</>
