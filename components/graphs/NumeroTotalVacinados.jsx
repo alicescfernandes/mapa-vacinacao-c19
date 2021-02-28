@@ -137,7 +137,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 							fontStyle: 'bold',
 
 							enabled: true,
-							content: '1ª Fase',
+							content: '1ª Fase - Fevereiro',
 						},
 					},
 					{
@@ -150,7 +150,34 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 							enabled: false,
 						},
 					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: annotationsToggle?.primeira_fase ? 950000 : null,
+						borderColor: '#0A9DD1',
+						borderWidth: 2,
+						borderDash: [5, 5],
 
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							fontSize: 13,
+
+							textAlign: 'left',
+							fontColor: '#0A9DD1',
+							position: 'left',
+							xAdjust: 10,
+							yAdjust: -10,
+							fontSize: '13px',
+							fontStyle: 'bold',
+
+							enabled: true,
+							content: '1ª Fase - Dezembro',
+						},
+					},
 					{
 						type: 'line',
 						mode: 'horizontal',
