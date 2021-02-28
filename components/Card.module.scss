@@ -12,11 +12,11 @@
 	&_graph {
 		background: white;
 
-		padding: 30px;
+		padding: 25px;
 		text-align: center;
 		border-radius: 5px;
-		margin: 15px 0px;
-		min-height: 225px;
+		margin-bottom: 15px;
+		min-height: 190px;
 		overflow: hidden;
 		transition: background linear 500ms;
 	}
@@ -27,7 +27,7 @@
 	}
 
 	&_highlight {
-		font-size: 50px;
+		font-size: 40px;
 		// color: $main;
 		font-weight: bold;
 	}

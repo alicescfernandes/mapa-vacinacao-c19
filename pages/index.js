@@ -13,6 +13,8 @@ import styles from '../styles/Home.module.scss';
 import { useColors } from '../hooks/useColors';
 import { Metatags } from '../components/MetaTags';
 import cardStyles from '../components/Card.module.scss';
+import json from './../data/last-update.json';
+import { pt } from 'date-fns/locale';
 
 //data
 import generic from './../data/generic.json';
@@ -142,17 +144,56 @@ export default function Home() {
 						<Row>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número total de vacinas administradas" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
+									<Counter colors={colors} title="Número total de vacinas administradas" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 200_000} to={selectedItem?.Vacinados_Ac}></Counter>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número de doses administradas - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
+									<Counter colors={colors} title="Número de doses administradas - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 200_000} to={selectedItem?.Inoculacao1_Ac}></Counter>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número de doses administradas - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
+									<Counter colors={colors} title="Número de doses administradas - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 200_000} to={selectedItem?.Inoculacao2_Ac}></Counter>
+								</Card>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={4} xs={12}>
+								<Card isUpdating={updating}>
+									<Counter
+										ps="Percentagem calculada com base no número total de segundas doses administradas"
+										digits={2}
+										suffix={'%'}
+										colors={colors}
+										title="Percentagem de população inoculada com a 2ª dose "
+										from={derivedNumbers.percentagem.prev}
+										to={derivedNumbers.percentagem.current}
+									></Counter>
+								</Card>
+							</Col>
+							<Col lg={4} xs={12}>
+								<Card isUpdating={updating}>
+									<Counter
+										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
+										digits={2}
+										suffix={'%'}
+										colors={colors}
+										title="Percentagem para atingir imunidade de grupo"
+										from={70 - derivedNumbers.percentagem.prev}
+										to={70 - derivedNumbers.percentagem.current}
+									></Counter>
+								</Card>
+							</Col>
+							<Col lg={4} xs={12}>
+								<Card>
+									<h2 className={cardStyles.card_title}>Fase atual do plano de vacinação</h2>
+									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+										{fases.fases[fases.fase_atual].nome} de Vacinação
+									</h1>
+									<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+										Ver mais informação sobre o plano de vacinação
+									</a>
 								</Card>
 							</Col>
 						</Row>
@@ -224,8 +265,52 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h3 className={styles.title}>Doses totais administradas por faixa etária</h3>
-								<h3 className={styles.subtitle}>Dados acumulados deste 21 de Dezembro de 2021 até 21 de Fevereiro de 2021</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={4} xs={12}>
+								<Card isUpdating={updating}>
+									<Counter
+										ps="Percentagem calculada com base no número total de segundas doses administradas"
+										digits={2}
+										suffix={'%'}
+										colors={colors}
+										title="Percentagem de população inoculada com a 2ª dose "
+										from={derivedNumbers.percentagem.prev}
+										to={derivedNumbers.percentagem.current}
+									></Counter>
+								</Card>
+							</Col>
+							<Col lg={4} xs={12}>
+								<Card isUpdating={updating}>
+									<Counter
+										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
+										digits={2}
+										suffix={'%'}
+										colors={colors}
+										title="Percentagem para atingir imunidade de grupo"
+										from={70 - derivedNumbers.percentagem.prev}
+										to={70 - derivedNumbers.percentagem.current}
+									></Counter>
+								</Card>
+							</Col>
+							<Col lg={4} xs={12}>
+								<Card>
+									<h2 className={cardStyles.card_title}>Fase atual do plano de vacinação</h2>
+									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+										{fases.fases[fases.fase_atual].nome} de Vacinação
+									</h1>
+									<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+										Ver mais informação sobre o plano de vacinação
+									</a>
+								</Card>
 							</Col>
 						</Row>
 						<Row>
@@ -249,7 +334,12 @@ export default function Home() {
 								<h3 className={styles.title}>
 									Evolução do programa de vacinação por ARS <sup className={'new'}>novo</sup>
 								</h3>
-								<h3 className={styles.subtitle}>Dados acumulados deste 21 de Dezembro de 2021 até 21 de Fevereiro de 2021</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
 							</Col>
 						</Row>
@@ -258,7 +348,16 @@ export default function Home() {
 								<h3 className={styles.title}>
 									Ponto de situação por ARS <sup className={'new'}>novo</sup>
 								</h3>
-								<h3 className={styles.subtitle}>Dados acumulados relativos à semana de 15 até 21 de Fevereiro de 2021</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados relativos à semana de{' '}
+									{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
+										locale: pt,
+									})}{' '}
+									até{' '}
+									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
