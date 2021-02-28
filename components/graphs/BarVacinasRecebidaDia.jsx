@@ -122,8 +122,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 							fontStyle: 'bold',
 
 							enabled: true,
-							content: 'Doses compradas - ' + generic.doses.legenda,
-							content: `Doses compradas - ${generic.doses.legenda} (21/01/2021) `,
+							content: `Doses adquiridas - ${generic.doses.legenda} (21/01/2021) `,
 						},
 					},
 
@@ -155,7 +154,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 							xAdjust: 10,
 							yAdjust: -10,
 							enabled: true,
-							content: `Doses compradas - ${generic.doses2.legenda} (04/12/2020) `,
+							content: `Doses adquiridas - ${generic.doses2.legenda} (04/12/2020) `,
 						},
 					},
 				],
@@ -197,21 +196,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							beginAtZero: true,
-						},
-					},
-					{
-						stacked: false,
-						id: 'unstacked',
-						ticks: {
-							beginAtZero: true,
-							display: false,
-						},
-						scaleLabel: {
-							display: false,
-						},
-						gridLines: {
-							display: false,
-							drawBorder: false,
 						},
 					},
 				],
