@@ -275,45 +275,6 @@ export default function Home() {
 							</Col>
 						</Row>
 						<Row>
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter
-										ps="Percentagem calculada com base no número total de segundas doses administradas"
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem de população inoculada com a 2ª dose "
-										from={derivedNumbers.percentagem.prev}
-										to={derivedNumbers.percentagem.current}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter
-										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem para atingir imunidade de grupo"
-										from={70 - derivedNumbers.percentagem.prev}
-										to={70 - derivedNumbers.percentagem.current}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card>
-									<h2 className={cardStyles.card_title}>Fase atual do plano de vacinação</h2>
-									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
-										{fases.fases[fases.fase_atual].nome} de Vacinação
-									</h1>
-									<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
-										Ver mais informação sobre o plano de vacinação
-									</a>
-								</Card>
-							</Col>
-						</Row>
-						<Row>
 							<Col>
 								<h3 className={styles.title}>Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias</h3>
 								<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>

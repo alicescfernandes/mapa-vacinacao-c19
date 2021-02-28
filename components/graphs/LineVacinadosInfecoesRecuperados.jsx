@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
@@ -34,15 +35,15 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	marriedData = Object.values(marriedData).reverse();
 
 	const data = (canvas) => {
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '1000px';
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
+			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
 			canvas.parentNode.style.width = 'auto';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '1000px';
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
+				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 			} else {
 				canvas.parentNode.style.width = '100%';
 			}
@@ -106,13 +107,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
-			},
-			onResize: (a, b, c) => {
-				if (window.innerWidth <= 800) {
-					a.canvas.parentNode.style.width = '1000px';
-				} else {
-					a.canvas.parentNode.style.width = 'auto';
-				}
 			},
 			legend: {
 				position: 'bottom',

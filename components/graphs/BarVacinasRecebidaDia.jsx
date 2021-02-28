@@ -5,6 +5,7 @@ import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import generic from '../../data/generic.json';
 import { CustomCheckbox } from '../CustomCheckbox';
+import { RESIZE_TRESHOLD } from '../../constants';
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
@@ -16,15 +17,15 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 	const data = (canvas) => {
 		let { labels, mod, com, az } = graphData;
 
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '1000px';
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
+			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '1000px';
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
+				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 			} else {
 				canvas.parentNode.style.width = '100%';
 			}

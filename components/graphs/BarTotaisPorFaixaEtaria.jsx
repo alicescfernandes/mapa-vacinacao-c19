@@ -17,20 +17,6 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
 
 	const graphData = (canvas) => {
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '800px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '800px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
-
 		return {
 			labels: ['moderna', 'cenas', 'cenas'],
 			datasets: [

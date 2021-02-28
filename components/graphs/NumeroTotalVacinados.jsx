@@ -4,6 +4,7 @@ import { Card } from './../Card';
 import { formatNumber, hexToRgb } from '../../utils';
 import 'chartjs-plugin-annotation';
 import { CustomCheckbox } from './../CustomCheckbox';
+import { RESIZE_TRESHOLD } from '../../constants';
 
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let { labels, values } = statistics.getDailyData();
@@ -41,25 +42,19 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			gradient.addColorStop(1, '#ffffff');
 		}
 
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '1000px';
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
+			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '1000px';
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
+				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 			} else {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '1000px';
-		} else {
-			canvas.parentNode.style.width = 'auto';
-		}
 
 		return {
 			labels: labels,
