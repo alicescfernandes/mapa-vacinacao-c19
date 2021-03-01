@@ -29,6 +29,8 @@ import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdminist
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
 import Plausible from 'plausible-tracker';
 import { BarArs } from '../components/graphs/BarArs';
+import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
+import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -56,10 +58,13 @@ export default function Home() {
 			current: 0,
 		},
 	});
+	//TODO: Move this to the hook
 	let [doses, setDoses] = useState({
 		encomendadas: generic.doses.valor,
 		recebidas: 0,
 		administradas: 0,
+		primeiras: 0,
+		segundas: 0,
 		data: '',
 		dataLong: '',
 	});
@@ -138,6 +143,8 @@ export default function Home() {
 			...doses,
 			recebidas: sum,
 			administradas: item[0].Vacinados_Ac,
+			primeiras: item[0].Inoculacao1_Ac,
+			segundas: item[0].Inoculacao2_Ac,
 			data: format(new Date(json.dateSns).getTime(), 'dd/LL/yyyy', {
 				locale: pt,
 			}),
@@ -221,36 +228,38 @@ export default function Home() {
 								</Card>
 							</Col>
 						</Row>
-						<Row>
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<h2 className={cardStyles.card_title}>Número de doses adquiridas</h2>
-									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
-										31 milhões de doses
-									</h1>
-									<a target="_blank" href={generic.doses.fonte.permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
-										Número divulgado pelo Governo de Portugal a 21 de Janeiro de 2020
-									</a>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter ps={`Até ${doses.dataLong}, foram recebidas ${((doses.recebidas / doses.encomendadas) * 100).toFixed(1)}% das doses encomendadas`} colors={colors} title={`Doses recebidas até ${doses.data}`} from={500_000} to={doses.recebidas}></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card>
-									<Counter
-										ps={`Até ${doses.dataLong} foram administradas ${((doses.administradas / doses.recebidas) * 100).toFixed(1)}% das doses recebidas. `}
-										digits={2}
-										colors={colors}
-										title={`Doses administradas até ${doses.data}`}
-										from={200_000}
-										to={doses.administradas}
-									></Counter>
-								</Card>
-							</Col>
-						</Row>
+						{/*
+							<Row>
+								<Col lg={4} xs={12}>
+									<Card isUpdating={updating}>
+										<h2 className={cardStyles.card_title}>Número de doses adquiridas</h2>
+										<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+											31 milhões de doses
+										</h1>
+										<a target="_blank" href={generic.doses.fonte.permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+											Número divulgado pelo Governo de Portugal a 21 de Janeiro de 2020
+										</a>
+									</Card>
+								</Col>
+								<Col lg={4} xs={12}>
+									<Card isUpdating={updating}>
+										<Counter ps={`Até ${doses.dataLong}, foram recebidas ${((doses.recebidas / doses.encomendadas) * 100).toFixed(1)}% das doses encomendadas`} colors={colors} title={`Doses recebidas até ${doses.data}`} from={500_000} to={doses.recebidas}></Counter>
+									</Card>
+								</Col>
+								<Col lg={4} xs={12}>
+									<Card>
+										<Counter
+											ps={`Até ${doses.dataLong} foram administradas ${((doses.administradas / doses.recebidas) * 100).toFixed(1)}% das doses recebidas. `}
+											digits={2}
+											colors={colors}
+											title={`Doses administradas até ${doses.data}`}
+											from={200_000}
+											to={doses.administradas}
+										></Counter>
+									</Card>
+								</Col>
+							</Row>
+						*/}
 						<Row>
 							<Col>
 								<h3 className={styles.title}>
@@ -273,6 +282,32 @@ export default function Home() {
 								</h3>
 
 								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={6} xs={12}>
+								<h3 className={styles.title}>
+									Proporção de doses recebidas relativamente às doses adquiridas <sup className={'new'}>novo</sup>
+								</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
+								<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
+							</Col>
+							<Col lg={6} xs={12}>
+								<h3 className={styles.title}>
+									Proporção de doses administradas relativamente às doses recebidas <sup className={'new'}>novo</sup>
+								</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
+								<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>
 							</Col>
 						</Row>
 						<Row>
