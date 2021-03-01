@@ -252,14 +252,15 @@ export default function Home() {
 							<Col lg={4} xs={12}>
 								<Card>
 									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
-										Fase atual do plano de vacinação
+										{fases.fases[fases.fase_atual].nome} de vacinação
 									</h2>
-									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
-										{fases.fases[fases.fase_atual].nome} de Vacinação
-									</h1>
 									<p title="Consultar notas ou o plano de informação para mais informação" style={{ margin: '5px 0px' }} class={cardStyles.card_subtitle}>
-										Espera-se vacinar cerca de 950 mil pessoas*
+										Espera-se vacinar cerca de
 									</p>
+									<h1 title="Consultar notas ou o plano de informação para mais informação" style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+										{fases.fases[fases.fase_atual].objetivo_formatado}
+									</h1>
+
 									<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
 										Ver mais informação sobre o plano de vacinação
 									</a>
