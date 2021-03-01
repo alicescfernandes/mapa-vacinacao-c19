@@ -8,6 +8,14 @@
         }
     },
     "doses":{
+        "valor":38000000,
+        "legenda":"38 milhões de doses",
+        "fonte":{
+            "nome":"Governo de Portugal",
+            "permalink":"https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19"
+        }
+    },
+    "doses3":{
         "valor":31000000,
         "legenda":"mais do que 31 milhões de doses",
         "fonte":{

@@ -444,15 +444,19 @@ export default function Home() {
 									</a>
 								</p>
 								<p className={styles.text}>
-									O número total de vacinas administradas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado feito no sítio do Governo de Portugal, que{' '}
+									O número total de vacinas adquiridas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado feito no sítio do Governo de Portugal, que{' '}
 									<a
 										className={styles.link}
 										href="https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C"
 										target="_blank"
 									>
 										pode ser consultado aqui.
+									</a>{' '}
+									No dia 01 de Março de 2021, foi anunciado que o número total de vacinas adquiridas aumentou para 38 milhões de doses, num comunicado dirigido à imprensa que{' '}
+									<a className={styles.link} href="https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19" target="_blank">
+										pode ser consultado aqui.
 									</a>
-									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 31 milhões de doses, mesmo que no comunicado esteja referido já foram adquiridas mais do que esse número de doses.
+									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
 								</p>
 
 								{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;

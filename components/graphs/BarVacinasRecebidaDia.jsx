@@ -13,6 +13,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [annotationsToggle, setAnnotationsToggle] = useState({
 		dose: true,
 		dose2: true,
+		dose3: true,
 	});
 	const data = (canvas) => {
 		let { labels, mod, com, az } = graphData;
@@ -123,10 +124,57 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 							fontStyle: 'bold',
 
 							enabled: true,
-							content: `Doses adquiridas - ${generic.doses.legenda} (21/01/2021) `,
+							content: `Doses adquiridas - ${generic.doses.legenda} (01/03/2021) `,
 						},
 					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: annotationsToggle.dose ? 41000000 : null,
+						borderColor: 'transparent',
+						borderWidth: 0,
 
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							xAdjust: 0,
+							yAdjust: -10,
+
+							enabled: false,
+						},
+					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: annotationsToggle.dose3 ? generic.doses3.valor : null,
+						borderColor: '#D17615',
+						borderWidth: 2,
+						borderDash: [5, 5],
+
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							fontSize: 13,
+
+							textAlign: 'left',
+							font: {
+								style: 'bold',
+							},
+							fontStyle: 'bold',
+
+							fontColor: '#D11541',
+							fontSize: '13px',
+							position: 'left',
+							xAdjust: 0,
+							yAdjust: -10,
+							enabled: true,
+							content: `Doses adquiridas - ${generic.doses3.legenda} (21/01/2020) `,
+						},
+					},
 					{
 						type: 'line',
 						mode: 'horizontal',
@@ -152,7 +200,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 							fontColor: '#D17615',
 							fontSize: '13px',
 							position: 'left',
-							xAdjust: 10,
+							xAdjust: 0,
 							yAdjust: -10,
 							enabled: true,
 							content: `Doses adquiridas - ${generic.doses2.legenda} (04/12/2020) `,
@@ -216,11 +264,21 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			<div style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={annotationsToggle.dose}
-					label={'Doses adquiridas (21/01)'}
+					label={'Doses adquiridas (01/03/2021)'}
 					onChange={(checked) => {
 						setAnnotationsToggle({
 							...annotationsToggle,
 							dose: checked,
+						});
+					}}
+				/>
+				<CustomCheckbox
+					checked={annotationsToggle.dose3}
+					label={'Doses adquiridas (21/01/2021)'}
+					onChange={(checked) => {
+						setAnnotationsToggle({
+							...annotationsToggle,
+							dose3: checked,
 						});
 					}}
 				/>

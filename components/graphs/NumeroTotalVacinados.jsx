@@ -9,9 +9,11 @@ import { RESIZE_TRESHOLD } from '../../constants';
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let { labels, values } = statistics.getDailyData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
-	let [annotationsToggle, setAnnotationsToggle] = useState({
+	let casesData = statistics.getCases();
+	let [toggleStats, setToggleStats] = useState({
 		imunidade: true,
 		primeira_fase: true,
+		infetados: true,
 	});
 
 	let [loading, setLoading] = useState(true);
@@ -92,6 +94,19 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointHoverBorderColor: color_2,
 					data: valuesIn2,
 				},
+				{
+					...commonProps,
+					label: 'Casos Confirmados',
+					backgroundColor: '#D11541',
+					borderColor: '#D11541',
+					fill: false,
+					pointBorderColor: '#D11541',
+					pointBackgroundColor: '#D11541',
+					pointHoverBackgroundColor: '#D11541',
+					pointHoverBorderColor: '#D11541',
+					hidden: toggleStats.infetados === false,
+					data: casesData.map((el) => el.ConfirmadosAcumulado),
+				},
 			],
 		};
 	};
@@ -116,7 +131,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: annotationsToggle?.primeira_fase ? 1800000 : null,
+						value: toggleStats?.primeira_fase ? 1800000 : null,
 						borderColor: '#0A9DD1',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -140,7 +155,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: annotationsToggle?.primeira_fase ? 1900000 : null,
+						value: toggleStats?.primeira_fase ? 1900000 : null,
 						borderColor: 'transparent',
 						label: {
 							enabled: false,
@@ -150,7 +165,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: annotationsToggle?.primeira_fase ? 950000 : null,
+						value: toggleStats?.primeira_fase ? 950000 : null,
 						borderColor: '#0A9DD1',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -175,7 +190,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: annotationsToggle?.imunidade ? 10286300 * 0.7 : null,
+						value: toggleStats?.imunidade ? 10286300 * 0.7 : null,
 						borderColor: '#D17615',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -246,22 +261,33 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		<Card allowOverflow={true}>
 			<div style={{ textAlign: 'left' }}>
 				<CustomCheckbox
-					checked={annotationsToggle.primeira_fase}
+					checked={toggleStats.primeira_fase}
 					label={'1ª Fase'}
 					onChange={(checked) => {
-						setAnnotationsToggle({
-							...annotationsToggle,
+						setToggleStats({
+							...toggleStats,
 							primeira_fase: checked,
 						});
 					}}
 				/>
 				<CustomCheckbox
-					checked={annotationsToggle.imunidade}
+					checked={toggleStats.imunidade}
 					label={'Imunidade de Grupo'}
 					onChange={(checked) => {
-						setAnnotationsToggle({
-							...annotationsToggle,
+						setToggleStats({
+							...toggleStats,
 							imunidade: checked,
+						});
+					}}
+				/>
+
+				<CustomCheckbox
+					checked={toggleStats.infetados}
+					label={'Casos Confirmados'}
+					onChange={(checked) => {
+						setToggleStats({
+							...toggleStats,
+							infetados: checked,
 						});
 					}}
 				/>

@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import vaccinesData from '../data/vaccines.json';
-import casesData from '../data/cases.json';
-import { fetcher, fetchWithLocalCache } from '../utils';
-import { set } from 'core-js/fn/dict';
+import { fetchWithLocalCache } from '../utils';
 export function useData() {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
@@ -11,6 +8,7 @@ export function useData() {
 	let [ecdc, setECDC] = useState(false);
 	let [ars, setArs] = useState(false);
 	let [vaccines, setVaccines] = useState(false);
+	let [casesData, setCasesData] = useState(false);
 	let [casos, setCasos] = useState({});
 	let [labels, setLabels] = useState([]);
 	let [values, setValues] = useState([]);
@@ -316,6 +314,9 @@ export function useData() {
 			});
 			return data;
 		},
+		getCases: () => {
+			return casesData;
+		},
 		getDosesRecebidasAcum: () => {
 			if (ecdc == false) return;
 			let labels = {};
@@ -389,12 +390,13 @@ export function useData() {
 	};
 
 	useEffect(() => {
-		Promise.all([fetchWithLocalCache('/api/ecdc'), fetchWithLocalCache('/api/weeks'), fetchWithLocalCache('/api/sns'), fetchWithLocalCache('/api/vaccinesold'), fetchWithLocalCache('/api/ars')]).then(([ecdc, weeks, sns, vaccines, ars]) => {
+		Promise.all([fetchWithLocalCache('/api/ecdc'), fetchWithLocalCache('/api/weeks'), fetchWithLocalCache('/api/sns'), fetchWithLocalCache('/api/vaccinesold'), fetchWithLocalCache('/api/ars'), fetchWithLocalCache('/api/cases')]).then(([ecdc, weeks, sns, vaccines, ars, cases]) => {
 			setSns(sns);
 			setWeeks(weeks);
 			setECDC(ecdc);
 			setVaccines(vaccines);
 			setArs(ars);
+			setCasesData(cases);
 			setReady(true);
 		});
 	}, []);
