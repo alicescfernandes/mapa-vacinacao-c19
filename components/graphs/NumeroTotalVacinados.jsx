@@ -126,18 +126,15 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 							drawTime: 'afterDatasetsDraw',
 
-							fontSize: 13,
-
 							textAlign: 'left',
 							fontColor: '#0A9DD1',
 							position: 'left',
 							xAdjust: 10,
 							yAdjust: -10,
 							fontSize: '13px',
-							fontStyle: 'bold',
 
 							enabled: true,
-							content: '1ª Fase - Fevereiro',
+							content: '1ª Fase - Fevereiro (1.8 milhões de pessoas)',
 						},
 					},
 					{
@@ -164,18 +161,15 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 							drawTime: 'afterDatasetsDraw',
 
-							fontSize: 13,
-
 							textAlign: 'left',
 							fontColor: '#0A9DD1',
 							position: 'left',
-							xAdjust: 10,
+							xAdjust: 5,
 							yAdjust: -10,
 							fontSize: '13px',
-							fontStyle: 'bold',
 
 							enabled: true,
-							content: '1ª Fase - Dezembro',
+							content: '1ª Fase - Dezembro (950 mil pessoas)',
 						},
 					},
 					{
@@ -192,21 +186,15 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 							drawTime: 'afterDatasetsDraw',
 
-							fontSize: 13,
-
 							textAlign: 'left',
-							font: {
-								style: 'bold',
-							},
-							fontStyle: 'bold',
 
 							fontColor: '#D17615',
 							fontSize: '13px',
 							position: 'left',
-							xAdjust: 10,
+							xAdjust: 5,
 							yAdjust: -10,
 							enabled: true,
-							content: 'Imunidade de Grupo',
+							content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)',
 						},
 					},
 				],
