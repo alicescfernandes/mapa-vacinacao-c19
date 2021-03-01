@@ -217,7 +217,7 @@ export default function Home() {
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
 										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} em cada 100 pessoas já foram inoculadas com a 1ª dose
 										<br />
-										{formatNumber(selectedItem?.Inoculacao2_Ac)} inoculadas com a 1ª dose
+										{formatNumber(selectedItem?.Inoculacao2_Ac)} inoculadas com a 2ª dose
 									</p>
 								</Card>
 							</Col>
