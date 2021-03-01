@@ -7,6 +7,7 @@ export const formatNumber = (number, isDate = true) => {
 	return numberFormatter.format(number).replace(/,/gm, ' ');
 };
 
+import { populacao } from './data/generic.json';
 //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 export function hexToRgb(hex) {
 	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -62,6 +63,10 @@ export function downloadPNG(canvasElement, graphName) {
 	link.download = 'filename.png';
 	link.href = canvasElement.toDataURL();
 	link.click();
+}
+
+export function perHundred(total) {
+	return (total / populacao.valor) * 100;
 }
 
 export function fetchWithLocalCache(url, options, useCache = false) {
