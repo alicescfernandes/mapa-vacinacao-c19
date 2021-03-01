@@ -13,6 +13,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	let [toggleStats, setToggleStats] = useState({
 		imunidade: true,
 		primeira_fase: true,
+		segunda_fase: true,
 		infetados: true,
 	});
 
@@ -131,7 +132,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.primeira_fase ? 1800000 : null,
+						value: toggleStats?.segunda_fase ? 1800000 : null,
 						borderColor: '#0A9DD1',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -148,14 +149,24 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 							yAdjust: -10,
 							fontSize: '13px',
 							enabled: true,
-							content: '1ª Fase - Fevereiro (1.8 milhões de pessoas)',
+							content: '2ª Fase - Abril (1.8 milhões de pessoas)',
 						},
 					},
 					{
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.primeira_fase ? 1900000 : null,
+						value: toggleStats?.segunda_fase ? 1900000 : null,
+						borderColor: 'transparent',
+						label: {
+							enabled: false,
+						},
+					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: toggleStats?.primeira_fase ? 1200000 : null,
 						borderColor: 'transparent',
 						label: {
 							enabled: false,
@@ -267,6 +278,16 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						setToggleStats({
 							...toggleStats,
 							primeira_fase: checked,
+						});
+					}}
+				/>
+				<CustomCheckbox
+					checked={toggleStats.primeira_fase}
+					label={'2ª Fase'}
+					onChange={(checked) => {
+						setToggleStats({
+							...toggleStats,
+							segunda_fase: checked,
 						});
 					}}
 				/>
