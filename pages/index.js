@@ -31,7 +31,7 @@ import Plausible from 'plausible-tracker';
 import { BarArs } from '../components/graphs/BarArs';
 import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
 import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
-import { formatNumber } from '../utils';
+import { formatNumber, perHundred } from '../utils';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -176,22 +176,48 @@ export default function Home() {
 						<Row>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número total de vacinas administradas" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 200_000} to={selectedItem?.Vacinados_Ac}></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número de doses administradas - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 200_000} to={selectedItem?.Inoculacao1_Ac}></Counter>
+									<Counter
+										colors={colors}
+										title="Número total de vacinas administradas"
+										yesterday={previousItem?.Vacinados_Ac}
+										from={previousSelectedItem?.Vacinados_Ac || 200_000}
+										to={selectedItem?.Vacinados_Ac}
+									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										Até à data foram inoculadas com a 1ª dose {formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas
+										{perHundred(selectedItem?.Vacinados_Ac).toFixed(2)} em cada 100 pessoas já foram totalmente vacinadas
 									</p>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número de doses administradas - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 200_000} to={selectedItem?.Inoculacao2_Ac}></Counter>
+									<Counter
+										colors={colors}
+										title="Número de doses administradas - 1ª Dose"
+										yesterday={previousItem?.Inoculacao1_Ac}
+										from={previousSelectedItem?.Inoculacao1_Ac || 200_000}
+										to={selectedItem?.Inoculacao1_Ac}
+									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										Até à data foram inoculadas com a 2ª dose {formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas
+										{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} em cada 100 pessoas já foram inoculadas com a 1ª dose
+										<br />
+										{formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} inoculadas com a 1ª dose
+									</p>
+								</Card>
+							</Col>
+							<Col lg={4} xs={12}>
+								<Card isUpdating={updating}>
+									<Counter
+										colors={colors}
+										title="Número de doses administradas - 2ª Dose"
+										yesterday={previousItem?.Inoculacao2_Ac}
+										from={previousSelectedItem?.Inoculacao2_Ac || 200_000}
+										to={selectedItem?.Inoculacao2_Ac}
+									></Counter>
+
+									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
+										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} em cada 100 pessoas já foram inoculadas com a 1ª dose
+										<br />
+										{formatNumber(selectedItem?.Inoculacao2_Ac)} inoculadas com a 1ª dose
 									</p>
 								</Card>
 							</Col>
@@ -225,10 +251,15 @@ export default function Home() {
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card>
-									<h2 className={cardStyles.card_title}>Fase atual do plano de vacinação</h2>
+									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
+										Fase atual do plano de vacinação
+									</h2>
 									<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
 										{fases.fases[fases.fase_atual].nome} de Vacinação
 									</h1>
+									<p title="Consultar notas ou o plano de informação para mais informação" style={{ margin: '5px 0px' }} class={cardStyles.card_subtitle}>
+										Espera-se vacinar cerca de 950 mil pessoas*
+									</p>
 									<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
 										Ver mais informação sobre o plano de vacinação
 									</a>
@@ -360,22 +391,29 @@ export default function Home() {
 										número de população de Portugal (dados do PORDATA)
 									</a>
 									. De acordo com o&nbsp;
-									<a className={styles.link} target="_blank" href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/">
+									<a
+										className={styles.link}
+										target="_blank"
+										href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/"
+									>
 										Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo.
 									</a>{' '}
 									Os valores apresentados aqui foram calculados com uma percentagem de 70%.
 								</p>
 								<p className={styles.text}>
-									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
+									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e
+									recuperada assumindo que casos de reinfeções são raros.{' '}
 									<a className={styles.link} href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/" target=":blank">
 										Até 25/02 foram confirmados 57 casos de reinfecção com o novo coronavírus.
 									</a>
 								</p>
 
 								<p className={styles.text}>
-									No início da campanha de vacinação foi anunciadas que ia haver 3 fases de vacinação, e que a primeria iria ser dividida em duas partes. A partir de Dezembro iriam ser administradas vacinas a Profissionais de saúde envolvidos na prestação de cuidados a doentes,
-									profissionais das forças armadas, forças de segurança e serviços críticos, profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de Fevereiro iriam ser administradas vacinas a pessoas com mais de 50 ano, e
-									com Insuficiência cardíaca, Doença coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória crónica.{' '}
+									No início da campanha de vacinação foi anunciadas que ia haver 3 fases de vacinação, e que a primeria iria ser dividida em duas partes. A partir de Dezembro iriam
+									ser administradas vacinas a Profissionais de saúde envolvidos na prestação de cuidados a doentes, profissionais das forças armadas, forças de segurança e serviços
+									críticos, profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de Fevereiro iriam ser administradas
+									vacinas a pessoas com mais de 50 ano, e com Insuficiência cardíaca, Doença coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória
+									crónica.{' '}
 									<a className={styles.link} href="https://covid19.min-saude.pt/vacinacao/" target=":blank">
 										Mais informação sobre o plano de vacinação pode ser consultada aqui.
 									</a>
@@ -428,7 +466,11 @@ export default function Home() {
 										pode ser consultado aqui.
 									</a>{' '}
 									No dia 01 de Março de 2021, foi anunciado que o número total de vacinas adquiridas aumentou para 38 milhões de doses, num comunicado dirigido à imprensa que{' '}
-									<a className={styles.link} href="https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19" target="_blank">
+									<a
+										className={styles.link}
+										href="https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19"
+										target="_blank"
+									>
 										pode ser consultado aqui.
 									</a>
 									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
