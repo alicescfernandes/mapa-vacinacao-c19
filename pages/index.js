@@ -31,6 +31,7 @@ import Plausible from 'plausible-tracker';
 import { BarArs } from '../components/graphs/BarArs';
 import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
 import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
+import { formatNumber } from '../utils';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -181,11 +182,17 @@ export default function Home() {
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter colors={colors} title="Número de doses administradas - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 200_000} to={selectedItem?.Inoculacao1_Ac}></Counter>
+									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
+										Até à data foram inoculadas com a 1ª dose {formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas
+									</p>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter colors={colors} title="Número de doses administradas - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 200_000} to={selectedItem?.Inoculacao2_Ac}></Counter>
+									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
+										Até à data foram inoculadas com a 2ª dose {formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas
+									</p>
 								</Card>
 							</Col>
 						</Row>
@@ -228,38 +235,6 @@ export default function Home() {
 								</Card>
 							</Col>
 						</Row>
-						{/*
-							<Row>
-								<Col lg={4} xs={12}>
-									<Card isUpdating={updating}>
-										<h2 className={cardStyles.card_title}>Número de doses adquiridas</h2>
-										<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
-											31 milhões de doses
-										</h1>
-										<a target="_blank" href={generic.doses.fonte.permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
-											Número divulgado pelo Governo de Portugal a 21 de Janeiro de 2020
-										</a>
-									</Card>
-								</Col>
-								<Col lg={4} xs={12}>
-									<Card isUpdating={updating}>
-										<Counter ps={`Até ${doses.dataLong}, foram recebidas ${((doses.recebidas / doses.encomendadas) * 100).toFixed(1)}% das doses encomendadas`} colors={colors} title={`Doses recebidas até ${doses.data}`} from={500_000} to={doses.recebidas}></Counter>
-									</Card>
-								</Col>
-								<Col lg={4} xs={12}>
-									<Card>
-										<Counter
-											ps={`Até ${doses.dataLong} foram administradas ${((doses.administradas / doses.recebidas) * 100).toFixed(1)}% das doses recebidas. `}
-											digits={2}
-											colors={colors}
-											title={`Doses administradas até ${doses.data}`}
-											from={200_000}
-											to={doses.administradas}
-										></Counter>
-									</Card>
-								</Col>
-							</Row>
-						*/}
 						<Row>
 							<Col>
 								<h3 className={styles.title}>
