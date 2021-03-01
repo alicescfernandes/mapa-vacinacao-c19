@@ -27,10 +27,6 @@ a {
 	font-family: 'Open Sans', sans-serif;
 }
 
-.row {
-	margin-bottom: 20px;
-}
-
 .app {
 	min-height: 80vh;
 }
@@ -142,12 +138,16 @@ sup.new {
 	.container {
 		max-width: 90vw;
 	}
+
+	.row {
+		margin-bottom: 15px;
+	}
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
 	.container {
-		max-width: 80vw;
+		max-width: 90vw;
 	}
 }
 

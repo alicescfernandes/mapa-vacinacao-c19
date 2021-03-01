@@ -4,21 +4,19 @@ import { Pie } from 'react-chartjs-2';
 import { COLOR_1 } from '../../constants';
 import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { formatNumber } from '../../utils';
-export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) {
+import { formatNumber } from './../../utils';
+export function PieAdministradasDoses({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
-	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
-	let { values: valueCasesDiarios } = statistics.getDiariosCases();
-	let vaccines = statistics.getRaw();
-	let firstItem = valueCasesDiarios.reverse()[0];
+
 	let { main, shades, tints, complements } = colors;
+
 	const data = (canvas) => {
 		return {
-			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
+			labels: ['Doses Adminstradas - 1ª Inoculação', 'Doses Adminstradas - 2ª Inoculação', 'Doses Recebidas'],
 			datasets: [
 				{
-					backgroundColor: [main, complements[0], complements[2], shades[2]],
-					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, firstItem.Activos, firstItem.Recuperados, firstItem.Obitos],
+					backgroundColor: [main, shades[0], shades[1]],
+					data: [statistics.primeiras, statistics.segundas, statistics.recebidas - statistics.administradas],
 				},
 			],
 		};
@@ -30,12 +28,22 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 				datalabels: {
 					color: 'white',
 					formatter: (value, chart) => {
-						let sum = chart.dataset.data.reduce((prev, curr) => {
-							return prev + curr;
-						}, 0);
-						sum = (value / sum) * 100;
+						let sum = 0;
+						if (value === statistics.primeiras) {
+							sum = statistics.primeiras / statistics.recebidas;
+						}
 
-						if (sum > 5) {
+						if (value === statistics.segundas) {
+							sum = statistics.segundas / statistics.recebidas;
+						}
+
+						if (value === statistics.recebidas - statistics.administradas) {
+							sum = 1 - statistics.administradas / statistics.recebidas;
+						}
+
+						sum = sum * 100;
+
+						if (sum > 10) {
 							return sum.toFixed(2) + '%';
 						}
 						return '';
@@ -56,6 +64,9 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 					label: function ({ index }, { datasets, labels }) {
 						let label = labels[index];
 						let data = datasets[0].data[index];
+						if (label === 'Doses Recebidas') {
+							data = statistics.recebidas;
+						}
 						return `${label}: ${formatNumber(data)}`;
 					},
 				},
@@ -64,10 +75,8 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 	};
 
 	useEffect(() => {
-		if (values.length > 0) {
-			setLoading(false);
-		}
-	}, [values, labels]);
+		setLoading(false);
+	}, []);
 
 	return (
 		<Card allowOverflow={true}>

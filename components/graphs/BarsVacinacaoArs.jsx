@@ -4,6 +4,7 @@ import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
 import { Col, Row } from 'react-bootstrap';
+import { RESIZE_TRESHOLD } from '../../constants';
 
 let styles = {
 	'labels-container': {
@@ -44,15 +45,15 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 		});
 	}, []);
 	const data = (canvas) => {
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '800px';
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
+			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '800px';
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
+				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 			} else {
 				canvas.parentNode.style.width = '100%';
 			}
@@ -154,11 +155,7 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 			<div>
 				{!loading ? (
 					<>
-						<Row>
-							<Col xs={12}>
-								<Bar height={100} options={options()} data={data}></Bar>
-							</Col>
-						</Row>
+						<Bar height={80} options={options()} data={data}></Bar>
 					</>
 				) : (
 					''

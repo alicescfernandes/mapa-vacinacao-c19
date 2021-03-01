@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import vaccinesData from '../data/vaccines.json';
-import casesData from '../data/cases.json';
-import { fetcher, fetchWithLocalCache } from '../utils';
-import { set } from 'core-js/fn/dict';
+import { fetchWithLocalCache } from '../utils';
 export function useData() {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
@@ -11,6 +8,7 @@ export function useData() {
 	let [ecdc, setECDC] = useState(false);
 	let [ars, setArs] = useState(false);
 	let [vaccines, setVaccines] = useState(false);
+	let [casesData, setCasesData] = useState(false);
 	let [casos, setCasos] = useState({});
 	let [labels, setLabels] = useState([]);
 	let [values, setValues] = useState([]);
@@ -201,21 +199,21 @@ export function useData() {
 
 			ecdc.forEach((el) => {
 				var obj = {};
-				if (el['Doses received'] > 0) {
+				if (parseInt(el['Doses received']) > 0) {
 					com[el['Week']] = com[el['Week']] || null;
 					mod[el['Week']] = mod[el['Week']] || null;
 					az[el['Week']] = az[el['Week']] || null;
 					labels[el['Week']] = weeks[el['Week']];
 
 					if (el['Vaccine brand'] === 'COM') {
-						com[el['Week']] = el['Doses received'];
+						com[el['Week']] = parseInt(el['Doses received']);
 					}
 
 					if (el['Vaccine brand'] === 'MOD') {
-						mod[el['Week']] = el['Doses received'];
+						mod[el['Week']] = parseInt(el['Doses received']);
 					}
 					if (el['Vaccine brand'] === 'AZ') {
-						az[el['Week']] = el['Doses received'];
+						az[el['Week']] = parseInt(el['Doses received']);
 					}
 				}
 			});
@@ -316,15 +314,89 @@ export function useData() {
 			});
 			return data;
 		},
+		getCases: () => {
+			return casesData;
+		},
+		getDosesRecebidasAcum: () => {
+			if (ecdc == false) return;
+			let labels = {};
+			let data = {};
+			let com = {};
+			let mod = {};
+			let az = {};
+			let sum = [];
+
+			let ecdcCopy = JSON.parse(JSON.stringify(ecdc));
+
+			let numbers = [1, 1, 1, 1];
+
+			function sumArray(array) {
+				return array.reduce((prev, current) => {
+					return prev + current;
+				}, 0);
+			}
+
+			ecdcCopy
+				.filter((el) => el['Doses received'] > 0)
+				.forEach((el) => {
+					if (!labels.hasOwnProperty(el['Week'])) {
+						labels[el['Week']] = weeks[el['Week']];
+					}
+
+					com[el['Week']] = com[el['Week']] || 0;
+					mod[el['Week']] = mod[el['Week']] || 0;
+					az[el['Week']] = az[el['Week']] || 0;
+
+					if (el['Vaccine brand'] === 'COM') {
+						com[el['Week']] = parseInt(el['Doses received']);
+					}
+
+					if (el['Vaccine brand'] === 'MOD') {
+						mod[el['Week']] = parseInt(el['Doses received']);
+					}
+
+					if (el['Vaccine brand'] === 'AZ') {
+						az[el['Week']] = parseInt(el['Doses received']);
+					}
+				});
+
+			com = Object.values(com)
+				.reverse()
+				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
+				.reverse();
+
+			az = Object.values(az)
+				.reverse()
+				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
+				.reverse();
+
+			mod = Object.values(mod)
+				.reverse()
+				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
+				.reverse();
+
+			sum = mod.map((el, idx, arr) => {
+				return com[idx] + az[idx] + mod[idx];
+			});
+
+			return {
+				mod,
+				com,
+				az,
+				sum,
+				labels,
+			};
+		},
 	};
 
 	useEffect(() => {
-		Promise.all([fetchWithLocalCache('/api/ecdc'), fetchWithLocalCache('/api/weeks'), fetchWithLocalCache('/api/sns'), fetchWithLocalCache('/api/vaccinesold'), fetchWithLocalCache('/api/ars')]).then(([ecdc, weeks, sns, vaccines, ars]) => {
+		Promise.all([fetchWithLocalCache('/api/ecdc'), fetchWithLocalCache('/api/weeks'), fetchWithLocalCache('/api/sns'), fetchWithLocalCache('/api/vaccinesold'), fetchWithLocalCache('/api/ars'), fetchWithLocalCache('/api/cases')]).then(([ecdc, weeks, sns, vaccines, ars, cases]) => {
 			setSns(sns);
 			setWeeks(weeks);
 			setECDC(ecdc);
 			setVaccines(vaccines);
 			setArs(ars);
+			setCasesData(cases);
 			setReady(true);
 		});
 	}, []);
