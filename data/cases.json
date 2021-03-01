@@ -757,14 +757,14 @@
     },
     {
         "Data": 1614513600000,
-        "ConfirmadosAcumulado": 804562 ,
+        "ConfirmadosAcumulado": 804562,
         "ConfirmadosNovos": 718,
-        "Recuperados": 717313,
+        "Recuperados": 718977,
         "Obitos": 16317,
-        "ObitosNovos": 41,
-        "RecuperadosNovos": 718977,
+        "ObitosNovos": 12306,
+        "RecuperadosNovos": 28779,
         "VarRecuperados": 1664,
         "Activos": 69268,
-        "OBJECTID": 4344
+        "OBJECTID": 4352
     }
 ]
