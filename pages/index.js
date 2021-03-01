@@ -6,13 +6,15 @@ import { DatePickerButton } from '../components/DatePickerButton';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
-import { isSameDay, format } from 'date-fns';
+import { isSameDay, format, parseISO } from 'date-fns';
 import { GooSpinner, ImpulseSpinner, JellyfishSpinner, PushSpinner, RotateSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import { useColors } from '../hooks/useColors';
 import { Metatags } from '../components/MetaTags';
 import cardStyles from '../components/Card.module.scss';
+import json from './../data/last-update.json';
+import { pt } from 'date-fns/locale';
 
 //data
 import generic from './../data/generic.json';
@@ -27,6 +29,8 @@ import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdminist
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
 import Plausible from 'plausible-tracker';
 import { BarArs } from '../components/graphs/BarArs';
+import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
+import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -53,6 +57,16 @@ export default function Home() {
 			prev: 0,
 			current: 0,
 		},
+	});
+	//TODO: Move this to the hook
+	let [doses, setDoses] = useState({
+		encomendadas: generic.doses.valor,
+		recebidas: 0,
+		administradas: 0,
+		primeiras: 0,
+		segundas: 0,
+		data: '',
+		dataLong: '',
 	});
 
 	let { colors, colors_v2, setColors } = useColors();
@@ -105,6 +119,8 @@ export default function Home() {
 		setPreviousItem(selectedItem);
 		setFirst(rawData[0]);
 		setLoaded(true);
+		plausible.trackPageview();
+
 		var pusher = new Pusher('4dd4d1d504254af64544', {
 			cluster: 'eu',
 		});
@@ -117,7 +133,25 @@ export default function Home() {
 				setUpdating(false);
 			}, 1000);
 		});
-		plausible.trackPageview();
+
+		let { sum } = statistics?.getDosesRecebidasAcum();
+		sum = sum.reverse()[0];
+		let item = rawData.filter((el) => {
+			return isSameDay(el.Data, new Date(json.dateSnsStart));
+		});
+		setDoses({
+			...doses,
+			recebidas: sum,
+			administradas: item[0].Vacinados_Ac,
+			primeiras: item[0].Inoculacao1_Ac,
+			segundas: item[0].Inoculacao2_Ac,
+			data: format(new Date(json.dateSns).getTime(), 'dd/LL/yyyy', {
+				locale: pt,
+			}),
+			dataLong: format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+				locale: pt,
+			}),
+		});
 	}, [dataReady]);
 	return (
 		<>
@@ -141,17 +175,17 @@ export default function Home() {
 						<Row>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número total de vacinas administradas" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 0} to={selectedItem?.Vacinados_Ac}></Counter>
+									<Counter colors={colors} title="Número total de vacinas administradas" yesterday={previousItem?.Vacinados_Ac} from={previousSelectedItem?.Vacinados_Ac || 200_000} to={selectedItem?.Vacinados_Ac}></Counter>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número de doses administradas - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 0} to={selectedItem?.Inoculacao1_Ac}></Counter>
+									<Counter colors={colors} title="Número de doses administradas - 1ª Dose" yesterday={previousItem?.Inoculacao1_Ac} from={previousSelectedItem?.Inoculacao1_Ac || 200_000} to={selectedItem?.Inoculacao1_Ac}></Counter>
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
-									<Counter colors={colors} title="Número de doses administradas - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 0} to={selectedItem?.Inoculacao2_Ac}></Counter>
+									<Counter colors={colors} title="Número de doses administradas - 2ª Dose" yesterday={previousItem?.Inoculacao2_Ac} from={previousSelectedItem?.Inoculacao2_Ac || 200_000} to={selectedItem?.Inoculacao2_Ac}></Counter>
 								</Card>
 							</Col>
 						</Row>
@@ -194,9 +228,43 @@ export default function Home() {
 								</Card>
 							</Col>
 						</Row>
+						{/*
+							<Row>
+								<Col lg={4} xs={12}>
+									<Card isUpdating={updating}>
+										<h2 className={cardStyles.card_title}>Número de doses adquiridas</h2>
+										<h1 style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+											31 milhões de doses
+										</h1>
+										<a target="_blank" href={generic.doses.fonte.permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+											Número divulgado pelo Governo de Portugal a 21 de Janeiro de 2020
+										</a>
+									</Card>
+								</Col>
+								<Col lg={4} xs={12}>
+									<Card isUpdating={updating}>
+										<Counter ps={`Até ${doses.dataLong}, foram recebidas ${((doses.recebidas / doses.encomendadas) * 100).toFixed(1)}% das doses encomendadas`} colors={colors} title={`Doses recebidas até ${doses.data}`} from={500_000} to={doses.recebidas}></Counter>
+									</Card>
+								</Col>
+								<Col lg={4} xs={12}>
+									<Card>
+										<Counter
+											ps={`Até ${doses.dataLong} foram administradas ${((doses.administradas / doses.recebidas) * 100).toFixed(1)}% das doses recebidas. `}
+											digits={2}
+											colors={colors}
+											title={`Doses administradas até ${doses.data}`}
+											from={200_000}
+											to={doses.administradas}
+										></Counter>
+									</Card>
+								</Col>
+							</Row>
+						*/}
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de vacinas administradas</h3>
+								<h3 className={styles.title}>
+									Número de vacinas administradas <sup className={'new'}>atualizado</sup>
+								</h3>
 
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
@@ -209,8 +277,37 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de doses recebidas por semana </h3>
+								<h3 className={styles.title}>
+									Número de doses recebidas por semana <sup className={'new'}>atualizado</sup>
+								</h3>
+
 								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={6} xs={12}>
+								<h3 className={styles.title}>
+									Proporção de doses recebidas relativamente às doses adquiridas <sup className={'new'}>novo</sup>
+								</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
+								<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
+							</Col>
+							<Col lg={6} xs={12}>
+								<h3 className={styles.title}>
+									Proporção de doses administradas relativamente às doses recebidas <sup className={'new'}>novo</sup>
+								</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
+								<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>
 							</Col>
 						</Row>
 						<Row>
@@ -222,7 +319,12 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h3 className={styles.title}>Doses totais administradas por faixa etária</h3>
-								<h3 className={styles.subtitle}>Dados acumulados deste 21 de Dezembro de 2021 até 21 de Fevereiro de 2021</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
 							</Col>
 						</Row>
@@ -247,7 +349,12 @@ export default function Home() {
 								<h3 className={styles.title}>
 									Evolução do programa de vacinação por ARS <sup className={'new'}>novo</sup>
 								</h3>
-								<h3 className={styles.subtitle}>Dados acumulados deste 21 de Dezembro de 2021 até 21 de Fevereiro de 2021</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
 							</Col>
 						</Row>
@@ -256,7 +363,16 @@ export default function Home() {
 								<h3 className={styles.title}>
 									Ponto de situação por ARS <sup className={'new'}>novo</sup>
 								</h3>
-								<h3 className={styles.subtitle}>Dados acumulados relativos à semana de 15 até 21 de Fevereiro de 2021</h3>
+								<h3 className={styles.subtitle}>
+									Dados acumulados relativos à semana de{' '}
+									{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
+										locale: pt,
+									})}{' '}
+									até{' '}
+									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
@@ -278,6 +394,15 @@ export default function Home() {
 									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
 									<a className={styles.link} href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/" target=":blank">
 										Até 25/02 foram confirmados 57 casos de reinfecção com o novo coronavírus.
+									</a>
+								</p>
+
+								<p className={styles.text}>
+									No início da campanha de vacinação foi anunciadas que ia haver 3 fases de vacinação, e que a primeria iria ser dividida em duas partes. A partir de Dezembro iriam ser administradas vacinas a Profissionais de saúde envolvidos na prestação de cuidados a doentes,
+									profissionais das forças armadas, forças de segurança e serviços críticos, profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de Fevereiro iriam ser administradas vacinas a pessoas com mais de 50 ano, e
+									com Insuficiência cardíaca, Doença coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória crónica.{' '}
+									<a className={styles.link} href="https://covid19.min-saude.pt/vacinacao/" target=":blank">
+										Mais informação sobre o plano de vacinação pode ser consultada aqui.
 									</a>
 								</p>
 								{/*	<p className={styles.text}>
@@ -317,7 +442,24 @@ export default function Home() {
 									<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">
 										relatórios publicados semanalmente.
 									</a>
-									{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
+								</p>
+								<p className={styles.text}>
+									O número total de vacinas adquiridas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado feito no sítio do Governo de Portugal, que{' '}
+									<a
+										className={styles.link}
+										href="https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C"
+										target="_blank"
+									>
+										pode ser consultado aqui.
+									</a>{' '}
+									No dia 01 de Março de 2021, foi anunciado que o número total de vacinas adquiridas aumentou para 38 milhões de doses, num comunicado dirigido à imprensa que{' '}
+									<a className={styles.link} href="https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19" target="_blank">
+										pode ser consultado aqui.
+									</a>
+									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
+								</p>
+
+								{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
                                 <a className={styles.link} target="_blank" href="https://ourworldindata.org/">
                                     Our World In Data
                                 </a>
@@ -325,7 +467,6 @@ export default function Home() {
                                 <a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
                                     no repositório de Github
                                 </a> */}
-								</p>
 							</Col>
 						</Row>
 					</>

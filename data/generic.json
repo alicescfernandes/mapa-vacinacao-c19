@@ -8,11 +8,28 @@
         }
     },
     "doses":{
-        "valor":31000000,
-        "legenda":"cerca de 31 milhões de doses",
+        "valor":38000000,
+        "legenda":"38 milhões de doses",
         "fonte":{
-            "nome":"Jornal Económico",
-            "permalink":"https://jornaleconomico.sapo.pt/noticias/covid-19-portugal-comprou-doses-de-vacinas-para-mais-de-18-milhoes-de-pessoas-691186"
+            "nome":"Governo de Portugal",
+            "permalink":"https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19"
+        }
+    },
+    "doses3":{
+        "valor":31000000,
+        "legenda":"mais do que 31 milhões de doses",
+        "fonte":{
+            "nome":"Governo de Portugal",
+            "permalink":"https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C"
+        }
+    },
+    "doses2":{
+        "valor":22000000,
+        "legenda":"cerca de 22 milhões de doses",
+        "fonte":{
+            "nome":"Direção-Geral da Saúde",
+            "permalink":"https://www.sns.gov.pt/noticias/2020/12/04/plano-de-vacinacao-contra-a-covid-19/"
         }
     }
+
 }

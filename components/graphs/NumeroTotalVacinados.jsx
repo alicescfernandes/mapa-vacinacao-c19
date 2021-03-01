@@ -1,15 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber, hexToRgb } from '../../utils';
+import 'chartjs-plugin-annotation';
+import { CustomCheckbox } from './../CustomCheckbox';
+import { RESIZE_TRESHOLD } from '../../constants';
 
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let { labels, values } = statistics.getDailyData();
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
+	let casesData = statistics.getCases();
+	let [toggleStats, setToggleStats] = useState({
+		imunidade: true,
+		primeira_fase: true,
+		infetados: true,
+	});
+
 	let [loading, setLoading] = useState(true);
 	let [height, setHeight] = useState(400);
 	let [foreground, color_1, color_2] = colors;
-	const canvasRef = useRef(null);
 	let commonProps = {
 		fill: true,
 		lineTension: 0.5,
@@ -22,8 +31,8 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		pointRadius: 1,
 		pointHitRadius: 10,
 	};
-
-	const data = (canvas) => {
+	let chartRef = createRef();
+	const data = (canvas, cenas) => {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 		let { r, g, b } = hexToRgb(foreground);
@@ -35,25 +44,19 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			gradient.addColorStop(1, '#ffffff');
 		}
 
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '1000px';
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
+			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '1000px';
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
+				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 			} else {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '1000px';
-		} else {
-			canvas.parentNode.style.width = 'auto';
-		}
 
 		return {
 			labels: labels,
@@ -91,6 +94,19 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointHoverBorderColor: color_2,
 					data: valuesIn2,
 				},
+				{
+					...commonProps,
+					label: 'Casos Confirmados',
+					backgroundColor: '#D11541',
+					borderColor: '#D11541',
+					fill: false,
+					pointBorderColor: '#D11541',
+					pointBackgroundColor: '#D11541',
+					pointHoverBackgroundColor: '#D11541',
+					pointHoverBorderColor: '#D11541',
+					hidden: toggleStats.infetados === false,
+					data: casesData.map((el) => el.ConfirmadosAcumulado),
+				},
 			],
 		};
 	};
@@ -99,7 +115,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			plugins: {
 				datalabels: {
 					display: false,
-					color: 'blue',
 				},
 			},
 			legend: {
@@ -109,6 +124,94 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 			animation: {
 				duration: 1000,
+			},
+			annotation: {
+				annotations: [
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: toggleStats?.primeira_fase ? 1800000 : null,
+						borderColor: '#0A9DD1',
+						borderWidth: 2,
+						borderDash: [5, 5],
+
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							textAlign: 'left',
+							fontColor: '#0A9DD1',
+							position: 'left',
+							xAdjust: 10,
+							yAdjust: -10,
+							fontSize: '13px',
+							enabled: true,
+							content: '1ª Fase - Fevereiro (1.8 milhões de pessoas)',
+						},
+					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: toggleStats?.primeira_fase ? 1900000 : null,
+						borderColor: 'transparent',
+						label: {
+							enabled: false,
+						},
+					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: toggleStats?.primeira_fase ? 950000 : null,
+						borderColor: '#0A9DD1',
+						borderWidth: 2,
+						borderDash: [5, 5],
+
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							textAlign: 'left',
+							fontColor: '#0A9DD1',
+							position: 'left',
+							xAdjust: 5,
+							yAdjust: -10,
+							fontSize: '13px',
+
+							enabled: true,
+							content: '1ª Fase - Dezembro (950 mil pessoas)',
+						},
+					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: toggleStats?.imunidade ? 10286300 * 0.7 : null,
+						borderColor: '#D17615',
+						borderWidth: 2,
+						borderDash: [5, 5],
+
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							textAlign: 'left',
+
+							fontColor: '#D17615',
+							fontSize: '13px',
+							position: 'left',
+							xAdjust: 5,
+							yAdjust: -10,
+							enabled: true,
+							content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)',
+						},
+					},
+				],
 			},
 			tooltips: {
 				mode: 'index',
@@ -135,9 +238,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						},
 						ticks: {
 							beginAtZero: false,
-							min: Math.min(...values),
-							max: Math.max(...values) + Math.max(...values) * 0.05,
-							stepSize: (Math.max(...values) / 5).toFixed(0),
+							//max: 10000000,
 							callback: (value) => formatNumber(value, false),
 						},
 					},
@@ -146,20 +247,52 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		};
 	};
 	useEffect(() => {
-		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-			setHeight(canvasRef?.current?.chartInstance?.canvas?.height);
-		}
-	}, [canvasRef.current]);
+		console.log(0, chartRef);
+		console.log(1, chartRef?.current?.chartInstance?.scales['y-axis-0']?.end);
+	}, [chartRef.current]);
 
 	useEffect(() => {
-		if (values.length > 0 && height > 0) {
+		if (values.length > 0) {
 			setLoading(false);
 		}
 	}, [values, labels, height]);
 
 	return (
 		<Card allowOverflow={true}>
-			<div> {!loading ? <Line height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div style={{ textAlign: 'left' }}>
+				<CustomCheckbox
+					checked={toggleStats.primeira_fase}
+					label={'1ª Fase'}
+					onChange={(checked) => {
+						setToggleStats({
+							...toggleStats,
+							primeira_fase: checked,
+						});
+					}}
+				/>
+				<CustomCheckbox
+					checked={toggleStats.imunidade}
+					label={'Imunidade de Grupo'}
+					onChange={(checked) => {
+						setToggleStats({
+							...toggleStats,
+							imunidade: checked,
+						});
+					}}
+				/>
+
+				<CustomCheckbox
+					checked={toggleStats.infetados}
+					label={'Casos Confirmados'}
+					onChange={(checked) => {
+						setToggleStats({
+							...toggleStats,
+							infetados: checked,
+						});
+					}}
+				/>
+			</div>
+			<div> {!loading ? <Line height={80} ref={chartRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

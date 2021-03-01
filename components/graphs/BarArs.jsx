@@ -4,6 +4,7 @@ import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
 import { Col, Row } from 'react-bootstrap';
+import { RESIZE_TRESHOLD } from '../../constants';
 
 let styles = {
 	'labels-container': {
@@ -35,20 +36,6 @@ let styles = {
 function CustomBarChart({ type, total, colors, data, showHeading }) {
 	let { main, shades, tints, complements } = colors;
 	const graphData = (canvas) => {
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '800px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '800px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
-
 		return {
 			//labels: ['Inoculados', 'Óbitos Novos', 'cenas3'],
 			datasets: [

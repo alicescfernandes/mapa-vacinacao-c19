@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
+import { RESIZE_TRESHOLD } from './../../constants';
 export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let marriedData = {};
@@ -29,14 +30,14 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	const data = (canvas) => {
 		let { labels, groups, maxValue } = graphData;
 
-		if (window.innerWidth <= 800) {
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = '1000px';
 		} else {
 			canvas.parentNode.style.width = 'auto';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
 				canvas.parentNode.style.width = '1000px';
 			} else {
 				canvas.parentNode.style.width = '100%';
@@ -212,7 +213,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				},
 			},
 			onResize: (a, b, c) => {
-				if (window.innerWidth <= 800) {
+				if (window.innerWidth <= RESIZE_TRESHOLD) {
 					a.canvas.parentNode.style.width = '1000px';
 				} else {
 					a.canvas.parentNode.style.width = 'auto';
@@ -323,7 +324,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 							</p>
 						</div>
 						<div>
-							<Bar height={100} ref={canvasRef} options={options()} data={data} />
+							<Bar height={80} ref={canvasRef} options={options()} data={data} />
 						</div>
 					</>
 				) : (

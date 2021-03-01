@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 
@@ -16,15 +17,15 @@ export function VacinadosPorDia({ statistics, colors }) {
 	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 
-		if (window.innerWidth <= 800) {
-			canvas.parentNode.style.width = '1000px';
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
+			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
 			canvas.parentNode.style.width = '100%';
 		}
 
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= 800) {
-				canvas.parentNode.style.width = '1000px';
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
+				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 			} else {
 				canvas.parentNode.style.width = '100%';
 			}
@@ -169,7 +170,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Bar height={100} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Bar height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

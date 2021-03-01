@@ -24,3 +24,5 @@ export let SHADE_70 = '#00342d';
 export let COMPLEMENT_1 = '#0A9DD1';
 export let COMPLEMENT_2 = '#D11541';
 export let COMPLEMENT_3 = '#D17615';
+
+export let RESIZE_TRESHOLD = 1040;
