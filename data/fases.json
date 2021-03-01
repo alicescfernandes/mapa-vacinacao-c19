@@ -4,6 +4,7 @@
         {
             "nome": "1ª Fase",
             "inicio": 1609027200000,
+            "objetivo_formatado": "950 mil pessoas",
             "fim": null,
             "objetivo":950000,
             "bullet_points": [
@@ -24,6 +25,7 @@
             "inicio": 1580515200000,
             "fim": null,
             "objetivo":950000,
+            "objetivo_formatado": "950 mil pessoas",
             "bullet_points": [
                 "Pessoas com 80 ou mais anos de idade",
                 "Pessoas com 50 ou mais anos de idade, que sofram de infsuficiência cardíaca, doença coronária, insuficiência renal (TFG < 60ml/min) ou doença respiratória crónicas "
@@ -44,6 +46,7 @@
             "inicio": 1585699200000,
             "fim": null,
             "objetivo":1800000,
+            "objetivo_formatado": "1.8 milhões pessoas",
             "bullet_points": [
                 "Pessoas com 65 anos ou mais que não tenham sido vacinadas previamente",
                 "Pessoas entre os 50 e os 64 anos de idade que sofram de diabetes, neoplasia maligna ativa, doença renal crónica, insuficiência hepática, hipertensão arterial ou obesidade"
@@ -64,6 +67,7 @@
             "inicio": null,
             "fim": null,
             "objetivo":null,
+            "objetivo_formatado": "950 mil pessoas",
             "bullet_points": [
                 "TBA"
             ],
