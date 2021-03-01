@@ -57,6 +57,13 @@ export function trackPlausible(req) {
 		});
 }
 
+export function downloadPNG(canvasElement, graphName) {
+	var link = document.createElement('a');
+	link.download = 'filename.png';
+	link.href = canvasElement.toDataURL();
+	link.click();
+}
+
 export function fetchWithLocalCache(url, options, useCache = false) {
 	try {
 		if (window && localStorage.getItem(url) && useCache === true) {

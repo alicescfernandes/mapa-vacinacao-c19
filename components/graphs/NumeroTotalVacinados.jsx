@@ -132,7 +132,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 							xAdjust: 10,
 							yAdjust: -10,
 							fontSize: '13px',
-
 							enabled: true,
 							content: '1ª Fase - Fevereiro (1.8 milhões de pessoas)',
 						},
