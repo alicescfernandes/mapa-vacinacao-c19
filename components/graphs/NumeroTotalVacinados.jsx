@@ -268,10 +268,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			},
 		};
 	};
-	useEffect(() => {
-		console.log(0, chartRef);
-		console.log(1, chartRef?.current?.chartInstance?.scales['y-axis-0']?.end);
-	}, [chartRef.current]);
+	useEffect(() => {}, [chartRef.current]);
 
 	useEffect(() => {
 		if (values.length > 0) {
