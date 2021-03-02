@@ -135,6 +135,8 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					{
 						stacked: true,
 						ticks: {
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
@@ -144,7 +146,10 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						stacked: false,
 						id: 'total',
 						display: false,
-						ticks: {},
+						ticks: {
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						},
 					},
 				],
 				xAxes: [

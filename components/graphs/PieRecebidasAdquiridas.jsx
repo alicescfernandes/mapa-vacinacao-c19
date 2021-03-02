@@ -7,7 +7,6 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from './../../utils';
 export function PieRecebidasAdquiridas({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
-	console.log(2, statistics);
 	let { main, shades, tints, complements } = colors;
 
 	const data = (canvas) => {
