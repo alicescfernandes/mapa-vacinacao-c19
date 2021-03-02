@@ -54,13 +54,22 @@
 		}
 	}
 
-	&_chart {
+	&_chart,
+	&_scrollable {
 		overflow-x: scroll;
 	}
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+	.card {
+		&_scrollable {
+			min-width: 1000px;
+		}
+	}
 }
 
 @media (min-width: 992px) {
@@ -73,7 +82,8 @@
 
 @media screen and (min-width: 1040px) {
 	.card {
-		&_chart {
+		&_chart,
+		&_scrollable {
 			overflow-x: hidden;
 		}
 	}

@@ -6,6 +6,8 @@ import { Card } from './../Card';
 import generic from '../../data/generic.json';
 import { CustomCheckbox } from '../CustomCheckbox';
 import { RESIZE_TRESHOLD } from '../../constants';
+import styles from './../Card.module.scss';
+
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
@@ -236,6 +238,9 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						},
 						ticks: {
 							beginAtZero: true,
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+
 							callback: (value) => formatNumber(value, false),
 						},
 					},
@@ -261,7 +266,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div style={{ textAlign: 'left' }}>
+			<div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={annotationsToggle.dose}
 					label={'Doses adquiridas (01/03/2021)'}
@@ -293,7 +298,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					}}
 				/>
 			</div>
-			<div>{!loading ? <Bar height={80} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

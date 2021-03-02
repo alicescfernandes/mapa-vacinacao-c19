@@ -5,6 +5,7 @@ import { formatNumber, hexToRgb } from '../../utils';
 import 'chartjs-plugin-annotation';
 import { CustomCheckbox } from './../CustomCheckbox';
 import { RESIZE_TRESHOLD } from '../../constants';
+import styles from './../Card.module.scss';
 
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let { labels, values } = statistics.getDailyData();
@@ -249,8 +250,18 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						},
 						ticks: {
 							beginAtZero: false,
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							//max: 10000000,
 							callback: (value) => formatNumber(value, false),
+						},
+					},
+				],
+				xAxes: [
+					{
+						ticks: {
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
 						},
 					},
 				],
@@ -270,7 +281,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div style={{ textAlign: 'left' }}>
+			<div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={toggleStats.primeira_fase}
 					label={'1ª Fase'}
@@ -313,7 +324,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					}}
 				/>
 			</div>
-			<div> {!loading ? <Line height={80} ref={chartRef} options={options()} data={data} /> : ''}</div>
+			<div> {!loading ? <Line height={100} ref={chartRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

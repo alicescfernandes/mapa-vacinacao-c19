@@ -134,6 +134,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 						},
 						ticks: {
 							beginAtZero: false,
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
@@ -150,6 +152,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 						stacked: true,
 						ticks: {
 							beginAtZero: true,
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
 						},
 					},
 				],
