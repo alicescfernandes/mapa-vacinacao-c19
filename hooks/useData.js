@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchWithLocalCache } from '../utils';
+import data from './../data/last-update.json';
 export function useData() {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
@@ -295,7 +296,8 @@ export function useData() {
 		},
 		getTotalSNS: () => {
 			return sns.filter((el) => {
-				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == '15/02/2021';
+				debugger;
+				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == data.dateSnsStartWeirdFormat;
 			});
 		},
 		getTotalARS: () => {
@@ -393,9 +395,9 @@ export function useData() {
 		Promise.all([
 			fetchWithLocalCache('/api/ecdc', false, true),
 			fetchWithLocalCache('/api/weeks', false, true),
-			fetchWithLocalCache('/api/sns', false, true),
+			fetchWithLocalCache('/api/sns', false, false),
 			fetchWithLocalCache('/api/vaccinesold'),
-			fetchWithLocalCache('/api/ars', false, true),
+			fetchWithLocalCache('/api/ars', false, false),
 			fetchWithLocalCache('/api/cases'),
 		]).then(([ecdc, weeks, sns, vaccines, ars, cases]) => {
 			setSns(sns);

@@ -39,10 +39,7 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 	let snsData = statistics.getTotalSNS();
 
 	useEffect(() => {
-		statistics.getTotalAdministredDosesByAgeByWeek().then((data) => {
-			//setGraphData(data);
-			setLoading(false);
-		});
+		setLoading(false);
 	}, []);
 	const data = (canvas) => {
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
