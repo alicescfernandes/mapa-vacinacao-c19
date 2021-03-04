@@ -386,7 +386,7 @@ export function useData() {
 				com,
 				az,
 				sum,
-				labels,
+				labels: Object.values(labels),
 			};
 		},
 	};
