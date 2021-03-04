@@ -1,11 +1,16 @@
 import styles from './Card.module.scss';
 import classNames from 'classnames';
 
-export function Card({ children, allowOverflow, isUpdating }) {
-	let className = classNames(styles.container, {});
+export function Card({ children, allowOverflow, isUpdating, textLeft }) {
+	let styles2 = {};
+	styles2[styles.card_align_left] = textLeft;
+	styles2[styles.card_graph_updated] = isUpdating;
+	styles2[styles.card_chart] = allowOverflow;
+	let className = classNames(styles.card_graph, 'card-shadow', styles2);
+	console.log(className);
 	return (
 		<div className={styles.container}>
-			<div className={`${styles.card_graph} ${isUpdating ? styles.card_graph_updated : ''} ${allowOverflow ? styles.card_chart : ''} card-shadow`}>{children}</div>
+			<div className={className}>{children}</div>
 		</div>
 	);
 }

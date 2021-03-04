@@ -1,0 +1,198 @@
+import { useEffect, useRef, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { lineChartCommon, RESIZE_TRESHOLD } from '../../constants';
+import { formatNumber } from '../../utils';
+import { Card } from './../Card';
+import classNames from 'classnames';
+import { CustomCheckbox } from '../CustomCheckbox';
+import styles from './../Card.module.scss';
+
+export function LineVacinadosPor100({ statistics, colors }) {
+	let { labels, pt, eu } = statistics.getOwid();
+	let [foreground, color_1, color_2, color_3, color_4] = colors;
+	let [activeDose, setActiveDose] = useState(0);
+	let doses_map = {
+		normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
+		per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred'],
+	};
+	let [height, setHeight] = useState(400);
+	let [toggleStats, setToggleStats] = useState({
+		perHundred: true,
+	});
+	const canvasRef = useRef(null);
+
+	const data = (canvas) => {
+		const ctx = canvas.getContext('2d');
+
+		if (window.innerWidth <= RESIZE_TRESHOLD) {
+			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
+		} else {
+			canvas.parentNode.style.width = '100%';
+		}
+
+		window.addEventListener('resize', () => {
+			if (window.innerWidth <= RESIZE_TRESHOLD) {
+				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
+			} else {
+				canvas.parentNode.style.width = '100%';
+			}
+		});
+
+		return {
+			labels: labels,
+			datasets: [
+				{
+					...lineChartCommon,
+					label: 'Portugal',
+					backgroundColor: foreground,
+					borderColor: foreground,
+					type: 'line',
+					fill: false,
+					data: pt.map((el) => {
+						if (toggleStats.perHundred) {
+							return el[doses_map.per_hundred[activeDose]];
+						}
+
+						return el[doses_map.normal[activeDose]];
+					}),
+				},
+				{
+					...lineChartCommon,
+					label: 'União Europeia',
+					type: 'line',
+					fill: false,
+					backgroundColor: color_2,
+					borderColor: color_2,
+					data: eu.map((el) => {
+						if (toggleStats.perHundred) {
+							return el[doses_map.per_hundred[activeDose]];
+						}
+						return el[doses_map.normal[activeDose]];
+					}),
+				},
+			],
+		};
+	};
+	let numberFormatter = new Intl.NumberFormat();
+	const options = () => {
+		return {
+			layout: {
+				padding: -5,
+			},
+			plugins: {
+				datalabels: {
+					display: false,
+					color: 'blue',
+				},
+			},
+			legend: {
+				position: 'bottom',
+				align: 'start',
+			},
+
+			animation: {
+				duration: 1000,
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+				callbacks: {
+					label: (tooltipItem, data) => {
+						var label = data.datasets[tooltipItem.datasetIndex].label;
+						return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value)).replace(',', ' ');
+					},
+					title: (tooltipItem, data) => {
+						var label = data.datasets[tooltipItem[0].datasetIndex];
+						return 'Dia ' + tooltipItem[0].label;
+					},
+				},
+			},
+			scales: {
+				yAxes: [
+					{
+						scaleLabel: {
+							display: true,
+						},
+						gridLines: {
+							drawBorder: false,
+						},
+						ticks: {
+							beginAtZero: false,
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							callback: function (value, index, values) {
+								debugger;
+								return value;
+							},
+						},
+					},
+				],
+				xAxes: [
+					{
+						stacked: true,
+						ticks: {
+							beginAtZero: true,
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+						},
+					},
+				],
+			},
+		};
+	};
+
+	return (
+		<Card textLeft={true} allowOverflow={true}>
+			<div className={[styles.card_scrollable].join(' ')}>
+				<div className={'toggle_buttons'}>
+					<p>
+						<button
+							className={classNames('toggle_button', {
+								active: activeDose === 0,
+							})}
+							onClick={() => {
+								setActiveDose(0);
+							}}
+						>
+							Doses Totais
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: activeDose === 1,
+							})}
+							onClick={() => {
+								setActiveDose(1);
+							}}
+						>
+							1ª Dose
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: activeDose === 2,
+							})}
+							onClick={() => {
+								setActiveDose(2);
+							}}
+						>
+							2ª Dose
+						</button>
+					</p>
+				</div>
+				<CustomCheckbox
+					styles={{ marginLeft: '50px' }}
+					checked={toggleStats.perHundred}
+					label={'Por cada 100 habitantes'}
+					onChange={(checked) => {
+						setToggleStats({
+							perHundred: checked,
+						});
+					}}
+				/>
+			</div>
+
+			<div>
+				<Bar height={80} ref={canvasRef} options={options()} data={data} />
+			</div>
+		</Card>
+	);
+}

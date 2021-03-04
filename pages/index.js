@@ -33,6 +33,7 @@ import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiri
 import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
 import { formatNumber, perHundred } from '../utils';
 import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
+import { LineVacinadosPor100 } from '../components/graphs/LineVacinadosPor100';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -154,6 +155,7 @@ export default function Home() {
 				locale: pt,
 			}),
 		});
+		console.log(statistics.getOwid());
 	}, [dataReady]);
 	return (
 		<>
@@ -394,6 +396,12 @@ export default function Home() {
 							</Col>
 						</Row>
 						<Row>
+							<Col>
+								<h3 className={styles.title}>Numero de vacinas administradas por cada 100 habitantes</h3>
+								<LineVacinadosPor100 colors={colors} statistics={statistics}></LineVacinadosPor100>
+							</Col>
+						</Row>
+						<Row>
 							<Col xs={12} className={styles.sources_block}>
 								<h3 className={styles.title}>Notas</h3>
 								<p className={styles.text}>
@@ -486,15 +494,14 @@ export default function Home() {
 									</a>
 									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
 								</p>
-
-								{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
-                                <a className={styles.link} target="_blank" href="https://ourworldindata.org/">
-                                    Our World In Data
-                                </a>
-                                &nbsp; e estão disponíveis&nbsp;
-                                <a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
-                                    no repositório de Github
-                                </a> */}
+								Os dados relativos à vacinação na União Europeia são atualizados pelo&nbsp;
+								<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+									Our World In Data
+								</a>
+								&nbsp; e estão disponíveis&nbsp;
+								<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
+									no repositório de Github
+								</a>
 							</Col>
 						</Row>
 					</>

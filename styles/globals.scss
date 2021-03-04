@@ -51,10 +51,11 @@ a:hover {
 }
 
 button.toggle_button {
-	color: $tint;
+	/* color: $tint; */
 	border: none;
 	background-color: white;
-	border-bottom: 1px solid $tint;
+	/* border-bottom: 1px solid $tint; */
+	border-bottom: 1px solid #eee;
 	padding: 5px 15px;
 	-moz-transition: all 200ms;
 	transition: all 200ms;
@@ -63,7 +64,7 @@ button.toggle_button {
 
 .toggle_button.active {
 	border-bottom-color: $main;
-	color: $main;
+	/* color: $main; */
 }
 
 .toggle_button:hover {
@@ -73,7 +74,12 @@ button.toggle_button {
 
 .toggle_buttons {
 	text-align: left;
-	margin-bottom: 15px;
+	display: inline-block;
+	margin-bottom: 20px;
+
+	p {
+		margin-bottom: 0px;
+	}
 }
 
 .subchart-data p {

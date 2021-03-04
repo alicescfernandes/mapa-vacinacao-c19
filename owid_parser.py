@@ -79,7 +79,7 @@ def filter_data(arr):
 for k in json_res:
     if k == 'PRT':
         json_res[k]['data'] = filter_data(json_res[k]['data'])
-        data['prt'] = json_res[k]['data']
+        data['prt'] = json_res[k]
 
     if k == 'OWID_EUN':
         json_res[k]['data'] = filter_data(json_res[k]['data'])

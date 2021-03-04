@@ -26,3 +26,16 @@ export let COMPLEMENT_2 = '#D11541';
 export let COMPLEMENT_3 = '#D17615';
 
 export let RESIZE_TRESHOLD = 1040;
+
+export let lineChartCommon = {
+	fill: true,
+	lineTension: 0.5,
+	lineBorder: 1,
+	borderWidth: 3,
+	borderJoinStyle: 'miter',
+	pointBorderWidth: 1,
+	pointHoverRadius: 3,
+	pointHoverBorderWidth: 2,
+	pointRadius: 1,
+	pointHitRadius: 10,
+};
