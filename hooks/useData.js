@@ -66,7 +66,7 @@ export function useData() {
 		},
 
 		getOwid: () => {
-			let labels = owid.prt.data.map((el) => f.format(new Date(el.date)));
+			let labels = owid.eun.data.map((el) => f.format(new Date(el.date)));
 			let data = {
 				pt: owid.prt.data,
 				eu: owid.eun.data,

@@ -397,7 +397,9 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Numero de vacinas administradas por cada 100 habitantes</h3>
+								<h3 className={styles.title}>
+									Numero de vacinas administradas em Portugal e na União Europeia<sup className={'new'}>novo</sup>
+								</h3>
 								<LineVacinadosPor100 colors={colors} statistics={statistics}></LineVacinadosPor100>
 							</Col>
 						</Row>

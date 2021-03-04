@@ -37,7 +37,6 @@ export function LineVacinadosPor100({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-
 		return {
 			labels: labels,
 			datasets: [
@@ -52,7 +51,6 @@ export function LineVacinadosPor100({ statistics, colors }) {
 						if (toggleStats.perHundred) {
 							return el[doses_map.per_hundred[activeDose]];
 						}
-
 						return el[doses_map.normal[activeDose]];
 					}),
 				},
@@ -76,13 +74,9 @@ export function LineVacinadosPor100({ statistics, colors }) {
 	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
-			layout: {
-				padding: -5,
-			},
 			plugins: {
 				datalabels: {
 					display: false,
-					color: 'blue',
 				},
 			},
 			legend: {
@@ -95,12 +89,8 @@ export function LineVacinadosPor100({ statistics, colors }) {
 			},
 			tooltips: {
 				mode: 'index',
-				intersect: false,
+				intersect: true,
 				callbacks: {
-					label: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value)).replace(',', ' ');
-					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
@@ -120,18 +110,13 @@ export function LineVacinadosPor100({ statistics, colors }) {
 							beginAtZero: false,
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							callback: function (value, index, values) {
-								debugger;
-								return value;
-							},
+							callback: (value) => formatNumber(value, false),
 						},
 					},
 				],
 				xAxes: [
 					{
-						stacked: true,
 						ticks: {
-							beginAtZero: true,
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
 							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
 						},
