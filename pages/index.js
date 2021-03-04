@@ -32,6 +32,7 @@ import { BarArs } from '../components/graphs/BarArs';
 import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
 import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
 import { formatNumber, perHundred } from '../utils';
+import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -289,6 +290,15 @@ export default function Home() {
 								</h3>
 
 								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h3 className={styles.title}>
+									Número de doses recebidas (acumulado) <sup className={'new'}>novo</sup>
+								</h3>
+
+								<BarVacinasRecebidaDiaAcum colors={colors} statistics={statistics}></BarVacinasRecebidaDiaAcum>
 							</Col>
 						</Row>
 						<Row>

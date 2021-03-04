@@ -8,7 +8,7 @@ import { CustomCheckbox } from '../CustomCheckbox';
 import { RESIZE_TRESHOLD } from '../../constants';
 import styles from './../Card.module.scss';
 
-export function BarVacinasRecebidaDia({ statistics, colors }) {
+export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
@@ -33,7 +33,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-
 		return {
 			labels: labels.map(({ from, to }) => {
 				let fromDate = new Date(from);
@@ -99,7 +98,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			animation: {
 				duration: 1000,
 			},
-			/* annotation: {
+			annotation: {
 				annotations: [
 					{
 						type: 'line',
@@ -209,7 +208,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						},
 					},
 				],
-			}, */
+			},
 			tooltips: {
 				mode: 'index',
 				intersect: false,
@@ -258,15 +257,13 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 	};
 
 	useEffect(() => {
-		statistics.getReceivedDosesByBrandByWeek().then((recievedData) => {
-			setGraphData(recievedData);
-			setLoading(false);
-		});
+		setGraphData(statistics.getDosesRecebidasAcum());
+		setLoading(false);
 	}, []);
 
 	return (
 		<Card allowOverflow={true}>
-			{/* <div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
+			<div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={annotationsToggle.dose}
 					label={'Doses adquiridas (01/03/2021)'}
@@ -297,8 +294,8 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						});
 					}}
 				/>
-			</div> */}
-			<div>{!loading ? <Bar height={80} options={options()} data={data} /> : ''}</div>
+			</div>
+			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
