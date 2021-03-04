@@ -270,9 +270,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>
-									Número de vacinas administradas <sup className={'new'}>atualizado</sup>
-								</h3>
+								<h3 className={styles.title}>Número de vacinas administradas</h3>
 
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
@@ -285,27 +283,21 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>
-									Número de doses recebidas por semana <sup className={'new'}>atualizado</sup>
-								</h3>
+								<h3 className={styles.title}>Número de doses recebidas por semana</h3>
 
 								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>
-									Número de doses recebidas (acumulado) <sup className={'new'}>novo</sup>
-								</h3>
+								<h3 className={styles.title}>Número de doses recebidas (acumulado)</h3>
 
 								<BarVacinasRecebidaDiaAcum colors={colors} statistics={statistics}></BarVacinasRecebidaDiaAcum>
 							</Col>
 						</Row>
 						<Row>
 							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>
-									Proporção de doses recebidas relativamente às doses adquiridas <sup className={'new'}>novo</sup>
-								</h3>
+								<h3 className={styles.title}>Proporção de doses recebidas relativamente às doses adquiridas</h3>
 								<h3 className={styles.subtitle}>
 									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
 									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -315,9 +307,7 @@ export default function Home() {
 								<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
 							</Col>
 							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>
-									Proporção de doses administradas relativamente às doses recebidas <sup className={'new'}>novo</sup>
-								</h3>
+								<h3 className={styles.title}>Proporção de doses administradas relativamente às doses recebidas</h3>
 								<h3 className={styles.subtitle}>
 									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
 									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -363,9 +353,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>
-									Evolução do programa de vacinação por ARS <sup className={'new'}>novo</sup>
-								</h3>
+								<h3 className={styles.title}>Evolução do programa de vacinação por ARS</h3>
 								<h3 className={styles.subtitle}>
 									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
 									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -377,9 +365,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>
-									Ponto de situação por ARS <sup className={'new'}>novo</sup>
-								</h3>
+								<h3 className={styles.title}>Ponto de situação por ARS</h3>
 								<h3 className={styles.subtitle}>
 									Dados acumulados relativos à semana de{' '}
 									{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
