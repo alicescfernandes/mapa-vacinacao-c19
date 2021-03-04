@@ -113,6 +113,12 @@ sup.new {
 	font-size: 10px;
 }
 
+.hide-except-seo {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 /*  No media query for `xs` since this is the default in Bootstrap */
 
