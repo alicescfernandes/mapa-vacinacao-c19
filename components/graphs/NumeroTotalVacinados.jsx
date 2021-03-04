@@ -1,7 +1,7 @@
 import { createRef, useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Card } from './../Card';
-import { formatNumber, hexToRgb } from '../../utils';
+import { formatNumber, hexToRgb, perHundred } from '../../utils';
 import 'chartjs-plugin-annotation';
 import { CustomCheckbox } from './../CustomCheckbox';
 import { RESIZE_TRESHOLD } from '../../constants';
@@ -16,6 +16,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		primeira_fase: true,
 		segunda_fase: true,
 		infetados: true,
+		perHundred: false,
 	});
 
 	let [loading, setLoading] = useState(true);
@@ -33,6 +34,10 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		pointRadius: 1,
 		pointHitRadius: 10,
 	};
+	console.log(
+		'vals',
+		values.map((el) => perHundred(el))
+	);
 	let chartRef = createRef();
 	const data = (canvas, cenas) => {
 		const ctx = canvas.getContext('2d');
@@ -72,7 +77,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointBackgroundColor: foreground,
 					pointHoverBackgroundColor: foreground,
 					pointHoverBorderColor: foreground,
-					data: values,
+					data: toggleStats.perHundred ? values.map((el) => perHundred(el)) : values,
 				},
 				{
 					...commonProps,
@@ -83,7 +88,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointBackgroundColor: color_1,
 					pointHoverBackgroundColor: color_1,
 					pointHoverBorderColor: color_1,
-					data: valuesIn1,
+					data: toggleStats.perHundred ? valuesIn1.map((el) => perHundred(el)) : valuesIn1,
 				},
 				{
 					...commonProps,
@@ -94,7 +99,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointBackgroundColor: color_2,
 					pointHoverBackgroundColor: color_2,
 					pointHoverBorderColor: color_2,
-					data: valuesIn2,
+					data: toggleStats.perHundred ? valuesIn2.map((el) => perHundred(el)) : valuesIn2,
 				},
 				{
 					...commonProps,
@@ -107,7 +112,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointHoverBackgroundColor: '#D11541',
 					pointHoverBorderColor: '#D11541',
 					hidden: toggleStats.infetados === false,
-					data: casesData.map((el) => el.ConfirmadosAcumulado),
+					data: casesData.map((el) => {
+						return toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado;
+					}),
 				},
 			],
 		};
@@ -133,7 +140,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.segunda_fase ? 1800000 : null,
+						value: toggleStats?.segunda_fase ? (toggleStats.perHundred ? perHundred(1800000) : 1800000) : null,
 						borderColor: '#0A9DD1',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -157,7 +164,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.segunda_fase ? 1900000 : null,
+						value: toggleStats?.segunda_fase ? (toggleStats.perHundred ? 20 : 1900000) : null,
 						borderColor: 'transparent',
 						label: {
 							enabled: false,
@@ -167,7 +174,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.primeira_fase ? 1200000 : null,
+						value: toggleStats?.primeira_fase ? (toggleStats.perHundred ? 11 : 1200000) : null,
 						borderColor: 'transparent',
 						label: {
 							enabled: false,
@@ -177,7 +184,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.primeira_fase ? 950000 : null,
+						value: toggleStats?.primeira_fase ? (toggleStats.perHundred ? perHundred(950000) : 950000) : null,
 						borderColor: '#0A9DD1',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -202,7 +209,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.imunidade ? 10286300 * 0.7 : null,
+						value: toggleStats?.imunidade ? (toggleStats.perHundred ? perHundred(10286300 * 0.7) : 10286300 * 0.7) : null,
 						borderColor: '#D17615',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -221,6 +228,16 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 							yAdjust: -10,
 							enabled: true,
 							content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)',
+						},
+					},
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: toggleStats?.imunidade && toggleStats.perHundred ? 75 : null,
+						borderColor: 'transparent',
+						label: {
+							enabled: false,
 						},
 					},
 				],
@@ -320,6 +337,17 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						});
 					}}
 				/>
+
+				{/* <CustomCheckbox
+					checked={toggleStats.perHundred}
+					label={'Por Cada 100 habitantes'}
+					onChange={(checked) => {
+						setToggleStats({
+							...toggleStats,
+							perHundred: checked,
+						});
+					}}
+				/> */}
 			</div>
 			<div> {!loading ? <Line height={100} ref={chartRef} options={options()} data={data} /> : ''}</div>
 		</Card>
