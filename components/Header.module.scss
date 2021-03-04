@@ -2,7 +2,7 @@
 
 .header {
 	background-color: white;
-	height: 80px;
+	height: 50px;
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -40,7 +40,7 @@
 		color: $main;
 		font-weight: 900;
 		text-transform: uppercase;
-		font-size: 20px;
+		font-size: 16px;
 		margin: 0;
 	}
 
@@ -60,10 +60,20 @@
 	}
 }
 
-@media (min-width: 576px) {
+@media (min-width: 1090px) {
 	.header {
+		background-color: white;
+		height: 80px;
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		.nav {
 			display: block;
+		}
+
+		margin: 0;
+		.logo {
+			font-size: 20px;
 		}
 	}
 }
