@@ -393,11 +393,11 @@ export function useData() {
 
 	useEffect(() => {
 		Promise.all([
-			fetchWithLocalCache('/api/ecdc', false, true),
+			fetchWithLocalCache('/api/ecdc', false, false),
 			fetchWithLocalCache('/api/weeks', false, true),
-			fetchWithLocalCache('/api/sns', false, false),
+			fetchWithLocalCache('/api/sns', false, true),
 			fetchWithLocalCache('/api/vaccinesold'),
-			fetchWithLocalCache('/api/ars', false, false),
+			fetchWithLocalCache('/api/ars', false, true),
 			fetchWithLocalCache('/api/cases'),
 		]).then(([ecdc, weeks, sns, vaccines, ars, cases]) => {
 			setSns(sns);

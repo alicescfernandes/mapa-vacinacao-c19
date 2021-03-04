@@ -99,7 +99,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			animation: {
 				duration: 1000,
 			},
-			annotation: {
+			/* annotation: {
 				annotations: [
 					{
 						type: 'line',
@@ -209,7 +209,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						},
 					},
 				],
-			},
+			}, */
 			tooltips: {
 				mode: 'index',
 				intersect: false,
@@ -266,7 +266,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
+			{/* <div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={annotationsToggle.dose}
 					label={'Doses adquiridas (01/03/2021)'}
@@ -297,7 +297,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						});
 					}}
 				/>
-			</div>
+			</div> */}
 			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
