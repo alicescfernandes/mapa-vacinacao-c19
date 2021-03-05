@@ -15,6 +15,7 @@ import { Metatags } from '../components/MetaTags';
 import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
+import Plausible from 'plausible-tracker';
 
 //data
 import generic from './../data/generic.json';
@@ -27,13 +28,13 @@ import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProp
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
-import Plausible from 'plausible-tracker';
 import { BarArs } from '../components/graphs/BarArs';
 import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
 import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
 import { formatNumber, perHundred } from '../utils';
 import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
-import { LineVacinadosPor100 } from '../components/graphs/LineVacinadosPor100';
+import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
+import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -398,9 +399,17 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h3 className={styles.title}>
-									Numero de vacinas administradas em Portugal e na União Europeia<sup className={'new'}>novo</sup>
+									Número de vacinas administradas em Portugal e na União Europeia<sup className={'new'}>novo</sup>
 								</h3>
-								<LineVacinadosPor100 colors={colors} statistics={statistics}></LineVacinadosPor100>
+								<LineVacinadosEu colors={colors_v2} statistics={statistics}></LineVacinadosEu>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h3 className={styles.title}>
+									Número de vacinas administradas em Portugal e na União Europeia<sup className={'new'}>novo</sup>
+								</h3>
+								<BarVacinadosEu colors={colors_v2} statistics={statistics}></BarVacinadosEu>
 							</Col>
 						</Row>
 						<Row>

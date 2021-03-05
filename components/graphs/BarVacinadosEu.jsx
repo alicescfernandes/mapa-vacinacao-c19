@@ -7,13 +7,14 @@ import classNames from 'classnames';
 import { CustomCheckbox } from '../CustomCheckbox';
 import styles from './../Card.module.scss';
 
-export function LineVacinadosPor100({ statistics, colors }) {
+export function BarVacinadosEu({ statistics, colors }) {
 	let { labels, pt, eu } = statistics.getOwid();
-	let [foreground, color_1, color_2, color_3, color_4] = colors;
+	let { main, shades, tints, complements } = colors;
+
 	let [activeDose, setActiveDose] = useState(0);
 	let doses_map = {
-		normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
-		per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred'],
+		normal: ['total_vaccinations', 'new_1_doses', 'new_2_doses'],
+		per_hundred: ['total_vaccinations_per_hundred', 'new_1_doses_per_hundred', 'new_2_doses_per_hundred'],
 	};
 	let [height, setHeight] = useState(400);
 	let [toggleStats, setToggleStats] = useState({
@@ -43,10 +44,10 @@ export function LineVacinadosPor100({ statistics, colors }) {
 				{
 					...lineChartCommon,
 					label: 'Portugal',
-					backgroundColor: foreground,
-					borderColor: foreground,
-					type: 'line',
+					backgroundColor: main,
+					borderColor: main,
 					fill: false,
+
 					data: pt.map((el) => {
 						if (toggleStats.perHundred) {
 							return el[doses_map.per_hundred[activeDose]];
@@ -57,10 +58,9 @@ export function LineVacinadosPor100({ statistics, colors }) {
 				{
 					...lineChartCommon,
 					label: 'União Europeia',
-					type: 'line',
 					fill: false,
-					backgroundColor: color_2,
-					borderColor: color_2,
+					backgroundColor: complements[2],
+					borderColor: complements[2],
 					data: eu.map((el) => {
 						if (toggleStats.perHundred) {
 							return el[doses_map.per_hundred[activeDose]];
@@ -94,6 +94,11 @@ export function LineVacinadosPor100({ statistics, colors }) {
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
+					},
+					label: (tooltipItem, data) => {
+						debugger;
+						var label = data.datasets[tooltipItem.datasetIndex].label;
+						return label + ': ' + parseFloat(tooltipItem.value).toFixed(2);
 					},
 				},
 			},
