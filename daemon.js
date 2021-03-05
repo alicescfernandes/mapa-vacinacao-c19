@@ -28,10 +28,10 @@ const pusher = new Pusher({
 	useTLS: true,
 });
 
-function gitCommit(data) {
+function gitCommit(name) {
 	shell.exec('git add data/*');
 
-	if (shell.exec(`git commit -m  "covid update - ${formatted}"`).code !== 0) {
+	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
 		shell.exit(1);
 	} else {
@@ -46,6 +46,12 @@ function gitCommit(data) {
 	shell.exec('git checkout develop');
 }
 
+function updateOWID() {
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
+	shell.exec('python3 owid_parser.py');
+	gitCommit('owid');
+}
 function publishEvent(type, data) {
 	pusher.trigger('covid19', 'update', {
 		type,
@@ -70,7 +76,9 @@ function updateJSON() {
 	let dataLocalCases = JSON.parse(fs.readFileSync('./data/cases.json'));
 
 	let promises = [
-		fetch('https://services5.arcgis.com/eoFbezv6KiXqcnKq/arcgis/rest/services/Covid19_Total_Vacinados/FeatureServer/0/query?f=json&where=FID=1&outFields=*&resultType=standard&cacheHint=true').then((res) => res.json()),
+		fetch(
+			'https://services5.arcgis.com/eoFbezv6KiXqcnKq/arcgis/rest/services/Covid19_Total_Vacinados/FeatureServer/0/query?f=json&where=FID=1&outFields=*&resultType=standard&cacheHint=true'
+		).then((res) => res.json()),
 		fetch(
 			`https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/COVID_Concelhos_DadosDiariosARS_VIEW2/FeatureServer/0/query?f=json&where=ARSNome='Nacional' and Data>'${
 				date.getMonth() + 1
@@ -93,6 +101,10 @@ function updateJSON() {
 				fs.writeFileSync('./data/vaccines_v2.json', JSON.stringify(dataLocalVacinasV2));
 				publishEvent('vacinas', dataVacinas.features[0].attributes);
 				updatedVaccines = true;
+
+				gitCommit('vaccines');
+				//Update twitter
+				shell.exec('yarn twitter');
 			} else {
 				console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 			}
@@ -106,6 +118,9 @@ function updateJSON() {
 					fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
 					updatedCases = true;
 					publishEvent('casos', dataCasos.features[0].attributes);
+
+					gitCommit('cases');
+					//Update twitter
 				} else {
 					console.log('not updating', 'cases', sourceData.OBJECTID, dataLocalCases[dataLocalCases.length - 1].OBJECTID);
 				}
@@ -113,9 +128,6 @@ function updateJSON() {
 				console.log('not updating', 'cases', dataCasos.features.length, dataLocalCases[dataLocalCases.length - 1].Data);
 			}
 			if (updatedCases || updatedVaccines) {
-				gitCommit();
-				//Update twitter
-				shell.exec('yarn twitter');
 			}
 		})
 		.catch((err) => {
@@ -127,6 +139,11 @@ console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
 updateJSON();
+updateOWID();
 schedule.scheduleJob('0-59/5 12-15 * * *', function () {
 	updateJSON();
+});
+
+schedule.scheduleJob('00 12 * * *', function () {
+	updateOWID();
 });
