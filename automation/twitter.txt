@@ -7,4 +7,5 @@ Dados da #vacinaçao para {{dia}}/{{mes}}/{{ano}}
 covid19.min-saude.pt/vacinacao/
 sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/
 bit.ly/3kI7Ddo
+
 #COVID19PT #Portugal #SNS
