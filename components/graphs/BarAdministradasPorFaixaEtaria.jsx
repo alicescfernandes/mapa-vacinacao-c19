@@ -295,7 +295,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	}, []);
 
 	return (
-		<Card allowOverflow={true}>
+		<Card textLeft={true} allowOverflow={true}>
 			<div>
 				{!loading ? (
 					<>

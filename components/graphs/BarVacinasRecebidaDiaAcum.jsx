@@ -263,7 +263,7 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
+			<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={annotationsToggle.dose}
 					label={'Doses adquiridas (01/03/2021)'}

@@ -15,6 +15,7 @@ import { Metatags } from '../components/MetaTags';
 import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
+import Plausible from 'plausible-tracker';
 
 //data
 import generic from './../data/generic.json';
@@ -27,12 +28,13 @@ import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProp
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
-import Plausible from 'plausible-tracker';
 import { BarArs } from '../components/graphs/BarArs';
 import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
 import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
 import { formatNumber, perHundred } from '../utils';
 import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
+import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
+import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -154,6 +156,7 @@ export default function Home() {
 				locale: pt,
 			}),
 		});
+		console.log(statistics.getOwid());
 	}, [dataReady]);
 	return (
 		<>
@@ -379,6 +382,22 @@ export default function Home() {
 								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
+						{/* <Row>
+							<Col>
+								<h3 className={styles.title}>
+									Número de vacinas administradas em Portugal e na União Europeia<sup className={'new'}>novo</sup>
+								</h3>
+								<LineVacinadosEu colors={colors_v2} statistics={statistics}></LineVacinadosEu>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h3 className={styles.title}>
+									Número de vacinas administradas em Portugal e na União Europeia<sup className={'new'}>novo</sup>
+								</h3>
+								<BarVacinadosEu colors={colors_v2} statistics={statistics}></BarVacinadosEu>
+							</Col>
+						</Row> */}
 						<Row>
 							<Col xs={12} className={styles.sources_block}>
 								<h3 className={styles.title}>Notas</h3>
@@ -472,15 +491,16 @@ export default function Home() {
 									</a>
 									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
 								</p>
-
-								{/* Os dados relativos à média da União Europeia são atualizados pelo&nbsp;
-                                <a className={styles.link} target="_blank" href="https://ourworldindata.org/">
-                                    Our World In Data
-                                </a>
-                                &nbsp; e estão disponíveis&nbsp;
-                                <a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
-                                    no repositório de Github
-                                </a> */}
+								{/* <p className={styles.text}>
+									Os dados relativos à vacinação na União Europeia são atualizados pelo&nbsp;
+									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+										Our World In Data
+									</a>
+									&nbsp; e estão disponíveis&nbsp;
+									<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
+										no repositório de Github
+									</a>
+								</p> */}
 							</Col>
 						</Row>
 					</>

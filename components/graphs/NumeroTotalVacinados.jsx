@@ -34,10 +34,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		pointRadius: 1,
 		pointHitRadius: 10,
 	};
-	console.log(
-		'vals',
-		values.map((el) => perHundred(el))
-	);
+
 	let chartRef = createRef();
 	const data = (canvas, cenas) => {
 		const ctx = canvas.getContext('2d');
@@ -295,7 +292,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div className={styles.card_scrollable} style={{ textAlign: 'left' }}>
+			<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={toggleStats.primeira_fase}
 					label={'1ª Fase'}
