@@ -61,8 +61,8 @@ function publishEvent(type, data) {
 
 async function updateJSON() {
 	//update the repo
-	shell.exec('git checkout develop');
-	shell.exec('git pull --rebase');
+	//shell.exec('git checkout develop');
+	//shell.exec('git pull --rebase');
 
 	let date = new Date();
 	date.setMinutes(0);
@@ -100,18 +100,34 @@ async function updateJSON() {
 		} else {
 			console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 		}
+	} else {
+		console.log('Not updating vaccines');
 	}
 
-	if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
+	/* if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
 		let dataCasos = await fetch(
 			`https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/COVID_Concelhos_DadosDiariosARS_VIEW2/FeatureServer/0/query?f=json&where=ARSNome='Nacional' and Data>'${
 				date.getMonth() + 1
 			}/${date.getDate()}/${date.getFullYear()}'&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=Data, ConfirmadosAcumulado, ConfirmadosNovos, Recuperados, Obitos,ObitosNovos,  RecuperadosNovos, VarRecuperados, Activos&orderByFields=data asc&resultOffset=0&resultRecordCount=1&resultType=standard&cacheHint=true`
 		).then((res) => res.json());
+
+		let dataCaso = {
+			Data: date.getTime(),
+			ConfirmadosAcumulado: 808405,
+			ConfirmadosNovos: 1489,
+			Recuperados: 728659,
+			Obitos: 16486,
+			ObitosNovos: 4114,
+			RecuperadosNovos: 694996,
+			VarRecuperados: 1606,
+			Activos: 63260,
+			OBJECTID: null,
+		};
 		//Update cases
 		if (dataCasos.features.length > 0) {
 			console.log('updating cases');
 			sourceData = dataCasos.features[0].attributes;
+			sourceData = dataCaso;
 			if (parseInt(sourceData.OBJECTID) > dataLocalCases[dataLocalCases.length - 1].OBJECTID) {
 				console.log(new Date().toLocaleString(), 'updating');
 				sourceData.Data = date.getTime();
@@ -127,6 +143,38 @@ async function updateJSON() {
 		} else {
 			console.log('not updating', 'cases', dataCasos.features.length, dataLocalCases[dataLocalCases.length - 1].Data);
 		}
+	} */
+
+	if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
+		let dataCasos = await fetch('https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=PT').then((res) => res.json());
+		let dataCaso = {
+			Data: date.getTime(),
+			ConfirmadosAcumulado: dataCasos[0].totalConfirmed,
+			ConfirmadosNovos: dataCasos[0].dailyConfirmed,
+			Recuperados: dataCasos[0].totalRecovered,
+			Obitos: dataCasos[0].totalDeaths,
+			ObitosNovos: dataCasos[0].dailyDeaths,
+			VarRecuperados: dataCasos[0].totalRecovered - dataLocalCases[dataLocalCases.length - 1].RecuperadosNovos,
+			Activos: dataCasos[0].activeCases,
+			OBJECTID: null,
+		};
+		//Update cases
+		sourceData = dataCaso;
+		console.log(dataCaso.ConfirmadosAcumulado > dataLocalCases[dataLocalCases.length - 1].ConfirmadosAcumulado);
+		if (dataCaso.ConfirmadosAcumulado > dataLocalCases[dataLocalCases.length - 1].ConfirmadosAcumulado) {
+			console.log('Updating cases');
+			console.log(new Date().toLocaleString(), 'updating');
+			dataLocalCases.push(sourceData);
+			fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
+			updatedCases = true;
+			publishEvent('casos', dataCasos.features[0].attributes);
+
+			gitCommit('cases');
+		} else {
+			console.log('not updating', 'cases', sourceData.OBJECTID, dataLocalCases[dataLocalCases.length - 1].OBJECTID);
+		}
+	} else {
+		console.log('Not updating cases');
 	}
 }
 
