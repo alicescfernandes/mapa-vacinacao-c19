@@ -80,7 +80,7 @@ async function updateJSON() {
 		).then((res) => res.json());
 
 		let sourceData = dataVacinas.features[0].attributes;
-		if (parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac) {
+		if (parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac && date.getTime() >= dataLocalVacinas[dataLocalVacinas.length - 1].Data) {
 			console.log('updating vaccines');
 			sourceData.Data = date.getTime();
 			dataLocalVacinas.push(sourceData);
@@ -135,7 +135,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 // https://crontab.guru/#0-59/5_13_*_*_*
 updateJSON();
 updateOWID();
-schedule.scheduleJob('0-59/5 12-15 * * *', function () {
+schedule.scheduleJob('0-59/5 13-15 * * *', function () {
 	updateJSON();
 });
 
