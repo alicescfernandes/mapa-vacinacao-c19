@@ -505,14 +505,16 @@ export default function Home() {
 									</a>
 									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
 								</p>
-								Os dados relativos à vacinação na União Europeia são atualizados pelo&nbsp;
-								<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
-									Our World In Data
-								</a>
-								&nbsp; e estão disponíveis&nbsp;
-								<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
-									no repositório de Github
-								</a>
+								<p className={styles.text}>
+									Os dados relativos à vacinação na União Europeia são atualizados pelo&nbsp;
+									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+										Our World In Data
+									</a>
+									&nbsp; e estão disponíveis&nbsp;
+									<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
+										no repositório de Github
+									</a>
+								</p>
 							</Col>
 						</Row>
 					</>
