@@ -29,7 +29,6 @@ const pusher = new Pusher({
 });
 
 function gitCommit(name) {
-	return;
 	shell.exec('git add data/*');
 
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
