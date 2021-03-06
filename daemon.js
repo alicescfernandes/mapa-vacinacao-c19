@@ -29,6 +29,7 @@ const pusher = new Pusher({
 });
 
 function gitCommit(name) {
+	return;
 	shell.exec('git add data/*');
 
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
@@ -154,7 +155,7 @@ async function updateJSON() {
 			Recuperados: dataCasos[0].totalRecovered,
 			Obitos: dataCasos[0].totalDeaths,
 			ObitosNovos: dataCasos[0].dailyDeaths,
-			VarRecuperados: dataCasos[0].totalRecovered - dataLocalCases[dataLocalCases.length - 1].RecuperadosNovos,
+			VarRecuperados: dataCasos[0].totalRecovered - dataLocalCases[dataLocalCases.length - 1].Recuperados,
 			Activos: dataCasos[0].activeCases,
 			OBJECTID: null,
 		};
