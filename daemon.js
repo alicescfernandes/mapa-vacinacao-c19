@@ -160,14 +160,13 @@ async function updateJSON() {
 		};
 		//Update cases
 		sourceData = dataCaso;
-		console.log(dataCaso.ConfirmadosAcumulado > dataLocalCases[dataLocalCases.length - 1].ConfirmadosAcumulado);
 		if (dataCaso.ConfirmadosAcumulado > dataLocalCases[dataLocalCases.length - 1].ConfirmadosAcumulado) {
 			console.log('Updating cases');
 			console.log(new Date().toLocaleString(), 'updating');
 			dataLocalCases.push(sourceData);
 			fs.writeFileSync('./data/cases.json', JSON.stringify(dataLocalCases));
 			updatedCases = true;
-			publishEvent('casos', dataCasos.features[0].attributes);
+			publishEvent('casos', dataCaso);
 
 			gitCommit('cases');
 		} else {
