@@ -8,12 +8,10 @@ export function useData() {
 	let [sns, setSns] = useState(false);
 	let [ecdc, setECDC] = useState(false);
 	let [ars, setArs] = useState(false);
+	let [owid, setOwid] = useState(false);
 	let [vaccines, setVaccines] = useState(false);
 	let [casesData, setCasesData] = useState(false);
-	let [casos, setCasos] = useState({});
 	let [labels, setLabels] = useState([]);
-	let [values, setValues] = useState([]);
-	let [intervalId, setIntervalId] = useState(null);
 
 	let options = {
 		month: 'short',
@@ -65,6 +63,16 @@ export function useData() {
 				values: medias,
 				labels: labelsMedias,
 			};
+		},
+
+		getOwid: () => {
+			let labels = owid.eun.data.map((el) => f.format(new Date(el.date)));
+			let data = {
+				pt: owid.prt.data,
+				eu: owid.eun.data,
+			};
+
+			return { ...data, labels };
 		},
 
 		getMediaMovelDiaria: (dias) => {
@@ -296,7 +304,6 @@ export function useData() {
 		},
 		getTotalSNS: () => {
 			return sns.filter((el) => {
-				debugger;
 				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == data.dateSnsStartWeirdFormat;
 			});
 		},
@@ -399,13 +406,15 @@ export function useData() {
 			fetchWithLocalCache('/api/vaccinesold'),
 			fetchWithLocalCache('/api/ars', false, true),
 			fetchWithLocalCache('/api/cases'),
-		]).then(([ecdc, weeks, sns, vaccines, ars, cases]) => {
+			fetchWithLocalCache('/api/owid'),
+		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid]) => {
 			setSns(sns);
 			setWeeks(weeks);
 			setECDC(ecdc);
 			setVaccines(vaccines);
 			setArs(ars);
 			setCasesData(cases);
+			setOwid(owid);
 			setReady(true);
 		});
 	}, []);
