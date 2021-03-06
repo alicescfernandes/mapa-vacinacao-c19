@@ -1,10 +1,11 @@
-Estatísticas para {{dia}}/{{mes}}/{{ano}}
+Dados da #vacinaçao para {{dia}}/{{mes}}/{{ano}}
 👉 +{{novas_total}} doses  ({{total_total}} no total)
-👉 +{{novas_in1}} inoculções (1ª dose) (total: {{total_in1}})
-👉 +{{novas_in2}} inoculções (2ª dose) (total: {{total_in2}} )
+👉 +{{novas_in1}} inoculações (1ª dose) (total: {{total_in1}})
+👉 +{{novas_in2}} inoculações (2ª dose) (total: {{total_in2}})
 
-➕ info aqui:
-https://covid19.min-saude.pt/vacinacao/
-https://sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/
+➕ info
+covid19.min-saude.pt/vacinacao/
+sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/
+bit.ly/3kI7Ddo
 
-#COVID19PT #Portugal #fiqueemcasa #SNS
+#COVID19PT #Portugal #SNS
