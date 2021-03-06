@@ -396,7 +396,7 @@ export default function Home() {
 								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
-						<Row>
+						{/* <Row>
 							<Col>
 								<h3 className={styles.title}>
 									Número de vacinas administradas em Portugal e na União Europeia<sup className={'new'}>novo</sup>
@@ -411,7 +411,7 @@ export default function Home() {
 								</h3>
 								<BarVacinadosEu colors={colors_v2} statistics={statistics}></BarVacinadosEu>
 							</Col>
-						</Row>
+						</Row> */}
 						<Row>
 							<Col xs={12} className={styles.sources_block}>
 								<h3 className={styles.title}>Notas</h3>
@@ -505,7 +505,7 @@ export default function Home() {
 									</a>
 									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
 								</p>
-								<p className={styles.text}>
+								{/* <p className={styles.text}>
 									Os dados relativos à vacinação na União Europeia são atualizados pelo&nbsp;
 									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
 										Our World In Data
@@ -514,7 +514,7 @@ export default function Home() {
 									<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
 										no repositório de Github
 									</a>
-								</p>
+								</p> */}
 							</Col>
 						</Row>
 					</>
