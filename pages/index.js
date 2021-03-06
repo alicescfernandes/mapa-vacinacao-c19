@@ -185,7 +185,7 @@ export default function Home() {
 										to={selectedItem?.Vacinados_Ac}
 									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.Vacinados_Ac).toFixed(2)} em cada 100 pessoas já foram totalmente vacinadas
+										{perHundred(selectedItem?.Vacinados_Ac).toFixed(2)} em cada 100 pessoas já foram inoculadas com pelo menos uma dose
 									</p>
 								</Card>
 							</Col>
