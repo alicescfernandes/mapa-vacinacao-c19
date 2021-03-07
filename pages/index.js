@@ -199,7 +199,7 @@ export default function Home() {
 										to={selectedItem?.Inoculacao1_Ac}
 									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} doses administradas por 100 pessoas
+										{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} doses administradas por cada 100 pessoas
 										<br />
 										{formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 1ª dose
 									</p>
@@ -216,7 +216,7 @@ export default function Home() {
 									></Counter>
 
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} doses administradas por 100 pessoas
+										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} doses administradas por cada 100 pessoas
 										<br />
 										{formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 2ª dose
 									</p>
