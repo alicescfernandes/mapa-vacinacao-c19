@@ -105,14 +105,8 @@ export function BarVacinadosEu({ statistics, colors }) {
 			scales: {
 				yAxes: [
 					{
-						scaleLabel: {
-							display: true,
-						},
-						gridLines: {
-							drawBorder: false,
-						},
 						ticks: {
-							beginAtZero: false,
+							beginAtZero: true,
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							callback: (value) => formatNumber(value, false),

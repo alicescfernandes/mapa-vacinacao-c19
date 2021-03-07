@@ -126,12 +126,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 				yAxes: [
 					{
 						stacked: true,
-						scaleLabel: {
-							display: true,
-						},
-						gridLines: {
-							drawBorder: false,
-						},
+
 						ticks: {
 							beginAtZero: false,
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,

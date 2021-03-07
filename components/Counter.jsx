@@ -14,7 +14,7 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 	let [foreground] = colors;
 	const fn = (value) => (
 		<span style={{ color: foreground }} className={styles.card_highlight}>
-			{numberFormatter.format(value).replace(',', ' ')} {suffix ? suffix : ''}
+			{numberFormatter.format(value).replace(/,/gm, ' ')} {suffix ? suffix : ''}
 		</span>
 	);
 
