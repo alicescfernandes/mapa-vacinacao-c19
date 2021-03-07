@@ -32,12 +32,12 @@ if (data[data.length - 1].Data > twitterLastUpdate.last_update) {
 	fs.writeFileSync('./twitter-conf.json', JSON.stringify(twitterLastUpdate));
 
 	let postVariables = {
-		'{{novas_total}}': numberFormatter.format(today.Vacinados_Ac - yesterday.Vacinados_Ac).replace(',', ' '),
-		'{{total_total}}': numberFormatter.format(today.Vacinados_Ac).replace(',', ' '),
-		'{{novas_in1}}': numberFormatter.format(today.Inoculacao1_Ac - yesterday.Inoculacao1_Ac).replace(',', ' '),
-		'{{novas_in2}}': numberFormatter.format(today.Inoculacao2_Ac - yesterday.Inoculacao2_Ac).replace(',', ' '),
-		'{{total_in1}}': numberFormatter.format(today.Inoculacao1_Ac).replace(',', ' '),
-		'{{total_in2}}': numberFormatter.format(today.Inoculacao2_Ac).replace(',', ' '),
+		'{{novas_total}}': numberFormatter.format(today.Vacinados_Ac - yesterday.Vacinados_Ac).replace(/,/gm, ' '),
+		'{{total_total}}': numberFormatter.format(today.Vacinados_Ac).replace(/,/gm, ' '),
+		'{{novas_in1}}': numberFormatter.format(today.Inoculacao1_Ac - yesterday.Inoculacao1_Ac).replace(/,/gm, ' '),
+		'{{novas_in2}}': numberFormatter.format(today.Inoculacao2_Ac - yesterday.Inoculacao2_Ac).replace(/,/gm, ' '),
+		'{{total_in1}}': numberFormatter.format(today.Inoculacao1_Ac).replace(/,/gm, ' '),
+		'{{total_in2}}': numberFormatter.format(today.Inoculacao2_Ac).replace(/,/gm, ' '),
 		'{{dia}}': todayDate.getDate().toLocaleString('en-US', {
 			minimumIntegerDigits: 2,
 		}),

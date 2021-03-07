@@ -256,12 +256,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			scales: {
 				yAxes: [
 					{
-						scaleLabel: {
-							display: true,
-						},
-						gridLines: {
-							drawBorder: false,
-						},
 						ticks: {
 							beginAtZero: false,
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,

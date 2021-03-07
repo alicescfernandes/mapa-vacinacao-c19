@@ -229,12 +229,7 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 				yAxes: [
 					{
 						stacked: true,
-						scaleLabel: {
-							display: true,
-						},
-						gridLines: {
-							drawBorder: false,
-						},
+
 						ticks: {
 							beginAtZero: true,
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
