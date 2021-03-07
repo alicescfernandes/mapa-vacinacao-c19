@@ -1,7 +1,7 @@
-Dados da #vacinaçao para {{dia}}/{{mes}}/{{ano}}
-👉 +{{novas_total}} doses  ({{total_total}} no total)
-👉 +{{novas_in1}} inoculações (1ª dose) (total: {{total_in1}})
-👉 +{{novas_in2}} inoculações (2ª dose) (total: {{total_in2}})
+Dados da #vacinaçao de {{dia}}/{{mes}}/{{ano}}
+👉 +{{novas_total}} doses (total:{{total_total}})
+👉 +{{novas_in1}} inoculações (1ª dose) (total:{{total_in1}})
+👉 +{{novas_in2}} inoculações (2ª dose) (total:{{total_in2}})
 
 ➕ info
 covid19.min-saude.pt/vacinacao/

@@ -12,7 +12,7 @@ export function PieAdministradasDoses({ statistics, colors }) {
 
 	const data = (canvas) => {
 		return {
-			labels: ['Doses Adminstradas - 1ª Inoculação', 'Doses Adminstradas - 2ª Inoculação', 'Doses Recebidas'],
+			labels: ['Doses Adminstradas - 1ª Inoculação', 'Doses Adminstradas - 2ª Inoculação', 'Doses por administrar'],
 			datasets: [
 				{
 					backgroundColor: [main, shades[0], shades[1]],

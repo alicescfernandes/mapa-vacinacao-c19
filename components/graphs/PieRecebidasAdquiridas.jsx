@@ -11,7 +11,7 @@ export function PieRecebidasAdquiridas({ statistics, colors }) {
 
 	const data = (canvas) => {
 		return {
-			labels: ['Doses Adquiridas', 'Doses Recebidas'],
+			labels: ['Doses a Receber', 'Doses Recebidas'],
 			datasets: [
 				{
 					backgroundColor: ['transparent', main],
