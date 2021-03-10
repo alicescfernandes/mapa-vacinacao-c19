@@ -202,7 +202,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 		};
 	};
 	const options = () => {
-		let maxValue = 90000;
+		let maxValue = 180_000;
 		return {
 			//maintainAspectRatio: false,
 
