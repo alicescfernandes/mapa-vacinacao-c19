@@ -402,9 +402,9 @@ export function useData() {
 		Promise.all([
 			fetchWithLocalCache('/api/ecdc', false, false),
 			fetchWithLocalCache('/api/weeks', false, true),
-			fetchWithLocalCache('/api/sns', false, true),
+			fetchWithLocalCache('/api/sns', false, false),
 			fetchWithLocalCache('/api/vaccinesold'),
-			fetchWithLocalCache('/api/ars', false, true),
+			fetchWithLocalCache('/api/ars', false, false),
 			fetchWithLocalCache('/api/cases'),
 			fetchWithLocalCache('/api/owid'),
 		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid]) => {
