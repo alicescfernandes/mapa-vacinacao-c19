@@ -109,9 +109,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointHoverBackgroundColor: '#D11541',
 					pointHoverBorderColor: '#D11541',
 					hidden: toggleStats.infetados === false,
-					data: casesData.map((el) => {
-						return toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado;
-					}),
+					data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => (toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)),
 				},
 			],
 		};
