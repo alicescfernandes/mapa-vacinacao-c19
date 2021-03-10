@@ -101,7 +101,7 @@ async function updateJSON() {
 			console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 		}
 	} else {
-		console.log('Not updating vaccines');
+		console.log('Not fetching new vaccines');
 	}
 
 	if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
@@ -131,6 +131,8 @@ async function updateJSON() {
 		} else {
 			console.log('not updating', 'cases', dataCasos.features.length, dataLocalCases[dataLocalCases.length - 1].Data);
 		}
+	} else {
+		console.log('Not fetching new cases');
 	}
 
 	/*if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
