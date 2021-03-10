@@ -69,7 +69,20 @@ export function perHundred(total) {
 	return (total / populacao.valor) * 100;
 }
 
-export function fetchWithLocalCache(url, options, useCache = false) {
+export function fetchWithLocalCache(url, options) {
+	let useCache = true;
+	let [path, cacheBuster] = url.split('?');
+
+	let items = JSON.parse(JSON.stringify(localStorage));
+
+	for (var k in items) {
+		let [lsPath, lsCacheBuster] = k.split('?');
+		if (lsPath === path && lsCacheBuster !== cacheBuster) {
+			useCache = false;
+			localStorage.removeItem(k);
+		}
+	}
+
 	if (window && localStorage.getItem(url) && useCache === true) {
 		let data = JSON.parse(localStorage.getItem(url));
 		return Promise.resolve(data);

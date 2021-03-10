@@ -7,7 +7,6 @@ export function Card({ children, allowOverflow, isUpdating, textLeft }) {
 	styles2[styles.card_graph_updated] = isUpdating;
 	styles2[styles.card_chart] = allowOverflow;
 	let className = classNames(styles.card_graph, 'card-shadow', styles2);
-	console.log(className);
 	return (
 		<div className={styles.container}>
 			<div className={className}>{children}</div>
