@@ -101,28 +101,16 @@ async function updateJSON() {
 			console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 		}
 	} else {
-		console.log('Not updating vaccines');
+		console.log('Not fetching new vaccines');
 	}
 
-	/* if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
+	if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
 		let dataCasos = await fetch(
 			`https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/COVID_Concelhos_DadosDiariosARS_VIEW2/FeatureServer/0/query?f=json&where=ARSNome='Nacional' and Data>'${
 				date.getMonth() + 1
-			}/${date.getDate()}/${date.getFullYear()}'&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=Data, ConfirmadosAcumulado, ConfirmadosNovos, Recuperados, Obitos,ObitosNovos,  RecuperadosNovos, VarRecuperados, Activos&orderByFields=data asc&resultOffset=0&resultRecordCount=1&resultType=standard&cacheHint=true`
+			}/${date.getDate()}/${date.getFullYear()}'&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=Data, ConfirmadosAcumulado, ConfirmadosNovos, Recuperados, Obitos,VarObitos,  VarRecuperados, Activos, conf5059total,conf6069total, conf7079total,conf80total&orderByFields=data asc&resultOffset=0&resultRecordCount=1&resultType=standard&cacheHint=true`
 		).then((res) => res.json());
 
-		let dataCaso = {
-			Data: date.getTime(),
-			ConfirmadosAcumulado: 808405,
-			ConfirmadosNovos: 1489,
-			Recuperados: 728659,
-			Obitos: 16486,
-			ObitosNovos: 4114,
-			RecuperadosNovos: 694996,
-			VarRecuperados: 1606,
-			Activos: 63260,
-			OBJECTID: null,
-		};
 		//Update cases
 		if (dataCasos.features.length > 0) {
 			console.log('updating cases');
@@ -143,9 +131,11 @@ async function updateJSON() {
 		} else {
 			console.log('not updating', 'cases', dataCasos.features.length, dataLocalCases[dataLocalCases.length - 1].Data);
 		}
-	} */
+	} else {
+		console.log('Not fetching new cases');
+	}
 
-	if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
+	/*if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
 		let dataCasos = await fetch('https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=PT').then((res) => res.json());
 		let dataCaso = {
 			Data: date.getTime(),
@@ -171,17 +161,17 @@ async function updateJSON() {
 			gitCommit('cases');
 		} else {
 			console.log('not updating', 'cases', sourceData.OBJECTID, dataLocalCases[dataLocalCases.length - 1].OBJECTID);
-		}
+		} 
 	} else {
 		console.log('Not updating cases');
-	}
+	}*/
 }
 
 console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
 updateJSON();
-schedule.scheduleJob('0-59/5 13-15 * * *', function () {
+schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 	updateJSON();
 });
 

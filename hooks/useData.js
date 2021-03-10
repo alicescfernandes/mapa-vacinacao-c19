@@ -400,13 +400,13 @@ export function useData() {
 
 	useEffect(() => {
 		Promise.all([
-			fetchWithLocalCache('/api/ecdc', false, false),
-			fetchWithLocalCache('/api/weeks', false, true),
-			fetchWithLocalCache('/api/sns', false, false),
-			fetchWithLocalCache('/api/vaccinesold'),
-			fetchWithLocalCache('/api/ars', false, false),
-			fetchWithLocalCache('/api/cases'),
-			fetchWithLocalCache('/api/owid'),
+			fetchWithLocalCache(`/api/ecdc?${btoa(data.dateEcdc)}`, false),
+			fetchWithLocalCache(`/api/weeks`, false),
+			fetchWithLocalCache(`/api/sns?${btoa(data.dateSnsStartWeirdFormat)}`, false),
+			fetchWithLocalCache(`/api/vaccinesold?${btoa(data.date)}`),
+			fetchWithLocalCache(`/api/ars?${btoa(data.dateSnsStartWeirdFormat)}`, false),
+			fetchWithLocalCache(`/api/cases?${btoa(data.date)}`),
+			fetchWithLocalCache(`/api/owid?${btoa(data.date)}`),
 		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid]) => {
 			setSns(sns);
 			setWeeks(weeks);

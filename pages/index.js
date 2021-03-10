@@ -156,7 +156,6 @@ export default function Home() {
 				locale: pt,
 			}),
 		});
-		console.log(statistics.getOwid());
 	}, [dataReady]);
 	return (
 		<>
