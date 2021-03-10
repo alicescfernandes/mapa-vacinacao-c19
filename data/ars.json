@@ -64,561 +64,481 @@
         {
             "attributes": {
                 "ARSNome": "Nacional",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 798074,
-                "ConfirmadosNovos": 549,
-                "VarObitos": 61,
-                "OBJECTID": 4304
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 804956,
+                "ConfirmadosNovos": 394,
+                "VarObitos": 34,
+                "OBJECTID": 4360
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Norte",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 324719,
-                "ConfirmadosNovos": 107,
-                "VarObitos": 8,
-                "OBJECTID": 4305
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Centro",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 114099,
-                "ConfirmadosNovos": 48,
-                "VarObitos": 15,
-                "OBJECTID": 4306
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 301520,
-                "ConfirmadosNovos": 278,
-                "VarObitos": 33,
-                "OBJECTID": 4307
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Alentejo",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 28174,
-                "ConfirmadosNovos": 33,
-                "VarObitos": 2,
-                "OBJECTID": 4308
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Algarve",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 19832,
-                "ConfirmadosNovos": 22,
-                "VarObitos": 2,
-                "OBJECTID": 4309
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Açores",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 3722,
-                "ConfirmadosNovos": 5,
-                "VarObitos": 0,
-                "OBJECTID": 4310
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Madeira",
-                "Data": 1613995200000,
-                "ConfirmadosAcumulado": 6008,
-                "ConfirmadosNovos": 56,
-                "VarObitos": 1,
-                "OBJECTID": 4311
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Nacional",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 799106,
-                "ConfirmadosNovos": 1032,
-                "VarObitos": 63,
-                "OBJECTID": 4312
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Norte",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 324905,
-                "ConfirmadosNovos": 186,
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 326378,
+                "ConfirmadosNovos": 74,
                 "VarObitos": 9,
-                "OBJECTID": 4313
+                "OBJECTID": 4361
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Centro",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 114245,
-                "ConfirmadosNovos": 146,
-                "VarObitos": 11,
-                "OBJECTID": 4314
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 114984,
+                "ConfirmadosNovos": 27,
+                "VarObitos": 10,
+                "OBJECTID": 4362
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 302013,
-                "ConfirmadosNovos": 493,
-                "VarObitos": 36,
-                "OBJECTID": 4315
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 304772,
+                "ConfirmadosNovos": 238,
+                "VarObitos": 15,
+                "OBJECTID": 4363
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Alentejo",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 28224,
-                "ConfirmadosNovos": 50,
-                "VarObitos": 5,
-                "OBJECTID": 4316
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 28474,
+                "ConfirmadosNovos": 15,
+                "VarObitos": 0,
+                "OBJECTID": 4364
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Algarve",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 19893,
-                "ConfirmadosNovos": 61,
-                "VarObitos": 2,
-                "OBJECTID": 4317
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 20110,
+                "ConfirmadosNovos": 12,
+                "VarObitos": 0,
+                "OBJECTID": 4365
             }
         },
         {
             "attributes": {
                 "ARSNome": "Açores",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 3725,
-                "ConfirmadosNovos": 3,
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 3764,
+                "ConfirmadosNovos": 12,
                 "VarObitos": 0,
-                "OBJECTID": 4318
+                "OBJECTID": 4366
             }
         },
         {
             "attributes": {
                 "ARSNome": "Madeira",
-                "Data": 1614081600000,
-                "ConfirmadosAcumulado": 6101,
-                "ConfirmadosNovos": 93,
+                "Data": 1614600000000,
+                "ConfirmadosAcumulado": 6474,
+                "ConfirmadosNovos": 16,
                 "VarObitos": 0,
-                "OBJECTID": 4319
+                "OBJECTID": 4367
             }
         },
         {
             "attributes": {
                 "ARSNome": "Nacional",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 800586,
-                "ConfirmadosNovos": 1480,
-                "VarObitos": 50,
-                "OBJECTID": 4320
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 805647,
+                "ConfirmadosNovos": 691,
+                "VarObitos": 38,
+                "OBJECTID": 4368
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Norte",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 325232,
-                "ConfirmadosNovos": 327,
-                "VarObitos": 7,
-                "OBJECTID": 4321
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 326544,
+                "ConfirmadosNovos": 166,
+                "VarObitos": 10,
+                "OBJECTID": 4369
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Centro",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 114443,
-                "ConfirmadosNovos": 198,
-                "VarObitos": 7,
-                "OBJECTID": 4322
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 302785,
-                "ConfirmadosNovos": 772,
-                "VarObitos": 31,
-                "OBJECTID": 4323
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Alentejo",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 28308,
-                "ConfirmadosNovos": 84,
-                "VarObitos": 4,
-                "OBJECTID": 4324
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Algarve",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 19944,
-                "ConfirmadosNovos": 51,
-                "VarObitos": 0,
-                "OBJECTID": 4325
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Açores",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 3728,
-                "ConfirmadosNovos": 3,
-                "VarObitos": 0,
-                "OBJECTID": 4326
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Madeira",
-                "Data": 1614168000000,
-                "ConfirmadosAcumulado": 6146,
-                "ConfirmadosNovos": 45,
-                "VarObitos": 1,
-                "OBJECTID": 4327
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Nacional",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 801746,
-                "ConfirmadosNovos": 1160,
-                "VarObitos": 49,
-                "OBJECTID": 4328
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Norte",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 325558,
-                "ConfirmadosNovos": 326,
-                "VarObitos": 11,
-                "OBJECTID": 4329
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Centro",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 114580,
-                "ConfirmadosNovos": 137,
-                "VarObitos": 5,
-                "OBJECTID": 4330
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 303331,
-                "ConfirmadosNovos": 546,
-                "VarObitos": 28,
-                "OBJECTID": 4331
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Alentejo",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 28330,
-                "ConfirmadosNovos": 22,
-                "VarObitos": 2,
-                "OBJECTID": 4332
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Algarve",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 19989,
-                "ConfirmadosNovos": 45,
-                "VarObitos": 3,
-                "OBJECTID": 4333
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Açores",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 3731,
-                "ConfirmadosNovos": 3,
-                "VarObitos": 0,
-                "OBJECTID": 4334
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Madeira",
-                "Data": 1614254400000,
-                "ConfirmadosAcumulado": 6227,
-                "ConfirmadosNovos": 81,
-                "VarObitos": 0,
-                "OBJECTID": 4335
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Nacional",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 802773,
-                "ConfirmadosNovos": 1027,
-                "VarObitos": 58,
-                "OBJECTID": 4336
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Norte",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 325808,
-                "ConfirmadosNovos": 250,
-                "VarObitos": 11,
-                "OBJECTID": 4337
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Centro",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 114720,
-                "ConfirmadosNovos": 140,
-                "VarObitos": 13,
-                "OBJECTID": 4338
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 303741,
-                "ConfirmadosNovos": 410,
-                "VarObitos": 28,
-                "OBJECTID": 4339
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Alentejo",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 28381,
-                "ConfirmadosNovos": 51,
-                "VarObitos": 6,
-                "OBJECTID": 4340
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Algarve",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 20043,
-                "ConfirmadosNovos": 54,
-                "VarObitos": 0,
-                "OBJECTID": 4341
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Açores",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 3730,
-                "ConfirmadosNovos": -1,
-                "VarObitos": 0,
-                "OBJECTID": 4342
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Madeira",
-                "Data": 1614340800000,
-                "ConfirmadosAcumulado": 6350,
-                "ConfirmadosNovos": 123,
-                "VarObitos": 0,
-                "OBJECTID": 4343
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Nacional",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 803844,
-                "ConfirmadosNovos": 1071,
-                "VarObitos": 33,
-                "OBJECTID": 4344
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Norte",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 326075,
-                "ConfirmadosNovos": 267,
-                "VarObitos": 4,
-                "OBJECTID": 4345
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Centro",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 114860,
-                "ConfirmadosNovos": 140,
-                "VarObitos": 5,
-                "OBJECTID": 4346
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 304277,
-                "ConfirmadosNovos": 536,
-                "VarObitos": 19,
-                "OBJECTID": 4347
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Alentejo",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 28409,
-                "ConfirmadosNovos": 28,
-                "VarObitos": 3,
-                "OBJECTID": 4348
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Algarve",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 20066,
-                "ConfirmadosNovos": 23,
-                "VarObitos": 2,
-                "OBJECTID": 4349
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Açores",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 3734,
-                "ConfirmadosNovos": 4,
-                "VarObitos": 0,
-                "OBJECTID": 4350
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Madeira",
-                "Data": 1614427200000,
-                "ConfirmadosAcumulado": 6423,
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 115057,
                 "ConfirmadosNovos": 73,
-                "VarObitos": 0,
-                "OBJECTID": 4351
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "Nacional",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 804562,
-                "ConfirmadosNovos": 718,
-                "VarObitos": 41,
-                "OBJECTID": 4352
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Norte",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 326304,
-                "ConfirmadosNovos": 229,
-                "VarObitos": 5,
-                "OBJECTID": 4353
-            }
-        },
-        {
-            "attributes": {
-                "ARSNome": "ARS Centro",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 114957,
-                "ConfirmadosNovos": 97,
-                "VarObitos": 5,
-                "OBJECTID": 4354
+                "VarObitos": 7,
+                "OBJECTID": 4370
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Lisboa e Vale do Tejo",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 304534,
-                "ConfirmadosNovos": 257,
-                "VarObitos": 26,
-                "OBJECTID": 4355
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 305027,
+                "ConfirmadosNovos": 255,
+                "VarObitos": 18,
+                "OBJECTID": 4371
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Alentejo",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 28459,
-                "ConfirmadosNovos": 50,
-                "VarObitos": 3,
-                "OBJECTID": 4356
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 28501,
+                "ConfirmadosNovos": 27,
+                "VarObitos": 1,
+                "OBJECTID": 4372
             }
         },
         {
             "attributes": {
                 "ARSNome": "ARS Algarve",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 20098,
-                "ConfirmadosNovos": 32,
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 20121,
+                "ConfirmadosNovos": 11,
                 "VarObitos": 2,
-                "OBJECTID": 4357
+                "OBJECTID": 4373
             }
         },
         {
             "attributes": {
                 "ARSNome": "Açores",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 3752,
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 3783,
+                "ConfirmadosNovos": 19,
+                "VarObitos": 0,
+                "OBJECTID": 4374
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1614686400000,
+                "ConfirmadosAcumulado": 6614,
+                "ConfirmadosNovos": 140,
+                "VarObitos": 0,
+                "OBJECTID": 4375
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 806626,
+                "ConfirmadosNovos": 979,
+                "VarObitos": 41,
+                "OBJECTID": 4376
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 326761,
+                "ConfirmadosNovos": 217,
+                "VarObitos": 8,
+                "OBJECTID": 4377
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 115175,
+                "ConfirmadosNovos": 118,
+                "VarObitos": 4,
+                "OBJECTID": 4378
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 305453,
+                "ConfirmadosNovos": 426,
+                "VarObitos": 25,
+                "OBJECTID": 4379
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 28532,
+                "ConfirmadosNovos": 31,
+                "VarObitos": 1,
+                "OBJECTID": 4380
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 20158,
+                "ConfirmadosNovos": 37,
+                "VarObitos": 3,
+                "OBJECTID": 4381
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 3793,
+                "ConfirmadosNovos": 10,
+                "VarObitos": 0,
+                "OBJECTID": 4382
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1614772800000,
+                "ConfirmadosAcumulado": 6754,
+                "ConfirmadosNovos": 140,
+                "VarObitos": 0,
+                "OBJECTID": 4383
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 806916,
+                "ConfirmadosNovos": 290,
+                "VarObitos": 28,
+                "OBJECTID": 4384
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 326968,
+                "ConfirmadosNovos": 207,
+                "VarObitos": 6,
+                "OBJECTID": 4385
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 115286,
+                "ConfirmadosNovos": 111,
+                "VarObitos": 6,
+                "OBJECTID": 4386
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 305289,
+                "ConfirmadosNovos": -164,
+                "VarObitos": 11,
+                "OBJECTID": 4387
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 28537,
+                "ConfirmadosNovos": 5,
+                "VarObitos": 5,
+                "OBJECTID": 4388
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 20180,
+                "ConfirmadosNovos": 22,
+                "VarObitos": 0,
+                "OBJECTID": 4389
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 3796,
+                "ConfirmadosNovos": 3,
+                "VarObitos": 0,
+                "OBJECTID": 4390
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1614859200000,
+                "ConfirmadosAcumulado": 6860,
+                "ConfirmadosNovos": 106,
+                "VarObitos": 0,
+                "OBJECTID": 4391
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 808405,
+                "ConfirmadosNovos": 949,
+                "VarObitos": 28,
+                "OBJECTID": 4392
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 327160,
+                "ConfirmadosNovos": 192,
+                "VarObitos": 5,
+                "OBJECTID": 4393
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 115404,
+                "ConfirmadosNovos": 118,
+                "VarObitos": 3,
+                "OBJECTID": 4394
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 306265,
+                "ConfirmadosNovos": 436,
+                "VarObitos": 17,
+                "OBJECTID": 4395
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 28573,
+                "ConfirmadosNovos": 36,
+                "VarObitos": 3,
+                "OBJECTID": 4396
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 20189,
+                "ConfirmadosNovos": 9,
+                "VarObitos": 0,
+                "OBJECTID": 4397
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 3791,
+                "ConfirmadosNovos": -5,
+                "VarObitos": 0,
+                "OBJECTID": 4398
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Madeira",
+                "Data": 1614945600000,
+                "ConfirmadosAcumulado": 7023,
+                "ConfirmadosNovos": 163,
+                "VarObitos": 0,
+                "OBJECTID": 4399
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Nacional",
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 809412,
+                "ConfirmadosNovos": 1007,
+                "VarObitos": 26,
+                "OBJECTID": 4400
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Norte",
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 327370,
+                "ConfirmadosNovos": 210,
+                "VarObitos": 4,
+                "OBJECTID": 4401
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Centro",
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 115529,
+                "ConfirmadosNovos": 125,
+                "VarObitos": 6,
+                "OBJECTID": 4402
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Lisboa e Vale do Tejo",
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 306596,
+                "ConfirmadosNovos": 331,
+                "VarObitos": 16,
+                "OBJECTID": 4403
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Alentejo",
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 28599,
+                "ConfirmadosNovos": 26,
+                "VarObitos": 0,
+                "OBJECTID": 4404
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "ARS Algarve",
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 20207,
                 "ConfirmadosNovos": 18,
                 "VarObitos": 0,
-                "OBJECTID": 4358
+                "OBJECTID": 4405
+            }
+        },
+        {
+            "attributes": {
+                "ARSNome": "Açores",
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 3800,
+                "ConfirmadosNovos": 9,
+                "VarObitos": 0,
+                "OBJECTID": 4406
             }
         },
         {
             "attributes": {
                 "ARSNome": "Madeira",
-                "Data": 1614513600000,
-                "ConfirmadosAcumulado": 6458,
-                "ConfirmadosNovos": 35,
+                "Data": 1615032000000,
+                "ConfirmadosAcumulado": 7311,
+                "ConfirmadosNovos": 288,
                 "VarObitos": 0,
-                "OBJECTID": 4359
+                "OBJECTID": 4407
             }
         }
     ]
