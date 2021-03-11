@@ -124,8 +124,8 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 						},
 						ticks: {
 							display: true,
-							max: 300_000,
-							stepSize: 300_000 / 5,
+							maxTicksLimit: 7,
+							minTicksLimit: 7,
 							callback: (value) => formatNumber(value, false),
 						},
 					},
