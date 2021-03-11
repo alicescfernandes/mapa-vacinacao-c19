@@ -61,8 +61,8 @@ function publishEvent(type, data) {
 
 async function updateJSON() {
 	//update the repo
-	//shell.exec('git checkout develop');
-	//shell.exec('git pull --rebase');
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
 
 	let date = new Date();
 	date.setMinutes(0);
@@ -115,7 +115,6 @@ async function updateJSON() {
 		if (dataCasos.features.length > 0) {
 			console.log('updating cases');
 			sourceData = dataCasos.features[0].attributes;
-			sourceData = dataCaso;
 			if (parseInt(sourceData.OBJECTID) > dataLocalCases[dataLocalCases.length - 1].OBJECTID) {
 				console.log(new Date().toLocaleString(), 'updating');
 				sourceData.Data = date.getTime();
