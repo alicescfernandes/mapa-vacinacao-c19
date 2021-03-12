@@ -7,6 +7,14 @@
             "permalink": "https://www.pordata.pt/Portugal"
         }
     },
+    "populacao_ram": {
+        "valor": 254254,
+        "legenda": "254 mil 254 pessoas",
+        "fonte": {
+            "nome": "Direção Regional de Estatística da Madeira",
+            "permalink": "https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html"
+        }
+    },
     "doses": {
         "valor": 38000000,
         "legenda": "38 milhões de doses",
