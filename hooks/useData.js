@@ -12,12 +12,20 @@ export function useData() {
 	let [vaccines, setVaccines] = useState(false);
 	let [casesData, setCasesData] = useState(false);
 	let [labels, setLabels] = useState([]);
+	let [rt, setRt] = useState([]);
 
 	let options = {
 		month: 'short',
 		day: 'numeric',
 	};
+	let options2 = {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+	};
+
 	let f = new Intl.DateTimeFormat('pt-PT', options);
+	let f2 = new Intl.DateTimeFormat('pt-PT', options2);
 	function parseData(data) {
 		if (!ready) return;
 		let values = [];
@@ -64,7 +72,16 @@ export function useData() {
 				labels: labelsMedias,
 			};
 		},
-
+		getRtRegiao: async (regiao) => {
+			debugger;
+			let data = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(Date.now())}`).then((responseRt) => {
+				setRt(responseRt);
+				return responseRt;
+			});
+			let date = new Date('2020-12-27T00:00:45.000Z').getTime();
+			let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
+			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
+		},
 		getOwid: () => {
 			let labels = owid.eun.data.map((el) => f.format(new Date(el.date)));
 			let data = {
@@ -407,7 +424,8 @@ export function useData() {
 			fetchWithLocalCache(`/api/ars?${btoa(data.dateSnsStartWeirdFormat)}`, false),
 			fetchWithLocalCache(`/api/cases?${btoa(data.date)}`),
 			fetchWithLocalCache(`/api/owid?${btoa(data.date)}`),
-		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid]) => {
+			fetchWithLocalCache(`/api/rt/continente?${btoa(Date.now())}`),
+		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid, rt]) => {
 			setSns(sns);
 			setWeeks(weeks);
 			setECDC(ecdc);
@@ -415,6 +433,7 @@ export function useData() {
 			setArs(ars);
 			setCasesData(cases);
 			setOwid(owid);
+			setRt(rt);
 			setReady(true);
 		});
 	}, []);
