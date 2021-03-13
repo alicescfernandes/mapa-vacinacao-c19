@@ -14,7 +14,10 @@
 		"image": "cd automation/ && node instagram.js && cd - && git add automation",
 		"twitter": "cd automation/ && node twitter.js && cd - ",
 		"pusher": "cd automation/ && node pusher.js && cd - ",
-		"deploy:manual": "yarn deploy && yarn twitter && yarn pusher"
+		"deploy:manual": "yarn deploy && yarn twitter & yarn pusher",
+		"convert:csv": "node automation/convert-csv.js",
+		"convert:xls": "node automation/convert-xls.js",
+		"convert": "yarn convert:csv & yarn convert:xls"
 	},
 	"browser": {
 		"fs": false,
@@ -57,6 +60,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
 		"@babel/preset-env": "^7.12.16",
+		"convert-excel-to-json": "^1.7.0",
 		"csvtojson": "^2.0.10",
 		"dotenv": "^8.2.0",
 		"node-schedule": "^2.0.0",
