@@ -16,6 +16,6 @@ export default async function handler(req, res) {
 		res.end();
 	}
 
-	let data = await import(`./../../../data/${regioes[regiao]}`);
+	let data = await import(`./../../../data/rt/${regioes[regiao]}`);
 	res.end(JSON.stringify(data));
 }

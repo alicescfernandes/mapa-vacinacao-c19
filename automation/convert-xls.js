@@ -31,7 +31,7 @@ const path = require('path');
 			],
 		});
 
-		fs.writeFile(`./data/${parsed.name.toLowerCase()}.json`, JSON.stringify(result['Sheet 1']), () => {});
+		fs.writeFile(`./data/rt/${parsed.name.toLowerCase()}.json`, JSON.stringify(result['Sheet 1']), () => {});
 	});
 
 	// Convert a csv file with csvtojson
