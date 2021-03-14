@@ -76,7 +76,7 @@ async function updateJSON() {
 
 	if (date.getTime() > dataLocalVacinas[dataLocalVacinas.length - 1].Data) {
 		let dataVacinas = await fetch(
-			'https://services5.arcgis.com/eoFbezv6KiXqcnKq/arcgis/rest/services/Covid19_Total_Vacinados_Temporario/FeatureServer/0/query?f=json&where=FID=1&outFields=*&resultType=standard&cacheHint=true'
+			'https://services.arcgis.com/CCZiGSEQbAxxFVh3/arcgis/rest/services/Covid19_Total_Vacinados_Temporario/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&resultType=standard&cacheHint=true'
 		).then((res) => res.json());
 
 		let sourceData = dataVacinas.features[0].attributes;
