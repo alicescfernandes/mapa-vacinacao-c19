@@ -15,6 +15,7 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - [Relatórios de Vacinação - Direção-Geral da Saúde](https://covid19.min-saude.pt/relatorio-de-vacinacao/)  
 - [Our World of Data](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/country_data/Portugal.csv)  
 - [Centro Europeu de Controlo de Doenças](https://covid19-vaccine-report.ecdc.europa.eu/)  
+- [Instituto Nacional Doutor Ricardo Jorge](http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/)  
 ## Stack
 - ChartJS  
 - React  

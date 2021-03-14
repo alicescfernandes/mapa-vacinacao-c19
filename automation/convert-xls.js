@@ -23,7 +23,7 @@ const path = require('path');
 					},
 					columnToKey: {
 						A: 'Data',
-						B: 'Rt_número_de_reprodução',
+						B: 'rt_numero_de_reproducao',
 						C: 'limite_inferior_IC95',
 						D: 'limite_superior_IC95',
 					},
@@ -31,8 +31,6 @@ const path = require('path');
 			],
 		});
 
-		fs.writeFile(`./data/${parsed.name.toLowerCase()}.json`, JSON.stringify(result['Sheet 1']), () => {});
+		fs.writeFile(`./data/rt/${parsed.name.toLowerCase()}.json`, JSON.stringify(result['Sheet 1']), () => {});
 	});
-
-	// Convert a csv file with csvtojson
 })();
