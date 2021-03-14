@@ -76,11 +76,14 @@ async function updateJSON() {
 
 	if (date.getTime() > dataLocalVacinas[dataLocalVacinas.length - 1].Data) {
 		let dataVacinas = await fetch(
-			'https://services5.arcgis.com/eoFbezv6KiXqcnKq/arcgis/rest/services/Covid19_Total_Vacinados/FeatureServer/0/query?f=json&where=FID=1&outFields=*&resultType=standard&cacheHint=true'
+			'https://services5.arcgis.com/eoFbezv6KiXqcnKq/arcgis/rest/services/Covid19_Total_Vacinados_Temporario/FeatureServer/0/query?f=json&where=FID=1&outFields=*&resultType=standard&cacheHint=true'
 		).then((res) => res.json());
 
 		let sourceData = dataVacinas.features[0].attributes;
-		if (parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac && date.getTime() >= dataLocalVacinas[dataLocalVacinas.length - 1].Data) {
+		if (
+			parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac &&
+			date.getTime() >= dataLocalVacinas[dataLocalVacinas.length - 1].Data
+		) {
 			console.log('updating vaccines');
 			sourceData.Data = date.getTime();
 			dataLocalVacinas.push(sourceData);
