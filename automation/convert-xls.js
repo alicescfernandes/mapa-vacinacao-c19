@@ -3,6 +3,7 @@ const { default: fetch } = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
 let rts = {};
+
 (async () => {
 	let files = await fetch(
 		'http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/'

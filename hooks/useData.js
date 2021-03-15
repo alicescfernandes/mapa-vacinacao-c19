@@ -74,7 +74,7 @@ export function useData() {
 		},
 		getRtRegiao: async (regiao) => {
 			debugger;
-			let data = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(Date.now())}`).then((responseRt) => {
+			let data = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(data.date)}`).then((responseRt) => {
 				setRt(responseRt);
 				return responseRt;
 			});
@@ -85,7 +85,7 @@ export function useData() {
 		},
 		getRtRegioes: async () => {
 			debugger;
-			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(Date.now())}`).then((responseRt) => {
+			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(data.date)}`).then((responseRt) => {
 				return responseRt;
 			});
 			let dates = data.rt_continente.map((el) => el.Data);
