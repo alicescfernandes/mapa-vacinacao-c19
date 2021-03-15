@@ -74,13 +74,13 @@ export function useData() {
 		},
 		getRtRegiao: async (regiao) => {
 			debugger;
-			let data = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(data.date)}`).then((responseRt) => {
+			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(data.date)}`).then((responseRt) => {
 				setRt(responseRt);
 				return responseRt;
 			});
 			let date = new Date('2020-12-27T00:00:45.000Z').getTime();
 			// let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
-			let returnRt = data;
+			let returnRt = data2;
 			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
 		},
 		getRtRegioes: async () => {
