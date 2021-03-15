@@ -39,3 +39,15 @@ export let lineChartCommon = {
 	pointRadius: 1,
 	pointHitRadius: 10,
 };
+export let lineChartCommon2 = {
+	fill: false,
+	lineTension: 0.5,
+	lineBorder: 1,
+	borderWidth: 3,
+	borderJoinStyle: 'miter',
+	pointBorderWidth: 0,
+	pointHoverRadius: 0,
+	pointHoverBorderWidth: 0,
+	pointRadius: 0,
+	pointHitRadius: 0,
+};

@@ -52,6 +52,12 @@ function updateOWID() {
 	shell.exec('python3 owid_parser.py');
 	gitCommit('owid');
 }
+function updateRT() {
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
+	shell.exec('yarn convert:xls');
+	gitCommit('rt');
+}
 function publishEvent(type, data) {
 	pusher.trigger('covid19', 'update', {
 		type,
@@ -179,4 +185,5 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 
 schedule.scheduleJob('00 12 * * *', function () {
 	updateOWID();
+	updateRT();
 });

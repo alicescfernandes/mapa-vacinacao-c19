@@ -6,6 +6,7 @@ const regioes = {
 	lvt: '/api/rt/lvt',
 	madeira: '/api/rt/madeira',
 	acores: '/api/rt/acores',
+	todas: '/api/rt/todas',
 };
 
 export default async function handler(req, res) {
