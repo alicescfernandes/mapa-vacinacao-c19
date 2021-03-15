@@ -79,8 +79,37 @@ export function useData() {
 				return responseRt;
 			});
 			let date = new Date('2020-12-27T00:00:45.000Z').getTime();
-			let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
+			// let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
+			let returnRt = data;
 			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
+		},
+		getRtRegioes: async () => {
+			debugger;
+			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(Date.now())}`).then((responseRt) => {
+				return responseRt;
+			});
+			let dates = data.rt_continente.map((el) => el.Data);
+
+			//get rt for each date
+			let rtData = [];
+
+			dates.forEach((el) => {
+				let tempD = {
+					continente: data.rt_continente.filter((tempEl) => tempEl.Data === el)[0],
+					centro: data.rt_centro.filter((tempEl) => tempEl.Data === el)[0],
+					nacional: data.rt_nacional.filter((tempEl) => tempEl.Data === el)[0],
+					lvt: data.rt_lvt.filter((tempEl) => tempEl.Data === el)[0],
+					alentejo: data.rt_alentejo.filter((tempEl) => tempEl.Data === el)[0],
+					norte: data.rt_norte.filter((tempEl) => tempEl.Data === el)[0],
+					algarve: data.rt_algarve.filter((tempEl) => tempEl.Data === el)[0],
+					ram: data.rt_ram.filter((tempEl) => tempEl.Data === el)[0],
+					raa: data.rt_raa.filter((tempEl) => tempEl.Data === el)[0],
+				};
+
+				rtData.push(tempD);
+			});
+
+			return { labels: dates.map((el) => f.format(new Date(el))), values: rtData };
 		},
 		getOwid: () => {
 			let labels = owid.eun.data.map((el) => f.format(new Date(el.date)));

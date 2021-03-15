@@ -2,7 +2,7 @@ const excelToJson = require('convert-excel-to-json');
 const { default: fetch } = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
-
+let rts = {};
 (async () => {
 	let files = await fetch(
 		'http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/'
@@ -10,7 +10,7 @@ const path = require('path');
 		.then((res) => res.text())
 		.then((text) => text.match(/http.*xlsx/gm));
 
-	files.forEach(async (file) => {
+	await files.forEach(async (file) => {
 		let parsed = path.parse(file);
 		let contents = await fetch(file).then((res) => res.buffer());
 		const result = excelToJson({
@@ -30,7 +30,8 @@ const path = require('path');
 				},
 			],
 		});
-
+		rts[parsed.name.toLowerCase()] = result['Sheet 1'];
 		fs.writeFile(`./data/rt/${parsed.name.toLowerCase()}.json`, JSON.stringify(result['Sheet 1']), () => {});
+		fs.writeFile(`./data/rt/rt_todas.json`, JSON.stringify(rts), () => {});
 	});
 })();

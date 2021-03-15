@@ -13,7 +13,7 @@ export function LineRt({ statistics, colors }) {
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 
 	let { main, shades, tints, complements } = colors;
-	let [currentRegiao, setCurrentRegiao] = useState('continente');
+	let [currentRegiao, setCurrentRegiao] = useState('todas');
 	let doses_map = {
 		normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
 		per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred'],
@@ -27,8 +27,7 @@ export function LineRt({ statistics, colors }) {
 
 	useEffect(() => {
 		if (!loaded) return;
-		debugger;
-		statistics.getRtRegiao(currentRegiao).then((data) => setRtData(data));
+		statistics.getRtRegioes().then((data) => console.log(data));
 	}, [currentRegiao]);
 
 	useEffect(() => {
@@ -36,7 +35,7 @@ export function LineRt({ statistics, colors }) {
 	}, [rtData]);
 
 	useEffect(() => {
-		statistics.getRtRegiao(currentRegiao).then((data) => {
+		statistics.getRtRegioes().then((data) => {
 			setRtData(data);
 			setLoaded(true);
 		});
@@ -47,14 +46,19 @@ export function LineRt({ statistics, colors }) {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, height);
 		let color = '';
+		let color2 = '';
 		let { r, g, b } = hexToRgb(main);
 		try {
 			//See if supports transperancy
 			gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',30%)');
 			color = 'rgba(' + r + ',' + g + ',' + b + ',30%)';
+
+			let { r, g, b } = hexToRgb(complements[1]);
+			color2 = 'rgba(' + r + ',' + g + ',' + b + ',30%)';
 		} catch (e) {
 			gradient.addColorStop(0, '#d9f3ef');
 			color = '#d9f3ef';
+			color2 = complements[1];
 		}
 
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
@@ -73,30 +77,30 @@ export function LineRt({ statistics, colors }) {
 		return {
 			labels: rtData.labels,
 			datasets: [
-				{
+				/* {
 					...lineChartCommon2,
 					label: 'R(t) limite superior',
 					backgroundColor: color,
 					borderColor: 'transparent',
 					type: 'line',
 					fill: '2', //fill until previous dataset
-					data: rtData.rt.map((el) => el.limite_superior_IC95),
+					data: rtData.values.map((el) => el.nacional.limite_superior_IC95),
 					order: 3,
 					yAxisID: 'rt',
-				},
+				}, */
 
 				{
 					...lineChartCommon,
-					label: 'R(t)',
+					label: 'R(t) - Nacional',
 					backgroundColor: main,
 					borderColor: main,
 					type: 'line',
 					fill: false,
-					data: rtData.rt.map((el) => el.rt_numero_de_reproducao),
+					data: rtData.values.map((el) => el.nacional.rt_numero_de_reproducao),
 					order: 2,
 					yAxisID: 'rt',
 				},
-
+				/* 
 				{
 					...lineChartCommon2,
 					label: 'R(t) limite inferior',
@@ -104,8 +108,42 @@ export function LineRt({ statistics, colors }) {
 					borderColor: 'transparent',
 					type: 'line',
 					fill: false,
-					data: rtData.rt.map((el) => el.limite_inferior_IC95),
+					data: rtData.values.map((el) => el.nacional.limite_inferior_IC95),
 					order: 1,
+					yAxisID: 'rt',
+				}, */
+
+				{
+					...lineChartCommon,
+					label: 'R(t) - Lisboa e Vale do Tejo',
+					backgroundColor: shades[1],
+					borderColor: shades[1],
+					type: 'line',
+					fill: false,
+					data: rtData.values.map((el) => el.lvt.rt_numero_de_reproducao),
+					order: 2,
+					yAxisID: 'rt',
+				},
+				{
+					...lineChartCommon,
+					label: 'R(t) - Algarve',
+					backgroundColor: tints[1],
+					borderColor: tints[1],
+					type: 'line',
+					fill: false,
+					data: rtData.values.map((el) => el.norte.rt_numero_de_reproducao || null),
+					order: 2,
+					yAxisID: 'rt',
+				},
+				{
+					...lineChartCommon,
+					label: 'R(t) - Algarve',
+					backgroundColor: tints[2],
+					borderColor: tints[2],
+					type: 'line',
+					fill: false,
+					data: rtData.values.map((el) => el.algarve?.rt_numero_de_reproducao || null),
+					order: 2,
 					yAxisID: 'rt',
 				},
 
@@ -174,7 +212,6 @@ export function LineRt({ statistics, colors }) {
 					{
 						ticks: {
 							beginAtZero: true,
-
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 						},
@@ -184,7 +221,6 @@ export function LineRt({ statistics, colors }) {
 						id: 'rt',
 						ticks: {
 							beginAtZero: true,
-
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 						},
@@ -226,48 +262,28 @@ export function LineRt({ statistics, colors }) {
 								setCurrentRegiao('nacional');
 							}}
 						>
-							Nacional
+							Portugal
 						</button>
 
 						<button
 							className={classNames('toggle_button', {
-								active: currentRegiao === 'lvt',
+								active: currentRegiao === 'acores',
 							})}
 							onClick={() => {
-								setCurrentRegiao('lvt');
+								setCurrentRegiao('acores');
 							}}
 						>
-							Lisboa e Vale do Tejo
+							Açores
 						</button>
 						<button
 							className={classNames('toggle_button', {
-								active: currentRegiao === 'algarve',
+								active: currentRegiao === 'madeira',
 							})}
 							onClick={() => {
-								setCurrentRegiao('algarve');
+								setCurrentRegiao('madeira');
 							}}
 						>
-							Algarve
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'alentejo',
-							})}
-							onClick={() => {
-								setCurrentRegiao('alentejo');
-							}}
-						>
-							Alentejo
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'centro',
-							})}
-							onClick={() => {
-								setCurrentRegiao('centro');
-							}}
-						>
-							Centro
+							Madeira
 						</button>
 					</p>
 				</div>

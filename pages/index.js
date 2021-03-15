@@ -291,15 +291,20 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>R(t) por região</h3>
-								<LineRt colors={colors_v2} statistics={statistics}></LineRt>
-							</Col>
-						</Row>
-						<Row></Row>
-						<Row>
-							<Col>
 								<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h3 className={styles.title}>
+									<em>
+										R<sub>t</sub>
+									</em>{' '}
+									por região
+								</h3>
+								<h3 className={styles.subtitle}>Nem todas as regiões apresentam dados no mesmo período temporal</h3>
+								<LineRt colors={colors_v2} statistics={statistics}></LineRt>
 							</Col>
 						</Row>
 						<Row>
@@ -545,6 +550,22 @@ export default function Home() {
 										href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv"
 									>
 										no repositório de Github
+									</a>
+									. Os dados relativos ao{' '}
+									<em>
+										R<sub>t</sub>{' '}
+									</em>
+									são atualizados pelo&nbsp;
+									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+										Instituto Nacional Doutor Ricardo Jorge
+									</a>
+									&nbsp; e estão disponíveis&nbsp;
+									<a
+										className={styles.link}
+										target="_blank"
+										href="http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/"
+									>
+										nesta página.
 									</a>
 								</p>
 							</Col>
