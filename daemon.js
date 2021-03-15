@@ -52,7 +52,7 @@ function updateOWID() {
 	shell.exec('python3 owid_parser.py');
 	gitCommit('owid');
 }
-function updateOWID() {
+function updateRT() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
 	shell.exec('yarn convert:xls');
