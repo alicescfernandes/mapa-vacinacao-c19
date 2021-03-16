@@ -156,6 +156,41 @@ export default function Home() {
 				locale: pt,
 			}),
 		});
+		if (window.location.hash.match('notifications')) {
+			alert(0);
+			window.OneSignal = window.OneSignal || [];
+			const OneSignal = window.OneSignal;
+			OneSignal.push(() => {
+				OneSignal.init({
+					appId: 'cfd30a9a-e080-4657-851f-e5063de051c6', //STEP 9
+					promptOptions: {
+						slidedown: {
+							enabled: true,
+							actionMessage: "We'd like to show you notifications for the latest news and updates about the following categories.",
+							acceptButtonText: 'OMG YEEEEESS!',
+							cancelButtonText: 'NAHHH',
+						},
+					},
+					welcomeNotification: {
+						title: 'One Signal',
+						message: 'Thanks for subscribing!',
+					},
+				});
+
+				alert(1);
+				OneSignal.showNativePrompt();
+
+				OneSignal.getNotificationPermission().then((e) => alert(e));
+				OneSignal.on('notificationDisplay', function (event) {
+					console.log('OneSignal notification displayed:', event);
+				});
+
+				OneSignal.on('subscriptionChange', function (isSubscribed) {
+					console.log("The user's subscription state is now:", isSubscribed);
+				});
+			});
+		}
+
 		setLoaded(true);
 	}, [dataReady]);
 	return (
@@ -578,7 +613,9 @@ export default function Home() {
 				)}
 			</Container>
 			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
-			<script src="https://js.pusher.com/7.0/pusher.min.js"></script> <Footer></Footer>
+			<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+			<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+			<Footer></Footer>
 		</>
 	);
 }
