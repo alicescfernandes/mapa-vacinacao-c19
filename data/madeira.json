@@ -1,6 +1,502 @@
 [
     {
-        "data": "2020-03-01",
+        "data": "2020-02-05",
+        "total": 10240,
+        "dose_1": 7037,
+        "dose_2": 3203,
+        "grupos": {
+            "outros": {
+                "total": 7,
+                "anotacao": "Vacinas administradas às Entidades Governamentais"
+            },
+            "saude": {
+                "dose_1": 3773,
+                "dose_2": 2335,
+                "total": 0
+            },
+            "rcci": {
+                "dose_1": 2724,
+                "dose_2": 888,
+                "total": 0,
+                "notas":"Utentes e profissionais contabilizados em conjunto"
+            },
+            "protecao_civil": {
+                "dose_1": 513,
+                "dose_2": 0,
+                "total": 0
+            },
+            "lares": {
+                "dose_1": null,
+                "dose_2": 0,
+                "total": 0
+            }
+        },
+        "genero": {
+            "f": {
+                "total": 0,
+                "dose_1": null,
+                "dose_2": null
+            },
+            "m": {
+                "total": 0,
+                "dose_1": null,
+                "dose_2": null
+            }
+        },
+        "escaloes": {
+            "e017": {
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e1824": {
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e2549": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e5059": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e6064": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e6569": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e7079": {
+                "dose_1":null,
+                "dose_2":null,
+                "total": 0
+            },
+            "e80": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            }
+        },
+        "concelhos":{
+            "porto_moniz":{
+                "nome":"Porto Moniz",
+                "chave":"porto_moniz",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "svincente":{
+                "nome":"São Vincente",
+                "chave":"svincente",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "santana":{
+                "nome":"Santana",
+                "chave":"santana",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "porto_santo":{
+                "nome":"Porto Santo",
+                "chave":"porto_santo",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "machico":{
+                "nome":"Machico",
+                "chave":"machico",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "santa_cruz":{
+                "nome":"Santa Cruz",
+                "chave":"santa_cruz",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "funchal":{
+                "nome":"Funchal",
+                "chave":"funchal",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "camara_lobos":{
+                "nome":"Câmara de Lobos",
+                "chave":"camara_lobos",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "ribeira_brava":{
+                "nome":"Ribeira Brava",
+                "chave":"ribeira_brava",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "ponta_sol":{
+                "nome":"Ponta do Sol",
+                "chave":"ponta_sol",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "calheta":{
+                "nome":"Calheta",
+                "chave":"calheta",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            }
+        }
+    },
+    {
+        "data": "2020-02-12",
+        "total": 14124,
+        "dose_1": 9603,
+        "dose_2": 4521,
+        "grupos": {
+            "outros": {
+                "total": 11,
+                "anotacao": "Vacinas administradas às Entidades Governamentais"
+            },
+            "saude": {
+                "dose_1": 4876,
+                "dose_2": 2787,
+                "total": 0
+            },
+            "rcci": {
+                "dose_1": 2789,
+                "dose_2": 1635,
+                "total": 0
+            },
+            "protecao_civil": {
+                "dose_1": 670,
+                "dose_2": 99,
+                "total": 0
+            },
+            "lares": {
+                "dose_1": 1257,
+                "dose_2": 0,
+                "total": 0
+            }
+        },
+        "genero": {
+            "f": {
+                "total": 0,
+                "dose_1": null,
+                "dose_2": null
+            },
+            "m": {
+                "total": 0,
+                "dose_1": null,
+                "dose_2": null
+            }
+        },
+        "escaloes": {
+            "e017": {
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e1824": {
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e2549": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e5059": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e6064": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e6569": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e7079": {
+                "dose_1":null,
+                "dose_2":null,
+                "total": 0
+            },
+            "e80": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            }
+        },
+        "concelhos":{
+            "porto_moniz":{
+                "nome":"Porto Moniz",
+                "chave":"porto_moniz",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "svincente":{
+                "nome":"São Vincente",
+                "chave":"svincente",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "santana":{
+                "nome":"Santana",
+                "chave":"santana",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "porto_santo":{
+                "nome":"Porto Santo",
+                "chave":"porto_santo",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "machico":{
+                "nome":"Machico",
+                "chave":"machico",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "santa_cruz":{
+                "nome":"Santa Cruz",
+                "chave":"santa_cruz",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "funchal":{
+                "nome":"Funchal",
+                "chave":"funchal",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "camara_lobos":{
+                "nome":"Câmara de Lobos",
+                "chave":"camara_lobos",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "ribeira_brava":{
+                "nome":"Ribeira Brava",
+                "chave":"ribeira_brava",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "ponta_sol":{
+                "nome":"Ponta do Sol",
+                "chave":"ponta_sol",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "calheta":{
+                "nome":"Calheta",
+                "chave":"calheta",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            }
+        }
+    },
+    {
+        "data": "2020-02-19",
+        "total": 17521,
+        "dose_1": 12262,
+        "dose_2": 5259,
+        "grupos": {
+            "outros": {
+                "total": 24,
+                "anotacao": "Vacinas administradas às Entidades Governamentais"
+            },
+            "saude": {
+                "dose_1": 5207,
+                "dose_2": 2921,
+                "total": 0
+            },
+            "rcci": {
+                "dose_1": 3090,
+                "dose_2": 215,
+                "total": 0
+            },
+            "protecao_civil": {
+                "dose_1": 709,
+                "dose_2": 123,
+                "total": 0
+            },
+            "lares": {
+                "dose_1": 3232,
+                "dose_2": 0,
+                "total": 0
+            }
+        },
+        "genero": {
+            "f": {
+                "total": 0,
+                "dose_1": null,
+                "dose_2": null
+            },
+            "m": {
+                "total": 0,
+                "dose_1": null,
+                "dose_2": null
+            }
+        },
+        "escaloes": {
+            "e017": {
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e1824": {
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e2549": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e5059": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e6064": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e6569": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "e7079": {
+                "dose_1":null,
+                "dose_2":null,
+                "total": 0
+            },
+            "e80": {
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            }
+        },
+        "concelhos":{
+            "porto_moniz":{
+                "nome":"Porto Moniz",
+                "chave":"porto_moniz",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "svincente":{
+                "nome":"São Vincente",
+                "chave":"svincente",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "santana":{
+                "nome":"Santana",
+                "chave":"santana",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "porto_santo":{
+                "nome":"Porto Santo",
+                "chave":"porto_santo",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "machico":{
+                "nome":"Machico",
+                "chave":"machico",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "santa_cruz":{
+                "nome":"Santa Cruz",
+                "chave":"santa_cruz",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "funchal":{
+                "nome":"Funchal",
+                "chave":"funchal",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "camara_lobos":{
+                "nome":"Câmara de Lobos",
+                "chave":"camara_lobos",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "ribeira_brava":{
+                "nome":"Ribeira Brava",
+                "chave":"ribeira_brava",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "ponta_sol":{
+                "nome":"Ponta do Sol",
+                "chave":"ponta_sol",
+                "dose_1":null,
+                "dose_2": null,
+                "total": 0
+            },
+            "calheta":{
+                "nome":"Calheta",
+                "chave":"calheta",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            }
+        }
+    },
+    {
+        "data": "2020-02-28",
         "total": 23301,
         "dose_1": 15735,
         "dose_2": 7566,
@@ -165,7 +661,7 @@
         }
     },
     {
-        "data": "2020-03-08",
+        "data": "2020-03-07",
         "total": 27853,
         "dose_1": 17170,
         "dose_2": 10683,
@@ -325,6 +821,187 @@
                 "chave":"calheta",
                 "dose_1": 839,
                 "dose_2": 463,
+                "total": 0
+            }
+        }
+    },
+    {
+        "data": "2020-03-14",
+        "total": 35133,
+        "dose_1": 22051,
+        "dose_2": 13082,
+        "grupos": {
+            "outros": {
+                "total": 41,
+                "anotacao": "Vacinas administradas às Entidades Governamentais"
+            },
+            "saude": {
+                "dose_1": 6543,
+                "dose_2": 5243,
+                "total": 0
+            },
+            "rcci": {
+                "dose_1": 4124,
+                "dose_2": 3081,
+                "total": 0
+            },
+            "protecao_civil": {
+                "dose_1": 1976,
+                "dose_2": 766,
+                "total": 0
+            },
+            "lares": {
+                "dose_1": 9386,
+                "dose_2": 3973,
+                "total": 0
+            }
+        },
+        "genero": {
+            "f": {
+                "total": 0,
+                "dose_1": 14013,
+                "dose_2": 8840
+            },
+            "m": {
+                "total": 0,
+                "dose_1": 8038,
+                "dose_2": 4242
+            }
+        },
+        "escaloes": {
+            "e017": {
+                "dose_1_pessoas": 3,
+                "dose_1": 0,
+                "dose_2_pessoas": 3,
+                "dose_2": 0,
+                "total": 0
+            },
+            "e1824": {
+                "dose_1_pessoas": 456,
+                "dose_1": 2,
+                "dose_2_pessoas": 273,
+                "dose_2": 1.2,
+                "total": 0
+            },
+            "e2549": {
+                "dose_1_pessoas": 6559,
+                "dose_1": 7.2,
+                "dose_2_pessoas": 4727,
+                "dose_2":5.2,
+                "total": 0
+            },
+            "e5059": {
+                "dose_1_pessoas": 3098,
+                "dose_1": 7.9,
+                "dose_2_pessoas": 2123,
+                "dose_2": 5.4,
+                "total": 0
+            },
+            "e6064": {
+                "dose_1_pessoas": 1595,
+                "dose_1": 10.1,
+                "dose_2_pessoas": 663,
+                "dose_2": 4.2,
+                "total": 0
+            },
+            "e6569": {
+                "dose_1_pessoas": 570,
+                "dose_1": 4.3,
+                "dose_2_pessoas": 306,
+                "dose_2": 2.3,
+                "total": 0
+            },
+            "e7079": {
+                "dose_1_pessoas": 1799,
+                "dose_1": 9.6,
+                "dose_2_pessoas": 1416,
+                "dose_2": 7.6,
+                "total": 0
+            },
+            "e80": {
+                "dose_1_pessoas": 7971,
+                "dose_1": 72.1,
+                "dose_2_pessoas": 3.571,
+                "dose_2": 32.3,
+                "total": 0
+            }
+        },
+        "concelhos":{
+            "porto_moniz":{
+                "nome":"Porto Moniz",
+                "chave":"porto_moniz",
+                "dose_1": 339,
+                "dose_2": 205,
+                "total": 0
+            },
+            "svincente":{
+                "nome":"São Vincente",
+                "chave":"svincente",
+                "dose_1": 615,
+                "dose_2": 353,
+                "total": 0
+            },
+            "santana":{
+                "nome":"Santana",
+                "chave":"santana",
+                "dose_1": 829,
+                "dose_2": 484,
+                "total": 0
+            },
+            "porto_santo":{
+                "nome":"Porto Santo",
+                "chave":"porto_santo",
+                "dose_1": 412,
+                "dose_2": 307,
+                "total": 0
+            },
+            "machico":{
+                "nome":"Machico",
+                "chave":"machico",
+                "dose_1": 1754,
+                "dose_2": 1033,
+                "total": 0
+            },
+            "santa_cruz":{
+                "nome":"Santa Cruz",
+                "chave":"santa_cruz",
+                "dose_1": 3045,
+                "dose_2": 1882,
+                "total": 0
+            },
+            "funchal":{
+                "nome":"Funchal",
+                "chave":"funchal",
+                "dose_1": 10470,
+                "dose_2": 6247,
+                "total": 0
+            },
+            "camara_lobos":{
+                "nome":"Câmara de Lobos",
+                "chave":"camara_lobos",
+                "dose_1": 1858,
+                "dose_2": 1072,
+                "total": 0
+            },
+            "ribeira_brava":{
+                "nome":"Ribeira Brava",
+                "chave":"ribeira_brava",
+                "dose_1": 1030,
+                "dose_2": 567,
+                "total": 0
+            },
+            "ponta_sol":{
+                "nome":"Ponta do Sol",
+                "chave":"ponta_sol",
+                "dose_1": 634,
+                "dose_2": 332,
+                "total": 0
+            },
+            "calheta":{
+                "nome":"Calheta",
+                "chave":"calheta",
+                "dose_1": 1065,
+                "dose_2": 600,
                 "total": 0
             }
         }
