@@ -35,6 +35,7 @@ import { formatNumber, perHundred } from '../utils';
 import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
 import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
+import { LineRt } from '../components/graphs/LineRt';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -122,7 +123,6 @@ export default function Home() {
 		setSelectedItem(rawData[rawData.length - 1]);
 		setPreviousItem(selectedItem);
 		setFirst(rawData[0]);
-		setLoaded(true);
 		plausible.trackPageview();
 
 		var pusher = new Pusher('4dd4d1d504254af64544', {
@@ -156,6 +156,7 @@ export default function Home() {
 				locale: pt,
 			}),
 		});
+		setLoaded(true);
 	}, [dataReady]);
 	return (
 		<>
@@ -174,7 +175,9 @@ export default function Home() {
 					<>
 						{' '}
 						<Row className={styles.datepickerRow}>
-							<Col style={{ textAlign: 'center' }}>{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}</Col>
+							<Col style={{ textAlign: 'center' }}>
+								{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
+							</Col>
 						</Row>
 						<Row>
 							<Col lg={4} xs={12}>
@@ -254,14 +257,26 @@ export default function Home() {
 									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
 										{fases.fases[fases.fase_atual].nome} de vacinação
 									</h2>
-									<p title="Consultar notas ou o plano de informação para mais informação" style={{ margin: '5px 0px' }} class={cardStyles.card_subtitle}>
+									<p
+										title="Consultar notas ou o plano de informação para mais informação"
+										style={{ margin: '5px 0px' }}
+										class={cardStyles.card_subtitle}
+									>
 										Espera-se vacinar cerca de
 									</p>
-									<h1 title="Consultar notas ou o plano de informação para mais informação" style={{ color: colors[0] }} className={cardStyles.card_highlight_2}>
+									<h1
+										title="Consultar notas ou o plano de informação para mais informação"
+										style={{ color: colors[0] }}
+										className={cardStyles.card_highlight_2}
+									>
 										{fases.fases[fases.fase_atual].objetivo_formatado}
 									</h1>
 
-									<a target="_blank" href={fases.fases[fases.fase_atual].fontes[0].permalink} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+									<a
+										target="_blank"
+										href={fases.fases[fases.fase_atual].fontes[0].permalink}
+										className={`${cardStyles.card_subtitle} ${styles.link}`}
+									>
 										Ver mais informação sobre o plano de vacinação
 									</a>
 								</Card>
@@ -278,6 +293,18 @@ export default function Home() {
 							<Col>
 								<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h3 className={styles.title}>
+									<em>
+										R<sub>t</sub>
+									</em>{' '}
+									por região
+								</h3>
+								<h3 className={styles.subtitle}>Nem todas as regiões apresentam dados no mesmo período temporal</h3>
+								<LineRt colors={colors_v2} statistics={statistics}></LineRt>
 							</Col>
 						</Row>
 						<Row>
@@ -336,17 +363,27 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias</h3>
+								<h3 className={styles.title}>
+									Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias
+								</h3>
 								<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
 							</Col>
 						</Row>
 						<Row>
 							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos</h3>
-								<PieVacinadosInfectadosRecuperadosObitos colors={colors_v2} statistics={statistics}></PieVacinadosInfectadosRecuperadosObitos>
+								<h3 className={styles.title}>
+									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
+								</h3>
+								<PieVacinadosInfectadosRecuperadosObitos
+									colors={colors_v2}
+									statistics={statistics}
+								></PieVacinadosInfectadosRecuperadosObitos>
 							</Col>
 							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível</h3>
+								<h3 className={styles.title}>
+									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população
+									suscetível
+								</h3>
 								<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
 							</Col>
 						</Row>
@@ -398,7 +435,8 @@ export default function Home() {
 							<Col xs={12} className={styles.sources_block}>
 								<h3 className={styles.title}>Notas</h3>
 								<p className={styles.text}>
-									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o &nbsp;
+									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o
+									&nbsp;
 									<a className={styles.link} target="_blank" href="https://www.pordata.pt/Portugal">
 										número de população de Portugal (dados do PORDATA)
 									</a>
@@ -408,24 +446,30 @@ export default function Home() {
 										target="_blank"
 										href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/"
 									>
-										Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de grupo.
+										Instituto Ricardo Jorge, será preciso imunizar entre 60% a 70% da população para se atingir a imunidade de
+										grupo.
 									</a>{' '}
 									Os valores apresentados aqui foram calculados com uma percentagem de 70%.
 								</p>
 								<p className={styles.text}>
-									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos ativos, população infectada, vacinada e
-									recuperada assumindo que casos de reinfeções são raros.{' '}
-									<a className={styles.link} href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/" target=":blank">
+									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos
+									ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
+									<a
+										className={styles.link}
+										href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/"
+										target=":blank"
+									>
 										Até 25/02 foram confirmados 57 casos de reinfecção com o novo coronavírus.
 									</a>
 								</p>
 
 								<p className={styles.text}>
-									No início da campanha de vacinação foi anunciadas que ia haver 3 fases de vacinação, e que a primeria iria ser dividida em duas partes. A partir de Dezembro iriam
-									ser administradas vacinas a Profissionais de saúde envolvidos na prestação de cuidados a doentes, profissionais das forças armadas, forças de segurança e serviços
-									críticos, profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de Fevereiro iriam ser administradas
-									vacinas a pessoas com mais de 50 ano, e com Insuficiência cardíaca, Doença coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória
-									crónica.{' '}
+									No início da campanha de vacinação foi anunciadas que ia haver 3 fases de vacinação, e que a primeria iria ser
+									dividida em duas partes. A partir de Dezembro iriam ser administradas vacinas a Profissionais de saúde envolvidos
+									na prestação de cuidados a doentes, profissionais das forças armadas, forças de segurança e serviços críticos,
+									profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de
+									Fevereiro iriam ser administradas vacinas a pessoas com mais de 50 ano, e com Insuficiência cardíaca, Doença
+									coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória crónica.{' '}
 									<a className={styles.link} href="https://covid19.min-saude.pt/vacinacao/" target=":blank">
 										Mais informação sobre o plano de vacinação pode ser consultada aqui.
 									</a>
@@ -444,12 +488,17 @@ export default function Home() {
 										Monitorização do SNS da Direção-Geral da Saúde
 									</a>
 									&nbsp;e do sítio&nbsp;
-									<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/">
+									<a
+										className={styles.link}
+										target="_blank"
+										href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/"
+									>
 										Ponto de Situação da Direção-Geral da Saúde
 									</a>
 									. A atualização destes dados é diária.
 									<br />
-									Os dados relativos à distribuição das vacinas e administração das mesmas por grupo etária são disponibilizados pelo{' '}
+									Os dados relativos à distribuição das vacinas e administração das mesmas por grupo etária são disponibilizados
+									pelo{' '}
 									<a className={styles.link} href="https://www.ecdc.europa.eu/en" target="_blank">
 										ECDC (European Centre for Disease Prevention and Control)
 									</a>
@@ -469,7 +518,8 @@ export default function Home() {
 									</a>
 								</p>
 								<p className={styles.text}>
-									O número total de vacinas adquiridas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado feito no sítio do Governo de Portugal, que{' '}
+									O número total de vacinas adquiridas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado
+									feito no sítio do Governo de Portugal, que{' '}
 									<a
 										className={styles.link}
 										href="https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C"
@@ -477,7 +527,8 @@ export default function Home() {
 									>
 										pode ser consultado aqui.
 									</a>{' '}
-									No dia 01 de Março de 2021, foi anunciado que o número total de vacinas adquiridas aumentou para 38 milhões de doses, num comunicado dirigido à imprensa que{' '}
+									No dia 01 de Março de 2021, foi anunciado que o número total de vacinas adquiridas aumentou para 38 milhões de
+									doses, num comunicado dirigido à imprensa que{' '}
 									<a
 										className={styles.link}
 										href="https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19"
@@ -493,8 +544,28 @@ export default function Home() {
 										Our World In Data
 									</a>
 									&nbsp; e estão disponíveis&nbsp;
-									<a className={styles.link} target="_blank" href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv">
+									<a
+										className={styles.link}
+										target="_blank"
+										href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv"
+									>
 										no repositório de Github
+									</a>
+									. Os dados relativos ao{' '}
+									<em>
+										R<sub>t</sub>{' '}
+									</em>
+									são atualizados pelo&nbsp;
+									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+										Instituto Nacional Doutor Ricardo Jorge
+									</a>
+									&nbsp; e estão disponíveis&nbsp;
+									<a
+										className={styles.link}
+										target="_blank"
+										href="http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/"
+									>
+										nesta página.
 									</a>
 								</p>
 							</Col>

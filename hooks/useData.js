@@ -12,12 +12,20 @@ export function useData() {
 	let [vaccines, setVaccines] = useState(false);
 	let [casesData, setCasesData] = useState(false);
 	let [labels, setLabels] = useState([]);
+	let [rt, setRt] = useState([]);
 
 	let options = {
 		month: 'short',
 		day: 'numeric',
 	};
+	let options2 = {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+	};
+
 	let f = new Intl.DateTimeFormat('pt-PT', options);
+	let f2 = new Intl.DateTimeFormat('pt-PT', options2);
 	function parseData(data) {
 		if (!ready) return;
 		let values = [];
@@ -64,7 +72,45 @@ export function useData() {
 				labels: labelsMedias,
 			};
 		},
+		getRtRegiao: async (regiao) => {
+			debugger;
+			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(data.date)}`).then((responseRt) => {
+				setRt(responseRt);
+				return responseRt;
+			});
+			let date = new Date('2020-12-27T00:00:45.000Z').getTime();
+			// let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
+			let returnRt = data2;
+			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
+		},
+		getRtRegioes: async () => {
+			debugger;
+			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(data.date)}`).then((responseRt) => {
+				return responseRt;
+			});
+			let dates = data.rt_continente.map((el) => el.Data);
 
+			//get rt for each date
+			let rtData = [];
+
+			dates.forEach((el) => {
+				let tempD = {
+					continente: data.rt_continente.filter((tempEl) => tempEl.Data === el)[0],
+					centro: data.rt_centro.filter((tempEl) => tempEl.Data === el)[0],
+					nacional: data.rt_nacional.filter((tempEl) => tempEl.Data === el)[0],
+					lvt: data.rt_lvt.filter((tempEl) => tempEl.Data === el)[0],
+					alentejo: data.rt_alentejo.filter((tempEl) => tempEl.Data === el)[0],
+					norte: data.rt_norte.filter((tempEl) => tempEl.Data === el)[0],
+					algarve: data.rt_algarve.filter((tempEl) => tempEl.Data === el)[0],
+					ram: data.rt_ram.filter((tempEl) => tempEl.Data === el)[0],
+					raa: data.rt_raa.filter((tempEl) => tempEl.Data === el)[0],
+				};
+
+				rtData.push(tempD);
+			});
+
+			return { labels: dates.map((el) => f.format(new Date(el))), values: rtData };
+		},
 		getOwid: () => {
 			let labels = owid.eun.data.map((el) => f.format(new Date(el.date)));
 			let data = {
@@ -407,7 +453,8 @@ export function useData() {
 			fetchWithLocalCache(`/api/ars?${btoa(data.dateSnsStartWeirdFormat)}`, false),
 			fetchWithLocalCache(`/api/cases?${btoa(data.date)}`),
 			fetchWithLocalCache(`/api/owid?${btoa(data.date)}`),
-		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid]) => {
+			fetchWithLocalCache(`/api/rt/continente?${btoa(Date.now())}`),
+		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid, rt]) => {
 			setSns(sns);
 			setWeeks(weeks);
 			setECDC(ecdc);
@@ -415,6 +462,7 @@ export function useData() {
 			setArs(ars);
 			setCasesData(cases);
 			setOwid(owid);
+			setRt(rt);
 			setReady(true);
 		});
 	}, []);
