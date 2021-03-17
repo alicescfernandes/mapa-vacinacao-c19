@@ -14,6 +14,7 @@
 		"image": "cd automation/ && node instagram.js && cd - && git add automation",
 		"twitter": "cd automation/ && node twitter.js && cd - ",
 		"pusher": "cd automation/ && node pusher.js && cd - ",
+		"onesignal": "cd automation/ && node onesignal.js && cd - ",
 		"deploy:manual": "yarn deploy && (yarn twitter & yarn pusher)",
 		"convert:csv": "node automation/convert-csv.js",
 		"convert:xls": "node automation/convert-xls.js",

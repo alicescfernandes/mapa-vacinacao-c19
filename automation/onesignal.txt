@@ -1,0 +1,3 @@
+👉 +{{novas_total}} doses (total:{{total_total}})
+👉 +{{novas_in1}} inoculações (1ª dose) (total:{{total_in1}})
+👉 +{{novas_in2}} inoculações (2ª dose) (total:{{total_in2}})
