@@ -6,6 +6,9 @@
  "start_url" : "/",
  "name" : "Vacinação - COVID19",
  "short_name" : "Vacinação - COVID19",
+ "permissions": [
+    "background"
+],
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
