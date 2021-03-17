@@ -19,7 +19,7 @@ todayDate.setMilliseconds(0);
 todayDate.setSeconds(0);
 todayDate.setHours(0);
 
-if (true || data[data.length - 1].Data > lastUpdate.last_update) {
+if (data[data.length - 1].Data > lastUpdate.last_update) {
 	let yesterday = data[data.length - 2];
 	let today = data[data.length - 1];
 	lastUpdate.last_update = today.Data;
@@ -54,7 +54,7 @@ if (true || data[data.length - 1].Data > lastUpdate.last_update) {
 			en: post,
 		},
 		headings: {
-			en: `TESTE - Os dados da vacinação de ${dia}/${mes}/${ano.replace(/,/gm, '')}`,
+			en: `Os dados da vacinação de ${dia}/${mes}/${ano.replace(/,/gm, '')}`,
 		},
 		url: 'https://www.vacinacaocovid19.pt/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications',
 		included_segments: ['Subscribed Users'],

@@ -106,6 +106,7 @@ async function updateJSON() {
 			gitCommit('vaccines');
 			//Update twitter
 			shell.exec('yarn twitter');
+			shell.exec('yarn onesignal');
 		} else {
 			console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
 		}
