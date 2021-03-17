@@ -19,19 +19,22 @@ export function Notifications({ children }) {
 				appId: 'cfd30a9a-e080-4657-851f-e5063de051c6',
 			});
 
+			OneSignal.log.setLevel('trace');
+
 			OneSignal.getNotificationPermission().then((e) => {
 				if (e === 'granted') {
-					OneSignal.on('notificationDisplay', function (event) {
-						new Notification(event.heading, {
-							body: event.content,
-							icon: '/android-icon-192x192.png',
-						});
-					});
-
-					OneSignal.on('subscriptionChange', function (isSubscribed) {
-						// console.log("The user's subscription state is now:", isSubscribed);
-					});
 				}
+			});
+
+			OneSignal.on('notificationDisplay', function (event) {
+				new Notification(event.heading, {
+					body: event.content,
+					icon: '/android-icon-192x192.png',
+				});
+			});
+
+			OneSignal.on('subscriptionChange', function (isSubscribed) {
+				// console.log("The user's subscription state is now:", isSubscribed);
 			});
 		});
 	}, []);
