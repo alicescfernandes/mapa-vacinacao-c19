@@ -137,7 +137,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						type: 'line',
 						mode: 'horizontal',
 						scaleID: 'y-axis-0',
-						value: toggleStats?.segunda_fase ? (toggleStats.perHundred ? perHundred(1800000) : 1800000) : null,
+						value: toggleStats?.segunda_fase ? (toggleStats.perHundred ? perHundred(2700000) : 2700000) : null,
 						borderColor: '#0A9DD1',
 						borderWidth: 2,
 						borderDash: [5, 5],
@@ -154,7 +154,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 							yAdjust: -10,
 							fontSize: '13px',
 							enabled: true,
-							content: '2ª Fase - Abril (1.8 milhões de pessoas)',
+							content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)',
 						},
 					},
 					{
