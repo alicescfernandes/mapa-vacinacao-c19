@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap';
-import Link from 'next/link';
 import styles from './Header.module.scss';
+import { Notifications } from './Notifications';
 
 export function Header() {
 	return (
@@ -11,6 +11,14 @@ export function Header() {
 				</div>
 				<nav className={styles.nav}>
 					<ul>
+						<li>
+							<Notifications>
+								<a className={styles.highlight} href="#">
+									Notificações
+								</a>
+							</Notifications>
+						</li>
+
 						<li>
 							<a className={styles.highlight} target="_blank" href="https://twitter.com/vacinacaocovid1">
 								Twitter
