@@ -92,7 +92,6 @@ export default function Home() {
 			setSelectedItem(item[0]);
 		}
 	}
-
 	useEffect(() => {
 		let rawData = statistics.getRaw();
 		if (rawData[rawData.length - 1]?.Data != last.Data) {

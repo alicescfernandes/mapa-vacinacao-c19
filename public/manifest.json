@@ -1,5 +1,11 @@
 {
- "name": "App",
+ "theme_color" : "#01AE97",
+ "background_color" : "#01AE97",
+ "display" : "standalone",
+ "scope" : "/",
+ "start_url" : "/",
+ "name" : "Vacinação - COVID19",
+ "short_name" : "Vacinação - COVID19",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
