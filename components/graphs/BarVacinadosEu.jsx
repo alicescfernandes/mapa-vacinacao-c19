@@ -96,7 +96,6 @@ export function BarVacinadosEu({ statistics, colors }) {
 						return 'Dia ' + tooltipItem[0].label;
 					},
 					label: (tooltipItem, data) => {
-						debugger;
 						var label = data.datasets[tooltipItem.datasetIndex].label;
 						return label + ': ' + parseFloat(tooltipItem.value).toFixed(2);
 					},

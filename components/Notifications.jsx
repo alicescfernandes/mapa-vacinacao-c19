@@ -13,7 +13,7 @@ export function Notifications({ children }) {
 	useEffect(function () {
 		window.OneSignal = window.OneSignal || [];
 		const OneSignal = window.OneSignal;
-		OneSignal.log.setLevel('trace');
+		//OneSignal.log.setLevel('trace');
 		OneSignal.push(() => {
 			OneSignal.init({
 				appId: 'cfd30a9a-e080-4657-851f-e5063de051c6',
