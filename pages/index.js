@@ -469,9 +469,21 @@ export default function Home() {
 									na prestação de cuidados a doentes, profissionais das forças armadas, forças de segurança e serviços críticos,
 									profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de
 									Fevereiro iriam ser administradas vacinas a pessoas com mais de 50 ano, e com Insuficiência cardíaca, Doença
-									coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória crónica.{' '}
+									coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória crónica. <br />
+									<br />
+									Para a segunda fase está previsto vacinar pessoas com 65 ou mais anos com ou sem patologias que não tenham sido
+									vacinadas previamente e pessoas entre os 50 e os 64 anos com pelo menos uma das seguintes patologias descritas no
+									plano de vacinação. Mais informação sobre o plano de vacinação pode ser consultada{' '}
+									<a
+										className={styles.link}
+										href="https://www.sns.gov.pt/wp-content/uploads/2020/12/Plano_Vacinacao_COVID-19.pdf"
+										target=":blank"
+									>
+										aqui
+									</a>{' '}
+									e{' '}
 									<a className={styles.link} href="https://covid19.min-saude.pt/vacinacao/" target=":blank">
-										Mais informação sobre o plano de vacinação pode ser consultada aqui.
+										aqui
 									</a>
 								</p>
 								{/*	<p className={styles.text}>
