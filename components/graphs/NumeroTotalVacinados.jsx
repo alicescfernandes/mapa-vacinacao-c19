@@ -12,10 +12,10 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let casesData = statistics.getCases();
 	let [toggleStats, setToggleStats] = useState({
-		imunidade: true,
+		imunidade: false,
 		primeira_fase: true,
 		segunda_fase: true,
-		infetados: true,
+		infetados: false,
 		perHundred: false,
 	});
 
@@ -109,7 +109,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointHoverBackgroundColor: '#D11541',
 					pointHoverBorderColor: '#D11541',
 					hidden: toggleStats.infetados === false,
-					data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => (toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)),
+					data: casesData
+						.filter((el) => el.Data >= 1609070400000)
+						.map((el) => (toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)),
 				},
 			],
 		};
