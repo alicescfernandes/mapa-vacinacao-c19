@@ -24,17 +24,17 @@ export function Header() {
 								Twitter
 							</a>
 						</li>
-						<li>
+						<li className={styles.hide_mobile}>
 							<a target="_blank" href="https://covid19estamoson.gov.pt/vacinacao-covid19/">
 								Fases de Vacinação
 							</a>
 						</li>
-						<li>
+						<li className={styles.hide_mobile}>
 							<a target="_blank" href="https://servicos.min-saude.pt/covid19/Login?ReturnUrl=%2fcovid19%2f%3fctx%3d6&ctx=6">
 								Faço parte da lista da 1º fase de vacinação?
 							</a>
 						</li>
-						<li>
+						<li className={styles.hide_mobile}>
 							<a target="_blank" href="https://pandemiaclara.sapo.pt/plano-de-vacinacao">
 								Quando posso ser vacinado?
 							</a>

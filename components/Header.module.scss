@@ -44,19 +44,19 @@
 		margin: 0;
 	}
 
-	.nav {
-		display: none;
+	.hide_mobile {
+		display: none !important;
 	}
 }
 
 @media screen and (max-width: 1090px) {
 	.header {
-		.content {
+		/* .content {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-between;
-		}
+		} */
 	}
 }
 
@@ -67,8 +67,8 @@
 		display: flex;
 		align-items: center;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-		.nav {
-			display: block;
+		.hide_mobile {
+			display: inline-block !important;
 		}
 
 		margin: 0;
