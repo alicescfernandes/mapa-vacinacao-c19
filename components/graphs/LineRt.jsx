@@ -27,7 +27,6 @@ export function LineRt({ statistics, colors }) {
 
 	useEffect(() => {
 		if (!loaded) return;
-		debugger;
 		statistics.getRtRegiao(currentRegiao).then((data) => setRtData(data));
 	}, [currentRegiao]);
 
