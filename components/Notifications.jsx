@@ -13,13 +13,12 @@ export function Notifications({ children }) {
 	useEffect(function () {
 		window.OneSignal = window.OneSignal || [];
 		const OneSignal = window.OneSignal;
-
+		OneSignal.log.setLevel('trace');
 		OneSignal.push(() => {
 			OneSignal.init({
 				appId: 'cfd30a9a-e080-4657-851f-e5063de051c6',
+				safari_web_id: 'web.onesignal.auto.2c31ff0c-1624-4aec-8f89-a4f0b1da0ea1',
 			});
-
-			OneSignal.log.setLevel('trace');
 
 			OneSignal.getNotificationPermission().then((e) => {
 				if (e === 'granted') {
