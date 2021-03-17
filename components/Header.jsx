@@ -30,8 +30,8 @@ export function Header() {
 							</a>
 						</li>
 						<li className={styles.hide_mobile}>
-							<a target="_blank" href="https://servicos.min-saude.pt/covid19/Login?ReturnUrl=%2fcovid19%2f%3fctx%3d6&ctx=6">
-								Faço parte da lista da 1º fase de vacinação?
+							<a target="_blank" href="https://covid19.min-saude.pt/vacinacao/">
+								Faço parte das listas de vacinação?
 							</a>
 						</li>
 						<li className={styles.hide_mobile}>
