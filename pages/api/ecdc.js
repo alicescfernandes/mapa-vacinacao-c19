@@ -1,6 +1,6 @@
 import Cors from 'cors';
 import { trackPlausible } from '../../utils';
-import ecdc from './../../data/ecdc.json';
+import ecdc from './../../data/ecdc_filtered.json';
 
 function initMiddleware(middleware) {
 	return (req, res) =>
