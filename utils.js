@@ -40,7 +40,13 @@ export function trackPlausible(req) {
 		'x-forwarded-for': ip,
 		referer: referer,
 	};
-	let data = { name: 'pageview', url: 'https://www.vacinacaocovid19.pt' + url, domain: 'vacinacaocovid19.pt', referrer: referer, screen_width: null };
+	let data = {
+		name: 'pageview',
+		url: 'https://www.vacinacaocovid19.pt' + url,
+		domain: 'vacinacaocovid19.pt',
+		referrer: referer,
+		screen_width: null,
+	};
 
 	if (host.match('localhost')) return;
 	if (req.headers['x-request-self'] === 'true') return;
@@ -77,7 +83,11 @@ export function fetchWithLocalCache(url, options) {
 
 	for (var k in items) {
 		let [lsPath, lsCacheBuster] = k.split('?');
-		if (lsPath === path && lsCacheBuster !== cacheBuster) {
+		/* if (lsPath === path && lsCacheBuster !== cacheBuster) {
+			useCache = false;
+			localStorage.removeItem(k);
+		} */
+		if (lsPath === path) {
 			useCache = false;
 			localStorage.removeItem(k);
 		}
