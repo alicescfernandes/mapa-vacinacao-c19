@@ -94,10 +94,7 @@ async function updateJSON() {
 		).then((res) => res.json());
 
 		let sourceData = dataVacinas.features[0].attributes;
-		if (
-			parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac &&
-			date.getTime() >= sourceData.Data
-		) {
+		if (parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac && date.getTime() >= sourceData.Data) {
 			console.log('updating vaccines');
 			sourceData.Data = date.getTime();
 			dataLocalVacinas.push(sourceData);
@@ -116,8 +113,14 @@ async function updateJSON() {
 			shell.exec('yarn twitter');
 			shell.exec('yarn onesignal');
 		} else {
-			console.log(new Date(), 'not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
-			console.log(new Date()'not updating', 'vaccines', date.getTime(), dataLocalVacinas[dataLocalVacinas.length - 1].Data);
+			console.log(
+				new Date(),
+				'not updating',
+				'vaccines',
+				parseInt(sourceData.Vacinados_Ac),
+				dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac
+			);
+			console.log(new Date(), 'not updating', 'vaccines', date.getTime(), dataLocalVacinas[dataLocalVacinas.length - 1].Data);
 		}
 	} else {
 		console.log('Not fetching new vaccines');
