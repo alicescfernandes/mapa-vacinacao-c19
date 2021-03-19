@@ -252,21 +252,22 @@ export function useData() {
 
 			ecdc.forEach((el) => {
 				var obj = {};
-				if (parseInt(el['Doses received']) > 0) {
-					com[el['Week']] = com[el['Week']] || null;
-					mod[el['Week']] = mod[el['Week']] || null;
-					az[el['Week']] = az[el['Week']] || null;
-					labels[el['Week']] = weeks[el['Week']];
+				if (parseInt(el['NumberDosesReceived']) > 0) {
+					com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
+					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
+					az[el['YearWeekISO']] = az[el['YearWeekISO']] || null;
 
-					if (el['Vaccine brand'] === 'COM') {
-						com[el['Week']] = parseInt(el['Doses received']);
+					labels[el['YearWeekISO']] = weeks[el['YearWeekISO']];
+
+					if (el['Vaccine'] === 'COM') {
+						com[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
 
-					if (el['Vaccine brand'] === 'MOD') {
-						mod[el['Week']] = parseInt(el['Doses received']);
+					if (el['Vaccine'] === 'MOD') {
+						mod[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
-					if (el['Vaccine brand'] === 'AZ') {
-						az[el['Week']] = parseInt(el['Doses received']);
+					if (el['Vaccine'] === 'AZ') {
+						az[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
 				}
 			});
@@ -291,18 +292,21 @@ export function useData() {
 			let groups = {};
 
 			ecdc.forEach((el) => {
-				if (el['Doses received'] == '') {
-					if (!labels.hasOwnProperty(el['Week'])) {
-						labels[el['Week'].replace('-', '')] = weeks[el['Week']];
+				debugger;
+				if (el['NumberDosesReceived'] == '') {
+					if (!labels.hasOwnProperty(el['YearWeekISO'])) {
+						labels[el['YearWeekISO'].replace('-', '')] = weeks[el['YearWeekISO']];
 					}
 
-					groups[el['Group']] = groups[el['Group']] || {
+					groups[el['TargetGroup']] = groups[el['TargetGroup']] || {
 						dose_1: [],
 						dose_2: [],
 					};
-					maxValue = Math.max(el['First dose'], el['Second dose']);
-					groups[el['Group']].dose_1[el['Week']] = (groups[el['Group']].dose_1[el['Week']] || 0) + parseInt(el['First dose']);
-					groups[el['Group']].dose_2[el['Week']] = (groups[el['Group']].dose_2[el['Week']] || 0) + parseInt(el['Second dose']);
+					maxValue = Math.max(el['FirstDose'], el['SecondDose']);
+					groups[el['TargetGroup']].dose_1[el['YearWeekISO']] =
+						(groups[el['TargetGroup']].dose_1[el['YearWeekISO']] || 0) + parseInt(el['FirstDose']);
+					groups[el['TargetGroup']].dose_2[el['YearWeekISO']] =
+						(groups[el['TargetGroup']].dose_2[el['YearWeekISO']] || 0) + parseInt(el['SecondDose']);
 				}
 			});
 			return {
@@ -317,30 +321,30 @@ export function useData() {
 			let groups = {};
 
 			ecdc.forEach((el) => {
-				if (el['Doses received'] == '') {
-					groups[el['Group']] = groups[el['Group']] || {
+				if (el['NumberDosesReceived'] == '') {
+					groups[el['TargetGroup']] = groups[el['TargetGroup']] || {
 						mod: [],
 						com: [],
 						az: [],
 						target: 0,
 					};
 
-					if (el['Vaccine brand'] === 'COM') {
-						groups[el['Group']].com[0] = parseInt((groups[el['Group']].com[0] || 0) + parseInt(el['First dose']));
-						groups[el['Group']].com[1] = (groups[el['Group']].com[1] || 0) + parseInt(el['Second dose']);
+					if (el['Vaccine'] === 'COM') {
+						groups[el['TargetGroup']].com[0] = parseInt((groups[el['TargetGroup']].com[0] || 0) + parseInt(el['FirstDose']));
+						groups[el['TargetGroup']].com[1] = (groups[el['TargetGroup']].com[1] || 0) + parseInt(el['SecondDose']);
 					}
 
-					if (el['Vaccine brand'] === 'MOD') {
-						groups[el['Group']].mod[0] = (groups[el['Group']].mod[0] || 0) + parseInt(el['First dose']);
-						groups[el['Group']].mod[1] = (groups[el['Group']].mod[1] || 0) + parseInt(el['Second dose']);
+					if (el['Vaccine'] === 'MOD') {
+						groups[el['TargetGroup']].mod[0] = (groups[el['TargetGroup']].mod[0] || 0) + parseInt(el['FirstDose']);
+						groups[el['TargetGroup']].mod[1] = (groups[el['TargetGroup']].mod[1] || 0) + parseInt(el['SecondDose']);
 					}
 
-					if (el['Vaccine brand'] === 'AZ') {
-						groups[el['Group']].az[0] = (groups[el['Group']].az[0] || 0) + parseInt(el['First dose']);
-						groups[el['Group']].az[1] = (groups[el['Group']].az[1] || 0) + parseInt(el['Second dose']);
+					if (el['Vaccine'] === 'AZ') {
+						groups[el['TargetGroup']].az[0] = (groups[el['TargetGroup']].az[0] || 0) + parseInt(el['FirstDose']);
+						groups[el['TargetGroup']].az[1] = (groups[el['TargetGroup']].az[1] || 0) + parseInt(el['SecondDose']);
 					}
 
-					groups[el['Group']].target = (groups[el['Group']].target || 0) + parseInt(el['Group population']);
+					groups[el['TargetGroup']].target = (groups[el['TargetGroup']].target || 0) + parseInt(el['Denominator']);
 				}
 			});
 
@@ -390,26 +394,26 @@ export function useData() {
 			}
 
 			ecdcCopy
-				.filter((el) => el['Doses received'] > 0)
+				.filter((el) => el['NumberDosesReceived'] > 0)
 				.forEach((el) => {
-					if (!labels.hasOwnProperty(el['Week'])) {
-						labels[el['Week']] = weeks[el['Week']];
+					if (!labels.hasOwnProperty(el['YearWeekISO'])) {
+						labels[el['YearWeekISO']] = weeks[el['YearWeekISO']];
 					}
 
-					com[el['Week']] = com[el['Week']] || 0;
-					mod[el['Week']] = mod[el['Week']] || 0;
-					az[el['Week']] = az[el['Week']] || 0;
+					com[el['YearWeekISO']] = com[el['YearWeekISO']] || 0;
+					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || 0;
+					az[el['YearWeekISO']] = az[el['YearWeekISO']] || 0;
 
-					if (el['Vaccine brand'] === 'COM') {
-						com[el['Week']] = parseInt(el['Doses received']);
+					if (el['Vaccine'] === 'COM') {
+						com[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
 
-					if (el['Vaccine brand'] === 'MOD') {
-						mod[el['Week']] = parseInt(el['Doses received']);
+					if (el['Vaccine'] === 'MOD') {
+						mod[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
 
-					if (el['Vaccine brand'] === 'AZ') {
-						az[el['Week']] = parseInt(el['Doses received']);
+					if (el['Vaccine'] === 'AZ') {
+						az[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
 				});
 

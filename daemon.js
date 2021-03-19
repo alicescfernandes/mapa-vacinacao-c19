@@ -52,6 +52,14 @@ function updateOWID() {
 	shell.exec('python3 owid_parser.py');
 	gitCommit('owid');
 }
+
+function updateEDCD() {
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
+	shell.exec('python3 ecdc_parser.py');
+	gitCommit('ecdc');
+}
+
 function updateRT() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
@@ -88,7 +96,7 @@ async function updateJSON() {
 		let sourceData = dataVacinas.features[0].attributes;
 		if (
 			parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac &&
-			date.getTime() >= dataLocalVacinas[dataLocalVacinas.length - 1].Data
+			date.getTime() >= sourceData.Data
 		) {
 			console.log('updating vaccines');
 			sourceData.Data = date.getTime();
@@ -108,7 +116,8 @@ async function updateJSON() {
 			shell.exec('yarn twitter');
 			shell.exec('yarn onesignal');
 		} else {
-			console.log('not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
+			console.log(new Date(), 'not updating', 'vaccines', parseInt(sourceData.Vacinados_Ac), dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac);
+			console.log(new Date()'not updating', 'vaccines', date.getTime(), dataLocalVacinas[dataLocalVacinas.length - 1].Data);
 		}
 	} else {
 		console.log('Not fetching new vaccines');
@@ -186,5 +195,6 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 
 schedule.scheduleJob('00 12 * * *', function () {
 	updateOWID();
+	updateEDCD();
 	updateRT();
 });
