@@ -19,7 +19,8 @@
 		"convert:csv": "node automation/convert-csv.js",
 		"convert:xls": "node automation/convert-xls.js",
 		"convert": "yarn convert:csv & yarn convert:xls",
-		"start:443":"next build && next start -p 443"
+		"start:443":"next build && next start -p 443",
+		"start:80":"next build && next start -p 80"
 	},
 	"browser": {
 		"fs": false,
