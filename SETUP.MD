@@ -9,3 +9,4 @@
 7. Run `daemon_data` from the root folder
 8. Alternatively, you can run `./daemon.js` from the root folder
 9. The updater script will run between 12h and 15h every day. You can run this on a `screen`
+9. You can also deploy using `pm2` 
