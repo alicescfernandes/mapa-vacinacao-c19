@@ -37,3 +37,10 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - ~~Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)~~
 - ~~Fase do Plano de Vacinação~~
 - ~~Notícias (widget de noticias recentes relacionadas com as vacinas)~~  
+
+
+
+
+
+
+
