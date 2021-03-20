@@ -198,6 +198,6 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 
 schedule.scheduleJob('00 12 * * *', function () {
 	updateOWID();
-	updateEDCD();
+	// updateEDCD();
 	updateRT();
 });
