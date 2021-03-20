@@ -21,7 +21,8 @@
 		"convert:xls": "node automation/convert-xls.js",
 		"convert": "yarn convert:csv & yarn convert:xls",
 		"start:443": "next build && next start -p 443",
-		"start:80": "next build && next start -p 80"
+		"start:80": "next build && next start -p 80",
+		"delete": "(git reset .next && git checkout .next) & git clean -fd .next"
 	},
 	"browser": {
 		"fs": false,
@@ -32,6 +33,7 @@
 		"daemon_data": "./daemon.js"
 	},
 	"pre-commit": [
+		"delete",
 		"no-commit-to-master",
 		"update"
 	],
