@@ -1,11 +1,12 @@
 #!/bin/bash
+# update server
+git checkout master  
+git merge develop --strategy-option theirs --no-ff --no-edit --no-commit
+
 # delete old builds
 rm -rf .next
 yarn build
 git add .next
-git commit -m "[automatic build]"
+git commit -m "Merge branch 'develop' [automatic build]"
 
-# update server
-git checkout master 
-merge develop --strategy-option theirs --no-ff --no-edit 
-git push
+#git push
