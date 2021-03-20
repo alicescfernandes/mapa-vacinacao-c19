@@ -10,4 +10,4 @@ git add .next
 
 git commit -n -m "Merge branch 'develop' [automatic build]"
 
-#git push
+git push
