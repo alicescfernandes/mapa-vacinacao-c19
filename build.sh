@@ -7,6 +7,8 @@ git merge develop --strategy-option theirs --no-ff --no-edit --no-commit
 rm -rf .next
 yarn build
 git add .next
-git commit -m "Merge branch 'develop' [automatic build]"
+git merge --continue
+
+# git commit -n -m "Merge branch 'develop' [automatic build]"
 
 #git push
