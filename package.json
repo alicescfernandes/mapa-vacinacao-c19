@@ -18,7 +18,8 @@
 		"deploy:manual": "yarn deploy && (yarn twitter & yarn pusher & yarn onesignal)",
 		"convert:csv": "node automation/convert-csv.js",
 		"convert:xls": "node automation/convert-xls.js",
-		"convert": "yarn convert:csv & yarn convert:xls"
+		"convert": "yarn convert:csv & yarn convert:xls",
+		"start:443":"next build && next start -p 443"
 	},
 	"browser": {
 		"fs": false,
