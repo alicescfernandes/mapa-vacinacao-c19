@@ -44,3 +44,6 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 
 
 
+
+
+
