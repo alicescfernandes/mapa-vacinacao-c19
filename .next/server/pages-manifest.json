@@ -3,6 +3,7 @@
   "/api/ars": "pages/api/ars.js",
   "/api/cases": "pages/api/cases.js",
   "/api/ecdc": "pages/api/ecdc.js",
+  "/api/hooks": "pages/api/hooks.js",
   "/api/owid": "pages/api/owid.js",
   "/api/rt/[...regiao]": "pages/api/rt/[...regiao].js",
   "/api/rt": "pages/api/rt.js",
