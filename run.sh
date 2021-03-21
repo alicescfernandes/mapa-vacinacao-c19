@@ -1,7 +1,8 @@
 #!/bin/bash
-cd ~/mapa-vacinacao-c19
-# git checkout gh-pages -f
-git checkout master -f
+echo 1
+# cd ~/mapa-vacinacao-c19
+git checkout gh-pages -f
+# git checkout master -f
 git pull
 yarn
 #pm2 stop next
