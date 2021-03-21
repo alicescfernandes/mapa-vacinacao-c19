@@ -10,6 +10,9 @@ script:
     - yarn
     - yarn build
 
+branches:
+    only:
+        - master
 deploy:
     provider: pages
     skip_cleanup: true
