@@ -23,7 +23,7 @@
 		"start:443": "next build && next start -p 443",
 		"start:80": "next build && next start -p 80",
 		"delete": "(git reset .next && git checkout .next) & git clean -fd .next",
-		"update:server": "sh deploy.sh"
+		"update:server": "sh run.sh"
 	},
 	"browser": {
 		"fs": false,
