@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+    - 12.14.1
+
+cache:
+    directories:
+        - node_modules
+
+script:
+    - yarn
+    - yarn build
+
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: .next
+    keep_history: true
+    on:
+        branch: master
