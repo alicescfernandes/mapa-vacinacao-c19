@@ -11,6 +11,7 @@ script:
     - yarn build
     - mkdir output
     - cp package.json output/package.json
+    - cp run.sh output/run.sh
     - cp -r .next output/.next
 
 branches:

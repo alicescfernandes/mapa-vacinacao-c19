@@ -1,5 +1,6 @@
 #!/bin/bash
 cd ~/mapa-vacinacao-c19
+# git checkout gh-pages -f
 git checkout master -f
 git pull
 yarn
