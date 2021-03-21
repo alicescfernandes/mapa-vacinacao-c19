@@ -20,6 +20,7 @@ automation/hootsuite-conf.json
 .env_keys.json
 # next.js
 # /.next/
+/.next_dev/
 /out/
 
 # production
