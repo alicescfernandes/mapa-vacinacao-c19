@@ -1,0 +1,407 @@
+[
+  {
+    "data_dados": "26-12-2020 00:00",
+    "confirmados": 392996,
+    "recuperados": 316671,
+    "obitos": 6556,
+    "ativos": 69769,
+    "confirmados_novos": 392996,
+    "recuperados_novos": 316671
+  },
+  {
+    "data_dados": "27-12-2020 00:00",
+    "confirmados": 394573,
+    "recuperados": 319746,
+    "obitos": 6619,
+    "ativos": 68208,
+    "confirmados_novos": 1577,
+    "recuperados_novos": 3075
+  },
+  {
+    "data_dados": "28-12-2020 00:00",
+    "confirmados": 396666,
+    "recuperados": 321682,
+    "obitos": 6677,
+    "ativos": 68307,
+    "confirmados_novos": 2093,
+    "recuperados_novos": 1936
+  },
+  {
+    "data_dados": "29-12-2020 00:00",
+    "confirmados": 400002,
+    "recuperados": 327794,
+    "obitos": 6751,
+    "ativos": 65457,
+    "confirmados_novos": 3336,
+    "recuperados_novos": 6112
+  },
+  {
+    "data_dados": "30-12-2020 00:00",
+    "confirmados": 406051,
+    "recuperados": 331016,
+    "obitos": 6830,
+    "ativos": 68205,
+    "confirmados_novos": 6049,
+    "recuperados_novos": 3222
+  },
+  {
+    "data_dados": "31-12-2020 00:00",
+    "confirmados": 413678,
+    "recuperados": 334276,
+    "obitos": 6906,
+    "ativos": 72496,
+    "confirmados_novos": 7627,
+    "recuperados_novos": 3260
+  },
+  {
+    "data_dados": "01-01-2021 00:00",
+    "confirmados": 420629,
+    "recuperados": 338668,
+    "obitos": 6972,
+    "ativos": 74989,
+    "confirmados_novos": 6951,
+    "recuperados_novos": 4392
+  },
+  {
+    "data_dados": "02-01-2021 00:00",
+    "confirmados": 423870,
+    "recuperados": 340150,
+    "obitos": 7045,
+    "ativos": 76675,
+    "confirmados_novos": 3241,
+    "recuperados_novos": 1482
+  },
+  {
+    "data_dados": "03-01-2021 00:00",
+    "confirmados": 427254,
+    "recuperados": 342535,
+    "obitos": 7118,
+    "ativos": 77601,
+    "confirmados_novos": 3384,
+    "recuperados_novos": 2385
+  },
+  {
+    "data_dados": "04-01-2021 00:00",
+    "confirmados": 431623,
+    "recuperados": 344419,
+    "obitos": 7196,
+    "ativos": 80008,
+    "confirmados_novos": 4369,
+    "recuperados_novos": 1884
+  },
+  {
+    "data_dados": "05-01-2021 00:00",
+    "confirmados": 436579,
+    "recuperados": 349110,
+    "obitos": 7286,
+    "ativos": 80183,
+    "confirmados_novos": 4956,
+    "recuperados_novos": 4691
+  },
+  {
+    "data_dados": "06-01-2021 00:00",
+    "confirmados": 446606,
+    "recuperados": 352225,
+    "obitos": 7377,
+    "ativos": 87004,
+    "confirmados_novos": 10027,
+    "recuperados_novos": 3115
+  },
+  {
+    "data_dados": "07-01-2021 00:00",
+    "confirmados": 456533,
+    "recuperados": 355701,
+    "obitos": 7472,
+    "ativos": 93360,
+    "confirmados_novos": 9927,
+    "recuperados_novos": 3476
+  },
+  {
+    "data_dados": "08-01-2021 00:00",
+    "confirmados": 466709,
+    "recuperados": 360181,
+    "obitos": 7590,
+    "ativos": 98938,
+    "confirmados_novos": 10176,
+    "recuperados_novos": 4480
+  },
+  {
+    "data_dados": "09-01-2021 00:00",
+    "confirmados": 476187,
+    "recuperados": 366080,
+    "obitos": 7701,
+    "ativos": 102406,
+    "confirmados_novos": 9478,
+    "recuperados_novos": 5899
+  },
+  {
+    "data_dados": "10-01-2021 00:00",
+    "confirmados": 483689,
+    "recuperados": 369108,
+    "obitos": 7803,
+    "ativos": 106778,
+    "confirmados_novos": 7502,
+    "recuperados_novos": 3028
+  },
+  {
+    "data_dados": "11-01-2021 00:00",
+    "confirmados": 489293,
+    "recuperados": 372056,
+    "obitos": 7925,
+    "ativos": 109312,
+    "confirmados_novos": 5604,
+    "recuperados_novos": 2948
+  },
+  {
+    "data_dados": "12-01-2021 00:00",
+    "confirmados": 496552,
+    "recuperados": 378084,
+    "obitos": 8080,
+    "ativos": 110388,
+    "confirmados_novos": 7259,
+    "recuperados_novos": 6028
+  },
+  {
+    "data_dados": "13-01-2021 00:00",
+    "confirmados": 507108,
+    "recuperados": 382544,
+    "obitos": 8236,
+    "ativos": 116328,
+    "confirmados_novos": 10556,
+    "recuperados_novos": 4460
+  },
+  {
+    "data_dados": "14-01-2021 00:00",
+    "confirmados": 517806,
+    "recuperados": 387607,
+    "obitos": 8384,
+    "ativos": 121815,
+    "confirmados_novos": 10698,
+    "recuperados_novos": 5063
+  },
+  {
+    "data_dados": "15-01-2021 00:00",
+    "confirmados": 528469,
+    "recuperados": 394065,
+    "obitos": 8543,
+    "ativos": 125861,
+    "confirmados_novos": 10663,
+    "recuperados_novos": 6458
+  },
+  {
+    "data_dados": "16-01-2021 00:00",
+    "confirmados": 539416,
+    "recuperados": 402542,
+    "obitos": 8709,
+    "ativos": 128165,
+    "confirmados_novos": 10947,
+    "recuperados_novos": 8477
+  },
+  {
+    "data_dados": "17-01-2021 00:00",
+    "confirmados": 549801,
+    "recuperados": 406929,
+    "obitos": 8861,
+    "ativos": 134011,
+    "confirmados_novos": 10385,
+    "recuperados_novos": 4387
+  },
+  {
+    "data_dados": "18-01-2021 00:00",
+    "confirmados": 556503,
+    "recuperados": 411589,
+    "obitos": 9028,
+    "ativos": 135886,
+    "confirmados_novos": 6702,
+    "recuperados_novos": 4660
+  },
+  {
+    "data_dados": "19-01-2021 00:00",
+    "confirmados": 566958,
+    "recuperados": 421871,
+    "obitos": 9246,
+    "ativos": 135841,
+    "confirmados_novos": 10455,
+    "recuperados_novos": 10282
+  },
+  {
+    "data_dados": "20-01-2021 00:00",
+    "confirmados": 581605,
+    "recuperados": 428364,
+    "obitos": 9465,
+    "ativos": 143776,
+    "confirmados_novos": 14647,
+    "recuperados_novos": 6493
+  },
+  {
+    "data_dados": "21-01-2021 00:00",
+    "confirmados": 595149,
+    "recuperados": 434237,
+    "obitos": 9686,
+    "ativos": 151226,
+    "confirmados_novos": 13544,
+    "recuperados_novos": 5873
+  },
+  {
+    "data_dados": "22-01-2021 00:00",
+    "confirmados": 609136,
+    "recuperados": 441556,
+    "obitos": 9920,
+    "ativos": 157660,
+    "confirmados_novos": 13987,
+    "recuperados_novos": 7319
+  },
+  {
+    "data_dados": "23-01-2021 00:00",
+    "confirmados": 624469,
+    "recuperados": 451324,
+    "obitos": 10194,
+    "ativos": 162951,
+    "confirmados_novos": 15333,
+    "recuperados_novos": 9768
+  },
+  {
+    "data_dados": "24-01-2021 00:00",
+    "confirmados": 636190,
+    "recuperados": 456491,
+    "obitos": 10469,
+    "ativos": 169230,
+    "confirmados_novos": 11721,
+    "recuperados_novos": 5167
+  },
+  {
+    "data_dados": "25-01-2021 00:00",
+    "confirmados": 643113,
+    "recuperados": 461757,
+    "obitos": 10721,
+    "ativos": 170635,
+    "confirmados_novos": 6923,
+    "recuperados_novos": 5266
+  },
+  {
+    "data_dados": "26-01-2021 00:00",
+    "confirmados": 653878,
+    "recuperados": 475485,
+    "obitos": 11012,
+    "ativos": 167381,
+    "confirmados_novos": 10765,
+    "recuperados_novos": 13728
+  },
+  {
+    "data_dados": "27-01-2021 00:00",
+    "confirmados": 668951,
+    "recuperados": 484753,
+    "obitos": 11305,
+    "ativos": 172893,
+    "confirmados_novos": 15073,
+    "recuperados_novos": 9268
+  },
+  {
+    "data_dados": "28-01-2021 00:00",
+    "confirmados": 685383,
+    "recuperados": 493699,
+    "obitos": 11608,
+    "ativos": 180076,
+    "confirmados_novos": 16432,
+    "recuperados_novos": 8946
+  },
+  {
+    "data_dados": "29-01-2021 00:00",
+    "confirmados": 698583,
+    "recuperados": 504886,
+    "obitos": 11886,
+    "ativos": 181811,
+    "confirmados_novos": 13200,
+    "recuperados_novos": 11187
+  },
+  {
+    "data_dados": "30-01-2021 00:00",
+    "confirmados": 711018,
+    "recuperados": 518900,
+    "obitos": 12179,
+    "ativos": 179939,
+    "confirmados_novos": 12435,
+    "recuperados_novos": 14014
+  },
+  {
+    "data_dados": "31-01-2021 00:00",
+    "confirmados": 720516,
+    "recuperados": 526411,
+    "obitos": 12482,
+    "ativos": 181623,
+    "confirmados_novos": 9498,
+    "recuperados_novos": 7511
+  },
+  {
+    "data_dados": "01-02-2021 00:00",
+    "confirmados": 726321,
+    "recuperados": 534384,
+    "obitos": 12757,
+    "ativos": 179180,
+    "confirmados_novos": 5805,
+    "recuperados_novos": 7973
+  },
+  {
+    "data_dados": "02-02-2021 00:00",
+    "confirmados": 731861,
+    "recuperados": 551956,
+    "obitos": 13017,
+    "ativos": 166888,
+    "confirmados_novos": 5540,
+    "recuperados_novos": 17572
+  },
+  {
+    "data_dados": "03-02-2021 00:00",
+    "confirmados": 740944,
+    "recuperados": 563174,
+    "obitos": 13257,
+    "ativos": 164513,
+    "confirmados_novos": 9083,
+    "recuperados_novos": 11218
+  },
+  {
+    "data_dados": "04-02-2021 00:00",
+    "confirmados": 748858,
+    "recuperados": 573934,
+    "obitos": 13482,
+    "ativos": 161442,
+    "confirmados_novos": 7914,
+    "recuperados_novos": 10760
+  },
+  {
+    "data_dados": "05-02-2021 00:00",
+    "confirmados": 755774,
+    "recuperados": 585276,
+    "obitos": 13740,
+    "ativos": 156758,
+    "confirmados_novos": 6916,
+    "recuperados_novos": 11342
+  },
+  {
+    "data_dados": "06-02-2021 00:00",
+    "confirmados": 761906,
+    "recuperados": 599593,
+    "obitos": 13954,
+    "ativos": 148359,
+    "confirmados_novos": 6132,
+    "recuperados_novos": 14317
+  },
+  {
+    "data_dados": "07-02-2021 00:00",
+    "confirmados": 765414,
+    "recuperados": 606166,
+    "obitos": 14158,
+    "ativos": 145090,
+    "confirmados_novos": 3508,
+    "recuperados_novos": 6573
+  },
+  {
+    "data_dados": "08-02-2021 00:00",
+    "confirmados": 767919,
+    "recuperados": 612921,
+    "obitos": 14354,
+    "ativos": 140664,
+    "confirmados_novos": 2505,
+    "recuperados_novos": 6755
+  }
+]

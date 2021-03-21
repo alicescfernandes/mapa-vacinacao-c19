@@ -1,0 +1,108 @@
+@import '../styles/colors.scss';
+
+.card {
+	.container {
+		padding: 0;
+		.collapsed {
+			height: 0;
+			overflow: hidden;
+		}
+	}
+
+	&_graph {
+		text-align: center;
+		min-height: 190px;
+		background: white;
+		padding: 25px;
+		border-radius: 5px;
+		margin-bottom: 15px;
+		overflow: hidden;
+		transition: background linear 500ms;
+	}
+	&_checkboxes {
+		label {
+			margin-bottom: 10px;
+			margin-right: 10px;
+		}
+	}
+
+	&_align_left {
+		text-align: left;
+	}
+
+	&_graph_updated {
+		background: #f3fffd;
+		transition: background linear 500ms;
+	}
+
+	&_highlight {
+		font-size: 40px;
+		// color: $main;
+		font-weight: bold;
+	}
+	&_highlight_2 {
+		font-size: 30px;
+		// color: $main;
+		font-weight: bold;
+	}
+	&_title {
+		margin-bottom: 0px;
+		color: #444;
+		font-weight: bold;
+		font-size: 15px;
+		margin-bottom: 5px;
+	}
+
+	&_subtitle {
+		margin-bottom: 0px;
+		font-size: 14px;
+
+		&_highlight {
+			margin-bottom: 0px;
+			// color: $main;
+			font-weight: bold;
+		}
+	}
+
+	&_chart,
+	&_scrollable {
+		overflow-x: scroll;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+	.card {
+		&_scrollable {
+			min-width: 1000px;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.card {
+		&_graph {
+			min-height: 250px;
+		}
+	}
+}
+
+@media screen and (min-width: 1040px) {
+	.card {
+		&_chart,
+		&_scrollable {
+			overflow-x: hidden;
+		}
+	}
+}
+
+@media screen and (min-width: 1500px) {
+	.card {
+		&_graph {
+			min-height: 210px;
+		}
+	}
+}

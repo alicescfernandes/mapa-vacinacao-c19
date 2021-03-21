@@ -1,0 +1,54 @@
+@import '../styles/colors.scss';
+
+.datepickerRow {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.link {
+	border-bottom: 2px solid $main;
+}
+
+.sources_block {
+	padding: 20px 15px;
+}
+
+.title {
+	font-weight: bold;
+	color: #444;
+	font-size: 15px;
+	margin-bottom: 11px;
+}
+
+.subtitle {
+	color: darkgrey;
+	font-size: 13px;
+	margin-bottom: 11px;
+}
+
+.text {
+	color: #444;
+	font-size: 15px;
+	line-height: 28px;
+}
+
+.alert {
+	border-radius: 5px;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 15px 5px;
+	width: 100vw;
+	p {
+		margin: 0px;
+		font-size: 13px;
+		line-height: 20px;
+	}
+
+	&_fill {
+		color: white;
+		margin: 0px;
+		border-radius: 0px;
+		background-color: $main;
+		border-bottom: 0px;
+		font-weight: 500;
+	}
+}
