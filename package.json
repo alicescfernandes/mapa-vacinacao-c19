@@ -22,7 +22,8 @@
 		"convert": "yarn convert:csv & yarn convert:xls",
 		"start:443": "next build && next start -p 443",
 		"start:80": "next build && next start -p 80",
-		"delete": "(git reset .next && git checkout .next) & git clean -fd .next"
+		"delete": "(git reset .next && git checkout .next) & git clean -fd .next",
+		"update:server": "sh deploy.sh"
 	},
 	"browser": {
 		"fs": false,
@@ -61,8 +62,7 @@
 		"react-dom": "17.0.1",
 		"react-onesignal": "^1.7.0",
 		"react-spinners-kit": "^1.9.1",
-		"sass": "^1.32.5",
-		"swr": "^0.4.2"
+		"sass": "^1.32.5"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
