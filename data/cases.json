@@ -1339,6 +1339,20 @@
             "conf80total": 67747,
             "OBJECTID": 4504
         
+    },
+    {   "Data": 1616241600000,
+	"ConfirmadosAcumulado": 817080,
+	"ConfirmadosNovos": 457,
+	"Recuperados": 766924,
+	"Obitos": 16762,
+	"VarObitos": 8,
+	"VarRecuperados": 754,
+	"Activos": 33394,
+	"conf5059total": 121236,
+	"conf6069total": 82928,
+	"conf7079total": 54231,
+	"conf80total": 67778,
+	"OBJECTID": 4512
     }
    
 ]
