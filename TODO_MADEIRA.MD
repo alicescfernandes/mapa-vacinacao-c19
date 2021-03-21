@@ -1,8 +1,0 @@
-- Obter dados gerais demográficos da Madeira
-    - População
-    - Outros dados relevantes (ver ainda quais são)
-- Obter SVG para gráfico personalizado (com Leaflet)
-- Acabar de transcrever os relatórios
-- Introduzir sub-páginas
-    - Garantir que só se chama os dados quando se está na página certa
-- Planear gráficos
