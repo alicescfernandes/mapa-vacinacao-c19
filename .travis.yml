@@ -9,6 +9,9 @@ cache:
 script:
     - yarn
     - yarn build
+    - mkdir output
+    - cp package.json output/package.json
+    - cp -r .next output/.next
 
 branches:
     only:
@@ -17,7 +20,7 @@ deploy:
     provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
-    local_dir: .next
+    local_dir: output
     keep_history: true
     on:
         branch: master
