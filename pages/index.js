@@ -74,6 +74,8 @@ export default function Home() {
 		dataLong: '',
 	});
 
+	console.log(1);
+
 	let { colors, colors_v2, setColors } = useColors();
 
 	function onDateSelect(d) {
