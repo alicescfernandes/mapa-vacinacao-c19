@@ -43,7 +43,6 @@ function gitCommit(name) {
 	shell.exec('git pull --rebase');
 	shell.exec('git merge develop --no-ff --no-edit');
 	shell.exec('git push');
-	shell.exec('sh build.sh');
 	shell.exec('git checkout develop');
 }
 
