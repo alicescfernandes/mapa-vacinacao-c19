@@ -21,7 +21,7 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - React  
 - NextJS  
 - JSON como serviço de dados  
-- Github Actions ou Travis para CI (ainda vou escolher) 
+- Github Actions para CI
 - Github Hooks (para lançar um novo deploy)
 - ~~Vercel~~ Já não estamos na Vercel!
 - Cloudflare
