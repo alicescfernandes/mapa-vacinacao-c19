@@ -27,10 +27,12 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - Cloudflare
 - Docker (para automatizar o processo de recolha de dados diários, num *container* que tem os portos & git isolados, e que corre um *script* persistente que faz a verificação e atualização dos mesmos)  
 
-
-
 ## Fazer setup local (com docker)
-[TODO]
+```bash 
+git clone https://github.com/alicescfernandes/mapa-vacinacao-c19/ 
+docker build -t vacinacaocovid19 .
+docker run -d -p 80:3000 -P --name vacinacaocovid19 vacinacaocovid19 # site em localhost:80
+```
 ## Fazer setup local (sem docker)
 
 ### Instalar dependencias
@@ -77,7 +79,7 @@ pm2 monit # Ver status de todos os processos geridos pelo pm2
 
 ### Correr projeto
 ```bash
-npm run dev
+npm run start
 # ou
-yarn dev
+yarn start # abre no localhost:3000
 ```
