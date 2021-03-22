@@ -16,7 +16,7 @@ jobs:
               run: |
                   mkdir output
                   cp package.json output/package.json
-                  run.sh output/run.sh
+                  cp run.sh output/run.sh
                   cp -r .next output/.next
 
             - name: Deploy 🚀
