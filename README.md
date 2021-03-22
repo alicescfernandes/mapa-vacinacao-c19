@@ -21,20 +21,8 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - React  
 - NextJS  
 - JSON como serviço de dados  
-- Vercel  
+- Github Actions ou Travis para CI (ainda vou escolher) 
+- Github Hooks (para lançar um novo deploy)
+- ~~Vercel~~ Já não estamos na Vercel!
+- Cloudflare
 - Docker (para automatizar o processo de recolha de dados diários, num *container* que tem os portos & git isolados, e que corre um *script* persistente que faz a verificação e atualização dos mesmos)  
-
-## Backlog: 
-- Carregar nos pontos do gráfico muda o dia 
-- ~~Labels todas juntas~~
-- Melhorar experiencia em Mobile
-- ~~Minor refactor para contemplar novos gráficos~
-- Serviço de embeds de gráficos (V2)
-- Partilhas nas redes sociais de dados  
-- ~~Refazer todo a parte dos dados: Neste momento são disparados demasiados pedidos cujo os dados podem ser _cachados_~~
-
-## Backlog - Gráficos
-- ~~Vacinas disponíveis (ainda estou tentar arranjar uma maneira fiável de obter estes dados)~~
-- ~~Fase do Plano de Vacinação~~
-- ~~Notícias (widget de noticias recentes relacionadas com as vacinas)~~  
-
