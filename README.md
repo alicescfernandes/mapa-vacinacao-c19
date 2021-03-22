@@ -26,7 +26,6 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - Github Hooks (para lançar um novo deploy)
 - ~~Vercel~~ Já não estamos na Vercel!
 - Cloudflare
-- Docker (para automatizar o processo de recolha de dados diários, num *container* que tem os portos & git isolados, e que corre um *script* persistente que faz a verificação e atualização dos mesmos)  
 
 ## Fazer setup local (com docker)
 ```bash 
