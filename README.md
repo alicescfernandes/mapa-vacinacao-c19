@@ -49,8 +49,14 @@ yarn
 npm link # ou sudo npm link
 daemon_data # comando para fazer update aos dados
 ```
+### Correr projeto
+```bash
+npm run start
+# ou
+yarn start # abre no localhost:3000
+```
 
-### Lançar o scrapper bot _OPCIONAL_
+## Lançar o scrapper bot _OPCIONAL_
 Os dados são scrappados com um cron job que vai às fontes, retira o JSON e atualiza o respositório ao código.  
 Existem duas maneiras de lançar o _scrapper_ bot: através de um `screen` ou pelo o `pm2`
 
@@ -75,11 +81,4 @@ pm2 stop daemon # parar o processo
 pm2 logs daemon # Ler logs do processo
 pm2 list # Ver todos os processos geridos pelo pm2
 pm2 monit # Ver status de todos os processos geridos pelo pm2
-```
-
-### Correr projeto
-```bash
-npm run start
-# ou
-yarn start # abre no localhost:3000
 ```
