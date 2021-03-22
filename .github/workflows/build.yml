@@ -21,6 +21,7 @@ jobs:
                   cp package.json output/package.json
                   cp .gitignore output/.gitignore
                   cp run.sh output/run.sh
+                  cp -r public output/public
                   cp -r .next output/.next
 
             - name: Deploy 🚀
