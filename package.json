@@ -61,7 +61,8 @@
 		"react-dom": "17.0.1",
 		"react-spinners-kit": "^1.9.1",
 		"sass": "^1.32.5",
-		"dotenv": "^8.2.0"
+		"dotenv": "^8.2.0",
+		"shelljs": "^0.8.4"
 	},
 	"devDependencies": {
 		"follow-redirects": "^1.13.2",
