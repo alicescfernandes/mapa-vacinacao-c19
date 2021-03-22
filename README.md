@@ -26,3 +26,58 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - ~~Vercel~~ Já não estamos na Vercel!
 - Cloudflare
 - Docker (para automatizar o processo de recolha de dados diários, num *container* que tem os portos & git isolados, e que corre um *script* persistente que faz a verificação e atualização dos mesmos)  
+
+
+
+## Fazer setup local (com docker)
+[TODO]
+## Fazer setup local (sem docker)
+
+### Instalar dependencias
+```bash
+pip3 install -r requirements.txt
+
+# JS
+npm install
+# ou
+yarn
+```
+### Instalar comandos globais (fazer os symlinks)
+```bash
+npm link # ou sudo npm link
+daemon_data # comando para fazer update aos dados
+```
+
+### Lançar o scrapper bot _OPCIONAL_
+Os dados são scrappados com um cron job que vai às fontes, retira o JSON e atualiza o respositório ao código.  
+Existem duas maneiras de lançar o _scrapper_ bot: através de um `screen` ou pelo o `pm2`
+
+
+- Screen
+```bash
+sudo apt install screen
+# este comando vai correr o daemon_data num screen chamado daemon.
+# -S daemon [nome], -d -> detached mode, -m -> abrir sempre uma nova janela; -dm -> abrir uma nova janela em detached mode 
+screen -S daemon -dm bash -c "daemon_data; exec bash" 
+
+screen -S daemon -X quit # para terminar o screen chamado daemon
+screen -r daemon  # entrar dentro do screen chamado daemon. Para sair é pressionar CTRL+A e depois D
+```
+
+- PM2
+```bash
+npm install -g pm2
+pm2 start daemon_data --name "daemon" # lançar o processo
+pm2 restart daemon # restart do processo
+pm2 stop daemon # parar o processo
+pm2 logs daemon # Ler logs do processo
+pm2 list # Ver todos os processos geridos pelo pm2
+pm2 monit # Ver status de todos os processos geridos pelo pm2
+```
+
+### Correr projeto
+```bash
+npm run dev
+# ou
+yarn dev
+```

@@ -20,8 +20,6 @@
 		"convert:csv": "node automation/convert-csv.js",
 		"convert:xls": "node automation/convert-xls.js",
 		"convert": "yarn convert:csv & yarn convert:xls",
-		"start:443": "next build && next start -p 443",
-		"start:80": "next build && next start -p 80",
 		"delete": "(git reset .next && git checkout .next) & git clean -fd .next",
 		"update:server": "sh run.sh"
 	},
@@ -72,7 +70,6 @@
 		"csvtojson": "^2.0.10",
 		"node-schedule": "^2.0.0",
 		"pre-commit": "^1.2.2",
-		"shelljs": "^0.8.4",
 		"twitter": "^1.7.1"
 	}
 }
