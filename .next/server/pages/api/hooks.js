@@ -174,7 +174,7 @@ async function handler(req, res) {
   console.log('hook received');
 
   if (allowed) {
-    shell.exec('screen -S yarn -dm bash -c "yarn update:server"');
+    shell.exec('echo "working" & yarn update:server"');
   } //set out to execute the command
 
 
