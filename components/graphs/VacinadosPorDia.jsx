@@ -154,9 +154,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 			},
 		};
 	};
-	useEffect(() => {
-		//isInViewport();
-	}, []);
 
 	useEffect(() => {
 		if (values.length) {
