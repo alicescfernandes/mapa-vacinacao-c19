@@ -188,7 +188,7 @@ export default function Home() {
 										colors={colors}
 										title="Número total de vacinas administradas"
 										yesterday={previousItem?.Vacinados_Ac}
-										from={previousSelectedItem?.Vacinados_Ac || 200_000}
+										from={previousSelectedItem?.Vacinados_Ac || 1_200_000}
 										to={selectedItem?.Vacinados_Ac}
 									></Counter>
 								</Card>
@@ -199,7 +199,7 @@ export default function Home() {
 										colors={colors}
 										title="Número de doses administradas - 1ª Dose"
 										yesterday={previousItem?.Inoculacao1_Ac}
-										from={previousSelectedItem?.Inoculacao1_Ac || 200_000}
+										from={previousSelectedItem?.Inoculacao1_Ac || 905_000}
 										to={selectedItem?.Inoculacao1_Ac}
 									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
@@ -215,7 +215,7 @@ export default function Home() {
 										colors={colors}
 										title="Número de doses administradas - 2ª Dose"
 										yesterday={previousItem?.Inoculacao2_Ac}
-										from={previousSelectedItem?.Inoculacao2_Ac || 200_000}
+										from={previousSelectedItem?.Inoculacao2_Ac || 300_000}
 										to={selectedItem?.Inoculacao2_Ac}
 									></Counter>
 
