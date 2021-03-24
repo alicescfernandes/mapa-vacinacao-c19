@@ -1,40 +1,35 @@
+import Link from 'next/link';
 import { Container } from 'react-bootstrap';
 import styles from './Header.module.scss';
 import { Notifications } from './Notifications';
 
-export function Header() {
+export function Header({ regiao }) {
 	console.log(styles);
 	return (
 		<>
 			<header className={`${styles.header} card-shadow`}>
 				<Container className={styles.content}>
 					<div className={styles.logo}>
-						<h1>vacinação COVID 19</h1>
+						<h1>vacinação COVID 19 {regiao !== undefined && ` - ${regiao}`} </h1>
 						<p>Dados atualizados diariamente entre as 13h e as 14h</p>
 					</div>
 					<nav className={`${styles.nav}  ${styles.hide_mobile}`}>
 						<ul>
 							<li>
+								<Link href="/">Portugal</Link>
+							</li>
+							<li>
+								<Link href="/madeira">Madeira</Link>
+							</li>
+							<li>
 								<Notifications>
-									<a className={`${styles.highlight}`} href="#">
-										Notificações
-									</a>
+									<a href="#">Notificações</a>
 								</Notifications>
 							</li>
 
 							<li>
-								<a className={`${styles.highlight}`} target="_blank" href="https://twitter.com/vacinacaocovid1">
+								<a target="_blank" href="https://twitter.com/vacinacaocovid1">
 									Twitter
-								</a>
-							</li>
-							<li className={styles.hide_mobile}>
-								<a target="_blank" href="https://covid19estamoson.gov.pt/vacinacao-covid19/">
-									Portugal
-								</a>
-							</li>
-							<li className={styles.hide_mobile}>
-								<a target="_blank" href="https://covid19.min-saude.pt/vacinacao/">
-									Madeira
 								</a>
 							</li>
 						</ul>

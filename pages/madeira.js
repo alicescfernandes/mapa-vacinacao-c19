@@ -47,10 +47,7 @@ export default function Home() {
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
-	let [previousSelectedItem, setPreviousSelectedItem] = useState({});
 	let [updating, setUpdating] = useState(false);
-	let [last, setLast] = useState({});
-	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
 	let [derivedNumbers, setDerivedNumbers] = useState({
@@ -74,34 +71,9 @@ export default function Home() {
 		dataLong: '',
 	});
 
-	console.log(1);
-
 	let { colors, colors_v2, setColors } = useColors();
 
-	function onDateSelect(d) {
-		let item = rawData.filter((el, elIdx) => {
-			if (isSameDay(el.Data, d.getTime())) {
-				if (elIdx - 1 >= 0) {
-					setPreviousItem(rawData[elIdx - 1]);
-				} else {
-					setPreviousItem(el);
-				}
-				return true;
-			}
-		});
-		if (item.length > 0 && selectedItem.Data != item[0].Data) {
-			setPreviousSelectedItem(selectedItem);
-			setSelectedItem(item[0]);
-		}
-	}
-	useEffect(() => {
-		let rawData = statistics.getRaw();
-		if (rawData[rawData.length - 1]?.Data != last.Data) {
-			onDateSelect(new Date(rawData[rawData.length - 1].Data));
-			setLast(rawData[rawData.length - 1]);
-			setPreviousItem(rawData[rawData.length - 2]);
-		}
-	}, [versioning]);
+	useEffect(() => {}, [versioning]);
 
 	useEffect(() => {
 		let object = {
@@ -120,10 +92,8 @@ export default function Home() {
 	useEffect(() => {
 		if (dataReady === false) return;
 		let rawData = statistics.getRaw();
-		setLast(rawData[rawData.length - 1]);
 		setSelectedItem(rawData[rawData.length - 1]);
-		setPreviousItem(selectedItem);
-		setFirst(rawData[0]);
+		setPreviousItem(rawData[rawData.length - 2]);
 		plausible.trackPageview();
 
 		var pusher = new Pusher('4dd4d1d504254af64544', {
@@ -163,24 +133,11 @@ export default function Home() {
 	return (
 		<>
 			<Metatags isUpdating={updating}></Metatags>
-			<Header></Header>
-			{/* <Row className={`card-shadow-bottom ${styles.alert}`}>
-				<Col style={{ textAlign: 'center' }}>
-					<p>
-						Veja aqui os últimos números relacionados com a vacinação para a COVID-19. <br />
-						Os dados são atualizados diariamente entre as 13h e as 14h, e este <em>dashboard</em> é atualizado ao minuto.
-					</p>
-				</Col>
-			</Row> */}
+			<Header regiao="Madeira"></Header>
+
 			<Container className="container-fluid app">
 				{loaded ? (
 					<>
-						{' '}
-						<Row className={styles.datepickerRow}>
-							<Col style={{ textAlign: 'center' }}>
-								{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
-							</Col>
-						</Row>
 						<Row>
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
@@ -188,7 +145,7 @@ export default function Home() {
 										colors={colors}
 										title="Número total de vacinas administradas"
 										yesterday={previousItem?.Vacinados_Ac}
-										from={previousSelectedItem?.Vacinados_Ac || 1_200_000}
+										from={previousItem?.Vacinados_Ac}
 										to={selectedItem?.Vacinados_Ac}
 									></Counter>
 								</Card>
@@ -199,7 +156,7 @@ export default function Home() {
 										colors={colors}
 										title="Número de doses administradas - 1ª Dose"
 										yesterday={previousItem?.Inoculacao1_Ac}
-										from={previousSelectedItem?.Inoculacao1_Ac || 905_000}
+										from={previousItem?.Inoculacao1_Ac}
 										to={selectedItem?.Inoculacao1_Ac}
 									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
@@ -215,7 +172,7 @@ export default function Home() {
 										colors={colors}
 										title="Número de doses administradas - 2ª Dose"
 										yesterday={previousItem?.Inoculacao2_Ac}
-										from={previousSelectedItem?.Inoculacao2_Ac || 300_000}
+										from={previousItem?.Inoculacao2_Ac}
 										to={selectedItem?.Inoculacao2_Ac}
 									></Counter>
 
@@ -257,29 +214,22 @@ export default function Home() {
 							<Col lg={4} xs={12}>
 								<Card>
 									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
-										{fases.fases[fases.fase_atual].nome} de vacinação
+										Plano de Vacinação
 									</h2>
 									<p
 										title="Consultar notas ou o plano de informação para mais informação"
 										style={{ margin: '5px 0px' }}
 										class={cardStyles.card_subtitle}
 									>
-										Espera-se vacinar cerca de
+										O plano de vacinação aplicado pela Madeira não divulga números a atingir.
 									</p>
-									<h1
-										title="Consultar notas ou o plano de informação para mais informação"
-										style={{ color: colors[0] }}
-										className={cardStyles.card_highlight_2}
-									>
-										{fases.fases[fases.fase_atual].objetivo_formatado}
-									</h1>
 
 									<a
 										target="_blank"
-										href={fases.fases[fases.fase_atual].fontes[0].permalink}
+										href={'https://covidmadeira.pt/vacinacao/'}
 										className={`${cardStyles.card_subtitle} ${styles.link}`}
 									>
-										Ver mais informação sobre o plano de vacinação
+										Consultar plano de vacinação
 									</a>
 								</Card>
 							</Col>
@@ -293,7 +243,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas por dia</h2>
+								<h2 className={styles.title}>Número de vacinas administradas por Semana</h2>
 								<hr />
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
 							</Col>
@@ -304,11 +254,10 @@ export default function Home() {
 									<em>
 										R<sub>t</sub>
 									</em>{' '}
-									por região
+									na Região Autónoma da Madeira
 								</h2>
-								<h3 className={styles.subtitle}>Nem todas as regiões apresentam dados no mesmo período temporal</h3>
 								<hr />
-								<LineRt colors={colors_v2} statistics={statistics}></LineRt>
+								<LineRt regiao={'madeira'} colors={colors_v2} statistics={statistics}></LineRt>
 							</Col>
 						</Row>
 						<Row>
@@ -433,20 +382,7 @@ export default function Home() {
 								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas em Portugal e na União Europeia</h2>
-								<hr />
-								<LineVacinadosEu colors={colors_v2} statistics={statistics}></LineVacinadosEu>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas por dia em Portugal e na União Europeia</h2>
-								<hr />
-								<BarVacinadosEu colors={colors_v2} statistics={statistics}></BarVacinadosEu>
-							</Col>
-						</Row>
+
 						<Row>
 							<Col xs={12} className={styles.sources_block}>
 								<h2 className={styles.title}>Notas</h2>

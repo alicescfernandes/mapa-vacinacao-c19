@@ -26,6 +26,9 @@ export function dateWithoutTimezone(unix) {
 }
 
 export function trackPlausible(req) {
+	if (req === undefined) {
+		return;
+	}
 	let host = req.headers.host;
 	let url = req.url;
 	let userAgent = req.headers['user-agent'];
