@@ -268,6 +268,26 @@ export function LineRt({ statistics, colors }) {
 						>
 							Centro
 						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'madeira',
+							})}
+							onClick={() => {
+								setCurrentRegiao('madeira');
+							}}
+						>
+							Madeira
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'acores',
+							})}
+							onClick={() => {
+								setCurrentRegiao('acores');
+							}}
+						>
+							Açores
+						</button>
 					</p>
 				</div>
 			</div>
