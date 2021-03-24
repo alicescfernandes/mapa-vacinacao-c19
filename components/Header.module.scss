@@ -1,9 +1,13 @@
 @import '../styles/colors.scss';
 
-.header {
+.header,
+.submenu {
 	background-color: white;
-	height: 50px;
+	height: 70px;
+	text-align: center;
+
 	display: flex;
+	width: 100vw;
 	align-items: center;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	.content {
@@ -37,16 +41,39 @@
 		}
 	}
 	.logo {
-		color: $main;
-		font-weight: 900;
-		text-transform: uppercase;
-		font-size: 16px;
-		margin: 0;
+		h1 {
+			color: $main;
+			font-weight: 900;
+			text-transform: uppercase;
+			font-size: 16px;
+			margin: 0;
+		}
+		p {
+			font-size: 14px;
+			font-weight: 500;
+			margin: 0px;
+		}
 	}
+}
+.submenu {
+	height: 40px;
+	text-align: center;
+	nav {
+		line-height: 40px;
+		margin: auto;
+	}
+	.content li {
+		font-weight: 500;
+		font-size: 14px;
+	}
+}
 
-	.hide_mobile {
-		display: none !important;
-	}
+.content a:hover {
+	color: $main;
+	transition: all 0.2s;
+}
+.hide_mobile {
+	display: none !important;
 }
 
 @media screen and (max-width: 1090px) {
@@ -61,19 +88,23 @@
 }
 
 @media (min-width: 1090px) {
+	.hide_mobile {
+		display: inline-block !important;
+	}
 	.header {
 		background-color: white;
 		height: 80px;
+		text-align: left;
+
 		display: flex;
 		align-items: center;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-		.hide_mobile {
-			display: inline-block !important;
-		}
 
 		margin: 0;
 		.logo {
-			font-size: 20px;
+			h1 {
+				font-size: 20px;
+			}
 		}
 	}
 }

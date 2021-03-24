@@ -33,6 +33,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		pointHoverBorderWidth: 2,
 		pointRadius: 1,
 		pointHitRadius: 10,
+		usePointStyle: true,
 	};
 
 	let chartRef = createRef();
