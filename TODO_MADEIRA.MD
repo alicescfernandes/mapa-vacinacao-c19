@@ -6,3 +6,21 @@
 - Introduzir sub-páginas
     - Garantir que só se chama os dados quando se está na página certa
 - Planear gráficos
+    - Número total de vacinas administradas
+    - Número de doses administradas - 1ª Dose
+    - Número de doses administradas - 2ª Dose
+    - Percentagem de população inoculada com a 2ª dose
+    - Percentagem para atingir imunidade de grupo
+    - Número de vacinas administradas (sem as marcas)
+    - Número de vacinas administradas por semana
+    - Rt Madeira
+    - Numeros dos grupos prioritários
+    - Por região
+    - Número de doses recebidas por semana
+    - Número de doses recebidas (acumulado)
+    - Proporção de doses administradas relativamente às doses recebidas
+    - Número de doses administradas por semana e faixa etária
+    - Doses totais administradas por faixa etária
+    - Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias
+    - Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
+    - Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível
