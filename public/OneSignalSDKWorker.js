@@ -1,3 +1,4 @@
+/* return;
 const PRECACHE = 'precache';
 const RUNTIME = 'runtime';
 
@@ -73,3 +74,4 @@ self.addEventListener('fetch', (event) => {
 	}
 });
 importScripts('https://cdn.onesignal.com/sdks/OneSignalSDKWorker.js');
+ */

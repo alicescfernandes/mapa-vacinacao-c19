@@ -277,13 +277,12 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			},
 		};
 	};
-	useEffect(() => {}, [chartRef.current]);
 
 	useEffect(() => {
 		if (values.length > 0) {
 			setLoading(false);
 		}
-	}, [values, labels, height]);
+	}, [values]);
 
 	return (
 		<Card allowOverflow={true}>

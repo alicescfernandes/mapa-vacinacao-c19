@@ -3,6 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/globals.scss';
 import '@babel/polyfill';
 import { trackPlausible } from '../utils';
+
 function NextApp({ Component, pageProps }) {
 	return <Component {...pageProps} />;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
@@ -36,6 +36,7 @@ import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebi
 import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
+import { RegiaoContext } from '../components/context/regiao';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -131,9 +132,9 @@ export default function Home() {
 		setLoaded(true);
 	}, [dataReady]);
 	return (
-		<>
+		<RegiaoContext.Provider value={'madeira'}>
 			<Metatags isUpdating={updating}></Metatags>
-			<Header regiao="Madeira"></Header>
+			<Header regiao="madeira"></Header>
 
 			<Container className="container-fluid app">
 				{loaded ? (
@@ -545,6 +546,6 @@ export default function Home() {
 			<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 			{/*<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>*/}
 			<Footer></Footer>
-		</>
+		</RegiaoContext.Provider>
 	);
 }
