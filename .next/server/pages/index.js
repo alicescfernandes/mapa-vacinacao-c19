@@ -1017,12 +1017,8 @@ function fetchWithLocalCache(url, options) {
 
   for (var k in items) {
     let [lsPath, lsCacheBuster] = k.split('?');
-    /* if (lsPath === path && lsCacheBuster !== cacheBuster) {
-    	useCache = false;
-    	localStorage.removeItem(k);
-    } */
 
-    if (lsPath === path) {
+    if (lsPath === path && lsCacheBuster !== cacheBuster) {
       useCache = false;
       localStorage.removeItem(k);
     }
@@ -4282,7 +4278,7 @@ function BarArs_CustomBarChart({
           ticks: {
             beginAtZero: true,
             display: true,
-            max: 100000,
+            max: 120000,
             stepSize: 100000 / 5,
             callback: function (value, index, values) {
               return Object(utils["b" /* formatNumber */])(value, false);
@@ -4347,11 +4343,13 @@ function BarArs({
     'ARS Algarve': {},
     'ARS Centro': {},
     'ARS Norte': {},
-    'ARS Lisboa e Vale do Tejo': {}
+    'ARS Lisboa e Vale do Tejo': {},
+    Madeira: {},
+    Açores: {}
   }; //map the data
 
   for (let key in graphData) {
-    let obj1 = Object.assign(graphData[key], snsData.filter(el => el.REGION == key)[0]);
+    let obj1 = Object.assign(graphData[key], snsData.filter(el => el.REGION.replace('RA ', '') == key)[0]);
     let obj2 = ars[key];
     graphData[key] = BarArs_objectSpread(BarArs_objectSpread({}, obj2), obj1);
   }
@@ -4482,6 +4480,22 @@ function BarArs({
               total: 5000
             })]
           })]
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            xs: 12,
+            lg: 6,
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+              className: 'subchart-data',
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+                children: graphData['Madeira'].REGION
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs_CustomBarChart, {
+              colors: colors,
+              showHeading: true,
+              total: 400,
+              data: graphData['Madeira']
+            })]
+          })
         })]
       }) : ''
     })
@@ -5680,6 +5694,22 @@ function LineRt({
               setCurrentRegiao('centro');
             },
             children: "Centro"
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
+            className: external_classnames_default()('toggle_button', {
+              active: currentRegiao === 'madeira'
+            }),
+            onClick: () => {
+              setCurrentRegiao('madeira');
+            },
+            children: "Madeira"
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
+            className: external_classnames_default()('toggle_button', {
+              active: currentRegiao === 'acores'
+            }),
+            onClick: () => {
+              setCurrentRegiao('acores');
+            },
+            children: "A\xE7ores"
           })]
         })
       })
@@ -5938,7 +5968,7 @@ function Home() {
                 colors: colors,
                 title: "N\xFAmero total de vacinas administradas",
                 yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Vacinados_Ac,
-                from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Vacinados_Ac) || 200000,
+                from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Vacinados_Ac) || 1200000,
                 to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Vacinados_Ac
               })
             })
@@ -5951,7 +5981,7 @@ function Home() {
                 colors: colors,
                 title: "N\xFAmero de doses administradas - 1\xAA Dose",
                 yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao1_Ac,
-                from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao1_Ac) || 200000,
+                from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao1_Ac) || 905000,
                 to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
                 style: {
@@ -5970,7 +6000,7 @@ function Home() {
                 colors: colors,
                 title: "N\xFAmero de doses administradas - 2\xAA Dose",
                 yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao2_Ac,
-                from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao2_Ac) || 200000,
+                from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao2_Ac) || 300000,
                 to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
                 style: {
@@ -8735,7 +8765,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1616546696190,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2020-03-21\",\"dateEcdc\":\"2021-03-21\",\"dateRt\":\"20210-03-13\"}");
+module.exports = JSON.parse("{\"date\":1616548538749,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2020-03-21\",\"dateEcdc\":\"2021-03-21\",\"dateRt\":\"20210-03-13\"}");
 
 /***/ }),
 

@@ -204,12 +204,8 @@ function fetchWithLocalCache(url, options) {
 
   for (var k in items) {
     let [lsPath, lsCacheBuster] = k.split('?');
-    /* if (lsPath === path && lsCacheBuster !== cacheBuster) {
-    	useCache = false;
-    	localStorage.removeItem(k);
-    } */
 
-    if (lsPath === path) {
+    if (lsPath === path && lsCacheBuster !== cacheBuster) {
       useCache = false;
       localStorage.removeItem(k);
     }

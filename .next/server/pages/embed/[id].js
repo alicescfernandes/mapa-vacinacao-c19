@@ -874,12 +874,8 @@ function fetchWithLocalCache(url, options) {
 
   for (var k in items) {
     let [lsPath, lsCacheBuster] = k.split('?');
-    /* if (lsPath === path && lsCacheBuster !== cacheBuster) {
-    	useCache = false;
-    	localStorage.removeItem(k);
-    } */
 
-    if (lsPath === path) {
+    if (lsPath === path && lsCacheBuster !== cacheBuster) {
       useCache = false;
       localStorage.removeItem(k);
     }
@@ -2216,7 +2212,7 @@ function DatePickerButton({
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1616546696190,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2020-03-21\",\"dateEcdc\":\"2021-03-21\",\"dateRt\":\"20210-03-13\"}");
+module.exports = JSON.parse("{\"date\":1616548538749,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2020-03-21\",\"dateEcdc\":\"2021-03-21\",\"dateRt\":\"20210-03-13\"}");
 
 /***/ }),
 
