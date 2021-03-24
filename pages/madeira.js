@@ -79,56 +79,38 @@ export default function Home() {
 	useEffect(() => {
 		let object = {
 			pessoasAVacinar: {
-				prev: derivedNumbers.pessoasAVacinar.current,
-				current: numberFormatter.format(generic.populacao.valor * 0.7 - selectedItem.Inoculacao2_Ac),
+				current: numberFormatter.format(generic.populacao_ram.valor * 0.7 - selectedItem.dose_2),
 			},
 			percentagem: {
-				prev: derivedNumbers.percentagem.current,
-				current: (selectedItem.Inoculacao2_Ac / generic.populacao.valor) * 100,
+				current: (selectedItem.dose_2 / generic.populacao_ram.valor) * 100,
 			},
 		};
 		setDerivedNumbers(object);
 	}, [selectedItem]);
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (dataReady === false) return;
-		let rawData = statistics.getRaw();
+		let rawData = await statistics.getMadeiraData();
+		plausible.trackPageview();
+		let lastItem = rawData[rawData.length - 1];
+
 		setSelectedItem(rawData[rawData.length - 1]);
 		setPreviousItem(rawData[rawData.length - 2]);
-		plausible.trackPageview();
 
-		var pusher = new Pusher('4dd4d1d504254af64544', {
-			cluster: 'eu',
-		});
-
-		var channel = pusher.subscribe('covid19');
-		channel.bind('update', function (data) {
-			updateData(data.type, data.data);
-			setUpdating(true);
-			setTimeout(() => {
-				setUpdating(false);
-			}, 1000);
-		});
-
-		let { sum } = statistics?.getDosesRecebidasAcum();
+		/* let { sum } = statistics?.getDosesRecebidasAcum();
 		sum = sum.reverse()[0];
 		let item = rawData.filter((el) => {
 			return isSameDay(el.Data, new Date(json.dateSnsStart));
 		});
+		 */
 		setDoses({
-			...doses,
-			recebidas: sum,
-			administradas: item[0].Vacinados_Ac,
-			primeiras: item[0].Inoculacao1_Ac,
-			segundas: item[0].Inoculacao2_Ac,
-			data: format(new Date(json.dateSns).getTime(), 'dd/LL/yyyy', {
-				locale: pt,
-			}),
-			dataLong: format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-				locale: pt,
-			}),
+			recebidas: 0,
+			administradas: lastItem.total,
+			primeiras: lastItem.dose_1,
+			segundas: lastItem.dose_2,
+			data: '',
+			dataLong: '',
 		});
-
 		setLoaded(true);
 	}, [dataReady]);
 	return (
@@ -144,10 +126,11 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
+										tempo={'na semana'}
 										title="Número total de vacinas administradas"
-										yesterday={previousItem?.Vacinados_Ac}
-										from={previousItem?.Vacinados_Ac}
-										to={selectedItem?.Vacinados_Ac}
+										yesterday={previousItem?.total}
+										from={previousItem?.total}
+										to={selectedItem?.total}
 									></Counter>
 								</Card>
 							</Col>
@@ -155,15 +138,17 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
+										tempo={'na semana'}
 										title="Número de doses administradas - 1ª Dose"
-										yesterday={previousItem?.Inoculacao1_Ac}
-										from={previousItem?.Inoculacao1_Ac}
-										to={selectedItem?.Inoculacao1_Ac}
+										yesterday={previousItem?.dose_1}
+										from={previousItem?.dose_1}
+										to={selectedItem?.dose_1}
 									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} doses administradas por cada 100 pessoas
+										{perHundred(selectedItem?.dose_1, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
+										pessoas
 										<br />
-										{formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 1ª dose
+										{formatNumber(selectedItem?.dose_1 - selectedItem?.dose_2)} pessoas inoculadas com a 1ª dose
 									</p>
 								</Card>
 							</Col>
@@ -171,16 +156,18 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
+										tempo={'na 	semana'}
 										title="Número de doses administradas - 2ª Dose"
-										yesterday={previousItem?.Inoculacao2_Ac}
-										from={previousItem?.Inoculacao2_Ac}
-										to={selectedItem?.Inoculacao2_Ac}
+										yesterday={previousItem?.dose_2}
+										from={previousItem?.dose_2}
+										to={selectedItem?.dose_2}
 									></Counter>
 
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} doses administradas por cada 100 pessoas
+										{perHundred(selectedItem?.dose_2, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
+										pessoas
 										<br />
-										{formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 2ª dose
+										{formatNumber(selectedItem?.dose_2)} pessoas inoculadas com a 2ª dose
 									</p>
 								</Card>
 							</Col>

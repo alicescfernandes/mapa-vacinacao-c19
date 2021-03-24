@@ -52,6 +52,8 @@ export default function Home() {
 	let [last, setLast] = useState({});
 	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
+	let pusher = null;
+	let channel = null;
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
 	let [derivedNumbers, setDerivedNumbers] = useState({
 		pessoasAVacinar: {
@@ -128,18 +130,18 @@ export default function Home() {
 		setFirst(rawData[0]);
 		plausible.trackPageview();
 
-		var pusher = new Pusher('4dd4d1d504254af64544', {
+		/* pusher = new Pusher('4dd4d1d504254af64544', {
 			cluster: 'eu',
-		});
+		}); */
 
-		var channel = pusher.subscribe('covid19');
+		/* let channel = pusher.subscribe('covid19');
 		channel.bind('update', function (data) {
 			updateData(data.type, data.data);
 			setUpdating(true);
 			setTimeout(() => {
 				setUpdating(false);
 			}, 1000);
-		});
+		}); */
 
 		let { sum } = statistics?.getDosesRecebidasAcum();
 		sum = sum.reverse()[0];
@@ -161,6 +163,10 @@ export default function Home() {
 		});
 		console.log('3');
 		setLoaded(true);
+
+		return function () {
+			console.log('unmount');
+		};
 	}, [dataReady]);
 	return (
 		<RegiaoContext.Provider value={'continente'}>

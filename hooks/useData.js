@@ -444,6 +444,11 @@ export function useData() {
 				labels: Object.values(labels),
 			};
 		},
+
+		getMadeiraData: async () => {
+			let res = await fetchWithLocalCache(`/api/madeira?${btoa(data.dateMadeira)}`);
+			return res;
+		},
 	};
 
 	useEffect(() => {

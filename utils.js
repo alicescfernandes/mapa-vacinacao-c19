@@ -74,8 +74,8 @@ export function downloadPNG(canvasElement, graphName) {
 	link.click();
 }
 
-export function perHundred(total) {
-	return (total / populacao.valor) * 100;
+export function perHundred(total, populacaoTotal = populacao.valor) {
+	return (total / populacaoTotal) * 100;
 }
 
 export function fetchWithLocalCache(url, options) {
