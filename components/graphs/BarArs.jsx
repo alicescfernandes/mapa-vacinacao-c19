@@ -127,7 +127,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 						ticks: {
 							beginAtZero: true,
 							display: true,
-							max: 100_000,
+							max: 120_000,
 							stepSize: 100_000 / 5,
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
@@ -171,11 +171,13 @@ export function BarArs({ statistics, colors }) {
 		'ARS Centro': {},
 		'ARS Norte': {},
 		'ARS Lisboa e Vale do Tejo': {},
+		Madeira: {},
+		Açores: {},
 	};
 
 	//map the data
 	for (let key in graphData) {
-		let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION == key)[0]);
+		let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION.replace('RA ', '') == key)[0]);
 		let obj2 = ars[key];
 
 		graphData[key] = { ...obj2, ...obj1 };
@@ -241,7 +243,12 @@ export function BarArs({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>{graphData['ARS Lisboa e Vale do Tejo'].REGION}</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={400} data={graphData['ARS Lisboa e Vale do Tejo']}></CustomBarChart>
+								<CustomBarChart
+									colors={colors}
+									showHeading={true}
+									total={400}
+									data={graphData['ARS Lisboa e Vale do Tejo']}
+								></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
@@ -249,6 +256,20 @@ export function BarArs({ statistics, colors }) {
 								</div>
 								<CustomBarChart colors={colors} data={graphData['ARS Norte']} total={5000}></CustomBarChart>
 							</Col>
+						</Row>
+						<Row>
+							<Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>{graphData['Madeira'].REGION}</p>
+								</div>
+								<CustomBarChart colors={colors} showHeading={true} total={400} data={graphData['Madeira']}></CustomBarChart>
+							</Col>
+							{/* <Col xs={12} lg={6}>
+								<div className={'subchart-data'}>
+									<p>{graphData['Açores'].REGION}</p>
+								</div>
+								<CustomBarChart colors={colors} data={graphData['Açores']} total={5000}></CustomBarChart>
+							</Col> */}
 						</Row>
 					</>
 				) : (
