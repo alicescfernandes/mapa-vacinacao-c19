@@ -5,7 +5,7 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 import { RESIZE_TRESHOLD } from './../../constants';
 export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
-	let [loading, setLoading] = useState(true);
+	let [loaded, setLoaded] = useState(false);
 	let marriedData = {};
 	let { main, shades, tints, complements } = colors;
 	let [graphData, setGraphData] = useState({});
@@ -48,7 +48,9 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 			labels: Object.keys(graphData.labels).map((key) => {
 				let fromDate = new Date(labels[key].from);
 				let toDate = new Date(labels[key].to);
-				return `De ${formatNumber(fromDate.getDate())}/${formatNumber(fromDate.getMonth() + 1)} a ${formatNumber(toDate.getDate())}/${formatNumber(toDate.getMonth() + 1)}`;
+				return `De ${formatNumber(fromDate.getDate())}/${formatNumber(fromDate.getMonth() + 1)} a ${formatNumber(
+					toDate.getDate()
+				)}/${formatNumber(toDate.getMonth() + 1)}`;
 			}),
 			datasets: [
 				{
@@ -288,8 +290,9 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 	useEffect(() => {
 		statistics.getAdministredDosesByAgeByWeek().then((data) => {
+			console.log(1, data);
 			setGraphData(data);
-			setLoading(false);
+			setLoaded(true);
 			setActiveDose(1);
 		});
 	}, []);
@@ -297,7 +300,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	return (
 		<Card textLeft={true} allowOverflow={true}>
 			<div>
-				{!loading ? (
+				{loaded === true ? (
 					<>
 						<div className={'toggle_buttons'}>
 							<p>

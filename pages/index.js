@@ -121,7 +121,7 @@ export default function Home() {
 		console.log('2');
 	}, [selectedItem]);
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (dataReady === false) return;
 		let rawData = statistics.getRaw();
 		setLast(rawData[rawData.length - 1]);
@@ -143,7 +143,7 @@ export default function Home() {
 			}, 1000);
 		}); */
 
-		let { sum } = statistics?.getDosesRecebidasAcum();
+		let { sum } = await statistics?.getDosesRecebidasAcum();
 		sum = sum.reverse()[0];
 		let item = rawData.filter((el) => {
 			return isSameDay(el.Data, new Date(json.dateSnsStart));

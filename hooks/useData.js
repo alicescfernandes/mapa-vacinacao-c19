@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { RegiaoContext } from '../components/context/regiao';
 import { fetchWithLocalCache } from '../utils';
 import data from './../data/last-update.json';
+import lastUpdate from './../data/last-update.json';
 export function useData() {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
@@ -13,6 +15,8 @@ export function useData() {
 	let [casesData, setCasesData] = useState(false);
 	let [labels, setLabels] = useState([]);
 	let [rt, setRt] = useState([]);
+	let [madeira, setMadeira] = useState([]);
+	let regiao = useContext(RegiaoContext);
 
 	let options = {
 		month: 'short',
@@ -73,7 +77,7 @@ export function useData() {
 			};
 		},
 		getRtRegiao: async (regiao) => {
-			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(data.date)}`).then((responseRt) => {
+			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(lastUpdate.date)}`).then((responseRt) => {
 				setRt(responseRt);
 				return responseRt;
 			});
@@ -83,7 +87,7 @@ export function useData() {
 			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
 		},
 		getRtRegioes: async () => {
-			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(data.date)}`).then((responseRt) => {
+			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(lastUpdate.date)}`).then((responseRt) => {
 				return responseRt;
 			});
 			let dates = data.rt_continente.map((el) => el.Data);
@@ -109,7 +113,9 @@ export function useData() {
 
 			return { labels: dates.map((el) => f.format(new Date(el))), values: rtData };
 		},
-		getOwid: () => {
+		getOwid: async () => {
+			let owid = await fetchWithLocalCache(`/api/owid?${btoa(lastUpdate.date)}`);
+
 			let labels = owid.eun.data.map((el) => f.format(new Date(el.date)));
 			let data = {
 				pt: owid.prt.data,
@@ -245,6 +251,7 @@ export function useData() {
 		},
 		getReceivedDosesByBrandByWeek: async () => {
 			let labels = {};
+			let weeks = await fetchWithLocalCache(`/api/weeks`, false);
 
 			let com = {};
 			let mod = {};
@@ -288,7 +295,7 @@ export function useData() {
 		getAdministredDosesByAgeByWeek: async () => {
 			let labels = {};
 			let maxValue = 0;
-
+			let weeks = await fetchWithLocalCache(`/api/weeks`, false);
 			let groups = {};
 
 			ecdc.forEach((el) => {
@@ -350,12 +357,15 @@ export function useData() {
 
 			return groups;
 		},
-		getTotalSNS: () => {
+		getTotalSNS: async () => {
+			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
+
 			return sns.filter((el) => {
 				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == data.dateSnsStartWeirdFormat;
 			});
 		},
-		getTotalARS: () => {
+		getTotalARS: async () => {
+			let ars = await fetchWithLocalCache(`/api/ars?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
 			let data = {};
 			ars.features.forEach((el) => {
 				if (el.attributes.ARSNome === 'Nacional') el.attributes.ARSNome = 'All';
@@ -374,7 +384,9 @@ export function useData() {
 		getCases: () => {
 			return casesData;
 		},
-		getDosesRecebidasAcum: () => {
+		getDosesRecebidasAcum: async () => {
+			let weeks = await fetchWithLocalCache(`/api/weeks`, false);
+
 			if (ecdc == false) return;
 			let labels = {};
 			let data = {};
@@ -446,30 +458,22 @@ export function useData() {
 		},
 
 		getMadeiraData: async () => {
-			let res = await fetchWithLocalCache(`/api/madeira?${btoa(data.dateMadeira)}`);
+			let res = await fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`);
 			return res;
 		},
 	};
 
 	useEffect(() => {
 		Promise.all([
-			fetchWithLocalCache(`/api/ecdc?${btoa(data.dateEcdc)}`, false),
-			fetchWithLocalCache(`/api/weeks`, false),
-			fetchWithLocalCache(`/api/sns?${btoa(data.dateSnsStartWeirdFormat)}`, false),
-			fetchWithLocalCache(`/api/vaccinesold?${btoa(data.date)}`),
-			fetchWithLocalCache(`/api/ars?${btoa(data.dateSnsStartWeirdFormat)}`, false),
-			fetchWithLocalCache(`/api/cases?${btoa(data.date)}`),
-			fetchWithLocalCache(`/api/owid?${btoa(data.date)}`),
-			fetchWithLocalCache(`/api/rt/continente?${btoa(Date.now())}`),
-		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid, rt]) => {
-			setSns(sns);
-			setWeeks(weeks);
+			fetchWithLocalCache(`/api/ecdc?${btoa(lastUpdate.dateEcdc)}`, false),
+			fetchWithLocalCache(`/api/vaccinesold?${btoa(lastUpdate.date)}`),
+			fetchWithLocalCache(`/api/cases?${btoa(lastUpdate.date)}`),
+			fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`),
+		]).then(([ecdc, vaccines, cases, madeira]) => {
 			setECDC(ecdc);
 			setVaccines(vaccines);
-			setArs(ars);
 			setCasesData(cases);
-			setOwid(owid);
-			setRt(rt);
+			setMadeira(madeira);
 			setReady(true);
 		});
 	}, []);

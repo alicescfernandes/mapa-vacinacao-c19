@@ -36,11 +36,8 @@ let styles = {
 export function BarsVacinacaoArs({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { main, shades, tints, complements } = colors;
-	let snsData = statistics.getTotalSNS();
+	const [snsData, setSNSData] = useState({});
 
-	useEffect(() => {
-		setLoading(false);
-	}, []);
 	const data = (canvas) => {
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
@@ -147,7 +144,11 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 		};
 	};
 
-	return (
+	useEffect(async () => {
+		setSNSData(await statistics.getTotalSNS());
+		setLoading(false);
+	}, []);
+	return !loading === true ? (
 		<Card allowOverflow={true}>
 			<div>
 				{!loading ? (
@@ -159,5 +160,7 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 				)}
 			</div>
 		</Card>
+	) : (
+		''
 	);
 }
