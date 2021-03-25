@@ -100,8 +100,8 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 						ticks: {
 							beginAtZero: true,
 							display: true,
-							max: 500_000,
-							stepSize: 500_000 / 5,
+							max: 600_000,
+							stepSize: 600_000 / 5,
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
@@ -119,7 +119,10 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				<p style={styles['vaccine-label']}>Pfizer/BioNTech</p>
 				<p style={styles['vaccine-label']}>AstraZeneca</p>
 			</div>
-			<div style={{ display: 'inline-block', lineHeight: '40200', position: 'relative', width: '80%', height: 150, overflow: 'hidden' }} className={'scrollable'}>
+			<div
+				style={{ display: 'inline-block', lineHeight: '40200', position: 'relative', width: '80%', height: 150, overflow: 'hidden' }}
+				className={'scrollable'}
+			>
 				<div style={{ height: '100%' }}>
 					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
 				</div>
@@ -163,13 +166,24 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>Entre os 18 e 24 anos</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age18_24'].target} data={graphData['Age18_24']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart
+									colors={colors}
+									showHeading={true}
+									total={graphData['Age18_24'].target}
+									data={graphData['Age18_24']}
+									type={'Moderna'}
+								></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Entre os 25 e 49 anos</p>
 								</div>
-								<CustomBarChart colors={colors} total={graphData['Age25_49'].target} data={graphData['Age25_49']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart
+									colors={colors}
+									total={graphData['Age25_49'].target}
+									data={graphData['Age25_49']}
+									type={'Moderna'}
+								></CustomBarChart>
 							</Col>
 						</Row>
 						<Row>
@@ -177,13 +191,24 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>Entre os 50 e 59 anos</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age50_59'].target} data={graphData['Age50_59']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart
+									colors={colors}
+									showHeading={true}
+									total={graphData['Age50_59'].target}
+									data={graphData['Age50_59']}
+									type={'Moderna'}
+								></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Entre os 60 e 69 anos</p>
 								</div>
-								<CustomBarChart colors={colors} total={graphData['Age60_69'].target} data={graphData['Age60_69']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart
+									colors={colors}
+									total={graphData['Age60_69'].target}
+									data={graphData['Age60_69']}
+									type={'Moderna'}
+								></CustomBarChart>
 							</Col>
 						</Row>
 						<Row>
@@ -191,13 +216,24 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 								<div className={'subchart-data'}>
 									<p>Entre os 70 e 79 anos</p>
 								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={graphData['Age70_79'].target} data={graphData['Age70_79']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart
+									colors={colors}
+									showHeading={true}
+									total={graphData['Age70_79'].target}
+									data={graphData['Age70_79']}
+									type={'Moderna'}
+								></CustomBarChart>
 							</Col>
 							<Col xs={12} lg={6}>
 								<div className={'subchart-data'}>
 									<p>Com mais de 80 anos</p>
 								</div>
-								<CustomBarChart colors={colors} total={graphData['Age80+'].target} data={graphData['Age80+']} type={'Moderna'}></CustomBarChart>
+								<CustomBarChart
+									colors={colors}
+									total={graphData['Age80+'].target}
+									data={graphData['Age80+']}
+									type={'Moderna'}
+								></CustomBarChart>
 							</Col>
 						</Row>
 					</>
