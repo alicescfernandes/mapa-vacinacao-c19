@@ -211,6 +211,8 @@ function fetchWithLocalCache(url, options) {
     }
   }
 
+  if (url.match('ecdc')) useCache = false;
+
   if (window && localStorage.getItem(url) && useCache === true) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
