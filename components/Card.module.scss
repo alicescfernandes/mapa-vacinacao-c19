@@ -106,3 +106,23 @@
 		}
 	}
 }
+
+.ram {
+	&_subchart {
+		p {
+			font-weight: bold;
+			font-size: 13px;
+			text-align: center;
+		}
+	}
+	h3 {
+		//font-weight: bold;
+		font-size: 13px;
+		text-align: center;
+	}
+	h2 {
+		font-size: 40px !important;
+		font-weight: bold;
+		color: rgb(1, 174, 151);
+	}
+}

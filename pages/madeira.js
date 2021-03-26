@@ -37,6 +37,7 @@ import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
+import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -234,6 +235,25 @@ export default function Home() {
 								<h2 className={styles.title}>Número de vacinas administradas por Semana</h2>
 								<hr />
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
+								<hr />
+								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h2 className={styles.title}>Vacinação por região</h2>
+								<hr />
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
+								<hr />
 							</Col>
 						</Row>
 						<Row>
