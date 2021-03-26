@@ -252,7 +252,7 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h2 className={styles.title}>
-									Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias
+									Número de vacinas administradas por semana com o número de infectados e de recuperados nas últimas 5 semanas
 								</h2>
 								<hr />
 								<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
