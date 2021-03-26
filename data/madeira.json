@@ -49,41 +49,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1":null,
                 "dose_2":null,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
@@ -218,41 +226,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1":null,
                 "dose_2":null,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
@@ -387,41 +403,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1":null,
                 "dose_2":null,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
@@ -512,6 +536,8 @@
         "total": 23301,
         "dose_1": 15735,
         "dose_2": 7566,
+        "semana":"2021-W08",
+        "relatorio":"https://covidmadeira.pt/publicacao/boletim-vacinacao-covid-19-ram-de-01-03-2021/",
         "grupos": {
             "outros": {
                 "total": 25,
@@ -556,41 +582,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": 0,
                 "dose_2": 0,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": 1.4,
                 "dose_2": 1.0,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1": 5.4,
                 "dose_2": 4.3,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1": 5.6,
                 "dose_2": 4.0,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1": 4.4,
                 "dose_2": 3.1,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1": 2.5,
                 "dose_2": 1.8,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1": 8.9,
                 "dose_2": 2,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1": 50.3,
                 "dose_2": 7.0,
                 "total": 0
@@ -681,6 +715,9 @@
         "total": 27853,
         "dose_1": 17170,
         "dose_2": 10683,
+        "semana":"2021-W09",
+        "relatorio":"https://covidmadeira.pt/publicacao/boletim-vacinacao-covid-19-ram-de-08-03-2021/",
+        
         "grupos": {
             "outros": {
                 "total": 31,
@@ -725,41 +762,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": 0,
                 "dose_2": 0,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": 1.5,
                 "dose_2": 1.1,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1": 5.5,
                 "dose_2": 4.9,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1": 5.7,
                 "dose_2": 4.9,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1": 4.5,
                 "dose_2": 3.9,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1": 2.6,
                 "dose_2": 2.1,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1": 9.0,
                 "dose_2": 5.9,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1": 61.5,
                 "dose_2": 18.4,
                 "total": 0
@@ -849,6 +894,8 @@
         "data": "2020-03-14",
         "total": 35133,
         "dose_1": 22051,
+        "semana":"2021-W10",
+        "relatorio":"https://covidmadeira.pt/publicacao/boletim-vacinacao-covid-19-ram-de-15-03-2021/",
         "dose_2": 13082,
         "grupos": {
             "outros": {
@@ -894,6 +941,7 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1_pessoas": 3,
                 "dose_1": 0,
                 "dose_2_pessoas": 3,
@@ -901,6 +949,7 @@
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1_pessoas": 456,
                 "dose_1": 2,
                 "dose_2_pessoas": 273,
@@ -908,6 +957,7 @@
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1_pessoas": 6559,
                 "dose_1": 7.2,
                 "dose_2_pessoas": 4727,
@@ -915,6 +965,7 @@
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1_pessoas": 3098,
                 "dose_1": 7.9,
                 "dose_2_pessoas": 2123,
@@ -922,6 +973,7 @@
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1_pessoas": 1595,
                 "dose_1": 10.1,
                 "dose_2_pessoas": 663,
@@ -929,6 +981,7 @@
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1_pessoas": 570,
                 "dose_1": 4.3,
                 "dose_2_pessoas": 306,
@@ -936,6 +989,7 @@
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1_pessoas": 1799,
                 "dose_1": 9.6,
                 "dose_2_pessoas": 1416,
@@ -943,6 +997,7 @@
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1_pessoas": 7971,
                 "dose_1": 72.1,
                 "dose_2_pessoas": 3.571,

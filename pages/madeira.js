@@ -26,7 +26,6 @@ import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/Pi
 import { BarsVacinacaoArs } from '../components/graphs/BarsVacinacaoArs';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
-import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
 import { BarArs } from '../components/graphs/BarArs';
 import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
@@ -38,6 +37,7 @@ import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
+import { RamBarAdministradasPorFaixaEtaria } from '../components/graphs/RamBarAdministradasPorFaixaEtaria';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -232,7 +232,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas por Semana</h2>
+								<h2 className={styles.title}>Número de vacinas administradas</h2>
 								<hr />
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
 							</Col>
@@ -246,13 +246,14 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Vacinação por região</h2>
+								<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
 								<hr />
+								<RamBarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></RamBarAdministradasPorFaixaEtaria>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
+								<h2 className={styles.title}>Vacinação por região</h2>
 								<hr />
 							</Col>
 						</Row>

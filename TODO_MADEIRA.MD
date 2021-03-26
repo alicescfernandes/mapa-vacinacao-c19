@@ -14,7 +14,7 @@
     - ~~Número de vacinas administradas (sem as marcas)~~
     - ~~Número de vacinas administradas por semana~~
     - ~~Rt Madeira~~
-    - Numeros dos grupos prioritários
+    - ~~Numeros dos grupos prioritários~~
     - Por região
     - ~~Número de doses recebidas por semana~~
     - ~~Número de doses recebidas (acumulado)~~

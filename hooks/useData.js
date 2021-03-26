@@ -56,7 +56,6 @@ export function useData({ regiao }) {
 					labels.push(f.format(new Date(el.data)));
 					values.push(el.total);
 				});
-				console.log({ labels, values });
 				return { labels, values };
 			} else {
 				return parseData(vaccines);
@@ -374,6 +373,20 @@ export function useData({ regiao }) {
 					groups[el['TargetGroup']].dose_2[el['YearWeekISO']] =
 						(groups[el['TargetGroup']].dose_2[el['YearWeekISO']] || 0) + parseInt(el['SecondDose']);
 				}
+			});
+			return {
+				maxValue,
+				labels,
+				groups,
+			};
+		},
+		getAdministredDosesByAgeByWeekRam: async () => {
+			let labels = [];
+			let maxValue = 0;
+			let groups = [];
+			madeira.forEach((el) => {
+				labels.push(el.data);
+				groups.push(el.escaloes);
 			});
 			return {
 				maxValue,
