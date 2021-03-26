@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { RegiaoContext } from '../components/context/regiao';
+import { ECDC_MAPPING, REGIOES } from '../constants';
 import { fetchWithLocalCache } from '../utils';
 import data from './../data/last-update.json';
 import lastUpdate from './../data/last-update.json';
-export function useData() {
+export function useData({ regiao }) {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
 	let [weeks, setWeeks] = useState(false);
@@ -16,7 +16,6 @@ export function useData() {
 	let [labels, setLabels] = useState([]);
 	let [rt, setRt] = useState([]);
 	let [madeira, setMadeira] = useState([]);
-	let regiao = useContext(RegiaoContext);
 
 	let options = {
 		month: 'short',
@@ -50,27 +49,40 @@ export function useData() {
 			return vaccines;
 		},
 		getDailyData: () => {
-			return parseData(vaccines);
+			if (regiao === REGIOES.MADEIRA) {
+				let labels = [];
+				let values = [];
+				madeira.forEach((el) => {
+					labels.push(f.format(new Date(el.data)));
+					values.push(el.total);
+				});
+				console.log({ labels, values });
+				return { labels, values };
+			} else {
+				return parseData(vaccines);
+			}
 		},
 		getDesvioPadrao: () => {},
 
 		getMediaMovel: (dias) => {
 			let medias = [];
 			let labelsMedias = [];
-			let { labels, values } = parseData(vaccines);
 
-			for (let start = 1; start <= dias; start++) {
-				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
+			if (regiao === REGIOES.PORTUGAL) {
+				let { labels, values } = parseData(vaccines);
+
+				for (let start = 1; start <= dias; start++) {
+					let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
+				}
+
+				for (let start = dias; start <= values.length; start++) {
+					let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
+				}
 			}
-
-			for (let start = dias; start <= values.length; start++) {
-				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
-			}
-
 			return {
 				values: medias,
 				labels: labelsMedias,
@@ -128,32 +140,33 @@ export function useData() {
 		getMediaMovelDiaria: (dias) => {
 			let medias = [];
 			let labelsMedias = [];
-			let { values } = statistics.getVacinadosPorDia();
+			if (regiao === REGIOES.PORTUGAL) {
+				let { values } = statistics.getVacinadosPorDia();
 
-			for (let start = 1; start <= dias; start++) {
-				if (values[start] === null) {
-					medias.push(null);
-					continue;
+				for (let start = 1; start <= dias; start++) {
+					if (values[start] === null) {
+						medias.push(null);
+						continue;
+					}
+
+					let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
 				}
 
-				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
-			}
+				for (let start = dias; start <= values.length; start++) {
+					let slice = values.slice(start - dias, start);
 
-			for (let start = dias; start <= values.length; start++) {
-				let slice = values.slice(start - dias, start);
+					if (values[start] === null || slice.includes(null) > 0) {
+						medias.push(null);
+						continue;
+					}
 
-				if (values[start] === null || slice.includes(null) > 0) {
-					medias.push(null);
-					continue;
+					let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
 				}
-
-				let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
 			}
-
 			return {
 				values: medias,
 				labels: labelsMedias,
@@ -185,11 +198,20 @@ export function useData() {
 			let in2 = [];
 			let total = [];
 			let { labels, values } = statistics.getDailyData();
-			values.forEach((val, idx, vals) => {
-				in1.push(vaccines[idx].Inoculacao1_Ac);
-				in2.push(vaccines[idx].Inoculacao2_Ac);
-				total.push(vaccines[idx].Vacinados_Ac);
-			});
+
+			if (regiao === REGIOES.MADEIRA) {
+				madeira.forEach((val, idx, vals) => {
+					in1.push(madeira[idx].dose_1);
+					in2.push(madeira[idx].dose_2);
+					total.push(madeira[idx].total);
+				});
+			} else {
+				values.forEach((val, idx, vals) => {
+					in1.push(vaccines[idx].Inoculacao1_Ac);
+					in2.push(vaccines[idx].Inoculacao2_Ac);
+					total.push(vaccines[idx].Vacinados_Ac);
+				});
+			}
 
 			return {
 				valuesIn1: in1,
@@ -201,40 +223,77 @@ export function useData() {
 		getDiariosInoculacoes: () => {
 			let in1 = [];
 			let in2 = [];
-			let { labels, values } = parseData(vaccines);
+			let total = [];
+			let raw = regiao === REGIOES.MADEIRA ? madeira : vaccines;
+			let labels = [];
+			if (regiao === REGIOES.MADEIRA) {
+				let { labels: labelsMad, values } = statistics.getDailyData();
+				labels = labelsMad;
 
-			let total = values.map((val, idx, vals) => {
-				//The first one
-				if (idx === 0) {
-					in1.push(vaccines[idx].Inoculacao1_Ac);
-					in2.push(vaccines[idx].Inoculacao2_Ac);
-					return val;
-				}
+				total = values.map((val, idx, vals) => {
+					//The first one
+					if (idx === 0) {
+						in1.push(madeira[idx].dose_1);
+						in2.push(madeira[idx].dose_2);
+						return val;
+					}
 
-				let prevDay = idx - 1;
+					let prevDay = idx - 1;
 
-				if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
-					in1.push(null);
-				} else {
-					in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
-				}
+					if (madeira[prevDay].dose_1 == null || madeira[idx].dose_1 == null) {
+						in1.push(null);
+					} else {
+						in1.push(madeira[idx].dose_1 - madeira[prevDay].dose_1);
+					}
 
-				if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
-					in2.push(null);
-				} else {
-					in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
-				}
+					if (madeira[prevDay].dose_2 == null || madeira[idx].dose_2 == null) {
+						in2.push(null);
+					} else {
+						in2.push(madeira[idx].dose_2 - madeira[prevDay].dose_2);
+					}
 
-				if (vals[prevDay] == null || val == null) {
-					return null;
-				}
-				return val - vals[prevDay];
-			});
+					if (vals[prevDay] == null || val == null) {
+						return null;
+					}
+					return val - vals[prevDay];
+				});
+			} else {
+				let { labels: labelsCont, values } = parseData(vaccines);
+				labels = labelsCont;
+
+				total = values.map((val, idx, vals) => {
+					//The first one
+					if (idx === 0) {
+						in1.push(vaccines[idx].Inoculacao1_Ac);
+						in2.push(vaccines[idx].Inoculacao2_Ac);
+						return val;
+					}
+
+					let prevDay = idx - 1;
+
+					if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
+						in1.push(null);
+					} else {
+						in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
+					}
+
+					if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
+						in2.push(null);
+					} else {
+						in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
+					}
+
+					if (vals[prevDay] == null || val == null) {
+						return null;
+					}
+					return val - vals[prevDay];
+				});
+			}
 			return {
 				valuesIn1: in1,
 				valuesIn2: in2,
 				values: total,
-				raw: vaccines,
+				raw,
 				labels,
 			};
 		},
@@ -256,10 +315,11 @@ export function useData() {
 			let com = {};
 			let mod = {};
 			let az = {};
-
+			let ecdcRegion = ECDC_MAPPING[regiao];
 			ecdc.forEach((el) => {
 				var obj = {};
-				if (parseInt(el['NumberDosesReceived']) > 0) {
+				debugger;
+				if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
 					com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
 					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
 					az[el['YearWeekISO']] = az[el['YearWeekISO']] || null;
@@ -297,10 +357,9 @@ export function useData() {
 			let maxValue = 0;
 			let weeks = await fetchWithLocalCache(`/api/weeks`, false);
 			let groups = {};
-
+			let ecdcRegion = ECDC_MAPPING[regiao];
 			ecdc.forEach((el) => {
-				debugger;
-				if (el['NumberDosesReceived'] == '') {
+				if (el['NumberDosesReceived'] == '' && el['Region'] === ecdcRegion) {
 					if (!labels.hasOwnProperty(el['YearWeekISO'])) {
 						labels[el['YearWeekISO'].replace('-', '')] = weeks[el['YearWeekISO']];
 					}

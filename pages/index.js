@@ -43,7 +43,7 @@ const plausible = Plausible({
 });
 
 export default function Home() {
-	let { statistics, update: updateData, ready: dataReady, versioning } = useData();
+	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'portugal' });
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
@@ -169,7 +169,7 @@ export default function Home() {
 		};
 	}, [dataReady]);
 	return (
-		<RegiaoContext.Provider value={'continente'}>
+		<RegiaoContext.Provider value={'portugal'}>
 			<Metatags isUpdating={updating}></Metatags>
 			<Header></Header>
 			<Container className="container-fluid app">

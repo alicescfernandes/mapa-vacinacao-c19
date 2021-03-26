@@ -256,7 +256,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 
 	useEffect(() => {
 		statistics.getReceivedDosesByBrandByWeek().then((recievedData) => {
-			console.log(3, recievedData);
 			setGraphData(recievedData);
 			setLoading(false);
 		});

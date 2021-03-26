@@ -246,10 +246,10 @@ export function LineRt({ statistics, colors }) {
 					<p>
 						<button
 							className={classNames('toggle_button', {
-								active: currentRegiao === 'continente',
+								active: currentRegiao === 'portugal'',
 							})}
 							onClick={() => {
-								setCurrentRegiao('continente');
+								setCurrentRegiao('portugal'');
 							}}
 						>
 							Continente

@@ -4,7 +4,7 @@ import { Card } from './../Card';
 import { formatNumber, hexToRgb, perHundred } from '../../utils';
 import 'chartjs-plugin-annotation';
 import { CustomCheckbox } from './../CustomCheckbox';
-import { RESIZE_TRESHOLD } from '../../constants';
+import { REGIOES, RESIZE_TRESHOLD } from '../../constants';
 import styles from './../Card.module.scss';
 import { RegiaoContext } from '../context/regiao';
 
@@ -175,7 +175,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			}
 		});
 
-		return {
+		const chartData = {
 			labels: labels,
 			datasets: [
 				{
@@ -211,24 +211,30 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					pointHoverBorderColor: color_2,
 					data: toggleStats.perHundred ? valuesIn2.map((el) => perHundred(el)) : valuesIn2,
 				},
-				{
-					...commonProps,
-					label: 'Casos Confirmados',
-					backgroundColor: '#D11541',
-					borderColor: '#D11541',
-					fill: false,
-					pointBorderColor: '#D11541',
-					pointBackgroundColor: '#D11541',
-					pointHoverBackgroundColor: '#D11541',
-					pointHoverBorderColor: '#D11541',
-					hidden: toggleStats.infetados === false,
-					data: casesData
-						.filter((el) => el.Data >= 1609070400000)
-						.map((el) => (toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)),
-				},
 			],
 		};
+
+		if (regiao == REGIOES.PORTUGAL) {
+			chartData.datasets.push({
+				...commonProps,
+				label: 'Casos Confirmados',
+				backgroundColor: '#D11541',
+				borderColor: '#D11541',
+				fill: false,
+				pointBorderColor: '#D11541',
+				pointBackgroundColor: '#D11541',
+				pointHoverBackgroundColor: '#D11541',
+				pointHoverBorderColor: '#D11541',
+				hidden: toggleStats.infetados === false,
+				data: casesData
+					.filter((el) => el.Data >= 1609070400000)
+					.map((el) => (toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)),
+			});
+		}
+
+		return chartData;
 	};
+
 	const options = () => {
 		return {
 			plugins: {
@@ -244,7 +250,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			animation: {
 				duration: 1000,
 			},
-			annotation: regiao == 'continente' ? annotations : {},
+			annotation: regiao == 'portugal' ? annotations : {},
 			tooltips: {
 				mode: 'index',
 				intersect: false,
@@ -291,7 +297,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 	return (
 		<Card allowOverflow={true}>
-			{regiao === 'continente' && (
+			{regiao === 'portugal' && (
 				<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
 					<CustomCheckbox
 						checked={toggleStats.primeira_fase}

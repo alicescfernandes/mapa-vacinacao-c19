@@ -8,7 +8,7 @@ import { Notifications } from './Notifications';
 export function Header() {
 	let regiao = useContext(RegiaoContext);
 	let regioes = {
-		continente: {
+		portugal: {
 			nome: '',
 			tagline: 'Dados atualizados diariamente entre as 13h e as 14h',
 		},
@@ -57,7 +57,7 @@ export function Header() {
 				<Container className={styles.content}>
 					<nav className={styles.nav}>
 						<ul>
-							{regiao === 'continente' && (
+							{regiao === 'portugal' && (
 								<>
 									<li>
 										<a target="_blank" href="https://covid19estamoson.gov.pt/vacinacao-covid19/">

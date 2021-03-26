@@ -51,3 +51,28 @@ export let lineChartCommon2 = {
 	pointRadius: 0,
 	pointHitRadius: 0,
 };
+
+export const REGIOES = {
+	MADEIRA: 'madeira',
+	PORTUGAL: 'portugal',
+};
+
+export const ECDC_MAPPING = {
+	alentejo: 'PTCSR01',
+	algarve: 'PTCSR02',
+	acores: 'PTCSR03',
+	centro: 'PTCSR04',
+	lisboa: 'PTCSR05',
+	madeira: 'PTCSR06',
+	norte: 'PTCSR07',
+	portugal: 'PT',
+
+	PTCSR01: 'alentejo',
+	PTCSR02: 'algarve',
+	PTCSR03: 'acores',
+	PTCSR04: 'centro',
+	PTCSR05: 'lisboa',
+	PTCSR06: 'madeira',
+	PTCSR07: 'norte',
+	PT: 'portugal',
+};

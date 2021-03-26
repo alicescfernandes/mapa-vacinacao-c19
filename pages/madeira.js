@@ -44,7 +44,7 @@ const plausible = Plausible({
 });
 
 export default function Home() {
-	let { statistics, update: updateData, ready: dataReady, versioning } = useData();
+	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'madeira' });
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
@@ -248,67 +248,7 @@ export default function Home() {
 								<LineRt regiao={'madeira'} colors={colors_v2} statistics={statistics}></LineRt>
 							</Col>
 						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Número de doses recebidas por semana</h2>
-								<hr />
-								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Número de doses recebidas (acumulado)</h2>
-								<hr />
-								<BarVacinasRecebidaDiaAcum colors={colors} statistics={statistics}></BarVacinasRecebidaDiaAcum>
-							</Col>
-						</Row>
-						<Row>
-							<Col lg={6} xs={12}>
-								<h2 className={styles.title}>Proporção de doses recebidas relativamente às doses adquiridas</h2>
-								<h3 className={styles.subtitle}>
-									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<hr />
 
-								<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
-							</Col>
-							<Col lg={6} xs={12}>
-								<h2 className={styles.title}>Proporção de doses administradas relativamente às doses recebidas</h2>
-								<h3 className={styles.subtitle}>
-									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<hr />
-
-								<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária</h2>
-								<hr />
-								<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Doses totais administradas por faixa etária</h2>
-								<h3 className={styles.subtitle}>
-									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<hr />
-
-								<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
-							</Col>
-						</Row>
 						<Row>
 							<Col>
 								<h2 className={styles.title}>
@@ -336,38 +276,6 @@ export default function Home() {
 								</h2>
 								<hr />
 								<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Evolução do programa de vacinação por ARS</h2>
-								<h3 className={styles.subtitle}>
-									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<hr />
-
-								<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Ponto de situação por ARS</h2>
-								<h3 className={styles.subtitle}>
-									Dados acumulados relativos à semana de{' '}
-									{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
-										locale: pt,
-									})}{' '}
-									até{' '}
-									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<hr />
-
-								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 							</Col>
 						</Row>
 
