@@ -53,11 +53,14 @@ export function RamMapa({ statistics, colors }) {
 				let concelho = MADEIRA_DICOS[feature.properties.Dico];
 				let data = graphData.concelhos[concelho];
 
+				let percentagem_1 = (data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_2 = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+
 				shape.bindPopup(
 					`<p>
 						<strong>${feature.properties.Municipio}</strong>
-						<br>1ª Dose: ${formatNumber(data.dose_1)}
-						</br>2ª Dose: ${formatNumber(data.dose_2)}
+						<br>1ª Dose: ${formatNumber(data.dose_1)} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${formatNumber(data.dose_2)} (${percentagem_2.toFixed(2)}%)
 					</p>`
 				);
 				shape.on('click', () => {
@@ -69,7 +72,7 @@ export function RamMapa({ statistics, colors }) {
 				let concelho = MADEIRA_DICOS[feature.properties.Dico];
 				let data = graphData.concelhos[concelho];
 
-				let percentagem = data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor;
+				let percentagem = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 
 				return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
 			},
@@ -116,7 +119,6 @@ export function RamMapa({ statistics, colors }) {
 	};
 
 	function renderGraph(el) {
-		if (!el) return '';
 		const data = (canvas, cenas) => {
 			/* 	if (window.innerWidth <= RESIZE_TRESHOLD) {
 				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
@@ -238,7 +240,7 @@ export function RamMapa({ statistics, colors }) {
 		<Card>
 			<Row>
 				<Col>
-					<div id="map" style={{ height: '500px' }}></div>
+					<div id="map" style={{ height: '350px' }}></div>
 				</Col>
 			</Row>
 			<Row style={{ marginTop: 15 }}>{Object.values(graphData.concelhos).map(renderGraph)}</Row>
