@@ -106,13 +106,19 @@
 		}
 	}
 }
-
+.text_left {
+	text-align: left;
+}
 .ram {
 	&_subchart {
 		p {
 			font-weight: bold;
 			font-size: 13px;
 			text-align: center;
+		}
+
+		&_bar {
+			padding: 5px;
 		}
 	}
 	h3 {

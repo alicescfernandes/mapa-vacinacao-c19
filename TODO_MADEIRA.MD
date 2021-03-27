@@ -19,7 +19,7 @@
     - ~~Número de doses recebidas por semana~~
     - ~~Número de doses recebidas (acumulado)~~
     - ~~Proporção de doses administradas relativamente às doses recebidas~~
-    - Número de doses administradas por semana e faixa etária
+    - ~~Número de doses administradas por semana e faixa etária~~
     - Doses totais administradas por faixa etária
     - ~~Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias~~
     - Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
