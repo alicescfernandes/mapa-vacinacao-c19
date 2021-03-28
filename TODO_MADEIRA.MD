@@ -25,6 +25,7 @@
     - ~~Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias~~
     - ~~Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos~~
     - ~~Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível~~
+- ~~Alterar notas e fontes~~
 - Terminar descrições de cada gráfico
 - Reactivar Pusher & OneSignal
 - Fazer menu mobile
