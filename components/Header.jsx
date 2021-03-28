@@ -95,7 +95,7 @@ export function Header() {
 				</Container>
 			</header>
 
-			<div className={`${styles.submenu} ${styles.hide_mobile}`}>
+			<div className={`${styles.submenu}`}>
 				<Container className={styles.content}>
 					<nav className={styles.nav}>
 						<ul>
