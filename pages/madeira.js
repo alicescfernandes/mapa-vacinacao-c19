@@ -305,10 +305,22 @@ export default function Home() {
 								<p className={styles.text}>
 									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o
 									&nbsp;
-									<a className={styles.link} target="_blank" href="https://www.pordata.pt/Portugal">
-										número de população de Portugal (dados do PORDATA)
+									<a
+										className={styles.link}
+										target="_blank"
+										href="https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html"
+									>
+										número de população da Região Autónoma da Madeira (dados da Direção Regional de Estatística da Madeira)
 									</a>
-									. De acordo com o&nbsp;
+									. Os{' '}
+									<a
+										className={styles.link}
+										target="_blank"
+										href="https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+									>
+										dados de cada região da Madeira
+									</a>{' '}
+									são dados provisórios de até 31/12 e foram retirados do PORDATA De acordo com o&nbsp;
 									<a
 										className={styles.link}
 										target="_blank"
@@ -331,29 +343,6 @@ export default function Home() {
 									</a>
 								</p>
 
-								<p className={styles.text}>
-									No início da campanha de vacinação foi anunciadas que ia haver 3 fases de vacinação, e que a primeria iria ser
-									dividida em duas partes. A partir de Dezembro iriam ser administradas vacinas a Profissionais de saúde envolvidos
-									na prestação de cuidados a doentes, profissionais das forças armadas, forças de segurança e serviços críticos,
-									profissionais e residentes em ERPIs e instituições similares e profissionais e utentes da RNCCI. <br />A partir de
-									Fevereiro iriam ser administradas vacinas a pessoas com mais de 50 ano, e com Insuficiência cardíaca, Doença
-									coronária, Insuficiência renal (TFG menor que 60ml/min) ou com doença respiratória crónica. <br />
-									<br />
-									Para a segunda fase está previsto vacinar pessoas com 65 ou mais anos com ou sem patologias que não tenham sido
-									vacinadas previamente e pessoas entre os 50 e os 64 anos com pelo menos uma das seguintes patologias descritas no
-									plano de vacinação. Mais informação sobre o plano de vacinação pode ser consultada{' '}
-									<a
-										className={styles.link}
-										href="https://www.sns.gov.pt/wp-content/uploads/2020/12/Plano_Vacinacao_COVID-19.pdf"
-										target=":blank"
-									>
-										aqui
-									</a>{' '}
-									e{' '}
-									<a className={styles.link} href="https://covid19.min-saude.pt/vacinacao/" target=":blank">
-										aqui
-									</a>
-								</p>
 								{/*	<p className={styles.text}>
 							A média de evolução de casos da União Europeia foi calculada com os números reportados por cada país, mesmo que alguns países não tenham ainda reportado para o dia de hoje. No gráfico de o numero total de vacinas administradas por dia de cada só são mostrados os dados que
 							foram reportados por cada país, sendo que nem todos os paises reportam em simultâneo os dados.
@@ -363,90 +352,16 @@ export default function Home() {
 							<Col xs={12} className={styles.sources_block}>
 								<h2 className={styles.title}>Fontes</h2>
 								<p className={styles.text}>
-									Os dados apresentados são retirados do portal&nbsp;
-									<a className={styles.link} target="_blank" href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/">
-										Monitorização do SNS da Direção-Geral da Saúde
+									Os dados apresentados são retirados dos boletins publicados pela&nbsp;
+									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/boletim-vacinacao-covid-19/">
+										Direção Regional de Saúde
 									</a>
-									&nbsp;e do sítio&nbsp;
-									<a
-										className={styles.link}
-										target="_blank"
-										href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/"
-									>
-										Ponto de Situação da Direção-Geral da Saúde
-									</a>
-									. A atualização destes dados é diária.
-									<br />
-									Os dados relativos à distribuição das vacinas e administração das mesmas por grupo etária são disponibilizados
-									pelo{' '}
-									<a className={styles.link} href="https://www.ecdc.europa.eu/en" target="_blank">
-										ECDC (European Centre for Disease Prevention and Control)
-									</a>
-									&nbsp; e são atualizados através dos&nbsp;
-									<a className={styles.link} target="_blank" href="https://covid19-vaccine-report.ecdc.europa.eu/#6_Reported_data">
-										relatórios publicados semanalmente.
-									</a>
-								</p>
-								<p className={styles.text}>
-									Os dados relativos à vacinação por ARS é tirada do portal sobre{' '}
-									<a className={styles.link} href="https://covid19.min-saude.pt/" target="_blank">
-										a COVID-19 da Direção-Geral da Saúde
-									</a>
-									&nbsp; e são atualizados através dos&nbsp;
-									<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">
-										relatórios publicados semanalmente.
-									</a>
-								</p>
-								<p className={styles.text}>
-									O número total de vacinas adquiridas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado
-									feito no sítio do Governo de Portugal, que{' '}
-									<a
-										className={styles.link}
-										href="https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C"
-										target="_blank"
-									>
-										pode ser consultado aqui.
+									. A atualização destes dados é semanal. Os dados relativos aos casos confirmados pelo o novo coronavirus são
+									retirados dos{' '}
+									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/ponto-de-situacao/">
+										pontos de situação
 									</a>{' '}
-									No dia 01 de Março de 2021, foi anunciado que o número total de vacinas adquiridas aumentou para 38 milhões de
-									doses, num comunicado dirigido à imprensa que{' '}
-									<a
-										className={styles.link}
-										href="https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19"
-										target="_blank"
-									>
-										pode ser consultado aqui.
-									</a>
-									&nbsp;Como base para as contas, assumimos que Portugal adquiriu 38 milhões de doses.
-								</p>
-								<p className={styles.text}>
-									Os dados relativos à vacinação na União Europeia são atualizados pelo&nbsp;
-									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
-										Our World In Data
-									</a>
-									&nbsp; e estão disponíveis&nbsp;
-									<a
-										className={styles.link}
-										target="_blank"
-										href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv"
-									>
-										no repositório de Github
-									</a>
-									. Os dados relativos ao{' '}
-									<em>
-										R<sub>t</sub>{' '}
-									</em>
-									são atualizados pelo&nbsp;
-									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
-										Instituto Nacional Doutor Ricardo Jorge
-									</a>
-									&nbsp; e estão disponíveis&nbsp;
-									<a
-										className={styles.link}
-										target="_blank"
-										href="http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/"
-									>
-										nesta página.
-									</a>
+									publicados pela mesma entidade
 								</p>
 							</Col>
 						</Row>
