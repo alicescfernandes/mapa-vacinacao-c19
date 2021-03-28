@@ -6,15 +6,13 @@ import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from './../../utils';
 export function PieSuscetiveisProporcao({ statistics, colors }) {
-	let [loading, setLoading] = useState(true);
-	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
-	let { values: valueCasesDiarios } = statistics.getDiariosCases();
-	let vaccines = statistics.getRaw();
-	let firstItem = valueCasesDiarios.reverse()[0];
-	let infetadosVacinados = vaccines[vaccines.length - 1].Inoculacao2_Ac - firstItem.ConfirmadosAcumulado;
-	let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + firstItem.Activos + firstItem.Recuperados + firstItem.Obitos);
+	let [loading, setLoading] = useState(false);
+	let vaccines = statistics.getLastVaccineAvaliable();
+	let lastCase = statistics.getLastCaseAvaliable();
+	let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
+	let populacao_suscetivel = lastCase.populacao - (vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos);
 	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
-
+	console.log(lastCase, populacao_suscetivel);
 	let { main, shades, tints, complements } = colors;
 
 	const data = (canvas) => {
@@ -24,8 +22,8 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 			datasets: [
 				{
 					backgroundColor: [main, complements[0], complements[2], shades[2], complements[1]],
-					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
-					//data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
+					data: [vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel],
+					//data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
 				},
 			],
 		};
@@ -69,12 +67,6 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 			},
 		};
 	};
-
-	useEffect(() => {
-		if (values.length > 0) {
-			setLoading(false);
-		}
-	}, [values, labels]);
 
 	return (
 		<Card allowOverflow={true}>

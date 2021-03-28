@@ -47,7 +47,6 @@ const plausible = Plausible({
 
 export default function Home() {
 	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'madeira' });
-	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
 	let [updating, setUpdating] = useState(false);
@@ -55,15 +54,13 @@ export default function Home() {
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
 	let [derivedNumbers, setDerivedNumbers] = useState({
 		pessoasAVacinar: {
-			prev: 0,
 			current: 0,
 		},
 		percentagem: {
-			prev: 0,
 			current: 0,
 		},
 	});
-	//TODO: Move this to the hook
+
 	let [doses, setDoses] = useState({
 		encomendadas: generic.doses.valor,
 		recebidas: 0,
@@ -183,7 +180,7 @@ export default function Home() {
 										suffix={'%'}
 										colors={colors}
 										title="Percentagem de população inoculada com a 2ª dose "
-										from={derivedNumbers.percentagem.prev}
+										from={0}
 										to={derivedNumbers.percentagem.current}
 									></Counter>
 								</Card>
@@ -196,7 +193,7 @@ export default function Home() {
 										suffix={'%'}
 										colors={colors}
 										title="Percentagem para atingir imunidade de grupo"
-										from={70 - derivedNumbers.percentagem.prev}
+										from={0}
 										to={70 - derivedNumbers.percentagem.current}
 									></Counter>
 								</Card>
@@ -272,7 +269,7 @@ export default function Home() {
 							</Col>
 						</Row>
 
-						<Row>
+						{/*	<Row>
 							<Col>
 								<h2 className={styles.title}>
 									Número de vacinas administradas por semana com o número de infectados e de recuperados nas últimas 5 semanas
@@ -280,7 +277,7 @@ export default function Home() {
 								<hr />
 								<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
 							</Col>
-						</Row>
+					</Row>*/}
 						<Row>
 							<Col lg={6} xs={12}>
 								<h2 className={styles.title}>

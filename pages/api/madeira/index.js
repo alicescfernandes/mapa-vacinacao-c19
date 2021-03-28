@@ -1,4 +1,4 @@
-import madeira from './../../data/madeira.json';
+import madeira from './../../../data/madeira.json';
 
 export default async function handler(req, res) {
 	res.statusCode = 200;

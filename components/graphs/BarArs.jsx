@@ -159,10 +159,8 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 export function BarArs({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { main, shades, tints } = colors;
-	let { values: valueCasesDiarios } = statistics.getDiariosCases();
 	const [snsData, setSNSData] = useState({});
 	const [ars, setArs] = useState({});
-	let firstItem = valueCasesDiarios.reverse()[0];
 	let graphData = {
 		All: {},
 		'ARS Alentejo': {},

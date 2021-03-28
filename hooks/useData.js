@@ -2,20 +2,18 @@ import { useContext, useEffect, useState } from 'react';
 import { ECDC_MAPPING, REGIOES } from '../constants';
 import { fetchWithLocalCache } from '../utils';
 import data from './../data/last-update.json';
+import { populacao, populacao_ram } from './../data/generic.json';
+
 import lastUpdate from './../data/last-update.json';
 export function useData({ regiao }) {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
-	let [weeks, setWeeks] = useState(false);
-	let [sns, setSns] = useState(false);
 	let [ecdc, setECDC] = useState(false);
-	let [ars, setArs] = useState(false);
-	let [owid, setOwid] = useState(false);
 	let [vaccines, setVaccines] = useState(false);
 	let [casesData, setCasesData] = useState(false);
 	let [labels, setLabels] = useState([]);
-	let [rt, setRt] = useState([]);
 	let [madeira, setMadeira] = useState([]);
+	let [madeiraPDS, setMadeiraPDS] = useState([]);
 
 	let options = {
 		month: 'short',
@@ -47,6 +45,51 @@ export function useData({ regiao }) {
 	let statistics = {
 		getRaw: () => {
 			return vaccines;
+		},
+		getLastVaccineAvaliable: () => {
+			let data = {};
+			if (regiao === REGIOES.MADEIRA) {
+				let lastItem = madeira[madeira.length - 1];
+				data = {
+					dose_2: lastItem.dose_2,
+					dose_1: lastItem.dose_1,
+					total: lastItem.total,
+				};
+			} else {
+				let lastItem = vaccines[vaccines.length - 1];
+
+				data = {
+					dose_2: lastItem.Inoculacao2_Ac,
+					dose_1: lastItem.Inoculacao1_Ac,
+					total: lastItem.Vacinados_Ac,
+				};
+			}
+
+			return data;
+		},
+		getLastCaseAvaliable: () => {
+			let data = {};
+			if (regiao === REGIOES.MADEIRA) {
+				let lastItem = madeiraPDS[madeiraPDS.length - 1];
+				debugger;
+				data = {
+					ativos: lastItem.ativos,
+					recuperados: lastItem.recuperados,
+					obitos: lastItem.obitos,
+					populacao: populacao_ram.valor,
+				};
+			} else {
+				let lastItem = casesData[vaccines.length - 1];
+
+				data = {
+					ativos: lastItem.Activos,
+					recuperados: lastItem.Recuperados,
+					obitos: lastItem.Obitos,
+					populacao: populacao.valor,
+				};
+			}
+
+			return data;
 		},
 		getDailyData: () => {
 			if (regiao === REGIOES.MADEIRA) {
@@ -89,7 +132,6 @@ export function useData({ regiao }) {
 		},
 		getRtRegiao: async (regiao) => {
 			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(lastUpdate.date)}`).then((responseRt) => {
-				setRt(responseRt);
 				return responseRt;
 			});
 			let date = new Date('2020-12-27T00:00:45.000Z').getTime();
@@ -533,6 +575,10 @@ export function useData({ regiao }) {
 			let res = await fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`);
 			return res;
 		},
+		getMadeiraPDS: async () => {
+			let res = await fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeira)}`);
+			return res;
+		},
 	};
 
 	useEffect(() => {
@@ -541,11 +587,13 @@ export function useData({ regiao }) {
 			fetchWithLocalCache(`/api/vaccinesold?${btoa(lastUpdate.date)}`),
 			fetchWithLocalCache(`/api/cases?${btoa(lastUpdate.date)}`),
 			fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`),
-		]).then(([ecdc, vaccines, cases, madeira]) => {
+			fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeira)}`),
+		]).then(([ecdc, vaccines, cases, madeira, madeiraPDS]) => {
 			setECDC(ecdc);
 			setVaccines(vaccines);
 			setCasesData(cases);
 			setMadeira(madeira);
+			setMadeiraPDS(madeiraPDS);
 			setReady(true);
 		});
 	}, []);
