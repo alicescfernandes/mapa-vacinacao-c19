@@ -1,12 +1,12 @@
 - Obter dados gerais demográficos da Madeira
     - ~~População~~
     - Outros dados relevantes (ver ainda quais são)
-- Obter SVG para gráfico personalizado (com Leaflet)
+- ~~Obter SVG para gráfico personalizado (com Leaflet)~
 - Acabar de transcrever os relatórios
 - Obter dados por freguesia (?)
-- Introduzir sub-páginas
+- ~~Introduzir sub-páginas~~
     - ~~Garantir que só se chama os dados quando se está na página certa~~
-- Planear gráficos
+- ~~Planear gráficos~~
     - ~~Número total de vacinas administradas~~
     - ~~Número de doses administradas - 1ª Dose~~
     - ~~Número de doses administradas - 2ª Dose~~
