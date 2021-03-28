@@ -4,6 +4,8 @@ import { Container } from 'react-bootstrap';
 import { RegiaoContext } from './context/regiao';
 import styles from './Header.module.scss';
 import { Notifications } from './Notifications';
+import Madeira from '../assets/madeira.svg';
+import Portugal from '../assets/portugal.svg';
 
 export function Header() {
 	let regiao = useContext(RegiaoContext);
@@ -21,6 +23,7 @@ export function Header() {
 			tagline: '',
 		},
 	};
+
 	return (
 		<>
 			<header className={`${styles.header} card-shadow`}>
@@ -36,6 +39,45 @@ export function Header() {
 							</li>
 							<li>
 								<Link href="/madeira">Madeira</Link>
+							</li>
+							<li>
+								<Notifications>
+									<a href="#">Notificações</a>
+								</Notifications>
+							</li>
+
+							<li>
+								<a target="_blank" href="https://twitter.com/vacinacaocovid1">
+									Twitter
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</Container>
+			</header>
+			<header className={`${styles.header} ${styles.header_mobile} card-shadow`}>
+				<Container className={styles.content}>
+					<nav className={`${styles.nav}  ${styles.hide_mobile}`}>
+						<ul>
+							<li>
+								<Link href="/">
+									<a>
+										<span>
+											<Portugal height={40}></Portugal>
+										</span>
+										<span>Portugal</span>
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/madeira">
+									<a>
+										<span>
+											<Madeira height={30}></Madeira>
+										</span>
+										<span>Madeira</span>
+									</a>
+								</Link>
 							</li>
 							<li>
 								<Notifications>
