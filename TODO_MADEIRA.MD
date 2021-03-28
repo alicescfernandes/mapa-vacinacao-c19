@@ -1,7 +1,7 @@
 - Obter dados gerais demográficos da Madeira
     - ~~População~~
     - Outros dados relevantes (ver ainda quais são)
-- ~~Obter SVG para gráfico personalizado (com Leaflet)~
+- ~~Obter SVG para gráfico personalizado (com Leaflet)~~
 - Acabar de transcrever os relatórios
 - Obter dados por freguesia (?)
 - ~~Introduzir sub-páginas~~
