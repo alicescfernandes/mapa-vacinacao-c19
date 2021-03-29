@@ -76,7 +76,7 @@ export function LineRt({ statistics, colors, regiao }) {
 					type: 'line',
 					fill: '2', //fill until previous dataset
 					data: rtData.rt.map((el) => el.limite_superior_IC95.toFixed(2)),
-					order: 3,
+					order: 1,
 					yAxisID: 'rt',
 				},
 
@@ -100,7 +100,7 @@ export function LineRt({ statistics, colors, regiao }) {
 					type: 'line',
 					fill: false,
 					data: rtData.rt.map((el) => el.limite_inferior_IC95.toFixed(2)),
-					order: 1,
+					order: 3,
 					yAxisID: 'rt',
 				},
 
