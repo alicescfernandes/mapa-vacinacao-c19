@@ -11,7 +11,6 @@ export function Notifications({ children }) {
 		});
 	}
 	useEffect(function () {
-		return;
 		window.OneSignal = window.OneSignal || [];
 		const OneSignal = window.OneSignal;
 		//OneSignal.log.setLevel('trace');

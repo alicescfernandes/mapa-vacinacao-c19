@@ -7,7 +7,6 @@ import { Footer } from '../components/Footer';
 import { Metatags } from '../components/MetaTags';
 import { Header } from '../components/Header';
 import { RegiaoContext } from './../components/context/regiao';
-import Pusher from 'pusher';
 import { useEffect } from 'react';
 import { initSockets } from '../hooks/initSockets';
 

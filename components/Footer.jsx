@@ -23,8 +23,7 @@ export function Footer() {
 				crossorigin="anonymous"
 			></script>
 			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
-			<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-			{/*<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>*/}
+			<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 			<footer className={`${styles.footer} card-shadow`}>
 				<Container className={styles.content}>
 					<ul>

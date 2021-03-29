@@ -77,11 +77,8 @@ export default function Home() {
 		dataLong: '',
 	});
 
-	console.count('render');
-
 	let { colors, colors_v2, setColors } = useColors();
 	function onSocketUpdate({ data }) {
-		console.log('stuff', data);
 		updateData(data.type, data.data);
 		setUpdating(true);
 		setTimeout(() => {
@@ -111,7 +108,6 @@ export default function Home() {
 			setLast(rawData[rawData.length - 1]);
 			setPreviousItem(rawData[rawData.length - 2]);
 		}
-		console.log('1');
 	}, [versioning]);
 
 	useEffect(() => {

@@ -1,4 +1,3 @@
-/* return;
 const PRECACHE = 'precache';
 const RUNTIME = 'runtime';
 
@@ -18,7 +17,7 @@ self.addEventListener('install', (event) => {
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', (event) => {
 	console.log('activate');
-	const currentCaches = [PRECACHE, RUNTIME];
+	const currentCaches = [PRECACHE];
 	event.waitUntil(
 		caches
 			.keys()
@@ -37,33 +36,17 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-	// Skip cross-origin requests, like those for Google Analytics.
-	if (event.request.url.startsWith(self.location.origin)) {
+	console.log('sw', 'url', event.request.url);
+
+	if (event.request.url.startsWith(self.location.origin) && event.request.url.match('/api/')) {
 		event.respondWith(
 			caches.match(event.request).then((cachedResponse) => {
-				const currentCaches = [PRECACHE, RUNTIME];
-				event.waitUntil(
-					caches
-						.keys()
-						.then((cacheNames) => {
-							return cacheNames.filter((cacheName) => currentCaches.includes(cacheName));
-						})
-						.then((cachesToDelete) => {
-							return Promise.all(
-								cachesToDelete.map((cacheToDelete) => {
-									return caches.delete(cacheToDelete);
-								})
-							);
-						})
-						.then(() => {})
-				);
-
 				if (cachedResponse) {
+					console.log('sw', 'cached', event.request.url);
 					return cachedResponse;
 				}
 				return caches.open(RUNTIME).then((cache) => {
 					return fetch(event.request).then((response) => {
-						// Put a copy of the response in the runtime cache.
 						return cache.put(event.request, response.clone()).then(() => {
 							return response;
 						});
@@ -74,4 +57,3 @@ self.addEventListener('fetch', (event) => {
 	}
 });
 importScripts('https://cdn.onesignal.com/sdks/OneSignalSDKWorker.js');
- */
