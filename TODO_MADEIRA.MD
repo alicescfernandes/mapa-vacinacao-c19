@@ -30,3 +30,5 @@
 - ~~Reactivar Pusher & OneSignal~~
 - ~~Fazer menu mobile~~
 - Fazer ajustes de CSS
+- Fazer ajustes de CSS (Mobile)
+
