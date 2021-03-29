@@ -176,6 +176,13 @@ sup.new {
 	}
 }
 
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (max-width: 900px) {
+	body {
+		padding-bottom: 95px;
+	}
+}
+
 /* XXL large devices (large desktops, 1920  and up)*/
 @media (min-width: 1921px) {
 	.container {

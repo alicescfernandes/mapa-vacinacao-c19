@@ -32,13 +32,17 @@ export function Header() {
 						<h1>vacinação COVID 19 {regioes[regiao].nome} </h1>
 						<p>{regioes[regiao].tagline}</p>
 					</div>
-					<nav className={`${styles.nav}  ${styles.hide_mobile}`}>
+					<nav className={`${styles.nav} ${styles.hide_mobile}`}>
 						<ul>
 							<li>
-								<Link href="/">Portugal</Link>
+								<Link href="/">
+									<a className={regiao === 'portugal' ? styles.highlight : ''}>Portugal</a>
+								</Link>
 							</li>
 							<li>
-								<Link href="/madeira">Madeira</Link>
+								<Link href="/madeira">
+									<a className={regiao === 'madeira' ? styles.highlight : ''}>Madeira</a>
+								</Link>
 							</li>
 							<li>
 								<Notifications>
@@ -61,9 +65,9 @@ export function Header() {
 						<ul>
 							<li>
 								<Link href="/">
-									<a>
+									<a className={regiao === 'portugal' ? styles.highlight : ''}>
 										<span>
-											<Portugal height={40}></Portugal>
+											<Portugal height={30}></Portugal>
 										</span>
 										<span>Portugal</span>
 									</a>
@@ -71,24 +75,13 @@ export function Header() {
 							</li>
 							<li>
 								<Link href="/madeira">
-									<a>
+									<a className={regiao === 'madeira' ? styles.highlight : ''}>
 										<span>
-											<Madeira height={30}></Madeira>
+											<Madeira height={25}></Madeira>
 										</span>
 										<span>Madeira</span>
 									</a>
 								</Link>
-							</li>
-							<li>
-								<Notifications>
-									<a href="#">Notificações</a>
-								</Notifications>
-							</li>
-
-							<li>
-								<a target="_blank" href="https://twitter.com/vacinacaocovid1">
-									Twitter
-								</a>
 							</li>
 						</ul>
 					</nav>

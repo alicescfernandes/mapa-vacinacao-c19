@@ -114,9 +114,6 @@ export default function Home() {
 	}, [dataReady]);
 	return (
 		<RegiaoContext.Provider value={'madeira'}>
-			<Metatags isUpdating={updating}></Metatags>
-			<Header regiao="madeira"></Header>
-
 			<Container className="container-fluid app">
 				{loaded ? (
 					<>
@@ -372,11 +369,6 @@ export default function Home() {
 					</div>
 				)}
 			</Container>
-			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
-			<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-			{/*<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>*/}
-			<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-			<Footer></Footer>
 		</RegiaoContext.Provider>
 	);
 }

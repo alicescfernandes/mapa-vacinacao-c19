@@ -1,23 +1,7 @@
-import vaccines from '../data/vaccines.json';
-import date from '../data/last-update.json';
 import Head from 'next/head';
-import { useEffect } from 'react';
-import { formatNumber } from '../utils';
 export function Metatags({ isUpdating }) {
-	let options = {
-		month: '2-digit',
-		day: 'numeric',
-	};
-	let vacinas = vaccines[vaccines.length - 1];
-	let data = new Date(vacinas.Data);
-	let num = formatNumber(vacinas.Vacinados_Ac);
 	let title = 'Vacinação COVID-19 - Dashboard sobre os dados da campanha de vacinação contra a COVID-19 em Portugal e Arquipélagos';
 	let descricao = `Site informativo sobre a administração das vacinas em Portugal. É atualizado sempre que possível, assim que os dados forem sendo atualizados. Contamos com dados da Direção-Geral da Saúde, Our World in Data, Centro Europeu de Controlo de Doenças e informação do Governo de Portugal, temos gráficos sobre as vacinas administradas por dia e desde o início da campanha de vacinação, compradas, a faixa etária dos inoculados, infeções, óbitos, entre outros e temos números relacionados com a imunidade de grupo entre outros. Todo o nosso código é open-source, e pode ser consultado no github onde está alojado. Temos ainda uma conta no twitter onde pode seguir as últimas atualizações em relação aos números da campanha de vacinação da COVID-19.`;
-	useEffect(() => {
-		if (isUpdating) {
-			document.title = 'Atualizado - ' + title;
-		}
-	}, [isUpdating]);
 
 	return (
 		<>
