@@ -7,9 +7,19 @@ import { Footer } from '../components/Footer';
 import { Metatags } from '../components/MetaTags';
 import { Header } from '../components/Header';
 import { RegiaoContext } from './../components/context/regiao';
+import Pusher from 'pusher';
+import { useEffect } from 'react';
+import { initSockets } from '../hooks/initSockets';
 
 function NextApp({ Component, props }) {
-	console.log('pageProps', props.url);
+	// Unconventional way of not having multiple sockets connected between pages
+	useEffect(() => {
+		initSockets(function (data) {
+			let event = new Event('socket_update');
+			event.data = data;
+			window.dispatchEvent(event);
+		});
+	}, []);
 	return (
 		<RegiaoContext.Provider value={props.regiao}>
 			<Metatags></Metatags>
@@ -28,7 +38,7 @@ NextApp.getInitialProps = async (app) => {
 		regiao = url;
 	}
 
-	return { props: { regiao: regiao } };
+	return { props: { regiao: regiao, pusher: '' } };
 };
 
 export default NextApp;

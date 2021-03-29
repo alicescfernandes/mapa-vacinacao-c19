@@ -290,7 +290,6 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 	useEffect(() => {
 		statistics.getAdministredDosesByAgeByWeek().then((data) => {
-			console.log(1, data);
 			setGraphData(data);
 			setLoaded(true);
 			setActiveDose(1);

@@ -31,10 +31,6 @@ export function LineRt({ statistics, colors, regiao }) {
 	}, [currentRegiao]);
 
 	useEffect(() => {
-		console.log(rtData);
-	}, [rtData]);
-
-	useEffect(() => {
 		statistics.getRtRegiao(currentRegiao).then((data) => {
 			setRtData(data);
 			setLoaded(true);
@@ -149,7 +145,6 @@ export function LineRt({ statistics, colors, regiao }) {
 				align: 'start',
 				labels: {
 					filter: function (item, chart) {
-						console.log();
 						return !item.text.match('limite');
 					},
 				},

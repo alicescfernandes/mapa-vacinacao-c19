@@ -16,7 +16,7 @@ import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
 import Plausible from 'plausible-tracker';
-
+import { useRouter } from 'next/router';
 //data
 import generic from './../data/generic.json';
 import fases from './../data/fases.json';
@@ -51,6 +51,7 @@ export default function Home() {
 	let [previousItem, setPreviousItem] = useState({});
 	let [updating, setUpdating] = useState(false);
 	let [loaded, setLoaded] = useState(false);
+	const router = useRouter();
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
 	let [derivedNumbers, setDerivedNumbers] = useState({
 		pessoasAVacinar: {
@@ -71,10 +72,21 @@ export default function Home() {
 		dataLong: '',
 	});
 
+	// Send to main route
+	function onSocketUpdate() {
+		router.push('/');
+	}
+
 	let { colors, colors_v2, setColors } = useColors();
+	useEffect(() => {
+		// Unconventional way of doing this
+		window.addEventListener('socket_update', onSocketUpdate);
 
-	useEffect(() => {}, [versioning]);
-
+		return function () {
+			// Unconventional way of doing this
+			window.removeEventListener('socket_update', onSocketUpdate);
+		};
+	}, []);
 	useEffect(() => {
 		let object = {
 			pessoasAVacinar: {

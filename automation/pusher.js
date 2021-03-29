@@ -10,7 +10,7 @@ const pusher = new Pusher({
 });
 
 function publishEvent(type, data) {
-	pusher.trigger('covid19', 'update', {
+	pusher.trigger('covid19_test', 'update', {
 		type,
 		data,
 	});

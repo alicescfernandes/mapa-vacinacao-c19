@@ -17,6 +17,11 @@ export function Footer() {
 	return (
 		<>
 			<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+			<script
+				src="https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js"
+				integrity="sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg=="
+				crossorigin="anonymous"
+			></script>
 			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
 			<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 			{/*<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>*/}

@@ -12,7 +12,6 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 	let populacao_suscetivel = lastCase.populacao - (vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos);
 	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
-	console.log(lastCase, populacao_suscetivel);
 	let { main, shades, tints, complements } = colors;
 
 	const data = (canvas) => {

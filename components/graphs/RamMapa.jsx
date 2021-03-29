@@ -64,7 +64,7 @@ export function RamMapa({ statistics, colors }) {
 					</p>`
 				);
 				shape.on('click', () => {
-					console.log('click');
+					//console.log('click');
 				});
 			},
 

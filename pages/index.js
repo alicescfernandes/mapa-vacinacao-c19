@@ -37,6 +37,7 @@ import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
+import { initSockets } from '../hooks/initSockets';
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
 	trackLocalhost: true,
@@ -79,7 +80,14 @@ export default function Home() {
 	console.count('render');
 
 	let { colors, colors_v2, setColors } = useColors();
-
+	function onSocketUpdate({ data }) {
+		console.log('stuff', data);
+		updateData(data.type, data.data);
+		setUpdating(true);
+		setTimeout(() => {
+			setUpdating(false);
+		}, 1000);
+	}
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
 			if (isSameDay(el.Data, d.getTime())) {
@@ -118,7 +126,6 @@ export default function Home() {
 			},
 		};
 		setDerivedNumbers(object);
-		console.log('2');
 	}, [selectedItem]);
 
 	useEffect(async () => {
@@ -129,19 +136,6 @@ export default function Home() {
 		setPreviousItem(selectedItem);
 		setFirst(rawData[0]);
 		plausible.trackPageview();
-
-		/* pusher = new Pusher('4dd4d1d504254af64544', {
-			cluster: 'eu',
-		}); */
-
-		/* let channel = pusher.subscribe('covid19');
-		channel.bind('update', function (data) {
-			updateData(data.type, data.data);
-			setUpdating(true);
-			setTimeout(() => {
-				setUpdating(false);
-			}, 1000);
-		}); */
 
 		let { sum } = await statistics?.getDosesRecebidasAcum();
 		sum = sum.reverse()[0];
@@ -161,13 +155,18 @@ export default function Home() {
 				locale: pt,
 			}),
 		});
-		console.log('3');
 		setLoaded(true);
+	}, [dataReady]);
+
+	useEffect(() => {
+		// Unconventional way of doing this
+		window.addEventListener('socket_update', onSocketUpdate);
 
 		return function () {
-			console.log('unmount');
+			// Unconventional way of doing this
+			window.removeEventListener('socket_update', onSocketUpdate);
 		};
-	}, [dataReady]);
+	}, []);
 	return (
 		<RegiaoContext.Provider value={'portugal'}>
 			<Container className="container-fluid app">
