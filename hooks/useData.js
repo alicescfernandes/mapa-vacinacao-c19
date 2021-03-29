@@ -71,7 +71,7 @@ export function useData({ regiao }) {
 			let data = {};
 			if (regiao === REGIOES.MADEIRA) {
 				let lastItem = madeiraPDS[madeiraPDS.length - 1];
-				debugger;
+
 				data = {
 					ativos: lastItem.ativos,
 					recuperados: lastItem.recuperados,
@@ -359,7 +359,7 @@ export function useData({ regiao }) {
 			let ecdcRegion = ECDC_MAPPING[regiao];
 			ecdc.forEach((el) => {
 				var obj = {};
-				debugger;
+
 				if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
 					com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
 					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
@@ -576,7 +576,7 @@ export function useData({ regiao }) {
 			return res;
 		},
 		getMadeiraPDS: async () => {
-			let res = await fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeira)}`);
+			let res = await fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeiraCases)}`);
 			return res;
 		},
 	};
