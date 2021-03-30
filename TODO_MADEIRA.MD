@@ -30,6 +30,6 @@
 - ~~Reactivar Pusher & OneSignal~~
 - ~~Fazer menu mobile~~
 - ~~Fazer ajustes de CSS~~
-- Fazer ajustes de CSS (Mobile)
-- Adicionar Lazyload aos componentes Madeira
+- ~~Fazer ajustes de CSS (Mobile)~~
+- ~~Adicionar Lazyload aos componentes Madeira~~
 
