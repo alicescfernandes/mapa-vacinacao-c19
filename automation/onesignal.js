@@ -42,7 +42,7 @@ if (data[data.length - 1].Data > lastUpdate.last_update) {
 	let dia = todayDate.getDate().toLocaleString('en-US', {
 		minimumIntegerDigits: 2,
 	});
-	let mes = todayDate.getMonth().toLocaleString('en-US', {
+	let mes = (todayDate.getMonth() + 1).toLocaleString('en-US', {
 		minimumIntegerDigits: 2,
 	});
 	let ano = todayDate.getFullYear().toLocaleString('en-US', {
