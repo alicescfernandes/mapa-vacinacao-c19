@@ -214,10 +214,10 @@ export function RamMapa({ statistics, colors }) {
 		};
 
 		return (
-			<Col xs={6} lg={4}>
+			<Col xs={12} lg={4}>
 				<div className={cardStyles.ram_subchart_bar}>
 					<h2 className={cardStyles.text_left}>{el.nome}</h2>
-					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 40} options={options()} data={data} />
+					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} />
 				</div>
 			</Col>
 		);

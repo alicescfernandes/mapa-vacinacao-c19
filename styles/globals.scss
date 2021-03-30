@@ -180,13 +180,15 @@ sup.new {
 		font-size: 12px;
 		margin-bottom: 0px;
 		line-height: 25px;
+		text-align: left;
 	}
 	i {
 		width: 25px;
 		height: 25px;
-		float: left;
-		margin-right: 8px;
-		opacity: 0.7;
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 6px;
+		margin-bottom: -3px;
 	}
 }
 

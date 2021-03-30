@@ -26,6 +26,7 @@ import { RegiaoContext } from '../components/context/regiao';
 import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
 import { RamBarAdministradasPorFaixaEtaria } from '../components/graphs/RamBarAdministradasPorFaixaEtaria';
 import { RamMapa } from '../components/graphs/RamMapa';
+import LazyLoad from 'react-lazyload';
 
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
@@ -253,33 +254,39 @@ export default function Home() {
 								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
 							</Col>
 						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
-								<hr />
-								<RamBarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></RamBarAdministradasPorFaixaEtaria>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Vacinação por região</h2>
-								<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2021 até 14 de março de 20210.</h3>
-								<hr />
-								<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>
-									<em>
-										R<sub>t</sub>
-									</em>{' '}
-									na Região Autónoma da Madeira
-								</h2>
-								<hr />
-								<LineRt regiao={'madeira'} colors={colors_v2} statistics={statistics}></LineRt>
-							</Col>
-						</Row>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
+									<hr />
+									<RamBarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></RamBarAdministradasPorFaixaEtaria>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Vacinação por região</h2>
+									<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2021 até 14 de março de 20210.</h3>
+									<hr />
+									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>
+										<em>
+											R<sub>t</sub>
+										</em>{' '}
+										na Região Autónoma da Madeira
+									</h2>
+									<hr />
+									<LineRt regiao={'madeira'} colors={colors_v2} statistics={statistics}></LineRt>
+								</Col>
+							</Row>
+						</LazyLoad>
 
 						{/*	<Row>
 							<Col>
@@ -290,46 +297,48 @@ export default function Home() {
 								<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
 							</Col>
 					</Row>*/}
-						<Row>
-							<Col lg={6} xs={12}>
-								<h2 className={styles.title}>
-									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
-								</h2>
-								<h3 className={styles.subtitle}>
-									Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-									, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-									{format(new Date(json.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<hr />
-								<PieVacinadosInfectadosRecuperadosObitos
-									colors={colors_v2}
-									statistics={statistics}
-								></PieVacinadosInfectadosRecuperadosObitos>
-							</Col>
-							<Col lg={6} xs={12}>
-								<h2 className={styles.title}>
-									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população
-									suscetível
-								</h2>
-								<h3 className={styles.subtitle}>
-									Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-									, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-									{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<hr />
-								<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
-							</Col>
-						</Row>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col lg={6} xs={12}>
+									<h2 className={styles.title}>
+										Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
+									</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
+										{format(new Date(json.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
+									<PieVacinadosInfectadosRecuperadosObitos
+										colors={colors_v2}
+										statistics={statistics}
+									></PieVacinadosInfectadosRecuperadosObitos>
+								</Col>
+								<Col lg={6} xs={12}>
+									<h2 className={styles.title}>
+										Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e
+										população suscetível
+									</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
+										{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
+									<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
+								</Col>
+							</Row>
+						</LazyLoad>
 
 						<Row>
 							<Col xs={12} className={styles.sources_block}>
