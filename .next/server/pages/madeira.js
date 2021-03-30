@@ -2818,6 +2818,10 @@ function Home() {
     0: loaded,
     1: setLoaded
   } = Object(external_react_["useState"])(false);
+  let beacons = {
+    mid_page: false,
+    end_page: false
+  };
   const router = Object(router_["useRouter"])();
   let numberFormatter = new Intl.NumberFormat('pt-PT');
   let {
@@ -2843,6 +2847,21 @@ function Home() {
     data: '',
     dataLong: ''
   });
+
+  function trackScrollEvents(e) {
+    if (window.scrollY > 3576 && beacons.end_page === false) {
+      beacons.end_page = true;
+      plausible.trackEvent('end_page');
+      return;
+    }
+
+    if (window.scrollY > 1657 && beacons.mid_page === false) {
+      beacons.mid_page = true;
+      plausible.trackEvent('mid_page');
+      return;
+    }
+  }
+
   let startDate = new Date(last_update.dateMadeira);
   let [first, ...restDate] = Object(external_date_fns_["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
     locale: locale_["pt"]
@@ -2862,9 +2881,11 @@ function Home() {
   Object(external_react_["useEffect"])(() => {
     // Unconventional way of doing this
     window.addEventListener('socket_update', onSocketUpdate);
+    window.addEventListener('scroll', trackScrollEvents);
     return function () {
       // Unconventional way of doing this
       window.removeEventListener('socket_update', onSocketUpdate);
+      window.removeEventListener('scroll', trackScrollEvents);
     };
   }, []);
   Object(external_react_["useEffect"])(() => {
@@ -4064,7 +4085,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617137347377,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021/03/29\"}");
+module.exports = JSON.parse("{\"date\":1617139362886,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021/03/29\"}");
 
 /***/ }),
 

@@ -5691,6 +5691,10 @@ function Home() {
     0: previousItem,
     1: setPreviousItem
   } = Object(external_react_["useState"])({});
+  let beacons = {
+    mid_page: false,
+    end_page: false
+  };
   let {
     0: previousSelectedItem,
     1: setPreviousSelectedItem
@@ -5828,12 +5832,29 @@ function Home() {
     }));
     setLoaded(true);
   }, [dataReady]);
+
+  function trackScrollEvents(e) {
+    if (window.scrollY > 5580 && beacons.end_page === false) {
+      beacons.end_page = true;
+      plausible.trackEvent('end_page');
+      return;
+    }
+
+    if (window.scrollY > 1657 && beacons.mid_page === false) {
+      beacons.mid_page = true;
+      plausible.trackEvent('mid_page');
+      return;
+    }
+  }
+
   Object(external_react_["useEffect"])(() => {
     // Unconventional way of doing this
     window.addEventListener('socket_update', onSocketUpdate);
+    window.addEventListener('scroll', trackScrollEvents);
     return function () {
       // Unconventional way of doing this
       window.removeEventListener('socket_update', onSocketUpdate);
+      window.removeEventListener('scroll', trackScrollEvents);
     };
   }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsx"])(regiao["a" /* RegiaoContext */].Provider, {
@@ -9199,7 +9220,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617137347377,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021/03/29\"}");
+module.exports = JSON.parse("{\"date\":1617139362886,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021/03/29\"}");
 
 /***/ }),
 
