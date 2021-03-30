@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
-import { DatePickerButton } from '../components/DatePickerButton';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
+
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
 import { isSameDay, format, parseISO } from 'date-fns';
 import { GooSpinner } from 'react-spinners-kit';
