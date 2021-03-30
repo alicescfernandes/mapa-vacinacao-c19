@@ -88,10 +88,39 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "/jVO":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return initSockets; });
+//TODO: Turn this into a hook
+function initSockets(onUpdate) {
+  if (!window.pusher) {
+    window.pusher = new Pusher('4dd4d1d504254af64544', {
+      cluster: 'eu'
+    });
+    console.log(window.pusher);
+    let channel = window.pusher.subscribe('covid19_test');
+    channel.bind('update', function (data) {
+      onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(data);
+    });
+  }
+}
+/* initSockets(function (data) {
+	updateData(data.type, data.data);
+	setUpdating(true);
+	setTimeout(() => {
+		setUpdating(false);
+	}, 1000);
+});
+ */
+
+/***/ }),
 
 /***/ "/jkW":
 /***/ (function(module, exports, __webpack_require__) {
@@ -169,7 +198,152 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 14:
+/***/ "10Vi":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Metatags; });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("xnum");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+function Metatags({
+  isUpdating
+}) {
+  let title = 'Vacinação COVID-19 - Dashboard sobre os dados da campanha de vacinação contra a COVID-19 em Portugal e Arquipélagos';
+  let descricao = `Site informativo sobre a administração das vacinas em Portugal. É atualizado sempre que possível, assim que os dados forem sendo atualizados. Contamos com dados da Direção-Geral da Saúde, Our World in Data, Centro Europeu de Controlo de Doenças e informação do Governo de Portugal, temos gráficos sobre as vacinas administradas por dia e desde o início da campanha de vacinação, compradas, a faixa etária dos inoculados, infeções, óbitos, entre outros e temos números relacionados com a imunidade de grupo entre outros. Todo o nosso código é open-source, e pode ser consultado no github onde está alojado. Temos ainda uma conta no twitter onde pode seguir as últimas atualizações em relação aos números da campanha de vacinação da COVID-19.`;
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        name: "viewport",
+        content: "initial-scale=1.0, width=device-width"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        name: "title",
+        content: title
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        name: "description",
+        content: descricao
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "og:type",
+        content: "website"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "og:url",
+        content: "https://vacinacaocovid19.pt/"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "og:title",
+        content: "Vacina\xE7\xE3o - COVID 19"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "og:description",
+        content: descricao
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "og:image",
+        content: "https://vacinacaocovid19.pt/imagem.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "twitter:card",
+        content: "summary_large_image"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "twitter:url",
+        content: "https://vacinacaocovid19.pt/"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "twitter:title",
+        content: "Vacina\xE7\xE3o - COVID 19"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "twitter:description",
+        content: descricao
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        property: "twitter:image",
+        content: "https://vacinacaocovid19.pt/imagem.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "57x57",
+        href: "/apple-icon-57x57.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "60x60",
+        href: "/apple-icon-60x60.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "72x72",
+        href: "/apple-icon-72x72.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "76x76",
+        href: "/apple-icon-76x76.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "114x114",
+        href: "/apple-icon-114x114.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "120x120",
+        href: "/apple-icon-120x120.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "144x144",
+        href: "/apple-icon-144x144.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "152x152",
+        href: "/apple-icon-152x152.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-icon-180x180.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        href: "/android-icon-192x192.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "icon",
+        type: "image/png",
+        sizes: "96x96",
+        href: "/favicon-96x96.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/favicon-16x16.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "manifest",
+        href: "/manifest.json"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        name: "msapplication-TileColor",
+        content: "#01AE97"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        name: "msapplication-TileImage",
+        content: "/ms-icon-144x144.png"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        name: "msapplication-TileColor",
+        content: "#01AE97"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+        name: "theme-color",
+        content: "#01AE97"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("title", {
+        children: title
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+        rel: "stylesheet",
+        href: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css"
+      })]
+    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
+      className: "hide-except-seo",
+      children: descricao
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("RNiq");
@@ -568,15 +742,15 @@ function VacinadosPorDia({
   const data = canvas => {
     const ctx = canvas.getContext('2d');
 
-    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"]) {
-      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] + 'px';
+    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"]) {
+      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"]) {
-        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] + 'px';
+      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"]) {
+        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
@@ -673,8 +847,8 @@ function VacinadosPorDia({
           stacked: true,
           ticks: {
             beginAtZero: false,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
             callback: function (value, index, values) {
               return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "b"])(value, false);
             }
@@ -688,8 +862,8 @@ function VacinadosPorDia({
           stacked: true,
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60
           }
         }]
       }
@@ -697,19 +871,10 @@ function VacinadosPorDia({
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    var _canvasRef$current, _canvasRef$current$ch, _canvasRef$current$ch2;
-
-    if ((canvasRef === null || canvasRef === void 0 ? void 0 : (_canvasRef$current = canvasRef.current) === null || _canvasRef$current === void 0 ? void 0 : (_canvasRef$current$ch = _canvasRef$current.chartInstance) === null || _canvasRef$current$ch === void 0 ? void 0 : (_canvasRef$current$ch2 = _canvasRef$current$ch.canvas) === null || _canvasRef$current$ch2 === void 0 ? void 0 : _canvasRef$current$ch2.height) > 0) {
-      var _canvasRef$current2, _canvasRef$current2$c, _canvasRef$current2$c2;
-
-      setHeight(canvasRef === null || canvasRef === void 0 ? void 0 : (_canvasRef$current2 = canvasRef.current) === null || _canvasRef$current2 === void 0 ? void 0 : (_canvasRef$current2$c = _canvasRef$current2.chartInstance) === null || _canvasRef$current2$c === void 0 ? void 0 : (_canvasRef$current2$c2 = _canvasRef$current2$c.canvas) === null || _canvasRef$current2$c2 === void 0 ? void 0 : _canvasRef$current2$c2.height);
-    }
-  }, [canvasRef.current]);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    if (values.length > 0 && height > 0) {
+    if (values.length) {
       setLoading(false);
     }
-  }, [values, labels, height]);
+  }, [values]);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
@@ -740,15 +905,15 @@ function useColors() {
   let {
     0: colors,
     1: setColors
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "h"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_1 */ "a"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_2 */ "b"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_3 */ "c"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_4 */ "d"]]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "i"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_1 */ "a"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_2 */ "b"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_3 */ "c"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_4 */ "d"]]);
   let {
     0: tints,
     1: setTints
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_30 */ "m"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_50 */ "n"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_70 */ "o"]]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_30 */ "p"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_50 */ "q"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_70 */ "r"]]);
   let {
     0: shades,
     1: setShades
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_30 */ "j"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_50 */ "k"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_70 */ "l"]]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_30 */ "m"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_50 */ "n"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_70 */ "o"]]);
   let {
     0: complements,
     1: setComplements
@@ -757,7 +922,7 @@ function useColors() {
   return {
     colors: [foreground, color_1, color_2, color_3, color_4],
     colors_v2: {
-      main: _constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "h"],
+      main: _constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "i"],
       tints,
       shades,
       complements
@@ -779,15 +944,22 @@ __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding *
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__("F5FC");
 
+// EXTERNAL MODULE: ./node_modules/next/link.js
+var next_link = __webpack_require__("YFqc");
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+
 // EXTERNAL MODULE: external "react-bootstrap"
 var external_react_bootstrap_ = __webpack_require__("IZS3");
+
+// EXTERNAL MODULE: ./components/context/regiao.js
+var context_regiao = __webpack_require__("uAdN");
 
 // EXTERNAL MODULE: ./components/Header.module.scss
 var Header_module = __webpack_require__("OXQD");
 var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
-
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__("cDcd");
 
 // CONCATENATED MODULE: ./components/Notifications.jsx
 
@@ -796,13 +968,17 @@ function Notifications({
   children
 }) {
   function allowNotifications() {
-    OneSignal.getNotificationPermission().then(e => {
-      if (e !== 'granted') {
-        OneSignal.showNativePrompt();
-      } else {
-        alert('Já recebe as nossas notificações');
-      }
-    });
+    if (!OneSignal) {
+      alert('Não conseguimos configurar notificações para este dispositivo. Verifica se não tens nenhum ad-blocker ativo.');
+    } else {
+      OneSignal.getNotificationPermission().then(e => {
+        if (e !== 'granted') {
+          OneSignal.showNativePrompt();
+        } else {
+          alert('Já recebe as nossas notificações');
+        }
+      });
+    }
   }
 
   Object(external_react_["useEffect"])(function () {
@@ -832,67 +1008,196 @@ function Notifications({
     children: [children, " "]
   });
 }
+// EXTERNAL MODULE: ./assets/madeira.svg
+var madeira = __webpack_require__("t5hz");
+var madeira_default = /*#__PURE__*/__webpack_require__.n(madeira);
+
+// EXTERNAL MODULE: ./assets/portugal.svg
+var portugal = __webpack_require__("mYdt");
+var portugal_default = /*#__PURE__*/__webpack_require__.n(portugal);
+
 // CONCATENATED MODULE: ./components/Header.jsx
 
 
 
 
 
+
+
+
+
+
+
 function Header() {
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])("header", {
-    className: `${Header_module_default.a.header} card-shadow`,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Container"], {
-      className: Header_module_default.a.content,
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("h1", {
+  let regiao = Object(external_react_["useContext"])(context_regiao["a" /* RegiaoContext */]);
+  let regioes = {
+    portugal: {
+      nome: '',
+      tagline: 'Dados atualizados diariamente entre as 13h e as 14h'
+    },
+    madeira: {
+      nome: ' - Madeira',
+      tagline: 'Dados atualizados semanalmente'
+    },
+    acores: {
+      nome: ' - Açores',
+      tagline: ''
+    }
+  };
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("header", {
+      className: `${Header_module_default.a.header} card-shadow`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Container"], {
+        className: Header_module_default.a.content,
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
           className: Header_module_default.a.logo,
-          children: "vacina\xE7\xE3o COVID 19"
-        })
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("nav", {
-        className: Header_module_default.a.nav,
-        children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Notifications, {
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-                className: Header_module_default.a.highlight,
-                href: "#",
-                children: "Notifica\xE7\xF5es"
-              })
-            })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-              className: Header_module_default.a.highlight,
-              target: "_blank",
-              href: "https://twitter.com/vacinacaocovid1",
-              children: "Twitter"
-            })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-            className: Header_module_default.a.hide_mobile,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-              target: "_blank",
-              href: "https://covid19estamoson.gov.pt/vacinacao-covid19/",
-              children: "Fases de Vacina\xE7\xE3o"
-            })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-            className: Header_module_default.a.hide_mobile,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-              target: "_blank",
-              href: "https://covid19.min-saude.pt/vacinacao/",
-              children: "Fa\xE7o parte das listas de vacina\xE7\xE3o?"
-            })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-            className: Header_module_default.a.hide_mobile,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-              target: "_blank",
-              href: "https://pandemiaclara.sapo.pt/plano-de-vacinacao",
-              children: "Quando posso ser vacinado?"
-            })
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h1", {
+            children: ["vacina\xE7\xE3o COVID 19 ", regioes[regiao].nome, " "]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+            children: regioes[regiao].tagline
           })]
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("nav", {
+          className: `${Header_module_default.a.nav} ${Header_module_default.a.hide_mobile}`,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  className: regiao === 'portugal' ? Header_module_default.a.highlight : '',
+                  children: "Portugal"
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/madeira",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  className: regiao === 'madeira' ? Header_module_default.a.highlight : '',
+                  children: "Madeira"
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Notifications, {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  href: "#",
+                  children: "Notifica\xE7\xF5es"
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                target: "_blank",
+                href: "https://twitter.com/vacinacaocovid1",
+                children: "Twitter"
+              })
+            })]
+          })
+        })]
+      })
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("header", {
+      className: `${Header_module_default.a.header} ${Header_module_default.a.header_mobile} card-shadow`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
+        className: Header_module_default.a.content,
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("nav", {
+          className: `${Header_module_default.a.nav}  ${Header_module_default.a.hide_mobile}`,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
+                  className: regiao === 'portugal' ? Header_module_default.a.highlight : '',
+                  children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(portugal_default.a, {
+                      height: 30
+                    })
+                  }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                    children: "Portugal"
+                  })]
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/madeira",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
+                  className: regiao === 'madeira' ? Header_module_default.a.highlight : '',
+                  children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(madeira_default.a, {
+                      height: 25
+                    })
+                  }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                    children: "Madeira"
+                  })]
+                })
+              })
+            })]
+          })
         })
-      })]
-    })
+      })
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+      className: `${Header_module_default.a.submenu}`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
+        className: Header_module_default.a.content,
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("nav", {
+          className: Header_module_default.a.nav,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+            children: [regiao === 'portugal' && /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://covid19estamoson.gov.pt/vacinacao-covid19/",
+                  children: "Fases de Vacina\xE7\xE3o"
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://covid19.min-saude.pt/vacinacao/",
+                  children: "Fa\xE7o parte das listas de vacina\xE7\xE3o?"
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://pandemiaclara.sapo.pt/plano-de-vacinacao",
+                  children: "Quando posso ser vacinado?"
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://covid19.min-saude.pt/relatorio-de-vacinacao/",
+                  children: "Relat\xF3rios de Vacina\xE7\xE3o"
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/",
+                  children: "Ponto de Situa\xE7\xE3o"
+                })
+              })]
+            }), regiao === 'madeira' && /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://covidmadeira.pt/",
+                  children: "Sit\xEDo oficial - Dire\xE7\xE3o Regional de Sa\xFAde"
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://covidmadeira.pt/ponto-de-situacao/",
+                  children: "Ponto de Situa\xE7\xE3o"
+                })
+              })]
+            })]
+          })
+        })
+      })
+    })]
   });
 }
+
+/***/ }),
+
+/***/ "E4SY":
+/***/ (function(module, exports) {
+
+module.exports = require("react-lazyload");
 
 /***/ }),
 
@@ -915,7 +1220,8 @@ module.exports = {
 	"subtitle": "Home_subtitle__3IlVB",
 	"text": "Home_text__dq4ii",
 	"alert": "Home_alert__3DkCs",
-	"alert_fill": "Home_alert_fill__2gdS0"
+	"alert_fill": "Home_alert_fill__2gdS0",
+	"datepicker_static": "Home_datepicker_static__owksC"
 };
 
 
@@ -966,6 +1272,7 @@ function dateWithoutTimezone(unix) {
 function trackPlausible(req) {
   var _req$headers;
 
+  if (req === undefined) return;
   if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
   let host = req.headers.host;
   let url = req.url;
@@ -1008,8 +1315,8 @@ function downloadPNG(canvasElement, graphName) {
   link.href = canvasElement.toDataURL();
   link.click();
 }
-function perHundred(total) {
-  return total / _data_generic_json__WEBPACK_IMPORTED_MODULE_1__["populacao"].valor * 100;
+function perHundred(total, populacaoTotal = _data_generic_json__WEBPACK_IMPORTED_MODULE_1__["populacao"].valor) {
+  return total / populacaoTotal * 100;
 }
 function fetchWithLocalCache(url, options) {
   let useCache = true;
@@ -1031,6 +1338,7 @@ function fetchWithLocalCache(url, options) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
   } else {
+    console.log('sw', 'fetch', url);
     return fetch(url, _objectSpread(_objectSpread({}, options), {}, {
       headers: {
         'X-Request-Self': true
@@ -1063,6 +1371,7 @@ function fetchWithLocalCache(url, options) {
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("xPX6");
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("UG6H");
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("uAdN");
 
 
 
@@ -1080,10 +1389,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 function NumeroTotalVacinados({
   colors,
   statistics
 }) {
+  let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_9__[/* RegiaoContext */ "a"]);
   let {
     labels,
     values
@@ -1122,7 +1433,98 @@ function NumeroTotalVacinados({
     pointHoverRadius: 3,
     pointHoverBorderWidth: 2,
     pointRadius: 1,
-    pointHitRadius: 10
+    pointHitRadius: 10,
+    usePointStyle: true
+  };
+  let annotations = {
+    annotations: [{
+      type: 'line',
+      mode: 'horizontal',
+      scaleID: 'y-axis-0',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(2700000) : 2700000 : null,
+      borderColor: '#0A9DD1',
+      borderWidth: 2,
+      borderDash: [5, 5],
+      label: {
+        backgroundColor: 'rgba(0,0,0,0.0)',
+        drawTime: 'afterDatasetsDraw',
+        textAlign: 'left',
+        fontColor: '#0A9DD1',
+        position: 'left',
+        xAdjust: 10,
+        yAdjust: -10,
+        fontSize: '13px',
+        enabled: true,
+        content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)'
+      }
+    }, {
+      type: 'line',
+      mode: 'horizontal',
+      scaleID: 'y-axis-0',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? 20 : 1900000 : null,
+      borderColor: 'transparent',
+      label: {
+        enabled: false
+      }
+    }, {
+      type: 'line',
+      mode: 'horizontal',
+      scaleID: 'y-axis-0',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? 11 : 1200000 : null,
+      borderColor: 'transparent',
+      label: {
+        enabled: false
+      }
+    }, {
+      type: 'line',
+      mode: 'horizontal',
+      scaleID: 'y-axis-0',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(950000) : 950000 : null,
+      borderColor: '#0A9DD1',
+      borderWidth: 2,
+      borderDash: [5, 5],
+      label: {
+        backgroundColor: 'rgba(0,0,0,0.0)',
+        drawTime: 'afterDatasetsDraw',
+        textAlign: 'left',
+        fontColor: '#0A9DD1',
+        position: 'left',
+        xAdjust: 5,
+        yAdjust: -10,
+        fontSize: '13px',
+        enabled: true,
+        content: '1ª Fase - Dezembro (950 mil pessoas)'
+      }
+    }, {
+      type: 'line',
+      mode: 'horizontal',
+      scaleID: 'y-axis-0',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+      borderColor: '#D17615',
+      borderWidth: 2,
+      borderDash: [5, 5],
+      label: {
+        backgroundColor: 'rgba(0,0,0,0.0)',
+        drawTime: 'afterDatasetsDraw',
+        textAlign: 'left',
+        fontColor: '#D17615',
+        fontSize: '13px',
+        position: 'left',
+        xAdjust: 5,
+        yAdjust: -10,
+        enabled: true,
+        content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)'
+      }
+    }, {
+      type: 'line',
+      mode: 'horizontal',
+      scaleID: 'y-axis-0',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade && toggleStats.perHundred ? 75 : null,
+      borderColor: 'transparent',
+      label: {
+        enabled: false
+      }
+    }]
   };
   let chartRef = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["createRef"])();
 
@@ -1143,20 +1545,20 @@ function NumeroTotalVacinados({
       gradient.addColorStop(1, '#ffffff');
     }
 
-    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"]) {
-      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] + 'px';
+    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"]) {
+      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"]) {
-        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] + 'px';
+      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"]) {
+        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
     });
-    return {
+    const chartData = {
       labels: labels,
       datasets: [_objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total vacinas administradas',
@@ -1185,7 +1587,11 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
         data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(el)) : valuesIn2
-      }), _objectSpread(_objectSpread({}, commonProps), {}, {
+      })]
+    };
+
+    if (regiao == _constants__WEBPACK_IMPORTED_MODULE_7__[/* REGIOES */ "k"].PORTUGAL) {
+      chartData.datasets.push(_objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Casos Confirmados',
         backgroundColor: '#D11541',
         borderColor: '#D11541',
@@ -1196,8 +1602,10 @@ function NumeroTotalVacinados({
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
         data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
-      })]
-    };
+      }));
+    }
+
+    return chartData;
   };
 
   const options = () => {
@@ -1214,96 +1622,7 @@ function NumeroTotalVacinados({
       animation: {
         duration: 1000
       },
-      annotation: {
-        annotations: [{
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(2700000) : 2700000 : null,
-          borderColor: '#0A9DD1',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            drawTime: 'afterDatasetsDraw',
-            textAlign: 'left',
-            fontColor: '#0A9DD1',
-            position: 'left',
-            xAdjust: 10,
-            yAdjust: -10,
-            fontSize: '13px',
-            enabled: true,
-            content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)'
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? 20 : 1900000 : null,
-          borderColor: 'transparent',
-          label: {
-            enabled: false
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? 11 : 1200000 : null,
-          borderColor: 'transparent',
-          label: {
-            enabled: false
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(950000) : 950000 : null,
-          borderColor: '#0A9DD1',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            drawTime: 'afterDatasetsDraw',
-            textAlign: 'left',
-            fontColor: '#0A9DD1',
-            position: 'left',
-            xAdjust: 5,
-            yAdjust: -10,
-            fontSize: '13px',
-            enabled: true,
-            content: '1ª Fase - Dezembro (950 mil pessoas)'
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(10286300 * 0.7) : 10286300 * 0.7 : null,
-          borderColor: '#D17615',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            drawTime: 'afterDatasetsDraw',
-            textAlign: 'left',
-            fontColor: '#D17615',
-            fontSize: '13px',
-            position: 'left',
-            xAdjust: 5,
-            yAdjust: -10,
-            enabled: true,
-            content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)'
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade && toggleStats.perHundred ? 75 : null,
-          borderColor: 'transparent',
-          label: {
-            enabled: false
-          }
-        }]
-      },
+      annotation: regiao == 'portugal' ? annotations : {},
       tooltips: {
         mode: 'index',
         intersect: false,
@@ -1322,31 +1641,30 @@ function NumeroTotalVacinados({
         yAxes: [{
           ticks: {
             beginAtZero: false,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
             //max: 10000000,
             callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "b"])(value, false)
           }
         }],
         xAxes: [{
           ticks: {
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60
           }
         }]
       }
     };
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {}, [chartRef.current]);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     if (values.length > 0) {
       setLoading(false);
     }
-  }, [values, labels, height]);
+  }, [values]);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
+    children: [regiao === 'portugal' && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
       className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_scrollable].join(' '),
       style: {
         textAlign: 'left'
@@ -1418,9 +1736,12 @@ module.exports = require("classnames");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useData; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("GyP+");
-/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("vga7");
-var _data_last_update_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("xPX6");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("GyP+");
+/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vga7");
+var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
+/* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lN74");
+var _data_generic_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1430,7 +1751,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-function useData() {
+
+
+
+function useData({
+  regiao
+}) {
   let {
     0: ready,
     1: setReady
@@ -1440,24 +1766,8 @@ function useData() {
     1: bumpVersioning
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let {
-    0: weeks,
-    1: setWeeks
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  let {
-    0: sns,
-    1: setSns
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  let {
     0: ecdc,
     1: setECDC
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  let {
-    0: ars,
-    1: setArs
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  let {
-    0: owid,
-    1: setOwid
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let {
     0: vaccines,
@@ -1472,8 +1782,12 @@ function useData() {
     1: setLabels
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   let {
-    0: rt,
-    1: setRt
+    0: madeira,
+    1: setMadeira
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  let {
+    0: madeiraPDS,
+    1: setMadeiraPDS
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   let options = {
     month: 'short',
@@ -1505,28 +1819,90 @@ function useData() {
     getRaw: () => {
       return vaccines;
     },
+    getLastVaccineAvaliable: () => {
+      let data = {};
+
+      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].MADEIRA) {
+        let lastItem = madeira[madeira.length - 1];
+        data = {
+          dose_2: lastItem.dose_2,
+          dose_1: lastItem.dose_1,
+          total: lastItem.total
+        };
+      } else {
+        let lastItem = vaccines[vaccines.length - 1];
+        data = {
+          dose_2: lastItem.Inoculacao2_Ac,
+          dose_1: lastItem.Inoculacao1_Ac,
+          total: lastItem.Vacinados_Ac
+        };
+      }
+
+      return data;
+    },
+    getLastCaseAvaliable: () => {
+      let data = {};
+
+      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].MADEIRA) {
+        let lastItem = madeiraPDS[madeiraPDS.length - 1];
+        data = {
+          ativos: parseInt(lastItem.ativos),
+          recuperados: parseInt(lastItem.recuperados),
+          obitos: parseInt(lastItem.obitos),
+          populacao: parseInt(_data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao_ram"].valor),
+          data: lastItem.data
+        };
+      } else {
+        let lastItem = casesData[vaccines.length - 1];
+        data = {
+          ativos: lastItem.Activos,
+          recuperados: lastItem.Recuperados,
+          obitos: lastItem.Obitos,
+          populacao: _data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao"].valor,
+          data: lastItem.Data
+        };
+      }
+
+      return data;
+    },
     getDailyData: () => {
-      return parseData(vaccines);
+      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].MADEIRA) {
+        let labels = [];
+        let values = [];
+        madeira.forEach(el => {
+          labels.push(f.format(new Date(el.data)));
+          values.push(el.total);
+        });
+        return {
+          labels,
+          values
+        };
+      } else {
+        return parseData(vaccines);
+      }
     },
     getDesvioPadrao: () => {},
     getMediaMovel: dias => {
       let medias = [];
       let labelsMedias = [];
-      let {
-        labels,
-        values
-      } = parseData(vaccines);
 
-      for (let start = 1; start <= dias; start++) {
-        let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-        medias.push(sum);
-        labelsMedias.push(labels[start]);
-      }
+      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].PORTUGAL) {
+        let {
+          labels,
+          values
+        } = parseData(vaccines);
 
-      for (let start = dias; start <= values.length; start++) {
-        let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
-        medias.push(sum);
-        labelsMedias.push(labels[start]);
+        for (let start = 1; start <= dias; start++) {
+          let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+          medias.push(sum);
+          labelsMedias.push(labels[start]);
+        }
+
+        for (let start = dias; start <= values.length; start++) {
+          let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
+          medias.push(sum);
+          labelsMedias.push(labels[start]);
+        }
       }
 
       return {
@@ -1535,8 +1911,7 @@ function useData() {
       };
     },
     getRtRegiao: async regiao => {
-      let data2 = await Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/rt/${regiao}?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`).then(responseRt => {
-        setRt(responseRt);
+      let data2 = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/rt/${regiao}?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`).then(responseRt => {
         return responseRt;
       });
       let date = new Date('2020-12-27T00:00:45.000Z').getTime(); // let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
@@ -1548,7 +1923,7 @@ function useData() {
       };
     },
     getRtRegioes: async () => {
-      let data = await Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/rt/todas?${btoa(data.date)}`).then(responseRt => {
+      let data = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/rt/todas?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`).then(responseRt => {
         return responseRt;
       });
       let dates = data.rt_continente.map(el => el.Data); //get rt for each date
@@ -1573,7 +1948,8 @@ function useData() {
         values: rtData
       };
     },
-    getOwid: () => {
+    getOwid: async () => {
+      let owid = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/owid?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`);
       let labels = owid.eun.data.map(el => f.format(new Date(el.date)));
       let data = {
         pt: owid.prt.data,
@@ -1586,32 +1962,35 @@ function useData() {
     getMediaMovelDiaria: dias => {
       let medias = [];
       let labelsMedias = [];
-      let {
-        values
-      } = statistics.getVacinadosPorDia();
 
-      for (let start = 1; start <= dias; start++) {
-        if (values[start] === null) {
-          medias.push(null);
-          continue;
+      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].PORTUGAL) {
+        let {
+          values
+        } = statistics.getVacinadosPorDia();
+
+        for (let start = 1; start <= dias; start++) {
+          if (values[start] === null) {
+            medias.push(null);
+            continue;
+          }
+
+          let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+          medias.push(sum);
+          labelsMedias.push(labels[start]);
         }
 
-        let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-        medias.push(sum);
-        labelsMedias.push(labels[start]);
-      }
+        for (let start = dias; start <= values.length; start++) {
+          let slice = values.slice(start - dias, start);
 
-      for (let start = dias; start <= values.length; start++) {
-        let slice = values.slice(start - dias, start);
+          if (values[start] === null || slice.includes(null) > 0) {
+            medias.push(null);
+            continue;
+          }
 
-        if (values[start] === null || slice.includes(null) > 0) {
-          medias.push(null);
-          continue;
+          let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
+          medias.push(sum);
+          labelsMedias.push(labels[start]);
         }
-
-        let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
-        medias.push(sum);
-        labelsMedias.push(labels[start]);
       }
 
       return {
@@ -1651,11 +2030,21 @@ function useData() {
         labels,
         values
       } = statistics.getDailyData();
-      values.forEach((val, idx, vals) => {
-        in1.push(vaccines[idx].Inoculacao1_Ac);
-        in2.push(vaccines[idx].Inoculacao2_Ac);
-        total.push(vaccines[idx].Vacinados_Ac);
-      });
+
+      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].MADEIRA) {
+        madeira.forEach((val, idx, vals) => {
+          in1.push(madeira[idx].dose_1);
+          in2.push(madeira[idx].dose_2);
+          total.push(madeira[idx].total);
+        });
+      } else {
+        values.forEach((val, idx, vals) => {
+          in1.push(vaccines[idx].Inoculacao1_Ac);
+          in2.push(vaccines[idx].Inoculacao2_Ac);
+          total.push(vaccines[idx].Vacinados_Ac);
+        });
+      }
+
       return {
         valuesIn1: in1,
         valuesIn2: in2,
@@ -1666,43 +2055,85 @@ function useData() {
     getDiariosInoculacoes: () => {
       let in1 = [];
       let in2 = [];
-      let {
-        labels,
-        values
-      } = parseData(vaccines);
-      let total = values.map((val, idx, vals) => {
-        //The first one
-        if (idx === 0) {
-          in1.push(vaccines[idx].Inoculacao1_Ac);
-          in2.push(vaccines[idx].Inoculacao2_Ac);
-          return val;
-        }
+      let total = [];
+      let raw = regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].MADEIRA ? madeira : vaccines;
+      let labels = [];
 
-        let prevDay = idx - 1;
+      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "k"].MADEIRA) {
+        let {
+          labels: labelsMad,
+          values
+        } = statistics.getDailyData();
+        labels = labelsMad;
+        total = values.map((val, idx, vals) => {
+          //The first one
+          if (idx === 0) {
+            in1.push(madeira[idx].dose_1);
+            in2.push(madeira[idx].dose_2);
+            return val;
+          }
 
-        if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
-          in1.push(null);
-        } else {
-          in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
-        }
+          let prevDay = idx - 1;
 
-        if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
-          in2.push(null);
-        } else {
-          in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
-        }
+          if (madeira[prevDay].dose_1 == null || madeira[idx].dose_1 == null) {
+            in1.push(null);
+          } else {
+            in1.push(madeira[idx].dose_1 - madeira[prevDay].dose_1);
+          }
 
-        if (vals[prevDay] == null || val == null) {
-          return null;
-        }
+          if (madeira[prevDay].dose_2 == null || madeira[idx].dose_2 == null) {
+            in2.push(null);
+          } else {
+            in2.push(madeira[idx].dose_2 - madeira[prevDay].dose_2);
+          }
 
-        return val - vals[prevDay];
-      });
+          if (vals[prevDay] == null || val == null) {
+            return null;
+          }
+
+          return val - vals[prevDay];
+        });
+      } else {
+        let {
+          labels: labelsCont,
+          values
+        } = parseData(vaccines);
+        labels = labelsCont;
+        total = values.map((val, idx, vals) => {
+          //The first one
+          if (idx === 0) {
+            in1.push(vaccines[idx].Inoculacao1_Ac);
+            in2.push(vaccines[idx].Inoculacao2_Ac);
+            return val;
+          }
+
+          let prevDay = idx - 1;
+
+          if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
+            in1.push(null);
+          } else {
+            in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
+          }
+
+          if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
+            in2.push(null);
+          } else {
+            in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
+          }
+
+          if (vals[prevDay] == null || val == null) {
+            return null;
+          }
+
+          return val - vals[prevDay];
+        });
+      }
+
       return {
         valuesIn1: in1,
         valuesIn2: in2,
         values: total,
-        raw: vaccines,
+        raw,
         labels
       };
     },
@@ -1721,13 +2152,15 @@ function useData() {
     },
     getReceivedDosesByBrandByWeek: async () => {
       let labels = {};
+      let weeks = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false);
       let com = {};
       let mod = {};
       let az = {};
+      let ecdcRegion = _constants__WEBPACK_IMPORTED_MODULE_1__[/* ECDC_MAPPING */ "h"][regiao];
       ecdc.forEach(el => {
         var obj = {};
 
-        if (parseInt(el['NumberDosesReceived']) > 0) {
+        if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
           com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
           mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
           az[el['YearWeekISO']] = az[el['YearWeekISO']] || null;
@@ -1760,11 +2193,11 @@ function useData() {
     getAdministredDosesByAgeByWeek: async () => {
       let labels = {};
       let maxValue = 0;
+      let weeks = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false);
       let groups = {};
+      let ecdcRegion = _constants__WEBPACK_IMPORTED_MODULE_1__[/* ECDC_MAPPING */ "h"][regiao];
       ecdc.forEach(el => {
-        debugger;
-
-        if (el['NumberDosesReceived'] == '') {
+        if (el['NumberDosesReceived'] == '' && el['Region'] === ecdcRegion) {
           if (!labels.hasOwnProperty(el['YearWeekISO'])) {
             labels[el['YearWeekISO'].replace('-', '')] = weeks[el['YearWeekISO']];
           }
@@ -1777,6 +2210,20 @@ function useData() {
           groups[el['TargetGroup']].dose_1[el['YearWeekISO']] = (groups[el['TargetGroup']].dose_1[el['YearWeekISO']] || 0) + parseInt(el['FirstDose']);
           groups[el['TargetGroup']].dose_2[el['YearWeekISO']] = (groups[el['TargetGroup']].dose_2[el['YearWeekISO']] || 0) + parseInt(el['SecondDose']);
         }
+      });
+      return {
+        maxValue,
+        labels,
+        groups
+      };
+    },
+    getAdministredDosesByAgeByWeekRam: async () => {
+      let labels = [];
+      let maxValue = 0;
+      let groups = [];
+      madeira.forEach(el => {
+        labels.push(el.data);
+        groups.push(el.escaloes);
       });
       return {
         maxValue,
@@ -1816,12 +2263,14 @@ function useData() {
       });
       return groups;
     },
-    getTotalSNS: () => {
+    getTotalSNS: async () => {
+      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
       return sns.filter(el => {
-        return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateSnsStartWeirdFormat;
+        return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat;
       });
     },
-    getTotalARS: () => {
+    getTotalARS: async () => {
+      let ars = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/ars?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
       let data = {};
       ars.features.forEach(el => {
         if (el.attributes.ARSNome === 'Nacional') el.attributes.ARSNome = 'All';
@@ -1841,7 +2290,8 @@ function useData() {
     getCases: () => {
       return casesData;
     },
-    getDosesRecebidasAcum: () => {
+    getDosesRecebidasAcum: async () => {
+      let weeks = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false);
       if (ecdc == false) return;
       let labels = {};
       let data = {};
@@ -1892,18 +2342,23 @@ function useData() {
         sum,
         labels: Object.values(labels)
       };
+    },
+    getMadeiraData: async () => {
+      let res = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/madeira?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeira)}`);
+      return res;
+    },
+    getMadeiraPDS: async () => {
+      let res = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/madeira/pontosituacao?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeiraCases)}`);
+      return res;
     }
   };
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Promise.all([Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/ecdc?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateEcdc)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateSnsStartWeirdFormat)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/vaccinesold?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/ars?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateSnsStartWeirdFormat)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/cases?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/owid?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/rt/continente?${btoa(Date.now())}`)]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid, rt]) => {
-      setSns(sns);
-      setWeeks(weeks);
+    Promise.all([Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/ecdc?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateEcdc)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/vaccinesold?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/cases?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/madeira?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeira)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/madeira/pontosituacao?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeira)}`)]).then(([ecdc, vaccines, cases, madeira, madeiraPDS]) => {
       setECDC(ecdc);
       setVaccines(vaccines);
-      setArs(ars);
       setCasesData(cases);
-      setOwid(owid);
-      setRt(rt);
+      setMadeira(madeira);
+      setMadeiraPDS(madeiraPDS);
       setReady(true);
     });
   }, []);
@@ -1981,8 +2436,11 @@ function Counter({
   ps,
   colors,
   digits,
-  suffix
+  suffix,
+  tempo
 }) {
+  if (!tempo) tempo = 'no dia';
+
   if (!digits) {
     digits = 0;
   }
@@ -2035,7 +2493,7 @@ function Counter({
             },
             className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle_highlight,
             children: [Math.sign(difference) == 1 ? '+' : '-', " ", numberFormatter.format(Math.abs(difference)).replace(',', ' ')]
-          }), "\xA0 que no dia anterior"]
+          }), "\xA0 que ", tempo, " anterior"]
         })
       }) : '', ps != null ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
@@ -2317,6 +2775,9 @@ exports.default = _default;
 // Exports
 module.exports = {
 	"header": "Header_header__3Z-q0",
+	"submenu": "Header_submenu__y6vbr",
+	"header_mobile": "Header_header_mobile__3F0A4",
+	"submenu_mobile": "Header_submenu_mobile__2NpLk",
 	"content": "Header_content__3--fg",
 	"highlight": "Header_highlight__Drolj",
 	"logo": "Header_logo__2UB2g",
@@ -2337,6 +2798,120 @@ module.exports = require("next/dist/next-server/lib/router-context.js");
 /***/ (function(module, exports) {
 
 module.exports = require("react-spinners-kit");
+
+/***/ }),
+
+/***/ "Q/64":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PieVacinadosInfectadosRecuperadosObitos; });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("5PhN");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("lLkP");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("GyP+");
+/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("uAdN");
+
+
+
+
+
+
+
+
+
+function PieVacinadosInfectadosRecuperadosObitos({
+  statistics,
+  colors
+}) {
+  let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_7__[/* RegiaoContext */ "a"]);
+  let {
+    0: loading,
+    1: setLoading
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
+  let vaccines = statistics.getLastVaccineAvaliable();
+  let lastCase = statistics.getLastCaseAvaliable();
+  let {
+    main,
+    shades,
+    tints,
+    complements
+  } = colors;
+
+  const data = canvas => {
+    return {
+      labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
+      datasets: [{
+        backgroundColor: [main, complements[0], complements[2], shades[2]],
+        data: [vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos]
+      }]
+    };
+  };
+
+  const options = () => {
+    return {
+      maintainAspectRatio: false,
+      plugins: {
+        datalabels: {
+          color: 'white',
+          formatter: (value, chart) => {
+            let sum = chart.dataset.data.reduce((prev, curr) => {
+              return prev + curr;
+            }, 0);
+            sum = value / sum * 100;
+
+            if (sum > 5) {
+              return sum.toFixed(2) + '%';
+            }
+
+            return '';
+          }
+        }
+      },
+      onResize: (a, b, c) => {},
+      legend: {
+        position: 'bottom',
+        align: 'start'
+      },
+      animation: {
+        duration: 1000
+      },
+      tooltips: {
+        callbacks: {
+          label: function ({
+            index
+          }, {
+            datasets,
+            labels
+          }) {
+            let label = labels[index];
+            let data = datasets[0].data[index];
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_6__[/* formatNumber */ "b"])(data)}`;
+          }
+        }
+      }
+    };
+  };
+
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_4__[/* Card */ "a"], {
+    allowOverflow: true,
+    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+      children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default.a],
+        height: 350,
+        options: options(),
+        data: data
+      }) : ''
+    })
+  });
+}
 
 /***/ }),
 
@@ -2368,82 +2943,9 @@ var Counter = __webpack_require__("MCc/");
 // EXTERNAL MODULE: ./components/DatePickerButton.jsx
 var DatePickerButton = __webpack_require__("uEit");
 
-// EXTERNAL MODULE: ./node_modules/next/link.js
-var next_link = __webpack_require__("YFqc");
+// EXTERNAL MODULE: ./components/Footer.jsx
+var Footer = __webpack_require__("naWs");
 
-// EXTERNAL MODULE: ./components/Footer.module.scss
-var Footer_module = __webpack_require__("3Nti");
-var Footer_module_default = /*#__PURE__*/__webpack_require__.n(Footer_module);
-
-// EXTERNAL MODULE: ./data/last-update.json
-var last_update = __webpack_require__("vga7");
-
-// CONCATENATED MODULE: ./components/Footer.jsx
-
-
-
-
-
-
-function Footer() {
-  let options = {
-    month: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
-  };
-  let f = new Intl.DateTimeFormat('pt-PT', options);
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])("footer", {
-    className: `${Footer_module_default.a.footer} card-shadow`,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Container"], {
-      className: Footer_module_default.a.content,
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
-        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-            target: "_blank",
-            href: "https://twitter.com/vacinacaocovid1",
-            children: "Twitter"
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-            target: "_blank",
-            href: "/api/vaccines",
-            children: "API"
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-            target: "_blank",
-            href: "https://github.com/alicescfernandes/mapa-vacinacao-c19#embeds",
-            children: "Embeds"
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-            target: "_blank",
-            href: "https://github.com/alicescfernandes/mapa-vacinacao-c19",
-            children: "C\xF3digo-Fonte"
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-            href: "mailto:alicescfernandes+mapa@gmail.com",
-            children: "Contacto"
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-            target: "_blank",
-            href: "https://plausible.io/vacinacaocovid19.pt",
-            children: "Analytics"
-          })
-        })]
-      }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
-        className: Footer_module_default.a.update,
-        children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(last_update.date))]
-      })]
-    })
-  }); //
-}
 // EXTERNAL MODULE: ./components/Header.jsx + 1 modules
 var Header = __webpack_require__("Cgje");
 
@@ -2466,166 +2968,15 @@ var Home_module_default = /*#__PURE__*/__webpack_require__.n(Home_module);
 // EXTERNAL MODULE: ./hooks/useColors.js
 var useColors = __webpack_require__("9m9c");
 
-// EXTERNAL MODULE: ./data/vaccines.json
-var data_vaccines = __webpack_require__("x47/");
+// EXTERNAL MODULE: ./components/MetaTags.jsx
+var MetaTags = __webpack_require__("10Vi");
 
-// EXTERNAL MODULE: external "next/head"
-var head_ = __webpack_require__("xnum");
-var head_default = /*#__PURE__*/__webpack_require__.n(head_);
-
-// EXTERNAL MODULE: ./utils.js
-var utils = __webpack_require__("GyP+");
-
-// CONCATENATED MODULE: ./components/MetaTags.jsx
-
-
-
-
-
-
-
-
-function Metatags({
-  isUpdating
-}) {
-  let options = {
-    month: '2-digit',
-    day: 'numeric'
-  };
-  let vacinas = data_vaccines[data_vaccines.length - 1];
-  let data = new Date(vacinas.Data);
-  let num = Object(utils["b" /* formatNumber */])(vacinas.Vacinados_Ac);
-  let title = 'Vacinação COVID-19 - Dashboard sobre os dados da campanha de vacinação contra a COVID-19 em Portugal e Arquipélagos';
-  let descricao = `Site informativo sobre a administração das vacinas em Portugal. É atualizado sempre que possível, assim que os dados forem sendo atualizados. Contamos com dados da Direção-Geral da Saúde, Our World in Data, Centro Europeu de Controlo de Doenças e informação do Governo de Portugal, temos gráficos sobre as vacinas administradas por dia e desde o início da campanha de vacinação, compradas, a faixa etária dos inoculados, infeções, óbitos, entre outros e temos números relacionados com a imunidade de grupo entre outros. Todo o nosso código é open-source, e pode ser consultado no github onde está alojado. Temos ainda uma conta no twitter onde pode seguir as últimas atualizações em relação aos números da campanha de vacinação da COVID-19.`;
-  Object(external_react_["useEffect"])(() => {
-    if (isUpdating) {
-      document.title = 'Atualizado - ' + title;
-    }
-  }, [isUpdating]);
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
-    children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(head_default.a, {
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        name: "viewport",
-        content: "initial-scale=1.0, width=device-width"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        name: "title",
-        content: title
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        name: "description",
-        content: descricao
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "og:type",
-        content: "website"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "og:url",
-        content: "https://vacinacaocovid19.pt/"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "og:title",
-        content: "Vacina\xE7\xE3o - COVID 19"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "og:description",
-        content: descricao
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "og:image",
-        content: "https://vacinacaocovid19.pt/imagem.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "twitter:card",
-        content: "summary_large_image"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "twitter:url",
-        content: "https://vacinacaocovid19.pt/"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "twitter:title",
-        content: "Vacina\xE7\xE3o - COVID 19"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "twitter:description",
-        content: descricao
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        property: "twitter:image",
-        content: "https://vacinacaocovid19.pt/imagem.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "57x57",
-        href: "/apple-icon-57x57.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "60x60",
-        href: "/apple-icon-60x60.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "72x72",
-        href: "/apple-icon-72x72.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "76x76",
-        href: "/apple-icon-76x76.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "114x114",
-        href: "/apple-icon-114x114.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "120x120",
-        href: "/apple-icon-120x120.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "144x144",
-        href: "/apple-icon-144x144.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "152x152",
-        href: "/apple-icon-152x152.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "apple-touch-icon",
-        sizes: "180x180",
-        href: "/apple-icon-180x180.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "icon",
-        type: "image/png",
-        sizes: "192x192",
-        href: "/android-icon-192x192.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "icon",
-        type: "image/png",
-        sizes: "32x32",
-        href: "/favicon-32x32.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "icon",
-        type: "image/png",
-        sizes: "96x96",
-        href: "/favicon-96x96.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "icon",
-        type: "image/png",
-        sizes: "16x16",
-        href: "/favicon-16x16.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
-        rel: "manifest",
-        href: "/manifest.json"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        name: "msapplication-TileColor",
-        content: "#01AE97"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        name: "msapplication-TileImage",
-        content: "/ms-icon-144x144.png"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        name: "msapplication-TileColor",
-        content: "#01AE97"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
-        name: "theme-color",
-        content: "#01AE97"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("title", {
-        children: title
-      })]
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-      className: "hide-except-seo",
-      children: descricao
-    })]
-  });
-}
 // EXTERNAL MODULE: ./components/Card.module.scss
 var Card_module = __webpack_require__("UG6H");
 var Card_module_default = /*#__PURE__*/__webpack_require__.n(Card_module);
+
+// EXTERNAL MODULE: ./data/last-update.json
+var last_update = __webpack_require__("vga7");
 
 // EXTERNAL MODULE: external "date-fns/locale"
 var locale_ = __webpack_require__("tDG4");
@@ -2633,6 +2984,10 @@ var locale_ = __webpack_require__("tDG4");
 // EXTERNAL MODULE: external "plausible-tracker"
 var external_plausible_tracker_ = __webpack_require__("WUak");
 var external_plausible_tracker_default = /*#__PURE__*/__webpack_require__.n(external_plausible_tracker_);
+
+// EXTERNAL MODULE: external "react-lazyload"
+var external_react_lazyload_ = __webpack_require__("E4SY");
+var external_react_lazyload_default = /*#__PURE__*/__webpack_require__.n(external_react_lazyload_);
 
 // EXTERNAL MODULE: ./data/generic.json
 var generic = __webpack_require__("lN74");
@@ -2648,6 +3003,9 @@ var external_react_chartjs_2_ = __webpack_require__("t3hY");
 
 // EXTERNAL MODULE: ./constants.js
 var constants = __webpack_require__("xPX6");
+
+// EXTERNAL MODULE: ./utils.js
+var utils = __webpack_require__("GyP+");
 
 // CONCATENATED MODULE: ./components/graphs/LineVacinadosInfecoesRecuperados.jsx
 
@@ -2712,15 +3070,15 @@ function LineVacinadosInfecoesRecuperados({
   marriedData = Object.values(marriedData).reverse();
 
   const data = canvas => {
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+    if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+      canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
     } else {
       canvas.parentNode.style.width = 'auto';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+      if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+        canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
@@ -2803,8 +3161,8 @@ function LineVacinadosInfecoesRecuperados({
         yAxes: [{
           stacked: true,
           ticks: {
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: function (value, index, values) {
               return Object(utils["b" /* formatNumber */])(value, false);
             }
@@ -2814,8 +3172,8 @@ function LineVacinadosInfecoesRecuperados({
           id: 'total',
           display: false,
           ticks: {
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10
           }
         }],
         xAxes: [{
@@ -2844,117 +3202,9 @@ function LineVacinadosInfecoesRecuperados({
     })
   });
 }
-// EXTERNAL MODULE: external "chartjs-plugin-datalabels"
-var external_chartjs_plugin_datalabels_ = __webpack_require__("lLkP");
-var external_chartjs_plugin_datalabels_default = /*#__PURE__*/__webpack_require__.n(external_chartjs_plugin_datalabels_);
+// EXTERNAL MODULE: ./components/graphs/PieVacinadosInfectadosRecuperadosObitos.jsx
+var PieVacinadosInfectadosRecuperadosObitos = __webpack_require__("Q/64");
 
-// CONCATENATED MODULE: ./components/graphs/PieVacinadosInfectadosRecuperadosObitos.jsx
-
-
-
-
-
-
-
-
-function PieVacinadosInfectadosRecuperadosObitos({
-  statistics,
-  colors
-}) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(external_react_["useState"])(true);
-  let {
-    values,
-    labels,
-    valuesIn1,
-    valuesIn2
-  } = statistics.getDiariosInoculacoes();
-  let {
-    values: valueCasesDiarios
-  } = statistics.getDiariosCases();
-  let vaccines = statistics.getRaw();
-  let firstItem = valueCasesDiarios.reverse()[0];
-  let {
-    main,
-    shades,
-    tints,
-    complements
-  } = colors;
-
-  const data = canvas => {
-    return {
-      labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
-      datasets: [{
-        backgroundColor: [main, complements[0], complements[2], shades[2]],
-        data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, firstItem.Activos, firstItem.Recuperados, firstItem.Obitos]
-      }]
-    };
-  };
-
-  const options = () => {
-    return {
-      maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          color: 'white',
-          formatter: (value, chart) => {
-            let sum = chart.dataset.data.reduce((prev, curr) => {
-              return prev + curr;
-            }, 0);
-            sum = value / sum * 100;
-
-            if (sum > 5) {
-              return sum.toFixed(2) + '%';
-            }
-
-            return '';
-          }
-        }
-      },
-      onResize: (a, b, c) => {},
-      legend: {
-        position: 'bottom',
-        align: 'start'
-      },
-      animation: {
-        duration: 1000
-      },
-      tooltips: {
-        callbacks: {
-          label: function ({
-            index
-          }, {
-            datasets,
-            labels
-          }) {
-            let label = labels[index];
-            let data = datasets[0].data[index];
-            return `${label}: ${Object(utils["b" /* formatNumber */])(data)}`;
-          }
-        }
-      }
-    };
-  };
-
-  Object(external_react_["useEffect"])(() => {
-    if (values.length > 0) {
-      setLoading(false);
-    }
-  }, [values, labels]);
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-    allowOverflow: true,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Pie"], {
-        plugins: [external_chartjs_plugin_datalabels_default.a],
-        height: 350,
-        options: options(),
-        data: data
-      }) : ''
-    })
-  });
-}
 // EXTERNAL MODULE: external "classnames"
 var external_classnames_ = __webpack_require__("K2gz");
 var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_classnames_);
@@ -3009,21 +3259,21 @@ function BarsVacinacaoArs({
     tints,
     complements
   } = colors;
-  let snsData = statistics.getTotalSNS();
-  Object(external_react_["useEffect"])(() => {
-    setLoading(false);
-  }, []);
+  const {
+    0: snsData,
+    1: setSNSData
+  } = Object(external_react_["useState"])({});
 
   const data = canvas => {
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+    if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+      canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+      if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+        canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
@@ -3109,7 +3359,11 @@ function BarsVacinacaoArs({
     };
   };
 
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+  Object(external_react_["useEffect"])(async () => {
+    setSNSData(await statistics.getTotalSNS());
+    setLoading(false);
+  }, []);
+  return !loading === true ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(jsx_runtime_["Fragment"], {
@@ -3120,120 +3374,11 @@ function BarsVacinacaoArs({
         })
       }) : ''
     })
-  });
+  }) : '';
 }
-// CONCATENATED MODULE: ./components/graphs/PieSuscetiveisProporcao.jsx
+// EXTERNAL MODULE: ./components/graphs/PieSuscetiveisProporcao.jsx
+var PieSuscetiveisProporcao = __webpack_require__("WMh8");
 
-
-
-
-
-
-
-
-function PieSuscetiveisProporcao({
-  statistics,
-  colors
-}) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(external_react_["useState"])(true);
-  let {
-    values,
-    labels,
-    valuesIn1,
-    valuesIn2
-  } = statistics.getDiariosInoculacoes();
-  let {
-    values: valueCasesDiarios
-  } = statistics.getDiariosCases();
-  let vaccines = statistics.getRaw();
-  let firstItem = valueCasesDiarios.reverse()[0];
-  let infetadosVacinados = vaccines[vaccines.length - 1].Inoculacao2_Ac - firstItem.ConfirmadosAcumulado;
-  let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + firstItem.Activos + firstItem.Recuperados + firstItem.Obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
-
-  let {
-    main,
-    shades,
-    tints,
-    complements
-  } = colors;
-
-  const data = canvas => {
-    return {
-      //labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
-      labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
-      datasets: [{
-        backgroundColor: [main, complements[0], complements[2], shades[2], complements[1]],
-        data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel] //data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
-
-      }]
-    };
-  };
-
-  const options = () => {
-    return {
-      maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          color: 'white',
-          formatter: (value, chart) => {
-            let sum = chart.dataset.data.reduce((prev, curr) => {
-              return prev + curr;
-            }, 0);
-            sum = value / sum * 100;
-
-            if (sum > 10) {
-              return sum.toFixed(2) + '%';
-            }
-
-            return '';
-          }
-        }
-      },
-      onResize: (a, b, c) => {},
-      legend: {
-        position: 'bottom',
-        align: 'start'
-      },
-      animation: {
-        duration: 1000
-      },
-      tooltips: {
-        callbacks: {
-          label: function ({
-            index
-          }, {
-            datasets,
-            labels
-          }) {
-            let label = labels[index];
-            let data = datasets[0].data[index];
-            return `${label}: ${Object(utils["b" /* formatNumber */])(data)}`;
-          }
-        }
-      }
-    };
-  };
-
-  Object(external_react_["useEffect"])(() => {
-    if (values.length > 0) {
-      setLoading(false);
-    }
-  }, [values, labels]);
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-    allowOverflow: true,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Pie"], {
-        plugins: [external_chartjs_plugin_datalabels_default.a],
-        height: 350,
-        options: options(),
-        data: data
-      }) : ''
-    })
-  });
-}
 // EXTERNAL MODULE: ./components/CustomCheckbox.jsx
 var CustomCheckbox = __webpack_require__("SSzp");
 
@@ -3278,15 +3423,15 @@ function BarVacinasRecebidaDia({
       az
     } = graphData;
 
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+    if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+      canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+      if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+        canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
@@ -3466,8 +3611,8 @@ function BarVacinasRecebidaDia({
           stacked: true,
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: value => Object(utils["b" /* formatNumber */])(value, false)
           }
         }],
@@ -3513,9 +3658,9 @@ function BarAdministradasPorFaixaEtaria({
   colors
 }) {
   let {
-    0: loading,
-    1: setLoading
-  } = Object(external_react_["useState"])(true);
+    0: loaded,
+    1: setLoaded
+  } = Object(external_react_["useState"])(false);
   let marriedData = {};
   let {
     main,
@@ -3556,14 +3701,14 @@ function BarAdministradasPorFaixaEtaria({
       maxValue
     } = graphData;
 
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
+    if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
       canvas.parentNode.style.width = '1000px';
     } else {
       canvas.parentNode.style.width = 'auto';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
+      if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
         canvas.parentNode.style.width = '1000px';
       } else {
         canvas.parentNode.style.width = '100%';
@@ -3721,7 +3866,7 @@ function BarAdministradasPorFaixaEtaria({
         }
       },
       onResize: (a, b, c) => {
-        if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
+        if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
           a.canvas.parentNode.style.width = '1000px';
         } else {
           a.canvas.parentNode.style.width = 'auto';
@@ -3791,7 +3936,7 @@ function BarAdministradasPorFaixaEtaria({
   Object(external_react_["useEffect"])(() => {
     statistics.getAdministredDosesByAgeByWeek().then(data => {
       setGraphData(data);
-      setLoading(false);
+      setLoaded(true);
       setActiveDose(1);
     });
   }, []);
@@ -3799,7 +3944,7 @@ function BarAdministradasPorFaixaEtaria({
     textLeft: true,
     allowOverflow: true,
     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+      children: loaded === true ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
         children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
           className: 'toggle_buttons',
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
@@ -4332,14 +4477,15 @@ function BarArs({
     main,
     shades,
     tints
-  } = colors; //let [graphData, setGraphData] = useState({});
-
-  let {
-    values: valueCasesDiarios
-  } = statistics.getDiariosCases();
-  let snsData = statistics.getTotalSNS();
-  let ars = statistics.getTotalARS();
-  let firstItem = valueCasesDiarios.reverse()[0];
+  } = colors;
+  const {
+    0: snsData,
+    1: setSNSData
+  } = Object(external_react_["useState"])({});
+  const {
+    0: ars,
+    1: setArs
+  } = Object(external_react_["useState"])({});
   let graphData = {
     All: {},
     'ARS Alentejo': {},
@@ -4349,24 +4495,28 @@ function BarArs({
     'ARS Lisboa e Vale do Tejo': {},
     Madeira: {},
     Açores: {}
-  }; //map the data
+  };
 
-  for (let key in graphData) {
-    let obj1 = Object.assign(graphData[key], snsData.filter(el => el.REGION.replace('RA ', '') == key)[0]);
-    let obj2 = ars[key];
-    graphData[key] = BarArs_objectSpread(BarArs_objectSpread({}, obj2), obj1);
+  if (!loading) {
+    //map the data
+    for (let key in graphData) {
+      let obj1 = Object.assign(graphData[key], snsData.filter(el => el.REGION.replace('RA ', '') == key)[0]);
+      let obj2 = ars[key];
+      graphData[key] = BarArs_objectSpread(BarArs_objectSpread({}, obj2), obj1);
+    }
   }
 
-  Object(external_react_["useEffect"])(() => {
-    statistics.getTotalAdministredDosesByAgeByWeek().then(data => {
-      //setGraphData(data);
-      setLoading(false);
-    });
+  Object(external_react_["useEffect"])(async () => {
+    let d = await statistics.getTotalSNS();
+    setSNSData(d);
+    let arsD = await statistics.getTotalARS();
+    setArs(arsD);
+    setLoading(false);
   }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+      children: loading === false ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
         children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
           className: 'legends',
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
@@ -4504,6 +4654,10 @@ function BarArs({
     })
   });
 }
+// EXTERNAL MODULE: external "chartjs-plugin-datalabels"
+var external_chartjs_plugin_datalabels_ = __webpack_require__("lLkP");
+var external_chartjs_plugin_datalabels_default = /*#__PURE__*/__webpack_require__.n(external_chartjs_plugin_datalabels_);
+
 // CONCATENATED MODULE: ./components/graphs/PieRecebidasAdquiridas.jsx
 
 
@@ -4766,15 +4920,15 @@ function BarVacinasRecebidaDiaAcum({
       az
     } = graphData;
 
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+    if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+      canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+      if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+        canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
@@ -4948,8 +5102,8 @@ function BarVacinasRecebidaDiaAcum({
           stacked: true,
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: value => Object(utils["b" /* formatNumber */])(value, false)
           }
         }],
@@ -4963,8 +5117,8 @@ function BarVacinasRecebidaDiaAcum({
     };
   };
 
-  Object(external_react_["useEffect"])(() => {
-    setGraphData(statistics.getDosesRecebidasAcum());
+  Object(external_react_["useEffect"])(async () => {
+    setGraphData(await statistics.getDosesRecebidasAcum());
     setLoading(false);
   }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
@@ -5012,6 +5166,7 @@ function BarVacinasRecebidaDiaAcum({
 
 
 
+
 function LineVacinadosEu_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function LineVacinadosEu_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { LineVacinadosEu_ownKeys(Object(source), true).forEach(function (key) { LineVacinadosEu_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { LineVacinadosEu_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5030,11 +5185,18 @@ function LineVacinadosEu({
   statistics,
   colors
 }) {
-  let {
-    labels,
-    pt,
-    eu
-  } = statistics.getOwid();
+  const {
+    0: owidData,
+    1: setOwidData
+  } = Object(external_react_["useState"])({
+    labels: '',
+    pt: '',
+    eu: ''
+  });
+  const {
+    0: loaded,
+    1: setLoaded
+  } = Object(external_react_["useState"])(loaded);
   let {
     main,
     shades,
@@ -5064,41 +5226,41 @@ function LineVacinadosEu({
   const data = canvas => {
     const ctx = canvas.getContext('2d');
 
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+    if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+      canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+      if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+        canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
     });
     return {
-      labels: labels,
-      datasets: [LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["p" /* lineChartCommon */]), {}, {
+      labels: owidData.labels,
+      datasets: [LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["s" /* lineChartCommon */]), {}, {
         label: 'Portugal',
         backgroundColor: main,
         borderColor: main,
         type: 'line',
         fill: false,
-        data: pt.map(el => {
+        data: owidData.pt.map(el => {
           if (toggleStats.perHundred) {
             return el[doses_map.per_hundred[activeDose]];
           }
 
           return el[doses_map.normal[activeDose]];
         })
-      }), LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["p" /* lineChartCommon */]), {}, {
+      }), LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["s" /* lineChartCommon */]), {}, {
         label: 'União Europeia',
         type: 'line',
         fill: false,
         backgroundColor: complements[2],
         borderColor: complements[2],
-        data: eu.map(el => {
+        data: owidData.eu.map(el => {
           if (toggleStats.perHundred) {
             return el[doses_map.per_hundred[activeDose]];
           }
@@ -5139,22 +5301,35 @@ function LineVacinadosEu({
         yAxes: [{
           ticks: {
             beginAtZero: false,
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: value => Object(utils["b" /* formatNumber */])(value, false)
           }
         }],
         xAxes: [{
           ticks: {
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 30 : 60
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 30 : 60
           }
         }]
       }
     };
   };
 
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
+  Object(external_react_["useEffect"])(async () => {
+    let {
+      labels,
+      pt,
+      eu
+    } = await statistics.getOwid();
+    setOwidData({
+      labels,
+      pt,
+      eu
+    });
+    setLoaded(true);
+  }, []);
+  return loaded === true ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
     textLeft: true,
     allowOverflow: true,
     children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
@@ -5208,7 +5383,7 @@ function LineVacinadosEu({
         data: data
       })
     })]
-  });
+  }) : /*#__PURE__*/Object(jsx_runtime_["jsx"])(jsx_runtime_["Fragment"], {});
 }
 // CONCATENATED MODULE: ./components/graphs/BarVacinadosEu.jsx
 
@@ -5232,11 +5407,18 @@ function BarVacinadosEu({
   statistics,
   colors
 }) {
-  let {
-    labels,
-    pt,
-    eu
-  } = statistics.getOwid();
+  const {
+    0: owidData,
+    1: setOwidData
+  } = Object(external_react_["useState"])({
+    labels: '',
+    pt: '',
+    eu: ''
+  });
+  const {
+    0: loaded,
+    1: setLoaded
+  } = Object(external_react_["useState"])(loaded);
   let {
     main,
     shades,
@@ -5266,39 +5448,39 @@ function BarVacinadosEu({
   const data = canvas => {
     const ctx = canvas.getContext('2d');
 
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+    if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+      canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
+      if (window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */]) {
+        canvas.parentNode.style.width = constants["l" /* RESIZE_TRESHOLD */] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
     });
     return {
-      labels: labels,
-      datasets: [BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, constants["p" /* lineChartCommon */]), {}, {
+      labels: owidData.labels,
+      datasets: [BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, constants["s" /* lineChartCommon */]), {}, {
         label: 'Portugal',
         backgroundColor: main,
         borderColor: main,
         fill: false,
-        data: pt.map(el => {
+        data: owidData.pt.map(el => {
           if (toggleStats.perHundred) {
             return el[doses_map.per_hundred[activeDose]];
           }
 
           return el[doses_map.normal[activeDose]];
         })
-      }), BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, constants["p" /* lineChartCommon */]), {}, {
+      }), BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, constants["s" /* lineChartCommon */]), {}, {
         label: 'União Europeia',
         fill: false,
         backgroundColor: complements[2],
         borderColor: complements[2],
-        data: eu.map(el => {
+        data: owidData.eu.map(el => {
           if (toggleStats.perHundred) {
             return el[doses_map.per_hundred[activeDose]];
           }
@@ -5343,22 +5525,35 @@ function BarVacinadosEu({
         yAxes: [{
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: value => Object(utils["b" /* formatNumber */])(value, false)
           }
         }],
         xAxes: [{
           ticks: {
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 30 : 60
+            maxTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= constants["l" /* RESIZE_TRESHOLD */] ? 30 : 60
           }
         }]
       }
     };
   };
 
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
+  Object(external_react_["useEffect"])(async () => {
+    let {
+      labels,
+      pt,
+      eu
+    } = await statistics.getOwid();
+    setOwidData({
+      labels,
+      pt,
+      eu
+    });
+    setLoaded(true);
+  }, []);
+  return loaded === true ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
     textLeft: true,
     allowOverflow: true,
     children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
@@ -5412,320 +5607,17 @@ function BarVacinadosEu({
         data: data
       })
     })]
-  });
+  }) : '';
 }
-// CONCATENATED MODULE: ./components/graphs/LineRt.jsx
+// EXTERNAL MODULE: ./components/graphs/LineRt.jsx
+var LineRt = __webpack_require__("m5rz");
 
+// EXTERNAL MODULE: ./components/context/regiao.js
+var regiao = __webpack_require__("uAdN");
 
+// EXTERNAL MODULE: ./hooks/initSockets.js
+var initSockets = __webpack_require__("/jVO");
 
-function LineRt_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function LineRt_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { LineRt_ownKeys(Object(source), true).forEach(function (key) { LineRt_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { LineRt_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function LineRt_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-
-function LineRt({
-  statistics,
-  colors
-}) {
-  let casesData = statistics.getCases();
-  let {
-    0: loaded,
-    1: setLoaded
-  } = Object(external_react_["useState"])(false);
-  let {
-    valuesIn1,
-    valuesIn2
-  } = statistics.getVacinadosAcum();
-  let {
-    main,
-    shades,
-    tints,
-    complements
-  } = colors;
-  let {
-    0: currentRegiao,
-    1: setCurrentRegiao
-  } = Object(external_react_["useState"])('continente');
-  let doses_map = {
-    normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
-    per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred']
-  };
-  let {
-    0: height,
-    1: setHeight
-  } = Object(external_react_["useState"])(400);
-  let {
-    0: toggleStats,
-    1: setToggleStats
-  } = Object(external_react_["useState"])({
-    perHundred: true
-  });
-  let {
-    0: rtData,
-    1: setRtData
-  } = Object(external_react_["useState"])({});
-  const canvasRef = Object(external_react_["useRef"])(null);
-  Object(external_react_["useEffect"])(() => {
-    if (!loaded) return;
-    statistics.getRtRegiao(currentRegiao).then(data => setRtData(data));
-  }, [currentRegiao]);
-  Object(external_react_["useEffect"])(() => {
-    console.log(rtData);
-  }, [rtData]);
-  Object(external_react_["useEffect"])(() => {
-    statistics.getRtRegiao(currentRegiao).then(data => {
-      setRtData(data);
-      setLoaded(true);
-    });
-  }, []);
-  let numberFormatter = new Intl.NumberFormat();
-
-  const data = canvas => {
-    const ctx = canvas.getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    let color = '';
-    let {
-      r,
-      g,
-      b
-    } = Object(utils["c" /* hexToRgb */])(main);
-
-    try {
-      //See if supports transperancy
-      gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',30%)');
-      color = 'rgba(' + r + ',' + g + ',' + b + ',30%)';
-    } catch (e) {
-      gradient.addColorStop(0, '#d9f3ef');
-      color = '#d9f3ef';
-    }
-
-    if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
-    } else {
-      canvas.parentNode.style.width = '100%';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["i" /* RESIZE_TRESHOLD */] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
-    return {
-      labels: rtData.labels,
-      datasets: [LineRt_objectSpread(LineRt_objectSpread({}, constants["q" /* lineChartCommon2 */]), {}, {
-        label: 'R(t) limite superior',
-        backgroundColor: color,
-        borderColor: 'transparent',
-        type: 'line',
-        fill: '2',
-        //fill until previous dataset
-        data: rtData.rt.map(el => el.limite_superior_IC95),
-        order: 3,
-        yAxisID: 'rt'
-      }), LineRt_objectSpread(LineRt_objectSpread({}, constants["p" /* lineChartCommon */]), {}, {
-        label: 'R(t)',
-        backgroundColor: main,
-        borderColor: main,
-        type: 'line',
-        fill: false,
-        data: rtData.rt.map(el => el.rt_numero_de_reproducao),
-        order: 2,
-        yAxisID: 'rt'
-      }), LineRt_objectSpread(LineRt_objectSpread({}, constants["q" /* lineChartCommon2 */]), {}, {
-        label: 'R(t) limite inferior',
-        backgroundColor: 'white',
-        borderColor: 'transparent',
-        type: 'line',
-        fill: false,
-        data: rtData.rt.map(el => el.limite_inferior_IC95),
-        order: 1,
-        yAxisID: 'rt'
-      })
-      /* 	{
-      	...lineChartCommon,
-      	fill: false,
-      	borderColor: complements[1],
-      	label: 'Casos Confirmados',
-      	backgroundColor: complements[1],
-      	pointBorderColor: complements[1],
-      	pointBackgroundColor: complements[1],
-      	pointHoverBackgroundColor: complements[1],
-      	pointHoverBorderColor: complements[1],
-      	data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => el.ConfirmadosNovos),
-      	order: 4,
-      }, */
-
-      /* {
-      	...lineChartCommon,
-      	fill: false,
-      	borderColor: complements[2],
-      	label: 'Totalmente inoculados',
-      	backgroundColor: complements[2],
-      	pointBorderColor: complements[2],
-      	pointBackgroundColor: complements[2],
-      	pointHoverBackgroundColor: complements[2],
-      	pointHoverBorderColor: complements[2],
-      	data: valuesIn2,
-      	order: -1,
-      }, */
-      ]
-    };
-  };
-
-  const options = () => {
-    return {
-      plugins: {
-        datalabels: {
-          display: false
-        }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start',
-        labels: {
-          filter: function (item, chart) {
-            console.log();
-            return !item.text.match('limite');
-          }
-        }
-      },
-      animation: {
-        duration: 1000
-      },
-      tooltips: {
-        mode: 'index',
-        intersect: true,
-        callbacks: {
-          title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
-            return 'Dia ' + tooltipItem[0].label;
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10
-          },
-          display: false
-        }, {
-          id: 'rt',
-          ticks: {
-            beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 8 : 10
-          },
-          display: true
-        }],
-        xAxes: [{
-          ticks: {
-            maxTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= constants["i" /* RESIZE_TRESHOLD */] ? 30 : 60
-          },
-          stacked: true
-        }]
-      }
-    };
-  };
-
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
-    textLeft: true,
-    allowOverflow: true,
-    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      className: [Card_module_default.a.card_scrollable].join(' '),
-      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-        className: 'toggle_buttons',
-        children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'continente'
-            }),
-            onClick: () => {
-              setCurrentRegiao('continente');
-            },
-            children: "Continente"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'nacional'
-            }),
-            onClick: () => {
-              setCurrentRegiao('nacional');
-            },
-            children: "Nacional"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'lvt'
-            }),
-            onClick: () => {
-              setCurrentRegiao('lvt');
-            },
-            children: "Lisboa e Vale do Tejo"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'algarve'
-            }),
-            onClick: () => {
-              setCurrentRegiao('algarve');
-            },
-            children: "Algarve"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'alentejo'
-            }),
-            onClick: () => {
-              setCurrentRegiao('alentejo');
-            },
-            children: "Alentejo"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'centro'
-            }),
-            onClick: () => {
-              setCurrentRegiao('centro');
-            },
-            children: "Centro"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'madeira'
-            }),
-            onClick: () => {
-              setCurrentRegiao('madeira');
-            },
-            children: "Madeira"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: external_classnames_default()('toggle_button', {
-              active: currentRegiao === 'acores'
-            }),
-            onClick: () => {
-              setCurrentRegiao('acores');
-            },
-            children: "A\xE7ores"
-          })]
-        })
-      })
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: loaded ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Line"], {
-        height: 80,
-        ref: canvasRef,
-        options: options(),
-        data: data
-      }) : ''
-    })]
-  });
-}
 // CONCATENATED MODULE: ./pages/index.js
 
 
@@ -5736,6 +5628,7 @@ function pages_ownKeys(object, enumerableOnly) { var keys = Object.keys(object);
 function pages_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { pages_ownKeys(Object(source), true).forEach(function (key) { pages_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { pages_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function pages_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5774,6 +5667,8 @@ function pages_defineProperty(obj, key, value) { if (key in obj) { Object.define
 
 
 
+
+
 const plausible = external_plausible_tracker_default()({
   domain: 'vacinacaocovid19.pt',
   trackLocalhost: true
@@ -5784,7 +5679,9 @@ function Home() {
     update: updateData,
     ready: dataReady,
     versioning
-  } = Object(useData["a" /* useData */])();
+  } = Object(useData["a" /* useData */])({
+    regiao: 'portugal'
+  });
   let rawData = statistics.getRaw();
   let {
     0: selectedItem,
@@ -5814,6 +5711,8 @@ function Home() {
     0: loaded,
     1: setLoaded
   } = Object(external_react_["useState"])(false);
+  let pusher = null;
+  let channel = null;
   let numberFormatter = new Intl.NumberFormat('pt-PT');
   let {
     0: derivedNumbers,
@@ -5841,12 +5740,21 @@ function Home() {
     data: '',
     dataLong: ''
   });
-  console.log(1);
   let {
     colors,
     colors_v2,
     setColors
   } = Object(useColors["a" /* useColors */])();
+
+  function onSocketUpdate({
+    data
+  }) {
+    updateData(data.type, data.data);
+    setUpdating(true);
+    setTimeout(() => {
+      setUpdating(false);
+    }, 1000);
+  }
 
   function onDateSelect(d) {
     let item = rawData.filter((el, elIdx) => {
@@ -5891,7 +5799,7 @@ function Home() {
     };
     setDerivedNumbers(object);
   }, [selectedItem]);
-  Object(external_react_["useEffect"])(() => {
+  Object(external_react_["useEffect"])(async () => {
     if (dataReady === false) return;
     let rawData = statistics.getRaw();
     setLast(rawData[rawData.length - 1]);
@@ -5899,20 +5807,9 @@ function Home() {
     setPreviousItem(selectedItem);
     setFirst(rawData[0]);
     plausible.trackPageview();
-    var pusher = new Pusher('4dd4d1d504254af64544', {
-      cluster: 'eu'
-    });
-    var channel = pusher.subscribe('covid19');
-    channel.bind('update', function (data) {
-      updateData(data.type, data.data);
-      setUpdating(true);
-      setTimeout(() => {
-        setUpdating(false);
-      }, 1000);
-    });
     let {
       sum
-    } = statistics === null || statistics === void 0 ? void 0 : statistics.getDosesRecebidasAcum();
+    } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getDosesRecebidasAcum());
     sum = sum.reverse()[0];
     let item = rawData.filter(el => {
       return Object(external_date_fns_["isSameDay"])(el.Data, new Date(last_update.dateSnsStart));
@@ -5931,22 +5828,17 @@ function Home() {
     }));
     setLoaded(true);
   }, [dataReady]);
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
-    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Metatags, {
-      isUpdating: updating
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(Header["a" /* Header */], {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-      className: `card-shadow-bottom ${Home_module_default.a.alert}`,
-      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-        style: {
-          textAlign: 'center'
-        },
-        children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
-          children: ["Veja aqui os \xFAltimos n\xFAmeros relacionados com a vacina\xE7\xE3o para a COVID-19. ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "Os dados s\xE3o atualizados diariamente entre as 13h e as 14h, e este ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("em", {
-            children: "dashboard"
-          }), " \xE9 atualizado ao minuto."]
-        })
-      })
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
+  Object(external_react_["useEffect"])(() => {
+    // Unconventional way of doing this
+    window.addEventListener('socket_update', onSocketUpdate);
+    return function () {
+      // Unconventional way of doing this
+      window.removeEventListener('socket_update', onSocketUpdate);
+    };
+  }, []);
+  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(regiao["a" /* RegiaoContext */].Provider, {
+    value: 'portugal',
+    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
       className: "container-fluid app",
       children: loaded ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
         children: [' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
@@ -5962,6 +5854,7 @@ function Home() {
             }) : ''
           })
         }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+          className: "counterRow",
           children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
             lg: 4,
             xs: 12,
@@ -6015,6 +5908,7 @@ function Home() {
             })
           })]
         }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+          className: "counterRow",
           children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
             lg: 4,
             xs: 12,
@@ -6079,213 +5973,247 @@ function Home() {
           })]
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
               children: "N\xFAmero de vacinas administradas"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(NumeroTotalVacinados["a" /* NumeroTotalVacinados */], {
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(NumeroTotalVacinados["a" /* NumeroTotalVacinados */], {
               statistics: statistics,
               colors: colors
             })]
           })
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
               children: "N\xFAmero de vacinas administradas por dia"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(VacinadosPorDia["a" /* VacinadosPorDia */], {
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(VacinadosPorDia["a" /* VacinadosPorDia */], {
               colors: colors,
               statistics: statistics
             })]
           })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.title,
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("em", {
-                children: ["R", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sub", {
-                  children: "t"
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
+                className: Home_module_default.a.title,
+                children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("em", {
+                  children: ["R", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sub", {
+                    children: "t"
+                  })]
+                }), ' ', "por regi\xE3o"]
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+                className: Home_module_default.a.subtitle,
+                children: "Nem todas as regi\xF5es apresentam dados no mesmo per\xEDodo temporal"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineRt["a" /* LineRt */], {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "N\xFAmero de doses recebidas por semana"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarVacinasRecebidaDia, {
+                colors: colors,
+                statistics: statistics
+              })]
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "N\xFAmero de doses recebidas (acumulado)"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarVacinasRecebidaDiaAcum, {
+                colors: colors,
+                statistics: statistics
+              })]
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              lg: 6,
+              xs: 12,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Propor\xE7\xE3o de doses recebidas relativamente \xE0s doses adquiridas"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
+                className: Home_module_default.a.subtitle,
+                children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                  locale: locale_["pt"]
                 })]
-              }), ' ', "por regi\xE3o"]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.subtitle,
-              children: "Nem todas as regi\xF5es apresentam dados no mesmo per\xEDodo temporal"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineRt, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "N\xFAmero de doses recebidas por semana"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarVacinasRecebidaDia, {
-              colors: colors,
-              statistics: statistics
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "N\xFAmero de doses recebidas (acumulado)"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarVacinasRecebidaDiaAcum, {
-              colors: colors,
-              statistics: statistics
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            lg: 6,
-            xs: 12,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "Propor\xE7\xE3o de doses recebidas relativamente \xE0s doses adquiridas"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.subtitle,
-              children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                locale: locale_["pt"]
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieRecebidasAdquiridas, {
+                colors: colors_v2,
+                statistics: doses
               })]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieRecebidasAdquiridas, {
-              colors: colors_v2,
-              statistics: doses
-            })]
-          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            lg: 6,
-            xs: 12,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "Propor\xE7\xE3o de doses administradas relativamente \xE0s doses recebidas"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.subtitle,
-              children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                locale: locale_["pt"]
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              lg: 6,
+              xs: 12,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Propor\xE7\xE3o de doses administradas relativamente \xE0s doses recebidas"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
+                className: Home_module_default.a.subtitle,
+                children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                  locale: locale_["pt"]
+                })]
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieAdministradasDoses, {
+                colors: colors_v2,
+                statistics: doses
               })]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieAdministradasDoses, {
-              colors: colors_v2,
-              statistics: doses
             })]
-          })]
+          })
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
               children: "N\xFAmero de doses administradas por semana e faixa et\xE1ria"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarAdministradasPorFaixaEtaria, {
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarAdministradasPorFaixaEtaria, {
               colors: colors_v2,
               statistics: statistics
             })]
           })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "Doses totais administradas por faixa et\xE1ria"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.subtitle,
-              children: ["Dados acumulados deste 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                locale: locale_["pt"]
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Doses totais administradas por faixa et\xE1ria"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
+                className: Home_module_default.a.subtitle,
+                children: ["Dados acumulados deste 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                  locale: locale_["pt"]
+                })]
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarTotaisPorFaixaEtaria, {
+                colors: colors_v2,
+                statistics: statistics
               })]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarTotaisPorFaixaEtaria, {
-              colors: colors_v2,
-              statistics: statistics
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "N\xFAmero de vacinas administradas por dia com o n\xFAmero de infectados e de recuperados nos \xFAltimos 14 dias"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineVacinadosInfecoesRecuperados, {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              lg: 6,
+              xs: 12,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieVacinadosInfectadosRecuperadosObitos["a" /* PieVacinadosInfectadosRecuperadosObitos */], {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              lg: 6,
+              xs: 12,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos e popula\xE7\xE3o suscet\xEDvel"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieSuscetiveisProporcao["a" /* PieSuscetiveisProporcao */], {
+                colors: colors_v2,
+                statistics: statistics
+              })]
             })]
           })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "N\xFAmero de vacinas administradas por dia com o n\xFAmero de infectados e de recuperados nos \xFAltimos 14 dias"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineVacinadosInfecoesRecuperados, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Evolu\xE7\xE3o do programa de vacina\xE7\xE3o por ARS"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
+                className: Home_module_default.a.subtitle,
+                children: ["Dados acumulados deste 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                  locale: locale_["pt"]
+                })]
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarsVacinacaoArs, {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            })
           })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            lg: 6,
-            xs: 12,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieVacinadosInfectadosRecuperadosObitos, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
-          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            lg: 6,
-            xs: 12,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos e popula\xE7\xE3o suscet\xEDvel"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieSuscetiveisProporcao, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Ponto de situa\xE7\xE3o por ARS"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
+                className: Home_module_default.a.subtitle,
+                children: ["Dados acumulados relativos \xE0 semana de", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSnsStart).getTime(), "dd 'de' LLLL", {
+                  locale: locale_["pt"]
+                }), ' ', "at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                  locale: locale_["pt"]
+                })]
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs, {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_lazyload_default.a, {
+          height: 500,
+          once: true,
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "N\xFAmero de vacinas administradas em Portugal e na Uni\xE3o Europeia"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineVacinadosEu, {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "N\xFAmero de vacinas administradas por dia em Portugal e na Uni\xE3o Europeia"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarVacinadosEu, {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            })
           })]
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "Evolu\xE7\xE3o do programa de vacina\xE7\xE3o por ARS"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.subtitle,
-              children: ["Dados acumulados deste 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                locale: locale_["pt"]
-              })]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarsVacinacaoArs, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.title,
-              children: "Ponto de situa\xE7\xE3o por ARS"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.subtitle,
-              children: ["Dados acumulados relativos \xE0 semana de", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSnsStart).getTime(), "dd 'de' LLLL", {
-                locale: locale_["pt"]
-              }), ' ', "at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                locale: locale_["pt"]
-              })]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.title,
-              children: ["N\xFAmero de vacinas administradas em Portugal e na Uni\xE3o Europeia ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                className: 'new',
-                children: "novo"
-              })]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineVacinadosEu, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
-              className: Home_module_default.a.title,
-              children: ["N\xFAmero de vacinas administradas por dia em Portugal e na Uni\xE3o Europeia ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                className: 'new',
-                children: "novo"
-              })]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarVacinadosEu, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
-          })
         }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
           children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             xs: 12,
             className: Home_module_default.a.sources_block,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
               children: "Notas"
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
@@ -6326,7 +6254,7 @@ function Home() {
           }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             xs: 12,
             className: Home_module_default.a.sources_block,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
               children: "Fontes"
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
@@ -6419,12 +6347,7 @@ function Home() {
           color: colors_v2.main
         })
       })
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
-      src: "https://js.pusher.com/7.0/pusher.min.js"
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
-      src: "https://cdn.onesignal.com/sdks/OneSignalSDK.js",
-      async: ""
-    }), ";", /*#__PURE__*/Object(jsx_runtime_["jsx"])(Footer, {})]
+    })
   });
 }
 
@@ -6527,7 +6450,11 @@ module.exports = {
 	"card_subtitle": "Card_card_subtitle__3invo",
 	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
 	"card_chart": "Card_card_chart__37hzo",
-	"card_scrollable": "Card_card_scrollable__1Eiau"
+	"card_scrollable": "Card_card_scrollable__1Eiau",
+	"text_left": "Card_text_left__1G5SI",
+	"ram_subchart": "Card_ram_subchart__36M-A",
+	"ram_subchart_bar": "Card_ram_subchart_bar__hmsNC",
+	"ram": "Card_ram__1OaS2"
 };
 
 
@@ -6537,6 +6464,122 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/router/utils/get-asset-path-from-route.js");
+
+/***/ }),
+
+/***/ "WMh8":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PieSuscetiveisProporcao; });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("5PhN");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("lLkP");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("GyP+");
+
+
+
+
+
+
+
+
+function PieSuscetiveisProporcao({
+  statistics,
+  colors
+}) {
+  let {
+    0: loading,
+    1: setLoading
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
+  let vaccines = statistics.getLastVaccineAvaliable();
+  let lastCase = statistics.getLastCaseAvaliable();
+  let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
+  let populacao_suscetivel = lastCase.populacao - (vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
+
+  let {
+    main,
+    shades,
+    tints,
+    complements
+  } = colors;
+
+  const data = canvas => {
+    return {
+      //labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
+      labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
+      datasets: [{
+        backgroundColor: [main, complements[0], complements[2], shades[2], complements[1]],
+        data: [vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel] //data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
+
+      }]
+    };
+  };
+
+  const options = () => {
+    return {
+      maintainAspectRatio: false,
+      plugins: {
+        datalabels: {
+          color: 'white',
+          formatter: (value, chart) => {
+            let sum = chart.dataset.data.reduce((prev, curr) => {
+              return prev + curr;
+            }, 0);
+            sum = value / sum * 100;
+
+            if (sum > 10) {
+              return sum.toFixed(2) + '%';
+            }
+
+            return '';
+          }
+        }
+      },
+      onResize: (a, b, c) => {},
+      legend: {
+        position: 'bottom',
+        align: 'start'
+      },
+      animation: {
+        duration: 1000
+      },
+      tooltips: {
+        callbacks: {
+          label: function ({
+            index
+          }, {
+            datasets,
+            labels
+          }) {
+            let label = labels[index];
+            let data = datasets[0].data[index];
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_6__[/* formatNumber */ "b"])(data)}`;
+          }
+        }
+      }
+    };
+  };
+
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_4__[/* Card */ "a"], {
+    allowOverflow: true,
+    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+      children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default.a],
+        height: 350,
+        options: options(),
+        data: data
+      }) : ''
+    })
+  });
+}
 
 /***/ }),
 
@@ -7050,9 +7093,7 @@ function _interopRequireDefault(obj) {
 
 let detectDomainLocale;
 
-if (true) {
-  detectDomainLocale = __webpack_require__("xOyL").detectDomainLocale;
-}
+if (false) {}
 
 const basePath =  false || '';
 
@@ -7067,32 +7108,19 @@ function addPathPrefix(path, prefix) {
 }
 
 function getDomainLocale(path, locale, locales, domainLocales) {
-  if (true) {
-    locale = locale || (0, _normalizeLocalePath.normalizeLocalePath)(path, locales).detectedLocale;
-    const detectedDomain = detectDomainLocale(domainLocales, undefined, locale);
-
-    if (detectedDomain) {
-      return `http${detectedDomain.http ? '' : 's'}://${detectedDomain.domain}${basePath || ''}${locale === detectedDomain.defaultLocale ? '' : `/${locale}`}${path}`;
-    }
-
-    return false;
-  }
+  if (false) {}
 
   return false;
 }
 
 function addLocale(path, locale, defaultLocale) {
-  if (true) {
-    return locale && locale !== defaultLocale && !path.startsWith('/' + locale + '/') && path !== '/' + locale ? addPathPrefix(path, '/' + locale) : path;
-  }
+  if (false) {}
 
   return path;
 }
 
 function delLocale(path, locale) {
-  if (true) {
-    return locale && (path.startsWith('/' + locale + '/') || path === '/' + locale) ? path.substr(locale.length + 1) || '/' : path;
-  }
+  if (false) {}
 
   return path;
 }
@@ -7463,12 +7491,7 @@ class Router {
     this.isFallback = isFallback;
     this.isReady = !!(self.__NEXT_DATA__.gssp || self.__NEXT_DATA__.gip || !autoExportDynamic && !self.location.search);
 
-    if (true) {
-      this.locale = locale;
-      this.locales = locales;
-      this.defaultLocale = defaultLocale;
-      this.domainLocales = domainLocales;
-    }
+    if (false) {}
 
     if (false) {}
   }
@@ -7539,58 +7562,7 @@ class Router {
     options.scroll = !!((_options$scroll = options.scroll) != null ? _options$scroll : true);
     let localeChange = options.locale !== this.locale;
 
-    if (true) {
-      this.locale = options.locale === false ? this.defaultLocale : options.locale || this.locale;
-
-      if (typeof options.locale === 'undefined') {
-        options.locale = this.locale;
-      }
-
-      const parsedAs = (0, _parseRelativeUrl.parseRelativeUrl)(hasBasePath(as) ? delBasePath(as) : as);
-      const localePathResult = (0, _normalizeLocalePath.normalizeLocalePath)(parsedAs.pathname, this.locales);
-
-      if (localePathResult.detectedLocale) {
-        this.locale = localePathResult.detectedLocale;
-        parsedAs.pathname = addBasePath(parsedAs.pathname);
-        as = (0, _utils.formatWithValidation)(parsedAs);
-        url = addBasePath((0, _normalizeLocalePath.normalizeLocalePath)(hasBasePath(url) ? delBasePath(url) : url, this.locales).pathname);
-      }
-
-      let didNavigate = false; // we need to wrap this in the env check again since regenerator runtime
-      // moves this on its own due to the return
-
-      if (true) {
-        var _this$locales; // if the locale isn't configured hard navigate to show 404 page
-
-
-        if (!((_this$locales = this.locales) != null && _this$locales.includes(this.locale))) {
-          parsedAs.pathname = addLocale(parsedAs.pathname, this.locale);
-          window.location.href = (0, _utils.formatWithValidation)(parsedAs); // this was previously a return but was removed in favor
-          // of better dead code elimination with regenerator runtime
-
-          didNavigate = true;
-        }
-      }
-
-      const detectedDomain = detectDomainLocale(this.domainLocales, undefined, this.locale); // we need to wrap this in the env check again since regenerator runtime
-      // moves this on its own due to the return
-
-      if (true) {
-        // if we are navigating to a domain locale ensure we redirect to the
-        // correct domain
-        if (!didNavigate && detectedDomain && self.location.hostname !== detectedDomain.domain) {
-          const asNoBasePath = delBasePath(as);
-          window.location.href = `http${detectedDomain.http ? '' : 's'}://${detectedDomain.domain}${addBasePath(`${this.locale === detectedDomain.defaultLocale ? '' : `/${this.locale}`}${asNoBasePath === '/' ? '' : asNoBasePath}` || '/')}`; // this was previously a return but was removed in favor
-          // of better dead code elimination with regenerator runtime
-
-          didNavigate = true;
-        }
-      }
-
-      if (didNavigate) {
-        return new Promise(() => {});
-      }
-    }
+    if (false) { var _this$locales; }
 
     if (!options._h) {
       this.isSsr = false;
@@ -7785,11 +7757,7 @@ class Router {
         throw error;
       }
 
-      if (true) {
-        if (this.locale) {
-          document.documentElement.lang = this.locale;
-        }
-      }
+      if (false) {}
 
       Router.events.emit('routeChangeComplete', as, routeProps);
       return true;
@@ -8031,18 +7999,7 @@ class Router {
       pathname
     } = parsed;
 
-    if (true) {
-      if (options.locale === false) {
-        pathname = (0, _normalizeLocalePath.normalizeLocalePath)(pathname, this.locales).pathname;
-        parsed.pathname = pathname;
-        url = (0, _utils.formatWithValidation)(parsed);
-        let parsedAs = (0, _parseRelativeUrl.parseRelativeUrl)(asPath);
-        const localePathResult = (0, _normalizeLocalePath.normalizeLocalePath)(parsedAs.pathname, this.locales);
-        parsedAs.pathname = localePathResult.pathname;
-        options.locale = localePathResult.detectedLocale || this.defaultLocale;
-        asPath = (0, _utils.formatWithValidation)(parsedAs);
-      }
-    }
+    if (false) {}
 
     const pages = await this.pageLoader.getPageList();
     parsed = this._resolveHref(parsed, pages, false);
@@ -8386,7 +8343,356 @@ module.exports = require("chartjs-plugin-datalabels");
 /***/ "lN74":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"populacao\":{\"valor\":10286300,\"legenda\":\"10,28 milhões (2019)\",\"fonte\":{\"nome\":\"PORDATA\",\"permalink\":\"https://www.pordata.pt/Portugal\"}},\"populacao_ram\":{\"valor\":254254,\"legenda\":\"254 mil 254 pessoas\",\"fonte\":{\"nome\":\"Direção Regional de Estatística da Madeira\",\"permalink\":\"https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html\"}},\"doses\":{\"valor\":38000000,\"legenda\":\"38 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19\"}},\"doses3\":{\"valor\":31000000,\"legenda\":\"mais do que 31 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C\"}},\"doses2\":{\"valor\":22000000,\"legenda\":\"cerca de 22 milhões de doses\",\"fonte\":{\"nome\":\"Direção-Geral da Saúde\",\"permalink\":\"https://www.sns.gov.pt/noticias/2020/12/04/plano-de-vacinacao-contra-a-covid-19/\"}},\"populacao_grupos\":{\"18_24\":544575,\"25_49\":3373178,\"50_59\":1482121,\"60_69\":1293301,\"70_79\":973123,\"80_plus\":668660,\"fonte\":{\"nome\":\"PORDATA (2019)\",\"permalink\":\"https://www.pordata.pt/Portugal/Popula%c3%a7%c3%a3o+residente++m%c3%a9dia+anual+total+e+por+grupo+et%c3%a1rio-10-1126\"}}}");
+module.exports = JSON.parse("{\"populacao\":{\"valor\":10286300,\"legenda\":\"10,28 milhões (2019)\",\"fonte\":{\"nome\":\"PORDATA\",\"permalink\":\"https://www.pordata.pt/Portugal\"}},\"populacao_ram\":{\"valor\":254254,\"legenda\":\"254 mil 254 pessoas\",\"fonte\":{\"nome\":\"Direção Regional de Estatística da Madeira\",\"permalink\":\"https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html\"}},\"populacao_residente_ram\":{\"3101\":{\"dico\":3101,\"concelho\":\"calheta\",\"valor\":10867,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3102\":{\"dico\":3102,\"concelho\":\"camara_lobos\",\"valor\":33675,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3103\":{\"dico\":3103,\"concelho\":\"funchal\",\"valor\":104024,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3104\":{\"dico\":3104,\"concelho\":\"machico\",\"valor\":19981,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3105\":{\"dico\":3105,\"concelho\":\"ponta_sol\",\"valor\":8593,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3106\":{\"dico\":3106,\"concelho\":\"porto_moniz\",\"valor\":2342,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3107\":{\"dico\":3107,\"concelho\":\"ribeira_brava\",\"valor\":2342,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3108\":{\"dico\":3108,\"concelho\":\"santa_cruz\",\"valor\":45281,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3109\":{\"dico\":3109,\"concelho\":\"santana\",\"valor\":6711,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3110\":{\"dico\":3110,\"concelho\":\"svicente\",\"valor\":5143,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3201\":{\"dico\":3201,\"concelho\":\"porto_santo\",\"valor\":5202,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}}},\"doses\":{\"valor\":38000000,\"legenda\":\"38 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19\"}},\"doses3\":{\"valor\":31000000,\"legenda\":\"mais do que 31 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C\"}},\"doses2\":{\"valor\":22000000,\"legenda\":\"cerca de 22 milhões de doses\",\"fonte\":{\"nome\":\"Direção-Geral da Saúde\",\"permalink\":\"https://www.sns.gov.pt/noticias/2020/12/04/plano-de-vacinacao-contra-a-covid-19/\"}},\"populacao_grupos\":{\"18_24\":544575,\"25_49\":3373178,\"50_59\":1482121,\"60_69\":1293301,\"70_79\":973123,\"80_plus\":668660,\"fonte\":{\"nome\":\"PORDATA (2019)\",\"permalink\":\"https://www.pordata.pt/Portugal/Popula%c3%a7%c3%a3o+residente++m%c3%a9dia+anual+total+e+por+grupo+et%c3%a1rio-10-1126\"}}}");
+
+/***/ }),
+
+/***/ "m5rz":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LineRt; });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("GyP+");
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("5PhN");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("K2gz");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _CustomCheckbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("SSzp");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("UG6H");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+function LineRt({
+  statistics,
+  colors,
+  regiao
+}) {
+  let casesData = statistics.getCases();
+  let {
+    0: loaded,
+    1: setLoaded
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
+  let {
+    valuesIn1,
+    valuesIn2
+  } = statistics.getVacinadosAcum();
+  let {
+    main,
+    shades,
+    tints,
+    complements
+  } = colors;
+  let {
+    0: currentRegiao,
+    1: setCurrentRegiao
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(regiao !== null && regiao !== void 0 ? regiao : 'continente');
+  let doses_map = {
+    normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
+    per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred']
+  };
+  let {
+    0: height,
+    1: setHeight
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(400);
+  let {
+    0: toggleStats,
+    1: setToggleStats
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    perHundred: true
+  });
+  let {
+    0: rtData,
+    1: setRtData
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({});
+  const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    if (!loaded) return;
+    statistics.getRtRegiao(currentRegiao).then(data => setRtData(data));
+  }, [currentRegiao]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    statistics.getRtRegiao(currentRegiao).then(data => {
+      setRtData(data);
+      setLoaded(true);
+    });
+  }, []);
+  let numberFormatter = new Intl.NumberFormat();
+
+  const data = canvas => {
+    const ctx = canvas.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    let color = '';
+    let {
+      r,
+      g,
+      b
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "c"])(main);
+
+    try {
+      //See if supports transperancy
+      gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',30%)');
+      color = 'rgba(' + r + ',' + g + ',' + b + ',30%)';
+    } catch (e) {
+      gradient.addColorStop(0, '#d9f3ef');
+      color = '#d9f3ef';
+    }
+
+    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"]) {
+      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] + 'px';
+    } else {
+      canvas.parentNode.style.width = '100%';
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"]) {
+        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] + 'px';
+      } else {
+        canvas.parentNode.style.width = '100%';
+      }
+    });
+    return {
+      labels: rtData.labels,
+      datasets: [_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "t"]), {}, {
+        label: 'R(t) limite superior',
+        backgroundColor: color,
+        borderColor: 'transparent',
+        type: 'line',
+        fill: '2',
+        //fill until previous dataset
+        data: rtData.rt.map(el => el.limite_superior_IC95.toFixed(2)),
+        order: 1,
+        yAxisID: 'rt'
+      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon */ "s"]), {}, {
+        label: 'R(t)',
+        backgroundColor: main,
+        borderColor: main,
+        type: 'line',
+        fill: false,
+        data: rtData.rt.map(el => el.rt_numero_de_reproducao.toFixed(2)),
+        order: 2,
+        yAxisID: 'rt'
+      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "t"]), {}, {
+        label: 'R(t) limite inferior',
+        backgroundColor: 'white',
+        borderColor: 'transparent',
+        type: 'line',
+        fill: false,
+        data: rtData.rt.map(el => el.limite_inferior_IC95.toFixed(2)),
+        order: 3,
+        yAxisID: 'rt'
+      })
+      /* 	{
+      	...lineChartCommon,
+      	fill: false,
+      	borderColor: complements[1],
+      	label: 'Casos Confirmados',
+      	backgroundColor: complements[1],
+      	pointBorderColor: complements[1],
+      	pointBackgroundColor: complements[1],
+      	pointHoverBackgroundColor: complements[1],
+      	pointHoverBorderColor: complements[1],
+      	data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => el.ConfirmadosNovos),
+      	order: 4,
+      }, */
+
+      /* {
+      	...lineChartCommon,
+      	fill: false,
+      	borderColor: complements[2],
+      	label: 'Totalmente inoculados',
+      	backgroundColor: complements[2],
+      	pointBorderColor: complements[2],
+      	pointBackgroundColor: complements[2],
+      	pointHoverBackgroundColor: complements[2],
+      	pointHoverBorderColor: complements[2],
+      	data: valuesIn2,
+      	order: -1,
+      }, */
+      ]
+    };
+  };
+
+  const options = () => {
+    return {
+      plugins: {
+        datalabels: {
+          display: false
+        }
+      },
+      legend: {
+        position: 'bottom',
+        align: 'start',
+        labels: {
+          filter: function (item, chart) {
+            return !item.text.match('limite');
+          }
+        }
+      },
+      animation: {
+        duration: 1000
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: true,
+        callbacks: {
+          title: (tooltipItem, data) => {
+            var label = data.datasets[tooltipItem[0].datasetIndex];
+            return 'Dia ' + tooltipItem[0].label;
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10
+          },
+          display: false
+        }, {
+          id: 'rt',
+          ticks: {
+            beginAtZero: true,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10
+          },
+          display: true
+        }],
+        xAxes: [{
+          ticks: {
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60
+          },
+          stacked: true
+        }]
+      }
+    };
+  };
+
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
+    textLeft: true,
+    allowOverflow: true,
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_scrollable].join(' '),
+      children: regiao === undefined ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+        className: 'toggle_buttons',
+        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'portugal'
+            }),
+            onClick: () => {
+              setCurrentRegiao('portugal');
+            },
+            children: "Continente"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'nacional'
+            }),
+            onClick: () => {
+              setCurrentRegiao('nacional');
+            },
+            children: "Nacional"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'lvt'
+            }),
+            onClick: () => {
+              setCurrentRegiao('lvt');
+            },
+            children: "Lisboa e Vale do Tejo"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'algarve'
+            }),
+            onClick: () => {
+              setCurrentRegiao('algarve');
+            },
+            children: "Algarve"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'alentejo'
+            }),
+            onClick: () => {
+              setCurrentRegiao('alentejo');
+            },
+            children: "Alentejo"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'centro'
+            }),
+            onClick: () => {
+              setCurrentRegiao('centro');
+            },
+            children: "Centro"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'madeira'
+            }),
+            onClick: () => {
+              setCurrentRegiao('madeira');
+            },
+            children: "Madeira"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
+              active: currentRegiao === 'acores'
+            }),
+            onClick: () => {
+              setCurrentRegiao('acores');
+            },
+            children: "A\xE7ores"
+          })]
+        })
+      }) : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {})
+    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+      children: loaded ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Line"], {
+        height: 80,
+        ref: canvasRef,
+        options: options(),
+        data: data
+      }) : ''
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "mYdt":
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__("cDcd");
+
+function Portugal (props) {
+    return React.createElement("svg",props,React.createElement("g",null,React.createElement("path",{"d":" M 246.163 251.37 C 247.002 239.858 240.408 217.275 244.939 209.079 C 247.577 203.145 239.37 189.262 232.409 176.45 C 230.37 169.512 243.032 174.579 246.807 169.291 C 254.603 163.375 252.37 158.45 257.215 151.138 C 260.952 144.892 267.62 143.825 274.28 139.412 C 281.094 134.901 292.245 125.2 302.016 116.482 C 307.292 111.53 307.682 105.762 312.186 98.029 C 314.057 93.637 319.682 84.012 314.495 80.45 C 304.432 74.512 283.053 69.915 279.495 67.45 C 275.745 62.825 279.37 42.325 277.058 35.242 C 275.87 24.7 268.995 26.825 266.008 31.037 C 256.429 35.775 246.041 28.495 239.498 27.761 C 226.133 24.882 205.833 19.75 202.201 26.506 C 201.958 31.703 205.329 38.799 197.864 41.647 C 191.533 47.445 190.37 46.95 181.495 46.45 C 173.62 44.45 175.559 41.393 167.27 39.551 C 145.745 41.2 133.245 37.7 119.495 35.634 C 105.826 35.634 107.675 51.986 97.525 52.067 C 87.78 51.249 81.332 37.985 81.79 32.435 C 84.648 25.09 93.557 22.881 96.04 16.574 C 96.854 3.832 80.469 17.601 83.364 4.723 C 84.507 -2.836 80.718 0.765 76.482 1.503 C 67.702 8.987 56.406 7.826 45.576 9.562 C 35.916 11.281 32.407 12.135 25.79 18.182 C 19.935 24.147 11.053 32.435 11.053 32.435 C 5.62 37.316 0.908 45.006 0 53.551 C 1.23 63.166 8.376 69.695 8.22 78.214 C 8.948 84.239 11.936 93.495 11.79 93.342 C 12.288 100.038 13.861 105.194 14.001 111.807 C 16.631 122.24 19.218 133.549 20.411 145.057 C 20.486 151.43 29.083 168.036 28.551 173.233 C 26.362 192.493 21.888 208.888 16.948 227.721 C 15.889 230.216 17.27 229.525 16.996 231.152 C 15.031 237.778 13.46 244.554 11.969 251.37 L 246.163 251.37 L 246.163 251.37 Z ","fill":"rgb(1,174,151)"})));
+}
+
+Portugal.defaultProps = {"style":{"isolation":"isolate"},"viewBox":"0 0 316.638 251.37"};
+
+module.exports = Portugal;
+
+Portugal.default = Portugal;
+
 
 /***/ }),
 
@@ -8542,6 +8848,101 @@ function makePublicRouterInstance(router) {
 
 /***/ }),
 
+/***/ "naWs":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Footer; });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("IZS3");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("3Nti");
+/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("vga7");
+var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
+
+
+
+
+
+
+
+function Footer() {
+  let options = {
+    month: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  };
+  let f = new Intl.DateTimeFormat('pt-PT', options);
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
+      src: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"
+    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js",
+      integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
+      crossorigin: "anonymous"
+    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
+      src: "https://cdn.onesignal.com/sdks/OneSignalSDK.js",
+      async: ""
+    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("footer", {
+      className: `${_Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.footer} card-shadow`,
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
+        className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.content,
+        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("ul", {
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
+              target: "_blank",
+              href: "https://twitter.com/vacinacaocovid1",
+              children: "Twitter"
+            })
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
+              target: "_blank",
+              href: "/api/vaccines",
+              children: "API"
+            })
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
+              target: "_blank",
+              href: "https://github.com/alicescfernandes/mapa-vacinacao-c19#embeds",
+              children: "Embeds"
+            })
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
+              target: "_blank",
+              href: "https://github.com/alicescfernandes/mapa-vacinacao-c19",
+              children: "C\xF3digo-Fonte"
+            })
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
+              href: "mailto:alicescfernandes+mapa@gmail.com",
+              children: "Contacto"
+            })
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
+              target: "_blank",
+              href: "https://plausible.io/vacinacaocovid19.pt",
+              children: "Analytics"
+            })
+          })]
+        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
+          className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.update,
+          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(_data_last_update_json__WEBPACK_IMPORTED_MODULE_4__.date))]
+        })]
+      })
+    })]
+  }); //
+}
+
+/***/ }),
+
 /***/ "paFH":
 /***/ (function(module) {
 
@@ -8556,10 +8957,40 @@ module.exports = require("react-chartjs-2");
 
 /***/ }),
 
+/***/ "t5hz":
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__("cDcd");
+
+function Madeira (props) {
+    return React.createElement("svg",props,React.createElement("g",null,React.createElement("path",{"d":" M 933.912 251.37 C 934.789 249.984 935.387 248.474 935.455 246.697 C 935.654 241.484 936.874 236.508 940.742 233.362 C 945.53 229.467 945.865 222.294 951.771 219.789 C 957.482 217.366 963.635 216.017 968.697 212.401 C 974.859 208 982.184 215.127 988.982 213.102 C 993.543 211.743 998.382 204.915 1003.085 209.503 C 1008.561 214.845 1009.833 205 1003.977 205.722 C 998.544 206.392 993.072 202.101 987.832 204.21 C 981.29 206.844 973.922 207.971 967.26 204.591 C 962.212 202.029 955.504 203.082 952.113 198.401 C 949.053 194.177 941.956 195.929 936.752 195.406 C 929.978 194.725 921.941 196.668 916.488 191.473 C 911.697 186.909 905.608 189.807 900.333 188.373 C 894.515 186.791 889.008 184.882 883.268 183.499 C 877.397 182.086 876.843 174.611 874.083 169.949 C 869.972 163.005 861.069 161.402 854.851 156.757 C 849.9 153.058 851.848 146.283 847.839 142.295 C 842.875 137.357 835.502 134.652 832.626 128.122 C 830.227 122.677 823.713 121.601 818.819 119.246 C 813.82 116.84 809.032 111.503 803.029 113.578 C 791.909 117.423 780.303 117.207 769.069 119.73 C 763.015 121.09 757.009 123.324 750.723 122.729 C 744.72 122.16 738.716 118.498 732.861 121.44 C 726.215 124.779 720.37 129.426 713.838 132.919 C 706.061 137.077 696.553 136.418 688.202 139.283 C 681.407 141.613 674.387 141.005 668.243 138.103 C 659.571 134.007 650.167 137.048 641.703 133.419 C 636.197 131.058 633.918 122.952 627.184 122.767 C 620.359 122.58 613.376 121.663 608.937 116.655 C 604.268 111.388 599.57 106.376 595.637 100.617 C 592.029 95.333 588.235 90.879 584.054 86.512 C 581.012 83.334 577.835 78.079 572.729 79.723 C 566.142 81.845 560.838 76.438 554.574 77.224 C 547.97 78.052 545.87 85.74 541.631 90.029 C 538.055 93.647 533.347 96.013 530.162 100.002 C 524.177 107.498 516.02 112.807 510.479 120.645 C 506.747 125.923 502.019 129.824 496.822 133.176 C 491.25 136.77 494.955 144.801 500.394 145.609 C 506.339 146.493 507.319 154.398 508.451 159.673 C 509.644 165.233 511.199 170.61 511.22 176.204 C 511.243 182.786 517.217 186.513 520.758 191.173 C 524.392 195.955 527.464 200.886 531.987 204.616 C 537.294 208.994 537.823 216.299 543.21 220.276 C 547.338 223.323 552.341 224.985 556.492 228.006 C 564.479 233.821 574.18 236.83 582.803 241.653 C 588.662 244.931 594.942 247.442 600.396 251.37 L 933.912 251.37 L 933.912 251.37 Z ","fill":"rgb(1,174,151)"})));
+}
+
+Madeira.defaultProps = {"style":{"isolation":"isolate"},"viewBox":"494.057 77.145 513.762 174.225"};
+
+module.exports = Madeira;
+
+Madeira.default = Madeira;
+
+
+/***/ }),
+
 /***/ "tDG4":
 /***/ (function(module, exports) {
 
 module.exports = require("date-fns/locale");
+
+/***/ }),
+
+/***/ "uAdN":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegiaoContext; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext('portugal');
 
 /***/ }),
 
@@ -8635,7 +9066,7 @@ function DatePickerButton({
           })
         }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
           style: {
-            width: 300
+            width: 285
           },
           className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
           onClick: onClick,
@@ -8768,7 +9199,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617111905505,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\"}");
+module.exports = JSON.parse("{\"date\":1617136071608,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021/03/29\"}");
 
 /***/ }),
 
@@ -8781,53 +9212,11 @@ exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denorm
 
 /***/ }),
 
-/***/ "x47/":
-/***/ (function(module) {
-
-module.exports = JSON.parse("[{\"Data\":1609027200000,\"Inoculacao1\":4963,\"Inoculacao1_Ac\":4963,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":4963,\"Vacinados_Ac\":4963,\"FID\":1},{\"Data\":1609113600000,\"Inoculacao1\":2791,\"Inoculacao1_Ac\":7754,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":2791,\"Vacinados_Ac\":7754,\"FID\":2},{\"Data\":1609200000000,\"Inoculacao1\":12614,\"Inoculacao1_Ac\":20368,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":12614,\"Vacinados_Ac\":20368,\"FID\":3},{\"Data\":1609286400000,\"Inoculacao1\":10175,\"Inoculacao1_Ac\":30543,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":10175,\"Vacinados_Ac\":30543,\"FID\":4},{\"Data\":1609372800000,\"Inoculacao1\":2206,\"Inoculacao1_Ac\":32749,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":2206,\"Vacinados_Ac\":32749,\"FID\":5},{\"Data\":1609459200000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":32749,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":null,\"Vacinados_Ac\":32749,\"FID\":6},{\"Data\":1609545600000,\"Inoculacao1\":1,\"Inoculacao1_Ac\":32750,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":1,\"Vacinados_Ac\":32750,\"FID\":7},{\"Data\":1609632000000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":32750,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":null,\"Vacinados_Ac\":32750,\"FID\":8},{\"Data\":1609718400000,\"Inoculacao1\":920,\"Inoculacao1_Ac\":33670,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":920,\"Vacinados_Ac\":33670,\"FID\":9},{\"Data\":1609804800000,\"Inoculacao1\":12763,\"Inoculacao1_Ac\":46433,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":12763,\"Vacinados_Ac\":46433,\"FID\":10},{\"Data\":1609891200000,\"Inoculacao1\":15021,\"Inoculacao1_Ac\":61454,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":15021,\"Vacinados_Ac\":61454,\"FID\":11},{\"Data\":1609977600000,\"Inoculacao1\":10297,\"Inoculacao1_Ac\":71751,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":10297,\"Vacinados_Ac\":71751,\"FID\":12},{\"Data\":1610064000000,\"Inoculacao1\":2503,\"Inoculacao1_Ac\":74254,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":2503,\"Vacinados_Ac\":74254,\"FID\":13},{\"Data\":1610150400000,\"Inoculacao1\":98,\"Inoculacao1_Ac\":74352,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":98,\"Vacinados_Ac\":74352,\"FID\":14},{\"Data\":1610236800000,\"Inoculacao1\":40,\"Inoculacao1_Ac\":74392,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":40,\"Vacinados_Ac\":74392,\"FID\":15},{\"Data\":1610323200000,\"Inoculacao1\":888,\"Inoculacao1_Ac\":75280,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":888,\"Vacinados_Ac\":75280,\"FID\":16},{\"Data\":1610409600000,\"Inoculacao1\":10882,\"Inoculacao1_Ac\":86162,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":10882,\"Vacinados_Ac\":86162,\"FID\":17},{\"Data\":1610496000000,\"Inoculacao1\":13799,\"Inoculacao1_Ac\":99961,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":13799,\"Vacinados_Ac\":99961,\"FID\":18},{\"Data\":1610582400000,\"Inoculacao1\":11150,\"Inoculacao1_Ac\":111111,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":11150,\"Vacinados_Ac\":111111,\"FID\":19},{\"Data\":1610668800000,\"Inoculacao1\":7486,\"Inoculacao1_Ac\":118597,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":7486,\"Vacinados_Ac\":118597,\"FID\":20},{\"Data\":1610755200000,\"Inoculacao1\":1535,\"Inoculacao1_Ac\":120132,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":1535,\"Vacinados_Ac\":120132,\"FID\":21},{\"Data\":1610841600000,\"Inoculacao1\":7,\"Inoculacao1_Ac\":120139,\"Inoculacao2\":1161,\"Inoculacao2_Ac\":1161,\"Vacinados\":1168,\"Vacinados_Ac\":121300,\"FID\":22},{\"Data\":1610928000000,\"Inoculacao1\":2740,\"Inoculacao1_Ac\":122879,\"Inoculacao2\":664,\"Inoculacao2_Ac\":1825,\"Vacinados\":3404,\"Vacinados_Ac\":124704,\"FID\":23},{\"Data\":1611014400000,\"Inoculacao1\":16112,\"Inoculacao1_Ac\":138991,\"Inoculacao2\":7618,\"Inoculacao2_Ac\":9443,\"Vacinados\":23730,\"Vacinados_Ac\":148434,\"FID\":24},{\"Data\":1611100800000,\"Inoculacao1\":19758,\"Inoculacao1_Ac\":158749,\"Inoculacao2\":9175,\"Inoculacao2_Ac\":18618,\"Vacinados\":28933,\"Vacinados_Ac\":177367,\"FID\":25},{\"Data\":1611187200000,\"Inoculacao1\":28130,\"Inoculacao1_Ac\":186879,\"Inoculacao2\":4974,\"Inoculacao2_Ac\":23592,\"Vacinados\":33104,\"Vacinados_Ac\":210471,\"FID\":26},{\"Data\":1611273600000,\"Inoculacao1\":23855,\"Inoculacao1_Ac\":210734,\"Inoculacao2\":2404,\"Inoculacao2_Ac\":25996,\"Vacinados\":26259,\"Vacinados_Ac\":236730,\"FID\":27},{\"Data\":1611360000000,\"Inoculacao1\":10754,\"Inoculacao1_Ac\":221488,\"Inoculacao2\":4040,\"Inoculacao2_Ac\":30036,\"Vacinados\":14794,\"Vacinados_Ac\":251524,\"FID\":28},{\"Data\":1611446400000,\"Inoculacao1\":3658,\"Inoculacao1_Ac\":225146,\"Inoculacao2\":517,\"Inoculacao2_Ac\":30553,\"Vacinados\":4175,\"Vacinados_Ac\":255699,\"FID\":29},{\"Data\":1611532800000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":null,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":null,\"Vacinados_Ac\":null,\"Vacinados_Ac2\":255700,\"Inoculacao1_Ac2\":249861,\"FID\":1},{\"Data\":1611619200000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":null,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":263499,\"Vacinados_Ac\":263499,\"FID\":1},{\"Data\":1611705600000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":null,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":278413,\"Vacinados_Ac\":278413,\"FID\":1},{\"Data\":1611792000000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":null,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":296004,\"Vacinados_Ac\":296004,\"FID\":1},{\"Data\":1611878400000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":null,\"Inoculacao2\":null,\"Inoculacao2_Ac\":null,\"Vacinados\":315737,\"Vacinados_Ac\":315737,\"FID\":1},{\"Data\":1611964800000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":264772,\"Inoculacao2\":null,\"Inoculacao2_Ac\":65461,\"Vacinados\":330233,\"Vacinados_Ac\":330233,\"FID\":1},{\"Data\":1612051200000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":268386,\"Inoculacao2\":null,\"Inoculacao2_Ac\":68385,\"Vacinados\":336771,\"Vacinados_Ac\":336771,\"FID\":1},{\"Data\":1612137600000,\"Inoculacao1\":null,\"Inoculacao1_Ac\":269814,\"Inoculacao2\":null,\"Inoculacao2_Ac\":68752,\"Vacinados\":338566,\"Vacinados_Ac\":338566,\"FID\":1},{\"Data\":1612224000000,\"Inoculacao1\":271424,\"Inoculacao1_Ac\":271424,\"Inoculacao2\":70695,\"Inoculacao2_Ac\":70695,\"Vacinados\":342119,\"Vacinados_Ac\":342119,\"FID\":1},{\"Data\":1612310400000,\"Inoculacao1\":275093,\"Inoculacao1_Ac\":275093,\"Inoculacao2\":75852,\"Inoculacao2_Ac\":75852,\"Vacinados\":350945,\"Vacinados_Ac\":350945,\"FID\":1},{\"Data\":1612396800000,\"Inoculacao1\":279236,\"Inoculacao1_Ac\":279236,\"Inoculacao2\":84975,\"Inoculacao2_Ac\":84975,\"Vacinados\":364211,\"Vacinados_Ac\":364211,\"FID\":1},{\"Data\":1612483200000,\"Inoculacao1\":284462,\"Inoculacao1_Ac\":284462,\"Inoculacao2\":94916,\"Inoculacao2_Ac\":94916,\"Vacinados\":379378,\"Vacinados_Ac\":379378,\"FID\":1},{\"Data\":1612569600000,\"Inoculacao1\":290302,\"Inoculacao1_Ac\":290302,\"Inoculacao2\":103786,\"Inoculacao2_Ac\":103786,\"Vacinados\":394088,\"Vacinados_Ac\":394088,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1612656000000,\"Inoculacao1\":291378,\"Inoculacao1_Ac\":291378,\"Inoculacao2\":104526,\"Inoculacao2_Ac\":104526,\"Vacinados\":395904,\"Vacinados_Ac\":395904,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1612742400000,\"Inoculacao1\":291758,\"Inoculacao1_Ac\":291758,\"Inoculacao2\":104613,\"Inoculacao2_Ac\":104613,\"Vacinados\":396371,\"Vacinados_Ac\":396371,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1612828800000,\"Inoculacao1\":294135,\"Inoculacao1_Ac\":294135,\"Inoculacao2\":106055,\"Inoculacao2_Ac\":106055,\"Vacinados\":400190,\"Vacinados_Ac\":400190,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1612915200000,\"Inoculacao1\":298724,\"Inoculacao1_Ac\":298724,\"Inoculacao2\":116559,\"Inoculacao2_Ac\":116559,\"Vacinados\":415283,\"Vacinados_Ac\":415283,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613001600000,\"Inoculacao1\":303142,\"Inoculacao1_Ac\":303142,\"Inoculacao2\":133078,\"Inoculacao2_Ac\":133078,\"Vacinados\":436220,\"Vacinados_Ac\":436220,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613088000000,\"Inoculacao1\":310715,\"Inoculacao1_Ac\":310715,\"Inoculacao2\":157604,\"Inoculacao2_Ac\":157604,\"Vacinados\":468319,\"Vacinados_Ac\":468319,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613174400000,\"Inoculacao1\":320677,\"Inoculacao1_Ac\":320677,\"Inoculacao2\":184694,\"Inoculacao2_Ac\":184694,\"Vacinados\":505371,\"Vacinados_Ac\":505371,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613260800000,\"Inoculacao1\":328819,\"Inoculacao1_Ac\":328819,\"Inoculacao2\":194530,\"Inoculacao2_Ac\":194530,\"Vacinados\":523349,\"Vacinados_Ac\":523349,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613347200000,\"Inoculacao1\":331321,\"Inoculacao1_Ac\":331321,\"Inoculacao2\":197700,\"Inoculacao2_Ac\":197700,\"Vacinados\":529021,\"Vacinados_Ac\":529021,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613433600000,\"Inoculacao1\":336500,\"Inoculacao1_Ac\":336500,\"Inoculacao2\":203286,\"Inoculacao2_Ac\":203286,\"Vacinados\":539786,\"Vacinados_Ac\":539786,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613520000000,\"Inoculacao1\":347013,\"Inoculacao1_Ac\":347013,\"Inoculacao2\":209318,\"Inoculacao2_Ac\":209318,\"Vacinados\":556331,\"Vacinados_Ac\":556331,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613606400000,\"Inoculacao1\":361431,\"Inoculacao1_Ac\":361431,\"Inoculacao2\":217271,\"Inoculacao2_Ac\":217271,\"Vacinados\":578702,\"Vacinados_Ac\":578702,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613692800000,\"Inoculacao1\":388661,\"Inoculacao1_Ac\":388661,\"Inoculacao2\":229975,\"Inoculacao2_Ac\":229975,\"Vacinados\":618636,\"Vacinados_Ac\":618636,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613779200000,\"Inoculacao1\":413482,\"Inoculacao1_Ac\":413482,\"Inoculacao2\":242929,\"Inoculacao2_Ac\":242929,\"Vacinados\":656411,\"Vacinados_Ac\":656411,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613865600000,\"Inoculacao1\":429020,\"Inoculacao1_Ac\":429020,\"Inoculacao2\":246433,\"Inoculacao2_Ac\":246433,\"Vacinados\":675453,\"Vacinados_Ac\":675453,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1613952000000,\"Inoculacao1\":432414,\"Inoculacao1_Ac\":432414,\"Inoculacao2\":247843,\"Inoculacao2_Ac\":247843,\"Vacinados\":680257,\"Vacinados_Ac\":680257,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614038400000,\"Inoculacao1\":444730,\"Inoculacao1_Ac\":444730,\"Inoculacao2\":249567,\"Inoculacao2_Ac\":249567,\"Vacinados\":694297,\"Vacinados_Ac\":694297,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614124800000,\"Inoculacao1\":468929,\"Inoculacao1_Ac\":468929,\"Inoculacao2\":251788,\"Inoculacao2_Ac\":251788,\"Vacinados\":720717,\"Vacinados_Ac\":720717,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614211200000,\"Inoculacao1\":497040,\"Inoculacao1_Ac\":497040,\"Inoculacao2\":255277,\"Inoculacao2_Ac\":255277,\"Vacinados\":752317,\"Vacinados_Ac\":752317,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614297600000,\"Inoculacao1\":538636,\"Inoculacao1_Ac\":538636,\"Inoculacao2\":258369,\"Inoculacao2_Ac\":258369,\"Vacinados\":797005,\"Vacinados_Ac\":797005,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614384000000,\"Inoculacao1\":574062,\"Inoculacao1_Ac\":574062,\"Inoculacao2\":263825,\"Inoculacao2_Ac\":263825,\"Vacinados\":837887,\"Vacinados_Ac\":837887,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614470400000,\"Inoculacao1\":596812,\"Inoculacao1_Ac\":596812,\"Inoculacao2\":265110,\"Inoculacao2_Ac\":265110,\"Vacinados\":861922,\"Vacinados_Ac\":861922,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614556800000,\"Inoculacao1\":603585,\"Inoculacao1_Ac\":603585,\"Inoculacao2\":265366,\"Inoculacao2_Ac\":265366,\"Vacinados\":868951,\"Vacinados_Ac\":868951,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614643200000,\"Inoculacao1\":618393,\"Inoculacao1_Ac\":618393,\"Inoculacao2\":266716,\"Inoculacao2_Ac\":266716,\"Vacinados\":885109,\"Vacinados_Ac\":885109,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614729600000,\"Inoculacao1\":632450,\"Inoculacao1_Ac\":632450,\"Inoculacao2\":268381,\"Inoculacao2_Ac\":268381,\"Vacinados\":900831,\"Vacinados_Ac\":900831,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614816000000,\"Inoculacao1\":655719,\"Inoculacao1_Ac\":655719,\"Inoculacao2\":273414,\"Inoculacao2_Ac\":273414,\"Vacinados\":929133,\"Vacinados_Ac\":929133,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614902400000,\"Inoculacao1\":692960,\"Inoculacao1_Ac\":692960,\"Inoculacao2\":279223,\"Inoculacao2_Ac\":279223,\"Vacinados\":972183,\"Vacinados_Ac\":972183,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1614988800000,\"Inoculacao1\":724202,\"Inoculacao1_Ac\":724202,\"Inoculacao2\":287830,\"Inoculacao2_Ac\":287830,\"Vacinados\":1012032,\"Vacinados_Ac\":1012032,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1615075200000,\"Inoculacao1\":737206,\"Inoculacao1_Ac\":737206,\"Inoculacao2\":291983,\"Inoculacao2_Ac\":291983,\"Vacinados\":1029189,\"Vacinados_Ac\":1029189,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1615161600000,\"Inoculacao1\":739762,\"Inoculacao1_Ac\":739762,\"Inoculacao2\":293338,\"Inoculacao2_Ac\":293338,\"Vacinados\":1033100,\"Vacinados_Ac\":1033100,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1615248000000,\"Inoculacao1\":748575,\"Inoculacao1_Ac\":748575,\"Inoculacao2\":295516,\"Inoculacao2_Ac\":295516,\"Vacinados\":1044091,\"Vacinados_Ac\":1044091,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1615334400000,\"Inoculacao1\":757663,\"Inoculacao1_Ac\":757663,\"Inoculacao2\":297422,\"Inoculacao2_Ac\":297422,\"Vacinados\":1055085,\"Vacinados_Ac\":1055085,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1615420800000,\"Inoculacao1\":772343,\"Inoculacao1_Ac\":772343,\"Inoculacao2\":306420,\"Inoculacao2_Ac\":306420,\"Vacinados\":1078763,\"Vacinados_Ac\":1078763,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1615507200000,\"Inoculacao1\":793162,\"Inoculacao1_Ac\":793162,\"Inoculacao2\":320723,\"Inoculacao2_Ac\":320723,\"Vacinados\":1113885,\"Vacinados_Ac\":1113885,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1615593600000,\"Inoculacao1\":813380,\"Inoculacao1_Ac\":813380,\"Inoculacao2\":334195,\"Inoculacao2_Ac\":334195,\"Vacinados\":1147575,\"Vacinados_Ac\":1147575,\"FID\":1},{\"Data\":1615680000000,\"Inoculacao1\":824313,\"Inoculacao1_Ac\":824313,\"Inoculacao2\":339560,\"Inoculacao2_Ac\":339560,\"Vacinados\":1163873,\"Vacinados_Ac\":1163873,\"FID\":1},{\"Data\":1615766400000,\"Inoculacao1\":3195,\"Inoculacao1_Ac\":827508,\"Inoculacao2\":1147,\"Inoculacao2_Ac\":340707,\"Vacinados\":4342,\"Vacinados_Ac\":1168215,\"FID\":1},{\"Data\":1615852800000,\"Inoculacao1\":849464,\"Inoculacao1_Ac\":849464,\"Inoculacao2\":343722,\"Inoculacao2_Ac\":343722,\"Vacinados\":1193186,\"Vacinados_Ac\":1193186,\"FID\":1},{\"Data\":1615939200000,\"Inoculacao1\":851022,\"Inoculacao1_Ac\":851022,\"Inoculacao2\":349669,\"Inoculacao2_Ac\":349669,\"Vacinados\":1200691,\"Vacinados_Ac\":1200691,\"FID\":1},{\"Data\":1616025600000,\"Inoculacao1\":863570,\"Inoculacao1_Ac\":863570,\"Inoculacao2\":371566,\"Inoculacao2_Ac\":371566,\"Vacinados\":1235136,\"Vacinados_Ac\":1235136,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616112000000,\"Inoculacao1\":875490,\"Inoculacao1_Ac\":875490,\"Inoculacao2\":404919,\"Inoculacao2_Ac\":404919,\"Vacinados\":1280409,\"Vacinados_Ac\":1280409,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616198400000,\"Inoculacao1\":892372,\"Inoculacao1_Ac\":892372,\"Inoculacao2\":432894,\"Inoculacao2_Ac\":432894,\"Vacinados\":1325266,\"Vacinados_Ac\":1325266,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616284800000,\"Inoculacao1\":902527,\"Inoculacao1_Ac\":902527,\"Inoculacao2\":445804,\"Inoculacao2_Ac\":445804,\"Vacinados\":1348331,\"Vacinados_Ac\":1348331,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616371200000,\"Inoculacao1\":903964,\"Inoculacao1_Ac\":903964,\"Inoculacao2\":447552,\"Inoculacao2_Ac\":447552,\"Vacinados\":1351516,\"Vacinados_Ac\":1351516,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616457600000,\"Inoculacao1\":914058,\"Inoculacao1_Ac\":914058,\"Inoculacao2\":455184,\"Inoculacao2_Ac\":455184,\"Vacinados\":1369242,\"Vacinados_Ac\":1369242,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616544000000,\"Inoculacao1\":934295,\"Inoculacao1_Ac\":934295,\"Inoculacao2\":457256,\"Inoculacao2_Ac\":457256,\"Vacinados\":1391551,\"Vacinados_Ac\":1391551,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616630400000,\"Inoculacao1\":973181,\"Inoculacao1_Ac\":973181,\"Inoculacao2\":460863,\"Inoculacao2_Ac\":460863,\"Vacinados\":1434044,\"Vacinados_Ac\":1434044,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616716800000,\"Inoculacao1\":1040109,\"Inoculacao1_Ac\":1040109,\"Inoculacao2\":465367,\"Inoculacao2_Ac\":465367,\"Vacinados\":1505476,\"Vacinados_Ac\":1505476,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616803200000,\"Inoculacao1\":1068361,\"Inoculacao1_Ac\":1068361,\"Inoculacao2\":467823,\"Inoculacao2_Ac\":467823,\"Vacinados\":1536184,\"Vacinados_Ac\":1536184,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616889600000,\"Inoculacao1\":1130258,\"Inoculacao1_Ac\":1130258,\"Inoculacao2\":469341,\"Inoculacao2_Ac\":469341,\"Vacinados\":1599599,\"Vacinados_Ac\":1599599,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1616972400000,\"Inoculacao1\":1148757,\"Inoculacao1_Ac\":1148757,\"Inoculacao2\":469642,\"Inoculacao2_Ac\":469642,\"Vacinados\":1618399,\"Vacinados_Ac\":1618399,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1},{\"Data\":1617058800000,\"Inoculacao1\":1169676,\"Inoculacao1_Ac\":1169676,\"Inoculacao2\":472270,\"Inoculacao2_Ac\":472270,\"Vacinados\":1641946,\"Vacinados_Ac\":1641946,\"Column7\":null,\"Column8\":null,\"Column9\":null,\"Column10\":null,\"FID\":1}]");
-
-/***/ }),
-
-/***/ "xOyL":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.detectDomainLocale = detectDomainLocale;
-
-function detectDomainLocale(domainItems, hostname, detectedLocale) {
-  let domainItem;
-
-  if (domainItems) {
-    if (detectedLocale) {
-      detectedLocale = detectedLocale.toLowerCase();
-    }
-
-    for (const item of domainItems) {
-      var _item$domain, _item$locales; // remove port if present
-
-
-      const domainHostname = (_item$domain = item.domain) == null ? void 0 : _item$domain.split(':')[0].toLowerCase();
-
-      if (hostname === domainHostname || detectedLocale === item.defaultLocale.toLowerCase() || (_item$locales = item.locales) != null && _item$locales.some(locale => locale.toLowerCase() === detectedLocale)) {
-        domainItem = item;
-        break;
-      }
-    }
-  }
-
-  return domainItem;
-}
-
-/***/ }),
-
 /***/ "xPX6":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return FOREGROUND_COLOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return FOREGROUND_COLOR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return COLOR_1; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return COLOR_2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return COLOR_3; });
@@ -8835,19 +9224,22 @@ function detectDomainLocale(domainItems, hostname, detectedLocale) {
 /* unused harmony export COLOR_5 */
 /* unused harmony export COLOR_6 */
 /* unused harmony export COLOR_7 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return TINT_70; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return TINT_50; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return TINT_30; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return TINT_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return TINT_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return TINT_30; });
 /* unused harmony export COLOR */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return SHADE_30; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return SHADE_50; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return SHADE_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return SHADE_30; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return SHADE_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return SHADE_70; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return COMPLEMENT_1; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return COMPLEMENT_2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return RESIZE_TRESHOLD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return lineChartCommon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return lineChartCommon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return RESIZE_TRESHOLD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return lineChartCommon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return lineChartCommon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return REGIOES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return ECDC_MAPPING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return MADEIRA_DICOS; });
 let FOREGROUND_COLOR = '#01AE97';
 let COLOR_1 = '#017a6a';
 let COLOR_2 = '#01574c';
@@ -8893,6 +9285,52 @@ let lineChartCommon2 = {
   pointHoverBorderWidth: 0,
   pointRadius: 0,
   pointHitRadius: 0
+};
+const REGIOES = {
+  MADEIRA: 'madeira',
+  PORTUGAL: 'portugal'
+};
+const ECDC_MAPPING = {
+  alentejo: 'PTCSR01',
+  algarve: 'PTCSR02',
+  acores: 'PTCSR03',
+  centro: 'PTCSR04',
+  lisboa: 'PTCSR05',
+  madeira: 'PTCSR06',
+  norte: 'PTCSR07',
+  portugal: 'PT',
+  PTCSR01: 'alentejo',
+  PTCSR02: 'algarve',
+  PTCSR03: 'acores',
+  PTCSR04: 'centro',
+  PTCSR05: 'lisboa',
+  PTCSR06: 'madeira',
+  PTCSR07: 'norte',
+  PT: 'portugal'
+};
+const MADEIRA_DICOS = {
+  3101: 'calheta',
+  3102: 'camara_lobos',
+  3108: 'santa_cruz',
+  3201: 'porto_santo',
+  3106: 'porto_moniz',
+  3110: 'svincente',
+  3109: 'santana',
+  3105: 'ponta_sol',
+  3103: 'funchal',
+  3104: 'machico',
+  3107: 'ribeira_brava',
+  calheta: '3101',
+  camara_lobos: '3102',
+  santa_cruz: '3108',
+  porto_santo: '3201',
+  porto_moniz: '3106',
+  svincente: '3110',
+  santana: '3109',
+  ponta_sol: '3105',
+  funchal: '3103',
+  machico: '3104',
+  ribeira_brava: '3107'
 };
 
 /***/ }),

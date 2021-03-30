@@ -4,6 +4,8 @@
   "/api/cases": "pages/api/cases.js",
   "/api/ecdc": "pages/api/ecdc.js",
   "/api/hooks": "pages/api/hooks.js",
+  "/api/madeira": "pages/api/madeira.js",
+  "/api/madeira/pontosituacao": "pages/api/madeira/pontosituacao.js",
   "/api/owid": "pages/api/owid.js",
   "/api/rt/[...regiao]": "pages/api/rt/[...regiao].js",
   "/api/rt": "pages/api/rt.js",
@@ -14,6 +16,7 @@
   "/embed/[id]": "pages/embed/[id].js",
   "/fases": "pages/fases.js",
   "/": "pages/index.js",
+  "/madeira": "pages/madeira.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js"
 }
