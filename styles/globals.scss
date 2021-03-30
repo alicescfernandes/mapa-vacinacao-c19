@@ -42,9 +42,14 @@ hr {
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.card-shadow {
+.counterRow .card-shadow {
 	// border: 1px solid rgba(0, 0, 0, 0.1);
 	/* box-shadow: 0px 0px 5px 0px #0000000d; */
+
+	padding-right: 8px !important;
+	padding-left: 8px !important;
+	border-right: 1px solid #eeeeee;
+	border-radius: 0px;
 }
 
 .card-shadow-bottom {
@@ -138,58 +143,6 @@ sup.new {
 	margin: 0;
 }
 
-/* Extra small devices (portrait phones, less than 576px) */
-/*  No media query for `xs` since this is the default in Bootstrap */
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-	.container {
-		max-width: 95vw;
-	}
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-	.container {
-		max-width: 90vw;
-	}
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-	.scrollable {
-		overflow-x: hidden;
-	}
-	.container {
-		max-width: 90vw;
-	}
-
-	.row {
-		margin-bottom: 15px;
-	}
-}
-
-/* Extra large devices (large desktops, 1200px and up)*/
-@media (min-width: 1200px) {
-	.container {
-		max-width: 90vw;
-	}
-}
-
-/* Extra large devices (large desktops, 1200px and up)*/
-@media (max-width: 900px) {
-	body {
-		padding-bottom: 95px;
-	}
-}
-
-/* XXL large devices (large desktops, 1920  and up)*/
-@media (min-width: 1921px) {
-	.container {
-		max-width: 1520px;
-	}
-}
-
 .row {
 	margin-right: 0;
 	margin-left: 0;
@@ -251,4 +204,73 @@ sup.new {
 
 .leaflet-popup-content p {
 	margin: 0px 0;
+}
+
+.col-lg-6:last-child h2,
+.col-lg-6:last-child h3 {
+	padding: 0px;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+/*  No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+	.container {
+		max-width: 95vw;
+	}
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.container {
+		max-width: 90vw;
+	}
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 1090px) {
+	.counterRow .col-12 * {
+		padding-right: 0px;
+		border: 0;
+	}
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.scrollable {
+		overflow-x: hidden;
+	}
+	.container {
+		max-width: 90vw;
+	}
+
+	.row {
+		margin-bottom: 15px;
+	}
+
+	.counterRow .col-lg-4:last-child * {
+		padding-right: 0px;
+		border: 0;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+	.container {
+		max-width: 90vw;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (max-width: 900px) {
+	body {
+		padding-bottom: 95px;
+	}
+}
+
+/* XXL large devices (large desktops, 1920  and up)*/
+@media (min-width: 1921px) {
+	.container {
+		max-width: 1520px;
+	}
 }

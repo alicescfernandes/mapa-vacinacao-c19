@@ -91,6 +91,7 @@ export function fetchWithLocalCache(url, options) {
 			localStorage.removeItem(k);
 		}
 	}
+
 	if (window && localStorage.getItem(url) && useCache === true) {
 		let data = JSON.parse(localStorage.getItem(url));
 		return Promise.resolve(data);

@@ -60,6 +60,13 @@ function updateEDCD() {
 	gitCommit('ecdc');
 }
 
+function updatedCasesMadeira() {
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
+	shell.exec('yarn convert:csv');
+	gitCommit('madeira cases');
+}
+
 function updateRT() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');

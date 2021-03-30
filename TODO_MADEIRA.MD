@@ -26,10 +26,10 @@
     - ~~Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos~~
     - ~~Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população suscetível~~
 - ~~Alterar notas e fontes~~
-- Terminar descrições de cada gráfico
+- ~~Terminar descrições de cada gráfico~~
 - ~~Reactivar Pusher & OneSignal~~
 - ~~Fazer menu mobile~~
-- Fazer ajustes de CSS
+- ~~Fazer ajustes de CSS~~
 - Fazer ajustes de CSS (Mobile)
 - Adicionar Lazyload aos componentes Madeira
 

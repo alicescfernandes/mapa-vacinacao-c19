@@ -174,7 +174,7 @@ export default function Home() {
 								{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
 							</Col>
 						</Row>
-						<Row>
+						<Row className="counterRow">
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter
@@ -220,7 +220,7 @@ export default function Home() {
 								</Card>
 							</Col>
 						</Row>
-						<Row>
+						<Row className="counterRow">
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter

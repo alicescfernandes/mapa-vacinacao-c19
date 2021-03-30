@@ -71,12 +71,12 @@ export function useData({ regiao }) {
 			let data = {};
 			if (regiao === REGIOES.MADEIRA) {
 				let lastItem = madeiraPDS[madeiraPDS.length - 1];
-
 				data = {
-					ativos: lastItem.ativos,
-					recuperados: lastItem.recuperados,
-					obitos: lastItem.obitos,
-					populacao: populacao_ram.valor,
+					ativos: parseInt(lastItem.ativos),
+					recuperados: parseInt(lastItem.recuperados),
+					obitos: parseInt(lastItem.obitos),
+					populacao: parseInt(populacao_ram.valor),
+					data: lastItem.data,
 				};
 			} else {
 				let lastItem = casesData[vaccines.length - 1];
@@ -86,6 +86,7 @@ export function useData({ regiao }) {
 					recuperados: lastItem.Recuperados,
 					obitos: lastItem.Obitos,
 					populacao: populacao.valor,
+					data: lastItem.Data,
 				};
 			}
 

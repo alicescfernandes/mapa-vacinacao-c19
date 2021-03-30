@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
@@ -19,21 +19,10 @@ import Plausible from 'plausible-tracker';
 import { useRouter } from 'next/router';
 //data
 import generic from './../data/generic.json';
-import fases from './../data/fases.json';
 import { Card } from '../components/Card';
-import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
-import { BarsVacinacaoArs } from '../components/graphs/BarsVacinacaoArs';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
-import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
-import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
-import { BarArs } from '../components/graphs/BarArs';
-import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
-import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
 import { formatNumber, perHundred } from '../utils';
-import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
-import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
-import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
@@ -72,7 +61,16 @@ export default function Home() {
 		dataLong: '',
 	});
 
-	// Send to main route
+	let startDate = new Date(json.dateMadeira);
+	let [first, ...restDate] = format(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
+		locale: pt,
+	})
+		.replace('-feira', '')
+		.split('');
+
+	let d = [first.toUpperCase(), ...restDate].join('');
+
+	1; // Send to main route
 	function onSocketUpdate() {
 		router.push('/');
 	}
@@ -114,6 +112,7 @@ export default function Home() {
 			return isSameDay(el.Data, new Date(json.dateSnsStart));
 		});
 		 */
+
 		setDoses({
 			recebidas: 0,
 			administradas: lastItem.total,
@@ -130,6 +129,11 @@ export default function Home() {
 				{loaded ? (
 					<>
 						<Row>
+							<Col>
+								<h2 className={styles.datepicker_static}> {d} </h2>
+							</Col>
+						</Row>
+						<Row className="counterRow">
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter
@@ -180,7 +184,7 @@ export default function Home() {
 								</Card>
 							</Col>
 						</Row>
-						<Row>
+						<Row className="counterRow">
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter
@@ -261,6 +265,7 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h2 className={styles.title}>Vacinação por região</h2>
+								<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2021 até 14 de março de 20210.</h3>
 								<hr />
 								<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
 							</Col>
@@ -292,6 +297,16 @@ export default function Home() {
 								<h2 className={styles.title}>
 									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
 								</h2>
+								<h3 className={styles.subtitle}>
+									Dados acumulados desde 31 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+									, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
+									{format(new Date(json.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<hr />
 								<PieVacinadosInfectadosRecuperadosObitos
 									colors={colors_v2}
@@ -303,6 +318,16 @@ export default function Home() {
 									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população
 									suscetível
 								</h2>
+								<h3 className={styles.subtitle}>
+									Dados acumulados desde 31 de Dezembro de 2021 até{' '}
+									{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+									, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
+									{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										locale: pt,
+									})}
+								</h3>
 								<hr />
 								<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
 							</Col>

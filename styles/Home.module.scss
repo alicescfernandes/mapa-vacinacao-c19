@@ -18,12 +18,15 @@
 	color: #444;
 	font-size: 15px;
 	margin-bottom: 8px;
+	padding-right: 15px;
 }
 
 .subtitle {
 	color: darkgrey;
 	font-size: 13px;
 	margin-bottom: 8px;
+	line-height: 20px;
+	padding-right: 15px;
 }
 
 .text {
@@ -51,4 +54,18 @@
 		border-bottom: 0px;
 		font-weight: 500;
 	}
+}
+
+.datepicker_static {
+	appearance: none;
+	background: none;
+	border: none;
+	font-weight: 400;
+	color: #444444;
+	vertical-align: middle;
+	/* line-height: 12px; */
+	text-transform: none;
+	text-align: center;
+	font-size: 16px !important;
+	margin: 20px 0px;
 }
