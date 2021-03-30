@@ -159,11 +159,8 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 export function BarArs({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { main, shades, tints } = colors;
-	//let [graphData, setGraphData] = useState({});
-	let { values: valueCasesDiarios } = statistics.getDiariosCases();
-	let snsData = statistics.getTotalSNS();
-	let ars = statistics.getTotalARS();
-	let firstItem = valueCasesDiarios.reverse()[0];
+	const [snsData, setSNSData] = useState({});
+	const [ars, setArs] = useState({});
 	let graphData = {
 		All: {},
 		'ARS Alentejo': {},
@@ -175,25 +172,29 @@ export function BarArs({ statistics, colors }) {
 		Açores: {},
 	};
 
-	//map the data
-	for (let key in graphData) {
-		let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION.replace('RA ', '') == key)[0]);
-		let obj2 = ars[key];
+	if (!loading) {
+		//map the data
+		for (let key in graphData) {
+			let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION.replace('RA ', '') == key)[0]);
+			let obj2 = ars[key];
 
-		graphData[key] = { ...obj2, ...obj1 };
+			graphData[key] = { ...obj2, ...obj1 };
+		}
 	}
 
-	useEffect(() => {
-		statistics.getTotalAdministredDosesByAgeByWeek().then((data) => {
-			//setGraphData(data);
-			setLoading(false);
-		});
+	useEffect(async () => {
+		let d = await statistics.getTotalSNS();
+		setSNSData(d);
+
+		let arsD = await statistics.getTotalARS();
+		setArs(arsD);
+		setLoading(false);
 	}, []);
 
 	return (
 		<Card allowOverflow={true}>
 			<div>
-				{!loading ? (
+				{loading === false ? (
 					<>
 						{
 							<div className={'legends'}>

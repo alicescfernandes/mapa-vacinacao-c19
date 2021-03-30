@@ -8,7 +8,8 @@ import { CustomCheckbox } from '../CustomCheckbox';
 import styles from './../Card.module.scss';
 
 export function BarVacinadosEu({ statistics, colors }) {
-	let { labels, pt, eu } = statistics.getOwid();
+	const [owidData, setOwidData] = useState({ labels: '', pt: '', eu: '' });
+	const [loaded, setLoaded] = useState(loaded);
 	let { main, shades, tints, complements } = colors;
 
 	let [activeDose, setActiveDose] = useState(0);
@@ -39,7 +40,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 			}
 		});
 		return {
-			labels: labels,
+			labels: owidData.labels,
 			datasets: [
 				{
 					...lineChartCommon,
@@ -48,7 +49,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 					borderColor: main,
 					fill: false,
 
-					data: pt.map((el) => {
+					data: owidData.pt.map((el) => {
 						if (toggleStats.perHundred) {
 							return el[doses_map.per_hundred[activeDose]];
 						}
@@ -61,7 +62,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 					fill: false,
 					backgroundColor: complements[2],
 					borderColor: complements[2],
-					data: eu.map((el) => {
+					data: owidData.eu.map((el) => {
 						if (toggleStats.perHundred) {
 							return el[doses_map.per_hundred[activeDose]];
 						}
@@ -124,7 +125,13 @@ export function BarVacinadosEu({ statistics, colors }) {
 		};
 	};
 
-	return (
+	useEffect(async () => {
+		let { labels, pt, eu } = await statistics.getOwid();
+		setOwidData({ labels, pt, eu });
+		setLoaded(true);
+	}, []);
+
+	return loaded === true ? (
 		<Card textLeft={true} allowOverflow={true}>
 			<div className={[styles.card_scrollable].join(' ')}>
 				<div className={'toggle_buttons'}>
@@ -177,5 +184,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 				<Bar height={80} ref={canvasRef} options={options()} data={data} />
 			</div>
 		</Card>
+	) : (
+		''
 	);
 }

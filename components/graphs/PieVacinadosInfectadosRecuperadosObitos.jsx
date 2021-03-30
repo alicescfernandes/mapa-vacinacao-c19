@@ -1,24 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { COLOR_1 } from '../../constants';
 import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from '../../utils';
+import { RegiaoContext } from '../context/regiao';
 export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) {
-	let [loading, setLoading] = useState(true);
-	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
-	let { values: valueCasesDiarios } = statistics.getDiariosCases();
-	let vaccines = statistics.getRaw();
-	let firstItem = valueCasesDiarios.reverse()[0];
+	let regiao = useContext(RegiaoContext);
+
+	let [loading, setLoading] = useState(false);
+
+	let vaccines = statistics.getLastVaccineAvaliable();
+	let lastCase = statistics.getLastCaseAvaliable();
 	let { main, shades, tints, complements } = colors;
+
 	const data = (canvas) => {
 		return {
 			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
 			datasets: [
 				{
 					backgroundColor: [main, complements[0], complements[2], shades[2]],
-					data: [vaccines[vaccines.length - 1].Inoculacao2_Ac, firstItem.Activos, firstItem.Recuperados, firstItem.Obitos],
+					data: [vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos],
 				},
 			],
 		};
@@ -62,12 +65,6 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 			},
 		};
 	};
-
-	useEffect(() => {
-		if (values.length > 0) {
-			setLoading(false);
-		}
-	}, [values, labels]);
 
 	return (
 		<Card allowOverflow={true}>

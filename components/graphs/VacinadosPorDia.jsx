@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber } from '../../utils';
+import { formatNumber, isInViewport } from '../../utils';
 import { Card } from './../Card';
 
 export function VacinadosPorDia({ statistics, colors }) {
@@ -11,7 +11,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
 	let [height, setHeight] = useState(400);
-
 	const canvasRef = useRef(null);
 
 	const data = (canvas) => {
@@ -155,17 +154,12 @@ export function VacinadosPorDia({ statistics, colors }) {
 			},
 		};
 	};
-	useEffect(() => {
-		if (canvasRef?.current?.chartInstance?.canvas?.height > 0) {
-			setHeight(canvasRef?.current?.chartInstance?.canvas?.height);
-		}
-	}, [canvasRef.current]);
 
 	useEffect(() => {
-		if (values.length > 0 && height > 0) {
+		if (values.length) {
 			setLoading(false);
 		}
-	}, [values, labels, height]);
+	}, [values]);
 
 	return (
 		<Card allowOverflow={true}>

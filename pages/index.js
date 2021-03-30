@@ -16,7 +16,7 @@ import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
 import Plausible from 'plausible-tracker';
-
+import LazyLoad from 'react-lazyload';
 //data
 import generic from './../data/generic.json';
 import fases from './../data/fases.json';
@@ -36,14 +36,15 @@ import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebi
 import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
-
+import { RegiaoContext } from '../components/context/regiao';
+import { initSockets } from '../hooks/initSockets';
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
 	trackLocalhost: true,
 });
 
 export default function Home() {
-	let { statistics, update: updateData, ready: dataReady, versioning } = useData();
+	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'portugal' });
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
@@ -52,6 +53,8 @@ export default function Home() {
 	let [last, setLast] = useState({});
 	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
+	let pusher = null;
+	let channel = null;
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
 	let [derivedNumbers, setDerivedNumbers] = useState({
 		pessoasAVacinar: {
@@ -74,10 +77,14 @@ export default function Home() {
 		dataLong: '',
 	});
 
-	console.log(1);
-
 	let { colors, colors_v2, setColors } = useColors();
-
+	function onSocketUpdate({ data }) {
+		updateData(data.type, data.data);
+		setUpdating(true);
+		setTimeout(() => {
+			setUpdating(false);
+		}, 1000);
+	}
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
 			if (isSameDay(el.Data, d.getTime())) {
@@ -117,7 +124,7 @@ export default function Home() {
 		setDerivedNumbers(object);
 	}, [selectedItem]);
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (dataReady === false) return;
 		let rawData = statistics.getRaw();
 		setLast(rawData[rawData.length - 1]);
@@ -126,20 +133,7 @@ export default function Home() {
 		setFirst(rawData[0]);
 		plausible.trackPageview();
 
-		var pusher = new Pusher('4dd4d1d504254af64544', {
-			cluster: 'eu',
-		});
-
-		var channel = pusher.subscribe('covid19');
-		channel.bind('update', function (data) {
-			updateData(data.type, data.data);
-			setUpdating(true);
-			setTimeout(() => {
-				setUpdating(false);
-			}, 1000);
-		});
-
-		let { sum } = statistics?.getDosesRecebidasAcum();
+		let { sum } = await statistics?.getDosesRecebidasAcum();
 		sum = sum.reverse()[0];
 		let item = rawData.filter((el) => {
 			return isSameDay(el.Data, new Date(json.dateSnsStart));
@@ -157,21 +151,20 @@ export default function Home() {
 				locale: pt,
 			}),
 		});
-
 		setLoaded(true);
 	}, [dataReady]);
+
+	useEffect(() => {
+		// Unconventional way of doing this
+		window.addEventListener('socket_update', onSocketUpdate);
+
+		return function () {
+			// Unconventional way of doing this
+			window.removeEventListener('socket_update', onSocketUpdate);
+		};
+	}, []);
 	return (
-		<>
-			<Metatags isUpdating={updating}></Metatags>
-			<Header></Header>
-			<Row className={`card-shadow-bottom ${styles.alert}`}>
-				<Col style={{ textAlign: 'center' }}>
-					<p>
-						Veja aqui os últimos números relacionados com a vacinação para a COVID-19. <br />
-						Os dados são atualizados diariamente entre as 13h e as 14h, e este <em>dashboard</em> é atualizado ao minuto.
-					</p>
-				</Col>
-			</Row>
+		<RegiaoContext.Provider value={'portugal'}>
 			<Container className="container-fluid app">
 				{loaded ? (
 					<>
@@ -181,7 +174,7 @@ export default function Home() {
 								{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
 							</Col>
 						</Row>
-						<Row>
+						<Row className="counterRow">
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter
@@ -227,7 +220,7 @@ export default function Home() {
 								</Card>
 							</Col>
 						</Row>
-						<Row>
+						<Row className="counterRow">
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter
@@ -286,156 +279,190 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de vacinas administradas</h3>
-
+								<h2 className={styles.title}>Número de vacinas administradas</h2>
+								<hr />
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de vacinas administradas por dia</h3>
+								<h2 className={styles.title}>Número de vacinas administradas por dia</h2>
+								<hr />
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>
-									<em>
-										R<sub>t</sub>
-									</em>{' '}
-									por região
-								</h3>
-								<h3 className={styles.subtitle}>Nem todas as regiões apresentam dados no mesmo período temporal</h3>
-								<LineRt colors={colors_v2} statistics={statistics}></LineRt>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>Número de doses recebidas por semana</h3>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>
+										<em>
+											R<sub>t</sub>
+										</em>{' '}
+										por região
+									</h2>
+									<h3 className={styles.subtitle}>Nem todas as regiões apresentam dados no mesmo período temporal</h3>
+									<hr />
+									<LineRt colors={colors_v2} statistics={statistics}></LineRt>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Número de doses recebidas por semana</h2>
+									<hr />
+									<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Número de doses recebidas (acumulado)</h2>
+									<hr />
+									<BarVacinasRecebidaDiaAcum colors={colors} statistics={statistics}></BarVacinasRecebidaDiaAcum>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col lg={6} xs={12}>
+									<h2 className={styles.title}>Proporção de doses recebidas relativamente às doses adquiridas</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados desde 21 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
 
-								<BarVacinasRecebidaDia colors={colors} statistics={statistics}></BarVacinasRecebidaDia>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>Número de doses recebidas (acumulado)</h3>
+									<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
+								</Col>
+								<Col lg={6} xs={12}>
+									<h2 className={styles.title}>Proporção de doses administradas relativamente às doses recebidas</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados desde 21 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
 
-								<BarVacinasRecebidaDiaAcum colors={colors} statistics={statistics}></BarVacinasRecebidaDiaAcum>
-							</Col>
-						</Row>
-						<Row>
-							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>Proporção de doses recebidas relativamente às doses adquiridas</h3>
-								<h3 className={styles.subtitle}>
-									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
-							</Col>
-							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>Proporção de doses administradas relativamente às doses recebidas</h3>
-								<h3 className={styles.subtitle}>
-									Dados acumulados desde 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>
-							</Col>
-						</Row>
+									<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>
+								</Col>
+							</Row>
+						</LazyLoad>
 						<Row>
 							<Col>
-								<h3 className={styles.title}>Número de doses administradas por semana e faixa etária</h3>
+								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária</h2>
+								<hr />
 								<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
 							</Col>
 						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>Doses totais administradas por faixa etária</h3>
-								<h3 className={styles.subtitle}>
-									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>
-									Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias
-								</h3>
-								<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
-							</Col>
-						</Row>
-						<Row>
-							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>
-									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
-								</h3>
-								<PieVacinadosInfectadosRecuperadosObitos
-									colors={colors_v2}
-									statistics={statistics}
-								></PieVacinadosInfectadosRecuperadosObitos>
-							</Col>
-							<Col lg={6} xs={12}>
-								<h3 className={styles.title}>
-									Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e população
-									suscetível
-								</h3>
-								<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>Evolução do programa de vacinação por ARS</h3>
-								<h3 className={styles.subtitle}>
-									Dados acumulados deste 21 de Dezembro de 2021 até{' '}
-									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>Ponto de situação por ARS</h3>
-								<h3 className={styles.subtitle}>
-									Dados acumulados relativos à semana de{' '}
-									{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
-										locale: pt,
-									})}{' '}
-									até{' '}
-									{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-										locale: pt,
-									})}
-								</h3>
-								<BarArs colors={colors_v2} statistics={statistics}></BarArs>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>
-									Número de vacinas administradas em Portugal e na União Europeia <sup className={'new'}>novo</sup>
-								</h3>
-								<LineVacinadosEu colors={colors_v2} statistics={statistics}></LineVacinadosEu>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h3 className={styles.title}>
-									Número de vacinas administradas por dia em Portugal e na União Europeia <sup className={'new'}>novo</sup>
-								</h3>
-								<BarVacinadosEu colors={colors_v2} statistics={statistics}></BarVacinadosEu>
-							</Col>
-						</Row>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Doses totais administradas por faixa etária</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
+
+									<BarTotaisPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarTotaisPorFaixaEtaria>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>
+										Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias
+									</h2>
+									<hr />
+									<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col lg={6} xs={12}>
+									<h2 className={styles.title}>
+										Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
+									</h2>
+									<hr />
+									<PieVacinadosInfectadosRecuperadosObitos
+										colors={colors_v2}
+										statistics={statistics}
+									></PieVacinadosInfectadosRecuperadosObitos>
+								</Col>
+								<Col lg={6} xs={12}>
+									<h2 className={styles.title}>
+										Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e
+										população suscetível
+									</h2>
+									<hr />
+									<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Evolução do programa de vacinação por ARS</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
+
+									<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Ponto de situação por ARS</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados relativos à semana de{' '}
+										{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
+											locale: pt,
+										})}{' '}
+										até{' '}
+										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
+
+									<BarArs colors={colors_v2} statistics={statistics}></BarArs>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Número de vacinas administradas em Portugal e na União Europeia</h2>
+									<hr />
+									<LineVacinadosEu colors={colors_v2} statistics={statistics}></LineVacinadosEu>
+								</Col>
+							</Row>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>Número de vacinas administradas por dia em Portugal e na União Europeia</h2>
+									<hr />
+									<BarVacinadosEu colors={colors_v2} statistics={statistics}></BarVacinadosEu>
+								</Col>
+							</Row>
+						</LazyLoad>
 						<Row>
 							<Col xs={12} className={styles.sources_block}>
-								<h3 className={styles.title}>Notas</h3>
+								<h2 className={styles.title}>Notas</h2>
 								<p className={styles.text}>
 									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o
 									&nbsp;
@@ -495,7 +522,7 @@ export default function Home() {
 							</Col>
 
 							<Col xs={12} className={styles.sources_block}>
-								<h3 className={styles.title}>Fontes</h3>
+								<h2 className={styles.title}>Fontes</h2>
 								<p className={styles.text}>
 									Os dados apresentados são retirados do portal&nbsp;
 									<a className={styles.link} target="_blank" href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/">
@@ -591,9 +618,6 @@ export default function Home() {
 					</div>
 				)}
 			</Container>
-			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
-			<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-			<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>;<Footer></Footer>
-		</>
+		</RegiaoContext.Provider>
 	);
 }

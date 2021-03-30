@@ -7,13 +7,13 @@ import classNames from 'classnames';
 import { CustomCheckbox } from '../CustomCheckbox';
 import styles from './../Card.module.scss';
 
-export function LineRt({ statistics, colors }) {
+export function LineRt({ statistics, colors, regiao }) {
 	let casesData = statistics.getCases();
 	let [loaded, setLoaded] = useState(false);
 	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 
 	let { main, shades, tints, complements } = colors;
-	let [currentRegiao, setCurrentRegiao] = useState('continente');
+	let [currentRegiao, setCurrentRegiao] = useState(regiao ?? 'continente');
 	let doses_map = {
 		normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
 		per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred'],
@@ -29,10 +29,6 @@ export function LineRt({ statistics, colors }) {
 		if (!loaded) return;
 		statistics.getRtRegiao(currentRegiao).then((data) => setRtData(data));
 	}, [currentRegiao]);
-
-	useEffect(() => {
-		console.log(rtData);
-	}, [rtData]);
 
 	useEffect(() => {
 		statistics.getRtRegiao(currentRegiao).then((data) => {
@@ -79,8 +75,8 @@ export function LineRt({ statistics, colors }) {
 					borderColor: 'transparent',
 					type: 'line',
 					fill: '2', //fill until previous dataset
-					data: rtData.rt.map((el) => el.limite_superior_IC95),
-					order: 3,
+					data: rtData.rt.map((el) => el.limite_superior_IC95.toFixed(2)),
+					order: 1,
 					yAxisID: 'rt',
 				},
 
@@ -91,7 +87,7 @@ export function LineRt({ statistics, colors }) {
 					borderColor: main,
 					type: 'line',
 					fill: false,
-					data: rtData.rt.map((el) => el.rt_numero_de_reproducao),
+					data: rtData.rt.map((el) => el.rt_numero_de_reproducao.toFixed(2)),
 					order: 2,
 					yAxisID: 'rt',
 				},
@@ -103,8 +99,8 @@ export function LineRt({ statistics, colors }) {
 					borderColor: 'transparent',
 					type: 'line',
 					fill: false,
-					data: rtData.rt.map((el) => el.limite_inferior_IC95),
-					order: 1,
+					data: rtData.rt.map((el) => el.limite_inferior_IC95.toFixed(2)),
+					order: 3,
 					yAxisID: 'rt',
 				},
 
@@ -149,7 +145,6 @@ export function LineRt({ statistics, colors }) {
 				align: 'start',
 				labels: {
 					filter: function (item, chart) {
-						console.log();
 						return !item.text.match('limite');
 					},
 				},
@@ -205,91 +200,95 @@ export function LineRt({ statistics, colors }) {
 	return (
 		<Card textLeft={true} allowOverflow={true}>
 			<div className={[styles.card_scrollable].join(' ')}>
-				<div className={'toggle_buttons'}>
-					<p>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'continente',
-							})}
-							onClick={() => {
-								setCurrentRegiao('continente');
-							}}
-						>
-							Continente
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'nacional',
-							})}
-							onClick={() => {
-								setCurrentRegiao('nacional');
-							}}
-						>
-							Nacional
-						</button>
+				{regiao === undefined ? (
+					<div className={'toggle_buttons'}>
+						<p>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'portugal',
+								})}
+								onClick={() => {
+									setCurrentRegiao('portugal');
+								}}
+							>
+								Continente
+							</button>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'nacional',
+								})}
+								onClick={() => {
+									setCurrentRegiao('nacional');
+								}}
+							>
+								Nacional
+							</button>
 
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'lvt',
-							})}
-							onClick={() => {
-								setCurrentRegiao('lvt');
-							}}
-						>
-							Lisboa e Vale do Tejo
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'algarve',
-							})}
-							onClick={() => {
-								setCurrentRegiao('algarve');
-							}}
-						>
-							Algarve
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'alentejo',
-							})}
-							onClick={() => {
-								setCurrentRegiao('alentejo');
-							}}
-						>
-							Alentejo
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'centro',
-							})}
-							onClick={() => {
-								setCurrentRegiao('centro');
-							}}
-						>
-							Centro
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'madeira',
-							})}
-							onClick={() => {
-								setCurrentRegiao('madeira');
-							}}
-						>
-							Madeira
-						</button>
-						<button
-							className={classNames('toggle_button', {
-								active: currentRegiao === 'acores',
-							})}
-							onClick={() => {
-								setCurrentRegiao('acores');
-							}}
-						>
-							Açores
-						</button>
-					</p>
-				</div>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'lvt',
+								})}
+								onClick={() => {
+									setCurrentRegiao('lvt');
+								}}
+							>
+								Lisboa e Vale do Tejo
+							</button>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'algarve',
+								})}
+								onClick={() => {
+									setCurrentRegiao('algarve');
+								}}
+							>
+								Algarve
+							</button>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'alentejo',
+								})}
+								onClick={() => {
+									setCurrentRegiao('alentejo');
+								}}
+							>
+								Alentejo
+							</button>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'centro',
+								})}
+								onClick={() => {
+									setCurrentRegiao('centro');
+								}}
+							>
+								Centro
+							</button>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'madeira',
+								})}
+								onClick={() => {
+									setCurrentRegiao('madeira');
+								}}
+							>
+								Madeira
+							</button>
+							<button
+								className={classNames('toggle_button', {
+									active: currentRegiao === 'acores',
+								})}
+								onClick={() => {
+									setCurrentRegiao('acores');
+								}}
+							>
+								Açores
+							</button>
+						</p>
+					</div>
+				) : (
+					<></>
+				)}
 			</div>
 
 			<div>{loaded ? <Line height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>

@@ -44,7 +44,7 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 						<Arrow className={styles.svg} />
 					</button>
 
-					<button style={{ width: 300 }} className={styles.datepicker} onClick={onClick}>
+					<button style={{ width: 285 }} className={styles.datepicker} onClick={onClick}>
 						{d}
 					</button>
 					<button

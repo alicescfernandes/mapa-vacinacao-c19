@@ -51,3 +51,54 @@ export let lineChartCommon2 = {
 	pointRadius: 0,
 	pointHitRadius: 0,
 };
+
+export const REGIOES = {
+	MADEIRA: 'madeira',
+	PORTUGAL: 'portugal',
+};
+
+export const ECDC_MAPPING = {
+	alentejo: 'PTCSR01',
+	algarve: 'PTCSR02',
+	acores: 'PTCSR03',
+	centro: 'PTCSR04',
+	lisboa: 'PTCSR05',
+	madeira: 'PTCSR06',
+	norte: 'PTCSR07',
+	portugal: 'PT',
+
+	PTCSR01: 'alentejo',
+	PTCSR02: 'algarve',
+	PTCSR03: 'acores',
+	PTCSR04: 'centro',
+	PTCSR05: 'lisboa',
+	PTCSR06: 'madeira',
+	PTCSR07: 'norte',
+	PT: 'portugal',
+};
+
+export const MADEIRA_DICOS = {
+	3101: 'calheta',
+	3102: 'camara_lobos',
+	3108: 'santa_cruz',
+	3201: 'porto_santo',
+	3106: 'porto_moniz',
+	3110: 'svincente',
+	3109: 'santana',
+	3105: 'ponta_sol',
+	3103: 'funchal',
+	3104: 'machico',
+	3107: 'ribeira_brava',
+
+	calheta: '3101',
+	camara_lobos: '3102',
+	santa_cruz: '3108',
+	porto_santo: '3201',
+	porto_moniz: '3106',
+	svincente: '3110',
+	santana: '3109',
+	ponta_sol: '3105',
+	funchal: '3103',
+	machico: '3104',
+	ribeira_brava: '3107',
+};
