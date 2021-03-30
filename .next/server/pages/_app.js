@@ -210,6 +210,7 @@ function dateWithoutTimezone(unix) {
 function trackPlausible(req) {
   var _req$headers;
 
+  if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
   let host = req.headers.host;
   let url = req.url;
   let userAgent = req.headers['user-agent'];

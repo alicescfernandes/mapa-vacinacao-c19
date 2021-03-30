@@ -823,6 +823,7 @@ function dateWithoutTimezone(unix) {
 function trackPlausible(req) {
   var _req$headers;
 
+  if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
   let host = req.headers.host;
   let url = req.url;
   let userAgent = req.headers['user-agent'];
@@ -2214,7 +2215,7 @@ function DatePickerButton({
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617106204928,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\"}");
+module.exports = JSON.parse("{\"date\":1617111905505,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\"}");
 
 /***/ }),
 
