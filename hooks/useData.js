@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ECDC_MAPPING, REGIOES } from '../constants';
 import { fetchWithLocalCache } from '../utils';
 import data from './../data/last-update.json';
-export function useData() {
+import { populacao, populacao_ram } from './../data/generic.json';
+
+import lastUpdate from './../data/last-update.json';
+export function useData({ regiao }) {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
-	let [weeks, setWeeks] = useState(false);
-	let [sns, setSns] = useState(false);
 	let [ecdc, setECDC] = useState(false);
-	let [ars, setArs] = useState(false);
-	let [owid, setOwid] = useState(false);
 	let [vaccines, setVaccines] = useState(false);
 	let [casesData, setCasesData] = useState(false);
 	let [labels, setLabels] = useState([]);
-	let [rt, setRt] = useState([]);
+	let [madeira, setMadeira] = useState([]);
+	let [madeiraPDS, setMadeiraPDS] = useState([]);
 
 	let options = {
 		month: 'short',
@@ -45,36 +46,93 @@ export function useData() {
 		getRaw: () => {
 			return vaccines;
 		},
+		getLastVaccineAvaliable: () => {
+			let data = {};
+			if (regiao === REGIOES.MADEIRA) {
+				let lastItem = madeira[madeira.length - 1];
+				data = {
+					dose_2: lastItem.dose_2,
+					dose_1: lastItem.dose_1,
+					total: lastItem.total,
+				};
+			} else {
+				let lastItem = vaccines[vaccines.length - 1];
+
+				data = {
+					dose_2: lastItem.Inoculacao2_Ac,
+					dose_1: lastItem.Inoculacao1_Ac,
+					total: lastItem.Vacinados_Ac,
+				};
+			}
+
+			return data;
+		},
+		getLastCaseAvaliable: () => {
+			let data = {};
+			if (regiao === REGIOES.MADEIRA) {
+				let lastItem = madeiraPDS[madeiraPDS.length - 1];
+				data = {
+					ativos: parseInt(lastItem.ativos),
+					recuperados: parseInt(lastItem.recuperados),
+					obitos: parseInt(lastItem.obitos),
+					populacao: parseInt(populacao_ram.valor),
+					data: lastItem.data,
+				};
+			} else {
+				let lastItem = casesData[vaccines.length - 1];
+
+				data = {
+					ativos: lastItem.Activos,
+					recuperados: lastItem.Recuperados,
+					obitos: lastItem.Obitos,
+					populacao: populacao.valor,
+					data: lastItem.Data,
+				};
+			}
+
+			return data;
+		},
 		getDailyData: () => {
-			return parseData(vaccines);
+			if (regiao === REGIOES.MADEIRA) {
+				let labels = [];
+				let values = [];
+				madeira.forEach((el) => {
+					labels.push(f.format(new Date(el.data)));
+					values.push(el.total);
+				});
+				return { labels, values };
+			} else {
+				return parseData(vaccines);
+			}
 		},
 		getDesvioPadrao: () => {},
 
 		getMediaMovel: (dias) => {
 			let medias = [];
 			let labelsMedias = [];
-			let { labels, values } = parseData(vaccines);
 
-			for (let start = 1; start <= dias; start++) {
-				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
+			if (regiao === REGIOES.PORTUGAL) {
+				let { labels, values } = parseData(vaccines);
+
+				for (let start = 1; start <= dias; start++) {
+					let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
+				}
+
+				for (let start = dias; start <= values.length; start++) {
+					let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
+				}
 			}
-
-			for (let start = dias; start <= values.length; start++) {
-				let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
-			}
-
 			return {
 				values: medias,
 				labels: labelsMedias,
 			};
 		},
 		getRtRegiao: async (regiao) => {
-			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(data.date)}`).then((responseRt) => {
-				setRt(responseRt);
+			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(lastUpdate.date)}`).then((responseRt) => {
 				return responseRt;
 			});
 			let date = new Date('2020-12-27T00:00:45.000Z').getTime();
@@ -83,7 +141,7 @@ export function useData() {
 			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
 		},
 		getRtRegioes: async () => {
-			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(data.date)}`).then((responseRt) => {
+			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(lastUpdate.date)}`).then((responseRt) => {
 				return responseRt;
 			});
 			let dates = data.rt_continente.map((el) => el.Data);
@@ -109,7 +167,9 @@ export function useData() {
 
 			return { labels: dates.map((el) => f.format(new Date(el))), values: rtData };
 		},
-		getOwid: () => {
+		getOwid: async () => {
+			let owid = await fetchWithLocalCache(`/api/owid?${btoa(lastUpdate.date)}`);
+
 			let labels = owid.eun.data.map((el) => f.format(new Date(el.date)));
 			let data = {
 				pt: owid.prt.data,
@@ -122,32 +182,33 @@ export function useData() {
 		getMediaMovelDiaria: (dias) => {
 			let medias = [];
 			let labelsMedias = [];
-			let { values } = statistics.getVacinadosPorDia();
+			if (regiao === REGIOES.PORTUGAL) {
+				let { values } = statistics.getVacinadosPorDia();
 
-			for (let start = 1; start <= dias; start++) {
-				if (values[start] === null) {
-					medias.push(null);
-					continue;
+				for (let start = 1; start <= dias; start++) {
+					if (values[start] === null) {
+						medias.push(null);
+						continue;
+					}
+
+					let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
 				}
 
-				let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
-			}
+				for (let start = dias; start <= values.length; start++) {
+					let slice = values.slice(start - dias, start);
 
-			for (let start = dias; start <= values.length; start++) {
-				let slice = values.slice(start - dias, start);
+					if (values[start] === null || slice.includes(null) > 0) {
+						medias.push(null);
+						continue;
+					}
 
-				if (values[start] === null || slice.includes(null) > 0) {
-					medias.push(null);
-					continue;
+					let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
+					medias.push(sum);
+					labelsMedias.push(labels[start]);
 				}
-
-				let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
-				medias.push(sum);
-				labelsMedias.push(labels[start]);
 			}
-
 			return {
 				values: medias,
 				labels: labelsMedias,
@@ -179,11 +240,20 @@ export function useData() {
 			let in2 = [];
 			let total = [];
 			let { labels, values } = statistics.getDailyData();
-			values.forEach((val, idx, vals) => {
-				in1.push(vaccines[idx].Inoculacao1_Ac);
-				in2.push(vaccines[idx].Inoculacao2_Ac);
-				total.push(vaccines[idx].Vacinados_Ac);
-			});
+
+			if (regiao === REGIOES.MADEIRA) {
+				madeira.forEach((val, idx, vals) => {
+					in1.push(madeira[idx].dose_1);
+					in2.push(madeira[idx].dose_2);
+					total.push(madeira[idx].total);
+				});
+			} else {
+				values.forEach((val, idx, vals) => {
+					in1.push(vaccines[idx].Inoculacao1_Ac);
+					in2.push(vaccines[idx].Inoculacao2_Ac);
+					total.push(vaccines[idx].Vacinados_Ac);
+				});
+			}
 
 			return {
 				valuesIn1: in1,
@@ -195,40 +265,77 @@ export function useData() {
 		getDiariosInoculacoes: () => {
 			let in1 = [];
 			let in2 = [];
-			let { labels, values } = parseData(vaccines);
+			let total = [];
+			let raw = regiao === REGIOES.MADEIRA ? madeira : vaccines;
+			let labels = [];
+			if (regiao === REGIOES.MADEIRA) {
+				let { labels: labelsMad, values } = statistics.getDailyData();
+				labels = labelsMad;
 
-			let total = values.map((val, idx, vals) => {
-				//The first one
-				if (idx === 0) {
-					in1.push(vaccines[idx].Inoculacao1_Ac);
-					in2.push(vaccines[idx].Inoculacao2_Ac);
-					return val;
-				}
+				total = values.map((val, idx, vals) => {
+					//The first one
+					if (idx === 0) {
+						in1.push(madeira[idx].dose_1);
+						in2.push(madeira[idx].dose_2);
+						return val;
+					}
 
-				let prevDay = idx - 1;
+					let prevDay = idx - 1;
 
-				if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
-					in1.push(null);
-				} else {
-					in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
-				}
+					if (madeira[prevDay].dose_1 == null || madeira[idx].dose_1 == null) {
+						in1.push(null);
+					} else {
+						in1.push(madeira[idx].dose_1 - madeira[prevDay].dose_1);
+					}
 
-				if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
-					in2.push(null);
-				} else {
-					in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
-				}
+					if (madeira[prevDay].dose_2 == null || madeira[idx].dose_2 == null) {
+						in2.push(null);
+					} else {
+						in2.push(madeira[idx].dose_2 - madeira[prevDay].dose_2);
+					}
 
-				if (vals[prevDay] == null || val == null) {
-					return null;
-				}
-				return val - vals[prevDay];
-			});
+					if (vals[prevDay] == null || val == null) {
+						return null;
+					}
+					return val - vals[prevDay];
+				});
+			} else {
+				let { labels: labelsCont, values } = parseData(vaccines);
+				labels = labelsCont;
+
+				total = values.map((val, idx, vals) => {
+					//The first one
+					if (idx === 0) {
+						in1.push(vaccines[idx].Inoculacao1_Ac);
+						in2.push(vaccines[idx].Inoculacao2_Ac);
+						return val;
+					}
+
+					let prevDay = idx - 1;
+
+					if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
+						in1.push(null);
+					} else {
+						in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
+					}
+
+					if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
+						in2.push(null);
+					} else {
+						in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
+					}
+
+					if (vals[prevDay] == null || val == null) {
+						return null;
+					}
+					return val - vals[prevDay];
+				});
+			}
 			return {
 				valuesIn1: in1,
 				valuesIn2: in2,
 				values: total,
-				raw: vaccines,
+				raw,
 				labels,
 			};
 		},
@@ -245,14 +352,16 @@ export function useData() {
 		},
 		getReceivedDosesByBrandByWeek: async () => {
 			let labels = {};
+			let weeks = await fetchWithLocalCache(`/api/weeks`, false);
 
 			let com = {};
 			let mod = {};
 			let az = {};
-
+			let ecdcRegion = ECDC_MAPPING[regiao];
 			ecdc.forEach((el) => {
 				var obj = {};
-				if (parseInt(el['NumberDosesReceived']) > 0) {
+
+				if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
 					com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
 					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
 					az[el['YearWeekISO']] = az[el['YearWeekISO']] || null;
@@ -288,12 +397,11 @@ export function useData() {
 		getAdministredDosesByAgeByWeek: async () => {
 			let labels = {};
 			let maxValue = 0;
-
+			let weeks = await fetchWithLocalCache(`/api/weeks`, false);
 			let groups = {};
-
+			let ecdcRegion = ECDC_MAPPING[regiao];
 			ecdc.forEach((el) => {
-				debugger;
-				if (el['NumberDosesReceived'] == '') {
+				if (el['NumberDosesReceived'] == '' && el['Region'] === ecdcRegion) {
 					if (!labels.hasOwnProperty(el['YearWeekISO'])) {
 						labels[el['YearWeekISO'].replace('-', '')] = weeks[el['YearWeekISO']];
 					}
@@ -308,6 +416,20 @@ export function useData() {
 					groups[el['TargetGroup']].dose_2[el['YearWeekISO']] =
 						(groups[el['TargetGroup']].dose_2[el['YearWeekISO']] || 0) + parseInt(el['SecondDose']);
 				}
+			});
+			return {
+				maxValue,
+				labels,
+				groups,
+			};
+		},
+		getAdministredDosesByAgeByWeekRam: async () => {
+			let labels = [];
+			let maxValue = 0;
+			let groups = [];
+			madeira.forEach((el) => {
+				labels.push(el.data);
+				groups.push(el.escaloes);
 			});
 			return {
 				maxValue,
@@ -350,12 +472,15 @@ export function useData() {
 
 			return groups;
 		},
-		getTotalSNS: () => {
+		getTotalSNS: async () => {
+			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
+
 			return sns.filter((el) => {
 				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == data.dateSnsStartWeirdFormat;
 			});
 		},
-		getTotalARS: () => {
+		getTotalARS: async () => {
+			let ars = await fetchWithLocalCache(`/api/ars?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
 			let data = {};
 			ars.features.forEach((el) => {
 				if (el.attributes.ARSNome === 'Nacional') el.attributes.ARSNome = 'All';
@@ -374,7 +499,9 @@ export function useData() {
 		getCases: () => {
 			return casesData;
 		},
-		getDosesRecebidasAcum: () => {
+		getDosesRecebidasAcum: async () => {
+			let weeks = await fetchWithLocalCache(`/api/weeks`, false);
+
 			if (ecdc == false) return;
 			let labels = {};
 			let data = {};
@@ -444,27 +571,30 @@ export function useData() {
 				labels: Object.values(labels),
 			};
 		},
+
+		getMadeiraData: async () => {
+			let res = await fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`);
+			return res;
+		},
+		getMadeiraPDS: async () => {
+			let res = await fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeiraCases)}`);
+			return res;
+		},
 	};
 
 	useEffect(() => {
 		Promise.all([
-			fetchWithLocalCache(`/api/ecdc?${btoa(data.dateEcdc)}`, false),
-			fetchWithLocalCache(`/api/weeks`, false),
-			fetchWithLocalCache(`/api/sns?${btoa(data.dateSnsStartWeirdFormat)}`, false),
-			fetchWithLocalCache(`/api/vaccinesold?${btoa(data.date)}`),
-			fetchWithLocalCache(`/api/ars?${btoa(data.dateSnsStartWeirdFormat)}`, false),
-			fetchWithLocalCache(`/api/cases?${btoa(data.date)}`),
-			fetchWithLocalCache(`/api/owid?${btoa(data.date)}`),
-			fetchWithLocalCache(`/api/rt/continente?${btoa(Date.now())}`),
-		]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid, rt]) => {
-			setSns(sns);
-			setWeeks(weeks);
+			fetchWithLocalCache(`/api/ecdc?${btoa(lastUpdate.dateEcdc)}`, false),
+			fetchWithLocalCache(`/api/vaccinesold?${btoa(lastUpdate.date)}`),
+			fetchWithLocalCache(`/api/cases?${btoa(lastUpdate.date)}`),
+			fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`),
+			fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeira)}`),
+		]).then(([ecdc, vaccines, cases, madeira, madeiraPDS]) => {
 			setECDC(ecdc);
 			setVaccines(vaccines);
-			setArs(ars);
 			setCasesData(cases);
-			setOwid(owid);
-			setRt(rt);
+			setMadeira(madeira);
+			setMadeiraPDS(madeiraPDS);
 			setReady(true);
 		});
 	}, []);

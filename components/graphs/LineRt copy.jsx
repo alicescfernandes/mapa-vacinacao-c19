@@ -25,14 +25,6 @@ export function LineRt({ statistics, colors }) {
 	let [rtData, setRtData] = useState({});
 	const canvasRef = useRef(null);
 
-	useEffect(() => {
-		if (!loaded) return;
-		statistics.getRtRegioes().then((data) => console.log(data));
-	}, [currentRegiao]);
-
-	useEffect(() => {
-		console.log(rtData);
-	}, [rtData]);
 
 	useEffect(() => {
 		statistics.getRtRegioes().then((data) => {
@@ -188,7 +180,6 @@ export function LineRt({ statistics, colors }) {
 				align: 'start',
 				labels: {
 					filter: function (item, chart) {
-						console.log();
 						return !item.text.match('limite');
 					},
 				},
@@ -246,10 +237,10 @@ export function LineRt({ statistics, colors }) {
 					<p>
 						<button
 							className={classNames('toggle_button', {
-								active: currentRegiao === 'continente',
+								active: currentRegiao === 'portugal'',
 							})}
 							onClick={() => {
-								setCurrentRegiao('continente');
+								setCurrentRegiao('portugal'');
 							}}
 						>
 							Continente

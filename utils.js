@@ -26,6 +26,7 @@ export function dateWithoutTimezone(unix) {
 }
 
 export function trackPlausible(req) {
+	if (req === undefined) return;
 	if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
 	let host = req.headers.host;
 	let url = req.url;
@@ -72,8 +73,8 @@ export function downloadPNG(canvasElement, graphName) {
 	link.click();
 }
 
-export function perHundred(total) {
-	return (total / populacao.valor) * 100;
+export function perHundred(total, populacaoTotal = populacao.valor) {
+	return (total / populacaoTotal) * 100;
 }
 
 export function fetchWithLocalCache(url, options) {
@@ -95,6 +96,7 @@ export function fetchWithLocalCache(url, options) {
 		let data = JSON.parse(localStorage.getItem(url));
 		return Promise.resolve(data);
 	} else {
+		console.log('sw', 'fetch', url);
 		return fetch(url, {
 			...options,
 			headers: {

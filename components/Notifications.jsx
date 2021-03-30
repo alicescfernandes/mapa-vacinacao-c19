@@ -2,13 +2,17 @@ import { useEffect } from 'react';
 
 export function Notifications({ children }) {
 	function allowNotifications() {
-		OneSignal.getNotificationPermission().then((e) => {
-			if (e !== 'granted') {
-				OneSignal.showNativePrompt();
-			} else {
-				alert('Já recebe as nossas notificações');
-			}
-		});
+		if (!OneSignal) {
+			alert('Não conseguimos configurar notificações para este dispositivo. Verifica se não tens nenhum ad-blocker ativo.');
+		} else {
+			OneSignal.getNotificationPermission().then((e) => {
+				if (e !== 'granted') {
+					OneSignal.showNativePrompt();
+				} else {
+					alert('Já recebe as nossas notificações');
+				}
+			});
+		}
 	}
 	useEffect(function () {
 		window.OneSignal = window.OneSignal || [];

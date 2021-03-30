@@ -38,7 +38,9 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 				let fromDate = new Date(from);
 				let toDate = new Date(to);
 
-				return `De ${formatNumber(fromDate.getDate())}/${formatNumber(fromDate.getMonth() + 1)} a ${formatNumber(toDate.getDate())}/${formatNumber(toDate.getMonth() + 1)}`;
+				return `De ${formatNumber(fromDate.getDate())}/${formatNumber(fromDate.getMonth() + 1)} a ${formatNumber(
+					toDate.getDate()
+				)}/${formatNumber(toDate.getMonth() + 1)}`;
 			}),
 			datasets: [
 				{
@@ -251,8 +253,8 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 		};
 	};
 
-	useEffect(() => {
-		setGraphData(statistics.getDosesRecebidasAcum());
+	useEffect(async () => {
+		setGraphData(await statistics.getDosesRecebidasAcum());
 		setLoading(false);
 	}, []);
 

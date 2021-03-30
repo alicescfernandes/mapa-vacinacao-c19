@@ -13,7 +13,7 @@
 		text-align: center;
 		min-height: 190px;
 		background: white;
-		padding: 25px;
+		padding: 10px 0px;
 		border-radius: 5px;
 		margin-bottom: 15px;
 		overflow: hidden;
@@ -104,5 +104,31 @@
 		&_graph {
 			min-height: 210px;
 		}
+	}
+}
+.text_left {
+	text-align: left;
+}
+.ram {
+	&_subchart {
+		p {
+			font-weight: bold;
+			font-size: 13px;
+			text-align: center;
+		}
+
+		&_bar {
+			padding: 5px;
+		}
+	}
+	h3 {
+		//font-weight: bold;
+		font-size: 13px;
+		text-align: center;
+	}
+	h2 {
+		font-size: 40px !important;
+		font-weight: bold;
+		color: rgb(1, 174, 151);
 	}
 }

@@ -10,22 +10,26 @@
                 "anotacao": "Vacinas administradas às Entidades Governamentais"
             },
             "saude": {
+               "nome":"Profissionais afetos à área da Saúde (público e privado)",
                 "dose_1": 3773,
                 "dose_2": 2335,
                 "total": 0
             },
             "rcci": {
+               "nome":"Profissionais afetos à área Social, Residentes e Utentes em Lares, instituições similares, e Rede de Cuidados Continuados",
                 "dose_1": 2724,
                 "dose_2": 888,
                 "total": 0,
                 "notas":"Utentes e profissionais contabilizados em conjunto"
             },
             "protecao_civil": {
+               "nome":"Profissionais afetos à área da Proteção Civil, Segurança e Serviços Críticos",
                 "dose_1": 513,
                 "dose_2": 0,
                 "total": 0
             },
             "lares": {
+               "nome":"Utentes com idade entre 50 e 79 anos + Utentes com idade superior ou igual a 80 anos",
                 "dose_1": null,
                 "dose_2": 0,
                 "total": 0
@@ -45,41 +49,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1":null,
                 "dose_2":null,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
@@ -176,21 +188,25 @@
                 "anotacao": "Vacinas administradas às Entidades Governamentais"
             },
             "saude": {
+               "nome":"Profissionais afetos à área da Saúde (público e privado)",
                 "dose_1": 4876,
                 "dose_2": 2787,
                 "total": 0
             },
             "rcci": {
+               "nome":"Profissionais afetos à área Social, Residentes e Utentes em Lares, instituições similares, e Rede de Cuidados Continuados",
                 "dose_1": 2789,
                 "dose_2": 1635,
                 "total": 0
             },
             "protecao_civil": {
+               "nome":"Profissionais afetos à área da Proteção Civil, Segurança e Serviços Críticos",
                 "dose_1": 670,
                 "dose_2": 99,
                 "total": 0
             },
             "lares": {
+               "nome":"Utentes com idade entre 50 e 79 anos + Utentes com idade superior ou igual a 80 anos",
                 "dose_1": 1257,
                 "dose_2": 0,
                 "total": 0
@@ -210,41 +226,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1":null,
                 "dose_2":null,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
@@ -341,21 +365,25 @@
                 "anotacao": "Vacinas administradas às Entidades Governamentais"
             },
             "saude": {
+               "nome":"Profissionais afetos à área da Saúde (público e privado)",
                 "dose_1": 5207,
                 "dose_2": 2921,
                 "total": 0
             },
             "rcci": {
+               "nome":"Profissionais afetos à área Social, Residentes e Utentes em Lares, instituições similares, e Rede de Cuidados Continuados",
                 "dose_1": 3090,
                 "dose_2": 215,
                 "total": 0
             },
             "protecao_civil": {
+               "nome":"Profissionais afetos à área da Proteção Civil, Segurança e Serviços Críticos",
                 "dose_1": 709,
                 "dose_2": 123,
                 "total": 0
             },
             "lares": {
+               "nome":"Utentes com idade entre 50 e 79 anos + Utentes com idade superior ou igual a 80 anos",
                 "dose_1": 3232,
                 "dose_2": 0,
                 "total": 0
@@ -375,41 +403,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": null,
                 "dose_2": null,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1":null,
                 "dose_2":null,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1":null,
                 "dose_2": null,
                 "total": 0
@@ -500,27 +536,33 @@
         "total": 23301,
         "dose_1": 15735,
         "dose_2": 7566,
+        "semana":"2021-W08",
+        "relatorio":"https://covidmadeira.pt/publicacao/boletim-vacinacao-covid-19-ram-de-01-03-2021/",
         "grupos": {
             "outros": {
                 "total": 25,
                 "anotacao": "Vacinas administradas às Entidades Governamentais"
             },
             "saude": {
+               "nome":"Profissionais afetos à área da Saúde (público e privado)",
                 "dose_1": 5383,
                 "dose_2": 4084,
                 "total": 0
             },
             "rcci": {
+               "nome":"Profissionais afetos à área Social, Residentes e Utentes em Lares, instituições similares, e Rede de Cuidados Continuados",
                 "dose_1": 3549,
                 "dose_2": 2638,
                 "total": 0
             },
             "protecao_civil": {
+               "nome":"Profissionais afetos à área da Proteção Civil, Segurança e Serviços Críticos",
                 "dose_1": 809,
                 "dose_2": 656,
                 "total": 0
             },
             "lares": {
+               "nome":"Utentes com idade entre 50 e 79 anos + Utentes com idade superior ou igual a 80 anos",
                 "dose_1": 5976,
                 "dose_2": 181,
                 "total": 0
@@ -540,41 +582,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": 0,
                 "dose_2": 0,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": 1.4,
                 "dose_2": 1.0,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1": 5.4,
                 "dose_2": 4.3,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1": 5.6,
                 "dose_2": 4.0,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1": 4.4,
                 "dose_2": 3.1,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1": 2.5,
                 "dose_2": 1.8,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1": 8.9,
                 "dose_2": 2,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1": 50.3,
                 "dose_2": 7.0,
                 "total": 0
@@ -665,27 +715,34 @@
         "total": 27853,
         "dose_1": 17170,
         "dose_2": 10683,
+        "semana":"2021-W09",
+        "relatorio":"https://covidmadeira.pt/publicacao/boletim-vacinacao-covid-19-ram-de-08-03-2021/",
+        
         "grupos": {
             "outros": {
                 "total": 31,
                 "anotacao": "Vacinas administradas às Entidades Governamentais"
             },
             "saude": {
+               "nome":"Profissionais afetos à área da Saúde (público e privado)",
                 "dose_1": 5516,
                 "dose_2": 4908,
                 "total": 0
             },
             "rcci": {
+               "nome":"Profissionais afetos à área Social, Residentes e Utentes em Lares, instituições similares, e Rede de Cuidados Continuados",
                 "dose_1": 3581,
                 "dose_2": 2880,
                 "total": 0
             },
             "protecao_civil": {
+               "nome":"Profissionais afetos à área da Proteção Civil, Segurança e Serviços Críticos",
                 "dose_1": 810,
                 "dose_2": 751,
                 "total": 0
             },
             "lares": {
+               "nome":"Utentes com idade entre 50 e 79 anos + Utentes com idade superior ou igual a 80 anos",
                 "dose_1": 7243,
                 "dose_2": 2133,
                 "total": 0
@@ -705,41 +762,49 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1": 0,
                 "dose_2": 0,
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1": 1.5,
                 "dose_2": 1.1,
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1": 5.5,
                 "dose_2": 4.9,
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1": 5.7,
                 "dose_2": 4.9,
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1": 4.5,
                 "dose_2": 3.9,
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1": 2.6,
                 "dose_2": 2.1,
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1": 9.0,
                 "dose_2": 5.9,
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1": 61.5,
                 "dose_2": 18.4,
                 "total": 0
@@ -829,6 +894,8 @@
         "data": "2020-03-14",
         "total": 35133,
         "dose_1": 22051,
+        "semana":"2021-W10",
+        "relatorio":"https://covidmadeira.pt/publicacao/boletim-vacinacao-covid-19-ram-de-15-03-2021/",
         "dose_2": 13082,
         "grupos": {
             "outros": {
@@ -836,21 +903,25 @@
                 "anotacao": "Vacinas administradas às Entidades Governamentais"
             },
             "saude": {
+               "nome":"Profissionais afetos à área da Saúde (público e privado)",
                 "dose_1": 6543,
                 "dose_2": 5243,
                 "total": 0
             },
             "rcci": {
+               "nome":"Profissionais afetos à área Social, Residentes e Utentes em Lares, instituições similares, e Rede de Cuidados Continuados",
                 "dose_1": 4124,
                 "dose_2": 3081,
                 "total": 0
             },
             "protecao_civil": {
+               "nome":"Profissionais afetos à área da Proteção Civil, Segurança e Serviços Críticos",
                 "dose_1": 1976,
                 "dose_2": 766,
                 "total": 0
             },
             "lares": {
+               "nome":"Utentes com idade entre 50 e 79 anos + Utentes com idade superior ou igual a 80 anos",
                 "dose_1": 9386,
                 "dose_2": 3973,
                 "total": 0
@@ -870,6 +941,7 @@
         },
         "escaloes": {
             "e017": {
+                "nome":"Entre os 0 e os 17 anos",
                 "dose_1_pessoas": 3,
                 "dose_1": 0,
                 "dose_2_pessoas": 3,
@@ -877,6 +949,7 @@
                 "total": 0
             },
             "e1824": {
+                "nome":"Entre 18 e 24 anos",
                 "dose_1_pessoas": 456,
                 "dose_1": 2,
                 "dose_2_pessoas": 273,
@@ -884,6 +957,7 @@
                 "total": 0
             },
             "e2549": {
+                "nome":"Entre os 25 e 49 anos",
                 "dose_1_pessoas": 6559,
                 "dose_1": 7.2,
                 "dose_2_pessoas": 4727,
@@ -891,6 +965,7 @@
                 "total": 0
             },
             "e5059": {
+                "nome":"Entre os 50 e os 59 anos",
                 "dose_1_pessoas": 3098,
                 "dose_1": 7.9,
                 "dose_2_pessoas": 2123,
@@ -898,6 +973,7 @@
                 "total": 0
             },
             "e6064": {
+                "nome":"Entre 60 e 64 anos",
                 "dose_1_pessoas": 1595,
                 "dose_1": 10.1,
                 "dose_2_pessoas": 663,
@@ -905,6 +981,7 @@
                 "total": 0
             },
             "e6569": {
+                "nome":"Entre 65 e 69 anos",
                 "dose_1_pessoas": 570,
                 "dose_1": 4.3,
                 "dose_2_pessoas": 306,
@@ -912,6 +989,7 @@
                 "total": 0
             },
             "e7079": {
+                "nome":"Entre 70 e 79 anos",
                 "dose_1_pessoas": 1799,
                 "dose_1": 9.6,
                 "dose_2_pessoas": 1416,
@@ -919,6 +997,7 @@
                 "total": 0
             },
             "e80": {
+                "nome":"80 anos ou mais",
                 "dose_1_pessoas": 7971,
                 "dose_1": 72.1,
                 "dose_2_pessoas": 3.571,
