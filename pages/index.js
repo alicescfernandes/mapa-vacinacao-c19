@@ -48,6 +48,10 @@ export default function Home() {
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
+	let beacons = {
+		mid_page: false,
+		end_page: false,
+	};
 	let [previousSelectedItem, setPreviousSelectedItem] = useState({});
 	let [updating, setUpdating] = useState(false);
 	let [last, setLast] = useState({});
@@ -154,13 +158,28 @@ export default function Home() {
 		setLoaded(true);
 	}, [dataReady]);
 
+	function trackScrollEvents(e) {
+		if (window.scrollY > 5580 && beacons.end_page === false) {
+			beacons.end_page = true;
+			plausible.trackEvent('end_page');
+			return;
+		}
+		if (window.scrollY > 1657 && beacons.mid_page === false) {
+			beacons.mid_page = true;
+			plausible.trackEvent('mid_page');
+			return;
+		}
+	}
+
 	useEffect(() => {
 		// Unconventional way of doing this
 		window.addEventListener('socket_update', onSocketUpdate);
+		window.addEventListener('scroll', trackScrollEvents);
 
 		return function () {
 			// Unconventional way of doing this
 			window.removeEventListener('socket_update', onSocketUpdate);
+			window.removeEventListener('scroll', trackScrollEvents);
 		};
 	}, []);
 	return (

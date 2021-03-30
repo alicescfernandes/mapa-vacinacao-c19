@@ -39,6 +39,10 @@ export default function Home() {
 	let [previousItem, setPreviousItem] = useState({});
 	let [updating, setUpdating] = useState(false);
 	let [loaded, setLoaded] = useState(false);
+	let beacons = {
+		mid_page: false,
+		end_page: false,
+	};
 	const router = useRouter();
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
 	let [derivedNumbers, setDerivedNumbers] = useState({
@@ -60,6 +64,19 @@ export default function Home() {
 		dataLong: '',
 	});
 
+	function trackScrollEvents(e) {
+		if (window.scrollY > 3576 && beacons.end_page === false) {
+			beacons.end_page = true;
+			plausible.trackEvent('end_page');
+			return;
+		}
+		if (window.scrollY > 1657 && beacons.mid_page === false) {
+			beacons.mid_page = true;
+			plausible.trackEvent('mid_page');
+			return;
+		}
+	}
+
 	let startDate = new Date(json.dateMadeira);
 	let [first, ...restDate] = format(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
 		locale: pt,
@@ -75,15 +92,19 @@ export default function Home() {
 	}
 
 	let { colors, colors_v2, setColors } = useColors();
+
 	useEffect(() => {
 		// Unconventional way of doing this
 		window.addEventListener('socket_update', onSocketUpdate);
+		window.addEventListener('scroll', trackScrollEvents);
 
 		return function () {
 			// Unconventional way of doing this
 			window.removeEventListener('socket_update', onSocketUpdate);
+			window.removeEventListener('scroll', trackScrollEvents);
 		};
 	}, []);
+
 	useEffect(() => {
 		let object = {
 			pessoasAVacinar: {
