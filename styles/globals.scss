@@ -232,7 +232,7 @@ sup.new {
 
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 1090px) {
-	.counterRow .col-12 * {
+	.counterRow .col-12 div {
 		padding-right: 0px;
 		border: 0;
 	}
@@ -250,7 +250,7 @@ sup.new {
 		margin-bottom: 15px;
 	}
 
-	.counterRow .col-lg-4:last-child * {
+	.counterRow .col-lg-4:last-child div {
 		padding-right: 0px;
 		border: 0;
 	}
