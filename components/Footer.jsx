@@ -24,6 +24,8 @@ export function Footer() {
 			></script>
 			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
 			<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+			<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"></script>
 			<footer className={`${styles.footer} card-shadow`}>
 				<Container className={styles.content}>
 					<ul>

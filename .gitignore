@@ -16,6 +16,7 @@ automation/hootsuite-conf.json
 /coverage
 
 /.ignore
+firebase_account.json
 
 .env_keys.json
 # next.js
