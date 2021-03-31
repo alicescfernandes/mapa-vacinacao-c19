@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -169,7 +169,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 15:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("mB1w");
@@ -523,44 +523,77 @@ var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
 // CONCATENATED MODULE: ./components/Notifications.jsx
 
 
+var firebaseConfig = {
+  apiKey: 'AIzaSyBcHZc1Rk5CeJDkwwaBOdCzYgdA6V5WK3g',
+  authDomain: 'covid19-249f1.firebaseapp.com',
+  projectId: 'covid19-249f1',
+  storageBucket: 'covid19-249f1.appspot.com',
+  messagingSenderId: '636238011730',
+  appId: '1:636238011730:web:bf4a0deef86c884c3b6e8b',
+  measurementId: 'G-DYYRVR03RS'
+};
 function Notifications({
   children
 }) {
-  function allowNotifications() {
-    if (!OneSignal) {
-      alert('Não conseguimos configurar notificações para este dispositivo. Verifica se não tens nenhum ad-blocker ativo.');
-    } else {
-      OneSignal.getNotificationPermission().then(e => {
-        if (e !== 'granted') {
-          OneSignal.showNativePrompt();
-        } else {
-          alert('Já recebe as nossas notificações');
-        }
-      });
+  function registerOnFirebase(callback) {
+    if (firebase.apps.length === 0) {
+      firebase.initializeApp(firebaseConfig);
     }
+
+    const messaging = firebase.messaging();
+    messaging.getToken({
+      vapidKey: 'BHtOyn7DJeWzTT1uCITnVOzCpFI4jyOGNo_NQCKoJktP56tHqSVCPtyn99tgpWPRsWzRTu07ahM6fjljP_01K3g'
+    }).then((currentToken, b, c) => {
+      console.log(b, c);
+
+      if (currentToken) {
+        fetch('/api/messaging/register', {
+          method: 'POST',
+          body: JSON.stringify({
+            fcm_token: currentToken
+          }),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(res => {
+          console.log(res.status);
+          callback === null || callback === void 0 ? void 0 : callback();
+        });
+      } else {
+        console.log('No registration token available. Request permission to generate one.');
+      }
+    }).catch(err => {
+      alert('Não conseguimos ativar as notificações. Certifique-se que não estão bloqueadas para este site ou tente mais tarde.');
+    });
+    messaging.onMessage(payload => {
+      let n = new Notification(payload.notification.title, {
+        body: payload.notification.body,
+        icon: '/android-icon-192x192.png'
+      });
+      /* n.onclick = function (event) {
+      	window.open('/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications', '_blank');
+      }; */
+    });
+  }
+
+  function allowNotifications() {
+    if (Notification.permission === 'granted') {
+      alert('Já recebes as nossas notificações');
+      return;
+    }
+
+    registerOnFirebase(function () {
+      new Notification('Vacinação COVID-19', {
+        body: 'Subscreveste às nossas notificações diárias com os dados das vacinas',
+        icon: '/android-icon-192x192.png'
+      });
+    });
   }
 
   Object(external_react_["useEffect"])(function () {
-    window.OneSignal = window.OneSignal || [];
-    const OneSignal = window.OneSignal; //OneSignal.log.setLevel('trace');
-
-    OneSignal.push(() => {
-      OneSignal.init({
-        appId: 'cfd30a9a-e080-4657-851f-e5063de051c6',
-        safari_web_id: 'web.onesignal.auto.2c31ff0c-1624-4aec-8f89-a4f0b1da0ea1'
-      });
-      OneSignal.getNotificationPermission().then(e => {
-        if (e === 'granted') {}
-      });
-      OneSignal.on('notificationDisplay', function (event) {
-        new Notification(event.heading, {
-          body: event.content,
-          icon: '/android-icon-192x192.png'
-        });
-      });
-      OneSignal.on('subscriptionChange', function (isSubscribed) {// console.log("The user's subscription state is now:", isSubscribed);
-      });
-    });
+    if (Notification.permission === 'granted') {
+      registerOnFirebase();
+    }
   }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
     onClick: allowNotifications,

@@ -6,6 +6,8 @@
   "/api/hooks": "pages/api/hooks.js",
   "/api/madeira": "pages/api/madeira.js",
   "/api/madeira/pontosituacao": "pages/api/madeira/pontosituacao.js",
+  "/api/messaging/register": "pages/api/messaging/register.js",
+  "/api/messaging/unregister": "pages/api/messaging/unregister.js",
   "/api/owid": "pages/api/owid.js",
   "/api/rt/[...regiao]": "pages/api/rt/[...regiao].js",
   "/api/rt": "pages/api/rt.js",

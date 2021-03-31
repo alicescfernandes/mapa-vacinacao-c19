@@ -396,6 +396,17 @@ function NextApp({
       event.data = data;
       window.dispatchEvent(event);
     });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', {
+        scope: './'
+      }).then(function (registration) {
+        /* success */
+      }, function (error) {
+        /* error */
+      });
+    } else {//not supported
+    }
   }, []);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_components_context_regiao__WEBPACK_IMPORTED_MODULE_8__[/* RegiaoContext */ "a"].Provider, {
     value: props.regiao,
@@ -765,44 +776,77 @@ var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
 // CONCATENATED MODULE: ./components/Notifications.jsx
 
 
+var firebaseConfig = {
+  apiKey: 'AIzaSyBcHZc1Rk5CeJDkwwaBOdCzYgdA6V5WK3g',
+  authDomain: 'covid19-249f1.firebaseapp.com',
+  projectId: 'covid19-249f1',
+  storageBucket: 'covid19-249f1.appspot.com',
+  messagingSenderId: '636238011730',
+  appId: '1:636238011730:web:bf4a0deef86c884c3b6e8b',
+  measurementId: 'G-DYYRVR03RS'
+};
 function Notifications({
   children
 }) {
-  function allowNotifications() {
-    if (!OneSignal) {
-      alert('Não conseguimos configurar notificações para este dispositivo. Verifica se não tens nenhum ad-blocker ativo.');
-    } else {
-      OneSignal.getNotificationPermission().then(e => {
-        if (e !== 'granted') {
-          OneSignal.showNativePrompt();
-        } else {
-          alert('Já recebe as nossas notificações');
-        }
-      });
+  function registerOnFirebase(callback) {
+    if (firebase.apps.length === 0) {
+      firebase.initializeApp(firebaseConfig);
     }
+
+    const messaging = firebase.messaging();
+    messaging.getToken({
+      vapidKey: 'BHtOyn7DJeWzTT1uCITnVOzCpFI4jyOGNo_NQCKoJktP56tHqSVCPtyn99tgpWPRsWzRTu07ahM6fjljP_01K3g'
+    }).then((currentToken, b, c) => {
+      console.log(b, c);
+
+      if (currentToken) {
+        fetch('/api/messaging/register', {
+          method: 'POST',
+          body: JSON.stringify({
+            fcm_token: currentToken
+          }),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(res => {
+          console.log(res.status);
+          callback === null || callback === void 0 ? void 0 : callback();
+        });
+      } else {
+        console.log('No registration token available. Request permission to generate one.');
+      }
+    }).catch(err => {
+      alert('Não conseguimos ativar as notificações. Certifique-se que não estão bloqueadas para este site ou tente mais tarde.');
+    });
+    messaging.onMessage(payload => {
+      let n = new Notification(payload.notification.title, {
+        body: payload.notification.body,
+        icon: '/android-icon-192x192.png'
+      });
+      /* n.onclick = function (event) {
+      	window.open('/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications', '_blank');
+      }; */
+    });
+  }
+
+  function allowNotifications() {
+    if (Notification.permission === 'granted') {
+      alert('Já recebes as nossas notificações');
+      return;
+    }
+
+    registerOnFirebase(function () {
+      new Notification('Vacinação COVID-19', {
+        body: 'Subscreveste às nossas notificações diárias com os dados das vacinas',
+        icon: '/android-icon-192x192.png'
+      });
+    });
   }
 
   Object(external_react_["useEffect"])(function () {
-    window.OneSignal = window.OneSignal || [];
-    const OneSignal = window.OneSignal; //OneSignal.log.setLevel('trace');
-
-    OneSignal.push(() => {
-      OneSignal.init({
-        appId: 'cfd30a9a-e080-4657-851f-e5063de051c6',
-        safari_web_id: 'web.onesignal.auto.2c31ff0c-1624-4aec-8f89-a4f0b1da0ea1'
-      });
-      OneSignal.getNotificationPermission().then(e => {
-        if (e === 'granted') {}
-      });
-      OneSignal.on('notificationDisplay', function (event) {
-        new Notification(event.heading, {
-          body: event.content,
-          icon: '/android-icon-192x192.png'
-        });
-      });
-      OneSignal.on('subscriptionChange', function (isSubscribed) {// console.log("The user's subscription state is now:", isSubscribed);
-      });
-    });
+    if (Notification.permission === 'granted') {
+      registerOnFirebase();
+    }
   }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
     onClick: allowNotifications,
@@ -1047,6 +1091,7 @@ function dateWithoutTimezone(unix) {
 function trackPlausible(req) {
   var _req$headers;
 
+  return;
   if (req === undefined) return;
   if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
   let host = req.headers.host;
@@ -3362,8 +3407,9 @@ function Footer() {
       integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
       crossorigin: "anonymous"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
-      src: "https://cdn.onesignal.com/sdks/OneSignalSDK.js",
-      async: ""
+      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"
+    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
+      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("footer", {
       className: `${_Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.footer} card-shadow`,
       children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
@@ -3552,7 +3598,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617199505097,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
+module.exports = JSON.parse("{\"date\":1617226416619,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
 
 /***/ }),
 
