@@ -1,0 +1,413 @@
+[
+    {
+        "data": "2020-03-17",
+        "total": 35825,
+        "dose_1": 23431,
+        "dose_2": 12394,
+        "semana":"2021-W12",
+        "relatorio":"https://web.archive.org/web/20210320205729/https://vacinacao-covid19.azores.gov.pt/",
+        "concelhos":{
+            "santa_maria":{
+                "nome":"Santa Maria",
+                "chave":"santa_maria",
+                "populacao":4589,
+                "dose_1": 744,
+                "dose_2": 744,
+                "total": 1488
+            },
+            "sao_miguel":{
+                "nome":"São Miguel",
+                "chave":"sao_miguel",
+                "populacao":110731,
+                "dose_1": 11318,
+                "dose_2": 4776,
+                "total": 16094
+            },
+            "terceira":{
+                "nome":"Terceira",
+                "chave":"terceira",
+                "populacao":47270,
+                "dose_1": 5398,
+                "dose_2": 3024,
+                "total": 8422
+            },
+            "graciosa":{
+                "nome":"Graciosa",
+                "chave":"graciosa",
+                "populacao":3741,
+                "dose_1": 530,
+                "dose_2": 420,
+                "total": 950
+            },
+            "sao_jorge":{
+                "nome":"Machico",
+                "chave":"sao_jorge",
+                "populacao":7836,
+                "dose_1": 1388,
+                "dose_2": 702,
+                "total": 2090
+            },
+          
+            "pico":{
+                "nome":"Pico",
+                "chave":"pico",
+                "populacao":12199,
+                "dose_1": 1601,
+                "dose_2": 1266,
+                "total": 2867
+            },
+            "faial":{
+                "nome":"Faial",
+                "chave":"faial",
+                "populacao":12591,
+                "dose_1": 1364,
+                "dose_2": 834,
+                "total": 2198
+            },
+            "flores":{
+                "nome":"Flores",
+                "chave":"flores",
+                "populacao":3249,
+                "dose_1": 766,
+                "dose_2": 306,
+                "total": 1072
+            },
+            "corvo":{
+                "nome":"Corvo",
+                "chave":"corvo",
+                "dose_1": 322,
+                "dose_2": 322,
+                "total": 644
+            }
+        }
+    },
+    {
+        "data": "2020-03-19",
+        "total": 37687,
+        "dose_1": 24591,
+        "dose_2": 13096,
+        "semana":"2021-W12",
+        "relatorio":"https://web.archive.org/web/20210324165029/https://vacinacao-covid19.azores.gov.pt/index.php",
+        "concelhos":{
+            "santa_maria":{
+                "nome":"Santa Maria",
+                "chave":"santa_maria",
+                "populacao":4589,
+                "dose_1": 1121,
+                "dose_2": 750,
+                "total": 1871
+            },
+            "sao_miguel":{
+                "nome":"São Miguel",
+                "chave":"sao_miguel",
+                "populacao":110731,
+                "dose_1": 11324,
+                "dose_2": 5472,
+                "total": 16796
+            },
+            "terceira":{
+                "nome":"Terceira",
+                "chave":"terceira",
+                "populacao":47270,
+                "dose_1": 5398,
+                "dose_2": 3024,
+                "total": 8422
+            },
+            "graciosa":{
+                "nome":"Graciosa",
+                "chave":"graciosa",
+                "populacao":3741,
+                "dose_1": 530,
+                "dose_2": 420,
+                "total": 950
+            },
+            "sao_jorge":{
+                "nome":"Machico",
+                "chave":"sao_jorge",
+                "populacao":7836,
+                "dose_1": 1388,
+                "dose_2": 702,
+                "total": 2090
+            },
+          
+            "pico":{
+                "nome":"Pico",
+                "chave":"pico",
+                "populacao":12199,
+                "dose_1": 2378,
+                "dose_2": 1266,
+                "total": 3644
+            },
+            "faial":{
+                "nome":"Faial",
+                "chave":"faial",
+                "populacao":12591,
+                "dose_1": 1364,
+                "dose_2": 834,
+                "total": 2198
+            },
+            "flores":{
+                "nome":"Flores",
+                "chave":"flores",
+                "populacao":3249,
+                "dose_1": 766,
+                "dose_2": 306,
+                "total": 1072
+            },
+            "corvo":{
+                "nome":"Corvo",
+                "chave":"corvo",
+                "dose_1": 322,
+                "dose_2": 322,
+                "total": 644
+            }
+        }
+    },
+    {
+        "data": "2020-03-21",
+        "total": 37687,
+        "dose_1": 24591,
+        "dose_2": 13096,
+        "semana":"2021-W12",
+        "relatorio":"https://portal.azores.gov.pt/documents/36169/97cc99c5-2a16-d831-68d2-610c8dd72e0b",
+        "concelhos":{
+            "santa_maria":{
+                "nome":"Santa Maria",
+                "chave":"santa_maria",
+                "populacao":4589,
+                "dose_1": 1121,
+                "dose_2": 750,
+                "total": 1871
+            },
+            "sao_miguel":{
+                "nome":"São Miguel",
+                "chave":"sao_miguel",
+                "populacao":110731,
+                "dose_1": 11324,
+                "dose_2": 5472,
+                "total": 16796
+            },
+            "terceira":{
+                "nome":"Terceira",
+                "chave":"terceira",
+                "populacao":47270,
+                "dose_1": 5398,
+                "dose_2": 3024,
+                "total": 8422
+            },
+            "graciosa":{
+                "nome":"Graciosa",
+                "chave":"graciosa",
+                "populacao":3741,
+                "dose_1": 530,
+                "dose_2": 420,
+                "total": 950
+            },
+            "sao_jorge":{
+                "nome":"Machico",
+                "chave":"sao_jorge",
+                "populacao":7836,
+                "dose_1": 1388,
+                "dose_2": 702,
+                "total": 2090
+            },
+          
+            "pico":{
+                "nome":"Pico",
+                "chave":"pico",
+                "populacao":12199,
+                "dose_1": 2378,
+                "dose_2": 1266,
+                "total": 3644
+            },
+            "faial":{
+                "nome":"Faial",
+                "chave":"faial",
+                "populacao":12591,
+                "dose_1": 1364,
+                "dose_2": 834,
+                "total": 2198
+            },
+            "flores":{
+                "nome":"Flores",
+                "chave":"flores",
+                "populacao":3249,
+                "dose_1": 766,
+                "dose_2": 306,
+                "total": 1072
+            },
+            "corvo":{
+                "nome":"Corvo",
+                "chave":"corvo",
+                "dose_1": 322,
+                "dose_2": 322,
+                "total": 644
+            }
+        }
+    },
+    {
+        "data": "2020-03-25",
+        "total": 43812,
+        "dose_1": 28.376,
+        "dose_2": 15436,
+        "semana":"2021-W12",
+        "relatorio":"https://portal.azores.gov.pt/web/comunicacao/news-detail?id=3177607",
+        "concelhos":{
+            "santa_maria":{
+                "nome":"Santa Maria",
+                "chave":"santa_maria",
+                "populacao":4589,
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "sao_miguel":{
+                "nome":"São Miguel",
+                "chave":"sao_miguel",
+                "populacao":110731,
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "terceira":{
+                "nome":"Terceira",
+                "chave":"terceira",
+                "populacao":47270,
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "graciosa":{
+                "nome":"Graciosa",
+                "chave":"graciosa",
+                "populacao":3741,
+                "dose_1": null,
+                "dose_2": null,
+                "total":null
+            },
+            "sao_jorge":{
+                "nome":"Machico",
+                "chave":"sao_jorge",
+                "populacao":7836,
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+          
+            "pico":{
+                "nome":"Pico",
+                "chave":"pico",
+                "populacao":12199,
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "faial":{
+                "nome":"Faial",
+                "chave":"faial",
+                "populacao":12591,
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "flores":{
+                "nome":"Flores",
+                "chave":"flores",
+                "populacao":3249,
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "corvo":{
+                "nome":"Corvo",
+                "chave":"corvo",
+                "dose_1": null,
+                "dose_2": null,
+                "total":null
+            }
+        }
+    },
+    {
+        "data": "2020-03-30",
+        "total": 43812,
+        "dose_1": 28376,
+        "dose_2": 15436,
+        "semana":"2021-W12",
+        "relatorio":"https://web.archive.org/web/20210331151046/https://vacinacao-covid19.azores.gov.pt/",
+        "concelhos":{
+            "santa_maria":{
+                "nome":"Santa Maria",
+                "chave":"santa_maria",
+                "populacao":4589,
+                "dose_1": 1121,
+                "dose_2": 750,
+                "total": 1871
+            },
+            "sao_miguel":{
+                "nome":"São Miguel",
+                "chave":"sao_miguel",
+                "populacao":110731,
+                "dose_1": 13472,
+                "dose_2": 5622,
+                "total": 19094
+            },
+            "terceira":{
+                "nome":"Terceira",
+                "chave":"terceira",
+                "populacao":47270,
+                "dose_1": 5993,
+                "dose_2": 4842,
+                "total": 10835
+            },
+            "graciosa":{
+                "nome":"Graciosa",
+                "chave":"graciosa",
+                "populacao":3741,
+                "dose_1": 620,
+                "dose_2": 438,
+                "total": 1058
+            },
+            "sao_jorge":{
+                "nome":"Machico",
+                "chave":"sao_jorge",
+                "populacao":7836,
+                "dose_1": 1388,
+                "dose_2": 1014,
+                "total": 2402
+            },
+         
+            "pico":{
+                "nome":"Pico",
+                "chave":"pico",
+                "populacao":12199,
+                "dose_1": 2660,
+                "dose_2": 1284,
+                "total": 3944
+            },
+            "faial":{
+                "nome":"Faial",
+                "chave":"faial",
+                "populacao":12591,
+                "dose_1": 2034,
+                "dose_2": 858,
+                "total": 2892
+            },
+            "flores":{
+                "nome":"Flores",
+                "chave":"flores",
+                "populacao":3249,
+                "dose_1": 766,
+                "dose_2": 306,
+                "total": 1072
+            },
+            "corvo":{
+                "nome":"Corvo",
+                "chave":"corvo",
+                "populacao":369,
+                "dose_1": 322,
+                "dose_2": 322,
+                "total": 644
+            }
+        }
+    }
+]
