@@ -4085,7 +4085,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617188427327,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021/03/29\"}");
+module.exports = JSON.parse("{\"date\":1617189241929,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
 
 /***/ }),
 
