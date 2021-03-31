@@ -9,7 +9,6 @@ import { Header } from '../components/Header';
 import { RegiaoContext } from './../components/context/regiao';
 import { useEffect } from 'react';
 import { initSockets } from '../hooks/initSockets';
-
 function NextApp({ Component, props }) {
 	// Unconventional way of not having multiple sockets connected between pages
 	useEffect(() => {
@@ -18,6 +17,19 @@ function NextApp({ Component, props }) {
 			event.data = data;
 			window.dispatchEvent(event);
 		});
+
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js', { scope: './' }).then(
+				function (registration) {
+					/* success */
+				},
+				function (error) {
+					/* error */
+				}
+			);
+		} else {
+			//not supported
+		}
 	}, []);
 	return (
 		<RegiaoContext.Provider value={props.regiao}>

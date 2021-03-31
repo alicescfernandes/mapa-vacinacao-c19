@@ -26,6 +26,7 @@ export function dateWithoutTimezone(unix) {
 }
 
 export function trackPlausible(req) {
+	return;
 	if (req === undefined) return;
 	if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
 	let host = req.headers.host;
