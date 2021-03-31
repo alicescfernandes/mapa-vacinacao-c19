@@ -1,6 +1,5 @@
 require('dotenv').config({ path: './../.env' });
 const admin = require('firebase-admin');
-const serviceAccount = require('./../firebase_account.json');
 
 export class FirebaseConnector {
 	initialized = false;
