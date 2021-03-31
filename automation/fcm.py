@@ -14,8 +14,12 @@ def format_number(n):
 def pad(n):
     return str(n).zfill(2)
 current_time = datetime.datetime.now()
-json_file = open('./automation/fcm-conf.json', 'r+')
-json_datas = json.load(json_file)
+try:
+    json_file = open('./automation/fcm-conf.json', 'r+')
+    json_datas = json.load(json_file)
+except:
+    json_datas = json.loads('{"last_update":0}')
+
 last_update = datetime.datetime.fromtimestamp(json_datas['last_update'])
 
 if(current_time.date() > last_update.date()):
@@ -51,7 +55,7 @@ if(current_time.date() > last_update.date()):
     print('Successfully sent message:', response)
 
     json_datas['last_update'] = datetime.datetime.now().timestamp()
-    json_file.seek(0)
+    json_file = open('./automation/fcm-conf.json', 'w')
     json_file.write(json.dumps(json_datas))
     json_file.close()
 
