@@ -408,6 +408,7 @@ NextApp.getInitialProps = async app => {
 
   Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* trackPlausible */ "e"])(app.ctx.req);
   let url = (app === null || app === void 0 ? void 0 : (_app$ctx = app.ctx) === null || _app$ctx === void 0 ? void 0 : (_app$ctx$req = _app$ctx.req) === null || _app$ctx$req === void 0 ? void 0 : _app$ctx$req.url.replace('/', '')) || app.ctx.pathname.replace('/', '');
+  url = url.split('?')[0];
   let regiao = 'portugal';
 
   if (url !== '') {
@@ -3551,7 +3552,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617194104732,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
+module.exports = JSON.parse("{\"date\":1617199505097,\"dateSnsStartWeirdFormat\":\"15/03/2021\",\"dateSnsStart\":\"2021-03-15\",\"dateSns\":\"2021-03-21T00:00:00+00:00\",\"dateEcdc\":\"2021-03-14\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
 
 /***/ }),
 
