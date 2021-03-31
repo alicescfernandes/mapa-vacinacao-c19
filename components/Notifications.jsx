@@ -42,9 +42,9 @@ export function Notifications({ children }) {
 				icon: '/android-icon-192x192.png',
 			});
 
-			/* n.onclick = function (event) {
-				window.open('/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications', '_blank');
-			}; */
+			n.onclick = function (event) {
+				window.open('https://www.vacinacaocovid19.pt/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications');
+			};
 		});
 	}
 	function allowNotifications() {
