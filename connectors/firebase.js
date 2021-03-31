@@ -1,12 +1,20 @@
+require('dotenv').config({ path: './../.env' });
 const admin = require('firebase-admin');
 const serviceAccount = require('./../firebase_account.json');
+
 export class FirebaseConnector {
 	initialized = false;
 	fcm = null;
 	constructor() {
 		if (!admin.apps.length) {
 			admin.initializeApp({
-				credential: admin.credential.cert(serviceAccount),
+				credential: admin.credential.cert({
+					project_id: process.env.FIREBASE_project_id,
+					private_key_id: process.env.FIREBASE_private_key_id,
+					private_key: process.env.FIREBASE_private_key.replace(/\\n/g, '\n'),
+					client_email: process.env.FIREBASE_client_email,
+					client_id: process.env.FIREBASE_client_id,
+				}),
 			});
 		}
 		this.initialized = true;
