@@ -1,45 +1,65 @@
 import { useEffect } from 'react';
 
+var firebaseConfig = {
+	apiKey: 'AIzaSyBcHZc1Rk5CeJDkwwaBOdCzYgdA6V5WK3g',
+	authDomain: 'covid19-249f1.firebaseapp.com',
+	projectId: 'covid19-249f1',
+	storageBucket: 'covid19-249f1.appspot.com',
+	messagingSenderId: '636238011730',
+	appId: '1:636238011730:web:bf4a0deef86c884c3b6e8b',
+	measurementId: 'G-DYYRVR03RS',
+};
+
 export function Notifications({ children }) {
-	function allowNotifications() {
-		if (!OneSignal) {
-			alert('Não conseguimos configurar notificações para este dispositivo. Verifica se não tens nenhum ad-blocker ativo.');
-		} else {
-			OneSignal.getNotificationPermission().then((e) => {
-				if (e !== 'granted') {
-					OneSignal.showNativePrompt();
-				} else {
-					alert('Já recebe as nossas notificações');
-				}
-			});
+	function registerOnFirebase(callback) {
+		if (firebase.apps.length === 0) {
+			firebase.initializeApp(firebaseConfig);
 		}
-	}
-	useEffect(function () {
-		window.OneSignal = window.OneSignal || [];
-		const OneSignal = window.OneSignal;
-		//OneSignal.log.setLevel('trace');
-		OneSignal.push(() => {
-			OneSignal.init({
-				appId: 'cfd30a9a-e080-4657-851f-e5063de051c6',
-				safari_web_id: 'web.onesignal.auto.2c31ff0c-1624-4aec-8f89-a4f0b1da0ea1',
-			});
-
-			OneSignal.getNotificationPermission().then((e) => {
-				if (e === 'granted') {
+		const messaging = firebase.messaging();
+		messaging
+			.getToken({ vapidKey: 'BHtOyn7DJeWzTT1uCITnVOzCpFI4jyOGNo_NQCKoJktP56tHqSVCPtyn99tgpWPRsWzRTu07ahM6fjljP_01K3g' })
+			.then((currentToken, b, c) => {
+				console.log(b, c);
+				if (currentToken) {
+					fetch('/api/messaging/register', {
+						method: 'POST',
+						body: JSON.stringify({ fcm_token: currentToken }),
+						headers: { 'content-type': 'application/json' },
+					}).then((res) => {
+						console.log(res.status);
+						callback?.();
+					});
+				} else {
+					console.log('No registration token available. Request permission to generate one.');
 				}
+			})
+			.catch((err) => {
+				alert('Não conseguimos ativar as notificações. Certifique-se que não estão bloqueadas para este site ou tente mais tarde.');
 			});
-
-			OneSignal.on('notificationDisplay', function (event) {
-				new Notification(event.heading, {
-					body: event.content,
-					icon: '/android-icon-192x192.png',
-				});
-			});
-
-			OneSignal.on('subscriptionChange', function (isSubscribed) {
-				// console.log("The user's subscription state is now:", isSubscribed);
+		messaging.onMessage((payload) => {
+			new Notification(payload.notification.title, {
+				body: payload.notification.body,
+				icon: '/android-icon-192x192.png',
 			});
 		});
+	}
+	function allowNotifications() {
+		if (Notification.permission === 'granted') {
+			alert('Já recebes as nossas notificações');
+			return;
+		}
+
+		registerOnFirebase(function () {
+			new Notification('Vacinação COVID-19', {
+				body: 'Subscreveste às nossas notificações diárias com os dados das vacinas',
+				icon: '/android-icon-192x192.png',
+			});
+		});
+	}
+	useEffect(function () {
+		if (Notification.permission === 'granted') {
+			registerOnFirebase();
+		}
 	}, []);
 
 	return <span onClick={allowNotifications}>{children} </span>;

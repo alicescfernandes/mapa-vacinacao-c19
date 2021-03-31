@@ -14,22 +14,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-/* 
-messaging
-	.getToken({ vapidKey: '<YOUR_PUBLIC_VAPID_KEY_HERE>' })
-	.then((currentToken) => {
-		console.log(currentToken);
-		if (currentToken) {
-			fetch('/api/messaging', { method: 'POST', body: { fcm_token: currentToken } });
-		} else {
-			console.log('No registration token available. Request permission to generate one.');
-		}
-	})
-	.catch((err) => {
-		console.log('An error occurred while retrieving token. ', err);
-	});
-	 */
-
 messaging.onBackgroundMessage((payload) => {
 	console.log('[firebase-messaging-sw.js] Received background message ', payload);
 	// Customize notification here
