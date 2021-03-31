@@ -56,7 +56,7 @@ if (data[data.length - 1].Data > lastUpdate.last_update) {
 		headings: {
 			en: `Os dados da vacinação de ${dia}/${mes}/${ano.replace(/,/gm, '')}`,
 		},
-		url: 'https://www.vacinacaocovid19.pt/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications',
+		url: 'https://www.vacinacaocovid19.pt',
 		included_segments: ['Subscribed Users'],
 	};
 
