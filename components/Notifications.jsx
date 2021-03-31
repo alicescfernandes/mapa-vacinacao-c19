@@ -37,10 +37,14 @@ export function Notifications({ children }) {
 				alert('Não conseguimos ativar as notificações. Certifique-se que não estão bloqueadas para este site ou tente mais tarde.');
 			});
 		messaging.onMessage((payload) => {
-			new Notification(payload.notification.title, {
+			let n = new Notification(payload.notification.title, {
 				body: payload.notification.body,
 				icon: '/android-icon-192x192.png',
 			});
+
+			/* n.onclick = function (event) {
+				window.open('/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications', '_blank');
+			}; */
 		});
 	}
 	function allowNotifications() {

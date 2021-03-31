@@ -21,6 +21,15 @@ messaging.onBackgroundMessage((payload) => {
 	const notificationOptions = {
 		body: payload.notification.body,
 		icon: '/android-icon-192x192.png',
+		data: {
+			url: '/', // This is returning null
+			id: '', // And this is returning null
+		},
 	};
 	self.registration.showNotification(notificationTitle, notificationOptions);
+
+	self.addEventListener('notificationclick', function (event) {
+		event.notification.close();
+		event.waitUntil(clients.openWindow('/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications'));
+	});
 });
