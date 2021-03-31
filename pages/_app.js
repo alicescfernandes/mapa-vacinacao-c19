@@ -32,6 +32,7 @@ function NextApp({ Component, props }) {
 NextApp.getInitialProps = async (app) => {
 	trackPlausible(app.ctx.req);
 	let url = app?.ctx?.req?.url.replace('/', '') || app.ctx.pathname.replace('/', '');
+	url = url.split('?')[0];
 	let regiao = 'portugal';
 	if (url !== '') {
 		regiao = url;
