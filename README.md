@@ -21,6 +21,9 @@ O processo de recolha de dados é automatizado com um pequeno *script* em node q
 - ChartJS  
 - React  
 - NextJS  
+- Pusher para sockets
+- Firebase Cloud Messaging + Web Push API para notificações (incluindo notificações com o site desligado)
+- MongoDB para gerir tokens de notificações
 - JSON como serviço de dados  
 - Github Actions para CI
 - Github Hooks (para lançar um novo deploy)

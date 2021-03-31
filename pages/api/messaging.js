@@ -5,7 +5,6 @@ var serviceAccount = require('./../../firebase_account.json');
 
 export default async function handler(req, res) {
 	if (req.method === 'POST' && req.body?.fcm_token !== undefined) {
-		//WHO TOUCH MY SPAGHETTI! Should turn this into async awayt
 		client.connect(url, function (err, db) {
 			if (err) throw err;
 			var dbo = db.db('fcm');
@@ -42,8 +41,6 @@ export default async function handler(req, res) {
 			.messaging()
 			.subscribeToTopic([req.body.fcm_token], 'covid19')
 			.then(function (response) {
-				// See the MessagingTopicManagementResponse reference documentation
-				// for the contents of response.
 				console.log('Successfully subscribed to topic:', response);
 			})
 			.catch(function (error) {
