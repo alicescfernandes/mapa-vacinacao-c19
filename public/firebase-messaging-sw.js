@@ -30,6 +30,8 @@ messaging.onBackgroundMessage((payload) => {
 
 	self.addEventListener('notificationclick', function (event) {
 		event.notification.close();
-		event.waitUntil(clients.openWindow('/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications'));
+		event.waitUntil(
+			clients.openWindow('https://www.vacinacaocovid19.pt/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications')
+		);
 	});
 });
