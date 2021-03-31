@@ -203,8 +203,9 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 	updateJSON();
 });
 
-schedule.scheduleJob('00 12 * * *', function () {
+schedule.scheduleJob('13 12 * * *', function () {
 	updateOWID();
 	// updateEDCD();
+	updatedCasesMadeira();
 	updateRT();
 });
