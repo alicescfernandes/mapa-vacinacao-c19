@@ -108,10 +108,10 @@ export default function Home() {
 	useEffect(() => {
 		let object = {
 			pessoasAVacinar: {
-				current: numberFormatter.format(generic.populacao_ram.valor * 0.7 - selectedItem.dose_2),
+				current: numberFormatter.format(generic.populacao_raa.valor * 0.7 - selectedItem.dose_2),
 			},
 			percentagem: {
-				current: (selectedItem.dose_2 / generic.populacao_ram.valor) * 100,
+				current: (selectedItem.dose_2 / generic.populacao_raa.valor) * 100,
 			},
 		};
 		setDerivedNumbers(object);
@@ -177,7 +177,7 @@ export default function Home() {
 										to={selectedItem?.dose_1}
 									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.dose_1, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
+										{perHundred(selectedItem?.dose_1, generic.populacao_raa.valor).toFixed(2)} doses administradas por cada 100
 										pessoas
 										<br />
 										{formatNumber(selectedItem?.dose_1 - selectedItem?.dose_2)} pessoas inoculadas com a 1ª dose
@@ -196,7 +196,7 @@ export default function Home() {
 									></Counter>
 
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.dose_2, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
+										{perHundred(selectedItem?.dose_2, generic.populacao_raa.valor).toFixed(2)} doses administradas por cada 100
 										pessoas
 										<br />
 										{formatNumber(selectedItem?.dose_2)} pessoas inoculadas com a 2ª dose
