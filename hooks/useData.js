@@ -12,8 +12,6 @@ export function useData({ regiao }) {
 	let [vaccines, setVaccines] = useState(false);
 	let [casesData, setCasesData] = useState(false);
 	let [labels, setLabels] = useState([]);
-	let [madeira, setMadeira] = useState([]);
-	let [madeiraPDS, setMadeiraPDS] = useState([]);
 	let [arquipelagos, setArquipelagos] = useState({
 		madeira: {
 			vacinas: [],
@@ -446,7 +444,7 @@ export function useData({ regiao }) {
 			let labels = [];
 			let maxValue = 0;
 			let groups = [];
-			madeira.forEach((el) => {
+			arquipelagos.madeira.vacinas.forEach((el) => {
 				labels.push(el.data);
 				groups.push(el.escaloes);
 			});
@@ -614,9 +612,6 @@ export function useData({ regiao }) {
 			setECDC(ecdc);
 			setVaccines(vaccines);
 			setCasesData(cases);
-			setMadeira(madeira);
-			setMadeiraPDS(madeiraPDS);
-
 			setArquipelagos({
 				madeira: {
 					vacinas: madeira,
