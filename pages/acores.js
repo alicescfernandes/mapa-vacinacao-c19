@@ -77,7 +77,7 @@ export default function Home() {
 		}
 	}
 
-	let startDate = new Date(json.dateMadeira);
+	let startDate = new Date(json.dateAcores);
 	let [first, ...restDate] = format(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
 		locale: pt,
 	})
@@ -326,11 +326,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcoresCases), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcores), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
@@ -347,11 +347,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcoresCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcores).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
