@@ -55,6 +55,7 @@ export let lineChartCommon2 = {
 export const REGIOES = {
 	MADEIRA: 'madeira',
 	PORTUGAL: 'portugal',
+	ACORES: 'ACORES',
 };
 
 export const ECDC_MAPPING = {

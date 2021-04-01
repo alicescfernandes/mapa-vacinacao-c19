@@ -34,7 +34,7 @@ const plausible = Plausible({
 });
 
 export default function Home() {
-	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'madeira' });
+	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'acores' });
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
 	let [updating, setUpdating] = useState(false);
@@ -144,7 +144,7 @@ export default function Home() {
 		setLoaded(true);
 	}, [dataReady]);
 	return (
-		<RegiaoContext.Provider value={'madeira'}>
+		<RegiaoContext.Provider value={'acores'}>
 			<Container className="container-fluid app">
 				{loaded ? (
 					<>
@@ -268,14 +268,14 @@ export default function Home() {
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
-						<Row>
+						{/* <Row>
 							<Col>
 								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
 								<hr />
 								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
 							</Col>
-						</Row>
-						<LazyLoad height={500} once>
+						</Row> */}
+						{/* <LazyLoad height={500} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
@@ -283,8 +283,8 @@ export default function Home() {
 									<RamBarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></RamBarAdministradasPorFaixaEtaria>
 								</Col>
 							</Row>
-						</LazyLoad>
-						<LazyLoad height={500} once>
+						</LazyLoad> */}
+						{/* <LazyLoad height={500} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
@@ -293,7 +293,7 @@ export default function Home() {
 									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
 								</Col>
 							</Row>
-						</LazyLoad>
+						</LazyLoad> */}
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
@@ -301,10 +301,10 @@ export default function Home() {
 										<em>
 											R<sub>t</sub>
 										</em>{' '}
-										na Região Autónoma da Madeira
+										na Região Autónoma dos Açores
 									</h2>
 									<hr />
-									<LineRt regiao={'madeira'} colors={colors_v2} statistics={statistics}></LineRt>
+									<LineRt regiao={'acores'} colors={colors_v2} statistics={statistics}></LineRt>
 								</Col>
 							</Row>
 						</LazyLoad>

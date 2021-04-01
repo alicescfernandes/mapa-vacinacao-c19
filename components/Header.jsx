@@ -20,7 +20,7 @@ export function Header() {
 		},
 		acores: {
 			nome: ' - Açores',
-			tagline: '',
+			tagline: 'Dados atualizados semanalmente',
 		},
 	};
 
@@ -42,6 +42,11 @@ export function Header() {
 							<li>
 								<Link href="/madeira">
 									<a className={regiao === 'madeira' ? styles.highlight : ''}>Madeira</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/acores">
+									<a className={regiao === 'acores' ? styles.highlight : ''}>Açores</a>
 								</Link>
 							</li>
 							<li>
@@ -80,6 +85,16 @@ export function Header() {
 											<Madeira height={25}></Madeira>
 										</span>
 										<span>Madeira</span>
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/madeira">
+									<a className={regiao === 'acores' ? styles.highlight : ''}>
+										<span>
+											<Madeira height={25}></Madeira>
+										</span>
+										<span>Açores</span>
 									</a>
 								</Link>
 							</li>

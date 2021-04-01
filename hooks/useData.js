@@ -14,6 +14,16 @@ export function useData({ regiao }) {
 	let [labels, setLabels] = useState([]);
 	let [madeira, setMadeira] = useState([]);
 	let [madeiraPDS, setMadeiraPDS] = useState([]);
+	let [arquipelagos, setArquipelagos] = useState({
+		madeira: {
+			vacinas: [],
+			casos: [],
+		},
+		acores: {
+			vacinas: [],
+			casos: [],
+		},
+	});
 
 	let options = {
 		month: 'short',
@@ -48,8 +58,9 @@ export function useData({ regiao }) {
 		},
 		getLastVaccineAvaliable: () => {
 			let data = {};
-			if (regiao === REGIOES.MADEIRA) {
-				let lastItem = madeira[madeira.length - 1];
+			if (regiao !== REGIOES.PORTUGAL) {
+				let dados_regiao = arquipelagos[regiao].vacinas;
+				let lastItem = dados_regiao[dados_regiao.length - 1];
 				data = {
 					dose_2: lastItem.dose_2,
 					dose_1: lastItem.dose_1,
@@ -69,8 +80,9 @@ export function useData({ regiao }) {
 		},
 		getLastCaseAvaliable: () => {
 			let data = {};
-			if (regiao === REGIOES.MADEIRA) {
-				let lastItem = madeiraPDS[madeiraPDS.length - 1];
+			if (regiao !== REGIOES.PORTUGAL) {
+				let dados_regiao = arquipelagos[regiao].casos;
+				let lastItem = dados_regiao[dados_regiao.length - 1];
 				data = {
 					ativos: parseInt(lastItem.ativos),
 					recuperados: parseInt(lastItem.recuperados),
@@ -93,10 +105,13 @@ export function useData({ regiao }) {
 			return data;
 		},
 		getDailyData: () => {
-			if (regiao === REGIOES.MADEIRA) {
+			if (regiao !== REGIOES.PORTUGAL) {
+				let dados_regiao = arquipelagos[regiao].vacinas;
+				let lastItem = dados_regiao[dados_regiao.length - 1];
+
 				let labels = [];
 				let values = [];
-				madeira.forEach((el) => {
+				dados_regiao.forEach((el) => {
 					labels.push(f.format(new Date(el.data)));
 					values.push(el.total);
 				});
@@ -241,11 +256,13 @@ export function useData({ regiao }) {
 			let total = [];
 			let { labels, values } = statistics.getDailyData();
 
-			if (regiao === REGIOES.MADEIRA) {
-				madeira.forEach((val, idx, vals) => {
-					in1.push(madeira[idx].dose_1);
-					in2.push(madeira[idx].dose_2);
-					total.push(madeira[idx].total);
+			if (regiao !== REGIOES.PORTUGAL) {
+				let dados_regiao = arquipelagos[regiao].vacinas;
+
+				dados_regiao.forEach((val, idx, vals) => {
+					in1.push(dados_regiao[idx].dose_1);
+					in2.push(dados_regiao[idx].dose_2);
+					total.push(dados_regiao[idx].total);
 				});
 			} else {
 				values.forEach((val, idx, vals) => {
@@ -266,32 +283,34 @@ export function useData({ regiao }) {
 			let in1 = [];
 			let in2 = [];
 			let total = [];
-			let raw = regiao === REGIOES.MADEIRA ? madeira : vaccines;
+			let raw = vaccines;
 			let labels = [];
-			if (regiao === REGIOES.MADEIRA) {
+			if (regiao !== REGIOES.PORTUGAL) {
+				let raw = arquipelagos[regiao].vacinas;
+
 				let { labels: labelsMad, values } = statistics.getDailyData();
 				labels = labelsMad;
 
 				total = values.map((val, idx, vals) => {
 					//The first one
 					if (idx === 0) {
-						in1.push(madeira[idx].dose_1);
-						in2.push(madeira[idx].dose_2);
+						in1.push(raw[idx].dose_1);
+						in2.push(raw[idx].dose_2);
 						return val;
 					}
 
 					let prevDay = idx - 1;
 
-					if (madeira[prevDay].dose_1 == null || madeira[idx].dose_1 == null) {
+					if (raw[prevDay].dose_1 == null || raw[idx].dose_1 == null) {
 						in1.push(null);
 					} else {
-						in1.push(madeira[idx].dose_1 - madeira[prevDay].dose_1);
+						in1.push(raw[idx].dose_1 - raw[prevDay].dose_1);
 					}
 
-					if (madeira[prevDay].dose_2 == null || madeira[idx].dose_2 == null) {
+					if (raw[prevDay].dose_2 == null || raw[idx].dose_2 == null) {
 						in2.push(null);
 					} else {
-						in2.push(madeira[idx].dose_2 - madeira[prevDay].dose_2);
+						in2.push(raw[idx].dose_2 - raw[prevDay].dose_2);
 					}
 
 					if (vals[prevDay] == null || val == null) {
@@ -572,12 +591,12 @@ export function useData({ regiao }) {
 			};
 		},
 
-		getMadeiraData: async () => {
-			let res = await fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`);
+		getArquipelagoData: async () => {
+			let res = await fetchWithLocalCache(`/api/${regiao}?${btoa(lastUpdate.dateMadeira)}`);
 			return res;
 		},
 		getMadeiraPDS: async () => {
-			let res = await fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeiraCases)}`);
+			let res = await fetchWithLocalCache(`/api/${regiao}/pontosituacao?${btoa(lastUpdate.dateMadeiraCases)}`);
 			return res;
 		},
 	};
@@ -588,13 +607,27 @@ export function useData({ regiao }) {
 			fetchWithLocalCache(`/api/vaccinesold?${btoa(lastUpdate.date)}`),
 			fetchWithLocalCache(`/api/cases?${btoa(lastUpdate.date)}`),
 			fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`),
-			fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeira)}`),
-		]).then(([ecdc, vaccines, cases, madeira, madeiraPDS]) => {
+			fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeiraCases)}`),
+			fetchWithLocalCache(`/api/acores?${btoa(lastUpdate.dateAcores)}`),
+			fetchWithLocalCache(`/api/acores/pontosituacao?${btoa(lastUpdate.dateAcoresCases)}`),
+		]).then(([ecdc, vaccines, cases, madeira, madeiraPDS, acores, acoresPDS]) => {
 			setECDC(ecdc);
 			setVaccines(vaccines);
 			setCasesData(cases);
 			setMadeira(madeira);
 			setMadeiraPDS(madeiraPDS);
+
+			setArquipelagos({
+				madeira: {
+					vacinas: madeira,
+					casos: madeiraPDS,
+				},
+				acores: {
+					vacinas: acores,
+					casos: acoresPDS,
+				},
+			});
+
 			setReady(true);
 		});
 	}, []);

@@ -224,7 +224,7 @@ export function RamMapa({ statistics, colors }) {
 	}
 
 	useEffect(async () => {
-		statistics.getMadeiraData().then((data) => {
+		statistics.getArquipelagoData().then((data) => {
 			setGraphData(data[5]);
 
 			if (loaded === false) {
