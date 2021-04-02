@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { RegiaoContext } from './context/regiao';
 import styles from './Header.module.scss';
@@ -8,6 +8,7 @@ import Madeira from '../assets/madeira.svg';
 import Portugal from '../assets/portugal.svg';
 
 export function Header() {
+	let [supportsNotifications, setSupportsNotifications] = useState(false);
 	let regiao = useContext(RegiaoContext);
 	let regioes = {
 		portugal: {
@@ -23,6 +24,10 @@ export function Header() {
 			tagline: 'Dados atualizados semanalmente',
 		},
 	};
+
+	useEffect(() => {
+		setSupportsNotifications('Notification' in window);
+	}, []);
 
 	return (
 		<>
@@ -49,12 +54,14 @@ export function Header() {
 									<a className={regiao === 'acores' ? styles.highlight : ''}>Açores</a>
 								</Link>
 							</li>
-							<li>
-								<Notifications>
-									<a href="#">Notificações</a>
-								</Notifications>
-							</li>
 
+							{supportsNotifications && (
+								<li>
+									<Notifications>
+										<a href="#">Notificações</a>
+									</Notifications>
+								</li>
+							)}
 							<li>
 								<a target="_blank" href="https://twitter.com/vacinacaocovid1">
 									Twitter
@@ -88,7 +95,8 @@ export function Header() {
 									</a>
 								</Link>
 							</li>
-							<li>
+
+							{/* <li>
 								<Link href="/madeira">
 									<a className={regiao === 'acores' ? styles.highlight : ''}>
 										<span>
@@ -97,7 +105,7 @@ export function Header() {
 										<span>Açores</span>
 									</a>
 								</Link>
-							</li>
+							</li> */}
 						</ul>
 					</nav>
 				</Container>
