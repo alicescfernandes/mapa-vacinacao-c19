@@ -103,7 +103,7 @@ async function updateJSON() {
 		let sourceData = dataVacinas.features[0].attributes;
 		if (parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac && sourceData.Data > date.getTime()) {
 			console.log('updating vaccines');
-			sourceData.Data = date.getTime();
+			//sourceData.Data = date.getTime();
 			dataLocalVacinas.push(sourceData);
 			fs.writeFileSync('./data/vaccines.json', JSON.stringify(dataLocalVacinas));
 			let item = dataLocalVacinas[dataLocalVacinas.length - 1];
@@ -203,9 +203,13 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 	updateJSON();
 });
 
-schedule.scheduleJob('00 23 * * *', function () {
+schedule.scheduleJob('00 21 * * *', function () {
 	console.log('Saving to web archive');
 	shell.exec('waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"');
+});
+
+schedule.scheduleJob('10 21 * * *', function () {
+	console.log('Saving to web archive');
 	shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/"');
 });
 
