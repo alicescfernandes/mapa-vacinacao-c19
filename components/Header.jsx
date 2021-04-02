@@ -114,7 +114,7 @@ export function Header() {
 									<Notifications>
 										<a className={regiao === 'acores' ? styles.highlight : ''}>
 											<span>
-												<Bell width={25}></Bell>
+												<Bell width={30} height={30}></Bell>
 											</span>
 											<span>Notificações</span>
 										</a>
