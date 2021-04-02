@@ -9281,10 +9281,14 @@ function DatePickerButton({
     0: startDate,
     1: setStartDate
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(new Date(maxDate));
-  let [first, ...restDate] = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
+  var [first, ...restDate] = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
     locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_6__["pt"]
   }).replace('-feira', '').split('');
   let d = [first.toUpperCase(), ...restDate].join('');
+  var [first, ...restDate] = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["format"])(startDate, "dd 'de' LLL 'de' yyyy", {
+    locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_6__["pt"]
+  }).replace('-feira', '').split('');
+  let d2 = [first.toUpperCase(), ...restDate].join('');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     onDateSelect === null || onDateSelect === void 0 ? void 0 : onDateSelect(new Date(startDate));
   }, [startDate]);
@@ -9314,13 +9318,20 @@ function DatePickerButton({
             children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
               className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
             })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("button", {
             style: {
-              width: 285
+              width: '60vw',
+              maxWidth: 285
             },
             className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
             onClick: onClick,
-            children: d
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("span", {
+              className: 'hide_micro_mobile',
+              children: d
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("span", {
+              className: 'show_micro_mobile',
+              children: d2
+            })]
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
             className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
             disabled: startDate.getTime() >= maxDate,
@@ -9450,7 +9461,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617402098416,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617402951225,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 
