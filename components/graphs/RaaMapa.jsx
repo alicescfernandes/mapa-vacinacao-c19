@@ -47,7 +47,6 @@ export function RaaMapa({ statistics, colors }) {
 	const renderMap = async (map) => {
 		const madeira = await fetch('/acores.geojson').then((r) => r.json());
 		const madeiraMapa = L.map('map');
-		alert;
 		let layers = L.geoJSON(madeira, {
 			onEachFeature: (feature, shape) => {
 				let concelho = ACORES_DICOS[feature.properties.DicoShort];
@@ -160,8 +159,8 @@ export function RaaMapa({ statistics, colors }) {
 		};
 
 		const options = () => {
-			let dico = MADEIRA_DICOS[el.chave];
-			let populacao_residente = populacao_residente_ram[dico].valor;
+			let dico = ACORES_DICOS[el.chave];
+			let populacao_residente = populacao_residente_raa[dico].valor;
 			return {
 				plugins: {
 					datalabels: {
@@ -244,7 +243,7 @@ export function RaaMapa({ statistics, colors }) {
 					<div id="map" style={{ height: '350px' }}></div>
 				</Col>
 			</Row>
-			{/* <Row style={{ marginTop: 15 }}>{Object.values(graphData.concelhos).map(renderGraph)}</Row>
+			<Row style={{ marginTop: 15 }}>{Object.values(graphData.concelhos).map(renderGraph)}</Row>
 			<Row>
 				<div className={'legends'}>
 					<p>
@@ -256,10 +255,9 @@ export function RaaMapa({ statistics, colors }) {
 						</span>
 					</p>
 				</div>
-			</Row> */}
+			</Row>
 		</Card>
 	) : (
 		''
 	);
 }
-//<Row>{renderGraph(graphData.concelhos.ribeira_brava)}</Row>
