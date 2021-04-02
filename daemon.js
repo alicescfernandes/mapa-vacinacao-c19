@@ -213,8 +213,8 @@ schedule.scheduleJob('10 21 * * *', function () {
 	shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/"');
 });
 
-schedule.scheduleJob('13 12 * * *', function () {
-	updateOWID();
+schedule.scheduleJob('13 00 * * *', function () {
+	// updateOWID();
 	// updateEDCD();
 	updatedCasesMadeira();
 	updateRT();
