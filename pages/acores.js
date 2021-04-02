@@ -25,7 +25,7 @@ import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
 import { RamBarAdministradasPorFaixaEtaria } from '../components/graphs/RamBarAdministradasPorFaixaEtaria';
-import { RamMapa } from '../components/graphs/RamMapa';
+import { RaaMapa } from '../components/graphs/RaaMapa';
 import LazyLoad from 'react-lazyload';
 
 const plausible = Plausible({
@@ -284,16 +284,16 @@ export default function Home() {
 								</Col>
 							</Row>
 						</LazyLoad> */}
-						{/* <LazyLoad height={500} once>
+						<LazyLoad height={500} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
 									<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2021 até 14 de março de 20210.</h3>
 									<hr />
-									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
+									<RaaMapa colors={colors_v2} statistics={statistics}></RaaMapa>
 								</Col>
 							</Row>
-						</LazyLoad> */}
+						</LazyLoad>
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
