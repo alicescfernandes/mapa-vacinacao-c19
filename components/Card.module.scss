@@ -51,6 +51,24 @@
 		font-weight: bold;
 		font-size: 15px;
 		margin-bottom: 5px;
+		text-transform: uppercase;
+	}
+
+	&_title_2 {
+		margin-bottom: 0px;
+		color: #444;
+		font-weight: bold;
+		font-size: 13px;
+		margin-bottom: 5px;
+		text-transform: uppercase;
+	}
+
+	&_subtitle_2 {
+		margin-bottom: 0px;
+		color: #444;
+		font-size: 12px;
+		//text-transform: uppercase;
+		margin: 10px 0px;
 	}
 
 	&_subtitle {

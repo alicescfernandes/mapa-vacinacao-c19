@@ -6,7 +6,7 @@ import { DatePickerButton } from '../components/DatePickerButton';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
-import { isSameDay, format, parseISO } from 'date-fns';
+import { isSameDay, format, parseISO, subDays, compareAsc } from 'date-fns';
 import { GooSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
@@ -44,6 +44,9 @@ const plausible = Plausible({
 });
 
 export default function Home() {
+	let dates_exception = {
+		'26/03/2021': '13:00',
+	};
 	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'portugal' });
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
@@ -53,6 +56,7 @@ export default function Home() {
 		end_page: false,
 	};
 	let [previousSelectedItem, setPreviousSelectedItem] = useState({});
+	let [currentDate, setCurrentDate] = useState('');
 	let [updating, setUpdating] = useState(false);
 	let [last, setLast] = useState({});
 	let [first, setFirst] = useState({});
@@ -103,6 +107,29 @@ export default function Home() {
 		if (item.length > 0 && selectedItem.Data != item[0].Data) {
 			setPreviousSelectedItem(selectedItem);
 			setSelectedItem(item[0]);
+		}
+		let prev_d = subDays(d, 1);
+		if (compareAsc(d, new Date('2021-03-30')) >= 1) {
+			setCurrentDate(
+				format(prev_d, 'dd/LL/yyyy', {
+					locale: pt,
+				}) + ' 23:59'
+			);
+		} else {
+			setCurrentDate(
+				format(d, 'dd/LL/yyyy', {
+					locale: pt,
+				}) + ' 00:00'
+			);
+		}
+
+		if (isSameDay(d, new Date(1616716800000))) {
+			//26 is an exception...
+			setCurrentDate(
+				format(d, 'dd/LL/yyyy', {
+					locale: pt,
+				}) + ' 13:00'
+			);
 		}
 	}
 	useEffect(() => {
@@ -190,7 +217,10 @@ export default function Home() {
 						{' '}
 						<Row className={styles.datepickerRow}>
 							<Col style={{ textAlign: 'center' }}>
+								<p className={cardStyles.card_title_2}>Data de publicação</p>
+
 								{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
+								<p className={cardStyles.card_subtitle_2}>Dados até {currentDate}</p>
 							</Col>
 						</Row>
 						<Row className="counterRow">

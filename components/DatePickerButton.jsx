@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState, createRef } from 'react';
 import DatePicker from 'react-datepicker';
-import { format } from 'date-fns';
+import { format, subDays } from 'date-fns';
 import styles from './DatePickerButton.module.scss';
 
 import Arrow from '../assets/arrow.svg';
@@ -33,30 +33,32 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 			let { value, onClick } = this.props;
 			return (
 				<>
-					<button
-						className={styles.datepicker}
-						disabled={startDate.getTime() <= minDate}
-						onClick={() => {
-							let prevDay = startDate.getTime() - 86400 * 1000;
-							return setStartDate(new Date(prevDay));
-						}}
-					>
-						<Arrow className={styles.svg} />
-					</button>
+					<div>
+						<button
+							className={styles.datepicker}
+							disabled={startDate.getTime() <= minDate}
+							onClick={() => {
+								let prevDay = subDays(startDate, 1);
+								return setStartDate(new Date(prevDay));
+							}}
+						>
+							<Arrow className={styles.svg} />
+						</button>
 
-					<button style={{ width: 285 }} className={styles.datepicker} onClick={onClick}>
-						{d}
-					</button>
-					<button
-						className={styles.datepicker}
-						disabled={startDate.getTime() >= maxDate}
-						onClick={() => {
-							let prevDay = startDate.getTime() + 86400 * 1000;
-							return setStartDate(new Date(prevDay));
-						}}
-					>
-						<Arrow className={styles.svg} />
-					</button>
+						<button style={{ width: 285 }} className={styles.datepicker} onClick={onClick}>
+							{d}
+						</button>
+						<button
+							className={styles.datepicker}
+							disabled={startDate.getTime() >= maxDate}
+							onClick={() => {
+								let prevDay = startDate.getTime() + 86400 * 1000;
+								return setStartDate(new Date(prevDay));
+							}}
+						>
+							<Arrow className={styles.svg} />
+						</button>
+					</div>
 				</>
 			);
 		}
