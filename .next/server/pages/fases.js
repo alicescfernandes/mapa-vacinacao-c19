@@ -622,6 +622,10 @@ var portugal_default = /*#__PURE__*/__webpack_require__.n(portugal);
 
 
 function Header() {
+  let {
+    0: supportsNotifications,
+    1: setSupportsNotifications
+  } = Object(external_react_["useState"])(false);
   let regiao = Object(external_react_["useContext"])(context_regiao["a" /* RegiaoContext */]);
   let regioes = {
     portugal: {
@@ -637,6 +641,9 @@ function Header() {
       tagline: 'Dados atualizados semanalmente'
     }
   };
+  Object(external_react_["useEffect"])(() => {
+    setSupportsNotifications('Notification' in window);
+  }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
     children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("header", {
       className: `${Header_module_default.a.header} card-shadow`,
@@ -676,7 +683,7 @@ function Header() {
                   children: "A\xE7ores"
                 })
               })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            }), supportsNotifications && /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Notifications, {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                   href: "#",
@@ -725,20 +732,6 @@ function Header() {
                     })
                   }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                     children: "Madeira"
-                  })]
-                })
-              })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
-                href: "/madeira",
-                children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
-                  className: regiao === 'acores' ? Header_module_default.a.highlight : '',
-                  children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(madeira_default.a, {
-                      height: 25
-                    })
-                  }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                    children: "A\xE7ores"
                   })]
                 })
               })
