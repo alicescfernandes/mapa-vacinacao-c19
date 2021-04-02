@@ -4,7 +4,7 @@ import styles from './Card.module.scss';
 import { useEffect, useState } from 'react';
 import * as React from 'react';
 export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digits, suffix, tempo }) {
-	if (!tempo) tempo = 'no dia';
+	if (!tempo) tempo = 'no dia anterior';
 	if (!digits) {
 		digits = 0;
 	}
@@ -40,7 +40,7 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 								<span style={{ color: foreground }} className={styles.card_subtitle_highlight}>
 									{Math.sign(difference) == 1 ? '+' : '-'} {numberFormatter.format(Math.abs(difference)).replace(',', ' ')}
 								</span>
-								&nbsp; que {tempo} anterior
+								&nbsp; que {tempo}
 							</p>
 						</>
 					) : (

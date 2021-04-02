@@ -20,7 +20,7 @@ import generic from './../data/generic.json';
 import { Card } from '../components/Card';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
-import { formatNumber, perHundred } from '../utils';
+import { formatDateShort, formatNumber, perHundred } from '../utils';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
@@ -132,7 +132,6 @@ export default function Home() {
 			return isSameDay(el.Data, new Date(json.dateSnsStart));
 		});
 		 */
-
 		setDoses({
 			recebidas: 0,
 			administradas: lastItem.total,
@@ -158,7 +157,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										tempo={'na semana'}
+										tempo={formatDateShort(previousItem.data)}
 										title="Número total de vacinas administradas"
 										yesterday={previousItem?.total}
 										from={previousItem?.total}
@@ -170,7 +169,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										tempo={'na semana'}
+										tempo={formatDateShort(previousItem.data)}
 										title="Número de doses administradas - 1ª Dose"
 										yesterday={previousItem?.dose_1}
 										from={previousItem?.dose_1}
@@ -188,7 +187,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										tempo={'na 	semana'}
+										tempo={formatDateShort(previousItem.data)}
 										title="Número de doses administradas - 2ª Dose"
 										yesterday={previousItem?.dose_2}
 										from={previousItem?.dose_2}
@@ -278,14 +277,14 @@ export default function Home() {
 								</Col>
 							</Row>
 						</LazyLoad>
-						<LazyLoad height={500} once>
+						<LazyLoad height={500} offset={300} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>
 										<em>
 											R<sub>t</sub>
 										</em>{' '}
-										na Região Autónoma dos Açores
+										na Região Autónoma dos Açores (desde 01/01/2021)
 									</h2>
 									<hr />
 									<LineRt regiao={'acores'} colors={colors_v2} statistics={statistics}></LineRt>

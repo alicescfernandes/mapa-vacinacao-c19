@@ -158,7 +158,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										tempo={'na semana'}
+										tempo={'na semana anterior'}
 										title="Número total de vacinas administradas"
 										yesterday={previousItem?.total}
 										from={previousItem?.total}
@@ -170,7 +170,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										tempo={'na semana'}
+										tempo={'na semana anterior'}
 										title="Número de doses administradas - 1ª Dose"
 										yesterday={previousItem?.dose_1}
 										from={previousItem?.dose_1}
@@ -188,7 +188,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										tempo={'na 	semana'}
+										tempo={'na 	semana anterior'}
 										title="Número de doses administradas - 2ª Dose"
 										yesterday={previousItem?.dose_2}
 										from={previousItem?.dose_2}
@@ -284,7 +284,7 @@ export default function Home() {
 								</Col>
 							</Row>
 						</LazyLoad>
-						<LazyLoad height={500} once>
+						<LazyLoad height={500} offset={300} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
