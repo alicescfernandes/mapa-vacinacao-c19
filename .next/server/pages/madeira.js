@@ -3541,6 +3541,8 @@ module.exports = {
 	"card_highlight": "Card_card_highlight__3nHgE",
 	"card_highlight_2": "Card_card_highlight_2__pGhlA",
 	"card_title": "Card_card_title__23exo",
+	"card_title_2": "Card_card_title_2__1gfN_",
+	"card_subtitle_2": "Card_card_subtitle_2__p7--G",
 	"card_subtitle": "Card_card_subtitle__3invo",
 	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
 	"card_chart": "Card_card_chart__37hzo",
@@ -4086,7 +4088,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617370805071,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
+module.exports = JSON.parse("{\"date\":1617371718367,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
 
 /***/ }),
 

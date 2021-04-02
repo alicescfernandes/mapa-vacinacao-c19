@@ -1233,6 +1233,8 @@ module.exports = {
 	"card_highlight": "Card_card_highlight__3nHgE",
 	"card_highlight_2": "Card_card_highlight_2__pGhlA",
 	"card_title": "Card_card_title__23exo",
+	"card_title_2": "Card_card_title_2__1gfN_",
+	"card_subtitle_2": "Card_card_subtitle_2__p7--G",
 	"card_subtitle": "Card_card_subtitle__3invo",
 	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
 	"card_chart": "Card_card_chart__37hzo",

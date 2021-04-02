@@ -5709,6 +5709,9 @@ const plausible = external_plausible_tracker_default()({
   trackLocalhost: true
 });
 function Home() {
+  let dates_exception = {
+    '26/03/2021': '13:00'
+  };
   let {
     statistics,
     update: updateData,
@@ -5734,6 +5737,10 @@ function Home() {
     0: previousSelectedItem,
     1: setPreviousSelectedItem
   } = Object(external_react_["useState"])({});
+  let {
+    0: currentDate,
+    1: setCurrentDate
+  } = Object(external_react_["useState"])('');
   let {
     0: updating,
     1: setUpdating
@@ -5811,6 +5818,25 @@ function Home() {
     if (item.length > 0 && selectedItem.Data != item[0].Data) {
       setPreviousSelectedItem(selectedItem);
       setSelectedItem(item[0]);
+    }
+
+    let prev_d = Object(external_date_fns_["subDays"])(d, 1);
+
+    if (Object(external_date_fns_["compareAsc"])(d, new Date('2021-03-30')) >= 1) {
+      setCurrentDate(Object(external_date_fns_["format"])(prev_d, 'dd/LL/yyyy', {
+        locale: locale_["pt"]
+      }) + ' 23:59');
+    } else {
+      setCurrentDate(Object(external_date_fns_["format"])(d, 'dd/LL/yyyy', {
+        locale: locale_["pt"]
+      }) + ' 00:00');
+    }
+
+    if (Object(external_date_fns_["isSameDay"])(d, new Date(1616716800000))) {
+      //26 is an exception...
+      setCurrentDate(Object(external_date_fns_["format"])(d, 'dd/LL/yyyy', {
+        locale: locale_["pt"]
+      }) + ' 13:00');
     }
   }
 
@@ -5899,15 +5925,21 @@ function Home() {
       children: loaded ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
         children: [' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
           className: Home_module_default.a.datepickerRow,
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             style: {
               textAlign: 'center'
             },
-            children: loaded ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(DatePickerButton["a" /* DatePickerButton */], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_title_2,
+              children: "Data de publica\xE7\xE3o"
+            }), loaded ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(DatePickerButton["a" /* DatePickerButton */], {
               onDateSelect: onDateSelect,
               minDate: first === null || first === void 0 ? void 0 : first.Data,
               maxDate: last === null || last === void 0 ? void 0 : last.Data
-            }) : ''
+            }) : '', /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle_2,
+              children: ["Dados at\xE9 ", currentDate]
+            })]
           })
         }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
           className: "counterRow",
@@ -6503,6 +6535,8 @@ module.exports = {
 	"card_highlight": "Card_card_highlight__3nHgE",
 	"card_highlight_2": "Card_card_highlight_2__pGhlA",
 	"card_title": "Card_card_title__23exo",
+	"card_title_2": "Card_card_title_2__1gfN_",
+	"card_subtitle_2": "Card_card_subtitle_2__p7--G",
 	"card_subtitle": "Card_card_subtitle__3invo",
 	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
 	"card_chart": "Card_card_chart__37hzo",
@@ -9110,35 +9144,37 @@ function DatePickerButton({
         value,
         onClick
       } = this.props;
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
-          className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
-          disabled: startDate.getTime() <= minDate,
-          onClick: () => {
-            let prevDay = startDate.getTime() - 86400 * 1000;
-            return setStartDate(new Date(prevDay));
-          },
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
-            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
-          })
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
-          style: {
-            width: 285
-          },
-          className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
-          onClick: onClick,
-          children: d
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
-          className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
-          disabled: startDate.getTime() >= maxDate,
-          onClick: () => {
-            let prevDay = startDate.getTime() + 86400 * 1000;
-            return setStartDate(new Date(prevDay));
-          },
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
-            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
-          })
-        })]
+      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
+            disabled: startDate.getTime() <= minDate,
+            onClick: () => {
+              let prevDay = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["subDays"])(startDate, 1);
+              return setStartDate(new Date(prevDay));
+            },
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
+              className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
+            })
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            style: {
+              width: 285
+            },
+            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
+            onClick: onClick,
+            children: d
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
+            disabled: startDate.getTime() >= maxDate,
+            onClick: () => {
+              let prevDay = startDate.getTime() + 86400 * 1000;
+              return setStartDate(new Date(prevDay));
+            },
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
+              className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
+            })
+          })]
+        })
       });
     }
 
@@ -9256,7 +9292,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617370805071,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
+module.exports = JSON.parse("{\"date\":1617371718367,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-03-30\"}");
 
 /***/ }),
 
