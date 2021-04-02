@@ -301,7 +301,7 @@ export default function Home() {
 										<em>
 											R<sub>t</sub>
 										</em>{' '}
-										na Região Autónoma da Madeira
+										na Região Autónoma da Madeira (desde 01/01/2021)
 									</h2>
 									<hr />
 									<LineRt regiao={'madeira'} colors={colors_v2} statistics={statistics}></LineRt>

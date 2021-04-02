@@ -16,7 +16,7 @@ export function useData({ regiao }) {
 	let [madeiraPDS, setMadeiraPDS] = useState([]);
 
 	let options = {
-		month: 'short',
+		month: 'numeric',
 		day: 'numeric',
 	};
 	let options2 = {
@@ -135,9 +135,9 @@ export function useData({ regiao }) {
 			let data2 = await fetchWithLocalCache(`/api/rt/${regiao}?${btoa(lastUpdate.date)}`).then((responseRt) => {
 				return responseRt;
 			});
-			let date = new Date('2020-12-27T00:00:45.000Z').getTime();
-			// let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
-			let returnRt = data2;
+			let date = new Date('2021-01-01').getTime();
+			let returnRt = data2.filter((el) => new Date(el.Data).getTime() >= date);
+			//let returnRt = data2;
 			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
 		},
 		getRtRegioes: async () => {
