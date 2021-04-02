@@ -36,7 +36,7 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
 	let url = new URL(event.request.url);
-	let isRoot = url.pathname === '/';
+	let isRoot = url.pathname === '/' || url.pathname === '/acores' || url.pathname === '/madeira';
 	if (event.request.url.startsWith(self.location.origin) && event.request.url.match('/') && event.request.method === 'GET') {
 		event.respondWith(
 			caches.match(event.request).then((cachedResponse) => {

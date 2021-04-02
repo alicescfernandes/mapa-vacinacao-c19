@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ECDC_MAPPING, REGIOES } from '../constants';
 import { fetchWithLocalCache } from '../utils';
 import data from './../data/last-update.json';
-import { populacao, populacao_ram } from './../data/generic.json';
+import { populacao, populacao_ram, populacao_raa } from './../data/generic.json';
 
 import lastUpdate from './../data/last-update.json';
 export function useData({ regiao }) {
@@ -85,7 +85,7 @@ export function useData({ regiao }) {
 					ativos: parseInt(lastItem.ativos),
 					recuperados: parseInt(lastItem.recuperados),
 					obitos: parseInt(lastItem.obitos),
-					populacao: parseInt(populacao_ram.valor),
+					populacao: regiao == REGIOES.MADEIRA ? parseInt(populacao_ram.valor) : parseInt(populacao_raa.valor),
 					data: lastItem.data,
 				};
 			} else {

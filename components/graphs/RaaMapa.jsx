@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Bar, HorizontalBar, Line } from 'react-chartjs-2';
-import { MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
+import { ACORES_DICOS, MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from '../Card';
-import { populacao_residente_ram } from './../../data/generic.json';
+import { populacao_residente_raa } from './../../data/generic.json';
 import cardStyles from './../Card.module.scss';
 
 function getColor(d) {
@@ -47,34 +47,34 @@ export function RaaMapa({ statistics, colors }) {
 	const renderMap = async (map) => {
 		const madeira = await fetch('/acores.geojson').then((r) => r.json());
 		const madeiraMapa = L.map('map');
-
+		alert;
 		let layers = L.geoJSON(madeira, {
 			onEachFeature: (feature, shape) => {
-				/* 	let concelho = MADEIRA_DICOS[feature.properties.Dico];
+				let concelho = ACORES_DICOS[feature.properties.DicoShort];
 				let data = graphData.concelhos[concelho];
 
-				let percentagem_1 = (data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
-				let percentagem_2 = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
-				
+				let percentagem_1 = (data.dose_1 / populacao_residente_raa[feature.properties.DicoShort].valor) * 100;
+				let percentagem_2 = (data.dose_2 / populacao_residente_raa[feature.properties.DicoShort].valor) * 100;
+
 				shape.bindPopup(
 					`<p>
-						<strong>${feature.properties.Municipio}</strong>
+						<strong>${feature.properties.ILHA}</strong>
 						<br>1ª Dose: ${formatNumber(data.dose_1)} (${percentagem_1.toFixed(2)}%)
 						</br>2ª Dose: ${formatNumber(data.dose_2)} (${percentagem_2.toFixed(2)}%)
 					</p>`
 				);
 				shape.on('click', () => {
 					//console.log('click');
-				}); */
+				});
 			},
 
 			style: function (feature) {
-				/* let concelho = MADEIRA_DICOS[feature.properties.Dico];
+				let concelho = ACORES_DICOS[feature.properties.DicoShort];
 				let data = graphData.concelhos[concelho];
 
-				let percentagem = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem = (data.dose_2 / populacao_residente_raa[feature.properties.DicoShort].valor) * 100;
 
-				return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' }; */
+				return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
 			},
 		}).addTo(madeiraMapa);
 
@@ -83,7 +83,7 @@ export function RaaMapa({ statistics, colors }) {
 		});
 
 		madeiraMapa.fitBounds(layers.getBounds());
-		/* 	//Create legend
+		//Create legend
 		var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
@@ -115,7 +115,7 @@ export function RaaMapa({ statistics, colors }) {
 		//hammering the click event
 		snapToPoint._container.onclick = function () {
 			madeiraMapa.fitBounds(layers.getBounds());
-		}; */
+		};
 	};
 
 	function renderGraph(el) {
@@ -225,7 +225,8 @@ export function RaaMapa({ statistics, colors }) {
 
 	useEffect(async () => {
 		statistics.getArquipelagoData().then((data) => {
-			setGraphData(data[5]);
+			console.log(2, data);
+			setGraphData(data[data.length - 1]);
 
 			if (loaded === false) {
 				setLoaded(true);
