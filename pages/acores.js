@@ -241,12 +241,12 @@ export default function Home() {
 										style={{ margin: '5px 0px' }}
 										class={cardStyles.card_subtitle}
 									>
-										O plano de vacinação aplicado pela Madeira não divulga números a atingir.
+										O plano de vacinação aplicado pelos Açores não divulga números a atingir.
 									</p>
 
 									<a
 										target="_blank"
-										href={'https://covidmadeira.pt/vacinacao/'}
+										href={'https://vacinacao-covid19.azores.gov.pt/'}
 										className={`${cardStyles.card_subtitle} ${styles.link}`}
 									>
 										Consultar plano de vacinação
@@ -256,7 +256,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas</h2>
+								<h2 className={styles.title}>Número de vacinas administradas (Acumulado) </h2>
 								<hr />
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
@@ -268,22 +268,6 @@ export default function Home() {
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
-						{/* <Row>
-							<Col>
-								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
-								<hr />
-								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
-							</Col>
-						</Row> */}
-						{/* <LazyLoad height={500} once>
-							<Row>
-								<Col>
-									<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
-									<hr />
-									<RamBarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></RamBarAdministradasPorFaixaEtaria>
-								</Col>
-							</Row>
-						</LazyLoad> */}
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
@@ -370,19 +354,19 @@ export default function Home() {
 									<a
 										className={styles.link}
 										target="_blank"
-										href="https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html"
+										href="https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater"
 									>
-										número de população da Região Autónoma da Madeira (dados da Direção Regional de Estatística da Madeira)
+										número de população da Região Autónoma dos Açores (dados do PORDATA)
 									</a>
 									. Os{' '}
 									<a
 										className={styles.link}
 										target="_blank"
-										href="https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+										href="https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater"
 									>
-										dados de cada região da Madeira
+										dados de cada região dos Açores
 									</a>{' '}
-									são dados provisórios de até 31/12 e foram retirados do PORDATA De acordo com o&nbsp;
+									são dados provisórios 26/05/2015 e foram retirados do PORDATA. De acordo com o&nbsp;
 									<a
 										className={styles.link}
 										target="_blank"
@@ -414,13 +398,13 @@ export default function Home() {
 							<Col xs={12} className={styles.sources_block}>
 								<h2 className={styles.title}>Fontes</h2>
 								<p className={styles.text}>
-									Os dados apresentados são retirados dos boletins publicados pela&nbsp;
-									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/boletim-vacinacao-covid-19/">
-										Direção Regional de Saúde
+									Os dados apresentados são retirados do portal de vacinação do{' '}
+									<a className={styles.link} target="_blank" href="https://vacinacao-covid19.azores.gov.pt/">
+										Governo dos Açores
 									</a>
 									. A atualização destes dados é semanal. Os dados relativos aos casos confirmados pelo o novo coronavirus são
 									retirados dos{' '}
-									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/ponto-de-situacao/">
+									<a className={styles.link} target="_blank" href="https://destinoseguro.azores.gov.pt/">
 										pontos de situação
 									</a>{' '}
 									publicados pela mesma entidade

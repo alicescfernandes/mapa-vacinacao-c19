@@ -151,6 +151,20 @@ export function Header() {
 									</li>
 								</>
 							)}
+							{regiao === 'acores' && (
+								<>
+									<li>
+										<a target="_blank" href="https://destinoseguro.azores.gov.pt/">
+											Portal COVID-19 - Governo dos Açores
+										</a>
+									</li>
+									<li>
+										<a target="_blank" href="https://vacinacao-covid19.azores.gov.pt/">
+											Portal Vacinação - Governo dos Açores
+										</a>
+									</li>
+								</>
+							)}
 						</ul>
 					</nav>
 				</Container>
