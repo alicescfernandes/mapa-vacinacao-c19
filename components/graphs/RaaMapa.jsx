@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Bar, HorizontalBar, Line } from 'react-chartjs-2';
-import { MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
+import { ACORES_DICOS, MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from '../Card';
-import { populacao_residente_ram } from './../../data/generic.json';
+import { populacao_residente_raa } from './../../data/generic.json';
 import cardStyles from './../Card.module.scss';
 
 function getColor(d) {
@@ -29,7 +29,7 @@ function getColor(d) {
 	}
 }
 
-export function RamMapa({ statistics, colors }) {
+export function RaaMapa({ statistics, colors }) {
 	let [graphData, setGraphData] = useState();
 	let canvas = useRef(null);
 	let [loaded, setLoaded] = useState(false);
@@ -45,20 +45,19 @@ export function RamMapa({ statistics, colors }) {
 	};
 
 	const renderMap = async (map) => {
-		const madeira = await fetch('/madeira.geojson').then((r) => r.json());
+		const madeira = await fetch('/acores.geojson').then((r) => r.json());
 		const madeiraMapa = L.map('map');
-
 		let layers = L.geoJSON(madeira, {
 			onEachFeature: (feature, shape) => {
-				let concelho = MADEIRA_DICOS[feature.properties.Dico];
+				let concelho = ACORES_DICOS[feature.properties.DicoShort];
 				let data = graphData.concelhos[concelho];
 
-				let percentagem_1 = (data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
-				let percentagem_2 = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_1 = (data.dose_1 / populacao_residente_raa[feature.properties.DicoShort].valor) * 100;
+				let percentagem_2 = (data.dose_2 / populacao_residente_raa[feature.properties.DicoShort].valor) * 100;
 
 				shape.bindPopup(
 					`<p>
-						<strong>${feature.properties.Municipio}</strong>
+						<strong>${feature.properties.ILHA}</strong>
 						<br>1ª Dose: ${formatNumber(data.dose_1)} (${percentagem_1.toFixed(2)}%)
 						</br>2ª Dose: ${formatNumber(data.dose_2)} (${percentagem_2.toFixed(2)}%)
 					</p>`
@@ -69,10 +68,10 @@ export function RamMapa({ statistics, colors }) {
 			},
 
 			style: function (feature) {
-				let concelho = MADEIRA_DICOS[feature.properties.Dico];
+				let concelho = ACORES_DICOS[feature.properties.DicoShort];
 				let data = graphData.concelhos[concelho];
 
-				let percentagem = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem = (data.dose_2 / populacao_residente_raa[feature.properties.DicoShort].valor) * 100;
 
 				return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
 			},
@@ -82,8 +81,8 @@ export function RamMapa({ statistics, colors }) {
 			layer.feature.properties.layerID = layer.feature.properties.DICOFRE;
 		});
 
-		//Create legend
 		madeiraMapa.fitBounds(layers.getBounds());
+		//Create legend
 		var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
@@ -160,8 +159,8 @@ export function RamMapa({ statistics, colors }) {
 		};
 
 		const options = () => {
-			let dico = MADEIRA_DICOS[el.chave];
-			let populacao_residente = populacao_residente_ram[dico].valor;
+			let dico = ACORES_DICOS[el.chave];
+			let populacao_residente = populacao_residente_raa[dico].valor;
 			return {
 				plugins: {
 					datalabels: {
@@ -225,7 +224,8 @@ export function RamMapa({ statistics, colors }) {
 
 	useEffect(async () => {
 		statistics.getArquipelagoData().then((data) => {
-			setGraphData(data[5]);
+			console.log(2, data);
+			setGraphData(data[data.length - 1]);
 
 			if (loaded === false) {
 				setLoaded(true);
@@ -261,4 +261,3 @@ export function RamMapa({ statistics, colors }) {
 		''
 	);
 }
-//<Row>{renderGraph(graphData.concelhos.ribeira_brava)}</Row>

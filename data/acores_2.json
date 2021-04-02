@@ -4,7 +4,7 @@
         "total": 35825,
         "dose_1": 23431,
         "dose_2": 12394,
-        "semana":"2021-W12",
+        "semana": null,
         "relatorio":"https://web.archive.org/web/20210320205729/https://vacinacao-covid19.azores.gov.pt/",
         "concelhos":{
             "santa_maria":{
@@ -81,14 +81,13 @@
             }
         }
     },
-   
     {
-        "data": "2020-03-21",
+        "data": "2020-03-19",
         "total": 37687,
         "dose_1": 24591,
         "dose_2": 13096,
-        "semana":"2021-W12",
-        "relatorio":"https://portal.azores.gov.pt/documents/36169/97cc99c5-2a16-d831-68d2-610c8dd72e0b",
+        "semana": null,
+        "relatorio":"https://web.archive.org/web/20210324165029/https://vacinacao-covid19.azores.gov.pt/index.php",
         "concelhos":{
             "santa_maria":{
                 "nome":"Santa Maria",
@@ -164,13 +163,12 @@
             }
         }
     },
-
     {
         "data": "2020-03-30",
         "total": 43812,
         "dose_1": 28376,
         "dose_2": 15436,
-        "semana":"2021-W12",
+        "semana": null,
         "relatorio":"https://web.archive.org/web/20210331151046/https://vacinacao-covid19.azores.gov.pt/",
         "concelhos":{
             "santa_maria":{

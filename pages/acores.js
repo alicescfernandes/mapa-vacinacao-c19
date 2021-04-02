@@ -25,7 +25,7 @@ import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
 import { RamBarAdministradasPorFaixaEtaria } from '../components/graphs/RamBarAdministradasPorFaixaEtaria';
-import { RamMapa } from '../components/graphs/RamMapa';
+import { RaaMapa } from '../components/graphs/RaaMapa';
 import LazyLoad from 'react-lazyload';
 
 const plausible = Plausible({
@@ -34,7 +34,7 @@ const plausible = Plausible({
 });
 
 export default function Home() {
-	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'madeira' });
+	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'acores' });
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
 	let [updating, setUpdating] = useState(false);
@@ -77,7 +77,7 @@ export default function Home() {
 		}
 	}
 
-	let startDate = new Date(json.dateMadeira);
+	let startDate = new Date(json.dateAcores);
 	let [first, ...restDate] = format(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
 		locale: pt,
 	})
@@ -108,10 +108,10 @@ export default function Home() {
 	useEffect(() => {
 		let object = {
 			pessoasAVacinar: {
-				current: numberFormatter.format(generic.populacao_ram.valor * 0.7 - selectedItem.dose_2),
+				current: numberFormatter.format(generic.populacao_raa.valor * 0.7 - selectedItem.dose_2),
 			},
 			percentagem: {
-				current: (selectedItem.dose_2 / generic.populacao_ram.valor) * 100,
+				current: (selectedItem.dose_2 / generic.populacao_raa.valor) * 100,
 			},
 		};
 		setDerivedNumbers(object);
@@ -144,7 +144,7 @@ export default function Home() {
 		setLoaded(true);
 	}, [dataReady]);
 	return (
-		<RegiaoContext.Provider value={'madeira'}>
+		<RegiaoContext.Provider value={'acores'}>
 			<Container className="container-fluid app">
 				{loaded ? (
 					<>
@@ -177,7 +177,7 @@ export default function Home() {
 										to={selectedItem?.dose_1}
 									></Counter>
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.dose_1, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
+										{perHundred(selectedItem?.dose_1, generic.populacao_raa.valor).toFixed(2)} doses administradas por cada 100
 										pessoas
 										<br />
 										{formatNumber(selectedItem?.dose_1 - selectedItem?.dose_2)} pessoas inoculadas com a 1ª dose
@@ -196,7 +196,7 @@ export default function Home() {
 									></Counter>
 
 									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.dose_2, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
+										{perHundred(selectedItem?.dose_2, generic.populacao_raa.valor).toFixed(2)} doses administradas por cada 100
 										pessoas
 										<br />
 										{formatNumber(selectedItem?.dose_2)} pessoas inoculadas com a 2ª dose
@@ -241,12 +241,12 @@ export default function Home() {
 										style={{ margin: '5px 0px' }}
 										class={cardStyles.card_subtitle}
 									>
-										O plano de vacinação aplicado pela Madeira não divulga números a atingir.
+										O plano de vacinação aplicado pelos Açores não divulga números a atingir.
 									</p>
 
 									<a
 										target="_blank"
-										href={'https://covidmadeira.pt/vacinacao/'}
+										href={'https://vacinacao-covid19.azores.gov.pt/'}
 										className={`${cardStyles.card_subtitle} ${styles.link}`}
 									>
 										Consultar plano de vacinação
@@ -256,7 +256,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas</h2>
+								<h2 className={styles.title}>Número de vacinas administradas (Acumulado) </h2>
 								<hr />
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
@@ -268,29 +268,13 @@ export default function Home() {
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
-								<hr />
-								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
-							</Col>
-						</Row>
-						<LazyLoad height={500} once>
-							<Row>
-								<Col>
-									<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
-									<hr />
-									<RamBarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></RamBarAdministradasPorFaixaEtaria>
-								</Col>
-							</Row>
-						</LazyLoad>
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
 									<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2021 até 14 de março de 20210.</h3>
 									<hr />
-									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
+									<RaaMapa colors={colors_v2} statistics={statistics}></RaaMapa>
 								</Col>
 							</Row>
 						</LazyLoad>
@@ -301,10 +285,10 @@ export default function Home() {
 										<em>
 											R<sub>t</sub>
 										</em>{' '}
-										na Região Autónoma da Madeira (desde 01/01/2021)
+										na Região Autónoma dos Açores
 									</h2>
 									<hr />
-									<LineRt regiao={'madeira'} colors={colors_v2} statistics={statistics}></LineRt>
+									<LineRt regiao={'acores'} colors={colors_v2} statistics={statistics}></LineRt>
 								</Col>
 							</Row>
 						</LazyLoad>
@@ -326,11 +310,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcoresCases), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcores), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
@@ -347,11 +331,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcoresCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcores).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
@@ -370,19 +354,19 @@ export default function Home() {
 									<a
 										className={styles.link}
 										target="_blank"
-										href="https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html"
+										href="https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater"
 									>
-										número de população da Região Autónoma da Madeira (dados da Direção Regional de Estatística da Madeira)
+										número de população da Região Autónoma dos Açores (dados do PORDATA)
 									</a>
 									. Os{' '}
 									<a
 										className={styles.link}
 										target="_blank"
-										href="https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+										href="https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater"
 									>
-										dados de cada região da Madeira
+										dados de cada região dos Açores
 									</a>{' '}
-									são dados provisórios de até 31/12 e foram retirados do PORDATA De acordo com o&nbsp;
+									são dados provisórios 26/05/2015 e foram retirados do PORDATA. De acordo com o&nbsp;
 									<a
 										className={styles.link}
 										target="_blank"
@@ -414,13 +398,13 @@ export default function Home() {
 							<Col xs={12} className={styles.sources_block}>
 								<h2 className={styles.title}>Fontes</h2>
 								<p className={styles.text}>
-									Os dados apresentados são retirados dos boletins publicados pela&nbsp;
-									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/boletim-vacinacao-covid-19/">
-										Direção Regional de Saúde
+									Os dados apresentados são retirados do portal de vacinação do{' '}
+									<a className={styles.link} target="_blank" href="https://vacinacao-covid19.azores.gov.pt/">
+										Governo dos Açores
 									</a>
 									. A atualização destes dados é semanal. Os dados relativos aos casos confirmados pelo o novo coronavirus são
 									retirados dos{' '}
-									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/ponto-de-situacao/">
+									<a className={styles.link} target="_blank" href="https://destinoseguro.azores.gov.pt/">
 										pontos de situação
 									</a>{' '}
 									publicados pela mesma entidade
