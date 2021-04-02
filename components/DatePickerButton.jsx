@@ -9,13 +9,22 @@ import { pt } from 'date-fns/locale';
 export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 	const [startDate, setStartDate] = useState(new Date(maxDate));
 
-	let [first, ...restDate] = format(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
+	var [first, ...restDate] = format(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
 		locale: pt,
 	})
 		.replace('-feira', '')
 		.split('');
 
 	let d = [first.toUpperCase(), ...restDate].join('');
+
+	var [first, ...restDate] = format(startDate, "dd 'de' LLL 'de' yyyy", {
+		locale: pt,
+	})
+		.replace('-feira', '')
+		.split('');
+
+	let d2 = [first.toUpperCase(), ...restDate].join('');
+
 	useEffect(() => {
 		onDateSelect?.(new Date(startDate));
 	}, [startDate]);
@@ -45,8 +54,9 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 							<Arrow className={styles.svg} />
 						</button>
 
-						<button style={{ width: 285 }} className={styles.datepicker} onClick={onClick}>
-							{d}
+						<button style={{ width: '60vw', maxWidth: 285 }} className={styles.datepicker} onClick={onClick}>
+							<span className={'hide_micro_mobile'}>{d}</span>
+							<span className={'show_micro_mobile'}>{d2}</span>
 						</button>
 						<button
 							className={styles.datepicker}
