@@ -13,6 +13,7 @@ function NextApp({ Component, props }) {
 	// Unconventional way of not having multiple sockets connected between pages
 	useEffect(() => {
 		initSockets(function (data) {
+			console.log(data);
 			let event = new Event('socket_update');
 			event.data = data;
 			window.dispatchEvent(event);
