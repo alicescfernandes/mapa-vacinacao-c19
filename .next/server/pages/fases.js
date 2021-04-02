@@ -747,7 +747,7 @@ function Header() {
               })
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
-                href: "/madeira",
+                href: "/acores",
                 children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
                   className: regiao === 'acores' ? Header_module_default.a.highlight : '',
                   children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
