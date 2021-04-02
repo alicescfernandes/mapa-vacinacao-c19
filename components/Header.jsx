@@ -99,7 +99,7 @@ export function Header() {
 							</li>
 
 							<li>
-								<Link href="/madeira">
+								<Link href="/acores">
 									<a className={regiao === 'acores' ? styles.highlight : ''}>
 										<span>
 											<Azores width={70} height={40}></Azores>
