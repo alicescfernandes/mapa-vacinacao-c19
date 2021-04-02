@@ -4,8 +4,7 @@ export function initSockets(onUpdate) {
 		window.pusher = new Pusher('4dd4d1d504254af64544', {
 			cluster: 'eu',
 		});
-		console.log(window.pusher);
-		let channel = window.pusher.subscribe('covid19_test');
+		let channel = window.pusher.subscribe('covid19');
 
 		channel.bind('update', function (data) {
 			onUpdate?.(data);
