@@ -6,6 +6,8 @@ import styles from './Header.module.scss';
 import { Notifications } from './Notifications';
 import Madeira from '../assets/madeira.svg';
 import Portugal from '../assets/portugal.svg';
+import Bell from '../assets/bell.svg';
+import Azores from '../assets/azores.svg';
 
 export function Header() {
 	let [supportsNotifications, setSupportsNotifications] = useState(false);
@@ -96,16 +98,29 @@ export function Header() {
 								</Link>
 							</li>
 
-							{/* <li>
+							<li>
 								<Link href="/madeira">
 									<a className={regiao === 'acores' ? styles.highlight : ''}>
 										<span>
-											<Madeira height={25}></Madeira>
+											<Azores width={70} height={40}></Azores>
 										</span>
 										<span>Açores</span>
 									</a>
 								</Link>
-							</li> */}
+							</li>
+
+							{supportsNotifications && (
+								<li>
+									<Notifications>
+										<a className={regiao === 'acores' ? styles.highlight : ''}>
+											<span>
+												<Bell width={25}></Bell>
+											</span>
+											<span>Notificações</span>
+										</a>
+									</Notifications>
+								</li>
+							)}
 						</ul>
 					</nav>
 				</Container>
