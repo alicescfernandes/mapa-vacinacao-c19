@@ -1,5 +1,8 @@
 {
   "/_app": "pages/_app.js",
+  "/acores": "pages/acores.js",
+  "/api/acores": "pages/api/acores.js",
+  "/api/acores/pontosituacao": "pages/api/acores/pontosituacao.js",
   "/api/ars": "pages/api/ars.js",
   "/api/cases": "pages/api/cases.js",
   "/api/ecdc": "pages/api/ecdc.js",

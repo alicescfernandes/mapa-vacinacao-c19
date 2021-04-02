@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -169,7 +169,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 17:
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("mB1w");
@@ -634,7 +634,7 @@ function Header() {
     },
     acores: {
       nome: ' - Açores',
-      tagline: ''
+      tagline: 'Dados atualizados semanalmente'
     }
   };
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
@@ -666,6 +666,14 @@ function Header() {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                   className: regiao === 'madeira' ? Header_module_default.a.highlight : '',
                   children: "Madeira"
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/acores",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  className: regiao === 'acores' ? Header_module_default.a.highlight : '',
+                  children: "A\xE7ores"
                 })
               })
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
@@ -717,6 +725,20 @@ function Header() {
                     })
                   }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                     children: "Madeira"
+                  })]
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/madeira",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
+                  className: regiao === 'acores' ? Header_module_default.a.highlight : '',
+                  children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(madeira_default.a, {
+                      height: 25
+                    })
+                  }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                    children: "A\xE7ores"
                   })]
                 })
               })
@@ -775,6 +797,20 @@ function Header() {
                   target: "_blank",
                   href: "https://covidmadeira.pt/ponto-de-situacao/",
                   children: "Ponto de Situa\xE7\xE3o"
+                })
+              })]
+            }), regiao === 'acores' && /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://destinoseguro.azores.gov.pt/",
+                  children: "Portal COVID-19 - Governo dos A\xE7ores"
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://vacinacao-covid19.azores.gov.pt/",
+                  children: "Portal Vacina\xE7\xE3o - Governo dos A\xE7ores"
                 })
               })]
             })]
@@ -842,7 +878,7 @@ function Counter({
   suffix,
   tempo
 }) {
-  if (!tempo) tempo = 'no dia';
+  if (!tempo) tempo = 'no dia anterior';
 
   if (!digits) {
     digits = 0;
@@ -896,7 +932,7 @@ function Counter({
             },
             className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle_highlight,
             children: [Math.sign(difference) == 1 ? '+' : '-', " ", numberFormatter.format(Math.abs(difference)).replace(',', ' ')]
-          }), "\xA0 que ", tempo, " anterior"]
+          }), "\xA0 que ", tempo]
         })
       }) : '', ps != null ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
