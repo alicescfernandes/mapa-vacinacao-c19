@@ -763,7 +763,6 @@ function Header() {
             }), supportsNotifications && /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Notifications, {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
-                  className: regiao === 'acores' ? Header_module_default.a.highlight : '',
                   children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(bell_default.a, {
                       width: 30,
