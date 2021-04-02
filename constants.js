@@ -55,6 +55,7 @@ export let lineChartCommon2 = {
 export const REGIOES = {
 	MADEIRA: 'madeira',
 	PORTUGAL: 'portugal',
+	ACORES: 'ACORES',
 };
 
 export const ECDC_MAPPING = {
@@ -101,4 +102,68 @@ export const MADEIRA_DICOS = {
 	funchal: '3103',
 	machico: '3104',
 	ribeira_brava: '3107',
+};
+
+export const ACORES_DICOS = {
+	49: 'corvo',
+	48: 'flores',
+	47: 'faial',
+	46: 'pico',
+	45: 'sao_jorge',
+	44: 'graciosa',
+	43: 'terceira',
+	42: 'sao_miguel',
+	41: 'santa_maria',
+
+	corvo: 49,
+	flores: 48,
+	faial: 47,
+	pico: 46,
+	sao_jorge: 45,
+	graciosa: 44,
+	terceira: 43,
+	sao_miguel: 42,
+	santa_maria: 41,
+};
+
+export const ACORES_DICOS_CONCELHOS = {
+	4901: 'corvo',
+	4802: 'flores',
+	4801: 'flores',
+	4701: 'faial',
+	4602: 'pico',
+	4603: 'pico',
+	4601: 'pico',
+	4501: 'sao_jorge',
+	4502: 'sao_jorge',
+	4401: 'graciosa',
+	4301: 'terceira',
+	4302: 'terceira',
+	4201: 'sao_miguel',
+	4202: 'sao_miguel',
+	4203: 'sao_miguel',
+	4204: 'sao_miguel',
+	4205: 'sao_miguel',
+	4206: 'sao_miguel',
+	4101: 'santa_maria',
+
+	corvo: 4901,
+	flores: 4802,
+	flores: 4801,
+	faial: 4701,
+	pico: 4602,
+	pico: 4603,
+	pico: 4601,
+	sao_jorge: 4501,
+	sao_jorge: 4502,
+	graciosa: 4401,
+	terceira: 4301,
+	terceira: 4302,
+	sao_miguel: 4201,
+	sao_miguel: 4202,
+	sao_miguel: 4203,
+	sao_miguel: 4204,
+	sao_miguel: 4205,
+	sao_miguel: 4206,
+	santa_maria: 4101,
 };

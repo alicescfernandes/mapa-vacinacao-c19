@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+import { pt } from 'date-fns/locale';
 import fetchNode from 'node-fetch';
 
 export const formatNumber = (number, isDate = true) => {
@@ -91,7 +93,6 @@ export function fetchWithLocalCache(url, options) {
 			localStorage.removeItem(k);
 		}
 	}
-	if (url.match('ecdc')) useCache = false;
 
 	if (window && localStorage.getItem(url) && useCache === true) {
 		let data = JSON.parse(localStorage.getItem(url));
@@ -110,4 +111,10 @@ export function fetchWithLocalCache(url, options) {
 				return data;
 			});
 	}
+}
+
+export function formatDateShort(date) {
+	return format(new Date(date), "dd'/'MM'/'yyyy", {
+		locale: pt,
+	});
 }

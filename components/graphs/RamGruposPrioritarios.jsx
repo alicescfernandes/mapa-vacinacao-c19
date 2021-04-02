@@ -139,7 +139,7 @@ export function RamGruposPrioritarios({ statistics, colors }) {
 	let [graphData, setGraphData] = useState({});
 
 	useEffect(() => {
-		statistics.getMadeiraData().then((data) => {
+		statistics.getArquipelagoData().then((data) => {
 			setGraphData(data[data.length - 1]);
 			setLoading(false);
 		});

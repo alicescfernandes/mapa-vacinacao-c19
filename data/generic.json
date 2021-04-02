@@ -15,6 +15,14 @@
             "permalink": "https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html"
         }
     },
+    "populacao_raa": {
+        "valor": 202572,
+        "legenda": "202 mil 575 pessoas",
+        "fonte": {
+            "nome": "PORDATA",
+            "permalink": "https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater"
+        }
+    },
     "populacao_residente_ram": {
         "3101": {
             "dico": 3101,
@@ -106,6 +114,99 @@
                 "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
             }
         },
+        "3201":{
+            "dico": 3201,
+            "concelho": "porto_santo",
+            "valor": 5202,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        }
+    },
+    "populacao_residente_raa": {
+        "41": {
+            "dico": 41,
+            "concelho": "santa_maria",
+            "valor": 4589,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "42": {
+            "dico": 42,
+            "concelho": "sao_miguel",
+            "valor": 110731,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "43": {
+            "dico": 43,
+            "concelho": "terceira",
+            "valor": 47270,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "44": {
+            "dico": 44,
+            "concelho": "graciosa",
+            "valor": 3741,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "45": {
+            "dico": 45,
+            "concelho": "sao_jorge",
+            "valor": 7836,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "46": {
+            "dico": 46,
+            "concelho": "pico",
+            "valor": 12199,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "47": {
+            "dico": 47,
+            "concelho": "faial",
+            "valor": 12591,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "48": {
+            "dico": 48,
+            "concelho": "flores",
+            "valor": 3249,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+        "49": {
+            "dico": 49,
+            "concelho": "corvo",
+            "valor": 369,
+            "fonte": {
+                "nome": "PORDATA - Estimativas até 31/12",
+                "permalink": "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
+            }
+        },
+      
         "3201":{
             "dico": 3201,
             "concelho": "porto_santo",
