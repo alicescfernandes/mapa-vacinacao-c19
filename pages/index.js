@@ -347,7 +347,7 @@ export default function Home() {
 										<em>
 											R<sub>t</sub>
 										</em>{' '}
-										por região
+										por região (desde 01/01/2021)
 									</h2>
 									<h3 className={styles.subtitle}>Nem todas as regiões apresentam dados no mesmo período temporal</h3>
 									<hr />

@@ -39,8 +39,8 @@ export function LineRt({ statistics, colors, regiao }) {
 	let numberFormatter = new Intl.NumberFormat();
 
 	const data = (canvas) => {
-		const ctx = canvas.getContext('2d');
-		const gradient = ctx.createLinearGradient(0, 0, 0, height);
+		const ctx = canvas?.getContext('2d');
+		const gradient = ctx?.createLinearGradient(0, 0, 0, height);
 		let color = '';
 		let { r, g, b } = hexToRgb(main);
 		try {
@@ -134,6 +134,8 @@ export function LineRt({ statistics, colors, regiao }) {
 		};
 	};
 	const options = () => {
+		let max = parseInt(Math.max(...rtData.rt.map((el) => el.limite_superior_IC95.toFixed(2))) + 1);
+		let annotation_percentage = 1 / max;
 		return {
 			plugins: {
 				datalabels: {
@@ -148,6 +150,34 @@ export function LineRt({ statistics, colors, regiao }) {
 						return !item.text.match('limite');
 					},
 				},
+			},
+			annotation: {
+				annotations: [
+					{
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-0',
+						value: annotation_percentage,
+						borderColor: '#0A9DD1',
+						borderWidth: 2,
+						borderDash: [5, 5],
+
+						label: {
+							backgroundColor: 'rgba(0,0,0,0.0)',
+
+							drawTime: 'afterDatasetsDraw',
+
+							textAlign: 'left',
+							fontColor: '#0A9DD1',
+							position: 'left',
+							xAdjust: 10,
+							yAdjust: -10,
+							fontSize: '13px',
+							enabled: true,
+							content: 'R(t) = 1',
+						},
+					},
+				],
 			},
 
 			animation: {
@@ -178,9 +208,9 @@ export function LineRt({ statistics, colors, regiao }) {
 						id: 'rt',
 						ticks: {
 							beginAtZero: true,
-
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							max: max,
 						},
 						display: true,
 					},
@@ -188,8 +218,8 @@ export function LineRt({ statistics, colors, regiao }) {
 				xAxes: [
 					{
 						ticks: {
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+							maxTicksLimit: 30,
+							minTicksLimit: 30,
 						},
 						stacked: true,
 					},
@@ -205,10 +235,10 @@ export function LineRt({ statistics, colors, regiao }) {
 						<p>
 							<button
 								className={classNames('toggle_button', {
-									active: currentRegiao === 'portugal',
+									active: currentRegiao === 'continente',
 								})}
 								onClick={() => {
-									setCurrentRegiao('portugal');
+									setCurrentRegiao('continente');
 								}}
 							>
 								Continente
