@@ -1334,7 +1334,7 @@ function useData({
     1: setMadeiraPDS
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   let options = {
-    month: 'short',
+    month: 'numeric',
     day: 'numeric'
   };
   let options2 = {
@@ -1458,9 +1458,9 @@ function useData({
       let data2 = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/rt/${regiao}?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`).then(responseRt => {
         return responseRt;
       });
-      let date = new Date('2020-12-27T00:00:45.000Z').getTime(); // let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
+      let date = new Date('2021-01-01').getTime();
+      let returnRt = data2.filter(el => new Date(el.Data).getTime() >= date); //let returnRt = data2;
 
-      let returnRt = data2;
       return {
         labels: returnRt.map(el => f.format(new Date(el.Data))),
         rt: returnRt
@@ -2380,7 +2380,7 @@ function DatePickerButton({
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617374711232,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617377310142,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\"}");
 
 /***/ }),
 

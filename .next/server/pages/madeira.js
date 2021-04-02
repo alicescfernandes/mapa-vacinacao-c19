@@ -1139,7 +1139,7 @@ function useData({
     1: setMadeiraPDS
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   let options = {
-    month: 'short',
+    month: 'numeric',
     day: 'numeric'
   };
   let options2 = {
@@ -1263,9 +1263,9 @@ function useData({
       let data2 = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/rt/${regiao}?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`).then(responseRt => {
         return responseRt;
       });
-      let date = new Date('2020-12-27T00:00:45.000Z').getTime(); // let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
+      let date = new Date('2021-01-01').getTime();
+      let returnRt = data2.filter(el => new Date(el.Data).getTime() >= date); //let returnRt = data2;
 
-      let returnRt = data2;
       return {
         labels: returnRt.map(el => f.format(new Date(el.Data))),
         rt: returnRt
@@ -3122,7 +3122,7 @@ function Home() {
                   children: ["R", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sub", {
                     children: "t"
                   })]
-                }), ' ', "na Regi\xE3o Aut\xF3noma da Madeira"]
+                }), ' ', "na Regi\xE3o Aut\xF3noma da Madeira (desde 01/01/2021)"]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineRt["a" /* LineRt */], {
                 regiao: 'madeira',
                 colors: colors_v2,
@@ -3821,8 +3821,8 @@ function LineRt({
   let numberFormatter = new Intl.NumberFormat();
 
   const data = canvas => {
-    const ctx = canvas.getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    const ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
+    const gradient = ctx === null || ctx === void 0 ? void 0 : ctx.createLinearGradient(0, 0, 0, height);
     let color = '';
     let {
       r,
@@ -3915,6 +3915,8 @@ function LineRt({
   };
 
   const options = () => {
+    let max = parseInt(Math.max(...rtData.rt.map(el => el.limite_superior_IC95.toFixed(2))) + 1);
+    let annotation_percentage = 1 / max;
     return {
       plugins: {
         datalabels: {
@@ -3929,6 +3931,29 @@ function LineRt({
             return !item.text.match('limite');
           }
         }
+      },
+      annotation: {
+        annotations: [{
+          type: 'line',
+          mode: 'horizontal',
+          scaleID: 'y-axis-0',
+          value: annotation_percentage,
+          borderColor: '#0A9DD1',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          label: {
+            backgroundColor: 'rgba(0,0,0,0.0)',
+            drawTime: 'afterDatasetsDraw',
+            textAlign: 'left',
+            fontColor: '#0A9DD1',
+            position: 'left',
+            xAdjust: 10,
+            yAdjust: -10,
+            fontSize: '13px',
+            enabled: true,
+            content: 'R(t) = 1'
+          }
+        }]
       },
       animation: {
         duration: 1000
@@ -3956,14 +3981,15 @@ function LineRt({
           ticks: {
             beginAtZero: true,
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 8 : 10,
+            max: max
           },
           display: true
         }],
         xAxes: [{
           ticks: {
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "l"] ? 30 : 60
+            maxTicksLimit: 30,
+            minTicksLimit: 30
           },
           stacked: true
         }]
@@ -3981,10 +4007,10 @@ function LineRt({
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
           children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
             className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('toggle_button', {
-              active: currentRegiao === 'portugal'
+              active: currentRegiao === 'continente'
             }),
             onClick: () => {
-              setCurrentRegiao('portugal');
+              setCurrentRegiao('continente');
             },
             children: "Continente"
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
@@ -4088,7 +4114,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617374711232,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617377310142,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\"}");
 
 /***/ }),
 
