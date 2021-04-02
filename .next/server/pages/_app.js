@@ -104,8 +104,7 @@ function initSockets(onUpdate) {
     window.pusher = new Pusher('4dd4d1d504254af64544', {
       cluster: 'eu'
     });
-    console.log(window.pusher);
-    let channel = window.pusher.subscribe('covid19_test');
+    let channel = window.pusher.subscribe('covid19');
     channel.bind('update', function (data) {
       onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(data);
     });
@@ -392,6 +391,7 @@ function NextApp({
   // Unconventional way of not having multiple sockets connected between pages
   Object(react__WEBPACK_IMPORTED_MODULE_9__["useEffect"])(() => {
     Object(_hooks_initSockets__WEBPACK_IMPORTED_MODULE_10__[/* initSockets */ "a"])(function (data) {
+      console.log(data);
       let event = new Event('socket_update');
       event.data = data;
       window.dispatchEvent(event);
@@ -3599,7 +3599,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617371846570,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617372837386,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-13\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\"}");
 
 /***/ }),
 
