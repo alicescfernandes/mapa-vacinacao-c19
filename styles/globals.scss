@@ -213,6 +213,14 @@ sup.new {
 	padding: 0px;
 }
 
+.hide_mobile {
+	display: none !important;
+}
+
+.show_mobile {
+	display: none !important;
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 /*  No media query for `xs` since this is the default in Bootstrap */
 
@@ -270,9 +278,30 @@ sup.new {
 	}
 }
 
-/* XXL large devices (large desktops, 1920  and up)*/
-@media (min-width: 1921px) {
+@media (max-width: 424px) {
 	.container {
 		max-width: 1520px;
+	}
+
+	.hide_micro_mobile {
+		display: none;
+	}
+
+	.show_micro_mobile {
+		display: initial;
+	}
+}
+
+@media (min-width: 425px) {
+	.container {
+		max-width: 1520px;
+	}
+
+	.hide_micro_mobile {
+		display: initial;
+	}
+
+	.show_micro_mobile {
+		display: none;
 	}
 }
