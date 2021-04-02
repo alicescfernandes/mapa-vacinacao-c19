@@ -203,6 +203,12 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 	updateJSON();
 });
 
+schedule.scheduleJob('00 23 * * *', function () {
+	console.log('Saving to web archive');
+	shell.exec('waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"');
+	shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/"');
+});
+
 schedule.scheduleJob('13 12 * * *', function () {
 	updateOWID();
 	// updateEDCD();
