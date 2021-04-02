@@ -1206,7 +1206,8 @@ function Header() {
                   className: regiao === 'acores' ? Header_module_default.a.highlight : '',
                   children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(bell_default.a, {
-                      width: 25
+                      width: 30,
+                      height: 30
                     })
                   }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                     children: "Notifica\xE7\xF5es"
@@ -9450,7 +9451,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617400845664,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617401038761,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-01\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

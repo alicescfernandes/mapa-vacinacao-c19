@@ -766,7 +766,8 @@ function Header() {
                   className: regiao === 'acores' ? Header_module_default.a.highlight : '',
                   children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(bell_default.a, {
-                      width: 25
+                      width: 30,
+                      height: 30
                     })
                   }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                     children: "Notifica\xE7\xF5es"
