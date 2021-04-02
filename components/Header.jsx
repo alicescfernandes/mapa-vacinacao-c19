@@ -112,7 +112,7 @@ export function Header() {
 							{supportsNotifications && (
 								<li>
 									<Notifications>
-										<a className={regiao === 'acores' ? styles.highlight : ''}>
+										<a>
 											<span>
 												<Bell width={30} height={30}></Bell>
 											</span>
