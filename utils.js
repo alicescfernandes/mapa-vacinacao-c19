@@ -98,7 +98,6 @@ export function fetchWithLocalCache(url, options) {
 		let data = JSON.parse(localStorage.getItem(url));
 		return Promise.resolve(data);
 	} else {
-		console.log('sw', 'fetch', url);
 		return fetch(url, {
 			...options,
 			headers: {

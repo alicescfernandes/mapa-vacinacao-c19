@@ -244,7 +244,7 @@ export default function Home() {
 										from={previousSelectedItem?.Inoculacao1_Ac || 905_000}
 										to={selectedItem?.Inoculacao1_Ac}
 									></Counter>
-									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
+									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
 										{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} doses administradas por cada 100 pessoas
 										<br />
 										{formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 1ª dose
@@ -261,7 +261,7 @@ export default function Home() {
 										to={selectedItem?.Inoculacao2_Ac}
 									></Counter>
 
-									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
+									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
 										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} doses administradas por cada 100 pessoas
 										<br />
 										{formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 2ª dose
@@ -304,7 +304,7 @@ export default function Home() {
 									<p
 										title="Consultar notas ou o plano de informação para mais informação"
 										style={{ margin: '5px 0px' }}
-										class={cardStyles.card_subtitle}
+										className={cardStyles.card_subtitle}
 									>
 										Espera-se vacinar cerca de
 									</p>

@@ -19,14 +19,12 @@ export function Notifications({ children }) {
 		messaging
 			.getToken({ vapidKey: 'BHtOyn7DJeWzTT1uCITnVOzCpFI4jyOGNo_NQCKoJktP56tHqSVCPtyn99tgpWPRsWzRTu07ahM6fjljP_01K3g' })
 			.then((currentToken, b, c) => {
-				console.log(b, c);
 				if (currentToken) {
 					fetch('/api/messaging/register', {
 						method: 'POST',
 						body: JSON.stringify({ fcm_token: currentToken }),
 						headers: { 'content-type': 'application/json' },
 					}).then((res) => {
-						console.log(res.status);
 						callback?.();
 					});
 				} else {
