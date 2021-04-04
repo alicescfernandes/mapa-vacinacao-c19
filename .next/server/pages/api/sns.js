@@ -271,7 +271,6 @@ function fetchWithLocalCache(url, options) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
   } else {
-    console.log('sw', 'fetch', url);
     return fetch(url, _objectSpread(_objectSpread({}, options), {}, {
       headers: {
         'X-Request-Self': true

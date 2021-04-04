@@ -804,8 +804,6 @@ function Notifications({
     messaging.getToken({
       vapidKey: 'BHtOyn7DJeWzTT1uCITnVOzCpFI4jyOGNo_NQCKoJktP56tHqSVCPtyn99tgpWPRsWzRTu07ahM6fjljP_01K3g'
     }).then((currentToken, b, c) => {
-      console.log(b, c);
-
       if (currentToken) {
         fetch('/api/messaging/register', {
           method: 'POST',
@@ -816,7 +814,6 @@ function Notifications({
             'content-type': 'application/json'
           }
         }).then(res => {
-          console.log(res.status);
           callback === null || callback === void 0 ? void 0 : callback();
         });
       } else {
@@ -1238,7 +1235,6 @@ function fetchWithLocalCache(url, options) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
   } else {
-    console.log('sw', 'fetch', url);
     return fetch(url, _objectSpread(_objectSpread({}, options), {}, {
       headers: {
         'X-Request-Self': true
@@ -3508,7 +3504,7 @@ function Footer() {
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
       src: "https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js",
       integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
-      crossorigin: "anonymous"
+      crossOrigin: "anonymous"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
       src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
@@ -3726,7 +3722,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617541427484,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617546410411,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

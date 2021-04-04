@@ -984,8 +984,6 @@ function Notifications({
     messaging.getToken({
       vapidKey: 'BHtOyn7DJeWzTT1uCITnVOzCpFI4jyOGNo_NQCKoJktP56tHqSVCPtyn99tgpWPRsWzRTu07ahM6fjljP_01K3g'
     }).then((currentToken, b, c) => {
-      console.log(b, c);
-
       if (currentToken) {
         fetch('/api/messaging/register', {
           method: 'POST',
@@ -996,7 +994,6 @@ function Notifications({
             'content-type': 'application/json'
           }
         }).then(res => {
-          console.log(res.status);
           callback === null || callback === void 0 ? void 0 : callback();
         });
       } else {
@@ -1444,7 +1441,6 @@ function fetchWithLocalCache(url, options) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
   } else {
-    console.log('sw', 'fetch', url);
     return fetch(url, _objectSpread(_objectSpread({}, options), {}, {
       headers: {
         'X-Request-Self': true
@@ -6067,7 +6063,7 @@ function Home() {
                 style: {
                   marginTop: '10px'
                 },
-                class: Card_module_default.a.card_subtitle,
+                className: Card_module_default.a.card_subtitle,
                 children: [Object(utils["e" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])((selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac) - (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac)), " pessoas inoculadas com a 1\xAA dose"]
               })]
             })
@@ -6086,7 +6082,7 @@ function Home() {
                 style: {
                   marginTop: '10px'
                 },
-                class: Card_module_default.a.card_subtitle,
+                className: Card_module_default.a.card_subtitle,
                 children: [Object(utils["e" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac), " pessoas inoculadas com a 2\xAA dose"]
               })]
             })
@@ -6138,7 +6134,7 @@ function Home() {
                 style: {
                   margin: '5px 0px'
                 },
-                class: Card_module_default.a.card_subtitle,
+                className: Card_module_default.a.card_subtitle,
                 children: "Espera-se vacinar cerca de"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h1", {
                 title: "Consultar notas ou o plano de informa\xE7\xE3o para mais informa\xE7\xE3o",
@@ -9117,7 +9113,7 @@ function Footer() {
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
       src: "https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js",
       integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
-      crossorigin: "anonymous"
+      crossOrigin: "anonymous"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
       src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
@@ -9461,7 +9457,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617541427484,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617546410411,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

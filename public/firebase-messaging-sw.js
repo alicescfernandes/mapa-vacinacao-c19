@@ -27,11 +27,11 @@ messaging.onBackgroundMessage((payload) => {
 		},
 	};
 	self.registration.showNotification(notificationTitle, notificationOptions);
+});
 
-	self.addEventListener('notificationclick', function (event) {
-		event.notification.close();
-		event.waitUntil(
-			clients.openWindow('https://www.vacinacaocovid19.pt/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications')
-		);
-	});
+self.addEventListener('notificationclick', function (event) {
+	event.notification.close();
+	event.waitUntil(
+		clients.openWindow('https://www.vacinacaocovid19.pt/?utm_source=notifications&utm_medium=notifications&utm_campaign=notifications')
+	);
 });

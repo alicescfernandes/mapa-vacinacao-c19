@@ -692,7 +692,6 @@ function fetchWithLocalCache(url, options) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
   } else {
-    console.log('sw', 'fetch', url);
     return fetch(url, _objectSpread(_objectSpread({}, options), {}, {
       headers: {
         'X-Request-Self': true
@@ -3504,7 +3503,7 @@ function Home() {
                 style: {
                   marginTop: '10px'
                 },
-                class: Card_module_default.a.card_subtitle,
+                className: Card_module_default.a.card_subtitle,
                 children: [Object(utils["e" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1, generic.populacao_raa.valor).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])((selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1) - (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2)), " pessoas inoculadas com a 1\xAA dose"]
               })]
             })
@@ -3524,7 +3523,7 @@ function Home() {
                 style: {
                   marginTop: '10px'
                 },
-                class: Card_module_default.a.card_subtitle,
+                className: Card_module_default.a.card_subtitle,
                 children: [Object(utils["e" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2, generic.populacao_raa.valor).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2), " pessoas inoculadas com a 2\xAA dose"]
               })]
             })
@@ -3576,7 +3575,7 @@ function Home() {
                 style: {
                   margin: '5px 0px'
                 },
-                class: Card_module_default.a.card_subtitle,
+                className: Card_module_default.a.card_subtitle,
                 children: "O plano de vacina\xE7\xE3o aplicado pelos A\xE7ores n\xE3o divulga n\xFAmeros a atingir."
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                 target: "_blank",
@@ -3785,7 +3784,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617541427484,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617546410411,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

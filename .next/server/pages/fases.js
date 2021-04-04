@@ -544,8 +544,6 @@ function Notifications({
     messaging.getToken({
       vapidKey: 'BHtOyn7DJeWzTT1uCITnVOzCpFI4jyOGNo_NQCKoJktP56tHqSVCPtyn99tgpWPRsWzRTu07ahM6fjljP_01K3g'
     }).then((currentToken, b, c) => {
-      console.log(b, c);
-
       if (currentToken) {
         fetch('/api/messaging/register', {
           method: 'POST',
@@ -556,7 +554,6 @@ function Notifications({
             'content-type': 'application/json'
           }
         }).then(res => {
-          console.log(res.status);
           callback === null || callback === void 0 ? void 0 : callback();
         });
       } else {
