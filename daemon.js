@@ -49,14 +49,14 @@ function gitCommit(name) {
 function updateOWID() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
-	shell.exec('python3 owid_parser.py');
+	shell.exec('python3 ./automation/owid_parser.py');
 	gitCommit('owid');
 }
 
 function updateEDCD() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
-	shell.exec('python3 ecdc_parser.py');
+	shell.exec('python3 ./automation/ecdc_parser.py');
 	gitCommit('ecdc');
 }
 

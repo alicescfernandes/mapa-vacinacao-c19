@@ -6,7 +6,7 @@ Todo o código é público (incluindo também os desenhos originais do site), pa
 - [API](https://vacinacaocovid19.pt/api/vaccines)
 
 ## Origem dos dados
-Ver [SOURCES.MD](/SOURCES.md)
+Ver [SOURCES.MD](/_readme/SOURCES.md)
 ## Stack
 - ChartJS  
 - React  
@@ -28,7 +28,7 @@ docker run -d -p 80:3000 -P --name vacinacaocovid19 vacinacaocovid19 # site em l
 ```
 ## Fazer setup local (sem docker)
 ## Criar `.env`
-Ver [SETUP.MD](/SETUP.md)
+Ver [SETUP.MD](/_readme/SETUP.md)
 ### Instalar dependencias
 ```bash
 pip3 install -r requirements.txt
