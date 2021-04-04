@@ -176,7 +176,7 @@ export default function Home() {
 										from={previousItem?.dose_1}
 										to={selectedItem?.dose_1}
 									></Counter>
-									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
+									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
 										{perHundred(selectedItem?.dose_1, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
 										pessoas
 										<br />
@@ -195,7 +195,7 @@ export default function Home() {
 										to={selectedItem?.dose_2}
 									></Counter>
 
-									<p style={{ marginTop: '10px' }} class={cardStyles.card_subtitle}>
+									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
 										{perHundred(selectedItem?.dose_2, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
 										pessoas
 										<br />
@@ -239,7 +239,7 @@ export default function Home() {
 									<p
 										title="Consultar notas ou o plano de informação para mais informação"
 										style={{ margin: '5px 0px' }}
-										class={cardStyles.card_subtitle}
+										className={cardStyles.card_subtitle}
 									>
 										O plano de vacinação aplicado pela Madeira não divulga números a atingir.
 									</p>

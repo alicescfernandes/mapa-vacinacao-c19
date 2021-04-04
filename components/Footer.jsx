@@ -20,7 +20,7 @@ export function Footer() {
 			<script
 				src="https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js"
 				integrity="sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg=="
-				crossorigin="anonymous"
+				crossOrigin="anonymous"
 			></script>
 			{/*<script async defer data-domain="vacinacaocovid19.pt" src="https://plausible.io/js/plausible.js"></script>*/}
 			<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
