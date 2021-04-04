@@ -22,7 +22,7 @@ export class FirebaseConnector {
 
 	registerDevice(token) {
 		console.log('cenas', token);
-		return this.fcm.subscribeToTopic([token], 'covid19-test');
+		return this.fcm.subscribeToTopic([token], 'covid19');
 		/* .then(function (response) {
 				console.log('Successfully subscribed to topic:', response);
 			})
@@ -32,6 +32,6 @@ export class FirebaseConnector {
 	}
 
 	unregisterDevice(token) {
-		return this.fcm.unsubscribeToTopic([token], 'covid19-test');
+		return this.fcm.unsubscribeToTopic([token], 'covid19');
 	}
 }

@@ -42,7 +42,7 @@ if(current_time.date() > last_update.date()):
     firebase_admin.initialize_app(cred)
     messaging = firebase_admin.messaging
 
-    topic = 'covid19-test'
+    topic = 'covid19'
     message = messaging.Message(
         notification=messaging.Notification(
             title="Os dados da vacinação de {0}/{1}/{2}".format(pad(current_time.day),pad(current_time.month),current_time.year),
