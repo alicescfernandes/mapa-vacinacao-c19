@@ -1,3 +1,4 @@
+import Plausible from 'plausible-tracker';
 import { useEffect } from 'react';
 
 var firebaseConfig = {
@@ -11,7 +12,7 @@ var firebaseConfig = {
 };
 
 export function Notifications({ children }) {
-	const plausible = Plausible({
+	const plausible = Plausiblee({
 		domain: 'vacinacaocovid19.pt',
 		trackLocalhost: true,
 	});
