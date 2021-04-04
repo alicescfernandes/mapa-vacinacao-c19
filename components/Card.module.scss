@@ -25,7 +25,11 @@
 			margin-right: 10px;
 		}
 	}
-
+	&_sticky {
+		position: sticky;
+		width: fit-content;
+		left: 0;
+	}
 	&_align_left {
 		text-align: left;
 	}

@@ -8,6 +8,8 @@ import { REGIOES, RESIZE_TRESHOLD } from '../../constants';
 import styles from './../Card.module.scss';
 import { RegiaoContext } from '../context/regiao';
 
+import { Modal } from './../Modal';
+
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let regiao = useContext(RegiaoContext);
 
@@ -288,6 +290,67 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			},
 		};
 	};
+	function renderControls() {
+		return (
+			<>
+				{regiao === 'portugal' && (
+					<div className={[styles.card_checkboxes, styles.card_sticky].join(' ')} style={{ textAlign: 'left' }}>
+						<CustomCheckbox
+							checked={toggleStats.primeira_fase}
+							label={'1ª Fase'}
+							onChange={(checked) => {
+								setToggleStats({
+									...toggleStats,
+									primeira_fase: checked,
+								});
+							}}
+						/>
+						<CustomCheckbox
+							checked={toggleStats.primeira_fase}
+							label={'2ª Fase'}
+							onChange={(checked) => {
+								setToggleStats({
+									...toggleStats,
+									segunda_fase: checked,
+								});
+							}}
+						/>
+						<CustomCheckbox
+							checked={toggleStats.imunidade}
+							label={'Imunidade de Grupo'}
+							onChange={(checked) => {
+								setToggleStats({
+									...toggleStats,
+									imunidade: checked,
+								});
+							}}
+						/>
+
+						<CustomCheckbox
+							checked={toggleStats.infetados}
+							label={'Casos Confirmados'}
+							onChange={(checked) => {
+								setToggleStats({
+									...toggleStats,
+									infetados: checked,
+								});
+							}}
+						/>
+						{/* <CustomCheckbox
+				checked={toggleStats.perHundred}
+				label={'Por Cada 100 habitantes'}
+				onChange={(checked) => {
+					setToggleStats({
+						...toggleStats,
+						perHundred: checked,
+					});
+				}}
+			/> */}
+					</div>
+				)}
+			</>
+		);
+	}
 
 	useEffect(() => {
 		if (values.length > 0) {
@@ -297,63 +360,8 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 	return (
 		<Card allowOverflow={true}>
-			{regiao === 'portugal' && (
-				<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
-					<CustomCheckbox
-						checked={toggleStats.primeira_fase}
-						label={'1ª Fase'}
-						onChange={(checked) => {
-							setToggleStats({
-								...toggleStats,
-								primeira_fase: checked,
-							});
-						}}
-					/>
-					<CustomCheckbox
-						checked={toggleStats.primeira_fase}
-						label={'2ª Fase'}
-						onChange={(checked) => {
-							setToggleStats({
-								...toggleStats,
-								segunda_fase: checked,
-							});
-						}}
-					/>
-					<CustomCheckbox
-						checked={toggleStats.imunidade}
-						label={'Imunidade de Grupo'}
-						onChange={(checked) => {
-							setToggleStats({
-								...toggleStats,
-								imunidade: checked,
-							});
-						}}
-					/>
-
-					<CustomCheckbox
-						checked={toggleStats.infetados}
-						label={'Casos Confirmados'}
-						onChange={(checked) => {
-							setToggleStats({
-								...toggleStats,
-								infetados: checked,
-							});
-						}}
-					/>
-
-					{/* <CustomCheckbox
-					checked={toggleStats.perHundred}
-					label={'Por Cada 100 habitantes'}
-					onChange={(checked) => {
-						setToggleStats({
-							...toggleStats,
-							perHundred: checked,
-						});
-					}}
-				/> */}
-				</div>
-			)}
-
+			<Modal>{renderControls()}</Modal>
+			{/* renderControls() */}
 			<div> {!loading ? <Line height={100} ref={chartRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);

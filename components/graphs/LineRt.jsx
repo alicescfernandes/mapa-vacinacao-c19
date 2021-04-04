@@ -6,6 +6,7 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 import { CustomCheckbox } from '../CustomCheckbox';
 import styles from './../Card.module.scss';
+import { Modal } from '../Modal';
 
 export function LineRt({ statistics, colors, regiao }) {
 	let casesData = statistics.getCases();
@@ -229,97 +230,97 @@ export function LineRt({ statistics, colors, regiao }) {
 	};
 	return (
 		<Card textLeft={true} allowOverflow={true}>
-			<div className={[styles.card_scrollable].join(' ')}>
-				{regiao === undefined ? (
-					<div className={'toggle_buttons'}>
-						<p>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'continente',
-								})}
-								onClick={() => {
-									setCurrentRegiao('continente');
-								}}
-							>
-								Continente
-							</button>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'nacional',
-								})}
-								onClick={() => {
-									setCurrentRegiao('nacional');
-								}}
-							>
-								Nacional
-							</button>
+			{regiao === undefined ? (
+				<div className={'toggle_buttons'}>
+					<p>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'continente',
+							})}
+							onClick={() => {
+								setCurrentRegiao('continente');
+							}}
+						>
+							Continente
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'nacional',
+							})}
+							onClick={() => {
+								setCurrentRegiao('nacional');
+							}}
+						>
+							Nacional
+						</button>
 
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'lvt',
-								})}
-								onClick={() => {
-									setCurrentRegiao('lvt');
-								}}
-							>
-								Lisboa e Vale do Tejo
-							</button>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'algarve',
-								})}
-								onClick={() => {
-									setCurrentRegiao('algarve');
-								}}
-							>
-								Algarve
-							</button>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'alentejo',
-								})}
-								onClick={() => {
-									setCurrentRegiao('alentejo');
-								}}
-							>
-								Alentejo
-							</button>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'centro',
-								})}
-								onClick={() => {
-									setCurrentRegiao('centro');
-								}}
-							>
-								Centro
-							</button>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'madeira',
-								})}
-								onClick={() => {
-									setCurrentRegiao('madeira');
-								}}
-							>
-								Madeira
-							</button>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'acores',
-								})}
-								onClick={() => {
-									setCurrentRegiao('acores');
-								}}
-							>
-								Açores
-							</button>
-						</p>
-					</div>
-				) : (
-					<></>
-				)}
-			</div>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'lvt',
+							})}
+							onClick={() => {
+								setCurrentRegiao('lvt');
+							}}
+						>
+							Lisboa e Vale do Tejo
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'algarve',
+							})}
+							onClick={() => {
+								setCurrentRegiao('algarve');
+							}}
+						>
+							Algarve
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'alentejo',
+							})}
+							onClick={() => {
+								setCurrentRegiao('alentejo');
+							}}
+						>
+							Alentejo
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'centro',
+							})}
+							onClick={() => {
+								setCurrentRegiao('centro');
+							}}
+						>
+							Centro
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'madeira',
+							})}
+							onClick={() => {
+								setCurrentRegiao('madeira');
+							}}
+						>
+							Madeira
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: currentRegiao === 'acores',
+							})}
+							onClick={() => {
+								setCurrentRegiao('acores');
+							}}
+						>
+							Açores
+						</button>
+					</p>
+				</div>
+			) : (
+				<></>
+			)}
+
+			<div className={[styles.card_scrollable].join(' ')}></div>
 
 			<div>{loaded ? <Line height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>

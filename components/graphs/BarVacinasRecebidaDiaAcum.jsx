@@ -7,6 +7,7 @@ import generic from '../../data/generic.json';
 import { CustomCheckbox } from '../CustomCheckbox';
 import { RESIZE_TRESHOLD } from '../../constants';
 import styles from './../Card.module.scss';
+import { Modal } from '../Modal';
 
 export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
@@ -261,36 +262,38 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 	return (
 		<Card allowOverflow={true}>
 			<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
-				<CustomCheckbox
-					checked={annotationsToggle.dose}
-					label={'Doses adquiridas (01/03/2021)'}
-					onChange={(checked) => {
-						setAnnotationsToggle({
-							...annotationsToggle,
-							dose: checked,
-						});
-					}}
-				/>
-				<CustomCheckbox
-					checked={annotationsToggle.dose3}
-					label={'Doses adquiridas (21/01/2021)'}
-					onChange={(checked) => {
-						setAnnotationsToggle({
-							...annotationsToggle,
-							dose3: checked,
-						});
-					}}
-				/>
-				<CustomCheckbox
-					checked={annotationsToggle.dose2}
-					label={'Doses adquiridas (04/12/2020)'}
-					onChange={(checked) => {
-						setAnnotationsToggle({
-							...annotationsToggle,
-							dose2: checked,
-						});
-					}}
-				/>
+				<Modal>
+					<CustomCheckbox
+						checked={annotationsToggle.dose}
+						label={'Doses adquiridas (01/03/2021)'}
+						onChange={(checked) => {
+							setAnnotationsToggle({
+								...annotationsToggle,
+								dose: checked,
+							});
+						}}
+					/>
+					<CustomCheckbox
+						checked={annotationsToggle.dose3}
+						label={'Doses adquiridas (21/01/2021)'}
+						onChange={(checked) => {
+							setAnnotationsToggle({
+								...annotationsToggle,
+								dose3: checked,
+							});
+						}}
+					/>
+					<CustomCheckbox
+						checked={annotationsToggle.dose2}
+						label={'Doses adquiridas (04/12/2020)'}
+						onChange={(checked) => {
+							setAnnotationsToggle({
+								...annotationsToggle,
+								dose2: checked,
+							});
+						}}
+					/>
+				</Modal>
 			</div>
 			<div>{!loading ? <Bar height={100} options={options()} data={data} /> : ''}</div>
 		</Card>

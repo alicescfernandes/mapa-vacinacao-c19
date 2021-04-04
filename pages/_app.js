@@ -9,6 +9,8 @@ import { Header } from '../components/Header';
 import { RegiaoContext } from './../components/context/regiao';
 import { useEffect } from 'react';
 import { initSockets } from '../hooks/initSockets';
+import 'reactjs-popup/dist/index.css';
+
 let allowed_regioes = ['/', 'acores', 'madeira'];
 function NextApp({ Component, props }) {
 	// Unconventional way of not having multiple sockets connected between pages
@@ -19,18 +21,15 @@ function NextApp({ Component, props }) {
 			window.dispatchEvent(event);
 		});
 
-		if ('serviceWorker' in navigator) {
+		/* 	if ('serviceWorker' in navigator) {
 			navigator.serviceWorker.register('/sw.js', { scope: './' }).then(
 				function (registration) {
-					/* success */
 				},
 				function (error) {
-					/* error */
 				}
 			);
 		} else {
-			//not supported
-		}
+		} */
 	}, []);
 	return (
 		<RegiaoContext.Provider value={props.regiao || 'portugal'}>
