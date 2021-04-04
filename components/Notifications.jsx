@@ -11,6 +11,11 @@ var firebaseConfig = {
 };
 
 export function Notifications({ children }) {
+	const plausible = Plausible({
+		domain: 'vacinacaocovid19.pt',
+		trackLocalhost: true,
+	});
+
 	function registerOnFirebase(callback) {
 		if (firebase.apps.length === 0) {
 			firebase.initializeApp(firebaseConfig);
