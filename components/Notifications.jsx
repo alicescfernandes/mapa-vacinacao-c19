@@ -12,7 +12,7 @@ var firebaseConfig = {
 };
 
 export function Notifications({ children }) {
-	const plausible = Plausiblee({
+	const plausible = Plausible({
 		domain: 'vacinacaocovid19.pt',
 		trackLocalhost: true,
 	});
