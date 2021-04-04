@@ -25,6 +25,7 @@ export function Notifications({ children }) {
 						body: JSON.stringify({ fcm_token: currentToken }),
 						headers: { 'content-type': 'application/json' },
 					}).then((res) => {
+						plausible.trackEvent('notifications', { type: 'granted' });
 						callback?.();
 					});
 				} else {

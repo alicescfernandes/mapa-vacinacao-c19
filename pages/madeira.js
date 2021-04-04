@@ -67,12 +67,12 @@ export default function Home() {
 	function trackScrollEvents(e) {
 		if (window.scrollY > 3576 && beacons.end_page === false) {
 			beacons.end_page = true;
-			plausible.trackEvent('end_page');
+			plausible.trackEvent('end_page', { page: 'madeira' });
 			return;
 		}
 		if (window.scrollY > 1657 && beacons.mid_page === false) {
 			beacons.mid_page = true;
-			plausible.trackEvent('mid_page');
+			plausible.trackEvent('mid_page', { page: 'madeira' });
 			return;
 		}
 	}
