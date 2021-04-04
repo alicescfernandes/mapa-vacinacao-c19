@@ -9,11 +9,11 @@ import { Header } from '../components/Header';
 import { RegiaoContext } from './../components/context/regiao';
 import { useEffect } from 'react';
 import { initSockets } from '../hooks/initSockets';
+let allowed_regioes = ['/', 'acores', 'madeira'];
 function NextApp({ Component, props }) {
 	// Unconventional way of not having multiple sockets connected between pages
 	useEffect(() => {
 		initSockets(function (data) {
-			console.log(data);
 			let event = new Event('socket_update');
 			event.data = data;
 			window.dispatchEvent(event);
@@ -33,7 +33,7 @@ function NextApp({ Component, props }) {
 		}
 	}, []);
 	return (
-		<RegiaoContext.Provider value={props.regiao}>
+		<RegiaoContext.Provider value={props.regiao || 'portugal'}>
 			<Metatags></Metatags>
 			<Header></Header>
 			<Component />
@@ -51,6 +51,7 @@ NextApp.getInitialProps = async (app) => {
 		regiao = url;
 	}
 
+	if (!allowed_regioes.includes(regiao)) regiao = 'portugal';
 	return { props: { regiao: regiao, pusher: '' } };
 };
 
