@@ -88,18 +88,10 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ 1:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("qNbv");
-
-
-/***/ }),
 
 /***/ "10Vi":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -243,6 +235,14 @@ function Metatags({
     })]
   });
 }
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("qNbv");
+
 
 /***/ }),
 
@@ -3387,13 +3387,17 @@ function Home() {
   function trackScrollEvents(e) {
     if (window.scrollY > 3576 && beacons.end_page === false) {
       beacons.end_page = true;
-      plausible.trackEvent('end_page');
+      plausible.trackEvent('end_page', {
+        page: 'açores'
+      });
       return;
     }
 
     if (window.scrollY > 1657 && beacons.mid_page === false) {
       beacons.mid_page = true;
-      plausible.trackEvent('mid_page');
+      plausible.trackEvent('mid_page', {
+        page: 'açores'
+      });
       return;
     }
   }
@@ -3784,7 +3788,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617546410411,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617570211926,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

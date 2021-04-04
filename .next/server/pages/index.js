@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -342,7 +342,7 @@ function Metatags({
 
 /***/ }),
 
-/***/ 21:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("RNiq");
@@ -960,7 +960,12 @@ var context_regiao = __webpack_require__("uAdN");
 var Header_module = __webpack_require__("OXQD");
 var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
 
+// EXTERNAL MODULE: external "plausible-tracker"
+var external_plausible_tracker_ = __webpack_require__("WUak");
+var external_plausible_tracker_default = /*#__PURE__*/__webpack_require__.n(external_plausible_tracker_);
+
 // CONCATENATED MODULE: ./components/Notifications.jsx
+
 
 
 var firebaseConfig = {
@@ -975,6 +980,11 @@ var firebaseConfig = {
 function Notifications({
   children
 }) {
+  const plausible = external_plausible_tracker_default()({
+    domain: 'vacinacaocovid19.pt',
+    trackLocalhost: true
+  });
+
   function registerOnFirebase(callback) {
     if (firebase.apps.length === 0) {
       firebase.initializeApp(firebaseConfig);
@@ -994,6 +1004,9 @@ function Notifications({
             'content-type': 'application/json'
           }
         }).then(res => {
+          plausible.trackEvent('notifications', {
+            type: 'granted'
+          });
           callback === null || callback === void 0 ? void 0 : callback();
         });
       } else {
@@ -5989,13 +6002,17 @@ function Home() {
   function trackScrollEvents(e) {
     if (window.scrollY > 5580 && beacons.end_page === false) {
       beacons.end_page = true;
-      plausible.trackEvent('end_page');
+      plausible.trackEvent('end_page', {
+        page: 'index'
+      });
       return;
     }
 
     if (window.scrollY > 1657 && beacons.mid_page === false) {
       beacons.mid_page = true;
-      plausible.trackEvent('mid_page');
+      plausible.trackEvent('mid_page', {
+        page: 'index'
+      });
       return;
     }
   }
@@ -9457,7 +9474,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617546410411,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617570211926,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

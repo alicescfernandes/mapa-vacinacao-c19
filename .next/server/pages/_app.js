@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -135,14 +135,6 @@ const TEST_ROUTE = /\/\[[^/]+?\](?=\/|$)/;
 function isDynamicRoute(route) {
   return TEST_ROUTE.test(route);
 }
-
-/***/ }),
-
-/***/ 0:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("1TCz");
-
 
 /***/ }),
 
@@ -202,6 +194,14 @@ const requestIdleCallback = typeof self !== 'undefined' && self.requestIdleCallb
 
 var _default = requestIdleCallback;
 exports.default = _default;
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("1TCz");
+
 
 /***/ }),
 
@@ -383,6 +383,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let allowed_regioes = ['/', 'acores', 'madeira'];
 
 function NextApp({
   Component,
@@ -391,7 +392,6 @@ function NextApp({
   // Unconventional way of not having multiple sockets connected between pages
   Object(react__WEBPACK_IMPORTED_MODULE_9__["useEffect"])(() => {
     Object(_hooks_initSockets__WEBPACK_IMPORTED_MODULE_10__[/* initSockets */ "a"])(function (data) {
-      console.log(data);
       let event = new Event('socket_update');
       event.data = data;
       window.dispatchEvent(event);
@@ -409,7 +409,7 @@ function NextApp({
     }
   }, []);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_components_context_regiao__WEBPACK_IMPORTED_MODULE_8__[/* RegiaoContext */ "a"].Provider, {
-    value: props.regiao,
+    value: props.regiao || 'portugal',
     children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_MetaTags__WEBPACK_IMPORTED_MODULE_6__[/* Metatags */ "a"], {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_Header__WEBPACK_IMPORTED_MODULE_7__[/* Header */ "a"], {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(Component, {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_Footer__WEBPACK_IMPORTED_MODULE_5__[/* Footer */ "a"], {})]
   });
 }
@@ -426,6 +426,7 @@ NextApp.getInitialProps = async app => {
     regiao = url;
   }
 
+  if (!allowed_regioes.includes(regiao)) regiao = 'portugal';
   return {
     props: {
       regiao: regiao,
@@ -780,7 +781,12 @@ var context_regiao = __webpack_require__("uAdN");
 var Header_module = __webpack_require__("OXQD");
 var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
 
+// EXTERNAL MODULE: external "plausible-tracker"
+var external_plausible_tracker_ = __webpack_require__("WUak");
+var external_plausible_tracker_default = /*#__PURE__*/__webpack_require__.n(external_plausible_tracker_);
+
 // CONCATENATED MODULE: ./components/Notifications.jsx
+
 
 
 var firebaseConfig = {
@@ -795,6 +801,11 @@ var firebaseConfig = {
 function Notifications({
   children
 }) {
+  const plausible = external_plausible_tracker_default()({
+    domain: 'vacinacaocovid19.pt',
+    trackLocalhost: true
+  });
+
   function registerOnFirebase(callback) {
     if (firebase.apps.length === 0) {
       firebase.initializeApp(firebaseConfig);
@@ -814,6 +825,9 @@ function Notifications({
             'content-type': 'application/json'
           }
         }).then(res => {
+          plausible.trackEvent('notifications', {
+            type: 'granted'
+          });
           callback === null || callback === void 0 ? void 0 : callback();
         });
       } else {
@@ -1595,6 +1609,13 @@ module.exports = _interopRequireDefault;
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/router/utils/get-asset-path-from-route.js");
+
+/***/ }),
+
+/***/ "WUak":
+/***/ (function(module, exports) {
+
+module.exports = require("plausible-tracker");
 
 /***/ }),
 
@@ -3722,7 +3743,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617546410411,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617570211926,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

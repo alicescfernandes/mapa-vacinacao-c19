@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -169,7 +169,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 20:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("mB1w");
@@ -520,7 +520,12 @@ var context_regiao = __webpack_require__("uAdN");
 var Header_module = __webpack_require__("OXQD");
 var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
 
+// EXTERNAL MODULE: external "plausible-tracker"
+var external_plausible_tracker_ = __webpack_require__("WUak");
+var external_plausible_tracker_default = /*#__PURE__*/__webpack_require__.n(external_plausible_tracker_);
+
 // CONCATENATED MODULE: ./components/Notifications.jsx
+
 
 
 var firebaseConfig = {
@@ -535,6 +540,11 @@ var firebaseConfig = {
 function Notifications({
   children
 }) {
+  const plausible = external_plausible_tracker_default()({
+    domain: 'vacinacaocovid19.pt',
+    trackLocalhost: true
+  });
+
   function registerOnFirebase(callback) {
     if (firebase.apps.length === 0) {
       firebase.initializeApp(firebaseConfig);
@@ -554,6 +564,9 @@ function Notifications({
             'content-type': 'application/json'
           }
         }).then(res => {
+          plausible.trackEvent('notifications', {
+            type: 'granted'
+          });
           callback === null || callback === void 0 ? void 0 : callback();
         });
       } else {
@@ -1334,6 +1347,13 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/router/utils/get-asset-path-from-route.js");
+
+/***/ }),
+
+/***/ "WUak":
+/***/ (function(module, exports) {
+
+module.exports = require("plausible-tracker");
 
 /***/ }),
 

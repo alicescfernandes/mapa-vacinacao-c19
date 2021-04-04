@@ -1,4 +1,5 @@
 {
+  "/404": "pages/404.js",
   "/_app": "pages/_app.js",
   "/acores": "pages/acores.js",
   "/api/acores": "pages/api/acores.js",

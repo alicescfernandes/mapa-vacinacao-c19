@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -196,7 +196,7 @@ const styles = {
 
 /***/ }),
 
-/***/ 19:
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("4MLZ");
@@ -2420,7 +2420,7 @@ function DatePickerButton({
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617546410411,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617570211926,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -100,7 +100,7 @@ module.exports = JSON.parse("[{\"data\":\"2021-03-13\",\"total\":\"7835\",\"tota
 
 /***/ }),
 
-/***/ 9:
+/***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("9yB1");
