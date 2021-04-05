@@ -2420,7 +2420,7 @@ function DatePickerButton({
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617628505042,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617643242807,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
 
 /***/ }),
 
@@ -2586,26 +2586,7 @@ const ACORES_DICOS_CONCELHOS = {
   4204: 'sao_miguel',
   4205: 'sao_miguel',
   4206: 'sao_miguel',
-  4101: 'santa_maria',
-  corvo: 4901,
-  flores: 4802,
-  flores: 4801,
-  faial: 4701,
-  pico: 4602,
-  pico: 4603,
-  pico: 4601,
-  sao_jorge: 4501,
-  sao_jorge: 4502,
-  graciosa: 4401,
-  terceira: 4301,
-  terceira: 4302,
-  sao_miguel: 4201,
-  sao_miguel: 4202,
-  sao_miguel: 4203,
-  sao_miguel: 4204,
-  sao_miguel: 4205,
-  sao_miguel: 4206,
-  santa_maria: 4101
+  4101: 'santa_maria'
 };
 
 /***/ })
