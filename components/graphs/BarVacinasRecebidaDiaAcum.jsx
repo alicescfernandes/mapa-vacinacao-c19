@@ -116,8 +116,6 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 
 							drawTime: 'afterDatasetsDraw',
 
-							fontSize: 13,
-
 							textAlign: 'left',
 							fontColor: '#0A9DD1',
 							position: 'left',
@@ -160,9 +158,6 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 							backgroundColor: 'rgba(0,0,0,0.0)',
 
 							drawTime: 'afterDatasetsDraw',
-
-							fontSize: 13,
-
 							textAlign: 'left',
 							font: {
 								style: 'bold',
