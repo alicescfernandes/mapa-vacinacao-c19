@@ -1184,7 +1184,6 @@ function dateWithoutTimezone(unix) {
 function trackPlausible(req) {
   var _req$headers;
 
-  return;
   if (req === undefined) return;
   if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
   let host = req.headers.host;
@@ -3495,13 +3494,10 @@ function makePublicRouterInstance(router) {
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("IZS3");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("3Nti");
-/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("vga7");
-var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
-
+/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3Nti");
+/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vga7");
+var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
 
 
 
@@ -3510,7 +3506,6 @@ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*
 
 function Footer() {
   let options = {
-    month: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -3531,9 +3526,9 @@ function Footer() {
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
       src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("footer", {
-      className: `${_Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.footer} card-shadow`,
+      className: `${_Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.footer} card-shadow`,
       children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
-        className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.content,
+        className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.content,
         children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("ul", {
           children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
             children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
@@ -3572,8 +3567,8 @@ function Footer() {
             })
           })]
         }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
-          className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.update,
-          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(_data_last_update_json__WEBPACK_IMPORTED_MODULE_4__.date))]
+          className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.update,
+          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date))]
         })]
       })
     })]
@@ -3743,7 +3738,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617643242807,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617654414424,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-03\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-04\"}");
 
 /***/ }),
 

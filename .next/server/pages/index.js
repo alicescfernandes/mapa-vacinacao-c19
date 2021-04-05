@@ -797,7 +797,6 @@ function VacinadosPorDia({
         label: 'Vacinas Totais',
         type: 'bar',
         overlayBars: true,
-        overlayBars: true,
         backgroundColor: color_2,
         data: values,
         order: 4,
@@ -1389,7 +1388,6 @@ function dateWithoutTimezone(unix) {
 function trackPlausible(req) {
   var _req$headers;
 
-  return;
   if (req === undefined) return;
   if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
   let host = req.headers.host;
@@ -2109,7 +2107,7 @@ function useData({
           labelsMedias.push(labels[start]);
         }
 
-        for (let start = dias; start <= values.length; start++) {
+        for (let start = dias; start <= values.length - 1; start++) {
           let slice = values.slice(start - dias, start);
 
           if (values[start] === null || slice.includes(null) > 0) {
@@ -2552,15 +2550,12 @@ module.exports = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Counter; });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("5PhN");
-/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("Ys+F");
-/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_count_to__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("UG6H");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-
-
+/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("Ys+F");
+/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_count_to__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("UG6H");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -2595,29 +2590,29 @@ function Counter({
     style: {
       color: foreground
     },
-    className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_highlight,
+    className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_highlight,
     children: [numberFormatter.format(value).replace(/,/gm, ' '), " ", suffix ? suffix : '']
   });
 
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
     children: [title == '' ? '' : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("h2", {
-      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_title,
+      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_title,
       children: title
     }), subtitle == '' ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       style: {
         height: 20
       }
     }) : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle,
+      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle,
       children: subtitle
     }), to === null ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("span", {
-      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_highlight,
+      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_highlight,
       style: {
         color: foreground
       },
       children: "N/A"
     }) : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_count_to__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_count_to__WEBPACK_IMPORTED_MODULE_1___default.a, {
         digits: digits,
         delay: 1,
         from: from || 0,
@@ -2626,19 +2621,19 @@ function Counter({
         children: fn
       }), Math.abs(to - yesterday) > 0 ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
-          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle,
+          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle,
           children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("span", {
             style: {
               color: foreground
             },
-            className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle_highlight,
+            className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle_highlight,
             children: [Math.sign(difference) == 1 ? '+' : '-', " ", numberFormatter.format(Math.abs(difference)).replace(',', ' ')]
           }), "\xA0 que ", tempo]
         })
       }) : '', ps != null ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle,
-          children: ps.split('\n').map((el, idx) => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react__WEBPACK_IMPORTED_MODULE_4__["Fragment"], {
+          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle,
+          children: ps.split('\n').map((el, idx) => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react__WEBPACK_IMPORTED_MODULE_3__["Fragment"], {
             children: [el, " ", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("br", {})]
           }, idx))
         })
@@ -3345,10 +3340,6 @@ function LineVacinadosInfecoesRecuperados({
 // EXTERNAL MODULE: ./components/graphs/PieVacinadosInfectadosRecuperadosObitos.jsx
 var PieVacinadosInfectadosRecuperadosObitos = __webpack_require__("Q/64");
 
-// EXTERNAL MODULE: external "classnames"
-var external_classnames_ = __webpack_require__("K2gz");
-var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_classnames_);
-
 // CONCATENATED MODULE: ./components/graphs/BarsVacinacaoArs.jsx
 
 
@@ -3357,34 +3348,6 @@ var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_cl
 
 
 
-
-
-let styles = {
-  'labels-container': {
-    display: 'inline-block',
-    position: 'relative',
-    //width: '15%',
-    width: '0%',
-    height: '126px',
-    overflow: 'hidden',
-    verticalAlign: 'top',
-    padding: '15px 0px'
-  },
-  'labels-label': {
-    textAlign: 'right',
-    fontSize: '12px',
-    marginBottom: '0px',
-    lineHeight: 'calc(100px / 3)'
-  },
-  'graph-container': {
-    display: 'inline-block',
-    lineHeight: '40px',
-    position: 'relative',
-    width: '100%',
-    height: 150,
-    overflow: 'hidden'
-  }
-};
 function BarsVacinacaoArs({
   statistics,
   colors
@@ -3395,9 +3358,7 @@ function BarsVacinacaoArs({
   } = Object(external_react_["useState"])(true);
   let {
     main,
-    shades,
-    tints,
-    complements
+    tints
   } = colors;
   const {
     0: snsData,
@@ -3467,9 +3428,6 @@ function BarsVacinacaoArs({
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
             return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
-          },
-          title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
           }
         }
       },
@@ -3783,6 +3741,10 @@ function BarVacinasRecebidaDia({
     })
   });
 }
+// EXTERNAL MODULE: external "classnames"
+var external_classnames_ = __webpack_require__("K2gz");
+var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_classnames_);
+
 // CONCATENATED MODULE: ./components/graphs/BarAdministradasPorFaixaEtaria.jsx
 
 
@@ -3801,7 +3763,6 @@ function BarAdministradasPorFaixaEtaria({
     0: loaded,
     1: setLoaded
   } = Object(external_react_["useState"])(false);
-  let marriedData = {};
   let {
     main,
     shades,
@@ -3832,13 +3793,11 @@ function BarAdministradasPorFaixaEtaria({
       });
     }
   }, [activeDose]);
-  marriedData = Object.values(marriedData).reverse();
 
   const data = canvas => {
     let {
       labels,
-      groups,
-      maxValue
+      groups
     } = graphData;
 
     if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
@@ -4039,7 +3998,7 @@ function BarAdministradasPorFaixaEtaria({
             return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value, false));
           },
           title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
+            //var label = data.datasets[tooltipItem[0].datasetIndex];
             return tooltipItem[0].label;
           }
         }
@@ -4127,8 +4086,7 @@ function BarAdministradasPorFaixaEtaria({
 
 
 
-
-let BarTotaisPorFaixaEtaria_styles = {
+let styles = {
   'vaccine-label': {
     textAlign: 'right',
     fontSize: '12px',
@@ -4146,9 +4104,7 @@ function CustomBarChart({
 }) {
   let {
     main,
-    shades,
-    tints,
-    complements
+    shades
   } = colors;
 
   const graphData = canvas => {
@@ -4203,9 +4159,6 @@ function CustomBarChart({
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
             return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
-          },
-          title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
           }
         }
       },
@@ -4248,13 +4201,13 @@ function CustomBarChart({
         overflow: 'hidden'
       },
       children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-        style: BarTotaisPorFaixaEtaria_styles['vaccine-label'],
+        style: styles['vaccine-label'],
         children: type
       }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-        style: BarTotaisPorFaixaEtaria_styles['vaccine-label'],
+        style: styles['vaccine-label'],
         children: "Pfizer/BioNTech"
       }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-        style: BarTotaisPorFaixaEtaria_styles['vaccine-label'],
+        style: styles['vaccine-label'],
         children: "AstraZeneca"
       })]
     }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
@@ -4441,8 +4394,6 @@ function BarArs_defineProperty(obj, key, value) { if (key in obj) { Object.defin
 
 
 
-
-
 let BarArs_styles = {
   'labels-container': {
     display: 'inline-block',
@@ -4480,8 +4431,7 @@ function BarArs_CustomBarChart({
   let {
     main,
     shades,
-    tints,
-    complements
+    tints
   } = colors;
 
   const graphData = canvas => {
@@ -4543,9 +4493,6 @@ function BarArs_CustomBarChart({
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
             return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
-          },
-          title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
           }
         }
       },
@@ -6414,11 +6361,13 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Home_module_default.a.text,
               children: ["A percentagem de popula\xE7\xE3o vacinada foi calculada com base no n\xFAmero total de segundas doses administradas e com o \xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://www.pordata.pt/Portugal",
                 children: "n\xFAmero de popula\xE7\xE3o de Portugal (dados do PORDATA)"
               }), ". De acordo com o\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/",
@@ -6435,11 +6384,13 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Home_module_default.a.text,
               children: ["No in\xEDcio da campanha de vacina\xE7\xE3o foi anunciadas que ia haver 3 fases de vacina\xE7\xE3o, e que a primeria iria ser dividida em duas partes. A partir de Dezembro iriam ser administradas vacinas a Profissionais de sa\xFAde envolvidos na presta\xE7\xE3o de cuidados a doentes, profissionais das for\xE7as armadas, for\xE7as de seguran\xE7a e servi\xE7os cr\xEDticos, profissionais e residentes em ERPIs e institui\xE7\xF5es similares e profissionais e utentes da RNCCI. ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "A partir de Fevereiro iriam ser administradas vacinas a pessoas com mais de 50 ano, e com Insufici\xEAncia card\xEDaca, Doen\xE7a coron\xE1ria, Insufici\xEAncia renal (TFG menor que 60ml/min) ou com doen\xE7a respirat\xF3ria cr\xF3nica. ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "Para a segunda fase est\xE1 previsto vacinar pessoas com 65 ou mais anos com ou sem patologias que n\xE3o tenham sido vacinadas previamente e pessoas entre os 50 e os 64 anos com pelo menos uma das seguintes patologias descritas no plano de vacina\xE7\xE3o. Mais informa\xE7\xE3o sobre o plano de vacina\xE7\xE3o pode ser consultada", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 href: "https://www.sns.gov.pt/wp-content/uploads/2020/12/Plano_Vacinacao_COVID-19.pdf",
                 target: ":blank",
                 children: "aqui"
               }), ' ', "e", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 href: "https://covid19.min-saude.pt/vacinacao/",
                 target: ":blank",
@@ -6455,21 +6406,25 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Home_module_default.a.text,
               children: ["Os dados apresentados s\xE3o retirados do portal\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/",
                 children: "Monitoriza\xE7\xE3o do SNS da Dire\xE7\xE3o-Geral da Sa\xFAde"
               }), "\xA0e do s\xEDtio\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/",
                 children: "Ponto de Situa\xE7\xE3o da Dire\xE7\xE3o-Geral da Sa\xFAde"
               }), ". A atualiza\xE7\xE3o destes dados \xE9 di\xE1ria.", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "Os dados relativos \xE0 distribui\xE7\xE3o das vacinas e administra\xE7\xE3o das mesmas por grupo et\xE1ria s\xE3o disponibilizados pelo", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 href: "https://www.ecdc.europa.eu/en",
                 target: "_blank",
                 children: "ECDC (European Centre for Disease Prevention and Control)"
               }), "\xA0 e s\xE3o atualizados atrav\xE9s dos\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://covid19-vaccine-report.ecdc.europa.eu/#6_Reported_data",
@@ -6478,11 +6433,13 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Home_module_default.a.text,
               children: ["Os dados relativos \xE0 vacina\xE7\xE3o por ARS \xE9 tirada do portal sobre", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 href: "https://covid19.min-saude.pt/",
                 target: "_blank",
                 children: "a COVID-19 da Dire\xE7\xE3o-Geral da Sa\xFAde"
               }), "\xA0 e s\xE3o atualizados atrav\xE9s dos\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://covid19.min-saude.pt/relatorio-de-vacinacao/",
@@ -6491,11 +6448,13 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Home_module_default.a.text,
               children: ["O n\xFAmero total de vacinas adquiridas anunciado pela Dire\xE7\xE3o-Geral de Sa\xFAde foi divulgado atrav\xE9s de um comunicado feito no s\xEDtio do Governo de Portugal, que", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 href: "https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C",
                 target: "_blank",
                 children: "pode ser consultado aqui."
               }), ' ', "No dia 01 de Mar\xE7o de 2021, foi anunciado que o n\xFAmero total de vacinas adquiridas aumentou para 38 milh\xF5es de doses, num comunicado dirigido \xE0 imprensa que", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 href: "https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19",
                 target: "_blank",
@@ -6504,11 +6463,13 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Home_module_default.a.text,
               children: ["Os dados relativos \xE0 vacina\xE7\xE3o na Uni\xE3o Europeia s\xE3o atualizados pelo\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://ourworldindata.org/",
                 children: "Our World In Data"
               }), "\xA0 e est\xE3o dispon\xEDveis\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv",
@@ -6518,11 +6479,13 @@ function Home() {
                   children: "t"
                 }), ' ']
               }), "s\xE3o atualizados pelo\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "https://ourworldindata.org/",
                 children: "Instituto Nacional Doutor Ricardo Jorge"
               }), "\xA0 e est\xE3o dispon\xEDveis\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
                 target: "_blank",
                 href: "http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/",
@@ -9098,13 +9061,10 @@ function makePublicRouterInstance(router) {
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("IZS3");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("3Nti");
-/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("vga7");
-var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
-
+/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3Nti");
+/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vga7");
+var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
 
 
 
@@ -9113,7 +9073,6 @@ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*
 
 function Footer() {
   let options = {
-    month: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -9134,9 +9093,9 @@ function Footer() {
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
       src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("footer", {
-      className: `${_Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.footer} card-shadow`,
+      className: `${_Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.footer} card-shadow`,
       children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
-        className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.content,
+        className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.content,
         children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("ul", {
           children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
             children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
@@ -9175,8 +9134,8 @@ function Footer() {
             })
           })]
         }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
-          className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.update,
-          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(_data_last_update_json__WEBPACK_IMPORTED_MODULE_4__.date))]
+          className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.update,
+          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date))]
         })]
       })
     })]
@@ -9314,7 +9273,6 @@ function DatePickerButton({
 
     render() {
       let {
-        value,
         onClick
       } = this.props;
       return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
@@ -9472,7 +9430,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617643242807,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-03-28\",\"dateMadeiraCases\":\"2021-04-02\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-01\"}");
+module.exports = JSON.parse("{\"date\":1617654414424,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-03\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-04\"}");
 
 /***/ }),
 
