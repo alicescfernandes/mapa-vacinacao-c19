@@ -77,7 +77,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 					label: 'Vacinas Totais',
 					type: 'bar',
 					overlayBars: true,
-					overlayBars: true,
 					backgroundColor: color_2,
 					data: values,
 					order: 4,

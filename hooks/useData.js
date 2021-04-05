@@ -209,7 +209,7 @@ export function useData({ regiao }) {
 					labelsMedias.push(labels[start]);
 				}
 
-				for (let start = dias; start <= values.length; start++) {
+				for (let start = dias; start <= values.length - 1; start++) {
 					let slice = values.slice(start - dias, start);
 
 					if (values[start] === null || slice.includes(null) > 0) {

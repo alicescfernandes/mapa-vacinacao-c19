@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState, createRef } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { format, subDays } from 'date-fns';
 import styles from './DatePickerButton.module.scss';
@@ -39,7 +39,7 @@ export function DatePickerButton({ minDate, maxDate, onDateSelect, colors }) {
 		}
 
 		render() {
-			let { value, onClick } = this.props;
+			let { onClick } = this.props;
 			return (
 				<>
 					<div>

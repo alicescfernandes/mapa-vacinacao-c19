@@ -9,7 +9,6 @@ import { GooSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import { useColors } from '../hooks/useColors';
-import { Metatags } from '../components/MetaTags';
 import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
@@ -86,7 +85,6 @@ export default function Home() {
 
 	let d = [first.toUpperCase(), ...restDate].join('');
 
-	1; // Send to main route
 	function onSocketUpdate() {
 		router.push('/');
 	}
@@ -368,6 +366,7 @@ export default function Home() {
 									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o
 									&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html"
@@ -376,6 +375,7 @@ export default function Home() {
 									</a>
 									. Os{' '}
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120"
@@ -384,6 +384,7 @@ export default function Home() {
 									</a>{' '}
 									são dados provisórios de até 31/12 e foram retirados do PORDATA De acordo com o&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/"
@@ -397,6 +398,7 @@ export default function Home() {
 									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos
 									ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/"
 										target=":blank"
@@ -415,12 +417,22 @@ export default function Home() {
 								<h2 className={styles.title}>Fontes</h2>
 								<p className={styles.text}>
 									Os dados apresentados são retirados dos boletins publicados pela&nbsp;
-									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/boletim-vacinacao-covid-19/">
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										target="_blank"
+										href="https://covidmadeira.pt/boletim-vacinacao-covid-19/"
+									>
 										Direção Regional de Saúde
 									</a>
 									. A atualização destes dados é semanal. Os dados relativos aos casos confirmados pelo o novo coronavirus são
 									retirados dos{' '}
-									<a className={styles.link} target="_blank" href="https://covidmadeira.pt/ponto-de-situacao/">
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										target="_blank"
+										href="https://covidmadeira.pt/ponto-de-situacao/"
+									>
 										pontos de situação
 									</a>{' '}
 									publicados pela mesma entidade

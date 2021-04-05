@@ -1,7 +1,5 @@
-import { Card } from './Card';
 import CountTo from 'react-count-to';
 import styles from './Card.module.scss';
-import { useEffect, useState } from 'react';
 import * as React from 'react';
 export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digits, suffix, tempo }) {
 	if (!tempo) tempo = 'no dia anterior';

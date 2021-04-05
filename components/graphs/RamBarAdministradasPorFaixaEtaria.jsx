@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import { RESIZE_TRESHOLD, lineChartCommon } from './../../constants';
 export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
-	let marriedData = {};
 	let { main, shades, tints, complements } = colors;
 	let [graphData, setGraphData] = useState({});
 	let [activeDose, setActiveDose] = useState(1);
@@ -34,8 +33,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 			});
 		}
 	}, [activeDose]);
-
-	marriedData = Object.values(marriedData).reverse();
 
 	const data = (canvas) => {
 		let { labels, groups, maxValue } = graphData;
@@ -170,7 +167,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					hidden: true,
 					display: false,
 					customDose: 2,
-					yAxisID: 'axis',
 				},
 				{
 					...lineChartCommon,
@@ -179,7 +175,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					labelGroup: 'Grupo 60/69',
 					backgroundColor: shades[2],
 					data: groups.map((group) => group.e6064.dose_1 + group.e6569.dose_1 || 0),
-					yAxisID: 'axis',
 					xAxisID: 'xaxis',
 
 					order: 8,
@@ -201,7 +196,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					data: groups.map((group) => group.e7079.dose_2 || 0),
 
 					order: 9,
-					fill: false,
 					hidden: true,
 					display: false,
 					customDose: 2,
@@ -229,7 +223,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 80+ - 2ª Dose',
 					labelGroup: 'Grupo 80+',
 					xAxisID: 'xaxis',
-					yAxisID: 'axis',
 					backgroundColor: complements[1],
 					data: groups.map((group) => group.e80.dose_2 || 0),
 
@@ -257,7 +250,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					fill: false,
 					display: true,
 					customDose: 1,
-					yAxisID: 'axis',
 				},
 			],
 		};
@@ -307,7 +299,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					...generateColor(shades[0]),
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
-						return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value, false).toFixed(2) + '%';
+						return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value).toFixed(2) + '%';
 					},
 					title: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem[0].datasetIndex];

@@ -9,7 +9,6 @@ import { GooSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import { useColors } from '../hooks/useColors';
-import { Metatags } from '../components/MetaTags';
 import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
@@ -86,7 +85,6 @@ export default function Home() {
 
 	let d = [first.toUpperCase(), ...restDate].join('');
 
-	1; // Send to main route
 	function onSocketUpdate() {
 		router.push('/');
 	}
@@ -351,6 +349,7 @@ export default function Home() {
 									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o
 									&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater"
@@ -359,6 +358,7 @@ export default function Home() {
 									</a>
 									. Os{' '}
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater"
@@ -367,6 +367,7 @@ export default function Home() {
 									</a>{' '}
 									são dados provisórios 26/05/2015 e foram retirados do PORDATA. De acordo com o&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/"
@@ -380,6 +381,7 @@ export default function Home() {
 									A população suscetível a infeção foi calculada com base na população total menos a soma do número de óbitos, casos
 									ativos, população infectada, vacinada e recuperada assumindo que casos de reinfeções são raros.{' '}
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										href="https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/"
 										target=":blank"
@@ -398,12 +400,17 @@ export default function Home() {
 								<h2 className={styles.title}>Fontes</h2>
 								<p className={styles.text}>
 									Os dados apresentados são retirados do portal de vacinação do{' '}
-									<a className={styles.link} target="_blank" href="https://vacinacao-covid19.azores.gov.pt/">
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										target="_blank"
+										href="https://vacinacao-covid19.azores.gov.pt/"
+									>
 										Governo dos Açores
 									</a>
 									. A atualização destes dados é semanal. Os dados relativos aos casos confirmados pelo o novo coronavirus são
 									retirados dos{' '}
-									<a className={styles.link} target="_blank" href="https://destinoseguro.azores.gov.pt/">
+									<a rel="noopener noreferrer" className={styles.link} target="_blank" href="https://destinoseguro.azores.gov.pt/">
 										pontos de situação
 									</a>{' '}
 									publicados pela mesma entidade

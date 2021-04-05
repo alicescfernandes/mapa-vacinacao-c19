@@ -1,41 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
-import classNames from 'classnames';
-import { Col, Row } from 'react-bootstrap';
 import { RESIZE_TRESHOLD } from '../../constants';
-
-let styles = {
-	'labels-container': {
-		display: 'inline-block',
-		position: 'relative',
-		//width: '15%',
-		width: '0%',
-		height: '126px',
-		overflow: 'hidden',
-		verticalAlign: 'top',
-		padding: '15px 0px',
-	},
-	'labels-label': {
-		textAlign: 'right',
-		fontSize: '12px',
-		marginBottom: '0px',
-		lineHeight: 'calc(100px / 3)',
-	},
-	'graph-container': {
-		display: 'inline-block',
-		lineHeight: '40px',
-		position: 'relative',
-		width: '100%',
-		height: 150,
-		overflow: 'hidden',
-	},
-};
 
 export function BarsVacinacaoArs({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
-	let { main, shades, tints, complements } = colors;
+	let { main, tints } = colors;
 	const [snsData, setSNSData] = useState({});
 
 	const data = (canvas) => {
@@ -107,9 +78,6 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
 						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
-					},
-					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 					},
 				},
 			},

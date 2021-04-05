@@ -1,11 +1,9 @@
 import { Container } from 'react-bootstrap';
-import Link from 'next/link';
 import styles from './Footer.module.scss';
 import json from './../data/last-update.json';
 
 export function Footer() {
 	let options = {
-		month: 'long',
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',

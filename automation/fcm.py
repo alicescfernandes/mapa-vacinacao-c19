@@ -1,9 +1,7 @@
-import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import messaging
 import datetime
 import json
-from dateutil.parser import parse
 from dateutil.relativedelta import *
 import locale
 locale.setlocale(locale.LC_ALL, '')

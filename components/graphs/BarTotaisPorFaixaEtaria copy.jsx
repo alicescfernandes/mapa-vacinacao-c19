@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+/* import { useEffect, useRef, useState } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
@@ -157,9 +157,7 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 								<span className={'legend'}>
 									<span style={{ backgroundColor: main }} className={'color_sample'}></span>2ª Dose
 								</span>
-								{/*<span>
-									<span></span>População-Alvo
-								</span>*/}
+							
 							</p>
 						</div>
 						<Row>
@@ -224,3 +222,4 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 		</Card>
 	);
 }
+ */
