@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
-import classNames from 'classnames';
 import { Col, Row } from 'react-bootstrap';
 
 let styles = {
@@ -14,7 +13,7 @@ let styles = {
 	},
 };
 function CustomBarChart({ type, total, colors, data, showHeading }) {
-	let { main, shades, tints, complements } = colors;
+	let { main, shades } = colors;
 
 	const graphData = (canvas) => {
 		return {
@@ -73,9 +72,6 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 					label: (tooltipItem, data) => {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
 						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
-					},
-					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 					},
 				},
 			},

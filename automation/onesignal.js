@@ -74,7 +74,6 @@ if (data[data.length - 1].Data > lastUpdate.last_update) {
 		var chunks = [];
 
 		res.on('end', function (chunk) {
-			var body = Buffer.concat(chunks);
 			console.log('done');
 		});
 	});

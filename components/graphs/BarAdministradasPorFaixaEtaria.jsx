@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { RESIZE_TRESHOLD } from './../../constants';
 export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
-	let marriedData = {};
 	let { main, shades, tints, complements } = colors;
 	let [graphData, setGraphData] = useState({});
 	let [activeDose, setActiveDose] = useState(1);
@@ -25,10 +24,8 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 		}
 	}, [activeDose]);
 
-	marriedData = Object.values(marriedData).reverse();
-
 	const data = (canvas) => {
-		let { labels, groups, maxValue } = graphData;
+		let { labels, groups } = graphData;
 
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = '1000px';
@@ -249,7 +246,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 						return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + formatNumber(parseInt(tooltipItem.value, false));
 					},
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
+						//var label = data.datasets[tooltipItem[0].datasetIndex];
 						return tooltipItem[0].label;
 					},
 				},

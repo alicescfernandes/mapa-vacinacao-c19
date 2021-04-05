@@ -515,11 +515,12 @@ export default function Home() {
 								<p className={styles.text}>
 									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o
 									&nbsp;
-									<a className={styles.link} target="_blank" href="https://www.pordata.pt/Portugal">
+									<a rel="noopener noreferrer" className={styles.link} target="_blank" href="https://www.pordata.pt/Portugal">
 										número de população de Portugal (dados do PORDATA)
 									</a>
 									. De acordo com o&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/"
@@ -553,6 +554,7 @@ export default function Home() {
 									vacinadas previamente e pessoas entre os 50 e os 64 anos com pelo menos uma das seguintes patologias descritas no
 									plano de vacinação. Mais informação sobre o plano de vacinação pode ser consultada{' '}
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										href="https://www.sns.gov.pt/wp-content/uploads/2020/12/Plano_Vacinacao_COVID-19.pdf"
 										target=":blank"
@@ -560,7 +562,12 @@ export default function Home() {
 										aqui
 									</a>{' '}
 									e{' '}
-									<a className={styles.link} href="https://covid19.min-saude.pt/vacinacao/" target=":blank">
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										href="https://covid19.min-saude.pt/vacinacao/"
+										target=":blank"
+									>
 										aqui
 									</a>
 								</p>
@@ -574,11 +581,17 @@ export default function Home() {
 								<h2 className={styles.title}>Fontes</h2>
 								<p className={styles.text}>
 									Os dados apresentados são retirados do portal&nbsp;
-									<a className={styles.link} target="_blank" href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/">
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										target="_blank"
+										href="https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"
+									>
 										Monitorização do SNS da Direção-Geral da Saúde
 									</a>
 									&nbsp;e do sítio&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/"
@@ -589,21 +602,31 @@ export default function Home() {
 									<br />
 									Os dados relativos à distribuição das vacinas e administração das mesmas por grupo etária são disponibilizados
 									pelo{' '}
-									<a className={styles.link} href="https://www.ecdc.europa.eu/en" target="_blank">
+									<a rel="noopener noreferrer" className={styles.link} href="https://www.ecdc.europa.eu/en" target="_blank">
 										ECDC (European Centre for Disease Prevention and Control)
 									</a>
 									&nbsp; e são atualizados através dos&nbsp;
-									<a className={styles.link} target="_blank" href="https://covid19-vaccine-report.ecdc.europa.eu/#6_Reported_data">
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										target="_blank"
+										href="https://covid19-vaccine-report.ecdc.europa.eu/#6_Reported_data"
+									>
 										relatórios publicados semanalmente.
 									</a>
 								</p>
 								<p className={styles.text}>
 									Os dados relativos à vacinação por ARS é tirada do portal sobre{' '}
-									<a className={styles.link} href="https://covid19.min-saude.pt/" target="_blank">
+									<a rel="noopener noreferrer" className={styles.link} href="https://covid19.min-saude.pt/" target="_blank">
 										a COVID-19 da Direção-Geral da Saúde
 									</a>
 									&nbsp; e são atualizados através dos&nbsp;
-									<a className={styles.link} target="_blank" href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										target="_blank"
+										href="https://covid19.min-saude.pt/relatorio-de-vacinacao/"
+									>
 										relatórios publicados semanalmente.
 									</a>
 								</p>
@@ -611,6 +634,7 @@ export default function Home() {
 									O número total de vacinas adquiridas anunciado pela Direção-Geral de Saúde foi divulgado através de um comunicado
 									feito no sítio do Governo de Portugal, que{' '}
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										href="https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C"
 										target="_blank"
@@ -620,6 +644,7 @@ export default function Home() {
 									No dia 01 de Março de 2021, foi anunciado que o número total de vacinas adquiridas aumentou para 38 milhões de
 									doses, num comunicado dirigido à imprensa que{' '}
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										href="https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19"
 										target="_blank"
@@ -630,11 +655,12 @@ export default function Home() {
 								</p>
 								<p className={styles.text}>
 									Os dados relativos à vacinação na União Europeia são atualizados pelo&nbsp;
-									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+									<a rel="noopener noreferrer" className={styles.link} target="_blank" href="https://ourworldindata.org/">
 										Our World In Data
 									</a>
 									&nbsp; e estão disponíveis&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv"
@@ -646,11 +672,12 @@ export default function Home() {
 										R<sub>t</sub>{' '}
 									</em>
 									são atualizados pelo&nbsp;
-									<a className={styles.link} target="_blank" href="https://ourworldindata.org/">
+									<a rel="noopener noreferrer" className={styles.link} target="_blank" href="https://ourworldindata.org/">
 										Instituto Nacional Doutor Ricardo Jorge
 									</a>
 									&nbsp; e estão disponíveis&nbsp;
 									<a
+										rel="noopener noreferrer"
 										className={styles.link}
 										target="_blank"
 										href="http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/"
