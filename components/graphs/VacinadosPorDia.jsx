@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber, isInViewport } from '../../utils';
+import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 
 export function VacinadosPorDia({ statistics, colors }) {
@@ -10,7 +10,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let { values: values2, labels2 } = statistics.getMediaMovelDiaria(7);
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
 
-	let [height, setHeight] = useState(400);
 	const canvasRef = useRef(null);
 
 	const data = (canvas) => {

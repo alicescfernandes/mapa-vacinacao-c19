@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
@@ -7,7 +7,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let marriedData = {};
 	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
-	let { values: valueCasesDiarios, raw: rawCasos } = statistics.getDiariosCases();
+	let { raw: rawCasos } = statistics.getDiariosCases();
 	let { main, shades, tints, complements } = colors;
 
 	//map the last 30 days in data
@@ -125,7 +125,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
 					},
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
 					},
 				},

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { Bar, HorizontalBar, Line } from 'react-chartjs-2';
+import { HorizontalBar } from 'react-chartjs-2';
 import { MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from '../Card';
@@ -31,9 +31,8 @@ function getColor(d) {
 
 export function RamMapa({ statistics, colors }) {
 	let [graphData, setGraphData] = useState();
-	let canvas = useRef(null);
 	let [loaded, setLoaded] = useState(false);
-	let { main, shades, tints, complements } = colors;
+	let { main, shades } = colors;
 
 	const grades = [0, 20, 40, 60, 80];
 	const grades_pretty = {

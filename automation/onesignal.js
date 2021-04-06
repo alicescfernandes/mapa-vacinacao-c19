@@ -71,8 +71,6 @@ if (data[data.length - 1].Data > lastUpdate.last_update) {
 	};
 
 	var req = https.request(options, function (res) {
-		var chunks = [];
-
 		res.on('end', function (chunk) {
 			console.log('done');
 		});

@@ -11,7 +11,7 @@ import { RegiaoContext } from '../context/regiao';
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let regiao = useContext(RegiaoContext);
 
-	let { labels, values2 } = statistics.getDailyData();
+	let { labels } = statistics.getDailyData();
 	let { values, valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let casesData = statistics.getCases();
 
@@ -260,7 +260,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						return label + ': ' + formatNumber(tooltipItem.value);
 					},
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
 					},
 				},

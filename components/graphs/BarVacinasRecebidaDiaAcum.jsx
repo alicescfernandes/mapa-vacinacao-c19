@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 //import 'chartjs-plugin-annotation';
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import generic from '../../data/generic.json';
@@ -187,8 +187,6 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 
 							drawTime: 'afterDatasetsDraw',
 
-							fontSize: 13,
-
 							textAlign: 'left',
 							font: {
 								style: 'bold',
@@ -215,8 +213,6 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 						return label + ': ' + (parseInt(tooltipItem.value) ? formatNumber(parseInt(tooltipItem.value), false) : 0);
 					},
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
-
 						return tooltipItem[0].label;
 					},
 				},

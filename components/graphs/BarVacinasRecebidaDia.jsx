@@ -1,22 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 //import 'chartjs-plugin-annotation';
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
-import generic from '../../data/generic.json';
-import { CustomCheckbox } from '../CustomCheckbox';
 import { RESIZE_TRESHOLD } from '../../constants';
-import styles from './../Card.module.scss';
 
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
 	let [foreground, color_1, color_2, color_3, color_4] = colors;
-	let [annotationsToggle, setAnnotationsToggle] = useState({
+	/* let [annotationsToggle, setAnnotationsToggle] = useState({
 		dose: true,
 		dose2: true,
 		dose3: true,
-	});
+	}); */
 	const data = (canvas) => {
 		let { labels, mod, com, az } = graphData;
 
@@ -221,8 +218,6 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 						return label + ': ' + (parseInt(tooltipItem.value) ? formatNumber(parseInt(tooltipItem.value), false) : 0);
 					},
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
-
 						return tooltipItem[0].label;
 					},
 				},

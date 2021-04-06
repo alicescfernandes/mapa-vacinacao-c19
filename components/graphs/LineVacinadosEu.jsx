@@ -10,7 +10,7 @@ import styles from './../Card.module.scss';
 export function LineVacinadosEu({ statistics, colors }) {
 	const [owidData, setOwidData] = useState({ labels: '', pt: '', eu: '' });
 	const [loaded, setLoaded] = useState(loaded);
-	let { main, shades, tints, complements } = colors;
+	let { main, complements } = colors;
 
 	let [activeDose, setActiveDose] = useState(0);
 	let doses_map = {

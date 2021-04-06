@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { COLOR_1 } from '../../constants';
 import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from './../../utils';
 export function PieRecebidasAdquiridas({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
-	let { main, shades, tints, complements } = colors;
+	let { main } = colors;
 
 	const data = (canvas) => {
 		return {
