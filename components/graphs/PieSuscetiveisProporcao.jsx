@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { COLOR_1 } from '../../constants';
 import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from './../../utils';
@@ -9,7 +7,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let [loading, setLoading] = useState(false);
 	let vaccines = statistics.getLastVaccineAvaliable();
 	let lastCase = statistics.getLastCaseAvaliable();
-	let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
+	// let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 	let populacao_suscetivel = lastCase.populacao - (vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos);
 	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
 	let { main, shades, tints, complements } = colors;

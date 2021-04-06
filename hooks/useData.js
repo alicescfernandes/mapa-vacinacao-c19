@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ECDC_MAPPING, REGIOES } from '../constants';
 import { fetchWithLocalCache } from '../utils';
 import data from './../data/last-update.json';
@@ -11,7 +11,6 @@ export function useData({ regiao }) {
 	let [ecdc, setECDC] = useState(false);
 	let [vaccines, setVaccines] = useState(false);
 	let [casesData, setCasesData] = useState(false);
-	let [labels, setLabels] = useState([]);
 	let [arquipelagos, setArquipelagos] = useState({
 		madeira: {
 			vacinas: [],
@@ -34,7 +33,7 @@ export function useData({ regiao }) {
 	};
 
 	let f = new Intl.DateTimeFormat('pt-PT', options);
-	let f2 = new Intl.DateTimeFormat('pt-PT', options2);
+	// let f2 = new Intl.DateTimeFormat('pt-PT', options2);
 	function parseData(data) {
 		if (!ready) return;
 		let values = [];
@@ -105,7 +104,6 @@ export function useData({ regiao }) {
 		getDailyData: () => {
 			if (regiao !== REGIOES.PORTUGAL) {
 				let dados_regiao = arquipelagos[regiao].vacinas;
-				let lastItem = dados_regiao[dados_regiao.length - 1];
 
 				let labels = [];
 				let values = [];
@@ -376,8 +374,6 @@ export function useData({ regiao }) {
 			let az = {};
 			let ecdcRegion = ECDC_MAPPING[regiao];
 			ecdc.forEach((el) => {
-				var obj = {};
-
 				if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
 					com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
 					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
@@ -455,8 +451,6 @@ export function useData({ regiao }) {
 			};
 		},
 		getTotalAdministredDosesByAgeByWeek: async () => {
-			let labels = {};
-
 			let groups = {};
 
 			ecdc.forEach((el) => {
@@ -521,15 +515,12 @@ export function useData({ regiao }) {
 
 			if (ecdc == false) return;
 			let labels = {};
-			let data = {};
 			let com = {};
 			let mod = {};
 			let az = {};
 			let sum = [];
 
 			let ecdcCopy = JSON.parse(JSON.stringify(ecdc));
-
-			let numbers = [1, 1, 1, 1];
 
 			function sumArray(array) {
 				return array.reduce((prev, current) => {

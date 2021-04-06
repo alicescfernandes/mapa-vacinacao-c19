@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
@@ -35,7 +35,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	}, [activeDose]);
 
 	const data = (canvas) => {
-		let { labels, groups, maxValue } = graphData;
+		let { labels, groups } = graphData;
 
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = '1000px';
@@ -302,7 +302,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 						return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value).toFixed(2) + '%';
 					},
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return tooltipItem[0].label;
 					},
 				},

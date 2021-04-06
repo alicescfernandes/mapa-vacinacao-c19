@@ -10,22 +10,19 @@ import styles from './../Card.module.scss';
 export function BarVacinadosEu({ statistics, colors }) {
 	const [owidData, setOwidData] = useState({ labels: '', pt: '', eu: '' });
 	const [loaded, setLoaded] = useState(loaded);
-	let { main, shades, tints, complements } = colors;
+	let { main, complements } = colors;
 
 	let [activeDose, setActiveDose] = useState(0);
 	let doses_map = {
 		normal: ['total_vaccinations', 'new_1_doses', 'new_2_doses'],
 		per_hundred: ['total_vaccinations_per_hundred', 'new_1_doses_per_hundred', 'new_2_doses_per_hundred'],
 	};
-	let [height, setHeight] = useState(400);
 	let [toggleStats, setToggleStats] = useState({
 		perHundred: true,
 	});
 	const canvasRef = useRef(null);
 
 	const data = (canvas) => {
-		const ctx = canvas.getContext('2d');
-
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
@@ -72,7 +69,6 @@ export function BarVacinadosEu({ statistics, colors }) {
 			],
 		};
 	};
-	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
 			plugins: {
@@ -93,7 +89,6 @@ export function BarVacinadosEu({ statistics, colors }) {
 				intersect: true,
 				callbacks: {
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
 					},
 					label: (tooltipItem, data) => {

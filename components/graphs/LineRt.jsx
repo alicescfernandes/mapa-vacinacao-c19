@@ -1,27 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { lineChartCommon, lineChartCommon2, RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber, hexToRgb } from '../../utils';
+import { hexToRgb } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
-import { CustomCheckbox } from '../CustomCheckbox';
 import styles from './../Card.module.scss';
 
 export function LineRt({ statistics, colors, regiao }) {
-	let casesData = statistics.getCases();
+	// let casesData = statistics.getCases();
 	let [loaded, setLoaded] = useState(false);
-	let { valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 
-	let { main, shades, tints, complements } = colors;
+	let { main } = colors;
 	let [currentRegiao, setCurrentRegiao] = useState(regiao ?? 'continente');
-	let doses_map = {
-		normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
-		per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred'],
-	};
+
 	let [height, setHeight] = useState(400);
-	let [toggleStats, setToggleStats] = useState({
-		perHundred: true,
-	});
+
 	let [rtData, setRtData] = useState({});
 	const canvasRef = useRef(null);
 
@@ -36,22 +29,8 @@ export function LineRt({ statistics, colors, regiao }) {
 			setLoaded(true);
 		});
 	}, []);
-	let numberFormatter = new Intl.NumberFormat();
 
 	const data = (canvas) => {
-		const ctx = canvas?.getContext('2d');
-		const gradient = ctx?.createLinearGradient(0, 0, 0, height);
-		let color = '';
-		let { r, g, b } = hexToRgb(main);
-		try {
-			//See if supports transperancy
-			gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',30%)');
-			color = 'rgba(' + r + ',' + g + ',' + b + ',30%)';
-		} catch (e) {
-			gradient.addColorStop(0, '#d9f3ef');
-			color = '#d9f3ef';
-		}
-
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
@@ -188,7 +167,6 @@ export function LineRt({ statistics, colors, regiao }) {
 				intersect: true,
 				callbacks: {
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
 					},
 				},

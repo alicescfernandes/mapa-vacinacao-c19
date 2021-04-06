@@ -1,17 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
 import { DatePickerButton } from '../components/DatePickerButton';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
-import { isSameDay, format, parseISO, subDays, compareAsc } from 'date-fns';
+import { isSameDay, format, subDays, compareAsc } from 'date-fns';
 import { GooSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
 import { useColors } from '../hooks/useColors';
-import { Metatags } from '../components/MetaTags';
+
 import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
@@ -37,16 +35,12 @@ import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
-import { initSockets } from '../hooks/initSockets';
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
 	trackLocalhost: true,
 });
 
 export default function Home() {
-	let dates_exception = {
-		'26/03/2021': '13:00',
-	};
 	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'portugal' });
 	let rawData = statistics.getRaw();
 	let [selectedItem, setSelectedItem] = useState({});
@@ -61,8 +55,7 @@ export default function Home() {
 	let [last, setLast] = useState({});
 	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
-	let pusher = null;
-	let channel = null;
+
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
 	let [derivedNumbers, setDerivedNumbers] = useState({
 		pessoasAVacinar: {
@@ -317,6 +310,7 @@ export default function Home() {
 									</h1>
 
 									<a
+										rel="noopener noreferrer"
 										target="_blank"
 										href={fases.fases[fases.fase_atual].fontes[0].permalink}
 										className={`${cardStyles.card_subtitle} ${styles.link}`}

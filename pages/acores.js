@@ -4,7 +4,7 @@ import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
 
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
-import { isSameDay, format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { GooSpinner } from 'react-spinners-kit';
 import { useData } from '../hooks/useData';
 import styles from '../styles/Home.module.scss';
@@ -22,8 +22,6 @@ import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProp
 import { formatDateShort, formatNumber, perHundred } from '../utils';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
-import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
-import { RamBarAdministradasPorFaixaEtaria } from '../components/graphs/RamBarAdministradasPorFaixaEtaria';
 import { RaaMapa } from '../components/graphs/RaaMapa';
 import LazyLoad from 'react-lazyload';
 
@@ -33,10 +31,10 @@ const plausible = Plausible({
 });
 
 export default function Home() {
-	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'acores' });
+	let { statistics, ready: dataReady } = useData({ regiao: 'acores' });
 	let [selectedItem, setSelectedItem] = useState({});
 	let [previousItem, setPreviousItem] = useState({});
-	let [updating, setUpdating] = useState(false);
+
 	let [loaded, setLoaded] = useState(false);
 	let beacons = {
 		mid_page: false,
@@ -51,16 +49,6 @@ export default function Home() {
 		percentagem: {
 			current: 0,
 		},
-	});
-
-	let [doses, setDoses] = useState({
-		encomendadas: generic.doses.valor,
-		recebidas: 0,
-		administradas: 0,
-		primeiras: 0,
-		segundas: 0,
-		data: '',
-		dataLong: '',
 	});
 
 	function trackScrollEvents(e) {
@@ -89,7 +77,7 @@ export default function Home() {
 		router.push('/');
 	}
 
-	let { colors, colors_v2, setColors } = useColors();
+	let { colors, colors_v2 } = useColors();
 
 	useEffect(() => {
 		// Unconventional way of doing this
@@ -130,14 +118,7 @@ export default function Home() {
 			return isSameDay(el.Data, new Date(json.dateSnsStart));
 		});
 		 */
-		setDoses({
-			recebidas: 0,
-			administradas: lastItem.total,
-			primeiras: lastItem.dose_1,
-			segundas: lastItem.dose_2,
-			data: '',
-			dataLong: '',
-		});
+
 		setLoaded(true);
 	}, [dataReady]);
 	return (
@@ -152,7 +133,7 @@ export default function Home() {
 						</Row>
 						<Row className="counterRow">
 							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
+								<Card>
 									<Counter
 										colors={colors}
 										tempo={formatDateShort(previousItem.data)}
@@ -164,7 +145,7 @@ export default function Home() {
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
+								<Card>
 									<Counter
 										colors={colors}
 										tempo={formatDateShort(previousItem.data)}
@@ -182,7 +163,7 @@ export default function Home() {
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
+								<Card>
 									<Counter
 										colors={colors}
 										tempo={formatDateShort(previousItem.data)}
@@ -203,7 +184,7 @@ export default function Home() {
 						</Row>
 						<Row className="counterRow">
 							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
+								<Card>
 									<Counter
 										ps="Percentagem calculada com base no número total de segundas doses administradas"
 										digits={2}
@@ -216,7 +197,7 @@ export default function Home() {
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
+								<Card>
 									<Counter
 										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
 										digits={2}
