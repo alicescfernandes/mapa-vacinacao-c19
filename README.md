@@ -1,5 +1,7 @@
 # 🇵🇹💉 Vacinação COVID19 - Dashboard [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Falicescfernandes%2Fmapa-vacinacao-c19)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/alicescfernandes/mapa-vacinacao-c19.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/alicescfernandes/mapa-vacinacao-c19/context:javascript)
+
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/alicescfernandes/mapa-vacinacao-c19.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/alicescfernandes/mapa-vacinacao-c19/alerts/)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/alicescfernandes/mapa-vacinacao-c19.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/alicescfernandes/mapa-vacinacao-c19/alerts/) [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/alicescfernandes/mapa-vacinacao-c19.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/alicescfernandes/mapa-vacinacao-c19/context:javascript)
 [![Status](https://github.com/alicescfernandes/mapa-vacinacao-c19/actions/workflows/build.yml/badge.svg)](https://github.com/alicescfernandes/mapa-vacinacao-c19/actions)
 
 Este projeto foi desenvolvido com o intuito de mostrar o estado atual do plano de vacinação contra a covid-19. É um trabalho em progresso que vai sofrer atualizações ao longo do tempo, e também recebe os últimos números relacionados com administração das vacinas. 
