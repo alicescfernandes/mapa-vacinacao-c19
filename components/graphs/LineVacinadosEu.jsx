@@ -17,15 +17,12 @@ export function LineVacinadosEu({ statistics, colors }) {
 		normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
 		per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred'],
 	};
-	let [height, setHeight] = useState(400);
 	let [toggleStats, setToggleStats] = useState({
 		perHundred: true,
 	});
 	const canvasRef = useRef(null);
 
 	const data = (canvas) => {
-		const ctx = canvas.getContext('2d');
-
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
@@ -73,7 +70,6 @@ export function LineVacinadosEu({ statistics, colors }) {
 			],
 		};
 	};
-	let numberFormatter = new Intl.NumberFormat();
 	const options = () => {
 		return {
 			plugins: {
@@ -94,7 +90,6 @@ export function LineVacinadosEu({ statistics, colors }) {
 				intersect: true,
 				callbacks: {
 					title: (tooltipItem, data) => {
-						var label = data.datasets[tooltipItem[0].datasetIndex];
 						return 'Dia ' + tooltipItem[0].label;
 					},
 				},
