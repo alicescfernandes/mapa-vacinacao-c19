@@ -40,7 +40,7 @@
                 "total": 950
             },
             "sao_jorge":{
-                "nome":"Machico",
+                "nome":"São Jorge",
                 "chave":"sao_jorge",
                 "populacao":7836,
                 "dose_1": 1388,
@@ -123,7 +123,7 @@
                 "total": 950
             },
             "sao_jorge":{
-                "nome":"Machico",
+                "nome":"São Jorge",
                 "chave":"sao_jorge",
                 "populacao":7836,
                 "dose_1": 1388,
@@ -206,7 +206,7 @@
                 "total": 1058
             },
             "sao_jorge":{
-                "nome":"Machico",
+                "nome":"São Jorge",
                 "chave":"sao_jorge",
                 "populacao":7836,
                 "dose_1": 1388,
@@ -289,7 +289,11 @@
                 "total": 1742
             },
             "sao_jorge":{
+<<<<<<< Updated upstream
                 "nome":"Machico",
+=======
+                "nome":"São Jorge",
+>>>>>>> Stashed changes
                 "chave":"sao_jorge",
                 "populacao":7836,
                 "dose_1": 1388,
