@@ -192,6 +192,7 @@ export function useData({ regiao }) {
 
 		getMediaMovelDiaria: (dias) => {
 			let medias = [];
+			let labels = [];
 			let labelsMedias = [];
 			if (regiao === REGIOES.PORTUGAL) {
 				let { values } = statistics.getVacinadosPorDia();
