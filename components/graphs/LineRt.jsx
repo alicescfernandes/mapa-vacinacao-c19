@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import styles from './../Card.module.scss';
 
 export function LineRt({ statistics, colors, regiao }) {
-	// let casesData = statistics.getCases();
 	let [loaded, setLoaded] = useState(false);
 
 	let { main } = colors;
@@ -31,6 +30,19 @@ export function LineRt({ statistics, colors, regiao }) {
 	}, []);
 
 	const data = (canvas) => {
+		const ctx = canvas?.getContext('2d');
+		const gradient = ctx?.createLinearGradient(0, 0, 0, height);
+		let color = '';
+		let { r, g, b } = hexToRgb(main);
+		try {
+			//See if supports transperancy
+			gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',30%)');
+			color = 'rgba(' + r + ',' + g + ',' + b + ',30%)';
+		} catch (e) {
+			gradient.addColorStop(0, '#d9f3ef');
+			color = '#d9f3ef';
+		}
+
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
 		} else {
