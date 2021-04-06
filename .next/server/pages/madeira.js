@@ -193,15 +193,12 @@ function VacinadosPorDia({
     valuesIn2
   } = statistics.getDiariosInoculacoes();
   let {
-    values: values2,
-    labels2
+    values: values2
   } = statistics.getMediaMovelDiaria(7);
   let [foreground, color_1, color_2, color_3, color_4] = colors;
   const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
 
   const data = canvas => {
-    const ctx = canvas.getContext('2d');
-
     if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
       canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] + 'px';
     } else {
@@ -296,7 +293,6 @@ function VacinadosPorDia({
             return label + ': ' + numberFormatter.format(parseInt(tooltipItem.value)).replace(',', ' ');
           },
           title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
             return 'Dia ' + tooltipItem[0].label;
           }
         }
@@ -3032,14 +3028,11 @@ module.exports = require("react-spinners-kit");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("5PhN");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("lLkP");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("GyP+");
-/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("uAdN");
-
-
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("5PhN");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lLkP");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("GyP+");
+/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("uAdN");
 
 
 
@@ -3051,7 +3044,6 @@ function PieVacinadosInfectadosRecuperadosObitos({
   statistics,
   colors
 }) {
-  let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_7__[/* RegiaoContext */ "a"]);
   let {
     0: loading,
     1: setLoading
@@ -3113,18 +3105,18 @@ function PieVacinadosInfectadosRecuperadosObitos({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_6__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_5__[/* formatNumber */ "c"])(data)}`;
           }
         }
       }
     };
   };
 
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_4__[/* Card */ "a"], {
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
-        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default.a],
+        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default.a],
         height: 350,
         options: options(),
         data: data
@@ -3260,7 +3252,6 @@ function PieSuscetiveisProporcao({
   let {
     main,
     shades,
-    tints,
     complements
   } = colors;
 
@@ -3756,7 +3747,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617739803377,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-05\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-05\"}");
+module.exports = JSON.parse("{\"date\":1617740903664,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-05\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-05\"}");
 
 /***/ }),
 
