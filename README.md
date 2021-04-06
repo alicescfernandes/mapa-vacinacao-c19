@@ -1,6 +1,5 @@
 # 🇵🇹💉 Vacinação COVID19 - Dashboard [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Falicescfernandes%2Fmapa-vacinacao-c19)
 
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/alicescfernandes/mapa-vacinacao-c19.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/alicescfernandes/mapa-vacinacao-c19/alerts/)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/alicescfernandes/mapa-vacinacao-c19.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/alicescfernandes/mapa-vacinacao-c19/alerts/) [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/alicescfernandes/mapa-vacinacao-c19.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/alicescfernandes/mapa-vacinacao-c19/context:javascript)
 [![Status](https://github.com/alicescfernandes/mapa-vacinacao-c19/actions/workflows/build.yml/badge.svg)](https://github.com/alicescfernandes/mapa-vacinacao-c19/actions)
 
