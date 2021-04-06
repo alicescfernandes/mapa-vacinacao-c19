@@ -1,14 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { COLOR_1 } from '../../constants';
 import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from '../../utils';
 import { RegiaoContext } from '../context/regiao';
 export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) {
-	let regiao = useContext(RegiaoContext);
-
 	let [loading, setLoading] = useState(false);
 
 	let vaccines = statistics.getLastVaccineAvaliable();
