@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -196,7 +196,7 @@ const styles = {
 
 /***/ }),
 
-/***/ 20:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("4MLZ");
@@ -553,15 +553,15 @@ function VacinadosPorDia({
   const data = canvas => {
     const ctx = canvas.getContext('2d');
 
-    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
-      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"]) {
+      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
-        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"]) {
+        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
@@ -608,6 +608,7 @@ function VacinadosPorDia({
       }, {
         label: 'Vacinas Totais',
         type: 'bar',
+        overlayBars: true,
         overlayBars: true,
         backgroundColor: color_2,
         data: values,
@@ -657,10 +658,10 @@ function VacinadosPorDia({
           stacked: true,
           ticks: {
             beginAtZero: false,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
             callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false);
+              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "b"])(value, false);
             }
           }
         }, {
@@ -672,8 +673,8 @@ function VacinadosPorDia({
           stacked: true,
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60
           }
         }]
       }
@@ -681,10 +682,19 @@ function VacinadosPorDia({
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    if (values.length) {
+    var _canvasRef$current, _canvasRef$current$ch, _canvasRef$current$ch2;
+
+    if ((canvasRef === null || canvasRef === void 0 ? void 0 : (_canvasRef$current = canvasRef.current) === null || _canvasRef$current === void 0 ? void 0 : (_canvasRef$current$ch = _canvasRef$current.chartInstance) === null || _canvasRef$current$ch === void 0 ? void 0 : (_canvasRef$current$ch2 = _canvasRef$current$ch.canvas) === null || _canvasRef$current$ch2 === void 0 ? void 0 : _canvasRef$current$ch2.height) > 0) {
+      var _canvasRef$current2, _canvasRef$current2$c, _canvasRef$current2$c2;
+
+      setHeight(canvasRef === null || canvasRef === void 0 ? void 0 : (_canvasRef$current2 = canvasRef.current) === null || _canvasRef$current2 === void 0 ? void 0 : (_canvasRef$current2$c = _canvasRef$current2.chartInstance) === null || _canvasRef$current2$c === void 0 ? void 0 : (_canvasRef$current2$c2 = _canvasRef$current2$c.canvas) === null || _canvasRef$current2$c2 === void 0 ? void 0 : _canvasRef$current2$c2.height);
+    }
+  }, [canvasRef.current]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    if (values.length > 0 && height > 0) {
       setLoading(false);
     }
-  }, [values]);
+  }, [values, labels, height]);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
@@ -715,24 +725,24 @@ function useColors() {
   let {
     0: colors,
     1: setColors
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "j"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_1 */ "b"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_2 */ "c"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_3 */ "d"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_4 */ "e"]]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "h"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_1 */ "a"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_2 */ "b"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_3 */ "c"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COLOR_4 */ "d"]]);
   let {
     0: tints,
     1: setTints
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_30 */ "q"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_50 */ "r"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_70 */ "s"]]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_30 */ "m"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_50 */ "n"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* TINT_70 */ "o"]]);
   let {
     0: shades,
     1: setShades
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_30 */ "n"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_50 */ "o"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_70 */ "p"]]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_30 */ "j"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_50 */ "k"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* SHADE_70 */ "l"]]);
   let {
     0: complements,
     1: setComplements
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* COMPLEMENT_1 */ "f"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COMPLEMENT_2 */ "g"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COMPLEMENT_3 */ "h"]]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([_constants__WEBPACK_IMPORTED_MODULE_1__[/* COMPLEMENT_1 */ "e"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COMPLEMENT_2 */ "f"], _constants__WEBPACK_IMPORTED_MODULE_1__[/* COMPLEMENT_3 */ "g"]]);
   let [foreground, color_1, color_2, color_3, color_4] = colors;
   return {
     colors: [foreground, color_1, color_2, color_3, color_4],
     colors_v2: {
-      main: _constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "j"],
+      main: _constants__WEBPACK_IMPORTED_MODULE_1__[/* FOREGROUND_COLOR */ "h"],
       tints,
       shades,
       complements
@@ -762,8 +772,7 @@ module.exports = {
 	"subtitle": "Home_subtitle__3IlVB",
 	"text": "Home_text__dq4ii",
 	"alert": "Home_alert__3DkCs",
-	"alert_fill": "Home_alert_fill__2gdS0",
-	"datepicker_static": "Home_datepicker_static__owksC"
+	"alert_fill": "Home_alert_fill__2gdS0"
 };
 
 
@@ -773,29 +782,22 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchWithLocalCache; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatDateShort; });
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
-/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("4vsW");
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("lN74");
-var _data_generic_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("4vsW");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("lN74");
+var _data_generic_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
 
 
 const formatNumber = (number, isDate = true) => {
@@ -821,8 +823,6 @@ function dateWithoutTimezone(unix) {
 function trackPlausible(req) {
   var _req$headers;
 
-  if (req === undefined) return;
-  if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
   let host = req.headers.host;
   let url = req.url;
   let userAgent = req.headers['user-agent'];
@@ -848,7 +848,7 @@ function trackPlausible(req) {
   if (host.match('localhost')) return;
   if (req.headers['x-request-self'] === 'true') return;
   console.log('track', headers, JSON.stringify(data));
-  node_fetch__WEBPACK_IMPORTED_MODULE_2___default()('https://plausible.io/api/event', {
+  node_fetch__WEBPACK_IMPORTED_MODULE_0___default()('https://plausible.io/api/event', {
     method: 'post',
     headers,
     body: JSON.stringify(data)
@@ -864,8 +864,8 @@ function downloadPNG(canvasElement, graphName) {
   link.href = canvasElement.toDataURL();
   link.click();
 }
-function perHundred(total, populacaoTotal = _data_generic_json__WEBPACK_IMPORTED_MODULE_3__["populacao"].valor) {
-  return total / populacaoTotal * 100;
+function perHundred(total) {
+  return total / _data_generic_json__WEBPACK_IMPORTED_MODULE_1__["populacao"].valor * 100;
 }
 function fetchWithLocalCache(url, options) {
   let useCache = true;
@@ -874,8 +874,12 @@ function fetchWithLocalCache(url, options) {
 
   for (var k in items) {
     let [lsPath, lsCacheBuster] = k.split('?');
+    /* if (lsPath === path && lsCacheBuster !== cacheBuster) {
+    	useCache = false;
+    	localStorage.removeItem(k);
+    } */
 
-    if (lsPath === path && lsCacheBuster !== cacheBuster) {
+    if (lsPath === path) {
       useCache = false;
       localStorage.removeItem(k);
     }
@@ -894,11 +898,6 @@ function fetchWithLocalCache(url, options) {
       return data;
     });
   }
-}
-function formatDateShort(date) {
-  return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["format"])(new Date(date), "dd'/'MM'/'yyyy", {
-    locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_1__["pt"]
-  });
 }
 
 /***/ }),
@@ -922,7 +921,6 @@ function formatDateShort(date) {
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("xPX6");
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("UG6H");
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("uAdN");
 
 
 
@@ -940,18 +938,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 function NumeroTotalVacinados({
   colors,
   statistics
 }) {
-  let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_9__[/* RegiaoContext */ "a"]);
   let {
     labels,
-    values2
+    values
   } = statistics.getDailyData();
   let {
-    values,
     valuesIn1,
     valuesIn2
   } = statistics.getVacinadosAcum();
@@ -985,98 +980,7 @@ function NumeroTotalVacinados({
     pointHoverRadius: 3,
     pointHoverBorderWidth: 2,
     pointRadius: 1,
-    pointHitRadius: 10,
-    usePointStyle: true
-  };
-  let annotations = {
-    annotations: [{
-      type: 'line',
-      mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(2700000) : 2700000 : null,
-      borderColor: '#0A9DD1',
-      borderWidth: 2,
-      borderDash: [5, 5],
-      label: {
-        backgroundColor: 'rgba(0,0,0,0.0)',
-        drawTime: 'afterDatasetsDraw',
-        textAlign: 'left',
-        fontColor: '#0A9DD1',
-        position: 'left',
-        xAdjust: 10,
-        yAdjust: -10,
-        fontSize: '13px',
-        enabled: true,
-        content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)'
-      }
-    }, {
-      type: 'line',
-      mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? 20 : 1900000 : null,
-      borderColor: 'transparent',
-      label: {
-        enabled: false
-      }
-    }, {
-      type: 'line',
-      mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? 11 : 1200000 : null,
-      borderColor: 'transparent',
-      label: {
-        enabled: false
-      }
-    }, {
-      type: 'line',
-      mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(950000) : 950000 : null,
-      borderColor: '#0A9DD1',
-      borderWidth: 2,
-      borderDash: [5, 5],
-      label: {
-        backgroundColor: 'rgba(0,0,0,0.0)',
-        drawTime: 'afterDatasetsDraw',
-        textAlign: 'left',
-        fontColor: '#0A9DD1',
-        position: 'left',
-        xAdjust: 5,
-        yAdjust: -10,
-        fontSize: '13px',
-        enabled: true,
-        content: '1ª Fase - Dezembro (950 mil pessoas)'
-      }
-    }, {
-      type: 'line',
-      mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(10286300 * 0.7) : 10286300 * 0.7 : null,
-      borderColor: '#D17615',
-      borderWidth: 2,
-      borderDash: [5, 5],
-      label: {
-        backgroundColor: 'rgba(0,0,0,0.0)',
-        drawTime: 'afterDatasetsDraw',
-        textAlign: 'left',
-        fontColor: '#D17615',
-        fontSize: '13px',
-        position: 'left',
-        xAdjust: 5,
-        yAdjust: -10,
-        enabled: true,
-        content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)'
-      }
-    }, {
-      type: 'line',
-      mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade && toggleStats.perHundred ? 75 : null,
-      borderColor: 'transparent',
-      label: {
-        enabled: false
-      }
-    }]
+    pointHitRadius: 10
   };
   let chartRef = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["createRef"])();
 
@@ -1087,7 +991,7 @@ function NumeroTotalVacinados({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "d"])(foreground);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "c"])(foreground);
 
     try {
       gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
@@ -1097,20 +1001,20 @@ function NumeroTotalVacinados({
       gradient.addColorStop(1, '#ffffff');
     }
 
-    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"]) {
-      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"]) {
+      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"]) {
-        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"]) {
+        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
     });
-    const chartData = {
+    return {
       labels: labels,
       datasets: [_objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total vacinas administradas',
@@ -1120,7 +1024,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: foreground,
         pointHoverBackgroundColor: foreground,
         pointHoverBorderColor: foreground,
-        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el)) : values
+        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(el)) : values
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 1ª Dose',
         fill: false,
@@ -1129,7 +1033,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_1,
         pointHoverBackgroundColor: color_1,
         pointHoverBorderColor: color_1,
-        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el)) : valuesIn1
+        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(el)) : valuesIn1
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 2ª Dose',
         fill: false,
@@ -1138,12 +1042,8 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_2,
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
-        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el)) : valuesIn2
-      })]
-    };
-
-    if (regiao == _constants__WEBPACK_IMPORTED_MODULE_7__[/* REGIOES */ "l"].PORTUGAL) {
-      chartData.datasets.push(_objectSpread(_objectSpread({}, commonProps), {}, {
+        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(el)) : valuesIn2
+      }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Casos Confirmados',
         backgroundColor: '#D11541',
         borderColor: '#D11541',
@@ -1153,11 +1053,9 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
-      }));
-    }
-
-    return chartData;
+        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+      })]
+    };
   };
 
   const options = () => {
@@ -1174,14 +1072,103 @@ function NumeroTotalVacinados({
       animation: {
         duration: 1000
       },
-      annotation: regiao == 'portugal' ? annotations : {},
+      annotation: {
+        annotations: [{
+          type: 'line',
+          mode: 'horizontal',
+          scaleID: 'y-axis-0',
+          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(2700000) : 2700000 : null,
+          borderColor: '#0A9DD1',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          label: {
+            backgroundColor: 'rgba(0,0,0,0.0)',
+            drawTime: 'afterDatasetsDraw',
+            textAlign: 'left',
+            fontColor: '#0A9DD1',
+            position: 'left',
+            xAdjust: 10,
+            yAdjust: -10,
+            fontSize: '13px',
+            enabled: true,
+            content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)'
+          }
+        }, {
+          type: 'line',
+          mode: 'horizontal',
+          scaleID: 'y-axis-0',
+          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? 20 : 1900000 : null,
+          borderColor: 'transparent',
+          label: {
+            enabled: false
+          }
+        }, {
+          type: 'line',
+          mode: 'horizontal',
+          scaleID: 'y-axis-0',
+          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? 11 : 1200000 : null,
+          borderColor: 'transparent',
+          label: {
+            enabled: false
+          }
+        }, {
+          type: 'line',
+          mode: 'horizontal',
+          scaleID: 'y-axis-0',
+          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(950000) : 950000 : null,
+          borderColor: '#0A9DD1',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          label: {
+            backgroundColor: 'rgba(0,0,0,0.0)',
+            drawTime: 'afterDatasetsDraw',
+            textAlign: 'left',
+            fontColor: '#0A9DD1',
+            position: 'left',
+            xAdjust: 5,
+            yAdjust: -10,
+            fontSize: '13px',
+            enabled: true,
+            content: '1ª Fase - Dezembro (950 mil pessoas)'
+          }
+        }, {
+          type: 'line',
+          mode: 'horizontal',
+          scaleID: 'y-axis-0',
+          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "d"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+          borderColor: '#D17615',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          label: {
+            backgroundColor: 'rgba(0,0,0,0.0)',
+            drawTime: 'afterDatasetsDraw',
+            textAlign: 'left',
+            fontColor: '#D17615',
+            fontSize: '13px',
+            position: 'left',
+            xAdjust: 5,
+            yAdjust: -10,
+            enabled: true,
+            content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)'
+          }
+        }, {
+          type: 'line',
+          mode: 'horizontal',
+          scaleID: 'y-axis-0',
+          value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade && toggleStats.perHundred ? 75 : null,
+          borderColor: 'transparent',
+          label: {
+            enabled: false
+          }
+        }]
+      },
       tooltips: {
         mode: 'index',
         intersect: false,
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(tooltipItem.value);
+            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "b"])(tooltipItem.value);
           },
           title: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem[0].datasetIndex];
@@ -1193,30 +1180,31 @@ function NumeroTotalVacinados({
         yAxes: [{
           ticks: {
             beginAtZero: false,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 8 : 10,
             //max: 10000000,
-            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false)
+            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "b"])(value, false)
           }
         }],
         xAxes: [{
           ticks: {
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "i"] ? 30 : 60
           }
         }]
       }
     };
   };
 
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {}, [chartRef.current]);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     if (values.length > 0) {
       setLoading(false);
     }
-  }, [values]);
+  }, [values, labels, height]);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
-    children: [regiao === 'portugal' && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
       className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_scrollable].join(' '),
       style: {
         textAlign: 'left'
@@ -1288,12 +1276,9 @@ module.exports = require("classnames");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useData; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("xPX6");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("GyP+");
-/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vga7");
-var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
-/* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lN74");
-var _data_generic_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("GyP+");
+/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("vga7");
+var _data_last_update_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1303,12 +1288,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-
-function useData({
-  regiao
-}) {
+function useData() {
   let {
     0: ready,
     1: setReady
@@ -1318,8 +1298,24 @@ function useData({
     1: bumpVersioning
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let {
+    0: weeks,
+    1: setWeeks
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  let {
+    0: sns,
+    1: setSns
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  let {
     0: ecdc,
     1: setECDC
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  let {
+    0: ars,
+    1: setArs
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  let {
+    0: owid,
+    1: setOwid
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let {
     0: vaccines,
@@ -1334,20 +1330,11 @@ function useData({
     1: setLabels
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   let {
-    0: arquipelagos,
-    1: setArquipelagos
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    madeira: {
-      vacinas: [],
-      casos: []
-    },
-    acores: {
-      vacinas: [],
-      casos: []
-    }
-  });
+    0: rt,
+    1: setRt
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   let options = {
-    month: 'numeric',
+    month: 'short',
     day: 'numeric'
   };
   let options2 = {
@@ -1376,94 +1363,28 @@ function useData({
     getRaw: () => {
       return vaccines;
     },
-    getLastVaccineAvaliable: () => {
-      let data = {};
-
-      if (regiao !== _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
-        let dados_regiao = arquipelagos[regiao].vacinas;
-        let lastItem = dados_regiao[dados_regiao.length - 1];
-        data = {
-          dose_2: lastItem.dose_2,
-          dose_1: lastItem.dose_1,
-          total: lastItem.total
-        };
-      } else {
-        let lastItem = vaccines[vaccines.length - 1];
-        data = {
-          dose_2: lastItem.Inoculacao2_Ac,
-          dose_1: lastItem.Inoculacao1_Ac,
-          total: lastItem.Vacinados_Ac
-        };
-      }
-
-      return data;
-    },
-    getLastCaseAvaliable: () => {
-      let data = {};
-
-      if (regiao !== _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
-        let dados_regiao = arquipelagos[regiao].casos;
-        let lastItem = dados_regiao[dados_regiao.length - 1];
-        data = {
-          ativos: parseInt(lastItem.ativos),
-          recuperados: parseInt(lastItem.recuperados),
-          obitos: parseInt(lastItem.obitos),
-          populacao: regiao == _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].MADEIRA ? parseInt(_data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao_ram"].valor) : parseInt(_data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao_raa"].valor),
-          data: lastItem.data
-        };
-      } else {
-        let lastItem = casesData[vaccines.length - 1];
-        data = {
-          ativos: lastItem.Activos,
-          recuperados: lastItem.Recuperados,
-          obitos: lastItem.Obitos,
-          populacao: _data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao"].valor,
-          data: lastItem.Data
-        };
-      }
-
-      return data;
-    },
     getDailyData: () => {
-      if (regiao !== _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
-        let dados_regiao = arquipelagos[regiao].vacinas;
-        let lastItem = dados_regiao[dados_regiao.length - 1];
-        let labels = [];
-        let values = [];
-        dados_regiao.forEach(el => {
-          labels.push(f.format(new Date(el.data)));
-          values.push(el.total);
-        });
-        return {
-          labels,
-          values
-        };
-      } else {
-        return parseData(vaccines);
-      }
+      return parseData(vaccines);
     },
     getDesvioPadrao: () => {},
     getMediaMovel: dias => {
       let medias = [];
       let labelsMedias = [];
+      let {
+        labels,
+        values
+      } = parseData(vaccines);
 
-      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
-        let {
-          labels,
-          values
-        } = parseData(vaccines);
+      for (let start = 1; start <= dias; start++) {
+        let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+        medias.push(sum);
+        labelsMedias.push(labels[start]);
+      }
 
-        for (let start = 1; start <= dias; start++) {
-          let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-          medias.push(sum);
-          labelsMedias.push(labels[start]);
-        }
-
-        for (let start = dias; start <= values.length; start++) {
-          let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
-          medias.push(sum);
-          labelsMedias.push(labels[start]);
-        }
+      for (let start = dias; start <= values.length; start++) {
+        let sum = Math.round(values.slice(start - dias, start).reduce((prev, current) => prev + current, 0) / dias);
+        medias.push(sum);
+        labelsMedias.push(labels[start]);
       }
 
       return {
@@ -1472,19 +1393,20 @@ function useData({
       };
     },
     getRtRegiao: async regiao => {
-      let data2 = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/rt/${regiao}?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`).then(responseRt => {
+      let data2 = await Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/rt/${regiao}?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`).then(responseRt => {
+        setRt(responseRt);
         return responseRt;
       });
-      let date = new Date('2021-01-01').getTime();
-      let returnRt = data2.filter(el => new Date(el.Data).getTime() >= date); //let returnRt = data2;
+      let date = new Date('2020-12-27T00:00:45.000Z').getTime(); // let returnRt = data.filter((el) => new Date(el.Data).getTime() >= date);
 
+      let returnRt = data2;
       return {
         labels: returnRt.map(el => f.format(new Date(el.Data))),
         rt: returnRt
       };
     },
     getRtRegioes: async () => {
-      let data = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/rt/todas?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`).then(responseRt => {
+      let data = await Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/rt/todas?${btoa(data.date)}`).then(responseRt => {
         return responseRt;
       });
       let dates = data.rt_continente.map(el => el.Data); //get rt for each date
@@ -1509,8 +1431,7 @@ function useData({
         values: rtData
       };
     },
-    getOwid: async () => {
-      let owid = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/owid?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`);
+    getOwid: () => {
       let labels = owid.eun.data.map(el => f.format(new Date(el.date)));
       let data = {
         pt: owid.prt.data,
@@ -1523,35 +1444,32 @@ function useData({
     getMediaMovelDiaria: dias => {
       let medias = [];
       let labelsMedias = [];
+      let {
+        values
+      } = statistics.getVacinadosPorDia();
 
-      if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
-        let {
-          values
-        } = statistics.getVacinadosPorDia();
-
-        for (let start = 1; start <= dias; start++) {
-          if (values[start] === null) {
-            medias.push(null);
-            continue;
-          }
-
-          let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
-          medias.push(sum);
-          labelsMedias.push(labels[start]);
+      for (let start = 1; start <= dias; start++) {
+        if (values[start] === null) {
+          medias.push(null);
+          continue;
         }
 
-        for (let start = dias; start <= values.length - 1; start++) {
-          let slice = values.slice(start - dias, start);
+        let sum = Math.round(values.slice(0, start).reduce((prev, current) => prev + current, 0) / start);
+        medias.push(sum);
+        labelsMedias.push(labels[start]);
+      }
 
-          if (values[start] === null || slice.includes(null) > 0) {
-            medias.push(null);
-            continue;
-          }
+      for (let start = dias; start <= values.length; start++) {
+        let slice = values.slice(start - dias, start);
 
-          let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
-          medias.push(sum);
-          labelsMedias.push(labels[start]);
+        if (values[start] === null || slice.includes(null) > 0) {
+          medias.push(null);
+          continue;
         }
+
+        let sum = Math.round(slice.reduce((prev, current) => prev + current, 0) / dias);
+        medias.push(sum);
+        labelsMedias.push(labels[start]);
       }
 
       return {
@@ -1591,22 +1509,11 @@ function useData({
         labels,
         values
       } = statistics.getDailyData();
-
-      if (regiao !== _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
-        let dados_regiao = arquipelagos[regiao].vacinas;
-        dados_regiao.forEach((val, idx, vals) => {
-          in1.push(dados_regiao[idx].dose_1);
-          in2.push(dados_regiao[idx].dose_2);
-          total.push(dados_regiao[idx].total);
-        });
-      } else {
-        values.forEach((val, idx, vals) => {
-          in1.push(vaccines[idx].Inoculacao1_Ac);
-          in2.push(vaccines[idx].Inoculacao2_Ac);
-          total.push(vaccines[idx].Vacinados_Ac);
-        });
-      }
-
+      values.forEach((val, idx, vals) => {
+        in1.push(vaccines[idx].Inoculacao1_Ac);
+        in2.push(vaccines[idx].Inoculacao2_Ac);
+        total.push(vaccines[idx].Vacinados_Ac);
+      });
       return {
         valuesIn1: in1,
         valuesIn2: in2,
@@ -1617,86 +1524,43 @@ function useData({
     getDiariosInoculacoes: () => {
       let in1 = [];
       let in2 = [];
-      let total = [];
-      let raw = vaccines;
-      let labels = [];
+      let {
+        labels,
+        values
+      } = parseData(vaccines);
+      let total = values.map((val, idx, vals) => {
+        //The first one
+        if (idx === 0) {
+          in1.push(vaccines[idx].Inoculacao1_Ac);
+          in2.push(vaccines[idx].Inoculacao2_Ac);
+          return val;
+        }
 
-      if (regiao !== _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
-        let raw = arquipelagos[regiao].vacinas;
-        let {
-          labels: labelsMad,
-          values
-        } = statistics.getDailyData();
-        labels = labelsMad;
-        total = values.map((val, idx, vals) => {
-          //The first one
-          if (idx === 0) {
-            in1.push(raw[idx].dose_1);
-            in2.push(raw[idx].dose_2);
-            return val;
-          }
+        let prevDay = idx - 1;
 
-          let prevDay = idx - 1;
+        if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
+          in1.push(null);
+        } else {
+          in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
+        }
 
-          if (raw[prevDay].dose_1 == null || raw[idx].dose_1 == null) {
-            in1.push(null);
-          } else {
-            in1.push(raw[idx].dose_1 - raw[prevDay].dose_1);
-          }
+        if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
+          in2.push(null);
+        } else {
+          in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
+        }
 
-          if (raw[prevDay].dose_2 == null || raw[idx].dose_2 == null) {
-            in2.push(null);
-          } else {
-            in2.push(raw[idx].dose_2 - raw[prevDay].dose_2);
-          }
+        if (vals[prevDay] == null || val == null) {
+          return null;
+        }
 
-          if (vals[prevDay] == null || val == null) {
-            return null;
-          }
-
-          return val - vals[prevDay];
-        });
-      } else {
-        let {
-          labels: labelsCont,
-          values
-        } = parseData(vaccines);
-        labels = labelsCont;
-        total = values.map((val, idx, vals) => {
-          //The first one
-          if (idx === 0) {
-            in1.push(vaccines[idx].Inoculacao1_Ac);
-            in2.push(vaccines[idx].Inoculacao2_Ac);
-            return val;
-          }
-
-          let prevDay = idx - 1;
-
-          if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
-            in1.push(null);
-          } else {
-            in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
-          }
-
-          if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
-            in2.push(null);
-          } else {
-            in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
-          }
-
-          if (vals[prevDay] == null || val == null) {
-            return null;
-          }
-
-          return val - vals[prevDay];
-        });
-      }
-
+        return val - vals[prevDay];
+      });
       return {
         valuesIn1: in1,
         valuesIn2: in2,
         values: total,
-        raw,
+        raw: vaccines,
         labels
       };
     },
@@ -1715,15 +1579,13 @@ function useData({
     },
     getReceivedDosesByBrandByWeek: async () => {
       let labels = {};
-      let weeks = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false);
       let com = {};
       let mod = {};
       let az = {};
-      let ecdcRegion = _constants__WEBPACK_IMPORTED_MODULE_1__[/* ECDC_MAPPING */ "i"][regiao];
       ecdc.forEach(el => {
         var obj = {};
 
-        if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
+        if (parseInt(el['NumberDosesReceived']) > 0) {
           com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
           mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
           az[el['YearWeekISO']] = az[el['YearWeekISO']] || null;
@@ -1756,11 +1618,11 @@ function useData({
     getAdministredDosesByAgeByWeek: async () => {
       let labels = {};
       let maxValue = 0;
-      let weeks = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false);
       let groups = {};
-      let ecdcRegion = _constants__WEBPACK_IMPORTED_MODULE_1__[/* ECDC_MAPPING */ "i"][regiao];
       ecdc.forEach(el => {
-        if (el['NumberDosesReceived'] == '' && el['Region'] === ecdcRegion) {
+        debugger;
+
+        if (el['NumberDosesReceived'] == '') {
           if (!labels.hasOwnProperty(el['YearWeekISO'])) {
             labels[el['YearWeekISO'].replace('-', '')] = weeks[el['YearWeekISO']];
           }
@@ -1773,20 +1635,6 @@ function useData({
           groups[el['TargetGroup']].dose_1[el['YearWeekISO']] = (groups[el['TargetGroup']].dose_1[el['YearWeekISO']] || 0) + parseInt(el['FirstDose']);
           groups[el['TargetGroup']].dose_2[el['YearWeekISO']] = (groups[el['TargetGroup']].dose_2[el['YearWeekISO']] || 0) + parseInt(el['SecondDose']);
         }
-      });
-      return {
-        maxValue,
-        labels,
-        groups
-      };
-    },
-    getAdministredDosesByAgeByWeekRam: async () => {
-      let labels = [];
-      let maxValue = 0;
-      let groups = [];
-      arquipelagos.madeira.vacinas.forEach(el => {
-        labels.push(el.data);
-        groups.push(el.escaloes);
       });
       return {
         maxValue,
@@ -1826,14 +1674,12 @@ function useData({
       });
       return groups;
     },
-    getTotalSNS: async () => {
-      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
+    getTotalSNS: () => {
       return sns.filter(el => {
-        return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat;
+        return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateSnsStartWeirdFormat;
       });
     },
-    getTotalARS: async () => {
-      let ars = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/ars?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
+    getTotalARS: () => {
       let data = {};
       ars.features.forEach(el => {
         if (el.attributes.ARSNome === 'Nacional') el.attributes.ARSNome = 'All';
@@ -1853,8 +1699,7 @@ function useData({
     getCases: () => {
       return casesData;
     },
-    getDosesRecebidasAcum: async () => {
-      let weeks = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false);
+    getDosesRecebidasAcum: () => {
       if (ecdc == false) return;
       let labels = {};
       let data = {};
@@ -1905,31 +1750,18 @@ function useData({
         sum,
         labels: Object.values(labels)
       };
-    },
-    getArquipelagoData: async () => {
-      let res = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/${regiao}?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeira)}`);
-      return res;
-    },
-    getMadeiraPDS: async () => {
-      let res = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/${regiao}/pontosituacao?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeiraCases)}`);
-      return res;
     }
   };
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    Promise.all([Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/ecdc?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateEcdc)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/vaccinesold?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/cases?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/madeira?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeira)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/madeira/pontosituacao?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateMadeiraCases)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/acores?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateAcores)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/acores/pontosituacao?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateAcoresCases)}`)]).then(([ecdc, vaccines, cases, madeira, madeiraPDS, acores, acoresPDS]) => {
+    Promise.all([Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/ecdc?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateEcdc)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateSnsStartWeirdFormat)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/vaccinesold?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/ars?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.dateSnsStartWeirdFormat)}`, false), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/cases?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/owid?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_2__.date)}`), Object(_utils__WEBPACK_IMPORTED_MODULE_1__[/* fetchWithLocalCache */ "a"])(`/api/rt/continente?${btoa(Date.now())}`)]).then(([ecdc, weeks, sns, vaccines, ars, cases, owid, rt]) => {
+      setSns(sns);
+      setWeeks(weeks);
       setECDC(ecdc);
       setVaccines(vaccines);
+      setArs(ars);
       setCasesData(cases);
-      setArquipelagos({
-        madeira: {
-          vacinas: madeira,
-          casos: madeiraPDS
-        },
-        acores: {
-          vacinas: acores,
-          casos: acoresPDS
-        }
-      });
+      setOwid(owid);
+      setRt(rt);
       setReady(true);
     });
   }, []);
@@ -1983,12 +1815,15 @@ module.exports = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Counter; });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("Ys+F");
-/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_count_to__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("UG6H");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("5PhN");
+/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("Ys+F");
+/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_count_to__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("UG6H");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
@@ -2004,11 +1839,8 @@ function Counter({
   ps,
   colors,
   digits,
-  suffix,
-  tempo
+  suffix
 }) {
-  if (!tempo) tempo = 'no dia anterior';
-
   if (!digits) {
     digits = 0;
   }
@@ -2023,29 +1855,29 @@ function Counter({
     style: {
       color: foreground
     },
-    className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_highlight,
+    className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_highlight,
     children: [numberFormatter.format(value).replace(/,/gm, ' '), " ", suffix ? suffix : '']
   });
 
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
     children: [title == '' ? '' : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("h2", {
-      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_title,
+      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_title,
       children: title
     }), subtitle == '' ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       style: {
         height: 20
       }
     }) : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle,
+      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle,
       children: subtitle
     }), to === null ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("span", {
-      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_highlight,
+      className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_highlight,
       style: {
         color: foreground
       },
       children: "N/A"
     }) : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_count_to__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_count_to__WEBPACK_IMPORTED_MODULE_2___default.a, {
         digits: digits,
         delay: 1,
         from: from || 0,
@@ -2054,19 +1886,19 @@ function Counter({
         children: fn
       }), Math.abs(to - yesterday) > 0 ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
-          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle,
+          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle,
           children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("span", {
             style: {
               color: foreground
             },
-            className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle_highlight,
+            className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle_highlight,
             children: [Math.sign(difference) == 1 ? '+' : '-', " ", numberFormatter.format(Math.abs(difference)).replace(',', ' ')]
-          }), "\xA0 que ", tempo]
+          }), "\xA0 que no dia anterior"]
         })
       }) : '', ps != null ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle,
-          children: ps.split('\n').map((el, idx) => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react__WEBPACK_IMPORTED_MODULE_3__["Fragment"], {
+          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.card_subtitle,
+          children: ps.split('\n').map((el, idx) => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react__WEBPACK_IMPORTED_MODULE_4__["Fragment"], {
             children: [el, " ", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("br", {})]
           }, idx))
         })
@@ -2163,16 +1995,10 @@ module.exports = {
 	"card_highlight": "Card_card_highlight__3nHgE",
 	"card_highlight_2": "Card_card_highlight_2__pGhlA",
 	"card_title": "Card_card_title__23exo",
-	"card_title_2": "Card_card_title_2__1gfN_",
-	"card_subtitle_2": "Card_card_subtitle_2__p7--G",
 	"card_subtitle": "Card_card_subtitle__3invo",
 	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
 	"card_chart": "Card_card_chart__37hzo",
-	"card_scrollable": "Card_card_scrollable__1Eiau",
-	"text_left": "Card_text_left__1G5SI",
-	"ram_subchart": "Card_ram_subchart__36M-A",
-	"ram_subchart_bar": "Card_ram_subchart_bar__hmsNC",
-	"ram": "Card_ram__1OaS2"
+	"card_scrollable": "Card_card_scrollable__1Eiau"
 };
 
 
@@ -2263,7 +2089,7 @@ module.exports = {
 /***/ "lN74":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"populacao\":{\"valor\":10286300,\"legenda\":\"10,28 milhões (2019)\",\"fonte\":{\"nome\":\"PORDATA\",\"permalink\":\"https://www.pordata.pt/Portugal\"}},\"populacao_ram\":{\"valor\":254254,\"legenda\":\"254 mil 254 pessoas\",\"fonte\":{\"nome\":\"Direção Regional de Estatística da Madeira\",\"permalink\":\"https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html\"}},\"populacao_raa\":{\"valor\":202572,\"legenda\":\"202 mil 575 pessoas\",\"fonte\":{\"nome\":\"PORDATA\",\"permalink\":\"https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater\"}},\"populacao_residente_ram\":{\"3101\":{\"dico\":3101,\"concelho\":\"calheta\",\"valor\":10867,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3102\":{\"dico\":3102,\"concelho\":\"camara_lobos\",\"valor\":33675,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3103\":{\"dico\":3103,\"concelho\":\"funchal\",\"valor\":104024,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3104\":{\"dico\":3104,\"concelho\":\"machico\",\"valor\":19981,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3105\":{\"dico\":3105,\"concelho\":\"ponta_sol\",\"valor\":8593,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3106\":{\"dico\":3106,\"concelho\":\"porto_moniz\",\"valor\":2342,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3107\":{\"dico\":3107,\"concelho\":\"ribeira_brava\",\"valor\":2342,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3108\":{\"dico\":3108,\"concelho\":\"santa_cruz\",\"valor\":45281,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3109\":{\"dico\":3109,\"concelho\":\"santana\",\"valor\":6711,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3110\":{\"dico\":3110,\"concelho\":\"svicente\",\"valor\":5143,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3201\":{\"dico\":3201,\"concelho\":\"porto_santo\",\"valor\":5202,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}}},\"populacao_residente_raa\":{\"41\":{\"dico\":41,\"concelho\":\"santa_maria\",\"valor\":4589,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"42\":{\"dico\":42,\"concelho\":\"sao_miguel\",\"valor\":110731,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"43\":{\"dico\":43,\"concelho\":\"terceira\",\"valor\":47270,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"44\":{\"dico\":44,\"concelho\":\"graciosa\",\"valor\":3741,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"45\":{\"dico\":45,\"concelho\":\"sao_jorge\",\"valor\":7836,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"46\":{\"dico\":46,\"concelho\":\"pico\",\"valor\":12199,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"47\":{\"dico\":47,\"concelho\":\"faial\",\"valor\":12591,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"48\":{\"dico\":48,\"concelho\":\"flores\",\"valor\":3249,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"49\":{\"dico\":49,\"concelho\":\"corvo\",\"valor\":369,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3201\":{\"dico\":3201,\"concelho\":\"porto_santo\",\"valor\":5202,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}}},\"doses\":{\"valor\":38000000,\"legenda\":\"38 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19\"}},\"doses3\":{\"valor\":31000000,\"legenda\":\"mais do que 31 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C\"}},\"doses2\":{\"valor\":22000000,\"legenda\":\"cerca de 22 milhões de doses\",\"fonte\":{\"nome\":\"Direção-Geral da Saúde\",\"permalink\":\"https://www.sns.gov.pt/noticias/2020/12/04/plano-de-vacinacao-contra-a-covid-19/\"}},\"populacao_grupos\":{\"18_24\":544575,\"25_49\":3373178,\"50_59\":1482121,\"60_69\":1293301,\"70_79\":973123,\"80_plus\":668660,\"fonte\":{\"nome\":\"PORDATA (2019)\",\"permalink\":\"https://www.pordata.pt/Portugal/Popula%c3%a7%c3%a3o+residente++m%c3%a9dia+anual+total+e+por+grupo+et%c3%a1rio-10-1126\"}}}");
+module.exports = JSON.parse("{\"populacao\":{\"valor\":10286300,\"legenda\":\"10,28 milhões (2019)\",\"fonte\":{\"nome\":\"PORDATA\",\"permalink\":\"https://www.pordata.pt/Portugal\"}},\"populacao_ram\":{\"valor\":254254,\"legenda\":\"254 mil 254 pessoas\",\"fonte\":{\"nome\":\"Direção Regional de Estatística da Madeira\",\"permalink\":\"https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html\"}},\"doses\":{\"valor\":38000000,\"legenda\":\"38 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19\"}},\"doses3\":{\"valor\":31000000,\"legenda\":\"mais do que 31 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C\"}},\"doses2\":{\"valor\":22000000,\"legenda\":\"cerca de 22 milhões de doses\",\"fonte\":{\"nome\":\"Direção-Geral da Saúde\",\"permalink\":\"https://www.sns.gov.pt/noticias/2020/12/04/plano-de-vacinacao-contra-a-covid-19/\"}},\"populacao_grupos\":{\"18_24\":544575,\"25_49\":3373178,\"50_59\":1482121,\"60_69\":1293301,\"70_79\":973123,\"80_plus\":668660,\"fonte\":{\"nome\":\"PORDATA (2019)\",\"permalink\":\"https://www.pordata.pt/Portugal/Popula%c3%a7%c3%a3o+residente++m%c3%a9dia+anual+total+e+por+grupo+et%c3%a1rio-10-1126\"}}}");
 
 /***/ }),
 
@@ -2278,18 +2104,6 @@ module.exports = require("react-chartjs-2");
 /***/ (function(module, exports) {
 
 module.exports = require("date-fns/locale");
-
-/***/ }),
-
-/***/ "uAdN":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegiaoContext; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext('portugal');
 
 /***/ }),
 
@@ -2331,14 +2145,10 @@ function DatePickerButton({
     0: startDate,
     1: setStartDate
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(new Date(maxDate));
-  var [first, ...restDate] = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
+  let [first, ...restDate] = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
     locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_6__["pt"]
   }).replace('-feira', '').split('');
   let d = [first.toUpperCase(), ...restDate].join('');
-  var [first, ...restDate] = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["format"])(startDate, "dd 'de' LLL 'de' yyyy", {
-    locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_6__["pt"]
-  }).replace('-feira', '').split('');
-  let d2 = [first.toUpperCase(), ...restDate].join('');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     onDateSelect === null || onDateSelect === void 0 ? void 0 : onDateSelect(new Date(startDate));
   }, [startDate]);
@@ -2353,46 +2163,38 @@ function DatePickerButton({
 
     render() {
       let {
+        value,
         onClick
       } = this.props;
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
-            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
-            disabled: startDate.getTime() <= minDate,
-            onClick: () => {
-              let prevDay = Object(date_fns__WEBPACK_IMPORTED_MODULE_3__["subDays"])(startDate, 1);
-              return setStartDate(new Date(prevDay));
-            },
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
-              className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
-            })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("button", {
-            style: {
-              width: '60vw',
-              maxWidth: 285
-            },
-            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
-            onClick: onClick,
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("span", {
-              className: 'hide_micro_mobile',
-              children: d
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("span", {
-              className: 'show_micro_mobile',
-              children: d2
-            })]
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
-            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
-            disabled: startDate.getTime() >= maxDate,
-            onClick: () => {
-              let prevDay = startDate.getTime() + 86400 * 1000;
-              return setStartDate(new Date(prevDay));
-            },
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
-              className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
-            })
-          })]
-        })
+      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+          className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
+          disabled: startDate.getTime() <= minDate,
+          onClick: () => {
+            let prevDay = startDate.getTime() - 86400 * 1000;
+            return setStartDate(new Date(prevDay));
+          },
+          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
+            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
+          })
+        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+          style: {
+            width: 300
+          },
+          className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
+          onClick: onClick,
+          children: d
+        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
+          className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.datepicker,
+          disabled: startDate.getTime() >= maxDate,
+          onClick: () => {
+            let prevDay = startDate.getTime() + 86400 * 1000;
+            return setStartDate(new Date(prevDay));
+          },
+          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_assets_arrow_svg__WEBPACK_IMPORTED_MODULE_5___default.a, {
+            className: _DatePickerButton_module_scss__WEBPACK_IMPORTED_MODULE_4___default.a.svg
+          })
+        })]
       });
     }
 
@@ -2414,7 +2216,7 @@ function DatePickerButton({
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617719705389,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-05\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-05\"}");
+module.exports = JSON.parse("{\"date\":1616421458576,\"dateSnsStartWeirdFormat\":\"08/03/2021\",\"dateSnsStart\":\"2021-03-08\",\"dateSns\":\"2020-03-14\",\"dateEcdc\":\"2021-03-21\",\"dateRt\":\"20210-03-13\"}");
 
 /***/ }),
 
@@ -2422,32 +2224,27 @@ module.exports = JSON.parse("{\"date\":1617719705389,\"dateSnsStartWeirdFormat\"
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return FOREGROUND_COLOR; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return COLOR_1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return COLOR_2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return COLOR_3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return COLOR_4; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return FOREGROUND_COLOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return COLOR_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return COLOR_2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return COLOR_3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return COLOR_4; });
 /* unused harmony export COLOR_5 */
 /* unused harmony export COLOR_6 */
 /* unused harmony export COLOR_7 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return TINT_70; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return TINT_50; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return TINT_30; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return TINT_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return TINT_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return TINT_30; });
 /* unused harmony export COLOR */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return SHADE_30; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return SHADE_50; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return SHADE_70; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return COMPLEMENT_1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return COMPLEMENT_3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return RESIZE_TRESHOLD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return lineChartCommon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return lineChartCommon2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return REGIOES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return ECDC_MAPPING; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return MADEIRA_DICOS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ACORES_DICOS; });
-/* unused harmony export ACORES_DICOS_CONCELHOS */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return SHADE_30; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return SHADE_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return SHADE_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return COMPLEMENT_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return COMPLEMENT_2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return RESIZE_TRESHOLD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return lineChartCommon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return lineChartCommon2; });
 let FOREGROUND_COLOR = '#01AE97';
 let COLOR_1 = '#017a6a';
 let COLOR_2 = '#01574c';
@@ -2493,94 +2290,6 @@ let lineChartCommon2 = {
   pointHoverBorderWidth: 0,
   pointRadius: 0,
   pointHitRadius: 0
-};
-const REGIOES = {
-  MADEIRA: 'madeira',
-  PORTUGAL: 'portugal',
-  ACORES: 'ACORES'
-};
-const ECDC_MAPPING = {
-  alentejo: 'PTCSR01',
-  algarve: 'PTCSR02',
-  acores: 'PTCSR03',
-  centro: 'PTCSR04',
-  lisboa: 'PTCSR05',
-  madeira: 'PTCSR06',
-  norte: 'PTCSR07',
-  portugal: 'PT',
-  PTCSR01: 'alentejo',
-  PTCSR02: 'algarve',
-  PTCSR03: 'acores',
-  PTCSR04: 'centro',
-  PTCSR05: 'lisboa',
-  PTCSR06: 'madeira',
-  PTCSR07: 'norte',
-  PT: 'portugal'
-};
-const MADEIRA_DICOS = {
-  3101: 'calheta',
-  3102: 'camara_lobos',
-  3108: 'santa_cruz',
-  3201: 'porto_santo',
-  3106: 'porto_moniz',
-  3110: 'svincente',
-  3109: 'santana',
-  3105: 'ponta_sol',
-  3103: 'funchal',
-  3104: 'machico',
-  3107: 'ribeira_brava',
-  calheta: '3101',
-  camara_lobos: '3102',
-  santa_cruz: '3108',
-  porto_santo: '3201',
-  porto_moniz: '3106',
-  svincente: '3110',
-  santana: '3109',
-  ponta_sol: '3105',
-  funchal: '3103',
-  machico: '3104',
-  ribeira_brava: '3107'
-};
-const ACORES_DICOS = {
-  49: 'corvo',
-  48: 'flores',
-  47: 'faial',
-  46: 'pico',
-  45: 'sao_jorge',
-  44: 'graciosa',
-  43: 'terceira',
-  42: 'sao_miguel',
-  41: 'santa_maria',
-  corvo: 49,
-  flores: 48,
-  faial: 47,
-  pico: 46,
-  sao_jorge: 45,
-  graciosa: 44,
-  terceira: 43,
-  sao_miguel: 42,
-  santa_maria: 41
-};
-const ACORES_DICOS_CONCELHOS = {
-  4901: 'corvo',
-  4802: 'flores',
-  4801: 'flores',
-  4701: 'faial',
-  4602: 'pico',
-  4603: 'pico',
-  4601: 'pico',
-  4501: 'sao_jorge',
-  4502: 'sao_jorge',
-  4401: 'graciosa',
-  4301: 'terceira',
-  4302: 'terceira',
-  4201: 'sao_miguel',
-  4202: 'sao_miguel',
-  4203: 'sao_miguel',
-  4204: 'sao_miguel',
-  4205: 'sao_miguel',
-  4206: 'sao_miguel',
-  4101: 'santa_maria'
 };
 
 /***/ })

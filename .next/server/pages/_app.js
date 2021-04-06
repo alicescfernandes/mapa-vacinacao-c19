@@ -93,34 +93,6 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "/jVO":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return initSockets; });
-//TODO: Turn this into a hook
-function initSockets(onUpdate) {
-  if (!window.pusher) {
-    window.pusher = new Pusher('4dd4d1d504254af64544', {
-      cluster: 'eu'
-    });
-    let channel = window.pusher.subscribe('covid19');
-    channel.bind('update', function (data) {
-      onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(data);
-    });
-  }
-}
-/* initSockets(function (data) {
-	updateData(data.type, data.data);
-	setUpdating(true);
-	setTimeout(() => {
-		setUpdating(false);
-	}, 1000);
-});
- */
-
-/***/ }),
-
 /***/ "/jkW":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -205,15 +177,120 @@ module.exports = __webpack_require__("1TCz");
 
 /***/ }),
 
-/***/ "10Vi":
+/***/ "1TCz":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Metatags; });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("xnum");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__("F5FC");
+
+// EXTERNAL MODULE: ./node_modules/bootstrap/dist/css/bootstrap.min.css
+var bootstrap_min = __webpack_require__("q4sD");
+
+// EXTERNAL MODULE: ./node_modules/react-datepicker/dist/react-datepicker.css
+var react_datepicker = __webpack_require__("5Buo");
+
+// EXTERNAL MODULE: ./styles/globals.scss
+var globals = __webpack_require__("H/sG");
+
+// EXTERNAL MODULE: ./utils.js
+var utils = __webpack_require__("GyP+");
+
+// EXTERNAL MODULE: external "react-bootstrap"
+var external_react_bootstrap_ = __webpack_require__("IZS3");
+
+// EXTERNAL MODULE: ./components/Footer.module.scss
+var Footer_module = __webpack_require__("3Nti");
+var Footer_module_default = /*#__PURE__*/__webpack_require__.n(Footer_module);
+
+// EXTERNAL MODULE: ./data/last-update.json
+var last_update = __webpack_require__("vga7");
+
+// CONCATENATED MODULE: ./components/Footer.jsx
+
+
+
+
+
+
+function Footer() {
+  let options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  };
+  let f = new Intl.DateTimeFormat('pt-PT', options);
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js",
+      integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
+      crossOrigin: "anonymous"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("footer", {
+      className: `${Footer_module_default.a.footer} card-shadow`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Container"], {
+        className: Footer_module_default.a.content,
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              target: "_blank",
+              href: "https://twitter.com/vacinacaocovid1",
+              children: "Twitter"
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              target: "_blank",
+              href: "/api/vaccines",
+              children: "API"
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              target: "_blank",
+              href: "https://github.com/alicescfernandes/mapa-vacinacao-c19#embeds",
+              children: "Embeds"
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              target: "_blank",
+              href: "https://github.com/alicescfernandes/mapa-vacinacao-c19",
+              children: "C\xF3digo-Fonte"
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              href: "mailto:alicescfernandes+mapa@gmail.com",
+              children: "Contacto"
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              target: "_blank",
+              href: "https://plausible.io/vacinacaocovid19.pt",
+              children: "Analytics"
+            })
+          })]
+        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+          className: Footer_module_default.a.update,
+          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(last_update.date))]
+        })]
+      })
+    })]
+  }); //
+}
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
+// CONCATENATED MODULE: ./components/MetaTags.jsx
 
 
 
@@ -223,556 +300,136 @@ function Metatags({
 }) {
   let title = 'Vacinação COVID-19 - Dashboard sobre os dados da campanha de vacinação contra a COVID-19 em Portugal e Arquipélagos';
   let descricao = `Site informativo sobre a administração das vacinas em Portugal. É atualizado sempre que possível, assim que os dados forem sendo atualizados. Contamos com dados da Direção-Geral da Saúde, Our World in Data, Centro Europeu de Controlo de Doenças e informação do Governo de Portugal, temos gráficos sobre as vacinas administradas por dia e desde o início da campanha de vacinação, compradas, a faixa etária dos inoculados, infeções, óbitos, entre outros e temos números relacionados com a imunidade de grupo entre outros. Todo o nosso código é open-source, e pode ser consultado no github onde está alojado. Temos ainda uma conta no twitter onde pode seguir as últimas atualizações em relação aos números da campanha de vacinação da COVID-19.`;
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(head_default.a, {
+      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         name: "viewport",
         content: "initial-scale=1.0, width=device-width"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         name: "title",
         content: title
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         name: "description",
         content: descricao
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "og:type",
         content: "website"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "og:url",
         content: "https://vacinacaocovid19.pt/"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "og:title",
         content: "Vacina\xE7\xE3o - COVID 19"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "og:description",
         content: descricao
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "og:image",
         content: "https://vacinacaocovid19.pt/imagem.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "twitter:card",
         content: "summary_large_image"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "twitter:url",
         content: "https://vacinacaocovid19.pt/"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "twitter:title",
         content: "Vacina\xE7\xE3o - COVID 19"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "twitter:description",
         content: descricao
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         property: "twitter:image",
         content: "https://vacinacaocovid19.pt/imagem.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "57x57",
         href: "/apple-icon-57x57.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "60x60",
         href: "/apple-icon-60x60.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "72x72",
         href: "/apple-icon-72x72.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "76x76",
         href: "/apple-icon-76x76.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "114x114",
         href: "/apple-icon-114x114.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "120x120",
         href: "/apple-icon-120x120.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "144x144",
         href: "/apple-icon-144x144.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "152x152",
         href: "/apple-icon-152x152.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "apple-touch-icon",
         sizes: "180x180",
         href: "/apple-icon-180x180.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "icon",
         type: "image/png",
         sizes: "192x192",
         href: "/android-icon-192x192.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "icon",
         type: "image/png",
         sizes: "32x32",
         href: "/favicon-32x32.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "icon",
         type: "image/png",
         sizes: "96x96",
         href: "/favicon-96x96.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "icon",
         type: "image/png",
         sizes: "16x16",
         href: "/favicon-16x16.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "manifest",
         href: "/manifest.json"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         name: "msapplication-TileColor",
         content: "#01AE97"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         name: "msapplication-TileImage",
         content: "/ms-icon-144x144.png"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         name: "msapplication-TileColor",
         content: "#01AE97"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("meta", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
         name: "theme-color",
         content: "#01AE97"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("title", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("title", {
         children: title
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "stylesheet",
         href: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css"
       })]
-    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
       className: "hide-except-seo",
       children: descricao
     })]
   });
 }
-
-/***/ }),
-
-/***/ "1TCz":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("q4sD");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("5Buo");
-/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_globals_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("H/sG");
-/* harmony import */ var _styles_globals_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_globals_scss__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("GyP+");
-/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("naWs");
-/* harmony import */ var _components_MetaTags__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("10Vi");
-/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("Cgje");
-/* harmony import */ var _components_context_regiao__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("uAdN");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _hooks_initSockets__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("/jVO");
-
-
-
-
-
-
-
-
-
-
-
-
-let allowed_regioes = ['/', 'acores', 'madeira'];
-
-function NextApp({
-  Component,
-  props
-}) {
-  // Unconventional way of not having multiple sockets connected between pages
-  Object(react__WEBPACK_IMPORTED_MODULE_9__["useEffect"])(() => {
-    Object(_hooks_initSockets__WEBPACK_IMPORTED_MODULE_10__[/* initSockets */ "a"])(function (data) {
-      let event = new Event('socket_update');
-      event.data = data;
-      window.dispatchEvent(event);
-    });
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js', {
-        scope: './'
-      }).then(function (registration) {
-        /* success */
-      }, function (error) {
-        /* error */
-      });
-    } else {//not supported
-    }
-  }, []);
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_components_context_regiao__WEBPACK_IMPORTED_MODULE_8__[/* RegiaoContext */ "a"].Provider, {
-    value: props.regiao || 'portugal',
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_MetaTags__WEBPACK_IMPORTED_MODULE_6__[/* Metatags */ "a"], {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_Header__WEBPACK_IMPORTED_MODULE_7__[/* Header */ "a"], {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(Component, {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_Footer__WEBPACK_IMPORTED_MODULE_5__[/* Footer */ "a"], {})]
-  });
-}
-
-NextApp.getInitialProps = async app => {
-  var _app$ctx, _app$ctx$req;
-
-  Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* trackPlausible */ "f"])(app.ctx.req);
-  let url = (app === null || app === void 0 ? void 0 : (_app$ctx = app.ctx) === null || _app$ctx === void 0 ? void 0 : (_app$ctx$req = _app$ctx.req) === null || _app$ctx$req === void 0 ? void 0 : _app$ctx$req.url.replace('/', '')) || app.ctx.pathname.replace('/', '');
-  url = url.split('?')[0];
-  let regiao = 'portugal';
-
-  if (url !== '') {
-    regiao = url;
-  }
-
-  if (!allowed_regioes.includes(regiao)) regiao = 'portugal';
-  return {
-    props: {
-      regiao: regiao,
-      pusher: ''
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (NextApp);
-
-/***/ }),
-
-/***/ "284h":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__("cDf5");
-
-function _getRequireWildcardCache() {
-  if (typeof WeakMap !== "function") return null;
-  var cache = new WeakMap();
-
-  _getRequireWildcardCache = function _getRequireWildcardCache() {
-    return cache;
-  };
-
-  return cache;
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  }
-
-  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
-    return {
-      "default": obj
-    };
-  }
-
-  var cache = _getRequireWildcardCache();
-
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-
-  var newObj = {};
-  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-
-      if (desc && (desc.get || desc.set)) {
-        Object.defineProperty(newObj, key, desc);
-      } else {
-        newObj[key] = obj[key];
-      }
-    }
-  }
-
-  newObj["default"] = obj;
-
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-
-  return newObj;
-}
-
-module.exports = _interopRequireWildcard;
-
-/***/ }),
-
-/***/ "3Nti":
-/***/ (function(module, exports) {
-
-// Exports
-module.exports = {
-	"footer": "Footer_footer__a95ok",
-	"content": "Footer_content__3vLWb",
-	"update": "Footer_update__fFFAx",
-	"logo": "Footer_logo__3hNs2"
-};
-
-
-/***/ }),
-
-/***/ "3WeD":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.searchParamsToUrlQuery = searchParamsToUrlQuery;
-exports.urlQueryToSearchParams = urlQueryToSearchParams;
-exports.assign = assign;
-
-function searchParamsToUrlQuery(searchParams) {
-  const query = {};
-  searchParams.forEach((value, key) => {
-    if (typeof query[key] === 'undefined') {
-      query[key] = value;
-    } else if (Array.isArray(query[key])) {
-      ;
-      query[key].push(value);
-    } else {
-      query[key] = [query[key], value];
-    }
-  });
-  return query;
-}
-
-function stringifyUrlQueryParam(param) {
-  if (typeof param === 'string' || typeof param === 'number' && !isNaN(param) || typeof param === 'boolean') {
-    return String(param);
-  } else {
-    return '';
-  }
-}
-
-function urlQueryToSearchParams(urlQuery) {
-  const result = new URLSearchParams();
-  Object.entries(urlQuery).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
-      value.forEach(item => result.append(key, stringifyUrlQueryParam(item)));
-    } else {
-      result.set(key, stringifyUrlQueryParam(value));
-    }
-  });
-  return result;
-}
-
-function assign(target, ...searchParamsList) {
-  searchParamsList.forEach(searchParams => {
-    Array.from(searchParams.keys()).forEach(key => target.delete(key));
-    searchParams.forEach((value, key) => target.append(key, value));
-  });
-  return target;
-}
-
-/***/ }),
-
-/***/ "3wub":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.normalizeLocalePath = normalizeLocalePath;
-
-function normalizeLocalePath(pathname, locales) {
-  let detectedLocale; // first item will be empty string from splitting at first char
-
-  const pathnameParts = pathname.split('/');
-  (locales || []).some(locale => {
-    if (pathnameParts[1].toLowerCase() === locale.toLowerCase()) {
-      detectedLocale = locale;
-      pathnameParts.splice(1, 1);
-      pathname = pathnameParts.join('/') || '/';
-      return true;
-    }
-
-    return false;
-  });
-  return {
-    pathname,
-    detectedLocale
-  };
-}
-
-/***/ }),
-
-/***/ "4vsW":
-/***/ (function(module, exports) {
-
-module.exports = require("node-fetch");
-
-/***/ }),
-
-/***/ "5Buo":
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ "6D7l":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.formatUrl = formatUrl;
-
-var querystring = _interopRequireWildcard(__webpack_require__("3WeD"));
-
-function _getRequireWildcardCache() {
-  if (typeof WeakMap !== "function") return null;
-  var cache = new WeakMap();
-
-  _getRequireWildcardCache = function () {
-    return cache;
-  };
-
-  return cache;
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  }
-
-  if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
-    return {
-      default: obj
-    };
-  }
-
-  var cache = _getRequireWildcardCache();
-
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-
-  var newObj = {};
-  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-
-      if (desc && (desc.get || desc.set)) {
-        Object.defineProperty(newObj, key, desc);
-      } else {
-        newObj[key] = obj[key];
-      }
-    }
-  }
-
-  newObj.default = obj;
-
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-
-  return newObj;
-} // Format function modified from nodejs
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-const slashedProtocols = /https?|ftp|gopher|file/;
-
-function formatUrl(urlObj) {
-  let {
-    auth,
-    hostname
-  } = urlObj;
-  let protocol = urlObj.protocol || '';
-  let pathname = urlObj.pathname || '';
-  let hash = urlObj.hash || '';
-  let query = urlObj.query || '';
-  let host = false;
-  auth = auth ? encodeURIComponent(auth).replace(/%3A/i, ':') + '@' : '';
-
-  if (urlObj.host) {
-    host = auth + urlObj.host;
-  } else if (hostname) {
-    host = auth + (~hostname.indexOf(':') ? `[${hostname}]` : hostname);
-
-    if (urlObj.port) {
-      host += ':' + urlObj.port;
-    }
-  }
-
-  if (query && typeof query === 'object') {
-    query = String(querystring.urlQueryToSearchParams(query));
-  }
-
-  let search = urlObj.search || query && `?${query}` || '';
-  if (protocol && protocol.substr(-1) !== ':') protocol += ':';
-
-  if (urlObj.slashes || (!protocol || slashedProtocols.test(protocol)) && host !== false) {
-    host = '//' + (host || '');
-    if (pathname && pathname[0] !== '/') pathname = '/' + pathname;
-  } else if (!host) {
-    host = '';
-  }
-
-  if (hash && hash[0] !== '#') hash = '#' + hash;
-  if (search && search[0] !== '?') search = '?' + search;
-  pathname = pathname.replace(/[?#]/g, encodeURIComponent);
-  search = search.replace('#', '%23');
-  return `${protocol}${host}${pathname}${search}${hash}`;
-}
-
-/***/ }),
-
-/***/ "9BML":
-/***/ (function(module, exports) {
-
-module.exports = require("date-fns");
-
-/***/ }),
-
-/***/ "Cgje":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ Header; });
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__("F5FC");
-
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
-
-// EXTERNAL MODULE: external "react-bootstrap"
-var external_react_bootstrap_ = __webpack_require__("IZS3");
 
 // EXTERNAL MODULE: ./components/context/regiao.js
 var context_regiao = __webpack_require__("uAdN");
@@ -1122,6 +779,407 @@ function Header() {
     })]
   });
 }
+// CONCATENATED MODULE: ./hooks/initSockets.js
+//TODO: Turn this into a hook
+function initSockets(onUpdate) {
+  if (!window.pusher) {
+    window.pusher = new Pusher('4dd4d1d504254af64544', {
+      cluster: 'eu'
+    });
+    let channel = window.pusher.subscribe('covid19');
+    channel.bind('update', function (data) {
+      onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(data);
+    });
+  }
+}
+/* initSockets(function (data) {
+	updateData(data.type, data.data);
+	setUpdating(true);
+	setTimeout(() => {
+		setUpdating(false);
+	}, 1000);
+});
+ */
+// CONCATENATED MODULE: ./pages/_app.js
+
+
+
+
+
+
+
+
+
+
+
+
+let allowed_regioes = ['/', 'acores', 'madeira'];
+
+function NextApp({
+  Component,
+  props
+}) {
+  // Unconventional way of not having multiple sockets connected between pages
+  Object(external_react_["useEffect"])(() => {
+    initSockets(function (data) {
+      let event = new Event('socket_update');
+      event.data = data;
+      window.dispatchEvent(event);
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', {
+        scope: './'
+      }).then(function (registration) {
+        /* success */
+      }, function (error) {
+        /* error */
+      });
+    } else {//not supported
+    }
+  }, []);
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(context_regiao["a" /* RegiaoContext */].Provider, {
+    value: props.regiao || 'portugal',
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Metatags, {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(Header, {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(Component, {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(Footer, {})]
+  });
+}
+
+NextApp.getInitialProps = async app => {
+  var _app$ctx, _app$ctx$req;
+
+  Object(utils["f" /* trackPlausible */])(app.ctx.req);
+  let url = (app === null || app === void 0 ? void 0 : (_app$ctx = app.ctx) === null || _app$ctx === void 0 ? void 0 : (_app$ctx$req = _app$ctx.req) === null || _app$ctx$req === void 0 ? void 0 : _app$ctx$req.url.replace('/', '')) || app.ctx.pathname.replace('/', '');
+  url = url.split('?')[0];
+  let regiao = 'portugal';
+
+  if (url !== '') {
+    regiao = url;
+  }
+
+  if (!allowed_regioes.includes(regiao)) regiao = 'portugal';
+  return {
+    props: {
+      regiao: regiao,
+      pusher: ''
+    }
+  };
+};
+
+/* harmony default export */ var _app = __webpack_exports__["default"] = (NextApp);
+
+/***/ }),
+
+/***/ "284h":
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__("cDf5");
+
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+module.exports = _interopRequireWildcard;
+
+/***/ }),
+
+/***/ "3Nti":
+/***/ (function(module, exports) {
+
+// Exports
+module.exports = {
+	"footer": "Footer_footer__a95ok",
+	"content": "Footer_content__3vLWb",
+	"update": "Footer_update__fFFAx",
+	"logo": "Footer_logo__3hNs2"
+};
+
+
+/***/ }),
+
+/***/ "3WeD":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.searchParamsToUrlQuery = searchParamsToUrlQuery;
+exports.urlQueryToSearchParams = urlQueryToSearchParams;
+exports.assign = assign;
+
+function searchParamsToUrlQuery(searchParams) {
+  const query = {};
+  searchParams.forEach((value, key) => {
+    if (typeof query[key] === 'undefined') {
+      query[key] = value;
+    } else if (Array.isArray(query[key])) {
+      ;
+      query[key].push(value);
+    } else {
+      query[key] = [query[key], value];
+    }
+  });
+  return query;
+}
+
+function stringifyUrlQueryParam(param) {
+  if (typeof param === 'string' || typeof param === 'number' && !isNaN(param) || typeof param === 'boolean') {
+    return String(param);
+  } else {
+    return '';
+  }
+}
+
+function urlQueryToSearchParams(urlQuery) {
+  const result = new URLSearchParams();
+  Object.entries(urlQuery).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach(item => result.append(key, stringifyUrlQueryParam(item)));
+    } else {
+      result.set(key, stringifyUrlQueryParam(value));
+    }
+  });
+  return result;
+}
+
+function assign(target, ...searchParamsList) {
+  searchParamsList.forEach(searchParams => {
+    Array.from(searchParams.keys()).forEach(key => target.delete(key));
+    searchParams.forEach((value, key) => target.append(key, value));
+  });
+  return target;
+}
+
+/***/ }),
+
+/***/ "3wub":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.normalizeLocalePath = normalizeLocalePath;
+
+function normalizeLocalePath(pathname, locales) {
+  let detectedLocale; // first item will be empty string from splitting at first char
+
+  const pathnameParts = pathname.split('/');
+  (locales || []).some(locale => {
+    if (pathnameParts[1].toLowerCase() === locale.toLowerCase()) {
+      detectedLocale = locale;
+      pathnameParts.splice(1, 1);
+      pathname = pathnameParts.join('/') || '/';
+      return true;
+    }
+
+    return false;
+  });
+  return {
+    pathname,
+    detectedLocale
+  };
+}
+
+/***/ }),
+
+/***/ "4vsW":
+/***/ (function(module, exports) {
+
+module.exports = require("node-fetch");
+
+/***/ }),
+
+/***/ "5Buo":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "6D7l":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.formatUrl = formatUrl;
+
+var querystring = _interopRequireWildcard(__webpack_require__("3WeD"));
+
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function () {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
+    return {
+      default: obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj.default = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+} // Format function modified from nodejs
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+const slashedProtocols = /https?|ftp|gopher|file/;
+
+function formatUrl(urlObj) {
+  let {
+    auth,
+    hostname
+  } = urlObj;
+  let protocol = urlObj.protocol || '';
+  let pathname = urlObj.pathname || '';
+  let hash = urlObj.hash || '';
+  let query = urlObj.query || '';
+  let host = false;
+  auth = auth ? encodeURIComponent(auth).replace(/%3A/i, ':') + '@' : '';
+
+  if (urlObj.host) {
+    host = auth + urlObj.host;
+  } else if (hostname) {
+    host = auth + (~hostname.indexOf(':') ? `[${hostname}]` : hostname);
+
+    if (urlObj.port) {
+      host += ':' + urlObj.port;
+    }
+  }
+
+  if (query && typeof query === 'object') {
+    query = String(querystring.urlQueryToSearchParams(query));
+  }
+
+  let search = urlObj.search || query && `?${query}` || '';
+  if (protocol && protocol.substr(-1) !== ':') protocol += ':';
+
+  if (urlObj.slashes || (!protocol || slashedProtocols.test(protocol)) && host !== false) {
+    host = '//' + (host || '');
+    if (pathname && pathname[0] !== '/') pathname = '/' + pathname;
+  } else if (!host) {
+    host = '';
+  }
+
+  if (hash && hash[0] !== '#') hash = '#' + hash;
+  if (search && search[0] !== '?') search = '?' + search;
+  pathname = pathname.replace(/[?#]/g, encodeURIComponent);
+  search = search.replace('#', '%23');
+  return `${protocol}${host}${pathname}${search}${hash}`;
+}
+
+/***/ }),
+
+/***/ "9BML":
+/***/ (function(module, exports) {
+
+module.exports = require("date-fns");
 
 /***/ }),
 
@@ -3485,98 +3543,6 @@ function makePublicRouterInstance(router) {
 
 /***/ }),
 
-/***/ "naWs":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Footer; });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("IZS3");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3Nti");
-/* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vga7");
-var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
-
-
-
-
-
-
-function Footer() {
-  let options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
-  };
-  let f = new Intl.DateTimeFormat('pt-PT', options);
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
-      src: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"
-    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
-      src: "https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js",
-      integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
-      crossOrigin: "anonymous"
-    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
-      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"
-    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("script", {
-      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"
-    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("footer", {
-      className: `${_Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.footer} card-shadow`,
-      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
-        className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.content,
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("ul", {
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
-              target: "_blank",
-              href: "https://twitter.com/vacinacaocovid1",
-              children: "Twitter"
-            })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
-              target: "_blank",
-              href: "/api/vaccines",
-              children: "API"
-            })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
-              target: "_blank",
-              href: "https://github.com/alicescfernandes/mapa-vacinacao-c19#embeds",
-              children: "Embeds"
-            })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
-              target: "_blank",
-              href: "https://github.com/alicescfernandes/mapa-vacinacao-c19",
-              children: "C\xF3digo-Fonte"
-            })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
-              href: "mailto:alicescfernandes+mapa@gmail.com",
-              children: "Contacto"
-            })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("li", {
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("a", {
-              target: "_blank",
-              href: "https://plausible.io/vacinacaocovid19.pt",
-              children: "Analytics"
-            })
-          })]
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
-          className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.update,
-          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date))]
-        })]
-      })
-    })]
-  }); //
-}
-
-/***/ }),
-
 /***/ "oM7c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3738,7 +3704,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617719705389,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-05\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-05\"}");
+module.exports = JSON.parse("{\"date\":1617737433270,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-05\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-05\"}");
 
 /***/ }),
 

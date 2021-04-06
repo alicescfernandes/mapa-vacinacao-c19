@@ -19,8 +19,6 @@
   "/api/vaccines": "pages/api/vaccines.js",
   "/api/vaccinesold": "pages/api/vaccinesold.js",
   "/api/weeks": "pages/api/weeks.js",
-  "/embed/[id]": "pages/embed/[id].js",
-  "/fases": "pages/fases.js",
   "/": "pages/index.js",
   "/madeira": "pages/madeira.js",
   "/_error": "pages/_error.js",

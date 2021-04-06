@@ -88,12 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 23:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("M+4D");
@@ -197,10 +197,6 @@ function VacinadosPorDia({
     labels2
   } = statistics.getMediaMovelDiaria(7);
   let [foreground, color_1, color_2, color_3, color_4] = colors;
-  let {
-    0: height,
-    1: setHeight
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(400);
   const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
 
   const data = canvas => {
@@ -607,8 +603,7 @@ function NumeroTotalVacinados({
 }) {
   let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_9__[/* RegiaoContext */ "a"]);
   let {
-    labels,
-    values2
+    labels
   } = statistics.getDailyData();
   let {
     values,
@@ -844,7 +839,6 @@ function NumeroTotalVacinados({
             return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(tooltipItem.value);
           },
           title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
             return 'Dia ' + tooltipItem[0].label;
           }
         }
@@ -941,290 +935,6 @@ module.exports = require("classnames");
 
 /***/ }),
 
-/***/ "Kyr6":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RamGruposPrioritarios; });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("GyP+");
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("5PhN");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("K2gz");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("IZS3");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("UG6H");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("tDG4");
-/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("Ys+F");
-/* harmony import */ var react_count_to__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_count_to__WEBPACK_IMPORTED_MODULE_9__);
-
-
-
-
-
-
-
-
-
-
-
-
-let styles = {
-  'vaccine-label': {
-    textAlign: 'right',
-    fontSize: '12px',
-    lineHeight: '40px',
-    margin: '0px'
-  }
-};
-
-function CustomBarChart({
-  type,
-  total,
-  colors,
-  data,
-  showHeading
-}) {
-  let {
-    main,
-    shades,
-    tints,
-    complements
-  } = colors;
-
-  const graphData = canvas => {
-    return {
-      labels: ['moderna', 'cenas', 'cenas'],
-      datasets: [{
-        label: '2ª Dose',
-        type: 'horizontalBar',
-        backgroundColor: main,
-        data: [data.mod[1], data.com[1], data.az[1]],
-        stack: 'stack1'
-      }, {
-        label: '1ª Dose',
-        type: 'horizontalBar',
-        backgroundColor: shades[1],
-        data: [data.mod[0], data.com[0], data.az[0]],
-        stack: 'stack1'
-      }]
-    };
-  };
-
-  const options = () => {
-    return {
-      maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          display: false,
-          color: 'white'
-        }
-      },
-      layout: {
-        padding: -5
-      },
-      legend: {
-        display: false,
-        position: 'top',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
-        },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
-        }
-      },
-      animation: {
-        duration: 1000
-      },
-      tooltips: {
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-          label: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* formatNumber */ "c"])(parseInt(tooltipItem.value), false);
-          },
-          title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: true
-          },
-          ticks: {
-            display: false
-          }
-        }],
-        xAxes: [{
-          stacked: true,
-          gridLines: {
-            display: true
-          },
-          ticks: {
-            beginAtZero: true,
-            display: true,
-            max: 500000,
-            stepSize: 500000 / 5,
-            callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* formatNumber */ "c"])(value, false);
-            }
-          }
-        }]
-      }
-    };
-  };
-
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
-      style: {
-        display: 'inline-block',
-        lineHeight: '40px',
-        position: 'relative',
-        width: '19%',
-        height: 150,
-        overflow: 'hidden'
-      },
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-        style: styles['vaccine-label'],
-        children: type
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-        style: styles['vaccine-label'],
-        children: "Pfizer/BioNTech"
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-        style: styles['vaccine-label'],
-        children: "AstraZeneca"
-      })]
-    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      style: {
-        display: 'inline-block',
-        lineHeight: '40200',
-        position: 'relative',
-        width: '80%',
-        height: 150,
-        overflow: 'hidden'
-      },
-      className: 'scrollable',
-      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-        style: {
-          height: '100%'
-        },
-        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["HorizontalBar"], {
-          options: options(),
-          data: graphData
-        })
-      })
-    })]
-  });
-}
-
-function RamGruposPrioritarios({
-  statistics,
-  colors
-}) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true);
-  let {
-    main,
-    shades
-  } = colors;
-  let {
-    0: graphData,
-    1: setGraphData
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({});
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    statistics.getArquipelagoData().then(data => {
-      setGraphData(data[data.length - 1]);
-      setLoading(false);
-    });
-  }, []);
-  let numberFormatter = new Intl.NumberFormat('en-US', {
-    maximumFractionDigits: 2
-  });
-
-  const fn = value => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("h2", {
-    children: numberFormatter.format(value).replace(/,/gm, ' ')
-  });
-
-  function renderGrupo(el) {
-    if (!el.nome) return;
-    return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-      xs: 12,
-      lg: 6,
-      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Row"], {
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-          xs: 12,
-          lg: 12,
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-            className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default.a.ram_subchart,
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("p", {
-              children: el.nome
-            })
-          })
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-          xs: 6,
-          lg: 6,
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
-            className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default.a.ram_subchart,
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("h3", {
-              children: "1\xBA Dose"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_count_to__WEBPACK_IMPORTED_MODULE_9___default.a, {
-              digits: 0,
-              delay: 1,
-              from: 0,
-              to: el.dose_1,
-              speed: 800,
-              children: fn
-            })]
-          })
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-          xs: 6,
-          lg: 6,
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
-            className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default.a.ram_subchart,
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("h3", {
-              children: "2\xBA Dose"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_count_to__WEBPACK_IMPORTED_MODULE_9___default.a, {
-              digits: 0,
-              delay: 1,
-              from: 0,
-              to: el.dose_2,
-              speed: 800,
-              children: fn
-            })]
-          })
-        })]
-      })
-    });
-  }
-
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_4__[/* Card */ "a"], {
-    allowOverflow: true,
-    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Row"], {
-          className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default.a.ram,
-          children: Object.values(graphData.grupos).map(renderGrupo)
-        })
-      }) : ''
-    })
-  });
-}
-
-/***/ }),
-
 /***/ "L2Vc":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1274,10 +984,6 @@ function useData({
     1: setCasesData
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let {
-    0: labels,
-    1: setLabels
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  let {
     0: arquipelagos,
     1: setArquipelagos
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
@@ -1299,8 +1005,7 @@ function useData({
     day: 'numeric',
     year: 'numeric'
   };
-  let f = new Intl.DateTimeFormat('pt-PT', options);
-  let f2 = new Intl.DateTimeFormat('pt-PT', options2);
+  let f = new Intl.DateTimeFormat('pt-PT', options); // let f2 = new Intl.DateTimeFormat('pt-PT', options2);
 
   function parseData(data) {
     if (!ready) return;
@@ -1371,7 +1076,6 @@ function useData({
     getDailyData: () => {
       if (regiao !== _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
         let dados_regiao = arquipelagos[regiao].vacinas;
-        let lastItem = dados_regiao[dados_regiao.length - 1];
         let labels = [];
         let values = [];
         dados_regiao.forEach(el => {
@@ -1466,6 +1170,7 @@ function useData({
     },
     getMediaMovelDiaria: dias => {
       let medias = [];
+      let labels = [];
       let labelsMedias = [];
 
       if (regiao === _constants__WEBPACK_IMPORTED_MODULE_1__[/* REGIOES */ "l"].PORTUGAL) {
@@ -1665,8 +1370,6 @@ function useData({
       let az = {};
       let ecdcRegion = _constants__WEBPACK_IMPORTED_MODULE_1__[/* ECDC_MAPPING */ "i"][regiao];
       ecdc.forEach(el => {
-        var obj = {};
-
         if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
           com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
           mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
@@ -1739,7 +1442,6 @@ function useData({
       };
     },
     getTotalAdministredDosesByAgeByWeek: async () => {
-      let labels = {};
       let groups = {};
       ecdc.forEach(el => {
         if (el['NumberDosesReceived'] == '') {
@@ -1801,13 +1503,11 @@ function useData({
       let weeks = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/weeks`, false);
       if (ecdc == false) return;
       let labels = {};
-      let data = {};
       let com = {};
       let mod = {};
       let az = {};
       let sum = [];
       let ecdcCopy = JSON.parse(JSON.stringify(ecdc));
-      let numbers = [1, 1, 1, 1];
 
       function sumArray(array) {
         return array.reduce((prev, current) => {
@@ -1991,18 +1691,472 @@ var LineRt = __webpack_require__("m5rz");
 // EXTERNAL MODULE: ./components/context/regiao.js
 var regiao = __webpack_require__("uAdN");
 
-// EXTERNAL MODULE: ./components/graphs/RamGruposPrioritarios.jsx
-var RamGruposPrioritarios = __webpack_require__("Kyr6");
-
-// EXTERNAL MODULE: ./components/graphs/RamBarAdministradasPorFaixaEtaria.jsx
-var RamBarAdministradasPorFaixaEtaria = __webpack_require__("vksU");
-
 // EXTERNAL MODULE: external "react-chartjs-2"
 var external_react_chartjs_2_ = __webpack_require__("t3hY");
+
+// EXTERNAL MODULE: external "react-count-to"
+var external_react_count_to_ = __webpack_require__("Ys+F");
+var external_react_count_to_default = /*#__PURE__*/__webpack_require__.n(external_react_count_to_);
+
+// CONCATENATED MODULE: ./components/graphs/RamGruposPrioritarios.jsx
+
+
+
+
+
+
+
+
+
+
+function RamGruposPrioritarios({
+  statistics,
+  colors
+}) {
+  let {
+    0: loading,
+    1: setLoading
+  } = Object(external_react_["useState"])(true);
+  let {
+    0: graphData,
+    1: setGraphData
+  } = Object(external_react_["useState"])({});
+  Object(external_react_["useEffect"])(() => {
+    statistics.getArquipelagoData().then(data => {
+      setGraphData(data[data.length - 1]);
+      setLoading(false);
+    });
+  }, []);
+  let numberFormatter = new Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 2
+  });
+
+  const fn = value => /*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+    children: numberFormatter.format(value).replace(/,/gm, ' ')
+  });
+
+  function renderGrupo(el) {
+    if (!el.nome) return;
+    return /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+      xs: 12,
+      lg: 6,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          xs: 12,
+          lg: 12,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+            className: Card_module_default.a.ram_subchart,
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              children: el.nome
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          xs: 6,
+          lg: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
+            className: Card_module_default.a.ram_subchart,
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+              children: "1\xBA Dose"
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_count_to_default.a, {
+              digits: 0,
+              delay: 1,
+              from: 0,
+              to: el.dose_1,
+              speed: 800,
+              children: fn
+            })]
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          xs: 6,
+          lg: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
+            className: Card_module_default.a.ram_subchart,
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+              children: "2\xBA Dose"
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_count_to_default.a, {
+              digits: 0,
+              delay: 1,
+              from: 0,
+              to: el.dose_2,
+              speed: 800,
+              children: fn
+            })]
+          })
+        })]
+      })
+    });
+  }
+
+  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+    allowOverflow: true,
+    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+      children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(jsx_runtime_["Fragment"], {
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+          className: Card_module_default.a.ram,
+          children: Object.values(graphData.grupos).map(renderGrupo)
+        })
+      }) : ''
+    })
+  });
+}
+// EXTERNAL MODULE: external "classnames"
+var external_classnames_ = __webpack_require__("K2gz");
+var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_classnames_);
 
 // EXTERNAL MODULE: ./constants.js
 var constants = __webpack_require__("xPX6");
 
+// CONCATENATED MODULE: ./components/graphs/RamBarAdministradasPorFaixaEtaria.jsx
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+function RamBarAdministradasPorFaixaEtaria({
+  statistics,
+  colors
+}) {
+  let {
+    0: loaded,
+    1: setLoaded
+  } = Object(external_react_["useState"])(false);
+  let {
+    main,
+    shades,
+    tints,
+    complements
+  } = colors;
+  let {
+    0: graphData,
+    1: setGraphData
+  } = Object(external_react_["useState"])({});
+  let {
+    0: activeDose,
+    1: setActiveDose
+  } = Object(external_react_["useState"])(1);
+  const canvasRef = Object(external_react_["useRef"])(null);
+
+  function generateColor(color) {
+    return {
+      borderColor: color,
+      pointBorderColor: color,
+      pointBackgroundColor: color,
+      pointHoverBackgroundColor: color,
+      pointHoverBorderColor: color
+    };
+  }
+
+  Object(external_react_["useEffect"])(() => {
+    var _canvasRef$current;
+
+    if (canvasRef !== null && canvasRef !== void 0 && (_canvasRef$current = canvasRef.current) !== null && _canvasRef$current !== void 0 && _canvasRef$current.chartInstance) {
+      canvasRef.current.chartInstance.data.datasets.forEach(dataset => {
+        if (dataset.customDose == activeDose) {
+          dataset.hidden = false;
+        } else {
+          dataset.hidden = true;
+        }
+
+        canvasRef.current.chartInstance.update();
+      });
+    }
+  }, [activeDose]);
+
+  const data = canvas => {
+    let {
+      labels,
+      groups
+    } = graphData;
+
+    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
+      canvas.parentNode.style.width = '1000px';
+    } else {
+      canvas.parentNode.style.width = 'auto';
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
+        canvas.parentNode.style.width = '1000px';
+      } else {
+        canvas.parentNode.style.width = '100%';
+      }
+    });
+    return {
+      labels: Object.keys(graphData.labels).map(key => {
+        let fromDate = new Date(labels[key]);
+        return `${Object(utils["c" /* formatNumber */])(fromDate.getDate())}/${Object(utils["c" /* formatNumber */])(fromDate.getMonth() + 1)}`;
+      }),
+      datasets: [_objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(shades[0])), {}, {
+        label: 'Grupo 18/24 - 2ª Dose',
+        labelGroup: 'Grupo 18/24',
+        fill: false,
+        backgroundColor: shades[0],
+        data: groups.map(group => group.e1824.dose_2 || 0),
+        order: 1,
+        hidden: true,
+        display: false,
+        customDose: 2,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(shades[0])), {}, {
+        label: 'Grupo 18/24 - 1ª Dose',
+        labelGroup: 'Grupo 18/24',
+        fill: false,
+        backgroundColor: shades[0],
+        data: groups.map(group => group.e1824.dose_1 || 0),
+        order: 2,
+        hidden: false,
+        display: true,
+        customDose: 1,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(tints[1])), {}, {
+        label: 'Grupo 25/49 - 2ª Dose',
+        labelGroup: 'Grupo 25/49',
+        fill: false,
+        backgroundColor: tints[1],
+        data: groups.map(group => group.e2549.dose_2 || 0),
+        order: 3,
+        hidden: true,
+        display: false,
+        customDose: 2,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(tints[1])), {}, {
+        label: 'Grupo 25/49 - 1ª Dose',
+        labelGroup: 'Grupo 25/49',
+        backgroundColor: tints[1],
+        fill: false,
+        data: groups.map(group => group.e2549.dose_1 || 0),
+        order: 4,
+        hidden: false,
+        display: true,
+        customDose: 1,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(main)), {}, {
+        label: 'Grupo 50/59 - 2ª Dose',
+        labelGroup: 'Grupo 50/59',
+        fill: false,
+        backgroundColor: main,
+        data: groups.map(group => group.e5059.dose_2 || 0),
+        stack: 'stack1',
+        order: 5,
+        hidden: true,
+        display: false,
+        customDose: 2,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(main)), {}, {
+        label: 'Grupo 50/59 - 1ª Dose',
+        labelGroup: 'Grupo 50/59',
+        backgroundColor: main,
+        fill: false,
+        data: groups.map(group => group.e5059.dose_1 || 0),
+        stack: 'stack1',
+        order: 6,
+        hidden: false,
+        display: true,
+        customDose: 1,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(shades[2])), {}, {
+        label: 'Grupo 60/69 - 2ª Dose',
+        labelGroup: 'Grupo 60/69',
+        fill: false,
+        backgroundColor: shades[2],
+        data: groups.map(group => group.e6064.dose_2 + group.e6569.dose_2 || 0),
+        yAxisID: 'axis',
+        xAxisID: 'xaxis',
+        order: 7,
+        hidden: true,
+        display: false,
+        customDose: 2
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(shades[2])), {}, {
+        label: 'Grupo 60/69 - 1ª Dose',
+        labelGroup: 'Grupo 60/69',
+        backgroundColor: shades[2],
+        data: groups.map(group => group.e6064.dose_1 + group.e6569.dose_1 || 0),
+        xAxisID: 'xaxis',
+        order: 8,
+        hidden: false,
+        fill: false,
+        display: true,
+        customDose: 1,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(complements[2])), {}, {
+        label: 'Grupo 70/79 - 2ª Dose',
+        labelGroup: 'Grupo 70/79',
+        fill: false,
+        backgroundColor: complements[2],
+        data: groups.map(group => group.e7079.dose_2 || 0),
+        order: 9,
+        hidden: true,
+        display: false,
+        customDose: 2,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(complements[2])), {}, {
+        label: 'Grupo 70/79 - 1ª Dose',
+        labelGroup: 'Grupo 70/79',
+        backgroundColor: complements[2],
+        data: groups.map(group => group.e7079.dose_1 || 0),
+        order: 10,
+        hidden: false,
+        fill: false,
+        display: true,
+        customDose: 1,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(complements[1])), {}, {
+        label: 'Grupo 80+ - 2ª Dose',
+        labelGroup: 'Grupo 80+',
+        xAxisID: 'xaxis',
+        backgroundColor: complements[1],
+        data: groups.map(group => group.e80.dose_2 || 0),
+        order: 11,
+        hidden: true,
+        stack: 'stack2',
+        fill: false,
+        display: false,
+        customDose: 2,
+        yAxisID: 'axis'
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(complements[1])), {}, {
+        label: 'Grupo 80+ - 1ª Dose',
+        labelGroup: 'Grupo 80+',
+        backgroundColor: complements[1],
+        data: groups.map(group => group.e80.dose_1 || 0),
+        stack: 'stack2',
+        xAxisID: 'xaxis',
+        yAxisID: 'axis',
+        order: 12,
+        hidden: false,
+        fill: false,
+        display: true,
+        customDose: 1
+      })]
+    };
+  };
+
+  const options = () => {
+    let maxValue = 100;
+    return {
+      //maintainAspectRatio: false,
+      plugins: {
+        datalabels: {
+          display: false,
+          color: 'blue'
+        }
+      },
+      onResize: (a, b, c) => {
+        if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
+          a.canvas.parentNode.style.width = '1000px';
+        } else {
+          a.canvas.parentNode.style.width = 'auto';
+        }
+      },
+      legend: {
+        position: 'bottom',
+        align: 'start',
+        onHover: function (event, legend) {
+          document.body.classList.add('mouse-pointer');
+        },
+        onLeave: function (event, legend) {
+          document.body.classList.remove('mouse-pointer');
+        },
+        labels: {
+          filter: function (item, chart) {
+            return chart.datasets[item.datasetIndex].hidden == false;
+          }
+        }
+      },
+      animation: {
+        duration: 1000
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+        callbacks: _objectSpread(_objectSpread(_objectSpread({}, constants["t" /* lineChartCommon */]), generateColor(shades[0])), {}, {
+          label: (tooltipItem, data) => {
+            var label = data.datasets[tooltipItem.datasetIndex].label;
+            return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value).toFixed(2) + '%';
+          },
+          title: (tooltipItem, data) => {
+            return tooltipItem[0].label;
+          }
+        })
+      },
+      scales: {
+        yAxes: [{
+          id: 'axis',
+          stacked: false,
+          ticks: {
+            beginAtZero: false,
+            min: 0,
+            max: maxValue,
+            stepSize: (maxValue / 5).toFixed(0),
+            callback: value => Object(utils["c" /* formatNumber */])(value, false) + '%'
+          }
+        }],
+        xAxes: [{
+          id: 'xaxis',
+          stacked: false,
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      }
+    };
+  };
+
+  Object(external_react_["useEffect"])(() => {
+    statistics.getAdministredDosesByAgeByWeekRam().then(data => {
+      setGraphData(data);
+      setLoaded(true);
+      setActiveDose(1);
+    });
+  }, []);
+  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+    textLeft: true,
+    allowOverflow: true,
+    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+      children: loaded === true ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+          className: 'toggle_buttons',
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
+              className: external_classnames_default()('toggle_button', {
+                active: activeDose === 1
+              }),
+              onClick: () => {
+                setActiveDose(1);
+              },
+              children: "1\xAA Dose"
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
+              className: external_classnames_default()('toggle_button', {
+                active: activeDose === 2
+              }),
+              onClick: () => {
+                setActiveDose(2);
+              },
+              children: "2\xAA Dose"
+            })]
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Line"], {
+            height: 80,
+            ref: canvasRef,
+            options: options(),
+            data: data
+          })
+        })]
+      }) : ''
+    })
+  });
+}
 // CONCATENATED MODULE: ./components/graphs/RamMapa.jsx
 
 
@@ -2045,16 +2199,13 @@ function RamMapa({
     0: graphData,
     1: setGraphData
   } = Object(external_react_["useState"])();
-  let canvas = Object(external_react_["useRef"])(null);
   let {
     0: loaded,
     1: setLoaded
   } = Object(external_react_["useState"])(false);
   let {
     main,
-    shades,
-    tints,
-    complements
+    shades
   } = colors;
   const grades = [0, 20, 40, 60, 80];
   const grades_pretty = {
@@ -2338,9 +2489,7 @@ const plausible = external_plausible_tracker_default()({
 function Home() {
   let {
     statistics,
-    update: updateData,
-    ready: dataReady,
-    versioning
+    ready: dataReady
   } = Object(useData["a" /* useData */])({
     regiao: 'madeira'
   });
@@ -2352,10 +2501,6 @@ function Home() {
     0: previousItem,
     1: setPreviousItem
   } = Object(external_react_["useState"])({});
-  let {
-    0: updating,
-    1: setUpdating
-  } = Object(external_react_["useState"])(false);
   let {
     0: loaded,
     1: setLoaded
@@ -2376,18 +2521,6 @@ function Home() {
     percentagem: {
       current: 0
     }
-  });
-  let {
-    0: doses,
-    1: setDoses
-  } = Object(external_react_["useState"])({
-    encomendadas: generic.doses.valor,
-    recebidas: 0,
-    administradas: 0,
-    primeiras: 0,
-    segundas: 0,
-    data: '',
-    dataLong: ''
   });
 
   function trackScrollEvents(e) {
@@ -2420,8 +2553,7 @@ function Home() {
 
   let {
     colors,
-    colors_v2,
-    setColors
+    colors_v2
   } = Object(useColors["a" /* useColors */])();
   Object(external_react_["useEffect"])(() => {
     // Unconventional way of doing this
@@ -2458,14 +2590,6 @@ function Home() {
     });
      */
 
-    setDoses({
-      recebidas: 0,
-      administradas: lastItem.total,
-      primeiras: lastItem.dose_1,
-      segundas: lastItem.dose_2,
-      data: '',
-      dataLong: ''
-    });
     setLoaded(true);
   }, [dataReady]);
   return /*#__PURE__*/Object(jsx_runtime_["jsx"])(regiao["a" /* RegiaoContext */].Provider, {
@@ -2486,7 +2610,6 @@ function Home() {
             lg: 4,
             xs: 12,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-              isUpdating: updating,
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 colors: colors,
                 tempo: 'na semana anterior',
@@ -2500,7 +2623,6 @@ function Home() {
             lg: 4,
             xs: 12,
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
-              isUpdating: updating,
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 colors: colors,
                 tempo: 'na semana anterior',
@@ -2520,7 +2642,6 @@ function Home() {
             lg: 4,
             xs: 12,
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
-              isUpdating: updating,
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 colors: colors,
                 tempo: 'na 	semana anterior',
@@ -2543,7 +2664,6 @@ function Home() {
             lg: 4,
             xs: 12,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-              isUpdating: updating,
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 ps: "Percentagem calculada com base no n\xFAmero total de segundas doses administradas",
                 digits: 2,
@@ -2558,7 +2678,6 @@ function Home() {
             lg: 4,
             xs: 12,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-              isUpdating: updating,
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 ps: `Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`,
                 digits: 2,
@@ -2619,7 +2738,7 @@ function Home() {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
               children: "Vacina\xE7\xE3o por grupos priorit\xE1rios"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamGruposPrioritarios["a" /* RamGruposPrioritarios */], {
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamGruposPrioritarios, {
               colors: colors_v2,
               statistics: statistics
             })]
@@ -2632,7 +2751,7 @@ function Home() {
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
                 children: "Percentagem da popula\xE7\xE3o vacinada por faixa et\xE1ria"
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamBarAdministradasPorFaixaEtaria["a" /* RamBarAdministradasPorFaixaEtaria */], {
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamBarAdministradasPorFaixaEtaria, {
                 colors: colors_v2,
                 statistics: statistics
               })]
@@ -3115,13 +3234,10 @@ module.exports = {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("5PhN");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("lLkP");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("GyP+");
-
-
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("5PhN");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lLkP");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("GyP+");
 
 
 
@@ -3137,8 +3253,8 @@ function PieSuscetiveisProporcao({
     1: setLoading
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
   let vaccines = statistics.getLastVaccineAvaliable();
-  let lastCase = statistics.getLastCaseAvaliable();
-  let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
+  let lastCase = statistics.getLastCaseAvaliable(); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
+
   let populacao_suscetivel = lastCase.populacao - (vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
 
   let {
@@ -3198,18 +3314,18 @@ function PieSuscetiveisProporcao({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_6__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_5__[/* formatNumber */ "c"])(data)}`;
           }
         }
       }
     };
   };
 
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_4__[/* Card */ "a"], {
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
-        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_5___default.a],
+        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default.a],
         height: 350,
         options: options(),
         data: data
@@ -3292,9 +3408,8 @@ module.exports = JSON.parse("{\"populacao\":{\"valor\":10286300,\"legenda\":\"10
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("5PhN");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("K2gz");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _CustomCheckbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("SSzp");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("UG6H");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("UG6H");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
@@ -3312,45 +3427,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 function LineRt({
   statistics,
   colors,
   regiao
 }) {
-  let casesData = statistics.getCases();
   let {
     0: loaded,
     1: setLoaded
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
   let {
-    valuesIn1,
-    valuesIn2
-  } = statistics.getVacinadosAcum();
-  let {
-    main,
-    shades,
-    tints,
-    complements
+    main
   } = colors;
   let {
     0: currentRegiao,
     1: setCurrentRegiao
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(regiao !== null && regiao !== void 0 ? regiao : 'continente');
-  let doses_map = {
-    normal: ['total_vaccinations', 'people_vaccinated', 'people_fully_vaccinated'],
-    per_hundred: ['total_vaccinations_per_hundred', 'people_vaccinated_per_hundred', 'people_fully_vaccinated_per_hundred']
-  };
   let {
     0: height,
     1: setHeight
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(400);
-  let {
-    0: toggleStats,
-    1: setToggleStats
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    perHundred: true
-  });
   let {
     0: rtData,
     1: setRtData
@@ -3366,7 +3462,6 @@ function LineRt({
       setLoaded(true);
     });
   }, []);
-  let numberFormatter = new Intl.NumberFormat();
 
   const data = canvas => {
     const ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
@@ -3511,7 +3606,6 @@ function LineRt({
         intersect: true,
         callbacks: {
           title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
             return 'Dia ' + tooltipItem[0].label;
           }
         }
@@ -3549,7 +3643,7 @@ function LineRt({
     textLeft: true,
     allowOverflow: true,
     children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_scrollable].join(' '),
+      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default.a.card_scrollable].join(' '),
       children: regiao === undefined ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
         className: 'toggle_buttons',
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
@@ -3662,378 +3756,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617719705389,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-05\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-05\"}");
-
-/***/ }),
-
-/***/ "vksU":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RamBarAdministradasPorFaixaEtaria; });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("GyP+");
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("5PhN");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("K2gz");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("xPX6");
-
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-function RamBarAdministradasPorFaixaEtaria({
-  statistics,
-  colors
-}) {
-  let {
-    0: loaded,
-    1: setLoaded
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
-  let {
-    main,
-    shades,
-    tints,
-    complements
-  } = colors;
-  let {
-    0: graphData,
-    1: setGraphData
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({});
-  let {
-    0: activeDose,
-    1: setActiveDose
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1);
-  const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
-
-  function generateColor(color) {
-    return {
-      borderColor: color,
-      pointBorderColor: color,
-      pointBackgroundColor: color,
-      pointHoverBackgroundColor: color,
-      pointHoverBorderColor: color
-    };
-  }
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    var _canvasRef$current;
-
-    if (canvasRef !== null && canvasRef !== void 0 && (_canvasRef$current = canvasRef.current) !== null && _canvasRef$current !== void 0 && _canvasRef$current.chartInstance) {
-      canvasRef.current.chartInstance.data.datasets.forEach(dataset => {
-        if (dataset.customDose == activeDose) {
-          dataset.hidden = false;
-        } else {
-          dataset.hidden = true;
-        }
-
-        canvasRef.current.chartInstance.update();
-      });
-    }
-  }, [activeDose]);
-
-  const data = canvas => {
-    let {
-      labels,
-      groups,
-      maxValue
-    } = graphData;
-
-    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_6__[/* RESIZE_TRESHOLD */ "m"]) {
-      canvas.parentNode.style.width = '1000px';
-    } else {
-      canvas.parentNode.style.width = 'auto';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_6__[/* RESIZE_TRESHOLD */ "m"]) {
-        canvas.parentNode.style.width = '1000px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
-    return {
-      labels: Object.keys(graphData.labels).map(key => {
-        let fromDate = new Date(labels[key]);
-        return `${Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* formatNumber */ "c"])(fromDate.getDate())}/${Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* formatNumber */ "c"])(fromDate.getMonth() + 1)}`;
-      }),
-      datasets: [_objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(shades[0])), {}, {
-        label: 'Grupo 18/24 - 2ª Dose',
-        labelGroup: 'Grupo 18/24',
-        fill: false,
-        backgroundColor: shades[0],
-        data: groups.map(group => group.e1824.dose_2 || 0),
-        order: 1,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(shades[0])), {}, {
-        label: 'Grupo 18/24 - 1ª Dose',
-        labelGroup: 'Grupo 18/24',
-        fill: false,
-        backgroundColor: shades[0],
-        data: groups.map(group => group.e1824.dose_1 || 0),
-        order: 2,
-        hidden: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(tints[1])), {}, {
-        label: 'Grupo 25/49 - 2ª Dose',
-        labelGroup: 'Grupo 25/49',
-        fill: false,
-        backgroundColor: tints[1],
-        data: groups.map(group => group.e2549.dose_2 || 0),
-        order: 3,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(tints[1])), {}, {
-        label: 'Grupo 25/49 - 1ª Dose',
-        labelGroup: 'Grupo 25/49',
-        backgroundColor: tints[1],
-        fill: false,
-        data: groups.map(group => group.e2549.dose_1 || 0),
-        order: 4,
-        hidden: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(main)), {}, {
-        label: 'Grupo 50/59 - 2ª Dose',
-        labelGroup: 'Grupo 50/59',
-        fill: false,
-        backgroundColor: main,
-        data: groups.map(group => group.e5059.dose_2 || 0),
-        stack: 'stack1',
-        order: 5,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(main)), {}, {
-        label: 'Grupo 50/59 - 1ª Dose',
-        labelGroup: 'Grupo 50/59',
-        backgroundColor: main,
-        fill: false,
-        data: groups.map(group => group.e5059.dose_1 || 0),
-        stack: 'stack1',
-        order: 6,
-        hidden: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(shades[2])), {}, {
-        label: 'Grupo 60/69 - 2ª Dose',
-        labelGroup: 'Grupo 60/69',
-        fill: false,
-        backgroundColor: shades[2],
-        data: groups.map(group => group.e6064.dose_2 + group.e6569.dose_2 || 0),
-        yAxisID: 'axis',
-        xAxisID: 'xaxis',
-        order: 7,
-        hidden: true,
-        display: false,
-        customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(shades[2])), {}, {
-        label: 'Grupo 60/69 - 1ª Dose',
-        labelGroup: 'Grupo 60/69',
-        backgroundColor: shades[2],
-        data: groups.map(group => group.e6064.dose_1 + group.e6569.dose_1 || 0),
-        xAxisID: 'xaxis',
-        order: 8,
-        hidden: false,
-        fill: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(complements[2])), {}, {
-        label: 'Grupo 70/79 - 2ª Dose',
-        labelGroup: 'Grupo 70/79',
-        fill: false,
-        backgroundColor: complements[2],
-        data: groups.map(group => group.e7079.dose_2 || 0),
-        order: 9,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(complements[2])), {}, {
-        label: 'Grupo 70/79 - 1ª Dose',
-        labelGroup: 'Grupo 70/79',
-        backgroundColor: complements[2],
-        data: groups.map(group => group.e7079.dose_1 || 0),
-        order: 10,
-        hidden: false,
-        fill: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(complements[1])), {}, {
-        label: 'Grupo 80+ - 2ª Dose',
-        labelGroup: 'Grupo 80+',
-        xAxisID: 'xaxis',
-        backgroundColor: complements[1],
-        data: groups.map(group => group.e80.dose_2 || 0),
-        order: 11,
-        hidden: true,
-        stack: 'stack2',
-        fill: false,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(complements[1])), {}, {
-        label: 'Grupo 80+ - 1ª Dose',
-        labelGroup: 'Grupo 80+',
-        backgroundColor: complements[1],
-        data: groups.map(group => group.e80.dose_1 || 0),
-        stack: 'stack2',
-        xAxisID: 'xaxis',
-        yAxisID: 'axis',
-        order: 12,
-        hidden: false,
-        fill: false,
-        display: true,
-        customDose: 1
-      })]
-    };
-  };
-
-  const options = () => {
-    let maxValue = 100;
-    return {
-      //maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          display: false,
-          color: 'blue'
-        }
-      },
-      onResize: (a, b, c) => {
-        if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_6__[/* RESIZE_TRESHOLD */ "m"]) {
-          a.canvas.parentNode.style.width = '1000px';
-        } else {
-          a.canvas.parentNode.style.width = 'auto';
-        }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
-        },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
-        },
-        labels: {
-          filter: function (item, chart) {
-            return chart.datasets[item.datasetIndex].hidden == false;
-          }
-        }
-      },
-      animation: {
-        duration: 1000
-      },
-      tooltips: {
-        mode: 'index',
-        intersect: false,
-        callbacks: _objectSpread(_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_6__[/* lineChartCommon */ "t"]), generateColor(shades[0])), {}, {
-          label: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value).toFixed(2) + '%';
-          },
-          title: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem[0].datasetIndex];
-            return tooltipItem[0].label;
-          }
-        })
-      },
-      scales: {
-        yAxes: [{
-          id: 'axis',
-          stacked: false,
-          ticks: {
-            beginAtZero: false,
-            min: 0,
-            max: maxValue,
-            stepSize: (maxValue / 5).toFixed(0),
-            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* formatNumber */ "c"])(value, false) + '%'
-          }
-        }],
-        xAxes: [{
-          id: 'xaxis',
-          stacked: false,
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      }
-    };
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    statistics.getAdministredDosesByAgeByWeekRam().then(data => {
-      setGraphData(data);
-      setLoaded(true);
-      setActiveDose(1);
-    });
-  }, []);
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_4__[/* Card */ "a"], {
-    textLeft: true,
-    allowOverflow: true,
-    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      children: loaded === true ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-          className: 'toggle_buttons',
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
-              className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('toggle_button', {
-                active: activeDose === 1
-              }),
-              onClick: () => {
-                setActiveDose(1);
-              },
-              children: "1\xAA Dose"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("button", {
-              className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('toggle_button', {
-                active: activeDose === 2
-              }),
-              onClick: () => {
-                setActiveDose(2);
-              },
-              children: "2\xAA Dose"
-            })]
-          })
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Line"], {
-            height: 80,
-            ref: canvasRef,
-            options: options(),
-            data: data
-          })
-        })]
-      }) : ''
-    })
-  });
-}
+module.exports = JSON.parse("{\"date\":1617737433270,\"dateSnsStartWeirdFormat\":\"22/03/2021\",\"dateSnsStart\":\"2021-03-22T00:00:00\",\"dateSns\":\"2021-03-28T00:00:00\",\"dateEcdc\":\"2021-03-28\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-05\",\"dateAcores\":\"2021-03-30\",\"dateAcoresCases\":\"2021-04-05\"}");
 
 /***/ }),
 
