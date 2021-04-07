@@ -289,11 +289,7 @@
                 "total": 1742
             },
             "sao_jorge":{
-<<<<<<< Updated upstream
-                "nome":"Machico",
-=======
                 "nome":"São Jorge",
->>>>>>> Stashed changes
                 "chave":"sao_jorge",
                 "populacao":7836,
                 "dose_1": 1388,
