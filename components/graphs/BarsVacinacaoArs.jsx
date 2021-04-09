@@ -79,6 +79,9 @@ export function BarsVacinacaoArs({ statistics, colors }) {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
 						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
 					},
+					title: () => {
+						return '';
+					},
 				},
 			},
 			scales: {

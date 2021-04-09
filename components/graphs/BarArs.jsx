@@ -99,6 +99,9 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
 						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
 					},
+					title: () => {
+						return '';
+					},
 				},
 			},
 			scales: {
@@ -252,20 +255,6 @@ export function BarArs({ statistics, colors }) {
 								</div>
 								<CustomBarChart colors={colors} data={graphData['ARS Norte']} total={5000}></CustomBarChart>
 							</Col>
-						</Row>
-						<Row>
-							<Col xs={12} lg={6}>
-								<div className={'subchart-data'}>
-									<p>{graphData['Madeira'].REGION}</p>
-								</div>
-								<CustomBarChart colors={colors} showHeading={true} total={400} data={graphData['Madeira']}></CustomBarChart>
-							</Col>
-							{/* <Col xs={12} lg={6}>
-								<div className={'subchart-data'}>
-									<p>{graphData['Açores'].REGION}</p>
-								</div>
-								<CustomBarChart colors={colors} data={graphData['Açores']} total={5000}></CustomBarChart>
-							</Col> */}
 						</Row>
 					</>
 				) : (
