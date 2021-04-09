@@ -73,6 +73,9 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 						var label = data.datasets[tooltipItem.datasetIndex].label;
 						return label + ': ' + formatNumber(parseInt(tooltipItem.value), false);
 					},
+					title: (tooltipItem, data) => {
+						return '';
+					},
 				},
 			},
 			scales: {
