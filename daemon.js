@@ -196,6 +196,7 @@ async function updateJSON() {
 }
 
 console.log(new Date().toLocaleString(), 'daemon running');
+updateOWID();
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
 updateJSON();
@@ -214,7 +215,7 @@ schedule.scheduleJob('20 21 * * *', function () {
 });
 
 schedule.scheduleJob('13 00 * * *', function () {
-	// updateOWID();
+	updateOWID();
 	// updateEDCD();
 	updatedCasesMadeira();
 	updateRT();
