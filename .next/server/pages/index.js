@@ -3021,6 +3021,9 @@ function CustomBarChart({
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
             return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
+          },
+          title: (tooltipItem, data) => {
+            return '';
           }
         }
       },
@@ -5984,7 +5987,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1617972703036,\"dateSnsStartWeirdFormat\":\"29/03/2021\",\"dateSnsStart\":\"2021-03-29T00:00:00\",\"dateSns\":\"2021-04-04T00:00:00\",\"dateEcdc\":\"2021-04-04\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-07\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-08\"}");
+module.exports = JSON.parse("{\"date\":1617996219287,\"dateSnsStartWeirdFormat\":\"29/03/2021\",\"dateSnsStart\":\"2021-03-29T00:00:00\",\"dateSns\":\"2021-04-04T00:00:00\",\"dateEcdc\":\"2021-04-04\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-07\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-08\"}");
 
 /***/ }),
 
