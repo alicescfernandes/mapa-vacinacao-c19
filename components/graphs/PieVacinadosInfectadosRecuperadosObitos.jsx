@@ -3,13 +3,12 @@ import { Pie } from 'react-chartjs-2';
 import { Card } from './../Card';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from '../../utils';
-import { RegiaoContext } from '../context/regiao';
 export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) {
 	let [loading, setLoading] = useState(false);
 
 	let vaccines = statistics.getLastVaccineAvaliable();
 	let lastCase = statistics.getLastCaseAvaliable();
-	let { main, shades, tints, complements } = colors;
+	let { main, shades, complements } = colors;
 
 	const data = (canvas) => {
 		return {

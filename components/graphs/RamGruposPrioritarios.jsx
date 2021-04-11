@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { HorizontalBar } from 'react-chartjs-2';
-import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import { Col, Row } from 'react-bootstrap';
 import cardStyles from './../Card.module.scss';

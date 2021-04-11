@@ -108,8 +108,6 @@ export default function Home() {
 		if (dataReady === false) return;
 		let rawData = await statistics.getArquipelagoData();
 		plausible.trackPageview();
-		let lastItem = rawData[rawData.length - 1];
-
 		setSelectedItem(rawData[rawData.length - 1]);
 		setPreviousItem(rawData[rawData.length - 2]);
 

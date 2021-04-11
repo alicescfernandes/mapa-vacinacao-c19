@@ -8,7 +8,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let marriedData = {};
 	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
 	let { raw: rawCasos } = statistics.getDiariosCases();
-	let { main, shades, tints, complements } = colors;
+	let { main, shades, complements } = colors;
 
 	//map the last 30 days in data
 	//Marry the data pls
