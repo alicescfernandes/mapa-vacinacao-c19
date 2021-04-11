@@ -227,6 +227,8 @@ function fetchWithLocalCache(url, options) {
     }
   }
 
+  useCache = false;
+
   if (window && localStorage.getItem(url) && useCache === true) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
