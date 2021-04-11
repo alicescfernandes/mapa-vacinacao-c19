@@ -195,7 +195,7 @@ function VacinadosPorDia({
   let {
     values: values2
   } = statistics.getMediaMovelDiaria(7);
-  let [foreground, color_1, color_2, color_3, color_4] = colors;
+  let [foreground, color_1, color_2,,, color_4] = colors;
   const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
 
   const data = canvas => {
@@ -996,11 +996,12 @@ function useData({
     month: 'numeric',
     day: 'numeric'
   };
-  let options2 = {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  };
+  /* let options2 = {
+  	month: 'short',
+  	day: 'numeric',
+  	year: 'numeric',
+  }; */
+
   let f = new Intl.DateTimeFormat('pt-PT', options); // let f2 = new Intl.DateTimeFormat('pt-PT', options2);
 
   function parseData(data) {
@@ -1687,16 +1688,11 @@ var LineRt = __webpack_require__("m5rz");
 // EXTERNAL MODULE: ./components/context/regiao.js
 var regiao = __webpack_require__("uAdN");
 
-// EXTERNAL MODULE: external "react-chartjs-2"
-var external_react_chartjs_2_ = __webpack_require__("t3hY");
-
 // EXTERNAL MODULE: external "react-count-to"
 var external_react_count_to_ = __webpack_require__("Ys+F");
 var external_react_count_to_default = /*#__PURE__*/__webpack_require__.n(external_react_count_to_);
 
 // CONCATENATED MODULE: ./components/graphs/RamGruposPrioritarios.jsx
-
-
 
 
 
@@ -1795,6 +1791,9 @@ function RamGruposPrioritarios({
     })
   });
 }
+// EXTERNAL MODULE: external "react-chartjs-2"
+var external_react_chartjs_2_ = __webpack_require__("t3hY");
+
 // EXTERNAL MODULE: external "classnames"
 var external_classnames_ = __webpack_require__("K2gz");
 var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_classnames_);
@@ -2576,7 +2575,6 @@ function Home() {
     if (dataReady === false) return;
     let rawData = await statistics.getArquipelagoData();
     plausible.trackPageview();
-    let lastItem = rawData[rawData.length - 1];
     setSelectedItem(rawData[rawData.length - 1]);
     setPreviousItem(rawData[rawData.length - 2]);
     /* let { sum } = statistics?.getDosesRecebidasAcum();
@@ -3032,8 +3030,6 @@ module.exports = require("react-spinners-kit");
 /* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lLkP");
 /* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("GyP+");
-/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("uAdN");
-
 
 
 
@@ -3053,7 +3049,6 @@ function PieVacinadosInfectadosRecuperadosObitos({
   let {
     main,
     shades,
-    tints,
     complements
   } = colors;
 
@@ -3435,10 +3430,6 @@ function LineRt({
     1: setCurrentRegiao
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(regiao !== null && regiao !== void 0 ? regiao : 'continente');
   let {
-    0: height,
-    1: setHeight
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(400);
-  let {
     0: rtData,
     1: setRtData
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({});
@@ -3456,7 +3447,7 @@ function LineRt({
 
   const data = canvas => {
     const ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
-    const gradient = ctx === null || ctx === void 0 ? void 0 : ctx.createLinearGradient(0, 0, 0, height);
+    const gradient = ctx === null || ctx === void 0 ? void 0 : ctx.createLinearGradient(0, 0, 0, 400);
     let color = '';
     let {
       r,
@@ -3707,7 +3698,6 @@ function LineRt({
       }) : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {})
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: loaded ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Line"], {
-        height: 80,
         ref: canvasRef,
         options: options(),
         data: data
@@ -3747,7 +3737,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618145978339,\"dateSnsStartWeirdFormat\":\"29/03/2021\",\"dateSnsStart\":\"2021-03-29T00:00:00\",\"dateSns\":\"2021-04-04T00:00:00\",\"dateEcdc\":\"2021-04-04\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-09\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-10\"}");
+module.exports = JSON.parse("{\"date\":1618148438599,\"dateSnsStartWeirdFormat\":\"29/03/2021\",\"dateSnsStart\":\"2021-03-29T00:00:00\",\"dateSns\":\"2021-04-04T00:00:00\",\"dateEcdc\":\"2021-04-04\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-4\",\"dateMadeiraCases\":\"2021-04-09\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-10\"}");
 
 /***/ }),
 
