@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { HorizontalBar } from 'react-chartjs-2';
 import { MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';

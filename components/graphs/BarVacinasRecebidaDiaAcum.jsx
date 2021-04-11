@@ -11,7 +11,7 @@ import styles from './../Card.module.scss';
 export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
-	let [foreground, color_1, color_2, color_3, color_4] = colors;
+	let [foreground, color_1, , , color_3, ,] = colors;
 	let [annotationsToggle, setAnnotationsToggle] = useState({
 		dose: true,
 		dose2: true,

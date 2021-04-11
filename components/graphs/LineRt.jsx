@@ -12,8 +12,6 @@ export function LineRt({ statistics, colors, regiao }) {
 	let { main } = colors;
 	let [currentRegiao, setCurrentRegiao] = useState(regiao ?? 'continente');
 
-	let [height, setHeight] = useState(400);
-
 	let [rtData, setRtData] = useState({});
 	const canvasRef = useRef(null);
 
@@ -31,7 +29,7 @@ export function LineRt({ statistics, colors, regiao }) {
 
 	const data = (canvas) => {
 		const ctx = canvas?.getContext('2d');
-		const gradient = ctx?.createLinearGradient(0, 0, 0, height);
+		const gradient = ctx?.createLinearGradient(0, 0, 0, 400);
 		let color = '';
 		let { r, g, b } = hexToRgb(main);
 		try {
@@ -311,7 +309,7 @@ export function LineRt({ statistics, colors, regiao }) {
 				)}
 			</div>
 
-			<div>{loaded ? <Line height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{loaded ? <Line ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

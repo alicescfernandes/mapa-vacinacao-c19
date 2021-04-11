@@ -26,11 +26,11 @@ export function useData({ regiao }) {
 		month: 'numeric',
 		day: 'numeric',
 	};
-	let options2 = {
+	/* let options2 = {
 		month: 'short',
 		day: 'numeric',
 		year: 'numeric',
-	};
+	}; */
 
 	let f = new Intl.DateTimeFormat('pt-PT', options);
 	// let f2 = new Intl.DateTimeFormat('pt-PT', options2);

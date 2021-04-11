@@ -1,4 +1,4 @@
-import { createRef, useContext, useEffect, useRef, useState } from 'react';
+import { createRef, useContext, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber, hexToRgb, perHundred } from '../../utils';
