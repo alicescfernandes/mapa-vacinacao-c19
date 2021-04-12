@@ -309,7 +309,7 @@ export function LineRt({ statistics, colors, regiao }) {
 				)}
 			</div>
 
-			<div>{loaded ? <Line ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div>{loaded ? <Line height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
