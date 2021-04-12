@@ -203,19 +203,21 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 	updateJSON();
 });
 
-schedule.scheduleJob('10 21 * * *', function () {
+schedule.scheduleJob('20 00 * * *', function () {
 	console.log('Saving to web archive');
 	shell.exec('echo "working" & waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"');
 });
 
-schedule.scheduleJob('20 21 * * *', function () {
+schedule.scheduleJob('25 00 * * *', function () {
 	console.log('Saving to web archive');
 	shell.exec('echo "working" & waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/"');
 });
 
-schedule.scheduleJob('13 00 * * *', function () {
+schedule.scheduleJob('00 12 * * *', function () {
 	updateOWID();
-	// updateEDCD();
-	updatedCasesMadeira();
 	updateRT();
+});
+
+schedule.scheduleJob('0 1/1 * * *', function () {
+	updatedCasesMadeira();
 });
