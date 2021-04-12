@@ -116,7 +116,7 @@ async function updateJSON() {
 			updatedVaccines = true;
 
 			gitCommit('vaccines');
-			Update twitter
+			//Update twitter
 			shell.exec('echo "scheduling twitter" & (sleep 180 && yarn twitter)');
 			shell.exec('echo "scheduling notif" & (sleep 180 && yarn onesignal)');
 		} else {
