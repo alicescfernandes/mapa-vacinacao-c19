@@ -3762,7 +3762,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618265373890,\"dateSnsStartWeirdFormat\":\"29/03/2021\",\"dateSnsStart\":\"2021-03-29T00:00:00\",\"dateSns\":\"2021-04-04T00:00:00\",\"dateEcdc\":\"2021-04-04\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-09\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-10\"}");
+module.exports = JSON.parse("{\"date\":1618318542634,\"dateSnsStartWeirdFormat\":\"29/03/2021\",\"dateSnsStart\":\"2021-03-29T00:00:00\",\"dateSns\":\"2021-04-04T00:00:00\",\"dateEcdc\":\"2021-04-04\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-09\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-10\"}");
 
 /***/ }),
 
