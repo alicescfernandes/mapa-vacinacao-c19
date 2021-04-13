@@ -112,13 +112,13 @@ async function updateJSON() {
 			item.Vacinados = item.Vacinados_Ac - dataLocalVacinas[dataLocalVacinas.length - 2].Vacinados_Ac;
 			dataLocalVacinasV2.push(item);
 			fs.writeFileSync('./data/vaccines_v2.json', JSON.stringify(dataLocalVacinasV2));
-			//publishEvent('vacinas', dataVacinas.features[0].attributes);
+			publishEvent('vacinas', dataVacinas.features[0].attributes);
 			updatedVaccines = true;
 
 			gitCommit('vaccines');
 			//Update twitter
-			//shell.exec('echo "scheduling twitter" & (sleep 180 && yarn twitter)');
-			//shell.exec('echo "scheduling notif" & (sleep 180 && yarn onesignal)');
+			shell.exec('echo "scheduling twitter" & (sleep 180 && yarn twitter)');
+			shell.exec('echo "scheduling notif" & (sleep 180 && yarn onesignal)');
 		} else {
 			console.log(
 				new Date(),
