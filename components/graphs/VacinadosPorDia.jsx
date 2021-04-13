@@ -8,8 +8,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2 } = statistics.getMediaMovelDiaria(7);
-	let [foreground, color_1, color_2, , , color_4] = colors;
-
+	let [foreground, color_1, color_2, , color_4] = colors;
+	console.log(colors);
 	const canvasRef = useRef(null);
 
 	const data = (canvas) => {
