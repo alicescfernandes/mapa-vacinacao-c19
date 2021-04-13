@@ -117,8 +117,8 @@ async function updateJSON() {
 
 			gitCommit('vaccines');
 			//Update twitter
-			shell.exec('echo "scheduling twitter" & (sleep 180 && yarn twitter)');
-			shell.exec('echo "scheduling notif" & (sleep 180 && yarn onesignal)');
+			//shell.exec('echo "scheduling twitter" & (sleep 180 && yarn twitter)');
+			//shell.exec('echo "scheduling notif" & (sleep 180 && yarn onesignal)');
 		} else {
 			console.log(
 				new Date(),
@@ -203,19 +203,18 @@ schedule.scheduleJob('0-59/5 13-20 * * *', function () {
 	updateJSON();
 });
 
-schedule.scheduleJob('10 21 * * *', function () {
+schedule.scheduleJob('20 21 * * *', function () {
 	console.log('Saving to web archive');
 	shell.exec('echo "working" & waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"');
 });
 
-schedule.scheduleJob('20 21 * * *', function () {
+schedule.scheduleJob('30 21 * * *', function () {
 	console.log('Saving to web archive');
 	shell.exec('echo "working" & waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/"');
 });
 
-schedule.scheduleJob('13 00 * * *', function () {
+schedule.scheduleJob('00 12 * * *', function () {
 	updateOWID();
-	// updateEDCD();
-	updatedCasesMadeira();
 	updateRT();
+	updatedCasesMadeira();
 });
