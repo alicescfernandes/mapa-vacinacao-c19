@@ -195,7 +195,8 @@ function VacinadosPorDia({
   let {
     values: values2
   } = statistics.getMediaMovelDiaria(7);
-  let [foreground, color_1, color_2,,, color_4] = colors;
+  let [foreground, color_1, color_2,, color_4] = colors;
+  console.log(colors);
   const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
 
   const data = canvas => {
@@ -3740,7 +3741,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618349853837,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-09\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-10\"}");
+module.exports = JSON.parse("{\"date\":1618349994995,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-09\",\"dateAcores\":\"2021-04-08T00:00:00\",\"dateAcoresCases\":\"2021-04-10\"}");
 
 /***/ }),
 
