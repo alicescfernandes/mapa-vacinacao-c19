@@ -9,6 +9,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2 } = statistics.getMediaMovelDiaria(7);
 	let [foreground, color_1, color_2, , color_4] = colors;
+	let [vacinas_stock, setVacinas_stock] = useState([]);
 
 	const canvasRef = useRef(null);
 
@@ -48,6 +49,26 @@ export function VacinadosPorDia({ statistics, colors }) {
 					pointRadius: 1,
 					pointHitRadius: 10,
 					data: values2,
+					order: 1,
+				},
+				{
+					label: 'Stock de Vacinas - Estimativa',
+					fill: false,
+					lineTension: 0.5,
+					overlayBars: true,
+					type: 'line',
+					lineBorder: 1,
+					borderWidth: 3,
+					borderColor: 'red',
+					borderJoinStyle: 'miter',
+					pointBorderColor: 'red',
+					pointBackgroundColor: 'red',
+					pointBorderWidth: 1,
+					pointHoverRadius: 3,
+					pointHoverBorderWidth: 2,
+					pointRadius: 1,
+					pointHitRadius: 10,
+					data: vacinas_stock,
 					order: 1,
 				},
 				{
@@ -151,6 +172,10 @@ export function VacinadosPorDia({ statistics, colors }) {
 	};
 
 	useEffect(() => {
+		statistics.getEstimativaStock().then(({ vaccines_stock_var }) => {
+			setVacinas_stock(vaccines_stock_var);
+		});
+
 		if (values.length) {
 			setLoading(false);
 		}
