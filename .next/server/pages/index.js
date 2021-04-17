@@ -2819,7 +2819,7 @@ function BarAdministradasPorFaixaEtaria({
   };
 
   const options = () => {
-    let maxValue = 180000;
+    let maxValue = 300000;
     return {
       //maintainAspectRatio: false,
       plugins: {
@@ -3046,8 +3046,8 @@ function CustomBarChart({
           ticks: {
             beginAtZero: true,
             display: true,
-            max: 600000,
-            stepSize: 600000 / 5,
+            max: 1000000,
+            stepSize: 1000000 / 5,
             callback: function (value, index, values) {
               return Object(utils["c" /* formatNumber */])(value, false);
             }
@@ -4373,13 +4373,25 @@ function BarVacinadosEu({
         canvas.parentNode.style.width = '100%';
       }
     });
+    let lineChartCommon = {
+      lineTension: 0.0,
+      lineBorder: 0,
+      borderWidth: 0,
+      borderJoinStyle: 'miter',
+      pointBorderWidth: 1,
+      pointHoverRadius: 3,
+      pointHoverBorderWidth: 1,
+      pointRadius: 3,
+      pointHitRadius: 5
+    };
     return {
       labels: owidData.labels,
-      datasets: [BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, constants["t" /* lineChartCommon */]), {}, {
+      datasets: [BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, lineChartCommon), {}, {
         label: 'Portugal',
         backgroundColor: main,
         borderColor: main,
         fill: false,
+        lineTension: 0,
         data: owidData.pt.map(el => {
           if (toggleStats.perHundred) {
             return el[doses_map.per_hundred[activeDose]];
@@ -4387,9 +4399,10 @@ function BarVacinadosEu({
 
           return el[doses_map.normal[activeDose]];
         })
-      }), BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, constants["t" /* lineChartCommon */]), {}, {
+      }), BarVacinadosEu_objectSpread(BarVacinadosEu_objectSpread({}, lineChartCommon), {}, {
         label: 'União Europeia',
         fill: false,
+        lineTension: 0,
         backgroundColor: complements[2],
         borderColor: complements[2],
         data: owidData.eu.map(el => {
@@ -4414,6 +4427,8 @@ function BarVacinadosEu({
         position: 'bottom',
         align: 'start'
       },
+      bezierCurve: false,
+      lineTension: 0,
       animation: {
         duration: 1000
       },
@@ -4509,7 +4524,7 @@ function BarVacinadosEu({
         }
       })]
     }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Line"], {
         height: 80,
         ref: canvasRef,
         options: options(),
@@ -5972,7 +5987,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618676289384,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-12\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-12\"}");
+module.exports = JSON.parse("{\"date\":1618678816499,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-12\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-12\"}");
 
 /***/ }),
 
