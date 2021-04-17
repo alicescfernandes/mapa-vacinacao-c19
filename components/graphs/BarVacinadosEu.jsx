@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { lineChartCommon, RESIZE_TRESHOLD } from '../../constants';
+import { Line } from 'react-chartjs-2';
+import { RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
@@ -36,6 +36,17 @@ export function BarVacinadosEu({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
+		let lineChartCommon = {
+			lineTension: 0.0,
+			lineBorder: 0,
+			borderWidth: 0,
+			borderJoinStyle: 'miter',
+			pointBorderWidth: 1,
+			pointHoverRadius: 3,
+			pointHoverBorderWidth: 1,
+			pointRadius: 3,
+			pointHitRadius: 5,
+		};
 		return {
 			labels: owidData.labels,
 			datasets: [
@@ -45,6 +56,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 					backgroundColor: main,
 					borderColor: main,
 					fill: false,
+					lineTension: 0,
 
 					data: owidData.pt.map((el) => {
 						if (toggleStats.perHundred) {
@@ -57,6 +69,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 					...lineChartCommon,
 					label: 'União Europeia',
 					fill: false,
+					lineTension: 0,
 					backgroundColor: complements[2],
 					borderColor: complements[2],
 					data: owidData.eu.map((el) => {
@@ -80,7 +93,8 @@ export function BarVacinadosEu({ statistics, colors }) {
 				position: 'bottom',
 				align: 'start',
 			},
-
+			bezierCurve: false,
+			lineTension: 0,
 			animation: {
 				duration: 1000,
 			},
@@ -176,7 +190,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 			</div>
 
 			<div>
-				<Bar height={80} ref={canvasRef} options={options()} data={data} />
+				<Line height={80} ref={canvasRef} options={options()} data={data} />
 			</div>
 		</Card>
 	) : (
