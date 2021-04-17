@@ -99,8 +99,8 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 						ticks: {
 							beginAtZero: true,
 							display: true,
-							max: 600_000,
-							stepSize: 600_000 / 5,
+							max: 1000_000,
+							stepSize: 1000_000 / 5,
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
