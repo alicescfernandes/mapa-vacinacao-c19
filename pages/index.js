@@ -339,7 +339,7 @@ export default function Home() {
 							<Col>
 								<h2 className={styles.title}>Número de vacinas administradas por dia</h2>
 								<hr />
-								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
+								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
 						<LazyLoad height={500} once>
