@@ -35,6 +35,7 @@ import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
+import { ArsMapa } from '../components/graphs/ArsMapa';
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
 	trackLocalhost: true,
@@ -325,6 +326,13 @@ export default function Home() {
 								<h2 className={styles.title}>Número de vacinas administradas</h2>
 								<hr />
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h2 className={styles.title}>tESTE</h2>
+
+								<ArsMapa statistics={statistics} colors={colors} />
 							</Col>
 						</Row>
 						<Row>

@@ -172,12 +172,11 @@ export function VacinadosPorDia({ statistics, colors }) {
 	};
 
 	useEffect(() => {
-		statistics.getEstimativaStock().then(({ vaccines_stock_var }) => {
-			setVacinas_stock(vaccines_stock_var);
-		});
-
-		if (values.length) {
-			setLoading(false);
+		if (values.length && loading === true) {
+			statistics.getEstimativaStock().then(({ vaccines_stock_var }) => {
+				setVacinas_stock(vaccines_stock_var);
+				setLoading(false);
+			});
 		}
 	}, [values]);
 
