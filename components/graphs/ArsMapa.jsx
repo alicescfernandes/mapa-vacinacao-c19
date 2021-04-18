@@ -49,22 +49,22 @@ export function ArsMapa({ statistics, colors }) {
 
 		let layers = L.geoJSON(madeira, {
 			onEachFeature: (feature, shape) => {
-				/* let concelho = MADEIRA_DICOS[feature.properties.Dico];
-				let data = graphData.concelhos[concelho];
+				///let concelho = MADEIRA_DICOS[feature.properties.Dico];
+				//let data = graphData.concelhos[concelho];
 
-				let percentagem_1 = (data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
-				let percentagem_2 = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_1 = 11; //(data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_2 = 22; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 
 				shape.bindPopup(
 					`<p>
-						<strong>${feature.properties.Municipio}</strong>
-						<br>1ª Dose: ${formatNumber(data.dose_1)} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${formatNumber(data.dose_2)} (${percentagem_2.toFixed(2)}%)
+						<strong>${feature.properties.Nome_Alternativo}</strong>
+						<br>1ª Dose: ${formatNumber(400)} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${formatNumber(200)} (${percentagem_2.toFixed(2)}%)
 					</p>`
 				);
 				shape.on('click', () => {
 					//console.log('click');
-				}); */
+				});
 			},
 
 			style: function (feature) {
@@ -74,7 +74,7 @@ export function ArsMapa({ statistics, colors }) {
 				let percentagem = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 			 */
 				//return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
-				return { fillOpacity: 1, fillColor: getColor(80), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
+				return { fillOpacity: 1, fillColor: getColor(Math.random() * 100), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
 			},
 		}).addTo(madeiraMapa);
 
@@ -85,6 +85,7 @@ export function ArsMapa({ statistics, colors }) {
 		//Create legend
 		console.log(layers.getBounds());
 		madeiraMapa.fitBounds(layers.getBounds());
+		madeiraMapa.setZoom(7);
 		var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
@@ -144,13 +145,13 @@ export function ArsMapa({ statistics, colors }) {
 						backgroundColor: main,
 						stack: 'stack0',
 						order: 2,
-						data: [el.dose_1],
+						data: [400],
 					},
 					{
 						label: 'Total de vacinas administradas - 2ª Dose',
-						borderColor: shades[0],
-						backgroundColor: shades[0],
-						data: [el.dose_2],
+						borderColor: 'red',
+						backgroundColor: 'red',
+						data: [200],
 						stack: 'stack0',
 						order: 1,
 					},
@@ -161,8 +162,8 @@ export function ArsMapa({ statistics, colors }) {
 		};
 
 		const options = () => {
-			let dico = MADEIRA_DICOS[el.chave];
-			let populacao_residente = populacao_residente_ram[dico].valor;
+			let dico = 40;
+			let populacao_residente = 1000;
 			return {
 				plugins: {
 					datalabels: {
@@ -218,11 +219,7 @@ export function ArsMapa({ statistics, colors }) {
 			<Col xs={12} lg={4}>
 				<div className={cardStyles.ram_subchart_bar}>
 					<h2 className={cardStyles.text_left}>{el.nome}</h2>
-					{
-						{
-							/* <HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} /> */
-						}
-					}
+					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} />
 				</div>
 			</Col>
 		);
@@ -240,9 +237,11 @@ export function ArsMapa({ statistics, colors }) {
 	return loaded === true ? (
 		<Card>
 			<Row>
-				<Col>
-					<div id="mapaars" style={{ height: '400px' }}></div>
+				<Col xs={4}>
+					<div id="mapaars" style={{ height: '650px' }}></div>
 				</Col>
+
+				<Col xs={6}>{renderGraph({ nome: 'cenas' })}</Col>
 			</Row>
 			{/* <Row style={{ marginTop: 15 }}>{Object.values(graphData.concelhos).map(renderGraph)}</Row>
 			<Row>
