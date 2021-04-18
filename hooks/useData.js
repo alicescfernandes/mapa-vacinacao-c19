@@ -5,6 +5,7 @@ import data from './../data/last-update.json';
 import { populacao, populacao_ram, populacao_raa } from './../data/generic.json';
 
 import lastUpdate from './../data/last-update.json';
+import { isSameDay } from 'date-fns';
 export function useData({ regiao }) {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
@@ -36,6 +37,7 @@ export function useData({ regiao }) {
 	// let f2 = new Intl.DateTimeFormat('pt-PT', options2);
 	function parseData(data) {
 		if (!ready) return;
+		let vaccines_stock = [];
 		let values = [];
 		let labels = [];
 		data.forEach((el) => {
@@ -52,6 +54,53 @@ export function useData({ regiao }) {
 	let statistics = {
 		getRaw: () => {
 			return vaccines;
+		},
+		getEstimativaStock: async () => {
+			let { values: totalDiarios, labels } = statistics.getDiariosInoculacoes();
+			let vaccines_stock = Array(totalDiarios.length).fill(0);
+			let vaccines_stock_var = Array(totalDiarios.length).fill(0);
+			let { com, mod, az, labels: labelsEcdc } = await statistics.getReceivedDosesByBrandByWeek();
+			let totais = com.map((el, idx) => {
+				return (mod[idx] ?? 0) + (az[idx] ?? 0) + (com[idx] ?? 0);
+			});
+			vaccines_stock = vaccines_stock.map((el, idx) => {
+				let found_date = null;
+				let date = vaccines[idx].Data;
+
+				//Try to find if that date had vaccines
+				labelsEcdc.filter((el, date_idx) => {
+					if (idx == 0) {
+						found_date = 1;
+						return;
+					}
+
+					if (idx == 1) {
+						return;
+					}
+
+					if (isSameDay(date, new Date(el.from).getTime())) {
+						found_date = date_idx;
+					}
+				});
+
+				if (found_date !== null) {
+					return totais[found_date];
+				}
+				return 0;
+			});
+
+			let current_vaccine_stock = 0;
+
+			vaccines_stock_var = totalDiarios.map((el, idx) => {
+				if (vaccines_stock[idx] > 0) {
+					current_vaccine_stock = current_vaccine_stock - totalDiarios[idx] + vaccines_stock[idx];
+				} else {
+					current_vaccine_stock = current_vaccine_stock - totalDiarios[idx];
+				}
+				return current_vaccine_stock;
+			});
+
+			return { vaccines_stock_var, labels };
 		},
 		getLastVaccineAvaliable: () => {
 			let data = {};
@@ -197,7 +246,7 @@ export function useData({ regiao }) {
 			if (regiao === REGIOES.PORTUGAL) {
 				let { values } = statistics.getVacinadosPorDia();
 
-				for (let start = 1; start <= dias; start++) {
+				for (let start = 1; start < dias; start++) {
 					if (values[start] === null) {
 						medias.push(null);
 						continue;
@@ -208,7 +257,7 @@ export function useData({ regiao }) {
 					labelsMedias.push(labels[start]);
 				}
 
-				for (let start = dias; start <= values.length - 1; start++) {
+				for (let start = dias; start <= values.length; start++) {
 					let slice = values.slice(start - dias, start);
 
 					if (values[start] === null || slice.includes(null) > 0) {
