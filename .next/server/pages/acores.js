@@ -946,11 +946,14 @@ module.exports = require("classnames");
 var _data_last_update_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("vga7", 1);
 /* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lN74");
 var _data_generic_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("9BML");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_5__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1008,6 +1011,7 @@ function useData({
 
   function parseData(data) {
     if (!ready) return;
+    let vaccines_stock = [];
     let values = [];
     let labels = [];
     data.forEach(el => {
@@ -1023,6 +1027,64 @@ function useData({
   let statistics = {
     getRaw: () => {
       return vaccines;
+    },
+    getEstimativaStock: async () => {
+      let {
+        values: totalDiarios,
+        labels
+      } = statistics.getDiariosInoculacoes();
+      let vaccines_stock = Array(totalDiarios.length).fill(0);
+      let vaccines_stock_var = Array(totalDiarios.length).fill(0);
+      let {
+        com,
+        mod,
+        az,
+        labels: labelsEcdc
+      } = await statistics.getReceivedDosesByBrandByWeek();
+      let totais = com.map((el, idx) => {
+        var _mod$idx, _az$idx, _com$idx;
+
+        return ((_mod$idx = mod[idx]) !== null && _mod$idx !== void 0 ? _mod$idx : 0) + ((_az$idx = az[idx]) !== null && _az$idx !== void 0 ? _az$idx : 0) + ((_com$idx = com[idx]) !== null && _com$idx !== void 0 ? _com$idx : 0);
+      });
+      vaccines_stock = vaccines_stock.map((el, idx) => {
+        let found_date = null;
+        let date = vaccines[idx].Data; //Try to find if that date had vaccines
+
+        labelsEcdc.filter((el, date_idx) => {
+          if (idx == 0) {
+            found_date = 1;
+            return;
+          }
+
+          if (idx == 1) {
+            return;
+          }
+
+          if (Object(date_fns__WEBPACK_IMPORTED_MODULE_5__["isSameDay"])(date, new Date(el.from).getTime())) {
+            found_date = date_idx;
+          }
+        });
+
+        if (found_date !== null) {
+          return totais[found_date];
+        }
+
+        return 0;
+      });
+      let current_vaccine_stock = 0;
+      vaccines_stock_var = totalDiarios.map((el, idx) => {
+        if (vaccines_stock[idx] > 0) {
+          current_vaccine_stock = current_vaccine_stock - totalDiarios[idx] + vaccines_stock[idx];
+        } else {
+          current_vaccine_stock = current_vaccine_stock - totalDiarios[idx];
+        }
+
+        return current_vaccine_stock;
+      });
+      return {
+        vaccines_stock_var,
+        labels
+      };
     },
     getLastVaccineAvaliable: () => {
       let data = {};
@@ -1177,7 +1239,7 @@ function useData({
           values
         } = statistics.getVacinadosPorDia();
 
-        for (let start = 1; start <= dias; start++) {
+        for (let start = 1; start < dias; start++) {
           if (values[start] === null) {
             medias.push(null);
             continue;
@@ -1188,7 +1250,7 @@ function useData({
           labelsMedias.push(labels[start]);
         }
 
-        for (let start = dias; start <= values.length - 1; start++) {
+        for (let start = dias; start <= values.length; start++) {
           let slice = values.slice(start - dias, start);
 
           if (values[start] === null || slice.includes(null) > 0) {
@@ -3257,7 +3319,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618749004905,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
+module.exports = JSON.parse("{\"date\":1618787594562,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
 
 /***/ }),
 
