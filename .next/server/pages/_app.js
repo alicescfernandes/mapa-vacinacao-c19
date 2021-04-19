@@ -729,7 +729,7 @@ function Header() {
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                   target: "_blank",
-                  href: "https://pandemiaclara.sapo.pt/?utm_source=vacinacaocovid91.pt",
+                  href: "https://pandemiaclara.sapo.pt/",
                   children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
                     children: "Medidas de Desconfinamento"
                   })
@@ -737,7 +737,7 @@ function Header() {
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                   target: "_blank",
-                  href: "https://quadradinhodocosta.pt/?utm_source=vacinacaocovid91.pt",
+                  href: "https://quadradinhodocosta.pt/",
                   children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
                     children: "Matriz de Risco"
                   })
@@ -3772,7 +3772,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618791104317,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
+module.exports = JSON.parse("{\"date\":1618794324928,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
 
 /***/ }),
 
