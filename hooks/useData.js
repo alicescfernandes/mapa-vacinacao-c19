@@ -31,7 +31,9 @@ export function useData({ regiao }) {
 		month: 'short',
 		day: 'numeric',
 		year: 'numeric',
-	}; */
+	}; 
+	console.log(1)
+	*/
 
 	let f = new Intl.DateTimeFormat('pt-PT', options);
 	// let f2 = new Intl.DateTimeFormat('pt-PT', options2);
