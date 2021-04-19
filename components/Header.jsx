@@ -133,18 +133,18 @@ export function Header() {
 							{regiao === 'portugal' && (
 								<>
 									<li>
-										<a target="_blank" href="https://covid19estamoson.gov.pt/vacinacao-covid19/">
-											Fases de Vacinação
-										</a>
-									</li>
-									<li>
 										<a target="_blank" href="https://covid19.min-saude.pt/vacinacao/">
-											Faço parte das listas de vacinação?
+											<strong>Quando posso ser vacinado?</strong>
 										</a>
 									</li>
 									<li>
-										<a target="_blank" href="https://pandemiaclara.sapo.pt/plano-de-vacinacao">
-											Quando posso ser vacinado?
+										<a target="_blank" href="https://pandemiaclara.sapo.pt/?utm_source=vacinacaocovid91.pt">
+											<strong>Medidas de Desconfinamento</strong>
+										</a>
+									</li>
+									<li>
+										<a target="_blank" href="https://quadradinhodocosta.pt/?utm_source=vacinacaocovid91.pt">
+											<strong>Matriz de Risco</strong>
 										</a>
 									</li>
 									<li>
