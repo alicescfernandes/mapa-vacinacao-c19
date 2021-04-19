@@ -176,7 +176,9 @@ export function BarArs({ statistics, colors }) {
 			let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION.replace('RA ', '') == key)[0]);
 			let obj2 = ars[key];
 
-			graphData[key] = { ...obj2, ...obj1 };
+			if (key in graphData) {
+				graphData[key] = { ...obj2, ...obj1 };
+			}
 		}
 	}
 

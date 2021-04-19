@@ -147,3 +147,17 @@ export const ACORES_DICOS_CONCELHOS = {
 	4206: 'sao_miguel',
 	4101: 'santa_maria',
 };
+
+export const ARS_MAPPING = {
+	alentejo: 'ARS Alentejo',
+	algarve: 'ARS Algarve',
+	lvt: 'ARS Lisboa e Vale do Tejo',
+	norte: 'ARS Norte',
+	centro: 'ARS Centro',
+
+	'ARS Alentejo': 'alentejo',
+	'ARS Algarve': 'algarve',
+	'ARS Lisboa e Vale do Tejo': 'lvt',
+	'ARS Norte': 'norte',
+	'ARS Centro': 'centro',
+};

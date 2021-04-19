@@ -330,13 +330,6 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>tESTE</h2>
-
-								<ArsMapa statistics={statistics} colors={colors} />
-							</Col>
-						</Row>
-						<Row>
-							<Col>
 								<h2 className={styles.title}>Número de vacinas administradas por dia</h2>
 								<hr />
 								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
@@ -470,8 +463,7 @@ export default function Home() {
 										})}
 									</h3>
 									<hr />
-
-									<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
+									<ArsMapa statistics={statistics} colors={colors_v2} />
 								</Col>
 							</Row>
 						</LazyLoad>

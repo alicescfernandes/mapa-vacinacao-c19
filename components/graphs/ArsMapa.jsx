@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { HorizontalBar } from 'react-chartjs-2';
-import { MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
+import { RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from '../Card';
-import { populacao_residente_ram } from './../../data/generic.json';
 import cardStyles from './../Card.module.scss';
+import classNames from 'classnames';
 
 function getColor(d) {
 	if (d >= 80) {
@@ -30,9 +30,36 @@ function getColor(d) {
 }
 
 export function ArsMapa({ statistics, colors }) {
-	let [graphData, setGraphData] = useState();
 	let [loaded, setLoaded] = useState(false);
-	let { main, shades } = colors;
+	let { main, shades, tints } = colors;
+	const [snsData, setSNSData] = useState({});
+	const [ars, setArs] = useState({});
+	const [key, setKey] = useState(0);
+	const [mapLayers, setMapLayers] = useState(0);
+	const [options, setOptions] = useState({
+		current_dose: 2,
+	});
+	let layers2 = [];
+	let graphData = {
+		'ARS Alentejo': {},
+		'ARS Algarve': {},
+		'ARS Centro': {},
+		'ARS Norte': {},
+		'ARS Lisboa e Vale do Tejo': {},
+		Outro: {},
+	};
+
+	if (loaded) {
+		//map the data
+		for (let key in graphData) {
+			let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION.replace('RA ', '') == key)[0]);
+			let obj2 = ars[key];
+
+			if (key in graphData) {
+				graphData[key] = { ...obj2, ...obj1 };
+			}
+		}
+	}
 
 	const grades = [0, 20, 40, 60, 80];
 	const grades_pretty = {
@@ -42,18 +69,27 @@ export function ArsMapa({ statistics, colors }) {
 		60: '60% a 89%',
 		80: '80% a 100%',
 	};
+	function layerStyle(feature) {
+		let ars = feature.properties.ARS;
+		let data = graphData[ars];
 
+		let percentagem = parseFloat(data.COVER_1_VAC.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+		if (options.current_dose === 2) {
+			percentagem = parseFloat(data.COVER.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+		}
+		layers2.push(feature);
+		return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
+	}
 	const renderMap = async (map) => {
 		const madeira = await fetch('/ars.geojson').then((r) => r.json());
 		const madeiraMapa = L.map('mapaars');
-
 		let layers = L.geoJSON(madeira, {
 			onEachFeature: (feature, shape) => {
-				///let concelho = MADEIRA_DICOS[feature.properties.Dico];
-				//let data = graphData.concelhos[concelho];
+				let ars = feature.properties.ARS;
+				let data = graphData[ars];
 
-				let percentagem_1 = 11; //(data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
-				let percentagem_2 = 22; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_1 = parseFloat(data.COVER_1_VAC.replace(',', '.')) * 100; //(data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_2 = parseFloat(data.COVER.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 
 				shape.bindPopup(
 					`<p>
@@ -67,23 +103,10 @@ export function ArsMapa({ statistics, colors }) {
 				});
 			},
 
-			style: function (feature) {
-				/* 	let concelho = MADEIRA_DICOS[feature.properties.Dico];
-				let data = graphData.concelhos[concelho];
-
-				let percentagem = (data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
-			 */
-				//return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
-				return { fillOpacity: 1, fillColor: getColor(Math.random() * 100), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
-			},
+			style: layerStyle,
 		}).addTo(madeiraMapa);
-
-		layers.eachLayer(function (layer) {
-			//layer.feature.properties.layerID = layer.feature.properties.DICOFRE;
-		});
-
+		setMapLayers(layers);
 		//Create legend
-		console.log(layers.getBounds());
 		madeiraMapa.fitBounds(layers.getBounds());
 		madeiraMapa.setZoom(7);
 		var legend = L.control({ position: 'bottomleft' });
@@ -145,13 +168,13 @@ export function ArsMapa({ statistics, colors }) {
 						backgroundColor: main,
 						stack: 'stack0',
 						order: 2,
-						data: [400],
+						data: [el.CUMUL_VAC_1],
 					},
 					{
 						label: 'Total de vacinas administradas - 2ª Dose',
-						borderColor: 'red',
-						backgroundColor: 'red',
-						data: [200],
+						borderColor: shades[1],
+						backgroundColor: shades[1],
+						data: [el.CUMUL_VAC_2],
 						stack: 'stack0',
 						order: 1,
 					},
@@ -162,8 +185,7 @@ export function ArsMapa({ statistics, colors }) {
 		};
 
 		const options = () => {
-			let dico = 40;
-			let populacao_residente = 1000;
+			let populacao_residente = Math.floor(el.CUMUL_VAC_2 / parseFloat(el.COVER.replace(',', '.'))) || 100_000;
 			return {
 				plugins: {
 					datalabels: {
@@ -216,10 +238,10 @@ export function ArsMapa({ statistics, colors }) {
 		};
 
 		return (
-			<Col xs={12} lg={4}>
+			<Col xs={12}>
 				<div className={cardStyles.ram_subchart_bar}>
-					<h2 className={cardStyles.text_left}>{el.nome}</h2>
-					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} />
+					<h2 className={cardStyles.text_left}>{el.REGION}</h2>
+					<HorizontalBar height={22} options={options()} data={data} />
 				</div>
 			</Col>
 		);
@@ -227,6 +249,7 @@ export function ArsMapa({ statistics, colors }) {
 
 	useEffect(async () => {
 		if (loaded === false) {
+			setSNSData(await statistics.getTotalSNS());
 			setLoaded(true);
 		}
 
@@ -234,28 +257,57 @@ export function ArsMapa({ statistics, colors }) {
 			renderMap();
 		}
 	}, [loaded]);
+	useEffect(() => {
+		if (mapLayers) mapLayers.setStyle(layerStyle);
+	}, [options.current_dose]);
 	return loaded === true ? (
 		<Card>
 			<Row>
-				<Col xs={4}>
-					<div id="mapaars" style={{ height: '650px' }}></div>
-				</Col>
-
-				<Col xs={6}>{renderGraph({ nome: 'cenas' })}</Col>
-			</Row>
-			{/* <Row style={{ marginTop: 15 }}>{Object.values(graphData.concelhos).map(renderGraph)}</Row>
-			<Row>
-				<div className={'legends'}>
+				<div className={'toggle_buttons'}>
 					<p>
-						<span className={'legend'}>
-							<span style={{ backgroundColor: main }} className={'color_sample'}></span>1ª Dose
-						</span>
-						<span className={'legend'}>
-							<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>2ª Dose
-						</span>
+						<button
+							className={classNames('toggle_button', {
+								active: options.current_dose === 1,
+							})}
+							onClick={() => {
+								setOptions({ current_dose: 1 });
+							}}
+						>
+							1ª Dose
+						</button>
+						<button
+							className={classNames('toggle_button', {
+								active: options.current_dose === 2,
+							})}
+							onClick={() => {
+								setOptions({ current_dose: 2 });
+							}}
+						>
+							2ª Dose
+						</button>
 					</p>
 				</div>
-			</Row> */}
+			</Row>
+
+			<Row>
+				<Col xs={0} lg={4} className={'hide_mobile'}>
+					<div key={key} id="mapaars" style={{ height: '650px' }}></div>
+				</Col>
+
+				<Col xs={12} lg={8}>
+					<div className={'legends'} style={{ paddingLeft: '10px' }}>
+						<p>
+							<span className={'legend'}>
+								<span style={{ backgroundColor: main }} className={'color_sample'}></span>1ª Dose
+							</span>
+							<span className={'legend'}>
+								<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>2ª Dose
+							</span>
+						</p>
+					</div>
+					{Object.values(graphData).map(renderGraph)}
+				</Col>
+			</Row>
 		</Card>
 	) : (
 		''
