@@ -721,20 +721,26 @@ function Header() {
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                   target: "_blank",
-                  href: "https://covid19estamoson.gov.pt/vacinacao-covid19/",
-                  children: "Fases de Vacina\xE7\xE3o"
-                })
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-                  target: "_blank",
                   href: "https://covid19.min-saude.pt/vacinacao/",
-                  children: "Fa\xE7o parte das listas de vacina\xE7\xE3o?"
+                  children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                    children: "Quando posso ser vacinado?"
+                  })
                 })
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                   target: "_blank",
-                  href: "https://pandemiaclara.sapo.pt/plano-de-vacinacao",
-                  children: "Quando posso ser vacinado?"
+                  href: "https://pandemiaclara.sapo.pt/?utm_source=vacinacaocovid91.pt",
+                  children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                    children: "Medidas de Desconfinamento"
+                  })
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  target: "_blank",
+                  href: "https://quadradinhodocosta.pt/?utm_source=vacinacaocovid91.pt",
+                  children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                    children: "Matriz de Risco"
+                  })
                 })
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
                 children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
@@ -3766,7 +3772,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618787594562,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
+module.exports = JSON.parse("{\"date\":1618791104317,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
 
 /***/ }),
 
