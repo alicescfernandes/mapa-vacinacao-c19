@@ -33,8 +33,6 @@ export function ArsMapa({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades, tints } = colors;
 	const [snsData, setSNSData] = useState({});
-	const [ars, setArs] = useState({});
-	const [key, setKey] = useState(0);
 	const [mapLayers, setMapLayers] = useState(0);
 	const [options, setOptions] = useState({
 		current_dose: 2,
@@ -53,10 +51,10 @@ export function ArsMapa({ statistics, colors }) {
 		//map the data
 		for (let key in graphData) {
 			let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION.replace('RA ', '') == key)[0]);
-			let obj2 = ars[key];
+			//let obj2 = ars[key];
 
 			if (key in graphData) {
-				graphData[key] = { ...obj2, ...obj1 };
+				graphData[key] = { ...obj1 };
 			}
 		}
 	}
@@ -81,9 +79,22 @@ export function ArsMapa({ statistics, colors }) {
 		return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
 	}
 	const renderMap = async (map) => {
-		const madeira = await fetch('/ars.geojson').then((r) => r.json());
-		const madeiraMapa = L.map('mapaars');
-		let layers = L.geoJSON(madeira, {
+		const arsGeo = await fetch('/ars.geojson').then((r) => r.json());
+		const arsMapa = L.map('mapaars', {
+			zoomSnap: 0.1,
+			doubleClickZoom: false,
+			closePopupOnClick: false,
+			dragging: false,
+			zoomSnap: false,
+			zoomDelta: false,
+			trackResize: false,
+			touchZoom: false,
+			scrollWheelZoom: false,
+			zoomControl: false,
+			draggable: false,
+		});
+		arsMapa.dragging.disable();
+		let layers = L.geoJSON(arsGeo, {
 			onEachFeature: (feature, shape) => {
 				let ars = feature.properties.ARS;
 				let data = graphData[ars];
@@ -104,11 +115,11 @@ export function ArsMapa({ statistics, colors }) {
 			},
 
 			style: layerStyle,
-		}).addTo(madeiraMapa);
-		setMapLayers(layers);
+		}).addTo(arsMapa);
 		//Create legend
-		madeiraMapa.fitBounds(layers.getBounds());
-		madeiraMapa.setZoom(7);
+		setMapLayers(layers);
+		arsMapa.fitBounds(layers.getBounds());
+		arsMapa.setZoom(6.5);
 		var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
@@ -124,23 +135,7 @@ export function ArsMapa({ statistics, colors }) {
 			return div;
 		};
 
-		legend.addTo(madeiraMapa);
-
-		var snapToPoint = L.control({ position: 'topleft' });
-
-		snapToPoint.onAdd = function (map) {
-			var div = L.DomUtil.create('div', 'info legend');
-			div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
-
-			return div;
-		};
-
-		snapToPoint.addTo(madeiraMapa);
-
-		//hammering the click event
-		snapToPoint._container.onclick = function () {
-			madeiraMapa.fitBounds(layers.getBounds());
-		};
+		legend.addTo(arsMapa);
 	};
 
 	function renderGraph(el) {
@@ -238,10 +233,10 @@ export function ArsMapa({ statistics, colors }) {
 		};
 
 		return (
-			<Col xs={12}>
+			<Col xs={12} lg={6}>
 				<div className={cardStyles.ram_subchart_bar}>
 					<h2 className={cardStyles.text_left}>{el.REGION}</h2>
-					<HorizontalBar height={22} options={options()} data={data} />
+					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 40 : 55} options={options()} data={data} />
 				</div>
 			</Col>
 		);
@@ -263,7 +258,7 @@ export function ArsMapa({ statistics, colors }) {
 	return loaded === true ? (
 		<Card>
 			<Row>
-				<div className={'toggle_buttons'}>
+				<div className={'toggle_buttons hide_mobile'}>
 					<p>
 						<button
 							className={classNames('toggle_button', {
@@ -291,7 +286,7 @@ export function ArsMapa({ statistics, colors }) {
 
 			<Row>
 				<Col xs={0} lg={4} className={'hide_mobile'}>
-					<div key={key} id="mapaars" style={{ height: '650px' }}></div>
+					<div id="mapaars" style={{ height: '500px' }}></div>
 				</Col>
 
 				<Col xs={12} lg={8}>
@@ -305,7 +300,7 @@ export function ArsMapa({ statistics, colors }) {
 							</span>
 						</p>
 					</div>
-					{Object.values(graphData).map(renderGraph)}
+					<Row>{Object.values(graphData).map(renderGraph)}</Row>
 				</Col>
 			</Row>
 		</Card>

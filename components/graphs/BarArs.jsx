@@ -26,7 +26,7 @@ let styles = {
 		lineHeight: '40px',
 		position: 'relative',
 		width: '100%',
-		height: 150,
+		height: 100,
 		overflow: 'hidden',
 	},
 };
@@ -147,7 +147,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 			<div style={styles['graph-container']}>
 				<div style={{ height: '100%' }}>
-					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
+					<HorizontalBar height={5} options={options()} data={graphData}></HorizontalBar>
 				</div>
 			</div>
 		</>

@@ -470,7 +470,7 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Ponto de situação por ARS</h2>
+									<h2 className={styles.title}>Análise por ARS</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados relativos à semana de{' '}
 										{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
