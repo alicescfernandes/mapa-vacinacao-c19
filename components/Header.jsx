@@ -138,12 +138,12 @@ export function Header() {
 										</a>
 									</li>
 									<li>
-										<a target="_blank" href="https://pandemiaclara.sapo.pt/?utm_source=vacinacaocovid91.pt">
+										<a target="_blank" href="https://pandemiaclara.sapo.pt/">
 											<strong>Medidas de Desconfinamento</strong>
 										</a>
 									</li>
 									<li>
-										<a target="_blank" href="https://quadradinhodocosta.pt/?utm_source=vacinacaocovid91.pt">
+										<a target="_blank" href="https://quadradinhodocosta.pt/">
 											<strong>Matriz de Risco</strong>
 										</a>
 									</li>
