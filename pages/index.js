@@ -213,7 +213,7 @@ export default function Home() {
 								<p className={cardStyles.card_title_2}>Data de publicação</p>
 
 								{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
-								<p className={cardStyles.card_subtitle_2}>Dados até {currentDate}</p>
+								<p className={cardStyles.card_subtitle_2}>Dados até {currentDate} para Portugal Continental</p>
 							</Col>
 						</Row>
 						<Row className="counterRow">
@@ -221,7 +221,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										title="Número total de vacinas administradas"
+										title="Número total de vacinas administradas (Continente)"
 										yesterday={previousItem?.Vacinados_Ac}
 										from={previousSelectedItem?.Vacinados_Ac || 1_200_000}
 										to={selectedItem?.Vacinados_Ac}
@@ -232,7 +232,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										title="Número de doses administradas - 1ª Dose"
+										title="Número de doses administradas - 1ª Dose (Continente)"
 										yesterday={previousItem?.Inoculacao1_Ac}
 										from={previousSelectedItem?.Inoculacao1_Ac || 905_000}
 										to={selectedItem?.Inoculacao1_Ac}
@@ -248,7 +248,7 @@ export default function Home() {
 								<Card isUpdating={updating}>
 									<Counter
 										colors={colors}
-										title="Número de doses administradas - 2ª Dose"
+										title="Número de doses administradas - 2ª Dose (Continente)"
 										yesterday={previousItem?.Inoculacao2_Ac}
 										from={previousSelectedItem?.Inoculacao2_Ac || 300_000}
 										to={selectedItem?.Inoculacao2_Ac}
@@ -266,11 +266,11 @@ export default function Home() {
 							<Col lg={4} xs={12}>
 								<Card isUpdating={updating}>
 									<Counter
-										ps="Percentagem calculada com base no número total de segundas doses administradas"
+										ps="Percentagem calculada com base no número total de segundas doses administradas para Portugal Continental"
 										digits={2}
 										suffix={'%'}
 										colors={colors}
-										title="Percentagem de população inoculada com a 2ª dose "
+										title="Percentagem de população inoculada com a 2ª dose (Continente)"
 										from={derivedNumbers.percentagem.prev}
 										to={derivedNumbers.percentagem.current}
 									></Counter>
@@ -283,7 +283,7 @@ export default function Home() {
 										digits={2}
 										suffix={'%'}
 										colors={colors}
-										title="Percentagem para atingir imunidade de grupo"
+										title="Percentagem para atingir imunidade de grupo (Continente)"
 										from={70 - derivedNumbers.percentagem.prev}
 										to={70 - derivedNumbers.percentagem.current}
 									></Counter>
@@ -322,14 +322,14 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas</h2>
+								<h2 className={styles.title}>Número de vacinas administradas - Portugal Continental</h2>
 								<hr />
 								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas por dia</h2>
+								<h2 className={styles.title}>Número de vacinas administradas por dia - Portugal Continental</h2>
 								<hr />
 								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
 							</Col>
@@ -490,14 +490,16 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Número de vacinas administradas em Portugal e na União Europeia</h2>
+									<h2 className={styles.title}>Número de vacinas administradas em Portugal mais Ilhas e na União Europeia</h2>
 									<hr />
 									<LineVacinadosEu colors={colors_v2} statistics={statistics}></LineVacinadosEu>
 								</Col>
 							</Row>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Número de vacinas administradas por dia em Portugal e na União Europeia</h2>
+									<h2 className={styles.title}>
+										Número de vacinas administradas por dia em Portugal mais Ilhas e na União Europeia
+									</h2>
 									<hr />
 									<BarVacinadosEu colors={colors_v2} statistics={statistics}></BarVacinadosEu>
 								</Col>
