@@ -4881,7 +4881,7 @@ function Home() {
               maxDate: last === null || last === void 0 ? void 0 : last.Data
             }) : '', /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Card_module_default.a.card_subtitle_2,
-              children: ["Dados at\xE9 ", currentDate]
+              children: ["Dados at\xE9 ", currentDate, " para Portugal Continental"]
             })]
           })
         }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
@@ -4893,7 +4893,7 @@ function Home() {
               isUpdating: updating,
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 colors: colors,
-                title: "N\xFAmero total de vacinas administradas",
+                title: "N\xFAmero total de vacinas administradas (Continente)",
                 yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Vacinados_Ac,
                 from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Vacinados_Ac) || 1200000,
                 to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Vacinados_Ac
@@ -4906,7 +4906,7 @@ function Home() {
               isUpdating: updating,
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 colors: colors,
-                title: "N\xFAmero de doses administradas - 1\xAA Dose",
+                title: "N\xFAmero de doses administradas - 1\xAA Dose (Continente)",
                 yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao1_Ac,
                 from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao1_Ac) || 905000,
                 to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac
@@ -4925,7 +4925,7 @@ function Home() {
               isUpdating: updating,
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
                 colors: colors,
-                title: "N\xFAmero de doses administradas - 2\xAA Dose",
+                title: "N\xFAmero de doses administradas - 2\xAA Dose (Continente)",
                 yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao2_Ac,
                 from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao2_Ac) || 300000,
                 to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac
@@ -4946,11 +4946,11 @@ function Home() {
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
               isUpdating: updating,
               children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
-                ps: "Percentagem calculada com base no n\xFAmero total de segundas doses administradas",
+                ps: "Percentagem calculada com base no n\xFAmero total de segundas doses administradas para Portugal Continental",
                 digits: 2,
                 suffix: '%',
                 colors: colors,
-                title: "Percentagem de popula\xE7\xE3o inoculada com a 2\xAA dose ",
+                title: "Percentagem de popula\xE7\xE3o inoculada com a 2\xAA dose (Continente)",
                 from: derivedNumbers.percentagem.prev,
                 to: derivedNumbers.percentagem.current
               })
@@ -4965,7 +4965,7 @@ function Home() {
                 digits: 2,
                 suffix: '%',
                 colors: colors,
-                title: "Percentagem para atingir imunidade de grupo",
+                title: "Percentagem para atingir imunidade de grupo (Continente)",
                 from: 70 - derivedNumbers.percentagem.prev,
                 to: 70 - derivedNumbers.percentagem.current
               })
@@ -5007,7 +5007,7 @@ function Home() {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
-              children: "N\xFAmero de vacinas administradas"
+              children: "N\xFAmero de vacinas administradas - Portugal Continental"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(NumeroTotalVacinados["a" /* NumeroTotalVacinados */], {
               statistics: statistics,
               colors: colors
@@ -5017,7 +5017,7 @@ function Home() {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
-              children: "N\xFAmero de vacinas administradas por dia"
+              children: "N\xFAmero de vacinas administradas por dia - Portugal Continental"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(VacinadosPorDia["a" /* VacinadosPorDia */], {
               colors: colors,
               statistics: statistics
@@ -5224,7 +5224,7 @@ function Home() {
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
-                children: "N\xFAmero de vacinas administradas em Portugal e na Uni\xE3o Europeia"
+                children: "N\xFAmero de vacinas administradas em Portugal mais Ilhas e na Uni\xE3o Europeia"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineVacinadosEu, {
                 colors: colors_v2,
                 statistics: statistics
@@ -5234,7 +5234,7 @@ function Home() {
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
-                children: "N\xFAmero de vacinas administradas por dia em Portugal e na Uni\xE3o Europeia"
+                children: "N\xFAmero de vacinas administradas por dia em Portugal mais Ilhas e na Uni\xE3o Europeia"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarVacinadosEu, {
                 colors: colors_v2,
                 statistics: statistics
@@ -6049,7 +6049,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1618926005077,\"dateSnsStartWeirdFormat\":\"05/04/2021\",\"dateSnsStart\":\"2021-04-05T00:00:00\",\"dateSns\":\"2021-04-11T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-12\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
+module.exports = JSON.parse("{\"date\":1618955690978,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-18T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-15T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
 
 /***/ }),
 
