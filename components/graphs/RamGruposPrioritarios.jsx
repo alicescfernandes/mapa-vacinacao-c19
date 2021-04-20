@@ -10,7 +10,7 @@ export function RamGruposPrioritarios({ statistics, colors }) {
 
 	useEffect(() => {
 		statistics.getArquipelagoData().then((data) => {
-			setGraphData(data[data.length - 1]);
+			setGraphData(data[8]);
 			setLoading(false);
 		});
 	}, []);

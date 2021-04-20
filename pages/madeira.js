@@ -248,6 +248,7 @@ export default function Home() {
 						<Row>
 							<Col>
 								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
+								<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2020 até 11 de Abril de 2021</h3>
 								<hr />
 								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
 							</Col>
@@ -261,7 +262,7 @@ export default function Home() {
 								</Col>
 							</Row>
 						</LazyLoad>
-						<LazyLoad height={500} offset={300} once>
+						{/* 	<LazyLoad height={500} offset={300} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
@@ -270,7 +271,7 @@ export default function Home() {
 									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
 								</Col>
 							</Row>
-						</LazyLoad>
+						</LazyLoad> */}
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
@@ -302,7 +303,7 @@ export default function Home() {
 										Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
 									</h2>
 									<h3 className={styles.subtitle}>
-										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
+										Dados acumulados desde 31 de Dezembro de 2020 até{' '}
 										{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
@@ -323,7 +324,7 @@ export default function Home() {
 										população suscetível
 									</h2>
 									<h3 className={styles.subtitle}>
-										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
+										Dados acumulados desde 31 de Dezembro de 2020 até{' '}
 										{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
