@@ -50,7 +50,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 					pointHitRadius: 3,
 					data: vacinas_stock,
 					order: 1,
-					yAxisID: 'total2',
+					yAxisID: 'total',
 				},
 				{
 					label: 'Vacinas diárias - Média movel de 7 dias',
@@ -154,17 +154,16 @@ export function VacinadosPorDia({ statistics, colors }) {
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
+							max: 900_000,
 						},
 					},
 					{
 						stacked: true,
 						id: 'total',
 						display: false,
-					},
-					{
-						stacked: true,
-						id: 'total2',
-						display: false,
+						ticks: {
+							max: 900_000,
+						},
 					},
 				],
 				xAxes: [
