@@ -5,7 +5,7 @@ var shell = require('shelljs');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
-
+const { exec } = require('child_process');
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
 	shell.exit(1);
@@ -117,8 +117,9 @@ async function updateJSON() {
 
 			gitCommit('vaccines');
 			//Update twitter
-			shell.exec('(sleep 180 && yarn twitter) & echo "scheduling twitter"');
-			shell.exec('(sleep 180 && yarn onesignal) & echo "scheduling notif"');
+			shell.exec('sleep 180');
+			shell.exec('yarn twitter');
+			shell.exec('yarn onesignal');
 		} else {
 			console.log(
 				new Date(),
@@ -199,18 +200,22 @@ console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
 updateJSON();
-schedule.scheduleJob('0-59/5 13-20 * * *', function () {
+schedule.scheduleJob('30/5 13 * * *', function () {
+	updateJSON();
+});
+
+schedule.scheduleJob('0-59/5 14-20 * * *', function () {
 	updateJSON();
 });
 
 schedule.scheduleJob('20 21 * * *', function () {
 	console.log('Saving to web archive');
-	//shell.exec('waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/" & echo "caching sns"');
+	shell.exec('waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"');
 });
 
 schedule.scheduleJob('30 21 * * *', function () {
 	console.log('Saving to web archive');
-	//shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/" & echo "caching vac19 azores" ');
+	shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/" ');
 });
 
 schedule.scheduleJob('00 12 * * *', function () {
