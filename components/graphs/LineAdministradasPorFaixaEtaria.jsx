@@ -92,7 +92,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 				},
 				{
 					...lineChartCommon,
-					...generateColor(shades),
+					...generateColor(shades[2]),
 					label: 'Entre 50 anos e 64 anos',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
@@ -123,7 +123,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					...lineChartCommon,
 					...generateColor(complements[1]),
-					label: 'Grupo 80 ou mais anos',
+					label: '80 ou mais anos',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
 

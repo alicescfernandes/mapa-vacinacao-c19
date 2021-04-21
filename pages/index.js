@@ -331,7 +331,9 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas por dia - Portugal Continental</h2>
+								<h2 className={styles.title}>
+									Número de vacinas administradas por dia - Portugal Continental <sup className={'new'}>atualizado</sup>
+								</h2>
 								<hr />
 								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>
@@ -339,7 +341,9 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
+									<h2 className={styles.title}>
+										Percentagem da população vacinada por faixa etária <sup className={'new'}>novo</sup>
+									</h2>
 									<hr />
 									<LineAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></LineAdministradasPorFaixaEtaria>
 								</Col>
