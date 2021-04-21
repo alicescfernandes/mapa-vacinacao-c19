@@ -353,6 +353,23 @@ export default function Home() {
 							<Row>
 								<Col>
 									<h2 className={styles.title}>
+										Evolução do programa de vacinação por ARS <sup className={'new'}>atualizado</sup>
+									</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
+									<ArsMapa statistics={statistics} colors={colors_v2} />
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>
 										<em>
 											R<sub>t</sub>
 										</em>{' '}
@@ -463,21 +480,6 @@ export default function Home() {
 									</h2>
 									<hr />
 									<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
-								</Col>
-							</Row>
-						</LazyLoad>
-						<LazyLoad height={500} once>
-							<Row>
-								<Col>
-									<h2 className={styles.title}>Evolução do programa de vacinação por ARS</h2>
-									<h3 className={styles.subtitle}>
-										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-											locale: pt,
-										})}
-									</h3>
-									<hr />
-									<ArsMapa statistics={statistics} colors={colors_v2} />
 								</Col>
 							</Row>
 						</LazyLoad>

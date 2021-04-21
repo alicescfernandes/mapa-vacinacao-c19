@@ -35,7 +35,7 @@ export function ArsMapa({ statistics, colors }) {
 	const [snsData, setSNSData] = useState({});
 	const [mapLayers, setMapLayers] = useState(0);
 	const [options, setOptions] = useState({
-		current_dose: 2,
+		current_dose: 1,
 	});
 	let layers2 = [];
 	let graphData = {
