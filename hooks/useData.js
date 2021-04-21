@@ -31,7 +31,9 @@ export function useData({ regiao }) {
 		month: 'short',
 		day: 'numeric',
 		year: 'numeric',
-	}; */
+	}; 
+	console.log(1)
+	*/
 
 	let f = new Intl.DateTimeFormat('pt-PT', options);
 	// let f2 = new Intl.DateTimeFormat('pt-PT', options2);
@@ -538,6 +540,13 @@ export function useData({ regiao }) {
 
 			return sns.filter((el) => {
 				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == data.dateSnsStartWeirdFormat;
+			});
+		},
+		getTotalSNSIdade: async () => {
+			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
+
+			return sns.filter((el) => {
+				return el.TYPE === 'AGES';
 			});
 		},
 		getTotalARS: async () => {

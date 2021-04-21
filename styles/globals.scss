@@ -217,6 +217,11 @@ sup.new {
 	display: none !important;
 }
 
+@media (min-width: 1090px) {
+	.hide_mobile {
+		display: inline-block !important;
+	}
+}
 .show_mobile {
 	display: none !important;
 }
