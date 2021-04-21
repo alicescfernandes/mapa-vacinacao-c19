@@ -44,7 +44,6 @@ export function ArsMapa({ statistics, colors }) {
 		'ARS Centro': {},
 		'ARS Norte': {},
 		'ARS Lisboa e Vale do Tejo': {},
-		Outro: {},
 	};
 
 	if (loaded) {

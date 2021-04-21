@@ -31,7 +31,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 		return {
 			labels: labels,
 			datasets: [
-				{
+				/* 	{
 					label: 'Stock de Vacinas - Estimativa',
 					fill: false,
 					lineTension: 0.5,
@@ -51,7 +51,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 					data: vacinas_stock,
 					order: 1,
 					yAxisID: 'total',
-				},
+				}, */
 				{
 					label: 'Vacinas diárias - Média movel de 7 dias',
 					fill: false,
@@ -154,7 +154,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
-							max: 900_000,
+							//max: 900_000,
 						},
 					},
 					{
@@ -162,7 +162,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 						id: 'total',
 						display: false,
 						ticks: {
-							max: 900_000,
+							//max: 900_000,
 						},
 					},
 				],

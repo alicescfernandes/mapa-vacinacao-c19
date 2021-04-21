@@ -33,6 +33,7 @@ import { formatNumber, perHundred } from '../utils';
 import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
 import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
+import { LineAdministradasPorFaixaEtaria } from '../components/graphs/LineAdministradasPorFaixaEtaria';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { ArsMapa } from '../components/graphs/ArsMapa';
@@ -338,6 +339,15 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
+									<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
+									<hr />
+									<LineAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></LineAdministradasPorFaixaEtaria>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
 									<h2 className={styles.title}>
 										<em>
 											R<sub>t</sub>
@@ -467,7 +477,7 @@ export default function Home() {
 								</Col>
 							</Row>
 						</LazyLoad>
-						<LazyLoad height={500} once>
+						{/* <LazyLoad height={500} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Análise por ARS</h2>
@@ -486,7 +496,7 @@ export default function Home() {
 									<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 								</Col>
 							</Row>
-						</LazyLoad>
+						</LazyLoad> */}
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
