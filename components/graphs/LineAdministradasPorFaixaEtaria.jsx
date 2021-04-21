@@ -77,7 +77,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 				},
 				{
 					...lineChartCommon,
-					...generateColor(tints[1]),
+					...generateColor(complements[2]),
 					label: 'Entre 25 anos e 49 anos',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
