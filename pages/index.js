@@ -33,8 +33,10 @@ import { formatNumber, perHundred } from '../utils';
 import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
 import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
+import { LineAdministradasPorFaixaEtaria } from '../components/graphs/LineAdministradasPorFaixaEtaria';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
+import { ArsMapa } from '../components/graphs/ArsMapa';
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
 	trackLocalhost: true,
@@ -237,7 +239,7 @@ export default function Home() {
 										from={previousSelectedItem?.Inoculacao1_Ac || 905_000}
 										to={selectedItem?.Inoculacao1_Ac}
 									></Counter>
-									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
+									<p style={{ marginTop: '10px' }} className={`hide_mobile ${cardStyles.card_subtitle}`}>
 										{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} doses administradas por cada 100 pessoas
 										<br />
 										{formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 1ª dose
@@ -254,7 +256,7 @@ export default function Home() {
 										to={selectedItem?.Inoculacao2_Ac}
 									></Counter>
 
-									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
+									<p style={{ marginTop: '10px' }} className={`hide_mobile ${cardStyles.card_subtitle}`}>
 										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} doses administradas por cada 100 pessoas
 										<br />
 										{formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 2ª dose
@@ -276,7 +278,7 @@ export default function Home() {
 									></Counter>
 								</Card>
 							</Col>
-							<Col lg={4} xs={12}>
+							<Col lg={4} xs={12} className={'hide_mobile'}>
 								<Card isUpdating={updating}>
 									<Counter
 										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
@@ -331,9 +333,37 @@ export default function Home() {
 							<Col>
 								<h2 className={styles.title}>Número de vacinas administradas por dia - Portugal Continental</h2>
 								<hr />
-								<VacinadosPorDia colors={colors} statistics={statistics}></VacinadosPorDia>
+								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>
+										Percentagem da população vacinada por faixa etária <sup className={'new'}>novo</sup>
+									</h2>
+									<hr />
+									<LineAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></LineAdministradasPorFaixaEtaria>
+								</Col>
+							</Row>
+						</LazyLoad>
+						<LazyLoad height={500} once>
+							<Row>
+								<Col>
+									<h2 className={styles.title}>
+										Evolução do programa de vacinação por ARS <sup className={'new'}>atualizado</sup>
+									</h2>
+									<h3 className={styles.subtitle}>
+										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+									</h3>
+									<hr />
+									<ArsMapa statistics={statistics} colors={colors_v2} />
+								</Col>
+							</Row>
+						</LazyLoad>
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
@@ -451,26 +481,10 @@ export default function Home() {
 								</Col>
 							</Row>
 						</LazyLoad>
-						<LazyLoad height={500} once>
+						{/* <LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Evolução do programa de vacinação por ARS</h2>
-									<h3 className={styles.subtitle}>
-										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
-											locale: pt,
-										})}
-									</h3>
-									<hr />
-
-									<BarsVacinacaoArs colors={colors_v2} statistics={statistics}></BarsVacinacaoArs>
-								</Col>
-							</Row>
-						</LazyLoad>
-						<LazyLoad height={500} once>
-							<Row>
-								<Col>
-									<h2 className={styles.title}>Ponto de situação por ARS</h2>
+									<h2 className={styles.title}>Análise por ARS</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados relativos à semana de{' '}
 										{format(new Date(json.dateSnsStart).getTime(), "dd 'de' LLLL", {
@@ -486,7 +500,7 @@ export default function Home() {
 									<BarArs colors={colors_v2} statistics={statistics}></BarArs>
 								</Col>
 							</Row>
-						</LazyLoad>
+						</LazyLoad> */}
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>

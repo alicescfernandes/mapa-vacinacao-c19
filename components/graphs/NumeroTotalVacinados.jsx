@@ -10,7 +10,7 @@ import { RegiaoContext } from '../context/regiao';
 
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let regiao = useContext(RegiaoContext);
-
+	let [vacinasStockVar, vacinasStockVarUpdate] = useState([1]);
 	let { labels } = statistics.getDailyData();
 	let { values, valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let casesData = statistics.getCases();

@@ -8,7 +8,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2 } = statistics.getMediaMovelDiaria(7);
-	let [foreground, color_1, color_2, , color_4] = colors;
+	let [vacinas_stock, setVacinas_stock] = useState([]);
+	let { main, tints, shades, complements } = colors;
 
 	const canvasRef = useRef(null);
 
@@ -30,6 +31,27 @@ export function VacinadosPorDia({ statistics, colors }) {
 		return {
 			labels: labels,
 			datasets: [
+				/* 	{
+					label: 'Stock de Vacinas - Estimativa',
+					fill: false,
+					lineTension: 0.5,
+					overlayBars: false,
+					type: 'line',
+					lineBorder: 1,
+					borderWidth: 3,
+					borderColor: complements[2],
+					borderJoinStyle: 'miter',
+					pointBorderColor: complements[2],
+					pointBackgroundColor: complements[2],
+					pointBorderWidth: 1,
+					pointHoverRadius: 3,
+					pointHoverBorderWidth: 2,
+					pointRadius: 1,
+					pointHitRadius: 3,
+					data: vacinas_stock,
+					order: 1,
+					yAxisID: 'total',
+				}, */
 				{
 					label: 'Vacinas diárias - Média movel de 7 dias',
 					fill: false,
@@ -38,45 +60,49 @@ export function VacinadosPorDia({ statistics, colors }) {
 					type: 'line',
 					lineBorder: 1,
 					borderWidth: 3,
-					borderColor: color_4,
+					borderColor: complements[1],
 					borderJoinStyle: 'miter',
-					pointBorderColor: color_4,
-					pointBackgroundColor: color_4,
+					pointBorderColor: complements[1],
+					pointBackgroundColor: complements[1],
 					pointBorderWidth: 1,
 					pointHoverRadius: 3,
 					pointHoverBorderWidth: 2,
 					pointRadius: 1,
-					pointHitRadius: 10,
+					pointHitRadius: 3,
 					data: values2,
-					order: 1,
+					order: 2,
 				},
+
 				{
 					label: 'Inoculação - 2ª Dose',
 					fill: false,
 					type: 'bar',
 					overlayBars: true,
-					backgroundColor: foreground,
+					backgroundColor: tints[0],
 					data: valuesIn2,
-					order: 2,
+					order: 3,
 					display: false,
 					stack: 'stack0',
 				},
 				{
 					label: 'Inoculação - 1ª Dose',
-					backgroundColor: color_1,
-					borderColor: color_1,
+					backgroundColor: shades[0],
+					borderColor: shades[0],
 					data: valuesIn1,
 					overlayBars: true,
-					order: 3,
+					order: 4,
 					stack: 'stack0',
 				},
 				{
 					label: 'Vacinas Totais',
 					type: 'bar',
 					overlayBars: true,
-					backgroundColor: color_2,
+					fill: false,
+					borderColor: main,
+					backgroundColor: 'transparent',
 					data: values,
-					order: 4,
+					borderWidth: 2,
+					order: 5,
 					yAxisID: 'total',
 					stack: 'stack0',
 				},
@@ -128,12 +154,16 @@ export function VacinadosPorDia({ statistics, colors }) {
 							callback: function (value, index, values) {
 								return formatNumber(value, false);
 							},
+							//max: 900_000,
 						},
 					},
 					{
 						stacked: true,
 						id: 'total',
 						display: false,
+						ticks: {
+							//max: 900_000,
+						},
 					},
 				],
 				xAxes: [
@@ -151,8 +181,11 @@ export function VacinadosPorDia({ statistics, colors }) {
 	};
 
 	useEffect(() => {
-		if (values.length) {
-			setLoading(false);
+		if (values.length && loading === true) {
+			statistics.getEstimativaStock().then(({ vaccines_stock_var }) => {
+				setVacinas_stock(vaccines_stock_var);
+				setLoading(false);
+			});
 		}
 	}, [values]);
 

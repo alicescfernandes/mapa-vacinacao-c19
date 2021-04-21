@@ -147,3 +147,30 @@ export const ACORES_DICOS_CONCELHOS = {
 	4206: 'sao_miguel',
 	4101: 'santa_maria',
 };
+
+export const ARS_MAPPING = {
+	alentejo: 'ARS Alentejo',
+	algarve: 'ARS Algarve',
+	lvt: 'ARS Lisboa e Vale do Tejo',
+	norte: 'ARS Norte',
+	centro: 'ARS Centro',
+
+	'ARS Alentejo': 'alentejo',
+	'ARS Algarve': 'algarve',
+	'ARS Lisboa e Vale do Tejo': 'lvt',
+	'ARS Norte': 'norte',
+	'ARS Centro': 'centro',
+};
+
+export const SNS_WEEKS = {
+	'08/02/21': 'De 27/12 a 14/02',
+	'15/02/21': '15/02/ a 21/02',
+	'22/02/21': '22/02/ a 28/02',
+	'01/03/21': '01/03/ a 07/03',
+	'08/03/21': '08/03/ a 14/03',
+	'15/03/21': '15/03/ a 21/03',
+	'22/03/21': '22/03/ a 28/03',
+	'29/03/21': '29/03/ a 04/04',
+	'05/04/21': '05/04/ a 11/04',
+	'12/04/21': '12/04/ a 19/04',
+};
