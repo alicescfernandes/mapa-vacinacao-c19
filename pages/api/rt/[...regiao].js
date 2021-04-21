@@ -6,6 +6,7 @@ const regioes = {
 	lvt: 'rt_lvt.json',
 	madeira: 'rt_ram.json',
 	centro: 'rt_centro.json',
+	norte: 'rt_norte.json',
 	acores: 'rt_raa.json',
 	todas: 'rt_todas.json',
 };

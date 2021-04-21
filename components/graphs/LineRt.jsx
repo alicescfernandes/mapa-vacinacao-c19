@@ -284,23 +284,13 @@ export function LineRt({ statistics, colors, regiao }) {
 							</button>
 							<button
 								className={classNames('toggle_button', {
-									active: currentRegiao === 'madeira',
+									active: currentRegiao === 'norte',
 								})}
 								onClick={() => {
-									setCurrentRegiao('madeira');
+									setCurrentRegiao('norte');
 								}}
 							>
-								Madeira
-							</button>
-							<button
-								className={classNames('toggle_button', {
-									active: currentRegiao === 'acores',
-								})}
-								onClick={() => {
-									setCurrentRegiao('acores');
-								}}
-							>
-								Açores
+								Norte
 							</button>
 						</p>
 					</div>

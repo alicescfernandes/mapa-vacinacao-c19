@@ -331,9 +331,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>
-									Número de vacinas administradas por dia - Portugal Continental <sup className={'new'}>atualizado</sup>
-								</h2>
+								<h2 className={styles.title}>Número de vacinas administradas por dia - Portugal Continental</h2>
 								<hr />
 								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>

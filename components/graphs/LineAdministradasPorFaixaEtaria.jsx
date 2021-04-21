@@ -4,7 +4,7 @@ import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
 
-import { RESIZE_TRESHOLD, lineChartCommon } from './../../constants';
+import { RESIZE_TRESHOLD, lineChartCommon, SNS_WEEKS } from './../../constants';
 export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades, tints, complements } = colors;
@@ -41,9 +41,8 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 		graphData.map((values) => {
 			labels[values.DATE] = '';
 		});
-
 		return {
-			labels: Object.keys(labels),
+			labels: Object.keys(labels).map((el) => SNS_WEEKS[el]),
 			datasets: [
 				{
 					...lineChartCommon,
