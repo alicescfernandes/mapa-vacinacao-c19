@@ -199,10 +199,10 @@ export function RaaMapa({ statistics, colors }) {
 						stacked: false,
 						ticks: {
 							beginAtZero: true,
-							max: populacao_residente,
-							stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),
+							stepSize: Math.round(populacao_residente / 5),
 							callback: (value) => formatNumber(value, false),
 						},
+						max: populacao_residente,
 					},
 				},
 			};
