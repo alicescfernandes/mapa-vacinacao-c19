@@ -549,6 +549,13 @@ export function useData({ regiao }) {
 				return el.TYPE === 'AGES';
 			});
 		},
+		getTotalSNSRecebidas: async () => {
+			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
+			debugger;
+			return sns.filter((el) => {
+				return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == data.dateSnsStartWeirdFormat;
+			});
+		},
 		getTotalARS: async () => {
 			let ars = await fetchWithLocalCache(`/api/ars?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
 			let data = {};
