@@ -292,7 +292,7 @@ export default function Home() {
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
-								<Card>
+								<Card isUpdating={true}>
 									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
 										{fases.fases[fases.fase_atual].nome} de vacinação
 									</h2>
