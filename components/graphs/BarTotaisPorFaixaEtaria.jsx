@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HorizontalBar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import { Col, Row } from 'react-bootstrap';
@@ -21,7 +21,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 			datasets: [
 				{
 					label: '2ª Dose',
-					type: 'horizontalBar',
+					type: 'bar',
 					backgroundColor: main,
 					data: [data.mod[1], data.com[1], data.az[1]],
 					stack: 'stack1',
@@ -29,7 +29,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 				{
 					label: '1ª Dose',
-					type: 'horizontalBar',
+					type: 'bar',
 					backgroundColor: shades[1],
 					data: [data.mod[0], data.com[0], data.az[0]],
 					stack: 'stack1',
@@ -40,26 +40,27 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 	const options = () => {
 		return {
+			indexAxis: 'y',
 			maintainAspectRatio: false,
 			plugins: {
 				datalabels: {
 					display: false,
 					color: 'white',
 				},
+				legend: {
+					display: false,
+					position: 'top',
+					align: 'start',
+					onHover: function (event, legend) {
+						document.body.classList.add('mouse-pointer');
+					},
+					onLeave: function (event, legend) {
+						document.body.classList.remove('mouse-pointer');
+					},
+				},
 			},
 			layout: {
 				padding: -5,
-			},
-			legend: {
-				display: false,
-				position: 'top',
-				align: 'start',
-				onHover: function (event, legend) {
-					document.body.classList.add('mouse-pointer');
-				},
-				onLeave: function (event, legend) {
-					document.body.classList.remove('mouse-pointer');
-				},
 			},
 
 			animation: {
@@ -123,7 +124,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				className={'scrollable'}
 			>
 				<div style={{ height: '100%' }}>
-					<HorizontalBar options={options()} data={graphData}></HorizontalBar>
+					<Bar options={options()} data={graphData} />
 				</div>
 			</div>
 		</>

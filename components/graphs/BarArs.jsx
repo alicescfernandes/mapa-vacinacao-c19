@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HorizontalBar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import { Col, Row } from 'react-bootstrap';
@@ -39,7 +39,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 			datasets: [
 				{
 					label: 'Inoculados Totais Novos (Acumulado 7 dias)',
-					type: 'horizontalBar',
+					type: 'bar',
 					backgroundColor: main,
 
 					data: [data['TOTAL_VAC_2']],
@@ -47,7 +47,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				},
 				{
 					label: 'Casos Novos (Acumulado 7 dias)',
-					type: 'horizontalBar',
+					type: 'bar',
 					backgroundColor: tints[1],
 					data: [data['casosNovos7Dias']],
 					fill: false,
@@ -55,7 +55,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				},
 				{
 					label: 'Óbitos Novos (Acumulado 7 dias)',
-					type: 'horizontalBar',
+					type: 'bar',
 					backgroundColor: shades[1],
 					data: [data['obitosNovos7Dias']],
 					stack: 'stack3',
@@ -66,6 +66,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 	const options = () => {
 		return {
+			indexAxis: 'y',
 			maintainAspectRatio: false,
 			plugins: {
 				datalabels: {
@@ -147,7 +148,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 			<div style={styles['graph-container']}>
 				<div style={{ height: '100%' }}>
-					<HorizontalBar height={5} options={options()} data={graphData}></HorizontalBar>
+					<Bar height={5} options={options()} data={graphData}></Bar>
 				</div>
 			</div>
 		</>

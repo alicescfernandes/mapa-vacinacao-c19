@@ -76,10 +76,10 @@ export function LineVacinadosEu({ statistics, colors }) {
 				datalabels: {
 					display: false,
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 
 			animation: {

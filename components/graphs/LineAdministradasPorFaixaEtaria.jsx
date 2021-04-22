@@ -57,7 +57,6 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					order: 1,
 					customDose: 2,
-					yAxisID: 'axis',
 				},
 				{
 					...lineChartCommon,
@@ -72,7 +71,6 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					order: 1,
 					customDose: 2,
-					yAxisID: 'axis',
 				},
 				{
 					...lineChartCommon,
@@ -87,7 +85,6 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					order: 1,
 					customDose: 2,
-					yAxisID: 'axis',
 				},
 				{
 					...lineChartCommon,
@@ -102,7 +99,6 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					order: 1,
 					customDose: 2,
-					yAxisID: 'axis',
 				},
 				{
 					...lineChartCommon,
@@ -117,7 +113,6 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					order: 1,
 					customDose: 2,
-					yAxisID: 'axis',
 				},
 				{
 					...lineChartCommon,
@@ -131,7 +126,6 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
 					order: 1,
 					customDose: 2,
-					yAxisID: 'axis',
 				},
 			],
 		};
@@ -146,6 +140,16 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
+				legend: {
+					position: 'bottom',
+					align: 'start',
+					onHover: function (event, legend) {
+						document.body.classList.add('mouse-pointer');
+					},
+					onLeave: function (event, legend) {
+						document.body.classList.remove('mouse-pointer');
+					},
+				},
 			},
 			onResize: (a, b, c) => {
 				if (window.innerWidth <= RESIZE_TRESHOLD) {
@@ -153,16 +157,6 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 				} else {
 					a.canvas.parentNode.style.width = 'auto';
 				}
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-				onHover: function (event, legend) {
-					document.body.classList.add('mouse-pointer');
-				},
-				onLeave: function (event, legend) {
-					document.body.classList.remove('mouse-pointer');
-				},
 			},
 
 			animation: {
@@ -184,28 +178,21 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						id: 'axis',
-						stacked: false,
-						ticks: {
-							beginAtZero: false,
-							min: 0,
-							max: maxValue,
-							stepSize: (maxValue / 5).toFixed(0),
-							callback: (value) => formatNumber(value, false) + '%',
-						},
+				y: {
+					ticks: {
+						beginAtZero: false,
+						min: 0,
+						max: maxValue,
+						stepSize: (maxValue / 5).toFixed(0),
+						callback: (value) => formatNumber(value, false) + '%',
 					},
-				],
-				xAxes: [
-					{
-						id: 'xaxis',
-						stacked: false,
-						ticks: {
-							beginAtZero: false,
-						},
+				},
+
+				x: {
+					ticks: {
+						beginAtZero: false,
 					},
-				],
+				},
 			},
 		};
 	};

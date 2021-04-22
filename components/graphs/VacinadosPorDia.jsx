@@ -120,10 +120,10 @@ export function VacinadosPorDia({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 
 			animation: {
@@ -143,39 +143,27 @@ export function VacinadosPorDia({ statistics, colors }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						stacked: true,
+				y: {
+					stacked: true,
+					display: false,
+					ticks: {
+						beginAtZero: false,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						callback: function (value, index, values) {
+							return formatNumber(value, false);
+						},
+						//max: 900_000,
+					},
+				},
 
-						ticks: {
-							beginAtZero: false,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							callback: function (value, index, values) {
-								return formatNumber(value, false);
-							},
-							//max: 900_000,
-						},
+				x: {
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
 					},
-					{
-						stacked: true,
-						id: 'total',
-						display: false,
-						ticks: {
-							//max: 900_000,
-						},
-					},
-				],
-				xAxes: [
-					{
-						stacked: true,
-						ticks: {
-							beginAtZero: true,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-						},
-					},
-				],
+				},
 			},
 		};
 	};

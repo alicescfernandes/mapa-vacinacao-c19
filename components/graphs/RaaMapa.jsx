@@ -161,6 +161,7 @@ export function RaaMapa({ statistics, colors }) {
 			let dico = ACORES_DICOS[el.chave];
 			let populacao_residente = populacao_residente_raa[dico].valor;
 			return {
+				indexAxis: 'y',
 				plugins: {
 					datalabels: {
 						display: false,
@@ -215,7 +216,7 @@ export function RaaMapa({ statistics, colors }) {
 			<Col xs={12} lg={4}>
 				<div className={cardStyles.ram_subchart_bar}>
 					<h2 className={cardStyles.text_left}>{el.nome}</h2>
-					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} />
+					<Bar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} />
 				</div>
 			</Col>
 		);

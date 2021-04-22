@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Card } from './../Card';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from '../../utils';
 export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) {
 	let [loading, setLoading] = useState(false);
@@ -39,12 +38,12 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 						return '';
 					},
 				},
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 			onResize: (a, b, c) => {},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-			},
 
 			animation: {
 				duration: 1000,
@@ -63,7 +62,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[ChartDataLabels]} height={350} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Pie plugins={[]} height={350} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

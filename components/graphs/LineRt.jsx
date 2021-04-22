@@ -66,7 +66,6 @@ export function LineRt({ statistics, colors, regiao }) {
 					fill: '2', //fill until previous dataset
 					data: rtData.rt.map((el) => el.limite_superior_IC95.toFixed(2)),
 					order: 1,
-					yAxisID: 'rt',
 				},
 
 				{
@@ -78,7 +77,6 @@ export function LineRt({ statistics, colors, regiao }) {
 					fill: false,
 					data: rtData.rt.map((el) => el.rt_numero_de_reproducao.toFixed(2)),
 					order: 2,
-					yAxisID: 'rt',
 				},
 
 				{
@@ -90,7 +88,6 @@ export function LineRt({ statistics, colors, regiao }) {
 					fill: false,
 					data: rtData.rt.map((el) => el.limite_inferior_IC95.toFixed(2)),
 					order: 3,
-					yAxisID: 'rt',
 				},
 
 				/* 	{
@@ -130,13 +127,13 @@ export function LineRt({ statistics, colors, regiao }) {
 				datalabels: {
 					display: false,
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-				labels: {
-					filter: function (item, chart) {
-						return !item.text.match('limite');
+				legend: {
+					position: 'bottom',
+					align: 'start',
+					labels: {
+						filter: function (item, chart) {
+							return !item.text.match('limite');
+						},
 					},
 				},
 			},
@@ -182,36 +179,24 @@ export function LineRt({ statistics, colors, regiao }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						ticks: {
-							beginAtZero: true,
+				y: {
+					type: 'linear',
+					ticks: {
+						beginAtZero: true,
+						linear: {
+							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						},
+					},
+					max: max,
+				},
 
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-						},
-						display: false,
+				x: {
+					ticks: {
+						maxTicksLimit: 30,
+						minTicksLimit: 30,
 					},
-					{
-						id: 'rt',
-						ticks: {
-							beginAtZero: true,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							max: max,
-						},
-						display: true,
-					},
-				],
-				xAxes: [
-					{
-						ticks: {
-							maxTicksLimit: 30,
-							minTicksLimit: 30,
-						},
-						stacked: true,
-					},
-				],
+				},
 			},
 		};
 	};

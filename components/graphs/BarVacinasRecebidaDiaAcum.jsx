@@ -86,124 +86,120 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-				onHover: function (event, legend) {
-					document.body.classList.add('mouse-pointer');
+				legend: {
+					position: 'bottom',
+					align: 'start',
+					onHover: function (event, legend) {
+						document.body.classList.add('mouse-pointer');
+					},
+					onLeave: function (event, legend) {
+						document.body.classList.remove('mouse-pointer');
+					},
 				},
-				onLeave: function (event, legend) {
-					document.body.classList.remove('mouse-pointer');
+
+				annotation: {
+					annotations: [
+						{
+							type: 'line',
+							mode: 'horizontal',
+							scaleID: 'y',
+							value: annotationsToggle.dose ? generic.doses.valor : null,
+							borderColor: '#0A9DD1',
+							borderWidth: 2,
+							borderDash: [5, 5],
+
+							label: {
+								backgroundColor: 'rgba(0,0,0,0.0)',
+
+								font: {
+									style: 'normal',
+								},
+								textAlign: 'left',
+								color: '#0A9DD1',
+								position: 'start',
+								xAdjust: 10,
+								yAdjust: -10,
+
+								enabled: true,
+								content: `Doses adquiridas - ${generic.doses.legenda} (01/03/2021) `,
+							},
+						},
+						{
+							type: 'line',
+							mode: 'horizontal',
+							scaleID: 'y',
+							value: annotationsToggle.dose ? 41000000 : null,
+							borderColor: 'transparent',
+							borderWidth: 0,
+
+							label: {
+								backgroundColor: 'rgba(0,0,0,0.0)',
+
+								xAdjust: 0,
+								yAdjust: -10,
+
+								enabled: false,
+							},
+						},
+						{
+							type: 'line',
+							mode: 'horizontal',
+							scaleID: 'y',
+							value: annotationsToggle.dose3 ? generic.doses3.valor : null,
+							borderColor: '#D17615',
+							borderWidth: 2,
+							borderDash: [5, 5],
+
+							label: {
+								backgroundColor: 'rgba(0,0,0,0.0)',
+
+								textAlign: 'left',
+								font: {
+									style: 'normal',
+								},
+
+								color: '#D11541',
+
+								position: 'start',
+								xAdjust: 0,
+								yAdjust: -10,
+								enabled: true,
+								content: `Doses adquiridas - ${generic.doses3.legenda} (21/01/2020) `,
+							},
+						},
+						{
+							type: 'line',
+							mode: 'horizontal',
+							scaleID: 'y',
+							value: annotationsToggle.dose2 ? generic.doses2.valor : null,
+							borderColor: '#D17615',
+							borderWidth: 2,
+							borderDash: [5, 5],
+
+							label: {
+								backgroundColor: 'rgba(0,0,0,0.0)',
+
+								textAlign: 'left',
+								font: {
+									style: 'normal',
+								},
+
+								color: '#D17615',
+
+								position: 'start',
+								xAdjust: 0,
+								yAdjust: -10,
+								enabled: true,
+								content: `Doses adquiridas - ${generic.doses2.legenda} (04/12/2020) `,
+							},
+						},
+					],
 				},
 			},
 			animation: {
 				duration: 1000,
 			},
-			annotation: {
-				annotations: [
-					{
-						type: 'line',
-						mode: 'horizontal',
-						scaleID: 'y-axis-0',
-						value: annotationsToggle.dose ? generic.doses.valor : null,
-						borderColor: '#0A9DD1',
-						borderWidth: 2,
-						borderDash: [5, 5],
 
-						label: {
-							backgroundColor: 'rgba(0,0,0,0.0)',
-
-							drawTime: 'afterDatasetsDraw',
-
-							textAlign: 'left',
-							fontColor: '#0A9DD1',
-							position: 'left',
-							xAdjust: 10,
-							yAdjust: -10,
-							fontSize: '13px',
-							fontStyle: 'bold',
-
-							enabled: true,
-							content: `Doses adquiridas - ${generic.doses.legenda} (01/03/2021) `,
-						},
-					},
-					{
-						type: 'line',
-						mode: 'horizontal',
-						scaleID: 'y-axis-0',
-						value: annotationsToggle.dose ? 41000000 : null,
-						borderColor: 'transparent',
-						borderWidth: 0,
-
-						label: {
-							backgroundColor: 'rgba(0,0,0,0.0)',
-
-							xAdjust: 0,
-							yAdjust: -10,
-
-							enabled: false,
-						},
-					},
-					{
-						type: 'line',
-						mode: 'horizontal',
-						scaleID: 'y-axis-0',
-						value: annotationsToggle.dose3 ? generic.doses3.valor : null,
-						borderColor: '#D17615',
-						borderWidth: 2,
-						borderDash: [5, 5],
-
-						label: {
-							backgroundColor: 'rgba(0,0,0,0.0)',
-
-							drawTime: 'afterDatasetsDraw',
-							textAlign: 'left',
-							font: {
-								style: 'bold',
-							},
-							fontStyle: 'bold',
-
-							fontColor: '#D11541',
-							fontSize: '13px',
-							position: 'left',
-							xAdjust: 0,
-							yAdjust: -10,
-							enabled: true,
-							content: `Doses adquiridas - ${generic.doses3.legenda} (21/01/2020) `,
-						},
-					},
-					{
-						type: 'line',
-						mode: 'horizontal',
-						scaleID: 'y-axis-0',
-						value: annotationsToggle.dose2 ? generic.doses2.valor : null,
-						borderColor: '#D17615',
-						borderWidth: 2,
-						borderDash: [5, 5],
-
-						label: {
-							backgroundColor: 'rgba(0,0,0,0.0)',
-
-							drawTime: 'afterDatasetsDraw',
-
-							textAlign: 'left',
-							font: {
-								style: 'bold',
-							},
-							fontStyle: 'bold',
-
-							fontColor: '#D17615',
-							fontSize: '13px',
-							position: 'left',
-							xAdjust: 0,
-							yAdjust: -10,
-							enabled: true,
-							content: `Doses adquiridas - ${generic.doses2.legenda} (04/12/2020) `,
-						},
-					},
-				],
-			},
 			tooltips: {
 				mode: 'index',
 				intersect: false,
@@ -219,27 +215,24 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 			},
 
 			scales: {
-				yAxes: [
-					{
-						stacked: true,
+				y: {
+					stacked: true,
 
-						ticks: {
-							beginAtZero: true,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 
-							callback: (value) => formatNumber(value, false),
-						},
+						callback: (value) => formatNumber(value, false),
 					},
-				],
-				xAxes: [
-					{
-						stacked: true,
-						ticks: {
-							beginAtZero: true,
-						},
+				},
+
+				x: {
+					stacked: true,
+					ticks: {
+						beginAtZero: true,
 					},
-				],
+				},
 			},
 		};
 	};
