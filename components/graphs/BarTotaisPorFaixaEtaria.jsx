@@ -17,7 +17,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 	const graphData = (canvas) => {
 		return {
-			labels: ['moderna', 'cenas', 'cenas'],
+			labels: ['', '', ''],
 			datasets: [
 				{
 					label: '2ª Dose',
@@ -80,34 +80,31 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						gridLines: {
-							display: true,
-						},
-						ticks: {
-							display: false,
-						},
+				y: {
+					gridLines: {
+						display: true,
 					},
-				],
-				xAxes: [
-					{
-						stacked: true,
-						gridLines: {
-							display: true,
-						},
+					ticks: {
+						display: false,
+					},
+				},
 
-						ticks: {
-							beginAtZero: true,
-							display: true,
-							max: 1000_000,
-							stepSize: 1000_000 / 5,
-							callback: function (value, index, values) {
-								return formatNumber(value, false);
-							},
+				x: {
+					stacked: true,
+					gridLines: {
+						display: true,
+					},
+
+					ticks: {
+						beginAtZero: true,
+						display: true,
+						stepSize: 1000_000 / 5,
+						callback: function (value, index, values) {
+							return formatNumber(value, false);
 						},
 					},
-				],
+					max: 1000_000,
+				},
 			},
 		};
 	};

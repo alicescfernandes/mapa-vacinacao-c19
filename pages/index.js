@@ -159,8 +159,10 @@ export default function Home() {
 		setFirst(rawData[0]);
 		plausible.trackPageview();
 
-		let { sum } = await statistics?.getDosesRecebidasAcum();
-		sum = sum.reverse()[0];
+		//let { sum } = await statistics?.getDosesRecebidasAcum();
+		let [{ RECEIVED: sum }] = await statistics?.getTotalSNSRecebidas();
+		console.log(sum);
+
 		let item = rawData.filter((el) => {
 			return isSameDay(el.Data, new Date(json.dateSnsStart));
 		});
@@ -403,7 +405,7 @@ export default function Home() {
 									<h2 className={styles.title}>Proporção de doses recebidas relativamente às doses adquiridas</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 21 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
@@ -415,7 +417,7 @@ export default function Home() {
 									<h2 className={styles.title}>Proporção de doses administradas relativamente às doses recebidas</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 21 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
@@ -427,7 +429,7 @@ export default function Home() {
 						</LazyLoad>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária</h2>
+								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária (excluindo a vacina Janssen)</h2>
 								<hr />
 								<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
 							</Col>
@@ -435,7 +437,7 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Doses totais administradas por faixa etária</h2>
+									<h2 className={styles.title}>Doses totais administradas por faixa etária (excluindo a vacina Janssen)</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
 										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
