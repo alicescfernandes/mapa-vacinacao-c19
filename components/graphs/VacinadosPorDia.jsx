@@ -1,10 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber } from '../../utils';
+import { formatNumber, makeAnnotations } from '../../utils';
 import { Card } from './../Card';
+import acontecimentos from './../../data/acontecimentos.json';
+import { RegiaoContext } from '../context/regiao';
 
 export function VacinadosPorDia({ statistics, colors }) {
+	let regiao = useContext(RegiaoContext);
+
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2 } = statistics.getMediaMovelDiaria(7);
@@ -110,6 +114,11 @@ export function VacinadosPorDia({ statistics, colors }) {
 		};
 	};
 	let numberFormatter = new Intl.NumberFormat();
+	let horizontalAnnotations = makeAnnotations(acontecimentos);
+	let annotations = {
+		annotations: [...horizontalAnnotations],
+	};
+
 	const options = () => {
 		return {
 			layout: {
@@ -120,10 +129,12 @@ export function VacinadosPorDia({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
+				annotation: regiao == 'portugal' ? annotations : {},
+
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 
 			animation: {
@@ -143,39 +154,27 @@ export function VacinadosPorDia({ statistics, colors }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						stacked: true,
+				y: {
+					stacked: true,
+					display: false,
+					ticks: {
+						beginAtZero: false,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						callback: function (value, index, values) {
+							return formatNumber(value, false);
+						},
+						//max: 900_000,
+					},
+				},
 
-						ticks: {
-							beginAtZero: false,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							callback: function (value, index, values) {
-								return formatNumber(value, false);
-							},
-							//max: 900_000,
-						},
+				x: {
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
 					},
-					{
-						stacked: true,
-						id: 'total',
-						display: false,
-						ticks: {
-							//max: 900_000,
-						},
-					},
-				],
-				xAxes: [
-					{
-						stacked: true,
-						ticks: {
-							beginAtZero: true,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-						},
-					},
-				],
+				},
 			},
 		};
 	};

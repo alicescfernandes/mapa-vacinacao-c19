@@ -84,15 +84,15 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-				onHover: function (event, legend) {
-					document.body.classList.add('mouse-pointer');
-				},
-				onLeave: function (event, legend) {
-					document.body.classList.remove('mouse-pointer');
+				legend: {
+					position: 'bottom',
+					align: 'start',
+					onHover: function (event, legend) {
+						document.body.classList.add('mouse-pointer');
+					},
+					onLeave: function (event, legend) {
+						document.body.classList.remove('mouse-pointer');
+					},
 				},
 			},
 			animation: {
@@ -224,27 +224,24 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 			},
 
 			scales: {
-				yAxes: [
-					{
-						stacked: true,
+				y: {
+					stacked: true,
 
-						ticks: {
-							beginAtZero: true,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 
-							callback: (value) => formatNumber(value, false),
-						},
+						callback: (value) => formatNumber(value, false),
 					},
-				],
-				xAxes: [
-					{
-						stacked: true,
-						ticks: {
-							beginAtZero: true,
-						},
+				},
+
+				x: {
+					stacked: true,
+					ticks: {
+						beginAtZero: true,
 					},
-				],
+				},
 			},
 		};
 	};

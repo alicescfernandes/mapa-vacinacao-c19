@@ -118,3 +118,100 @@ export function formatDateShort(date) {
 		locale: pt,
 	});
 }
+
+export function makeAnnotations(annotationsArray) {
+	let annotationBoilerplate = {
+		type: 'line',
+		mode: 'horizontal',
+		scaleID: 'y',
+		value: null,
+		borderColor: '#0A9DD1',
+		borderWidth: 1,
+		borderDash: [5, 5],
+
+		label: {
+			font: {
+				style: 'normal',
+			},
+			backgroundColor: 'rgba(255,255,255,0.6)',
+			cornerRadius: 0,
+			drawTime: 'afterDatasetsDraw',
+			color: '#0A9DD1',
+			rotation: 270,
+			xAdjust: -8,
+			yAdjust: 0,
+			fontSize: '13px',
+			enabled: true,
+			content: 'asdasd',
+		},
+	};
+	let arr = [];
+	annotationsArray.forEach((el) => {
+		let annotation = {
+			...annotationBoilerplate,
+			mode: el.mode,
+			scaleID: el.mode === 'horizontal' ? 'y' : 'x',
+			borderColor: el.color,
+			value: el.position,
+			display: el.display,
+			label: {
+				...annotationBoilerplate.label,
+				content: el.marcador,
+				color: el.color,
+			},
+		};
+		arr.push(annotation);
+	});
+
+	return arr;
+}
+
+/*
+
+
+export function makeAnnotations(annotationsArray) {
+	let annotationBoilerplate = {
+		type: 'line',
+		mode: 'horizontal',
+		scaleID: 'y-axis-0',
+		value: null,
+		borderColor: '#0A9DD1',
+		borderWidth: 2,
+		borderDash: [5, 5],
+
+		label: {
+			backgroundColor: 'rgba(0,0,0,0.0)',
+
+			drawTime: 'afterDatasetsDraw',
+
+			textAlign: 'left',
+			fontColor: '#0A9DD1',
+			position: 'left',
+			xAdjust: 10,
+			yAdjust: -10,
+			fontSize: '13px',
+			enabled: true,
+			content: '',
+		},
+	};
+	let arr = [];
+	annotationsArray.forEach((el) => {
+		let annotation = {
+			...annotationBoilerplate,
+			mode: el.mode,
+			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
+			borderColor: el.color,
+			value: el.position,
+			label: {
+				...annotationBoilerplate.label,
+				content: el.marcador,
+				fontColor: el.color,
+			},
+		};
+		arr.push(annotation);
+	});
+
+	return arr;
+}
+
+*/

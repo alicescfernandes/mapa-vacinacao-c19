@@ -264,6 +264,21 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
+				legend: {
+					position: 'bottom',
+					align: 'start',
+					onHover: function (event, legend) {
+						document.body.classList.add('mouse-pointer');
+					},
+					onLeave: function (event, legend) {
+						document.body.classList.remove('mouse-pointer');
+					},
+					labels: {
+						filter: function (item, chart) {
+							return chart.datasets[item.datasetIndex].hidden == false;
+						},
+					},
+				},
 			},
 			onResize: (a, b, c) => {
 				if (window.innerWidth <= RESIZE_TRESHOLD) {
@@ -271,21 +286,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				} else {
 					a.canvas.parentNode.style.width = 'auto';
 				}
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-				onHover: function (event, legend) {
-					document.body.classList.add('mouse-pointer');
-				},
-				onLeave: function (event, legend) {
-					document.body.classList.remove('mouse-pointer');
-				},
-				labels: {
-					filter: function (item, chart) {
-						return chart.datasets[item.datasetIndex].hidden == false;
-					},
-				},
 			},
 
 			animation: {

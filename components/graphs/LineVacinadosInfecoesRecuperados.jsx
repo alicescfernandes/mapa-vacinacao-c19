@@ -69,23 +69,13 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					stack: 'stack0',
 					order: 2,
 				},
-				{
-					label: 'Vacinas Totais',
-					type: 'bar',
-					backgroundColor: shades[1],
-					data: values.slice(values.length - 14, values.length),
-					stack: 'stack0',
-					yAxisID: 'total',
 
-					order: 3,
-				},
 				{
 					label: 'Número de infectados diário',
 					type: 'bar',
 					backgroundColor: complements[1],
 					data: marriedData.map((el) => el.ConfirmadosNovos),
 					stack: 'stack1',
-					yAxisID: 'total',
 					order: 4,
 				},
 				{
@@ -94,7 +84,6 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					backgroundColor: complements[2],
 					data: marriedData.map((el) => el.VarRecuperados),
 					stack: 'stack2',
-					yAxisID: 'total',
 					order: 5,
 				},
 			],
@@ -107,10 +96,10 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 
 			animation: {
@@ -130,35 +119,23 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						stacked: true,
-						ticks: {
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							callback: function (value, index, values) {
-								return formatNumber(value, false);
-							},
+				y: {
+					stacked: true,
+					ticks: {
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						callback: function (value, index, values) {
+							return formatNumber(value, false);
 						},
 					},
-					{
-						stacked: false,
-						id: 'total',
-						display: false,
-						ticks: {
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-						},
+				},
+
+				x: {
+					stacked: true,
+					ticks: {
+						beginAtZero: true,
 					},
-				],
-				xAxes: [
-					{
-						stacked: true,
-						ticks: {
-							beginAtZero: true,
-						},
-					},
-				],
+				},
 			},
 		};
 	};

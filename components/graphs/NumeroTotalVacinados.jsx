@@ -1,12 +1,17 @@
 import { createRef, useContext, useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import { Line, Chart } from 'react-chartjs-2';
 import { Card } from './../Card';
-import { formatNumber, hexToRgb, perHundred } from '../../utils';
-import 'chartjs-plugin-annotation';
+import { formatNumber, hexToRgb, makeAnnotations, perHundred } from '../../utils';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import datalabelsPlugin from 'chartjs-plugin-datalabels';
+import acontecimentos from './../../data/acontecimentos.json';
+
 import { CustomCheckbox } from './../CustomCheckbox';
 import { REGIOES, RESIZE_TRESHOLD } from '../../constants';
 import styles from './../Card.module.scss';
 import { RegiaoContext } from '../context/regiao';
+
+Chart.register([annotationPlugin, datalabelsPlugin]);
 
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let regiao = useContext(RegiaoContext);
@@ -39,28 +44,30 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		pointHitRadius: 10,
 		usePointStyle: true,
 	};
-
+	let horizontalAnnotations = makeAnnotations(acontecimentos);
 	let annotations = {
 		annotations: [
+			...horizontalAnnotations,
 			{
 				type: 'line',
 				mode: 'horizontal',
-				scaleID: 'y-axis-0',
+				scaleID: 'y',
 				value: toggleStats?.segunda_fase ? (toggleStats.perHundred ? perHundred(2700000) : 2700000) : null,
 				borderColor: '#0A9DD1',
 				borderWidth: 2,
 				borderDash: [5, 5],
 
 				label: {
+					font: {
+						style: 'normal',
+					},
 					backgroundColor: 'rgba(0,0,0,0.0)',
 
-					drawTime: 'afterDatasetsDraw',
-
 					textAlign: 'left',
-					fontColor: '#0A9DD1',
-					position: 'left',
+					color: '#0A9DD1',
+					position: 'start',
 					xAdjust: 10,
-					yAdjust: -10,
+					yAdjust: 10,
 					fontSize: '13px',
 					enabled: true,
 					content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)',
@@ -69,40 +76,47 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			{
 				type: 'line',
 				mode: 'horizontal',
-				scaleID: 'y-axis-0',
+				scaleID: 'y',
 				value: toggleStats?.segunda_fase ? (toggleStats.perHundred ? 20 : 1900000) : null,
 				borderColor: 'transparent',
 				label: {
+					font: {
+						style: 'normal',
+					},
 					enabled: false,
 				},
 			},
 			{
 				type: 'line',
 				mode: 'horizontal',
-				scaleID: 'y-axis-0',
+				scaleID: 'y',
 				value: toggleStats?.primeira_fase ? (toggleStats.perHundred ? 11 : 1200000) : null,
 				borderColor: 'transparent',
 				label: {
+					font: {
+						style: 'normal',
+					},
 					enabled: false,
 				},
 			},
 			{
 				type: 'line',
 				mode: 'horizontal',
-				scaleID: 'y-axis-0',
+				scaleID: 'y',
 				value: toggleStats?.primeira_fase ? (toggleStats.perHundred ? perHundred(950000) : 950000) : null,
 				borderColor: '#0A9DD1',
 				borderWidth: 2,
 				borderDash: [5, 5],
 
 				label: {
+					font: {
+						style: 'normal',
+					},
 					backgroundColor: 'rgba(0,0,0,0.0)',
 
-					drawTime: 'afterDatasetsDraw',
-
 					textAlign: 'left',
-					fontColor: '#0A9DD1',
-					position: 'left',
+					color: '#0A9DD1',
+					position: 'start',
 					xAdjust: 5,
 					yAdjust: -10,
 					fontSize: '13px',
@@ -114,22 +128,23 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			{
 				type: 'line',
 				mode: 'horizontal',
-				scaleID: 'y-axis-0',
+				scaleID: 'y',
 				value: toggleStats?.imunidade ? (toggleStats.perHundred ? perHundred(10286300 * 0.7) : 10286300 * 0.7) : null,
 				borderColor: '#D17615',
 				borderWidth: 2,
 				borderDash: [5, 5],
 
 				label: {
+					font: {
+						style: 'normal',
+					},
 					backgroundColor: 'rgba(0,0,0,0.0)',
-
-					drawTime: 'afterDatasetsDraw',
 
 					textAlign: 'left',
 
-					fontColor: '#D17615',
+					color: '#D17615',
 					fontSize: '13px',
-					position: 'left',
+					position: 'start',
 					xAdjust: 5,
 					yAdjust: -10,
 					enabled: true,
@@ -139,10 +154,13 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			{
 				type: 'line',
 				mode: 'horizontal',
-				scaleID: 'y-axis-0',
+				scaleID: 'y',
 				value: toggleStats?.imunidade && toggleStats.perHundred ? 75 : null,
 				borderColor: 'transparent',
 				label: {
+					font: {
+						style: 'normal',
+					},
 					enabled: false,
 				},
 			},
@@ -241,16 +259,16 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				datalabels: {
 					display: false,
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
+				annotation: regiao == 'portugal' ? annotations : {},
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 
 			animation: {
 				duration: 1000,
 			},
-			annotation: regiao == 'portugal' ? annotations : {},
 			tooltips: {
 				mode: 'index',
 				intersect: false,
@@ -265,7 +283,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				},
 			},
 			scales: {
-				yAxes: [
+				y: [
 					{
 						ticks: {
 							beginAtZero: false,
@@ -276,7 +294,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 						},
 					},
 				],
-				xAxes: [
+				x: [
 					{
 						ticks: {
 							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
@@ -353,7 +371,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				</div>
 			)}
 
-			<div> {!loading ? <Line height={100} ref={chartRef} options={options()} data={data} /> : ''}</div>
+			<div> {!loading ? <Line plugins={[annotationPlugin]} height={100} ref={chartRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { HorizontalBar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from '../Card';
@@ -162,6 +162,7 @@ export function RamMapa({ statistics, colors }) {
 			let dico = MADEIRA_DICOS[el.chave];
 			let populacao_residente = populacao_residente_ram[dico].valor;
 			return {
+				indexAxis: 'y',
 				plugins: {
 					datalabels: {
 						display: false,
@@ -216,7 +217,7 @@ export function RamMapa({ statistics, colors }) {
 			<Col xs={12} lg={4}>
 				<div className={cardStyles.ram_subchart_bar}>
 					<h2 className={cardStyles.text_left}>{el.nome}</h2>
-					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} />
+					<Bar height={window.innerWidth <= RESIZE_TRESHOLD ? 60 : 60} options={options()} data={data} />
 				</div>
 			</Col>
 		);

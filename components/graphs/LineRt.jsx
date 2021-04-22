@@ -66,7 +66,6 @@ export function LineRt({ statistics, colors, regiao }) {
 					fill: '2', //fill until previous dataset
 					data: rtData.rt.map((el) => el.limite_superior_IC95.toFixed(2)),
 					order: 1,
-					yAxisID: 'rt',
 				},
 
 				{
@@ -78,7 +77,6 @@ export function LineRt({ statistics, colors, regiao }) {
 					fill: false,
 					data: rtData.rt.map((el) => el.rt_numero_de_reproducao.toFixed(2)),
 					order: 2,
-					yAxisID: 'rt',
 				},
 
 				{
@@ -90,7 +88,6 @@ export function LineRt({ statistics, colors, regiao }) {
 					fill: false,
 					data: rtData.rt.map((el) => el.limite_inferior_IC95.toFixed(2)),
 					order: 3,
-					yAxisID: 'rt',
 				},
 
 				/* 	{
@@ -124,49 +121,48 @@ export function LineRt({ statistics, colors, regiao }) {
 	};
 	const options = () => {
 		let max = parseInt(Math.max(...rtData.rt.map((el) => el.limite_superior_IC95.toFixed(2))) + 1);
-		let annotation_percentage = 1 / max;
 		return {
 			plugins: {
 				datalabels: {
 					display: false,
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-				labels: {
-					filter: function (item, chart) {
-						return !item.text.match('limite');
-					},
-				},
-			},
-			annotation: {
-				annotations: [
-					{
-						type: 'line',
-						mode: 'horizontal',
-						scaleID: 'y-axis-0',
-						value: annotation_percentage,
-						borderColor: '#0A9DD1',
-						borderWidth: 2,
-						borderDash: [5, 5],
-
-						label: {
-							backgroundColor: 'rgba(0,0,0,0.0)',
-
-							drawTime: 'afterDatasetsDraw',
-
-							textAlign: 'left',
-							fontColor: '#0A9DD1',
-							position: 'left',
-							xAdjust: 10,
-							yAdjust: -10,
-							fontSize: '13px',
-							enabled: true,
-							content: 'R(t) = 1',
+				legend: {
+					position: 'bottom',
+					align: 'start',
+					labels: {
+						filter: function (item, chart) {
+							return !item.text.match('limite');
 						},
 					},
-				],
+				},
+				annotation: {
+					annotations: [
+						{
+							type: 'line',
+							mode: 'horizontal',
+							scaleID: 'y',
+							value: 1,
+							borderColor: '#0A9DD1',
+							borderWidth: 2,
+							borderDash: [5, 5],
+
+							label: {
+								backgroundColor: 'rgba(0,0,0,0.0)',
+								drawTime: 'beforeDatasetsDraw',
+								font: {
+									style: 'normal',
+								},
+								textAlign: 'left',
+								color: '#0A9DD1',
+								position: 'end',
+								xAdjust: 10,
+								yAdjust: -10,
+								enabled: true,
+								content: 'R(t) = 1',
+							},
+						},
+					],
+				},
 			},
 
 			animation: {
@@ -182,36 +178,23 @@ export function LineRt({ statistics, colors, regiao }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						ticks: {
-							beginAtZero: true,
+				y: {
+					type: 'linear',
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						stepSize: max / 4,
+					},
+					max: max,
+				},
 
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-						},
-						display: false,
+				x: {
+					ticks: {
+						maxTicksLimit: 30,
+						minTicksLimit: 30,
 					},
-					{
-						id: 'rt',
-						ticks: {
-							beginAtZero: true,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							max: max,
-						},
-						display: true,
-					},
-				],
-				xAxes: [
-					{
-						ticks: {
-							maxTicksLimit: 30,
-							minTicksLimit: 30,
-						},
-						stacked: true,
-					},
-				],
+				},
 			},
 		};
 	};
