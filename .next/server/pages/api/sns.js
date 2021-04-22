@@ -139,7 +139,7 @@ const cors = initMiddleware(cors__WEBPACK_IMPORTED_MODULE_0___default()({
   methods: ['GET']
 }));
 async function handler(req, res) {
-  Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* trackPlausible */ "f"])(req);
+  Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* trackPlausible */ "g"])(req);
   await cors(req, res);
   res.statusCode = 200;
   res.json(_data_sns_json__WEBPACK_IMPORTED_MODULE_1__);
@@ -161,11 +161,12 @@ module.exports = require("date-fns");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchWithLocalCache; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
@@ -287,6 +288,98 @@ function formatDateShort(date) {
     locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_1__["pt"]
   });
 }
+function makeAnnotations(annotationsArray) {
+  let annotationBoilerplate = {
+    type: 'line',
+    mode: 'horizontal',
+    scaleID: 'y',
+    value: null,
+    borderColor: '#0A9DD1',
+    borderWidth: 1,
+    borderDash: [5, 5],
+    label: {
+      font: {
+        style: 'normal'
+      },
+      backgroundColor: 'rgba(255,255,255,0.6)',
+      cornerRadius: 0,
+      drawTime: 'afterDatasetsDraw',
+      color: '#0A9DD1',
+      rotation: 270,
+      xAdjust: -8,
+      yAdjust: 0,
+      fontSize: '13px',
+      enabled: true,
+      content: 'asdasd'
+    }
+  };
+  let arr = [];
+  annotationsArray.forEach(el => {
+    let annotation = _objectSpread(_objectSpread({}, annotationBoilerplate), {}, {
+      mode: el.mode,
+      scaleID: el.mode === 'horizontal' ? 'y' : 'x',
+      borderColor: el.color,
+      value: el.position,
+      display: el.display,
+      label: _objectSpread(_objectSpread({}, annotationBoilerplate.label), {}, {
+        content: el.marcador,
+        color: el.color
+      })
+    });
+
+    arr.push(annotation);
+  });
+  return arr;
+}
+/*
+
+
+export function makeAnnotations(annotationsArray) {
+	let annotationBoilerplate = {
+		type: 'line',
+		mode: 'horizontal',
+		scaleID: 'y-axis-0',
+		value: null,
+		borderColor: '#0A9DD1',
+		borderWidth: 2,
+		borderDash: [5, 5],
+
+		label: {
+			backgroundColor: 'rgba(0,0,0,0.0)',
+
+			drawTime: 'afterDatasetsDraw',
+
+			textAlign: 'left',
+			fontColor: '#0A9DD1',
+			position: 'left',
+			xAdjust: 10,
+			yAdjust: -10,
+			fontSize: '13px',
+			enabled: true,
+			content: '',
+		},
+	};
+	let arr = [];
+	annotationsArray.forEach((el) => {
+		let annotation = {
+			...annotationBoilerplate,
+			mode: el.mode,
+			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
+			borderColor: el.color,
+			value: el.position,
+			label: {
+				...annotationBoilerplate.label,
+				content: el.marcador,
+				fontColor: el.color,
+			},
+		};
+		arr.push(annotation);
+	});
+
+	return arr;
+}
+
+*/
 
 /***/ }),
 

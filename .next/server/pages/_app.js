@@ -862,7 +862,7 @@ function NextApp({
 NextApp.getInitialProps = async app => {
   var _app$ctx, _app$ctx$req;
 
-  Object(utils["f" /* trackPlausible */])(app.ctx.req);
+  Object(utils["g" /* trackPlausible */])(app.ctx.req);
   let url = (app === null || app === void 0 ? void 0 : (_app$ctx = app.ctx) === null || _app$ctx === void 0 ? void 0 : (_app$ctx$req = _app$ctx.req) === null || _app$ctx$req === void 0 ? void 0 : _app$ctx$req.url.replace('/', '')) || app.ctx.pathname.replace('/', '');
   url = url.split('?')[0];
   let regiao = 'portugal';
@@ -1225,11 +1225,12 @@ function resolveRewrites() {}
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchWithLocalCache; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
@@ -1351,6 +1352,98 @@ function formatDateShort(date) {
     locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_1__["pt"]
   });
 }
+function makeAnnotations(annotationsArray) {
+  let annotationBoilerplate = {
+    type: 'line',
+    mode: 'horizontal',
+    scaleID: 'y',
+    value: null,
+    borderColor: '#0A9DD1',
+    borderWidth: 1,
+    borderDash: [5, 5],
+    label: {
+      font: {
+        style: 'normal'
+      },
+      backgroundColor: 'rgba(255,255,255,0.6)',
+      cornerRadius: 0,
+      drawTime: 'afterDatasetsDraw',
+      color: '#0A9DD1',
+      rotation: 270,
+      xAdjust: -8,
+      yAdjust: 0,
+      fontSize: '13px',
+      enabled: true,
+      content: 'asdasd'
+    }
+  };
+  let arr = [];
+  annotationsArray.forEach(el => {
+    let annotation = _objectSpread(_objectSpread({}, annotationBoilerplate), {}, {
+      mode: el.mode,
+      scaleID: el.mode === 'horizontal' ? 'y' : 'x',
+      borderColor: el.color,
+      value: el.position,
+      display: el.display,
+      label: _objectSpread(_objectSpread({}, annotationBoilerplate.label), {}, {
+        content: el.marcador,
+        color: el.color
+      })
+    });
+
+    arr.push(annotation);
+  });
+  return arr;
+}
+/*
+
+
+export function makeAnnotations(annotationsArray) {
+	let annotationBoilerplate = {
+		type: 'line',
+		mode: 'horizontal',
+		scaleID: 'y-axis-0',
+		value: null,
+		borderColor: '#0A9DD1',
+		borderWidth: 2,
+		borderDash: [5, 5],
+
+		label: {
+			backgroundColor: 'rgba(0,0,0,0.0)',
+
+			drawTime: 'afterDatasetsDraw',
+
+			textAlign: 'left',
+			fontColor: '#0A9DD1',
+			position: 'left',
+			xAdjust: 10,
+			yAdjust: -10,
+			fontSize: '13px',
+			enabled: true,
+			content: '',
+		},
+	};
+	let arr = [];
+	annotationsArray.forEach((el) => {
+		let annotation = {
+			...annotationBoilerplate,
+			mode: el.mode,
+			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
+			borderColor: el.color,
+			value: el.position,
+			label: {
+				...annotationBoilerplate.label,
+				content: el.marcador,
+				fontColor: el.color,
+			},
+		};
+		arr.push(annotation);
+	});
+
+	return arr;
+}
+
+*/
 
 /***/ }),
 
@@ -3772,7 +3865,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1619115005491,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-19T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
+module.exports = JSON.parse("{\"date\":1619133928687,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-19T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
 
 /***/ }),
 

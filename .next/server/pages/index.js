@@ -165,6 +165,11 @@ module.exports = require("date-fns");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("GyP+");
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("5PhN");
+/* harmony import */ var _data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("bEWT");
+var _data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6___namespace = /*#__PURE__*/__webpack_require__.t("bEWT", 1);
+/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("uAdN");
+
+
 
 
 
@@ -175,6 +180,7 @@ function VacinadosPorDia({
   statistics,
   colors
 }) {
+  let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_7__[/* RegiaoContext */ "a"]);
   let {
     0: loading,
     1: setLoading
@@ -292,6 +298,10 @@ function VacinadosPorDia({
   };
 
   let numberFormatter = new Intl.NumberFormat();
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
+  let annotations = {
+    annotations: [...horizontalAnnotations]
+  };
 
   const options = () => {
     return {
@@ -302,11 +312,12 @@ function VacinadosPorDia({
         datalabels: {
           display: false,
           color: 'blue'
+        },
+        annotation: regiao == 'portugal' ? annotations : {},
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start'
       },
       animation: {
         duration: 1000
@@ -325,8 +336,9 @@ function VacinadosPorDia({
         }
       },
       scales: {
-        yAxes: [{
+        y: {
           stacked: true,
+          display: false,
           ticks: {
             beginAtZero: false,
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
@@ -336,21 +348,14 @@ function VacinadosPorDia({
             } //max: 900_000,
 
           }
-        }, {
-          stacked: true,
-          id: 'total',
-          display: false,
-          ticks: {//max: 900_000,
-          }
-        }],
-        xAxes: [{
-          stacked: true,
+        },
+        x: {
           ticks: {
             beginAtZero: true,
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60
           }
-        }]
+        }
       }
     };
   };
@@ -463,11 +468,12 @@ module.exports = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchWithLocalCache; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
@@ -589,6 +595,98 @@ function formatDateShort(date) {
     locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_1__["pt"]
   });
 }
+function makeAnnotations(annotationsArray) {
+  let annotationBoilerplate = {
+    type: 'line',
+    mode: 'horizontal',
+    scaleID: 'y',
+    value: null,
+    borderColor: '#0A9DD1',
+    borderWidth: 1,
+    borderDash: [5, 5],
+    label: {
+      font: {
+        style: 'normal'
+      },
+      backgroundColor: 'rgba(255,255,255,0.6)',
+      cornerRadius: 0,
+      drawTime: 'afterDatasetsDraw',
+      color: '#0A9DD1',
+      rotation: 270,
+      xAdjust: -8,
+      yAdjust: 0,
+      fontSize: '13px',
+      enabled: true,
+      content: 'asdasd'
+    }
+  };
+  let arr = [];
+  annotationsArray.forEach(el => {
+    let annotation = _objectSpread(_objectSpread({}, annotationBoilerplate), {}, {
+      mode: el.mode,
+      scaleID: el.mode === 'horizontal' ? 'y' : 'x',
+      borderColor: el.color,
+      value: el.position,
+      display: el.display,
+      label: _objectSpread(_objectSpread({}, annotationBoilerplate.label), {}, {
+        content: el.marcador,
+        color: el.color
+      })
+    });
+
+    arr.push(annotation);
+  });
+  return arr;
+}
+/*
+
+
+export function makeAnnotations(annotationsArray) {
+	let annotationBoilerplate = {
+		type: 'line',
+		mode: 'horizontal',
+		scaleID: 'y-axis-0',
+		value: null,
+		borderColor: '#0A9DD1',
+		borderWidth: 2,
+		borderDash: [5, 5],
+
+		label: {
+			backgroundColor: 'rgba(0,0,0,0.0)',
+
+			drawTime: 'afterDatasetsDraw',
+
+			textAlign: 'left',
+			fontColor: '#0A9DD1',
+			position: 'left',
+			xAdjust: 10,
+			yAdjust: -10,
+			fontSize: '13px',
+			enabled: true,
+			content: '',
+		},
+	};
+	let arr = [];
+	annotationsArray.forEach((el) => {
+		let annotation = {
+			...annotationBoilerplate,
+			mode: el.mode,
+			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
+			borderColor: el.color,
+			value: el.position,
+			label: {
+				...annotationBoilerplate.label,
+				content: el.marcador,
+				fontColor: el.color,
+			},
+		};
+		arr.push(annotation);
+	});
+
+	return arr;
+}
+
+*/
 
 /***/ }),
 
@@ -607,11 +705,15 @@ function formatDateShort(date) {
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("GyP+");
 /* harmony import */ var chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("cNEh");
 /* harmony import */ var chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _CustomCheckbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("SSzp");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("xPX6");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("UG6H");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("uAdN");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("lLkP");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("bEWT");
+var _data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t("bEWT", 1);
+/* harmony import */ var _CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("SSzp");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("xPX6");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("UG6H");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("uAdN");
 
 
 
@@ -630,11 +732,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
+react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Chart"].register([chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_5___default.a, chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_6___default.a]);
 function NumeroTotalVacinados({
   colors,
   statistics
 }) {
-  let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_9__[/* RegiaoContext */ "a"]);
+  let regiao = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_context_regiao__WEBPACK_IMPORTED_MODULE_11__[/* RegiaoContext */ "a"]);
   let {
     0: vacinasStockVar,
     1: vacinasStockVarUpdate
@@ -680,23 +785,26 @@ function NumeroTotalVacinados({
     pointHitRadius: 10,
     usePointStyle: true
   };
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
   let annotations = {
-    annotations: [{
+    annotations: [...horizontalAnnotations, {
       type: 'line',
       mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(2700000) : 2700000 : null,
+      scaleID: 'y',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(2700000) : 2700000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
       label: {
+        font: {
+          style: 'normal'
+        },
         backgroundColor: 'rgba(0,0,0,0.0)',
-        drawTime: 'afterDatasetsDraw',
         textAlign: 'left',
-        fontColor: '#0A9DD1',
-        position: 'left',
+        color: '#0A9DD1',
+        position: 'start',
         xAdjust: 10,
-        yAdjust: -10,
+        yAdjust: 10,
         fontSize: '13px',
         enabled: true,
         content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)'
@@ -704,35 +812,43 @@ function NumeroTotalVacinados({
     }, {
       type: 'line',
       mode: 'horizontal',
-      scaleID: 'y-axis-0',
+      scaleID: 'y',
       value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? 20 : 1900000 : null,
       borderColor: 'transparent',
       label: {
+        font: {
+          style: 'normal'
+        },
         enabled: false
       }
     }, {
       type: 'line',
       mode: 'horizontal',
-      scaleID: 'y-axis-0',
+      scaleID: 'y',
       value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? 11 : 1200000 : null,
       borderColor: 'transparent',
       label: {
+        font: {
+          style: 'normal'
+        },
         enabled: false
       }
     }, {
       type: 'line',
       mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(950000) : 950000 : null,
+      scaleID: 'y',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(950000) : 950000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
       label: {
+        font: {
+          style: 'normal'
+        },
         backgroundColor: 'rgba(0,0,0,0.0)',
-        drawTime: 'afterDatasetsDraw',
         textAlign: 'left',
-        fontColor: '#0A9DD1',
-        position: 'left',
+        color: '#0A9DD1',
+        position: 'start',
         xAdjust: 5,
         yAdjust: -10,
         fontSize: '13px',
@@ -742,18 +858,20 @@ function NumeroTotalVacinados({
     }, {
       type: 'line',
       mode: 'horizontal',
-      scaleID: 'y-axis-0',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+      scaleID: 'y',
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(10286300 * 0.7) : 10286300 * 0.7 : null,
       borderColor: '#D17615',
       borderWidth: 2,
       borderDash: [5, 5],
       label: {
+        font: {
+          style: 'normal'
+        },
         backgroundColor: 'rgba(0,0,0,0.0)',
-        drawTime: 'afterDatasetsDraw',
         textAlign: 'left',
-        fontColor: '#D17615',
+        color: '#D17615',
         fontSize: '13px',
-        position: 'left',
+        position: 'start',
         xAdjust: 5,
         yAdjust: -10,
         enabled: true,
@@ -762,10 +880,13 @@ function NumeroTotalVacinados({
     }, {
       type: 'line',
       mode: 'horizontal',
-      scaleID: 'y-axis-0',
+      scaleID: 'y',
       value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade && toggleStats.perHundred ? 75 : null,
       borderColor: 'transparent',
       label: {
+        font: {
+          style: 'normal'
+        },
         enabled: false
       }
     }]
@@ -789,15 +910,15 @@ function NumeroTotalVacinados({
       gradient.addColorStop(1, '#ffffff');
     }
 
-    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"]) {
-      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"]) {
+      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] + 'px';
     } else {
       canvas.parentNode.style.width = '100%';
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"]) {
-        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"]) {
+        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] + 'px';
       } else {
         canvas.parentNode.style.width = '100%';
       }
@@ -812,7 +933,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: foreground,
         pointHoverBackgroundColor: foreground,
         pointHoverBorderColor: foreground,
-        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el)) : values
+        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : values
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 1ª Dose',
         fill: false,
@@ -821,7 +942,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_1,
         pointHoverBackgroundColor: color_1,
         pointHoverBorderColor: color_1,
-        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el)) : valuesIn1
+        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn1
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 2ª Dose',
         fill: false,
@@ -830,11 +951,11 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_2,
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
-        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el)) : valuesIn2
+        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn2
       })]
     };
 
-    if (regiao == _constants__WEBPACK_IMPORTED_MODULE_7__[/* REGIOES */ "l"].PORTUGAL) {
+    if (regiao == _constants__WEBPACK_IMPORTED_MODULE_9__[/* REGIOES */ "l"].PORTUGAL) {
       chartData.datasets.push(_objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Casos Confirmados',
         backgroundColor: '#D11541',
@@ -845,7 +966,7 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "e"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
       }));
     }
 
@@ -857,16 +978,16 @@ function NumeroTotalVacinados({
       plugins: {
         datalabels: {
           display: false
+        },
+        annotation: regiao == 'portugal' ? annotations : {},
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start'
       },
       animation: {
         duration: 1000
       },
-      annotation: regiao == 'portugal' ? annotations : {},
       tooltips: {
         mode: 'index',
         intersect: false,
@@ -881,19 +1002,19 @@ function NumeroTotalVacinados({
         }
       },
       scales: {
-        yAxes: [{
+        y: [{
           ticks: {
             beginAtZero: false,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
             //max: 10000000,
             callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false)
           }
         }],
-        xAxes: [{
+        x: [{
           ticks: {
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_7__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 30 : 60
           }
         }]
       }
@@ -908,11 +1029,11 @@ function NumeroTotalVacinados({
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: [regiao === 'portugal' && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
-      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_8___default.a.card_scrollable].join(' '),
+      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_scrollable].join(' '),
       style: {
         textAlign: 'left'
       },
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_6__[/* CustomCheckbox */ "a"], {
+      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__[/* CustomCheckbox */ "a"], {
         checked: toggleStats.primeira_fase,
         label: '1ª Fase',
         onChange: checked => {
@@ -920,7 +1041,7 @@ function NumeroTotalVacinados({
             primeira_fase: checked
           }));
         }
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_6__[/* CustomCheckbox */ "a"], {
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__[/* CustomCheckbox */ "a"], {
         checked: toggleStats.primeira_fase,
         label: '2ª Fase',
         onChange: checked => {
@@ -928,7 +1049,7 @@ function NumeroTotalVacinados({
             segunda_fase: checked
           }));
         }
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_6__[/* CustomCheckbox */ "a"], {
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__[/* CustomCheckbox */ "a"], {
         checked: toggleStats.imunidade,
         label: 'Imunidade de Grupo',
         onChange: checked => {
@@ -936,7 +1057,7 @@ function NumeroTotalVacinados({
             imunidade: checked
           }));
         }
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_6__[/* CustomCheckbox */ "a"], {
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__[/* CustomCheckbox */ "a"], {
         checked: toggleStats.infetados,
         label: 'Casos Confirmados',
         onChange: checked => {
@@ -947,6 +1068,7 @@ function NumeroTotalVacinados({
       })]
     }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
       children: [" ", !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Line"], {
+        plugins: [chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_5___default.a],
         height: 100,
         ref: chartRef,
         options: options(),
@@ -1848,10 +1970,7 @@ module.exports = require("react-spinners-kit");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("5PhN");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lLkP");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("GyP+");
-
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("GyP+");
 
 
 
@@ -1901,13 +2020,13 @@ function PieVacinadosInfectadosRecuperadosObitos({
 
             return '';
           }
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
       },
       onResize: (a, b, c) => {},
-      legend: {
-        position: 'bottom',
-        align: 'start'
-      },
       animation: {
         duration: 1000
       },
@@ -1921,7 +2040,7 @@ function PieVacinadosInfectadosRecuperadosObitos({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_5__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
           }
         }
       }
@@ -1932,7 +2051,7 @@ function PieVacinadosInfectadosRecuperadosObitos({
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
-        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default.a],
+        plugins: [],
         height: 350,
         options: options(),
         data: data
@@ -2224,20 +2343,11 @@ function LineVacinadosInfecoesRecuperados({
         stack: 'stack0',
         order: 2
       }, {
-        label: 'Vacinas Totais',
-        type: 'bar',
-        backgroundColor: shades[1],
-        data: values.slice(values.length - 14, values.length),
-        stack: 'stack0',
-        yAxisID: 'total',
-        order: 3
-      }, {
         label: 'Número de infectados diário',
         type: 'bar',
         backgroundColor: complements[1],
         data: marriedData.map(el => el.ConfirmadosNovos),
         stack: 'stack1',
-        yAxisID: 'total',
         order: 4
       }, {
         label: 'Número de recuperados diário',
@@ -2245,7 +2355,6 @@ function LineVacinadosInfecoesRecuperados({
         backgroundColor: complements[2],
         data: marriedData.map(el => el.VarRecuperados),
         stack: 'stack2',
-        yAxisID: 'total',
         order: 5
       }]
     };
@@ -2257,11 +2366,11 @@ function LineVacinadosInfecoesRecuperados({
         datalabels: {
           display: false,
           color: 'blue'
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start'
       },
       animation: {
         duration: 1000
@@ -2280,7 +2389,7 @@ function LineVacinadosInfecoesRecuperados({
         }
       },
       scales: {
-        yAxes: [{
+        y: {
           stacked: true,
           ticks: {
             maxTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
@@ -2289,21 +2398,13 @@ function LineVacinadosInfecoesRecuperados({
               return Object(utils["c" /* formatNumber */])(value, false);
             }
           }
-        }, {
-          stacked: false,
-          id: 'total',
-          display: false,
-          ticks: {
-            maxTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10
-          }
-        }],
-        xAxes: [{
+        },
+        x: {
           stacked: true,
           ticks: {
             beginAtZero: true
           }
-        }]
+        }
       }
     };
   };
@@ -2562,16 +2663,16 @@ function BarVacinasRecebidaDia({
         datalabels: {
           display: false,
           color: 'blue'
-        }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
         },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
+        legend: {
+          position: 'bottom',
+          align: 'start',
+          onHover: function (event, legend) {
+            document.body.classList.add('mouse-pointer');
+          },
+          onLeave: function (event, legend) {
+            document.body.classList.remove('mouse-pointer');
+          }
         }
       },
       animation: {
@@ -2685,7 +2786,7 @@ function BarVacinasRecebidaDia({
         }
       },
       scales: {
-        yAxes: [{
+        y: {
           stacked: true,
           ticks: {
             beginAtZero: true,
@@ -2693,13 +2794,13 @@ function BarVacinasRecebidaDia({
             minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: value => Object(utils["c" /* formatNumber */])(value, false)
           }
-        }],
-        xAxes: [{
+        },
+        x: {
           stacked: true,
           ticks: {
             beginAtZero: true
           }
-        }]
+        }
       }
     };
   };
@@ -2942,6 +3043,21 @@ function BarAdministradasPorFaixaEtaria({
         datalabels: {
           display: false,
           color: 'blue'
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start',
+          onHover: function (event, legend) {
+            document.body.classList.add('mouse-pointer');
+          },
+          onLeave: function (event, legend) {
+            document.body.classList.remove('mouse-pointer');
+          },
+          labels: {
+            filter: function (item, chart) {
+              return chart.datasets[item.datasetIndex].hidden == false;
+            }
+          }
         }
       },
       onResize: (a, b, c) => {
@@ -2949,21 +3065,6 @@ function BarAdministradasPorFaixaEtaria({
           a.canvas.parentNode.style.width = '1000px';
         } else {
           a.canvas.parentNode.style.width = 'auto';
-        }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
-        },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
-        },
-        labels: {
-          filter: function (item, chart) {
-            return chart.datasets[item.datasetIndex].hidden == false;
-          }
         }
       },
       animation: {
@@ -3092,13 +3193,13 @@ function CustomBarChart({
       labels: ['moderna', 'cenas', 'cenas'],
       datasets: [{
         label: '2ª Dose',
-        type: 'horizontalBar',
+        type: 'bar',
         backgroundColor: main,
         data: [data.mod[1], data.com[1], data.az[1]],
         stack: 'stack1'
       }, {
         label: '1ª Dose',
-        type: 'horizontalBar',
+        type: 'bar',
         backgroundColor: shades[1],
         data: [data.mod[0], data.com[0], data.az[0]],
         stack: 'stack1'
@@ -3108,26 +3209,27 @@ function CustomBarChart({
 
   const options = () => {
     return {
+      indexAxis: 'y',
       maintainAspectRatio: false,
       plugins: {
         datalabels: {
           display: false,
           color: 'white'
+        },
+        legend: {
+          display: false,
+          position: 'top',
+          align: 'start',
+          onHover: function (event, legend) {
+            document.body.classList.add('mouse-pointer');
+          },
+          onLeave: function (event, legend) {
+            document.body.classList.remove('mouse-pointer');
+          }
         }
       },
       layout: {
         padding: -5
-      },
-      legend: {
-        display: false,
-        position: 'top',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
-        },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
-        }
       },
       animation: {
         duration: 1000
@@ -3207,7 +3309,7 @@ function CustomBarChart({
         style: {
           height: '100%'
         },
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["HorizontalBar"], {
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
           options: options(),
           data: graphData
         })
@@ -3422,20 +3524,20 @@ function BarArs_CustomBarChart({
       //labels: ['Inoculados', 'Óbitos Novos', 'cenas3'],
       datasets: [{
         label: 'Inoculados Totais Novos (Acumulado 7 dias)',
-        type: 'horizontalBar',
+        type: 'bar',
         backgroundColor: main,
         data: [data['TOTAL_VAC_2']],
         stack: 'stack1'
       }, {
         label: 'Casos Novos (Acumulado 7 dias)',
-        type: 'horizontalBar',
+        type: 'bar',
         backgroundColor: tints[1],
         data: [data['casosNovos7Dias']],
         fill: false,
         stack: 'stack2'
       }, {
         label: 'Óbitos Novos (Acumulado 7 dias)',
-        type: 'horizontalBar',
+        type: 'bar',
         backgroundColor: shades[1],
         data: [data['obitosNovos7Dias']],
         stack: 'stack3'
@@ -3445,6 +3547,7 @@ function BarArs_CustomBarChart({
 
   const options = () => {
     return {
+      indexAxis: 'y',
       maintainAspectRatio: false,
       plugins: {
         datalabels: {
@@ -3529,7 +3632,7 @@ function BarArs_CustomBarChart({
         style: {
           height: '100%'
         },
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["HorizontalBar"], {
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
           height: 5,
           options: options(),
           data: graphData
@@ -3715,12 +3818,7 @@ function BarArs({
     })
   });
 }
-// EXTERNAL MODULE: external "chartjs-plugin-datalabels"
-var external_chartjs_plugin_datalabels_ = __webpack_require__("lLkP");
-var external_chartjs_plugin_datalabels_default = /*#__PURE__*/__webpack_require__.n(external_chartjs_plugin_datalabels_);
-
 // CONCATENATED MODULE: ./components/graphs/PieRecebidasAdquiridas.jsx
-
 
 
 
@@ -3770,13 +3868,13 @@ function PieRecebidasAdquiridas({
 
             return '';
           }
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
       },
       onResize: (a, b, c) => {},
-      legend: {
-        position: 'bottom',
-        align: 'start'
-      },
       animation: {
         duration: 1000
       },
@@ -3809,7 +3907,7 @@ function PieRecebidasAdquiridas({
     allowOverflow: true,
     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Pie"], {
-        plugins: [external_chartjs_plugin_datalabels_default.a],
+        plugins: [],
         height: 350,
         options: options(),
         data: data
@@ -3818,7 +3916,6 @@ function PieRecebidasAdquiridas({
   });
 }
 // CONCATENATED MODULE: ./components/graphs/PieAdministradasDoses.jsx
-
 
 
 
@@ -3876,13 +3973,13 @@ function PieAdministradasDoses({
 
             return '';
           }
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
       },
       onResize: (a, b, c) => {},
-      legend: {
-        position: 'bottom',
-        align: 'start'
-      },
       animation: {
         duration: 1000
       },
@@ -3915,7 +4012,7 @@ function PieAdministradasDoses({
     allowOverflow: true,
     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Pie"], {
-        plugins: [external_chartjs_plugin_datalabels_default.a],
+        plugins: [],
         height: 350,
         options: options(),
         data: data
@@ -4035,105 +4132,99 @@ function BarVacinasRecebidaDiaAcum({
         datalabels: {
           display: false,
           color: 'blue'
-        }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
         },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
+        legend: {
+          position: 'bottom',
+          align: 'start',
+          onHover: function (event, legend) {
+            document.body.classList.add('mouse-pointer');
+          },
+          onLeave: function (event, legend) {
+            document.body.classList.remove('mouse-pointer');
+          }
+        },
+        annotation: {
+          annotations: [{
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y',
+            value: annotationsToggle.dose ? generic.doses.valor : null,
+            borderColor: '#0A9DD1',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            label: {
+              backgroundColor: 'rgba(0,0,0,0.0)',
+              font: {
+                style: 'normal'
+              },
+              textAlign: 'left',
+              color: '#0A9DD1',
+              position: 'start',
+              xAdjust: 10,
+              yAdjust: -10,
+              enabled: true,
+              content: `Doses adquiridas - ${generic.doses.legenda} (01/03/2021) `
+            }
+          }, {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y',
+            value: annotationsToggle.dose ? 41000000 : null,
+            borderColor: 'transparent',
+            borderWidth: 0,
+            label: {
+              backgroundColor: 'rgba(0,0,0,0.0)',
+              xAdjust: 0,
+              yAdjust: -10,
+              enabled: false
+            }
+          }, {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y',
+            value: annotationsToggle.dose3 ? generic.doses3.valor : null,
+            borderColor: '#D17615',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            label: {
+              backgroundColor: 'rgba(0,0,0,0.0)',
+              textAlign: 'left',
+              font: {
+                style: 'normal'
+              },
+              color: '#D11541',
+              position: 'start',
+              xAdjust: 0,
+              yAdjust: -10,
+              enabled: true,
+              content: `Doses adquiridas - ${generic.doses3.legenda} (21/01/2020) `
+            }
+          }, {
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y',
+            value: annotationsToggle.dose2 ? generic.doses2.valor : null,
+            borderColor: '#D17615',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            label: {
+              backgroundColor: 'rgba(0,0,0,0.0)',
+              textAlign: 'left',
+              font: {
+                style: 'normal'
+              },
+              color: '#D17615',
+              position: 'start',
+              xAdjust: 0,
+              yAdjust: -10,
+              enabled: true,
+              content: `Doses adquiridas - ${generic.doses2.legenda} (04/12/2020) `
+            }
+          }]
         }
       },
       animation: {
         duration: 1000
-      },
-      annotation: {
-        annotations: [{
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: annotationsToggle.dose ? generic.doses.valor : null,
-          borderColor: '#0A9DD1',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            drawTime: 'afterDatasetsDraw',
-            textAlign: 'left',
-            fontColor: '#0A9DD1',
-            position: 'left',
-            xAdjust: 10,
-            yAdjust: -10,
-            fontSize: '13px',
-            fontStyle: 'bold',
-            enabled: true,
-            content: `Doses adquiridas - ${generic.doses.legenda} (01/03/2021) `
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: annotationsToggle.dose ? 41000000 : null,
-          borderColor: 'transparent',
-          borderWidth: 0,
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            xAdjust: 0,
-            yAdjust: -10,
-            enabled: false
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: annotationsToggle.dose3 ? generic.doses3.valor : null,
-          borderColor: '#D17615',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            drawTime: 'afterDatasetsDraw',
-            textAlign: 'left',
-            font: {
-              style: 'bold'
-            },
-            fontStyle: 'bold',
-            fontColor: '#D11541',
-            fontSize: '13px',
-            position: 'left',
-            xAdjust: 0,
-            yAdjust: -10,
-            enabled: true,
-            content: `Doses adquiridas - ${generic.doses3.legenda} (21/01/2020) `
-          }
-        }, {
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: annotationsToggle.dose2 ? generic.doses2.valor : null,
-          borderColor: '#D17615',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            drawTime: 'afterDatasetsDraw',
-            textAlign: 'left',
-            font: {
-              style: 'bold'
-            },
-            fontStyle: 'bold',
-            fontColor: '#D17615',
-            fontSize: '13px',
-            position: 'left',
-            xAdjust: 0,
-            yAdjust: -10,
-            enabled: true,
-            content: `Doses adquiridas - ${generic.doses2.legenda} (04/12/2020) `
-          }
-        }]
       },
       tooltips: {
         mode: 'index',
@@ -4149,7 +4240,7 @@ function BarVacinasRecebidaDiaAcum({
         }
       },
       scales: {
-        yAxes: [{
+        y: {
           stacked: true,
           ticks: {
             beginAtZero: true,
@@ -4157,13 +4248,13 @@ function BarVacinasRecebidaDiaAcum({
             minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: value => Object(utils["c" /* formatNumber */])(value, false)
           }
-        }],
-        xAxes: [{
+        },
+        x: {
           stacked: true,
           ticks: {
             beginAtZero: true
           }
-        }]
+        }
       }
     };
   };
@@ -4319,11 +4410,11 @@ function LineVacinadosEu({
       plugins: {
         datalabels: {
           display: false
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start'
       },
       animation: {
         duration: 1000
@@ -4541,11 +4632,11 @@ function BarVacinadosEu({
       plugins: {
         datalabels: {
           display: false
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start'
       },
       bezierCurve: false,
       lineTension: 0,
@@ -4731,48 +4822,42 @@ function LineAdministradasPorFaixaEtaria({
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '0-17 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
-        customDose: 2,
-        yAxisID: 'axis'
+        customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[0])), {}, {
         label: 'Entre 18 anos e 24 anos',
         labelGroup: 'Grupo 18/24',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '18-24 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
-        customDose: 2,
-        yAxisID: 'axis'
+        customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[2])), {}, {
         label: 'Entre 25 anos e 49 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '25-49 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
-        customDose: 2,
-        yAxisID: 'axis'
+        customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[2])), {}, {
         label: 'Entre 50 anos e 64 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '50-64 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
-        customDose: 2,
-        yAxisID: 'axis'
+        customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[0])), {}, {
         label: 'Entre 60 e 79 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '65-79 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
-        customDose: 2,
-        yAxisID: 'axis'
+        customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[1])), {}, {
         label: '80 ou mais anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '80 ou mais anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
-        customDose: 2,
-        yAxisID: 'axis'
+        customDose: 2
       })]
     };
   };
@@ -4785,6 +4870,16 @@ function LineAdministradasPorFaixaEtaria({
         datalabels: {
           display: false,
           color: 'blue'
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start',
+          onHover: function (event, legend) {
+            document.body.classList.add('mouse-pointer');
+          },
+          onLeave: function (event, legend) {
+            document.body.classList.remove('mouse-pointer');
+          }
         }
       },
       onResize: (a, b, c) => {
@@ -4792,16 +4887,6 @@ function LineAdministradasPorFaixaEtaria({
           a.canvas.parentNode.style.width = '1000px';
         } else {
           a.canvas.parentNode.style.width = 'auto';
-        }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
-        },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
         }
       },
       animation: {
@@ -4821,9 +4906,7 @@ function LineAdministradasPorFaixaEtaria({
         })
       },
       scales: {
-        yAxes: [{
-          id: 'axis',
-          stacked: false,
+        y: {
           ticks: {
             beginAtZero: false,
             min: 0,
@@ -4831,14 +4914,12 @@ function LineAdministradasPorFaixaEtaria({
             stepSize: (maxValue / 5).toFixed(0),
             callback: value => Object(utils["c" /* formatNumber */])(value, false) + '%'
           }
-        }],
-        xAxes: [{
-          id: 'xaxis',
-          stacked: false,
+        },
+        x: {
           ticks: {
             beginAtZero: false
           }
-        }]
+        }
       }
     };
   };
@@ -5087,7 +5168,7 @@ function ArsMapa({
       });
       */
       const chartData = {
-        labels: [],
+        labels: [''],
         datasets: [{
           label: 'Total de vacinas administradas - 1ª Dose',
           borderColor: main,
@@ -5110,8 +5191,14 @@ function ArsMapa({
     const options = () => {
       let populacao_residente = Math.floor(el.CUMUL_VAC_2 / parseFloat(el.COVER.replace(',', '.'))) || 100000;
       return {
+        indexAxis: 'y',
         plugins: {
           datalabels: {
+            display: false
+          },
+          legend: {
+            position: 'bottom',
+            align: 'start',
             display: false
           }
         },
@@ -5119,11 +5206,6 @@ function ArsMapa({
           padding: {
             left: -12
           }
-        },
-        legend: {
-          position: 'bottom',
-          align: 'start',
-          display: false
         },
         animation: {
           duration: 1000
@@ -5138,22 +5220,20 @@ function ArsMapa({
           }
         },
         scales: {
-          yAxes: [{
-            stacked: true,
-            id: 'y-axis',
+          y: {
             ticks: {
               beginAtZero: true
-            }
-          }],
-          xAxes: [{
-            stacked: false,
+            },
+            max: populacao_residente
+          },
+          x: {
             ticks: {
               beginAtZero: true,
-              max: populacao_residente,
               stepSize: Math.round(window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? populacao_residente / 3 : populacao_residente / 6),
               callback: value => Object(utils["c" /* formatNumber */])(value, false)
-            }
-          }]
+            },
+            max: populacao_residente
+          }
         }
       };
     };
@@ -5166,7 +5246,7 @@ function ArsMapa({
         children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
           className: Card_module_default.a.text_left,
           children: el.REGION
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["HorizontalBar"], {
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
           height: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 40 : 55,
           options: options(),
           data: data
@@ -5577,7 +5657,7 @@ function Home() {
                   marginTop: '10px'
                 },
                 className: `hide_mobile ${Card_module_default.a.card_subtitle}`,
-                children: [Object(utils["e" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])((selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac) - (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac)), " pessoas inoculadas com a 1\xAA dose"]
+                children: [Object(utils["f" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])((selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac) - (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac)), " pessoas inoculadas com a 1\xAA dose"]
               })]
             })
           }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
@@ -5596,7 +5676,7 @@ function Home() {
                   marginTop: '10px'
                 },
                 className: `hide_mobile ${Card_module_default.a.card_subtitle}`,
-                children: [Object(utils["e" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac), " pessoas inoculadas com a 2\xAA dose"]
+                children: [Object(utils["f" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["c" /* formatNumber */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac), " pessoas inoculadas com a 2\xAA dose"]
               })]
             })
           })]
@@ -6164,10 +6244,7 @@ module.exports = {
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("5PhN");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lLkP");
-/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("GyP+");
-
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("GyP+");
 
 
 
@@ -6222,13 +6299,13 @@ function PieSuscetiveisProporcao({
 
             return '';
           }
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start'
         }
       },
       onResize: (a, b, c) => {},
-      legend: {
-        position: 'bottom',
-        align: 'start'
-      },
       animation: {
         duration: 1000
       },
@@ -6242,7 +6319,7 @@ function PieSuscetiveisProporcao({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_5__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
           }
         }
       }
@@ -6253,7 +6330,7 @@ function PieSuscetiveisProporcao({
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
-        plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_4___default.a],
+        plugins: [],
         height: 350,
         options: options(),
         data: data
@@ -6300,6 +6377,13 @@ module.exports = Arrow;
 
 Arrow.default = Arrow;
 
+
+/***/ }),
+
+/***/ "bEWT":
+/***/ (function(module) {
+
+module.exports = JSON.parse("[{\"data\":\"2021-01-06\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":20,\"marcador\":\"Aprovação Moderna\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu\"},{\"data\":\"2021-01-29\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":33,\"marcador\":\"Aprovação AstraZeneca\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu\"},{\"data\":\"2021-03-11\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":74,\"marcador\":\"Aprovação Janssen\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu\"},{\"data\":\"2021-03-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":78,\"marcador\":\"Suspensão AstraZeneca\",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca\"},{\"data\":\"2021-03-18\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":81,\"marcador\":\"Retoma AstraZeneca\",\"fonte\":\"https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao\"},{\"data\":\"2021-04-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":false,\"position\":109,\"marcador\":\"Suspensão AstraZeneca (Grupos etários mais jovens)\",\"fonte\":\"https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569\"},{\"data\":\"2021-04-13\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":107,\"marcador\":\"Adiamento Envio Janssen\",\"fonte\":\"https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/\"},{\"data\":\"2021-04-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":false,\"position\":114,\"marcador\":\"Retoma Envio Janssen\",\"fonte\":\"https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574\"},{\"data\":\"2021-04-21\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":115,\"marcador\":\"Inicío da 2ª Fase de Vacinação \",\"fonte\":\"https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/\"}]");
 
 /***/ }),
 
@@ -6454,8 +6538,7 @@ function LineRt({
         fill: '2',
         //fill until previous dataset
         data: rtData.rt.map(el => el.limite_superior_IC95.toFixed(2)),
-        order: 1,
-        yAxisID: 'rt'
+        order: 1
       }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon */ "u"]), {}, {
         label: 'R(t)',
         backgroundColor: main,
@@ -6463,8 +6546,7 @@ function LineRt({
         type: 'line',
         fill: false,
         data: rtData.rt.map(el => el.rt_numero_de_reproducao.toFixed(2)),
-        order: 2,
-        yAxisID: 'rt'
+        order: 2
       }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "v"]), {}, {
         label: 'R(t) limite inferior',
         backgroundColor: 'white',
@@ -6472,8 +6554,7 @@ function LineRt({
         type: 'line',
         fill: false,
         data: rtData.rt.map(el => el.limite_inferior_IC95.toFixed(2)),
-        order: 3,
-        yAxisID: 'rt'
+        order: 3
       })
       /* 	{
       	...lineChartCommon,
@@ -6508,44 +6589,45 @@ function LineRt({
 
   const options = () => {
     let max = parseInt(Math.max(...rtData.rt.map(el => el.limite_superior_IC95.toFixed(2))) + 1);
-    let annotation_percentage = 1 / max;
     return {
       plugins: {
         datalabels: {
           display: false
-        }
-      },
-      legend: {
-        position: 'bottom',
-        align: 'start',
-        labels: {
-          filter: function (item, chart) {
-            return !item.text.match('limite');
+        },
+        legend: {
+          position: 'bottom',
+          align: 'start',
+          labels: {
+            filter: function (item, chart) {
+              return !item.text.match('limite');
+            }
           }
+        },
+        annotation: {
+          annotations: [{
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y',
+            value: 1,
+            borderColor: '#0A9DD1',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            label: {
+              backgroundColor: 'rgba(0,0,0,0.0)',
+              drawTime: 'beforeDatasetsDraw',
+              font: {
+                style: 'normal'
+              },
+              textAlign: 'left',
+              color: '#0A9DD1',
+              position: 'end',
+              xAdjust: 10,
+              yAdjust: -10,
+              enabled: true,
+              content: 'R(t) = 1'
+            }
+          }]
         }
-      },
-      annotation: {
-        annotations: [{
-          type: 'line',
-          mode: 'horizontal',
-          scaleID: 'y-axis-0',
-          value: annotation_percentage,
-          borderColor: '#0A9DD1',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          label: {
-            backgroundColor: 'rgba(0,0,0,0.0)',
-            drawTime: 'afterDatasetsDraw',
-            textAlign: 'left',
-            fontColor: '#0A9DD1',
-            position: 'left',
-            xAdjust: 10,
-            yAdjust: -10,
-            fontSize: '13px',
-            enabled: true,
-            content: 'R(t) = 1'
-          }
-        }]
       },
       animation: {
         duration: 1000
@@ -6560,30 +6642,22 @@ function LineRt({
         }
       },
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10
-          },
-          display: false
-        }, {
-          id: 'rt',
+        y: {
+          type: 'linear',
           ticks: {
             beginAtZero: true,
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 8 : 10,
-            max: max
+            stepSize: max / 4
           },
-          display: true
-        }],
-        xAxes: [{
+          max: max
+        },
+        x: {
           ticks: {
             maxTicksLimit: 30,
             minTicksLimit: 30
-          },
-          stacked: true
-        }]
+          }
+        }
       }
     };
   };
@@ -6704,7 +6778,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1619115005491,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-19T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
+module.exports = JSON.parse("{\"date\":1619133928687,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-19T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
 
 /***/ }),
 
