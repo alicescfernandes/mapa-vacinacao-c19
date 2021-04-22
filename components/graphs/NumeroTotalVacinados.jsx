@@ -1,9 +1,10 @@
 import { createRef, useContext, useEffect, useState } from 'react';
 import { Line, Chart } from 'react-chartjs-2';
 import { Card } from './../Card';
-import { formatNumber, hexToRgb, perHundred } from '../../utils';
+import { formatNumber, hexToRgb, makeAnnotations, perHundred } from '../../utils';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import datalabelsPlugin from 'chartjs-plugin-datalabels';
+import acontecimentos from './../../data/acontecimentos.json';
 
 import { CustomCheckbox } from './../CustomCheckbox';
 import { REGIOES, RESIZE_TRESHOLD } from '../../constants';
@@ -43,9 +44,10 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		pointHitRadius: 10,
 		usePointStyle: true,
 	};
-
+	let horizontalAnnotations = makeAnnotations(acontecimentos);
 	let annotations = {
 		annotations: [
+			...horizontalAnnotations,
 			{
 				type: 'line',
 				mode: 'horizontal',
@@ -65,7 +67,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					color: '#0A9DD1',
 					position: 'start',
 					xAdjust: 10,
-					yAdjust: -10,
+					yAdjust: 10,
 					fontSize: '13px',
 					enabled: true,
 					content: '2ª Fase - Abril (2.7 milhões de pessoas, ver notas)',

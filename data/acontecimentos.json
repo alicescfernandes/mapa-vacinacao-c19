@@ -1,16 +1,30 @@
+
+
 [
     {
         "data": "2021-01-06",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#01ae97",
+        "display":true,
         "position": 20,
         "marcador": "Aprovação Moderna",
         "fonte": "https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu"
     },
+
+    {
+        "data": "2021-01-29",
+        "mode": "vertical",
+        "color":"#01ae97",
+        "display":true,
+        "position": 33,
+        "marcador": "Aprovação AstraZeneca",
+        "fonte": "https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu"
+    },
     {
         "data": "2021-03-11",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#01ae97",
+        "display":true,
         "position": 74,
         "marcador": "Aprovação Janssen",
         "fonte": "https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu"
@@ -18,7 +32,8 @@
     {
         "data": "2021-03-15",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#D11541",
+        "display":true,
         "position": 78,
         "marcador": "Suspensão AstraZeneca",
         "fonte": "https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca"
@@ -26,7 +41,8 @@
     {
         "data": "2021-03-18",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#D17615",
+        "display":true,
         "position": 81,
         "marcador": "Retoma AstraZeneca",
         "fonte": "https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao"
@@ -34,7 +50,8 @@
     {
         "data": "2021-04-15",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#D11541",
+        "display":false,
         "position": 109,
         "marcador": "Suspensão AstraZeneca (Grupos etários mais jovens)",
         "fonte": "https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569"
@@ -42,7 +59,8 @@
     {
         "data": "2021-04-13",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#D11541",
+        "display":true,
         "position": 107,
         "marcador": "Adiamento Envio Janssen",
         "fonte": "https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/"
@@ -50,7 +68,8 @@
     {
         "data": "2021-04-20",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#D17615",
+        "display":false,
         "position": 114,
         "marcador": "Retoma Envio Janssen",
         "fonte": "https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574"
@@ -58,7 +77,8 @@
     {
         "data": "2021-04-21",
         "mode": "vertical",
-        "color":"blue",
+        "color":"#D17615",
+        "display":true,
         "position": 115,
         "marcador": "Inicío da 2ª Fase de Vacinação ",
         "fonte": "https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/"

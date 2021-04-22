@@ -1,10 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber } from '../../utils';
+import { formatNumber, makeAnnotations } from '../../utils';
 import { Card } from './../Card';
+import acontecimentos from './../../data/acontecimentos.json';
+import { RegiaoContext } from '../context/regiao';
 
 export function VacinadosPorDia({ statistics, colors }) {
+	let regiao = useContext(RegiaoContext);
+
 	let [loading, setLoading] = useState(true);
 	let { values, labels, valuesIn1, valuesIn2 } = statistics.getDiariosInoculacoes();
 	let { values: values2 } = statistics.getMediaMovelDiaria(7);
@@ -110,6 +114,11 @@ export function VacinadosPorDia({ statistics, colors }) {
 		};
 	};
 	let numberFormatter = new Intl.NumberFormat();
+	let horizontalAnnotations = makeAnnotations(acontecimentos);
+	let annotations = {
+		annotations: [...horizontalAnnotations],
+	};
+
 	const options = () => {
 		return {
 			layout: {
@@ -120,6 +129,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 					display: false,
 					color: 'blue',
 				},
+				annotation: regiao == 'portugal' ? annotations : {},
+
 				legend: {
 					position: 'bottom',
 					align: 'start',
