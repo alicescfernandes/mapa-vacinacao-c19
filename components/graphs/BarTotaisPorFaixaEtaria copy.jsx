@@ -28,7 +28,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 			datasets: [
 				{
 					label: '2ª Dose',
-					type: 'horizontalBar',
+					type: 'bar',
 					backgroundColor: main,
 					data: [data[1]],
 					stack: 'stack1',
@@ -36,7 +36,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 				{
 					label: '1ª Dose',
-					type: 'horizontalBar',
+					type: 'bar',
 					backgroundColor: shades[1],
 					data: [data[0]],
 					stack: 'stack1',

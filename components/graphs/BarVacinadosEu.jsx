@@ -88,10 +88,10 @@ export function BarVacinadosEu({ statistics, colors }) {
 				datalabels: {
 					display: false,
 				},
-			},
-			legend: {
-				position: 'bottom',
-				align: 'start',
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 			bezierCurve: false,
 			lineTension: 0,

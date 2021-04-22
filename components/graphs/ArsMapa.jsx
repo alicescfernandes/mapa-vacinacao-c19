@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { HorizontalBar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from '../Card';
@@ -154,7 +154,7 @@ export function ArsMapa({ statistics, colors }) {
 			});
  */
 			const chartData = {
-				labels: [],
+				labels: [''],
 				datasets: [
 					{
 						label: 'Total de vacinas administradas - 1ª Dose',
@@ -181,17 +181,18 @@ export function ArsMapa({ statistics, colors }) {
 		const options = () => {
 			let populacao_residente = Math.floor(el.CUMUL_VAC_2 / parseFloat(el.COVER.replace(',', '.'))) || 100_000;
 			return {
+				indexAxis: 'y',
 				plugins: {
 					datalabels: {
 						display: false,
 					},
+					legend: {
+						position: 'bottom',
+						align: 'start',
+						display: false,
+					},
 				},
 				layout: { padding: { left: -12 } },
-				legend: {
-					position: 'bottom',
-					align: 'start',
-					display: false,
-				},
 
 				animation: {
 					duration: 1000,
@@ -207,26 +208,21 @@ export function ArsMapa({ statistics, colors }) {
 					},
 				},
 				scales: {
-					yAxes: [
-						{
-							stacked: true,
-							id: 'y-axis',
-							ticks: {
-								beginAtZero: true,
-							},
+					y: {
+						ticks: {
+							beginAtZero: true,
 						},
-					],
-					xAxes: [
-						{
-							stacked: false,
-							ticks: {
-								beginAtZero: true,
-								max: populacao_residente,
-								stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),
-								callback: (value) => formatNumber(value, false),
-							},
+						max: populacao_residente,
+					},
+
+					x: {
+						ticks: {
+							beginAtZero: true,
+							stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),
+							callback: (value) => formatNumber(value, false),
 						},
-					],
+						max: populacao_residente,
+					},
 				},
 			};
 		};
@@ -235,7 +231,7 @@ export function ArsMapa({ statistics, colors }) {
 			<Col xs={12} lg={6}>
 				<div className={cardStyles.ram_subchart_bar}>
 					<h2 className={cardStyles.text_left}>{el.REGION}</h2>
-					<HorizontalBar height={window.innerWidth <= RESIZE_TRESHOLD ? 40 : 55} options={options()} data={data} />
+					<Bar height={window.innerWidth <= RESIZE_TRESHOLD ? 40 : 55} options={options()} data={data} />
 				</div>
 			</Col>
 		);

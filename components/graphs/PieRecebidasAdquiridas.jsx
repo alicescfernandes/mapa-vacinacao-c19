@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Card } from './../Card';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { formatNumber } from './../../utils';
 export function PieRecebidasAdquiridas({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
@@ -38,12 +37,12 @@ export function PieRecebidasAdquiridas({ statistics, colors }) {
 						return '';
 					},
 				},
+				legend: {
+					position: 'bottom',
+					align: 'start',
+				},
 			},
 			onResize: (a, b, c) => {},
-			legend: {
-				position: 'bottom',
-				align: 'start',
-			},
 
 			animation: {
 				duration: 1000,
@@ -69,7 +68,7 @@ export function PieRecebidasAdquiridas({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[ChartDataLabels]} height={350} options={options()} data={data} /> : ''}</div>
+			<div>{!loading ? <Pie plugins={[]} height={350} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
