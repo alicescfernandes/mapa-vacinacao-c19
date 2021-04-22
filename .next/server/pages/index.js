@@ -1708,6 +1708,13 @@ function useData({
         return el.TYPE === 'AGES';
       });
     },
+    getTotalSNSRecebidas: async () => {
+      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
+      debugger;
+      return sns.filter(el => {
+        return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat;
+      });
+    },
     getTotalARS: async () => {
       let ars = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/ars?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
       let data = {};
@@ -3190,7 +3197,7 @@ function CustomBarChart({
 
   const graphData = canvas => {
     return {
-      labels: ['moderna', 'cenas', 'cenas'],
+      labels: ['', '', ''],
       datasets: [{
         label: '2ª Dose',
         type: 'bar',
@@ -3248,15 +3255,15 @@ function CustomBarChart({
         }
       },
       scales: {
-        yAxes: [{
+        y: {
           gridLines: {
             display: true
           },
           ticks: {
             display: false
           }
-        }],
-        xAxes: [{
+        },
+        x: {
           stacked: true,
           gridLines: {
             display: true
@@ -3264,13 +3271,13 @@ function CustomBarChart({
           ticks: {
             beginAtZero: true,
             display: true,
-            max: 1000000,
             stepSize: 1000000 / 5,
             callback: function (value, index, values) {
               return Object(utils["c" /* formatNumber */])(value, false);
             }
-          }
-        }]
+          },
+          max: 1000000
+        }
       }
     };
   };
@@ -5552,11 +5559,12 @@ function Home() {
     setSelectedItem(rawData[rawData.length - 1]);
     setPreviousItem(selectedItem);
     setFirst(rawData[0]);
-    plausible.trackPageview();
-    let {
-      sum
-    } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getDosesRecebidasAcum());
-    sum = sum.reverse()[0];
+    plausible.trackPageview(); //let { sum } = await statistics?.getDosesRecebidasAcum();
+
+    let [{
+      RECEIVED: sum
+    }] = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas());
+    console.log(sum);
     let item = rawData.filter(el => {
       return Object(external_date_fns_["isSameDay"])(el.Data, new Date(last_update.dateSnsStart));
     });
@@ -5867,7 +5875,7 @@ function Home() {
                 children: "Propor\xE7\xE3o de doses recebidas relativamente \xE0s doses adquiridas"
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
-                children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
                 })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieRecebidasAdquiridas, {
@@ -5882,7 +5890,7 @@ function Home() {
                 children: "Propor\xE7\xE3o de doses administradas relativamente \xE0s doses recebidas"
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
-                children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
                 })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieAdministradasDoses, {
@@ -5895,7 +5903,7 @@ function Home() {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
-              children: "N\xFAmero de doses administradas por semana e faixa et\xE1ria"
+              children: "N\xFAmero de doses administradas por semana e faixa et\xE1ria (excluindo a vacina Janssen)"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarAdministradasPorFaixaEtaria, {
               colors: colors_v2,
               statistics: statistics
@@ -5908,7 +5916,7 @@ function Home() {
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
-                children: "Doses totais administradas por faixa et\xE1ria"
+                children: "Doses totais administradas por faixa et\xE1ria (excluindo a vacina Janssen)"
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
                 children: ["Dados acumulados deste 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -6778,7 +6786,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1619133928687,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-19T00:00:00\",\"dateEcdc\":\"2021-04-11T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
+module.exports = JSON.parse("{\"date\":1619135492535,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-18T00:00:00\",\"dateEcdc\":\"2021-04-18\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-16\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-17\"}");
 
 /***/ }),
 
