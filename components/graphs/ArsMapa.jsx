@@ -154,7 +154,7 @@ export function ArsMapa({ statistics, colors }) {
 			});
  */
 			const chartData = {
-				labels: ['1a Dose'],
+				labels: [''],
 				datasets: [
 					{
 						label: 'Total de vacinas administradas - 1ª Dose',

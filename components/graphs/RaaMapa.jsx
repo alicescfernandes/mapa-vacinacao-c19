@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { HorizontalBar } from 'react-chartjs-2';
+import { Bar, HorizontalBar } from 'react-chartjs-2';
 import { ACORES_DICOS, RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from '../Card';
@@ -133,7 +133,7 @@ export function RaaMapa({ statistics, colors }) {
 			});
  */
 			const chartData = {
-				labels: [],
+				labels: [''],
 				datasets: [
 					{
 						label: 'Total de vacinas administradas - 1ª Dose',
@@ -166,13 +166,13 @@ export function RaaMapa({ statistics, colors }) {
 					datalabels: {
 						display: false,
 					},
+					legend: {
+						position: 'bottom',
+						align: 'start',
+						display: false,
+					},
 				},
 				layout: { padding: { left: -12 } },
-				legend: {
-					position: 'bottom',
-					align: 'start',
-					display: false,
-				},
 
 				animation: {
 					duration: 1000,
@@ -188,26 +188,22 @@ export function RaaMapa({ statistics, colors }) {
 					},
 				},
 				scales: {
-					yAxes: [
-						{
-							stacked: true,
-							id: 'y-axis',
-							ticks: {
-								beginAtZero: true,
-							},
+					y: {
+						stacked: true,
+						ticks: {
+							beginAtZero: true,
 						},
-					],
-					xAxes: [
-						{
-							stacked: false,
-							ticks: {
-								beginAtZero: true,
-								max: populacao_residente,
-								stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),
-								callback: (value) => formatNumber(value, false),
-							},
+					},
+
+					x: {
+						stacked: false,
+						ticks: {
+							beginAtZero: true,
+							max: populacao_residente,
+							stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),
+							callback: (value) => formatNumber(value, false),
 						},
-					],
+					},
 				},
 			};
 		};
