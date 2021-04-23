@@ -101,7 +101,7 @@ async function updateJSON() {
 		).then((res) => res.json());
 
 		var sourceData = dataVacinas.features[0].attributes;
-		if (parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac && sourceData.Data > date.getTime()) {
+		if (parseInt(sourceData.Vacinados_Ac) > dataLocalVacinas[dataLocalVacinas.length - 1].Vacinados_Ac) {
 			console.log('updating vaccines');
 			sourceData.Data = date.getTime();
 			dataLocalVacinas.push(sourceData);
