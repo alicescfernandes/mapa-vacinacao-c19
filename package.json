@@ -42,7 +42,7 @@
 		"chart.js": "^3.0.0",
 		"chartjs-plugin-annotation": "^1.0.0",
 		"chartjs-plugin-datalabels": "^2.0.0-beta.1",
-		"classnames": "^2.2.6",
+		"classnames": "^2.3.0",
 		"core-js": "2",
 		"cors": "^2.8.5",
 		"date-fns": "^2.17.0",
