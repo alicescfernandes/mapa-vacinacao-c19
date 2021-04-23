@@ -55,7 +55,7 @@
 		"plausible-tracker": "^0.3.1",
 		"pusher": "^4.0.2",
 		"react": "17.0.1",
-		"react-bootstrap": "^1.4.3",
+		"react-bootstrap": "^1.5.2",
 		"react-chartjs-2": "^3.0.2",
 		"react-count-to": "^0.12.0",
 		"react-datepicker": "^3.4.1",
