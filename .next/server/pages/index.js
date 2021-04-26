@@ -5797,7 +5797,6 @@ function Home() {
             lg: 4,
             xs: 12,
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
-              isUpdating: true,
               children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
                 style: {
                   marginBottom: '10px'
@@ -5852,12 +5851,9 @@ function Home() {
           once: true,
           children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
-                children: ["Percentagem da popula\xE7\xE3o vacinada por faixa et\xE1ria ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                  className: 'new',
-                  children: "novo"
-                })]
+                children: "Percentagem da popula\xE7\xE3o vacinada por faixa et\xE1ria"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineAdministradasPorFaixaEtaria, {
                 colors: colors_v2,
                 statistics: statistics
@@ -5869,12 +5865,9 @@ function Home() {
           once: true,
           children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
-                children: ["Evolu\xE7\xE3o do programa de vacina\xE7\xE3o por ARS ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                  className: 'new',
-                  children: "atualizado"
-                })]
+                children: "Evolu\xE7\xE3o do programa de vacina\xE7\xE3o por ARS"
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
                 children: ["Dados acumulados deste 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -6858,7 +6851,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1619471365801,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-18T00:00:00\",\"dateEcdc\":\"2021-04-18T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
+module.exports = JSON.parse("{\"date\":1619471631756,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-18T00:00:00\",\"dateEcdc\":\"2021-04-18T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
 
 /***/ }),
 
