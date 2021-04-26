@@ -294,7 +294,7 @@ export default function Home() {
 								</Card>
 							</Col>
 							<Col lg={4} xs={12}>
-								<Card isUpdating={true}>
+								<Card>
 									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
 										{fases.fases[fases.fase_atual].nome} de vacinação
 									</h2>
@@ -341,9 +341,7 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>
-										Percentagem da população vacinada por faixa etária <sup className={'new'}>novo</sup>
-									</h2>
+									<h2 className={styles.title}>Percentagem da população vacinada por faixa etária</h2>
 									<hr />
 									<LineAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></LineAdministradasPorFaixaEtaria>
 								</Col>
@@ -352,9 +350,7 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>
-										Evolução do programa de vacinação por ARS <sup className={'new'}>atualizado</sup>
-									</h2>
+									<h2 className={styles.title}>Evolução do programa de vacinação por ARS</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
 										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
