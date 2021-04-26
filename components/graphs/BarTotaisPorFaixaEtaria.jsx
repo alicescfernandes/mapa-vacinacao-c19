@@ -8,7 +8,7 @@ let styles = {
 	'vaccine-label': {
 		textAlign: 'right',
 		fontSize: '12px',
-		lineHeight: '40px',
+		lineHeight: '32px',
 		margin: '0px',
 	},
 };
@@ -17,7 +17,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 
 	const graphData = (canvas) => {
 		return {
-			labels: ['', '', ''],
+			labels: ['', '', '', ''],
 			datasets: [
 				{
 					label: '2ª Dose',
@@ -115,6 +115,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				<p style={styles['vaccine-label']}>{type}</p>
 				<p style={styles['vaccine-label']}>Pfizer/BioNTech</p>
 				<p style={styles['vaccine-label']}>AstraZeneca</p>
+				<p style={styles['vaccine-label']}>Janssen</p>
 			</div>
 			<div
 				style={{ display: 'inline-block', lineHeight: '40200', position: 'relative', width: '80%', height: 150, overflow: 'hidden' }}
