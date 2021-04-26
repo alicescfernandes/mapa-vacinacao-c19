@@ -8,14 +8,14 @@ import { RESIZE_TRESHOLD } from '../../constants';
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let [graphData, setGraphData] = useState({});
-	let [foreground, color_1, , , color_3, ,] = colors;
+	let [foreground, color_1, color_2, , color_3, ,] = colors;
 	/* let [annotationsToggle, setAnnotationsToggle] = useState({
 		dose: true,
 		dose2: true,
 		dose3: true,
 	}); */
 	const data = (canvas) => {
-		let { labels, mod, com, az } = graphData;
+		let { labels, mod, com, az, janss } = graphData;
 
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
@@ -70,6 +70,16 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 					borderColor: color_3,
 					type: 'bar',
 					data: az,
+					overlayBars: true,
+					order: 3,
+					stack: 'stack0',
+				},
+				{
+					label: 'Janssen',
+					backgroundColor: color_2,
+					borderColor: color_2,
+					type: 'bar',
+					data: janss,
 					overlayBars: true,
 					order: 3,
 					stack: 'stack0',

@@ -424,12 +424,14 @@ export function useData({ regiao }) {
 			let com = {};
 			let mod = {};
 			let az = {};
+			let janss = {};
 			let ecdcRegion = ECDC_MAPPING[regiao];
 			ecdc.forEach((el) => {
 				if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
 					com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
 					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
 					az[el['YearWeekISO']] = az[el['YearWeekISO']] || null;
+					janss[el['YearWeekISO']] = janss[el['YearWeekISO']] || null;
 
 					labels[el['YearWeekISO']] = weeks[el['YearWeekISO']];
 
@@ -443,19 +445,25 @@ export function useData({ regiao }) {
 					if (el['Vaccine'] === 'AZ') {
 						az[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
+
+					if (el['Vaccine'] === 'JANSS') {
+						janss[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
+					}
 				}
 			});
 
 			com = Object.values(com);
 			mod = Object.values(mod);
 			az = Object.values(az);
+			janss = Object.values(janss);
 
 			labels = Object.values(labels);
-
+			debugger;
 			return {
 				com,
 				mod,
 				az,
+				janss,
 				labels,
 			};
 		},
@@ -511,6 +519,7 @@ export function useData({ regiao }) {
 						mod: [],
 						com: [],
 						az: [],
+						janss: [],
 						target: 0,
 					};
 
@@ -527,6 +536,11 @@ export function useData({ regiao }) {
 					if (el['Vaccine'] === 'AZ') {
 						groups[el['TargetGroup']].az[0] = (groups[el['TargetGroup']].az[0] || 0) + parseInt(el['FirstDose']);
 						groups[el['TargetGroup']].az[1] = (groups[el['TargetGroup']].az[1] || 0) + parseInt(el['SecondDose']);
+					}
+
+					if (el['Vaccine'] === 'JANSS') {
+						groups[el['TargetGroup']].janss[0] = (groups[el['TargetGroup']].janss[0] || 0) + parseInt(el['FirstDose']);
+						groups[el['TargetGroup']].janss[1] = (groups[el['TargetGroup']].janss[1] || 0) + parseInt(el['SecondDose']);
 					}
 
 					groups[el['TargetGroup']].target = (groups[el['TargetGroup']].target || 0) + parseInt(el['Denominator']);
@@ -584,6 +598,7 @@ export function useData({ regiao }) {
 			let com = {};
 			let mod = {};
 			let az = {};
+			let janss = {};
 			let sum = [];
 
 			let ecdcCopy = JSON.parse(JSON.stringify(ecdc));
@@ -604,6 +619,7 @@ export function useData({ regiao }) {
 					com[el['YearWeekISO']] = com[el['YearWeekISO']] || 0;
 					mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || 0;
 					az[el['YearWeekISO']] = az[el['YearWeekISO']] || 0;
+					janss[el['YearWeekISO']] = janss[el['YearWeekISO']] || 0;
 
 					if (el['Vaccine'] === 'COM') {
 						com[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
@@ -615,6 +631,10 @@ export function useData({ regiao }) {
 
 					if (el['Vaccine'] === 'AZ') {
 						az[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
+					}
+
+					if (el['Vaccine'] === 'JANSS') {
+						janss[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
 					}
 				});
 
@@ -633,14 +653,20 @@ export function useData({ regiao }) {
 				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
 				.reverse();
 
+			janss = Object.values(janss)
+				.reverse()
+				.map((el, idx, arr) => sumArray(arr.slice(idx, arr.length)))
+				.reverse();
+
 			sum = mod.map((el, idx, arr) => {
-				return com[idx] + az[idx] + mod[idx];
+				return com[idx] + az[idx] + mod[idx] + janss[idx];
 			});
 
 			return {
 				mod,
 				com,
 				az,
+				janss,
 				sum,
 				labels: Object.values(labels),
 			};
