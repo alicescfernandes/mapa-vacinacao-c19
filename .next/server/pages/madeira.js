@@ -1599,12 +1599,14 @@ function useData({
       let com = {};
       let mod = {};
       let az = {};
+      let janss = {};
       let ecdcRegion = _constants__WEBPACK_IMPORTED_MODULE_1__[/* ECDC_MAPPING */ "i"][regiao];
       ecdc.forEach(el => {
         if (parseInt(el['NumberDosesReceived']) > 0 && el['Region'] === ecdcRegion) {
           com[el['YearWeekISO']] = com[el['YearWeekISO']] || null;
           mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || null;
           az[el['YearWeekISO']] = az[el['YearWeekISO']] || null;
+          janss[el['YearWeekISO']] = janss[el['YearWeekISO']] || null;
           labels[el['YearWeekISO']] = weeks[el['YearWeekISO']];
 
           if (el['Vaccine'] === 'COM') {
@@ -1618,16 +1620,23 @@ function useData({
           if (el['Vaccine'] === 'AZ') {
             az[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
           }
+
+          if (el['Vaccine'] === 'JANSS') {
+            janss[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
+          }
         }
       });
       com = Object.values(com);
       mod = Object.values(mod);
       az = Object.values(az);
+      janss = Object.values(janss);
       labels = Object.values(labels);
+      debugger;
       return {
         com,
         mod,
         az,
+        janss,
         labels
       };
     },
@@ -1680,6 +1689,7 @@ function useData({
             mod: [],
             com: [],
             az: [],
+            janss: [],
             target: 0
           };
 
@@ -1696,6 +1706,11 @@ function useData({
           if (el['Vaccine'] === 'AZ') {
             groups[el['TargetGroup']].az[0] = (groups[el['TargetGroup']].az[0] || 0) + parseInt(el['FirstDose']);
             groups[el['TargetGroup']].az[1] = (groups[el['TargetGroup']].az[1] || 0) + parseInt(el['SecondDose']);
+          }
+
+          if (el['Vaccine'] === 'JANSS') {
+            groups[el['TargetGroup']].janss[0] = (groups[el['TargetGroup']].janss[0] || 0) + parseInt(el['FirstDose']);
+            groups[el['TargetGroup']].janss[1] = (groups[el['TargetGroup']].janss[1] || 0) + parseInt(el['SecondDose']);
           }
 
           groups[el['TargetGroup']].target = (groups[el['TargetGroup']].target || 0) + parseInt(el['Denominator']);
@@ -1750,6 +1765,7 @@ function useData({
       let com = {};
       let mod = {};
       let az = {};
+      let janss = {};
       let sum = [];
       let ecdcCopy = JSON.parse(JSON.stringify(ecdc));
 
@@ -1767,6 +1783,7 @@ function useData({
         com[el['YearWeekISO']] = com[el['YearWeekISO']] || 0;
         mod[el['YearWeekISO']] = mod[el['YearWeekISO']] || 0;
         az[el['YearWeekISO']] = az[el['YearWeekISO']] || 0;
+        janss[el['YearWeekISO']] = janss[el['YearWeekISO']] || 0;
 
         if (el['Vaccine'] === 'COM') {
           com[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
@@ -1779,17 +1796,23 @@ function useData({
         if (el['Vaccine'] === 'AZ') {
           az[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
         }
+
+        if (el['Vaccine'] === 'JANSS') {
+          janss[el['YearWeekISO']] = parseInt(el['NumberDosesReceived']);
+        }
       });
       com = Object.values(com).reverse().map((el, idx, arr) => sumArray(arr.slice(idx, arr.length))).reverse();
       az = Object.values(az).reverse().map((el, idx, arr) => sumArray(arr.slice(idx, arr.length))).reverse();
       mod = Object.values(mod).reverse().map((el, idx, arr) => sumArray(arr.slice(idx, arr.length))).reverse();
+      janss = Object.values(janss).reverse().map((el, idx, arr) => sumArray(arr.slice(idx, arr.length))).reverse();
       sum = mod.map((el, idx, arr) => {
-        return com[idx] + az[idx] + mod[idx];
+        return com[idx] + az[idx] + mod[idx] + janss[idx];
       });
       return {
         mod,
         com,
         az,
+        janss,
         sum,
         labels: Object.values(labels)
       };
@@ -3954,7 +3977,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1619354704771,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-18T00:00:00\",\"dateEcdc\":\"2021-04-18\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
+module.exports = JSON.parse("{\"date\":1619429358659,\"dateSnsStartWeirdFormat\":\"12/04/21\",\"dateSnsStart\":\"2021-04-12T00:00:00\",\"dateSns\":\"2021-04-18T00:00:00\",\"dateEcdc\":\"2021-04-20:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-18T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
 
 /***/ }),
 
