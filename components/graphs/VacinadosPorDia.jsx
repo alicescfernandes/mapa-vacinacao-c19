@@ -5,6 +5,8 @@ import { formatNumber, makeAnnotations } from '../../utils';
 import { Card } from './../Card';
 import acontecimentos from './../../data/acontecimentos.json';
 import { RegiaoContext } from '../context/regiao';
+import { CustomCheckbox } from './../CustomCheckbox';
+import styles from './../Card.module.scss';
 
 export function VacinadosPorDia({ statistics, colors }) {
 	let regiao = useContext(RegiaoContext);
@@ -14,6 +16,10 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let { values: values2 } = statistics.getMediaMovelDiaria(7);
 	let [vacinas_stock, setVacinas_stock] = useState([]);
 	let { main, tints, shades, complements } = colors;
+
+	let [toggleStats, setToggleStats] = useState({
+		stock: true,
+	});
 
 	const canvasRef = useRef(null);
 
@@ -31,31 +37,11 @@ export function VacinadosPorDia({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
+		console.log('totais', values);
 
 		return {
 			labels: labels,
 			datasets: [
-				/* 	{
-					label: 'Stock de Vacinas - Estimativa',
-					fill: false,
-					lineTension: 0.5,
-					overlayBars: false,
-					type: 'line',
-					lineBorder: 1,
-					borderWidth: 3,
-					borderColor: complements[2],
-					borderJoinStyle: 'miter',
-					pointBorderColor: complements[2],
-					pointBackgroundColor: complements[2],
-					pointBorderWidth: 1,
-					pointHoverRadius: 3,
-					pointHoverBorderWidth: 2,
-					pointRadius: 1,
-					pointHitRadius: 3,
-					data: vacinas_stock,
-					order: 1,
-					yAxisID: 'total',
-				}, */
 				{
 					label: 'Vacinas diárias - Média movel de 7 dias',
 					fill: false,
@@ -75,6 +61,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 					pointHitRadius: 3,
 					data: values2,
 					order: 2,
+					stack: 'stack1',
 				},
 
 				{
@@ -107,9 +94,31 @@ export function VacinadosPorDia({ statistics, colors }) {
 					data: values,
 					borderWidth: 2,
 					order: 5,
-					yAxisID: 'total',
 					stack: 'stack0',
+					yAxisID: 'axisy2',
 				},
+				/* 	{
+					label: 'Stock de Vacinas - Estimativa',
+					fill: false,
+					lineTension: 0.5,
+					overlayBars: true,
+					type: 'line',
+					lineBorder: 1,
+					borderWidth: 3,
+					borderColor: complements[2],
+					borderJoinStyle: 'miter',
+					pointBorderColor: complements[2],
+					pointBackgroundColor: complements[2],
+					pointBorderWidth: 1,
+					pointHoverRadius: 3,
+					pointHoverBorderWidth: 2,
+					pointRadius: 1,
+					pointHitRadius: 3,
+					data: vacinas_stock,
+					order: 6,
+					hidden: !toggleStats.stock,
+					stack: 'stack2',
+				}, */
 			],
 		};
 	};
@@ -120,6 +129,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 	};
 
 	const options = () => {
+		//const max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
+		const max = Math.max(...values);
 		return {
 			layout: {
 				padding: -5,
@@ -156,16 +167,28 @@ export function VacinadosPorDia({ statistics, colors }) {
 			scales: {
 				y: {
 					stacked: true,
-					display: false,
+					display: true,
 					ticks: {
-						beginAtZero: false,
+						beginAtZero: true,
 						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 						callback: function (value, index, values) {
 							return formatNumber(value, false);
 						},
-						//max: 900_000,
 					},
+					suggestedMax: max,
+				},
+				axisy2: {
+					display: false,
+					ticks: {
+						beginAtZero: true,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						callback: function (value, index, values) {
+							return formatNumber(value, false);
+						},
+					},
+					suggestedMax: max,
 				},
 
 				x: {
@@ -190,6 +213,18 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
+			{/* <div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
+				<CustomCheckbox
+					checked={toggleStats.stock}
+					label={'1ª Fase'}
+					onChange={(checked) => {
+						setToggleStats({
+							...toggleStats,
+							stock: checked,
+						});
+					}}
+				/>
+			</div> */}
 			<div>{!loading ? <Bar height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
