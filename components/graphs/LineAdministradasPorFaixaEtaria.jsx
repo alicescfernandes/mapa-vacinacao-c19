@@ -182,10 +182,10 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					ticks: {
 						beginAtZero: false,
 						min: 0,
-						max: maxValue,
 						stepSize: (maxValue / 5).toFixed(0),
 						callback: (value) => formatNumber(value, false) + '%',
 					},
+					max: maxValue,
 				},
 
 				x: {
