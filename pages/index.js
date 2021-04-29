@@ -333,7 +333,14 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas por dia - Portugal Continental</h2>
+								<h2 className={styles.title}>
+									Número de vacinas administradas por dia - Portugal Continental <sup className={'new'}>atualizado</sup>
+								</h2>
+								<h3 className={styles.subtitle}>
+									A linha de stock de vacinas apresentada abaixo é uma estimativa com base nos dados do Centro Europeu de Controlo
+									de Doenças. Para calcular este valor, assumimos que todas as entregas são recebidas na Segunda-Feira, mesmo que
+									logisticamente não se verifique.
+								</h3>
 								<hr />
 								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>
@@ -425,7 +432,7 @@ export default function Home() {
 						</LazyLoad>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária (excluindo a vacina Janssen)</h2>
+								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária</h2>
 								<hr />
 								<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
 							</Col>
@@ -433,7 +440,7 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Doses totais administradas por faixa etária (excluindo a vacina Janssen)</h2>
+									<h2 className={styles.title}>Doses totais administradas por faixa etária</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
 										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
