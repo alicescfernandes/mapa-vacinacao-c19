@@ -709,24 +709,36 @@ function createRouteLoader(assetPrefix) {
       });
     },
 
-    loadRoute(route) {
-      return withFuture(route, routes, async () => {
-        try {
-          const {
-            scripts,
-            css
-          } = await getFilesForRoute(assetPrefix, route);
-          const [, styles] = await Promise.all([entrypoints.has(route) ? [] : Promise.all(scripts.map(maybeExecuteScript)), Promise.all(css.map(fetchStyleSheet))]);
-          const entrypoint = await resolvePromiseWithTimeout(this.whenEntrypoint(route), MS_MAX_IDLE_DELAY, markAssetError(new Error(`Route did not complete loading: ${route}`)));
+    loadRoute(route, prefetch) {
+      return withFuture(route, routes, () => {
+        return resolvePromiseWithTimeout(getFilesForRoute(assetPrefix, route).then(({
+          scripts,
+          css
+        }) => {
+          return Promise.all([entrypoints.has(route) ? [] : Promise.all(scripts.map(maybeExecuteScript)), Promise.all(css.map(fetchStyleSheet))]);
+        }).then(res => {
+          return this.whenEntrypoint(route).then(entrypoint => ({
+            entrypoint,
+            styles: res[1]
+          }));
+        }), MS_MAX_IDLE_DELAY, markAssetError(new Error(`Route did not complete loading: ${route}`))).then(({
+          entrypoint,
+          styles
+        }) => {
           const res = Object.assign({
-            styles
+            styles: styles
           }, entrypoint);
           return 'error' in entrypoint ? entrypoint : res;
-        } catch (err) {
+        }).catch(err => {
+          if (prefetch) {
+            // we don't want to cache errors during prefetch
+            throw err;
+          }
+
           return {
             error: err
           };
-        }
+        });
       });
     },
 
@@ -741,7 +753,7 @@ function createRouteLoader(assetPrefix) {
       }
 
       return getFilesForRoute(assetPrefix, route).then(output => Promise.all(canPrefetch ? output.scripts.map(script => prefetchViaDom(script, 'script')) : [])).then(() => {
-        (0, _requestIdleCallback.requestIdleCallback)(() => this.loadRoute(route));
+        (0, _requestIdleCallback.requestIdleCallback)(() => this.loadRoute(route, true).catch(() => {}));
       }).catch( // swallow prefetch errors
       () => {});
     }
@@ -1233,9 +1245,7 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     default: obj
   };
-}
-/* global __NEXT_DATA__ */
-// tslint:disable:no-console
+} // tslint:disable:no-console
 
 
 let detectDomainLocale;
@@ -1663,7 +1673,7 @@ class Router {
 
     this.isSsr = true;
     this.isFallback = isFallback;
-    this.isReady = !!(self.__NEXT_DATA__.gssp || self.__NEXT_DATA__.gip || !autoExportDynamic && !self.location.search);
+    this.isReady = !!(self.__NEXT_DATA__.gssp || self.__NEXT_DATA__.gip || !autoExportDynamic && !self.location.search && !false);
     this.isPreview = !!isPreview;
     this.isLocaleDomain = false;
 

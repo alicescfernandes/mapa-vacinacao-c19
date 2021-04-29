@@ -617,12 +617,6 @@ var _htmlescape = __webpack_require__("AXZJ");
 
 var _experimentalScript = _interopRequireDefault(__webpack_require__("24z6"));
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
 function _getRequireWildcardCache() {
   if (typeof WeakMap !== "function") return null;
   var cache = new WeakMap();
@@ -675,17 +669,10 @@ function _interopRequireWildcard(obj) {
   return newObj;
 }
 
-function dedupe(bundles) {
-  const files = new Set();
-  const kept = [];
-
-  for (const bundle of bundles) {
-    if (files.has(bundle.file)) continue;
-    files.add(bundle.file);
-    kept.push(bundle);
-  }
-
-  return kept;
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
 }
 
 function getDocumentFiles(buildManifest, pathname, inAmpMode) {
@@ -740,7 +727,6 @@ class Document extends _react.Component {
 }
 
 exports.default = Document;
-Document.headTagsMiddleware =  false ? undefined : () => [];
 
 function Html(props) {
   const {
@@ -773,7 +759,7 @@ class Head extends _react.Component {
     // webpack runtime (`mini-css-extract-plugin`).
 
     let unmangedFiles = new Set([]);
-    let dynamicCssFiles = dedupe(dynamicImports.filter(f => f.file.endsWith('.css'))).map(f => f.file);
+    let dynamicCssFiles = Array.from(new Set(dynamicImports.filter(file => file.endsWith('.css'))));
 
     if (dynamicCssFiles.length) {
       const existing = new Set(cssFiles);
@@ -809,7 +795,9 @@ class Head extends _react.Component {
       }));
     });
 
-    if (false) {}
+    if (true) {
+      cssLinkElements = this.makeStylesheetInert(cssLinkElements);
+    }
 
     return cssLinkElements.length === 0 ? null : cssLinkElements;
   }
@@ -820,15 +808,15 @@ class Head extends _react.Component {
       assetPrefix,
       devOnlyCacheBusterQueryString
     } = this.context;
-    return dedupe(dynamicImports).map(bundle => {
-      if (!bundle.file.endsWith('.js')) {
+    return dynamicImports.map(file => {
+      if (!file.endsWith('.js')) {
         return null;
       }
 
       return /*#__PURE__*/_react.default.createElement("link", {
         rel: "preload",
-        key: bundle.file,
-        href: `${assetPrefix}/_next/${encodeURI(bundle.file)}${devOnlyCacheBusterQueryString}`,
+        key: file,
+        href: `${assetPrefix}/_next/${encodeURI(file)}${devOnlyCacheBusterQueryString}`,
         as: "script",
         nonce: this.props.nonce,
         crossOrigin: this.props.crossOrigin || undefined
@@ -946,11 +934,14 @@ class Head extends _react.Component {
       head = cssPreloads.concat(otherHeadElements);
     }
 
-    let children = this.props.children; // show a warning if Head contains <title> (only in development)
+    let children = _react.default.Children.toArray(this.props.children).filter(Boolean); // show a warning if Head contains <title> (only in development)
+
 
     if (false) {}
 
-    if (false) {}
+    if ( true && !inAmpMode) {
+      children = this.makeStylesheetInert(children);
+    }
 
     if (false) {}
 
@@ -1118,12 +1109,12 @@ class NextScript extends _react.Component {
       isDevelopment,
       devOnlyCacheBusterQueryString
     } = this.context;
-    return dedupe(dynamicImports).map(bundle => {
-      if (!bundle.file.endsWith('.js') || files.allFiles.includes(bundle.file)) return null;
+    return dynamicImports.map(file => {
+      if (!file.endsWith('.js') || files.allFiles.includes(file)) return null;
       return /*#__PURE__*/_react.default.createElement("script", {
         async: !isDevelopment,
-        key: bundle.file,
-        src: `${assetPrefix}/_next/${encodeURI(bundle.file)}${devOnlyCacheBusterQueryString}`,
+        key: file,
+        src: `${assetPrefix}/_next/${encodeURI(file)}${devOnlyCacheBusterQueryString}`,
         nonce: this.props.nonce,
         crossOrigin: this.props.crossOrigin || undefined
       });
