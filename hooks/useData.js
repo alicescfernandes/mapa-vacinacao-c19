@@ -458,7 +458,6 @@ export function useData({ regiao }) {
 			janss = Object.values(janss);
 
 			labels = Object.values(labels);
-			debugger;
 			return {
 				com,
 				mod,
@@ -565,7 +564,6 @@ export function useData({ regiao }) {
 		},
 		getTotalSNSRecebidas: async () => {
 			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
-			debugger;
 			return sns.filter((el) => {
 				return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == data.dateSnsStartWeirdFormat;
 			});
