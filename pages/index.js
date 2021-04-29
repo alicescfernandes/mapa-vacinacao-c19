@@ -37,6 +37,7 @@ import { LineAdministradasPorFaixaEtaria } from '../components/graphs/LineAdmini
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { ArsMapa } from '../components/graphs/ArsMapa';
+import { CounterGroup } from '../components/CounterGroup';
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
 	trackLocalhost: true,
@@ -68,6 +69,10 @@ export default function Home() {
 			prev: 0,
 			current: 0,
 		},
+		percentagem_1d: {
+			prev: 0,
+			current: 0,
+		},
 	});
 	//TODO: Move this to the hook
 	let [doses, setDoses] = useState({
@@ -87,6 +92,32 @@ export default function Home() {
 		setTimeout(() => {
 			setUpdating(false);
 		}, 1000);
+	}
+
+	function updateCurrentDate(d) {
+		let prev_d = subDays(d, 1);
+		if (compareAsc(d, new Date('2021-03-30')) >= 1) {
+			setCurrentDate(
+				format(prev_d, 'dd/LL/yyyy', {
+					locale: pt,
+				}) + ' 23:59'
+			);
+		} else {
+			setCurrentDate(
+				format(d, 'dd/LL/yyyy', {
+					locale: pt,
+				}) + ' 00:00'
+			);
+		}
+
+		if (isSameDay(d, new Date(1616716800000))) {
+			//26 is an exception...
+			setCurrentDate(
+				format(d, 'dd/LL/yyyy', {
+					locale: pt,
+				}) + ' 13:00'
+			);
+		}
 	}
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
@@ -146,8 +177,15 @@ export default function Home() {
 				prev: derivedNumbers.percentagem.current,
 				current: (selectedItem.Inoculacao2_Ac / generic.populacao.valor) * 100,
 			},
+			percentagem_1d: {
+				prev: derivedNumbers.percentagem.current,
+				current: (selectedItem.Inoculacao1_Ac / generic.populacao.valor) * 100,
+			},
 		};
 		setDerivedNumbers(object);
+		if (selectedItem.Data) {
+			updateCurrentDate(new Date(selectedItem.Data));
+		}
 	}, [selectedItem]);
 
 	useEffect(async () => {
@@ -155,7 +193,7 @@ export default function Home() {
 		let rawData = statistics.getRaw();
 		setLast(rawData[rawData.length - 1]);
 		setSelectedItem(rawData[rawData.length - 1]);
-		setPreviousItem(selectedItem);
+		setPreviousItem(rawData[rawData.length - 2]);
 		setFirst(rawData[0]);
 		plausible.trackPageview();
 
@@ -206,124 +244,239 @@ export default function Home() {
 			window.removeEventListener('scroll', trackScrollEvents);
 		};
 	}, []);
+
+	let renderCounterGroup = () => {
+		return (
+			<>
+				<Row className={styles.datepickerRow}>
+					<Col style={{ textAlign: 'center' }}>
+						<p className={cardStyles.card_title_2}>Data de publicação</p>
+
+						{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
+						<p className={cardStyles.card_subtitle_2}>Dados até {currentDate} para Portugal Continental</p>
+					</Col>
+				</Row>
+				<Row className="counterRow">
+					<Col lg={4} xs={12}>
+						<Card isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Número total de vacinas administradas (Continente)"
+								yesterday={previousItem?.Vacinados_Ac}
+								from={previousSelectedItem?.Vacinados_Ac || 1_200_000}
+								to={selectedItem?.Vacinados_Ac}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={12}>
+						<Card isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Número de doses administradas - 1ª Dose (Continente)"
+								yesterday={previousItem?.Inoculacao1_Ac}
+								from={previousSelectedItem?.Inoculacao1_Ac || 905_000}
+								to={selectedItem?.Inoculacao1_Ac}
+							></Counter>
+							<p style={{ marginTop: '10px' }} className={`hide_mobile ${cardStyles.card_subtitle}`}>
+								{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} doses administradas por cada 100 pessoas
+								<br />
+								{formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 1ª dose
+							</p>
+						</Card>
+					</Col>
+					<Col lg={4} xs={12}>
+						<Card isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Número de doses administradas - 2ª Dose (Continente)"
+								yesterday={previousItem?.Inoculacao2_Ac}
+								from={previousSelectedItem?.Inoculacao2_Ac || 300_000}
+								to={selectedItem?.Inoculacao2_Ac}
+							></Counter>
+
+							<p style={{ marginTop: '10px' }} className={`hide_mobile ${cardStyles.card_subtitle}`}>
+								{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} doses administradas por cada 100 pessoas
+								<br />
+								{formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 2ª dose
+							</p>
+						</Card>
+					</Col>
+				</Row>
+				<Row className="counterRow">
+					<Col lg={4} xs={12}>
+						<Card isUpdating={updating}>
+							<Counter
+								ps="Percentagem calculada com base no número total de segundas doses administradas para Portugal Continental"
+								digits={2}
+								suffix={'%'}
+								colors={colors}
+								title="Percentagem de população inoculada com a 2ª dose (Continente)"
+								from={derivedNumbers.percentagem.prev}
+								to={derivedNumbers.percentagem.current}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={12} className={'hide_mobile'}>
+						<Card isUpdating={updating}>
+							<Counter
+								ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
+								digits={2}
+								suffix={'%'}
+								colors={colors}
+								title="Percentagem para atingir imunidade de grupo (Continente)"
+								from={70 - derivedNumbers.percentagem.prev}
+								to={70 - derivedNumbers.percentagem.current}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={12}>
+						<Card>
+							<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
+								{fases.fases[fases.fase_atual].nome} de vacinação
+							</h2>
+							<p
+								title="Consultar notas ou o plano de informação para mais informação"
+								style={{ margin: '5px 0px' }}
+								className={cardStyles.card_subtitle}
+							>
+								Espera-se vacinar cerca de
+							</p>
+							<h1
+								title="Consultar notas ou o plano de informação para mais informação"
+								style={{ color: colors[0] }}
+								className={cardStyles.card_highlight_2}
+							>
+								{fases.fases[fases.fase_atual].objetivo_formatado}
+							</h1>
+
+							<a
+								rel="noopener noreferrer"
+								target="_blank"
+								href={fases.fases[fases.fase_atual].fontes[0].permalink}
+								className={`${cardStyles.card_subtitle} ${styles.link}`}
+							>
+								Ver mais informação sobre o plano de vacinação
+							</a>
+						</Card>
+					</Col>
+				</Row>
+			</>
+		);
+	};
+
+	let renderCounterGroupV2 = () => {
+		let options = {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		};
+		let f = new Intl.DateTimeFormat('pt-PT', options);
+
+		return (
+			<>
+				<Row className={styles.datepickerRow}>
+					<Col style={{ textAlign: 'center' }}>
+						<p className={cardStyles.card_subtitle_2}>
+							Atualizado a {f.format(new Date(last.Data))} <br />
+							Dados até {currentDate} para Portugal Continental
+						</p>
+					</Col>
+				</Row>
+				<Row className="counterRow">
+					<Col lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Doses totais"
+								yesterday={previousItem?.Vacinados_Ac}
+								from={previousSelectedItem?.Vacinados_Ac || previousItem?.Vacinados_Ac * 0.98}
+								to={selectedItem?.Vacinados_Ac}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Doses  - 1ª Inoculação"
+								yesterday={previousItem?.Inoculacao1_Ac}
+								from={previousSelectedItem?.Inoculacao1_Ac || previousItem?.Inoculacao1_Ac * 0.98}
+								to={selectedItem?.Inoculacao1_Ac}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Doses - 2ª Inoculação"
+								yesterday={previousItem?.Inoculacao2_Ac}
+								from={previousSelectedItem?.Inoculacao2_Ac || previousItem?.Inoculacao2_Ac * 0.98}
+								to={selectedItem?.Inoculacao2_Ac}
+							></Counter>
+						</Card>
+					</Col>
+
+					<Col id="vacin1d" lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								digits={2}
+								suffix={'%'}
+								colors={colors}
+								title="População vacinada com pelo menos uma dose"
+								from={derivedNumbers.percentagem_1d.prev}
+								to={derivedNumbers.percentagem_1d.current}
+							></Counter>
+						</Card>
+					</Col>
+					<Col id="vacin2d" lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								digits={2}
+								suffix={'%'}
+								colors={colors}
+								title="População totalmente vacinada"
+								from={derivedNumbers.percentagem.prev}
+								to={derivedNumbers.percentagem.current}
+							></Counter>
+						</Card>
+					</Col>
+
+					<Col id="vacinfase" lg={4} xs={6}>
+						<Card type={'counter'}>
+							<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
+								Fase atual de vacinação
+							</h2>
+
+							<h1
+								title="Consultar notas ou o plano de informação para mais informação"
+								style={{ color: colors[0] }}
+								className={cardStyles.card_highlight_2}
+							>
+								{fases.fases[fases.fase_atual].nome}
+							</h1>
+
+							<a
+								rel="noopener noreferrer"
+								target="_blank"
+								href={fases.fases[fases.fase_atual].fontes[0].permalink}
+								className={`${cardStyles.card_subtitle} ${styles.link}`}
+							>
+								+ mais info
+							</a>
+						</Card>
+					</Col>
+				</Row>
+			</>
+		);
+	};
+
 	return (
 		<RegiaoContext.Provider value={'portugal'}>
-			<Container className="container-fluid app">
-				{loaded ? (
-					<>
-						{' '}
-						<Row className={styles.datepickerRow}>
-							<Col style={{ textAlign: 'center' }}>
-								<p className={cardStyles.card_title_2}>Data de publicação</p>
-
-								{loaded ? <DatePickerButton onDateSelect={onDateSelect} minDate={first?.Data} maxDate={last?.Data} /> : ''}
-								<p className={cardStyles.card_subtitle_2}>Dados até {currentDate} para Portugal Continental</p>
-							</Col>
-						</Row>
-						<Row className="counterRow">
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter
-										colors={colors}
-										title="Número total de vacinas administradas (Continente)"
-										yesterday={previousItem?.Vacinados_Ac}
-										from={previousSelectedItem?.Vacinados_Ac || 1_200_000}
-										to={selectedItem?.Vacinados_Ac}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter
-										colors={colors}
-										title="Número de doses administradas - 1ª Dose (Continente)"
-										yesterday={previousItem?.Inoculacao1_Ac}
-										from={previousSelectedItem?.Inoculacao1_Ac || 905_000}
-										to={selectedItem?.Inoculacao1_Ac}
-									></Counter>
-									<p style={{ marginTop: '10px' }} className={`hide_mobile ${cardStyles.card_subtitle}`}>
-										{perHundred(selectedItem?.Inoculacao1_Ac).toFixed(2)} doses administradas por cada 100 pessoas
-										<br />
-										{formatNumber(selectedItem?.Inoculacao1_Ac - selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 1ª dose
-									</p>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter
-										colors={colors}
-										title="Número de doses administradas - 2ª Dose (Continente)"
-										yesterday={previousItem?.Inoculacao2_Ac}
-										from={previousSelectedItem?.Inoculacao2_Ac || 300_000}
-										to={selectedItem?.Inoculacao2_Ac}
-									></Counter>
-
-									<p style={{ marginTop: '10px' }} className={`hide_mobile ${cardStyles.card_subtitle}`}>
-										{perHundred(selectedItem?.Inoculacao2_Ac).toFixed(2)} doses administradas por cada 100 pessoas
-										<br />
-										{formatNumber(selectedItem?.Inoculacao2_Ac)} pessoas inoculadas com a 2ª dose
-									</p>
-								</Card>
-							</Col>
-						</Row>
-						<Row className="counterRow">
-							<Col lg={4} xs={12}>
-								<Card isUpdating={updating}>
-									<Counter
-										ps="Percentagem calculada com base no número total de segundas doses administradas para Portugal Continental"
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem de população inoculada com a 2ª dose (Continente)"
-										from={derivedNumbers.percentagem.prev}
-										to={derivedNumbers.percentagem.current}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12} className={'hide_mobile'}>
-								<Card isUpdating={updating}>
-									<Counter
-										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem para atingir imunidade de grupo (Continente)"
-										from={70 - derivedNumbers.percentagem.prev}
-										to={70 - derivedNumbers.percentagem.current}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card>
-									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
-										{fases.fases[fases.fase_atual].nome} de vacinação
-									</h2>
-									<p
-										title="Consultar notas ou o plano de informação para mais informação"
-										style={{ margin: '5px 0px' }}
-										className={cardStyles.card_subtitle}
-									>
-										Espera-se vacinar cerca de
-									</p>
-									<h1
-										title="Consultar notas ou o plano de informação para mais informação"
-										style={{ color: colors[0] }}
-										className={cardStyles.card_highlight_2}
-									>
-										{fases.fases[fases.fase_atual].objetivo_formatado}
-									</h1>
-
-									<a
-										rel="noopener noreferrer"
-										target="_blank"
-										href={fases.fases[fases.fase_atual].fontes[0].permalink}
-										className={`${cardStyles.card_subtitle} ${styles.link}`}
-									>
-										Ver mais informação sobre o plano de vacinação
-									</a>
-								</Card>
-							</Col>
-						</Row>
+			{loaded ? (
+				<>
+					{renderCounterGroupV2()}
+					<Container className="container-fluid app">
 						<Row>
 							<Col>
 								<h2 className={styles.title}>Número de vacinas administradas - Portugal Continental</h2>
@@ -333,7 +486,14 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas por dia - Portugal Continental</h2>
+								<h2 className={styles.title}>
+									Número de vacinas administradas por dia - Portugal Continental <sup className={'new'}>atualizado</sup>
+								</h2>
+								<h3 className={styles.subtitle}>
+									A linha de stock de vacinas apresentada abaixo é uma estimativa com base nos dados do Centro Europeu de Controlo
+									de Doenças. Para calcular este valor, assumimos que todas as entregas são recebidas na Segunda-Feira, mesmo que
+									logisticamente não se verifique.
+								</h3>
 								<hr />
 								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>
@@ -425,7 +585,7 @@ export default function Home() {
 						</LazyLoad>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária (excluindo a vacina Janssen)</h2>
+								<h2 className={styles.title}>Número de doses administradas por semana e faixa etária</h2>
 								<hr />
 								<BarAdministradasPorFaixaEtaria colors={colors_v2} statistics={statistics}></BarAdministradasPorFaixaEtaria>
 							</Col>
@@ -433,7 +593,7 @@ export default function Home() {
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
-									<h2 className={styles.title}>Doses totais administradas por faixa etária (excluindo a vacina Janssen)</h2>
+									<h2 className={styles.title}>Doses totais administradas por faixa etária</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados deste 21 de Dezembro de 2021 até{' '}
 										{format(new Date(json.dateEcdc).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -695,13 +855,13 @@ export default function Home() {
 								</p>
 							</Col>
 						</Row>
-					</>
-				) : (
-					<div style={{ display: 'block', width: 50, margin: 'auto ' }}>
-						<GooSpinner size={50} color={colors_v2.main} />
-					</div>
-				)}
-			</Container>
+					</Container>
+				</>
+			) : (
+				<div style={{ display: 'block', width: 50, margin: 'auto ' }}>
+					<GooSpinner size={50} color={colors_v2.main} />
+				</div>
+			)}
 		</RegiaoContext.Provider>
 	);
 }

@@ -12,12 +12,15 @@
 	&_graph {
 		text-align: center;
 		min-height: 50px;
-		background: white;
 		padding: 10px 0px;
 		border-radius: 5px;
 		margin-bottom: 15px;
 		overflow: hidden;
 		transition: background linear 500ms;
+	}
+
+	&_counter {
+		padding: 20px 5px;
 	}
 	&_checkboxes {
 		label {
@@ -36,9 +39,9 @@
 	}
 
 	&_highlight {
-		font-size: 40px;
+		font-size: 35px;
 		// color: $main;
-		font-weight: bold;
+		font-weight: bolder;
 	}
 	&_highlight_2 {
 		font-size: 30px;
@@ -48,10 +51,8 @@
 	&_title {
 		margin-bottom: 0px;
 		color: #444;
-		font-weight: bold;
 		font-size: 15px;
 		margin-bottom: 5px;
-		text-transform: uppercase;
 	}
 
 	&_title_2 {
@@ -73,7 +74,7 @@
 
 	&_subtitle {
 		margin-bottom: 0px;
-		font-size: 14px;
+		font-size: 13px;
 
 		&_highlight {
 			margin-bottom: 0px;
@@ -103,7 +104,7 @@
 @media (min-width: 992px) {
 	.card {
 		&_graph {
-			min-height: 250px;
+			//min-height: 250px;
 		}
 	}
 }
@@ -120,7 +121,7 @@
 @media screen and (min-width: 1500px) {
 	.card {
 		&_graph {
-			min-height: 210px;
+			//min-height: 210px;
 		}
 	}
 }

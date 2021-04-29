@@ -15,7 +15,6 @@ body {
 }
 
 h2 {
-	text-transform: uppercase;
 	//font-weight: 300 !important;
 	font-size: 13px !important;
 }
@@ -41,7 +40,9 @@ hr {
 	margin-top: 0px;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-
+.row.counterRow {
+	margin-bottom: 30px;
+}
 .counterRow .card-shadow {
 	// border: 1px solid rgba(0, 0, 0, 0.1);
 	/* box-shadow: 0px 0px 5px 0px #0000000d; */
@@ -228,8 +229,17 @@ sup.new {
 
 /* Extra small devices (portrait phones, less than 576px) */
 /*  No media query for `xs` since this is the default in Bootstrap */
-
+#vacin1d,
+#vacin2d {
+	background-color: #eff7f6;
+	order: 2;
+}
+#vacinfase {
+	background-color: white;
+	order: 1;
+}
 /* Small devices (landscape phones, 576px and up) */
+
 @media (min-width: 576px) {
 	.container {
 		max-width: 95vw;
@@ -266,6 +276,19 @@ sup.new {
 	.counterRow .col-lg-4:last-child div {
 		padding-right: 0px;
 		border: 0;
+	}
+
+	#vacinfase {
+	}
+
+	#vacin1d,
+	#vacin2d {
+		background-color: #eff7f6;
+		order: 1;
+	}
+	#vacinfase {
+		background-color: #eff7f6;
+		order: 2;
 	}
 }
 
