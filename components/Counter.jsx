@@ -29,7 +29,7 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 				</span>
 			) : (
 				<>
-					<CountTo digits={digits} delay={1} from={from || 0} to={to || 0} speed={800}>
+					<CountTo digits={digits} delay={1} from={from || 0} to={to || 0} speed={0}>
 						{fn}
 					</CountTo>
 

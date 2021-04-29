@@ -475,8 +475,7 @@ export default function Home() {
 		<RegiaoContext.Provider value={'portugal'}>
 			{loaded ? (
 				<>
-					{' '}
-					{Math.random() > 0 ? renderCounterGroupV2() : renderCounterGroup()}
+					{renderCounterGroupV2()}
 					<Container className="container-fluid app">
 						<Row>
 							<Col>
