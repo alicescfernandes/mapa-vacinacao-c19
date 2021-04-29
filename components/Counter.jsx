@@ -2,7 +2,8 @@ import CountTo from 'react-count-to';
 import styles from './Card.module.scss';
 import * as React from 'react';
 export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digits, suffix, tempo }) {
-	if (!tempo) tempo = 'no dia anterior';
+	if (!tempo) tempo = window.innerWidth <= 500 ? 'ontem' : 'no dia anterior';
+
 	if (!digits) {
 		digits = 0;
 	}
