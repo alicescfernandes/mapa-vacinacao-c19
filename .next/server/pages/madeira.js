@@ -131,15 +131,18 @@ module.exports = require("node-fetch");
 
 function Card({
   children,
+  type,
   allowOverflow,
   isUpdating,
-  textLeft
+  textLeft,
+  classes
 }) {
   let styles2 = {};
   styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_align_left] = textLeft;
   styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_graph_updated] = isUpdating;
   styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_chart] = allowOverflow;
-  let className = classnames__WEBPACK_IMPORTED_MODULE_2___default()(_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_graph, 'card-shadow', styles2);
+  styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_counter] = type === 'counter';
+  let className = classnames__WEBPACK_IMPORTED_MODULE_2___default()(_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_graph, styles2);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
     className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.container,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
@@ -176,6 +179,16 @@ module.exports = require("date-fns");
 var _data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6___namespace = /*#__PURE__*/__webpack_require__.t("bEWT", 1);
 /* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("uAdN");
 /* harmony import */ var _CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("SSzp");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("UG6H");
+/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_9__);
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -237,82 +250,86 @@ function VacinadosPorDia({
       }
     });
     console.log('totais', values);
-    return {
-      labels: labels,
-      datasets: [{
-        label: 'Vacinas diárias - Média movel de 7 dias',
+    let datasets = [{
+      label: 'Vacinas diárias - Média movel de 7 dias',
+      fill: false,
+      lineTension: 0.5,
+      overlayBars: true,
+      type: 'line',
+      lineBorder: 1,
+      borderWidth: 3,
+      borderColor: complements[1],
+      borderJoinStyle: 'miter',
+      pointBorderColor: complements[1],
+      pointBackgroundColor: complements[1],
+      pointBorderWidth: 1,
+      pointHoverRadius: 3,
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 3,
+      data: values2,
+      order: 2,
+      stack: 'stack1'
+    }, {
+      label: 'Inoculação - 2ª Dose',
+      fill: false,
+      type: 'bar',
+      overlayBars: true,
+      backgroundColor: tints[0],
+      data: valuesIn2,
+      order: 3,
+      display: false,
+      stack: 'stack0'
+    }, {
+      label: 'Inoculação - 1ª Dose',
+      backgroundColor: shades[0],
+      borderColor: shades[0],
+      data: valuesIn1,
+      overlayBars: true,
+      order: 4,
+      stack: 'stack0'
+    }, {
+      label: 'Vacinas Totais',
+      type: 'bar',
+      overlayBars: true,
+      fill: false,
+      borderColor: main,
+      backgroundColor: 'transparent',
+      data: values,
+      borderWidth: 2,
+      order: 5,
+      stack: 'stack0',
+      yAxisID: 'axisy2'
+    }];
+
+    if (regiao === _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL) {
+      datasets.push({
+        label: 'Stock de Vacinas - Estimativa',
         fill: false,
         lineTension: 0.5,
         overlayBars: true,
         type: 'line',
         lineBorder: 1,
         borderWidth: 3,
-        borderColor: complements[1],
+        borderColor: complements[2],
         borderJoinStyle: 'miter',
-        pointBorderColor: complements[1],
-        pointBackgroundColor: complements[1],
+        pointBorderColor: complements[2],
+        pointBackgroundColor: complements[2],
         pointBorderWidth: 1,
         pointHoverRadius: 3,
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 3,
-        data: values2,
-        order: 2,
-        stack: 'stack1'
-      }, {
-        label: 'Inoculação - 2ª Dose',
-        fill: false,
-        type: 'bar',
-        overlayBars: true,
-        backgroundColor: tints[0],
-        data: valuesIn2,
-        order: 3,
-        display: false,
-        stack: 'stack0'
-      }, {
-        label: 'Inoculação - 1ª Dose',
-        backgroundColor: shades[0],
-        borderColor: shades[0],
-        data: valuesIn1,
-        overlayBars: true,
-        order: 4,
-        stack: 'stack0'
-      }, {
-        label: 'Vacinas Totais',
-        type: 'bar',
-        overlayBars: true,
-        fill: false,
-        borderColor: main,
-        backgroundColor: 'transparent',
-        data: values,
-        borderWidth: 2,
-        order: 5,
-        stack: 'stack0',
-        yAxisID: 'axisy2'
-      }
-      /* 	{
-      	label: 'Stock de Vacinas - Estimativa',
-      	fill: false,
-      	lineTension: 0.5,
-      	overlayBars: true,
-      	type: 'line',
-      	lineBorder: 1,
-      	borderWidth: 3,
-      	borderColor: complements[2],
-      	borderJoinStyle: 'miter',
-      	pointBorderColor: complements[2],
-      	pointBackgroundColor: complements[2],
-      	pointBorderWidth: 1,
-      	pointHoverRadius: 3,
-      	pointHoverBorderWidth: 2,
-      	pointRadius: 1,
-      	pointHitRadius: 3,
-      	data: vacinas_stock,
-      	order: 6,
-      	hidden: !toggleStats.stock,
-      	stack: 'stack2',
-      }, */
-      ]
+        data: vacinas_stock,
+        order: 6,
+        hidden: !toggleStats.stock,
+        stack: 'stack2'
+      });
+    }
+
+    return {
+      labels: labels,
+      datasets
     };
   };
 
@@ -323,8 +340,7 @@ function VacinadosPorDia({
   };
 
   const options = () => {
-    //const max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
-    const max = Math.max(...values);
+    const max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
     return {
       layout: {
         padding: -5
@@ -403,16 +419,30 @@ function VacinadosPorDia({
       });
     }
   }, [values]);
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
-    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_scrollable].join(' '),
+      style: {
+        textAlign: 'left'
+      },
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__[/* CustomCheckbox */ "a"], {
+        checked: toggleStats.stock,
+        label: 'Stock de Vacinas - Estimativa',
+        onChange: checked => {
+          setToggleStats(_objectSpread(_objectSpread({}, toggleStats), {}, {
+            stock: checked
+          }));
+        }
+      })
+    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
         height: 80,
         ref: canvasRef,
         options: options(),
         data: data
       }) : ''
-    })
+    })]
   });
 }
 
@@ -1657,7 +1687,6 @@ function useData({
       az = Object.values(az);
       janss = Object.values(janss);
       labels = Object.values(labels);
-      debugger;
       return {
         com,
         mod,
@@ -1758,7 +1787,6 @@ function useData({
     },
     getTotalSNSRecebidas: async () => {
       let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
-      debugger;
       return sns.filter(el => {
         return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat;
       });
@@ -3220,7 +3248,7 @@ function Counter({
   suffix,
   tempo
 }) {
-  if (!tempo) tempo = 'no dia anterior';
+  if (!tempo) tempo = window.innerWidth <= 500 ? 'ontem' : 'no dia anterior';
 
   if (!digits) {
     digits = 0;
@@ -3263,7 +3291,7 @@ function Counter({
         delay: 1,
         from: from || 0,
         to: to || 0,
-        speed: 800,
+        speed: 0,
         children: fn
       }), Math.abs(to - yesterday) > 0 ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
@@ -3468,6 +3496,7 @@ module.exports = {
 	"container": "Card_container__o0EtH",
 	"collapsed": "Card_collapsed__3u7lu",
 	"card_graph": "Card_card_graph__3Ytwc",
+	"card_counter": "Card_card_counter__2AlBw",
 	"card_checkboxes": "Card_card_checkboxes__phAHc",
 	"card_align_left": "Card_card_align_left__GpzsC",
 	"card_graph_updated": "Card_card_graph_updated__3qvEq",
@@ -4003,7 +4032,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1619699408657,\"dateSnsStartWeirdFormat\":\"19/04/21\",\"dateSnsStart\":\"2021-04-19T00:00:00\",\"dateSns\":\"2021-04-25T00:00:00\",\"dateEcdc\":\"2021-04-18T00:00:00\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-25T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
+module.exports = JSON.parse("{\"date\":1619721865970,\"dateSnsStartWeirdFormat\":\"19/04/21\",\"dateSnsStart\":\"2021-04-19T00:00:00\",\"dateSns\":\"2021-04-25T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-25T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
 
 /***/ }),
 
