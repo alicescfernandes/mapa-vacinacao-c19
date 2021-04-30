@@ -577,5 +577,88 @@
                 "total": 656
             }
         }
+    },
+    {
+        "data": "2020-04-29",
+        "total": 79589,
+        "dose_1": 56419,
+        "dose_2": 23170,
+        "semana":"null",
+        "relatorio":"https://vacinacao-covid19.azores.gov.pt/",
+        "concelhos":{
+            "santa_maria":{
+                "nome":"Santa Maria",
+                "chave":"santa_maria",
+                "populacao":4589,
+                "dose_1": 1857,
+                "dose_2": 1152,
+                "total": 3009
+            },
+            "sao_miguel":{
+                "nome":"São Miguel",
+                "chave":"sao_miguel",
+                "populacao":110731,
+                "dose_1": 29233,
+                "dose_2": 10572,
+                "total": 39805
+            },
+            "terceira":{
+                "nome":"Terceira",
+                "chave":"terceira",
+                "populacao":47270,
+                "dose_1": 10941,
+                "dose_2": 4848,
+                "total": 15789
+            },
+            "graciosa":{
+                "nome":"Graciosa",
+                "chave":"graciosa",
+                "populacao":3741,
+                "dose_1": 1482,
+                "dose_2": 1152,
+                "total": 2634
+            },
+            "sao_jorge":{
+                "nome":"São Jorge",
+                "chave":"sao_jorge",
+                "populacao":7836,
+                "dose_1": 2991,
+                "dose_2": 1086,
+                "total": 4077
+            },
+         
+            "pico":{
+                "nome":"Pico",
+                "chave":"pico",
+                "populacao":12199,
+                "dose_1": 4627,
+                "dose_2": 2172,
+                "total": 6799
+            },
+            "faial":{
+                "nome":"Faial",
+                "chave":"faial",
+                "populacao":12591,
+                "dose_1": 3771,
+                "dose_2": 1302,
+                "total": 5073
+            },
+            "flores":{
+                "nome":"Flores",
+                "chave":"flores",
+                "populacao":3249,
+                "dose_1": 1189,
+                "dose_2": 558,
+                "total": 1747
+            },
+            "corvo":{
+                "nome":"Corvo",
+                "chave":"corvo",
+                "populacao":369,
+                "dose_1": 328,
+                "dose_2": 328,
+                "total": 656
+            }
+        }
     }
 ]
