@@ -31,10 +31,6 @@ function NextApp({ Component, props }) {
 		} else {
 			//not supported
 		}
-
-		window.setTimeout(function () {
-			window.location.reload();
-		}, 600 * 1000);
 	}, []);
 	return (
 		<RegiaoContext.Provider value={props.regiao || 'portugal'}>
