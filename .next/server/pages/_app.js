@@ -848,10 +848,6 @@ function NextApp({
       });
     } else {//not supported
     }
-
-    window.setTimeout(function () {
-      window.location.reload();
-    }, 600 * 1000);
   }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(context_regiao["a" /* RegiaoContext */].Provider, {
     value: props.regiao || 'portugal',
@@ -3875,7 +3871,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1619721865970,\"dateSnsStartWeirdFormat\":\"19/04/21\",\"dateSnsStart\":\"2021-04-19T00:00:00\",\"dateSns\":\"2021-04-25T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-25T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
+module.exports = JSON.parse("{\"date\":1619776118851,\"dateSnsStartWeirdFormat\":\"19/04/21\",\"dateSnsStart\":\"2021-04-19T00:00:00\",\"dateSns\":\"2021-04-25T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-04-25T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-04-21T00:00:00\",\"dateAcoresCases\":\"2021-04-24\"}");
 
 /***/ }),
 
