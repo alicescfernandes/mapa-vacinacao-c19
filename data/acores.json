@@ -660,5 +660,69 @@
                 "total": 656
             }
         }
+    },
+    {
+        "data": "2020-05-04",
+        "total": 86796,
+        "dose_1": 59336,
+        "dose_2": 27460,
+        "semana":"null",
+        "relatorio":"https://vacinacao-covid19.azores.gov.pt/",
+        "concelhos":{
+            "santa_maria":{
+              "ilha": "santa_maria",
+              "dose_1": 1857,
+              "dose_2": 1152,
+              "total": 3009
+            },
+            "sao_miguel":{
+              "ilha": "sao_miguel",
+              "dose_1": 29222,
+              "dose_2": 12072,
+              "total": 41294
+            },
+            "terceira":{
+              "ilha": "terceira",
+              "dose_1": 11055,
+              "dose_2": 6174,
+              "total": 17229
+            },
+            "graciosa":{
+              "ilha": "graciosa",
+              "dose_1": 1728,
+              "dose_2": 1158,
+              "total": 2886
+            },
+            "sao_jorge":{
+              "ilha": "sao_jorge",
+              "dose_1": 3351,
+              "dose_2": 1386,
+              "total": 4737
+            },
+            "pico":{
+              "ilha": "pico",
+              "dose_1": 4987,
+              "dose_2": 2724,
+              "total": 7711
+            },
+            "faial":{
+              "ilha": "faial",
+              "dose_1": 5583,
+              "dose_2": 1908,
+              "total": 7491
+            },
+            "flores":{
+              "ilha": "flores",
+              "dose_1": 1225,
+              "dose_2": 558,
+              "total": 1783
+            },
+            "corvo":{
+              "ilha": "corvo",
+              "dose_1": 328,
+              "dose_2": 328,
+              "total": 656
+            }
+           }
     }
 ]
