@@ -172,16 +172,6 @@ module.exports = require("date-fns");
 var _data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6___namespace = /*#__PURE__*/__webpack_require__.t("bEWT", 1);
 /* harmony import */ var _context_regiao__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("uAdN");
 /* harmony import */ var _CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("SSzp");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("UG6H");
-/* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_9__);
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -224,7 +214,7 @@ function VacinadosPorDia({
     0: toggleStats,
     1: setToggleStats
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    stock: true
+    stock: false
   });
   const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
 
@@ -296,28 +286,28 @@ function VacinadosPorDia({
     }];
 
     if (regiao === _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL) {
-      datasets.push({
-        label: 'Stock de Vacinas - Estimativa',
-        fill: false,
-        lineTension: 0.5,
-        overlayBars: true,
-        type: 'line',
-        lineBorder: 1,
-        borderWidth: 3,
-        borderColor: complements[2],
-        borderJoinStyle: 'miter',
-        pointBorderColor: complements[2],
-        pointBackgroundColor: complements[2],
-        pointBorderWidth: 1,
-        pointHoverRadius: 3,
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 3,
-        data: vacinas_stock,
-        order: 6,
-        hidden: !toggleStats.stock,
-        stack: 'stack2'
-      });
+      /* datasets.push({
+      	label: 'Stock de Vacinas - Estimativa',
+      	fill: false,
+      	lineTension: 0.5,
+      	overlayBars: true,
+      	type: 'line',
+      	lineBorder: 1,
+      	borderWidth: 3,
+      	borderColor: complements[2],
+      	borderJoinStyle: 'miter',
+      	pointBorderColor: complements[2],
+      	pointBackgroundColor: complements[2],
+      	pointBorderWidth: 1,
+      	pointHoverRadius: 3,
+      	pointHoverBorderWidth: 2,
+      	pointRadius: 1,
+      	pointHitRadius: 3,
+      	data: vacinas_stock,
+      	order: 6,
+      	hidden: !toggleStats.stock,
+      	stack: 'stack2',
+      }); */
     }
 
     return {
@@ -412,30 +402,16 @@ function VacinadosPorDia({
       });
     }
   }, [values]);
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_scrollable].join(' '),
-      style: {
-        textAlign: 'left'
-      },
-      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__[/* CustomCheckbox */ "a"], {
-        checked: toggleStats.stock,
-        label: 'Stock de Vacinas - Estimativa',
-        onChange: checked => {
-          setToggleStats(_objectSpread(_objectSpread({}, toggleStats), {}, {
-            stock: checked
-          }));
-        }
-      })
-    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
         height: 80,
         ref: canvasRef,
         options: options(),
         data: data
       }) : ''
-    })]
+    })
   });
 }
 
@@ -7064,7 +7040,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620163684271,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-04-24\"}");
+module.exports = JSON.parse("{\"date\":1620164912011,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-04-23\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-04-24\"}");
 
 /***/ }),
 
