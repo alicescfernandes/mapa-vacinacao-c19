@@ -2012,7 +2012,7 @@
                 "nome": "Entre 65 e 69 anos",
                 "dose_1_pessoas": 5210,
                 "dose_1": 38.9,
-                "dose_2_pessoas": 43,
+                "dose_2_pessoas": 423,
                 "dose_2": 3.2,
                 "total": 0
             },
@@ -2030,6 +2030,213 @@
                 "dose_1": 91.8,
                 "dose_2_pessoas": 9363,
                 "dose_2": 84.6,
+                "total": 0
+            }
+        },
+        "concelhos": {
+            "porto_moniz": {
+                "nome": "Porto Moniz",
+                "chave": "porto_moniz",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "svincente": {
+                "nome": "São Vincente",
+                "chave": "svincente",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "santana": {
+                "nome": "Santana",
+                "chave": "santana",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "porto_santo": {
+                "nome": "Porto Santo",
+                "chave": "porto_santo",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "machico": {
+                "nome": "Machico",
+                "chave": "machico",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "santa_cruz": {
+                "nome": "Santa Cruz",
+                "chave": "santa_cruz",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "funchal": {
+                "nome": "Funchal",
+                "chave": "funchal",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "camara_lobos": {
+                "nome": "Câmara de Lobos",
+                "chave": "camara_lobos",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "ribeira_brava": {
+                "nome": "Ribeira Brava",
+                "chave": "ribeira_brava",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "ponta_sol": {
+                "nome": "Ponta do Sol",
+                "chave": "ponta_sol",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            },
+            "calheta": {
+                "nome": "Calheta",
+                "chave": "calheta",
+                "dose_1": null,
+                "dose_2": null,
+                "total": null
+            }
+        }
+    },
+    {
+        "data": "2020-05-02",
+        "total": 91293,
+        "dose_1": 68897,
+        "dose_2": 22396,
+        "semana": "2021-W17",
+        "relatorio": "https://covidmadeira.pt/wp-content/uploads/2021/05/bl_03_05_2021_final1.pdf?x59786",
+        "grupos": {
+            "outros": {
+                "total": null,
+                "anotacao": "Vacinas administradas às Entidades Governamentais"
+            },
+            "saude": {
+                "nome": "Profissionais afetos à área da Saúde (público e privado)",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "rcci": {
+                "nome": "Profissionais afetos à área Social, Residentes e Utentes em Lares, instituições similares, e Rede de Cuidados Continuados",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "protecao_civil": {
+                "nome": "Profissionais afetos à área da Proteção Civil, Segurança e Serviços Críticos",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "lares": {
+                "nome": "Utentes com idade entre 50 e 79 anos + Utentes com idade superior ou igual a 80 anos",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "escolas": {
+                "nome": "Profissionais afetos à área da Educação",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            },
+            "tri21": {
+                "nome": "Utentes com Trissomia 21",
+                "dose_1": null,
+                "dose_2": null,
+                "total": 0
+            }
+        },
+        "genero": {
+            "f": {
+                "total": 0,
+                "dose_1": 42339,
+                "dose_2": 14653
+            },
+            "m": {
+                "total": 0,
+                "dose_1": 26558,
+                "dose_2": 7743
+            }
+        },
+        "escaloes": {
+            "e017": {
+                "nome": "Entre os 0 e os 17 anos",
+                "dose_1_pessoas": 9,
+                "dose_1": 0,
+                "dose_2_pessoas": 3,
+                "dose_2": 0,
+                "total": 0
+            },
+            "e1824": {
+                "nome": "Entre 18 e 24 anos",
+                "dose_1_pessoas": 728,
+                "dose_1": 3.3,
+                "dose_2_pessoas": 359,
+                "dose_2": 1.6,
+                "total": 0
+            },
+            "e2549": {
+                "nome": "Entre os 25 e 49 anos",
+                "dose_1_pessoas": 14343,
+                "dose_1": 15.8,
+                "dose_2_pessoas": 5103,
+                "dose_2": 5.6,
+                "total": 0
+            },
+            "e5059": {
+                "nome": "Entre os 50 e os 59 anos",
+                "dose_1_pessoas": 8394,
+                "dose_1": 21.3,
+                "dose_2_pessoas": 2984,
+                "dose_2": 7.6,
+                "total": 0
+            },
+            "e6064": {
+                "nome": "Entre 60 e 64 anos",
+                "dose_1_pessoas": 7089,
+                "dose_1": 45.1,
+                "dose_2_pessoas": 991,
+                "dose_2": 6.3,
+                "total": 0
+            },
+            "e6569": {
+                "nome": "Entre 65 e 69 anos",
+                "dose_1_pessoas": 10311,
+                "dose_1": 76.9,
+                "dose_2_pessoas": 443,
+                "dose_2": 3.3,
+                "total": 0
+            },
+            "e7079": {
+                "nome": "Entre 70 e 79 anos",
+                "dose_1_pessoas": 17735,
+                "dose_1": 94.8,
+                "dose_2_pessoas": 2972,
+                "dose_2": 15.9,
+                "total": 0
+            },
+            "e80": {
+                "nome": "80 anos ou mais",
+                "dose_1_pessoas": 10288,
+                "dose_1": 93.0,
+                "dose_2_pessoas": 9541,
+                "dose_2": 86.2,
                 "total": 0
             }
         },
