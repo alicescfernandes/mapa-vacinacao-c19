@@ -139,8 +139,7 @@ export function useData({ regiao }) {
 					data: lastItem.data,
 				};
 			} else {
-				let lastItem = casesData[vaccines.length - 1];
-
+				let lastItem = casesData[casesData.length - 1];
 				data = {
 					ativos: lastItem.Activos,
 					recuperados: lastItem.Recuperados,
@@ -564,9 +563,12 @@ export function useData({ regiao }) {
 		},
 		getTotalSNSRecebidas: async () => {
 			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
-			return sns.filter((el) => {
+			let [item] = sns.filter((el) => {
+				console.log(data.dateSnsStartWeirdFormat);
 				return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == data.dateSnsStartWeirdFormat;
 			});
+
+			return item;
 		},
 		getTotalARS: async () => {
 			let ars = await fetchWithLocalCache(`/api/ars?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
