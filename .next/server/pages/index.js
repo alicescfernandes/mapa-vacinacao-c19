@@ -5909,7 +5909,7 @@ function Home() {
               colors: colors,
               title: "Doses totais",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Vacinados_Ac,
-              from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Vacinados_Ac) || (previousItem === null || previousItem === void 0 ? void 0 : previousItem.Vacinados_Ac) * 0.98,
+              from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Vacinados_Ac) || (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Vacinados_Ac) * 0.98,
               to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Vacinados_Ac
             })
           })
@@ -5923,7 +5923,7 @@ function Home() {
               colors: colors,
               title: "Doses  - 1\xAA Inocula\xE7\xE3o",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao1_Ac,
-              from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao1_Ac) || (previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao1_Ac) * 0.98,
+              from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao1_Ac) || (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac) * 0.98,
               to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac
             })
           })
@@ -5937,7 +5937,7 @@ function Home() {
               colors: colors,
               title: "Doses - 2\xAA Inocula\xE7\xE3o",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao2_Ac,
-              from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao2_Ac) || (previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao2_Ac) * 0.98,
+              from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao2_Ac) || (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac) * 0.98,
               to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac
             })
           })
@@ -7042,7 +7042,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620244237760,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\"}");
+module.exports = JSON.parse("{\"date\":1620245129331,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\"}");
 
 /***/ }),
 
