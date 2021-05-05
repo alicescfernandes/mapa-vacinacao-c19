@@ -388,7 +388,7 @@ export default function Home() {
 								colors={colors}
 								title="Doses totais"
 								yesterday={previousItem?.Vacinados_Ac}
-								from={previousSelectedItem?.Vacinados_Ac || previousItem?.Vacinados_Ac * 0.98}
+								from={previousSelectedItem?.Vacinados_Ac || selectedItem?.Vacinados_Ac * 0.98}
 								to={selectedItem?.Vacinados_Ac}
 							></Counter>
 						</Card>
@@ -399,7 +399,7 @@ export default function Home() {
 								colors={colors}
 								title="Doses  - 1ª Inoculação"
 								yesterday={previousItem?.Inoculacao1_Ac}
-								from={previousSelectedItem?.Inoculacao1_Ac || previousItem?.Inoculacao1_Ac * 0.98}
+								from={previousSelectedItem?.Inoculacao1_Ac || selectedItem?.Inoculacao1_Ac * 0.98}
 								to={selectedItem?.Inoculacao1_Ac}
 							></Counter>
 						</Card>
@@ -410,7 +410,7 @@ export default function Home() {
 								colors={colors}
 								title="Doses - 2ª Inoculação"
 								yesterday={previousItem?.Inoculacao2_Ac}
-								from={previousSelectedItem?.Inoculacao2_Ac || previousItem?.Inoculacao2_Ac * 0.98}
+								from={previousSelectedItem?.Inoculacao2_Ac || selectedItem?.Inoculacao2_Ac * 0.98}
 								to={selectedItem?.Inoculacao2_Ac}
 							></Counter>
 						</Card>
