@@ -364,6 +364,7 @@ export default function Home() {
 	};
 
 	let renderCounterGroupV2 = () => {
+		console.log(selectedItem?.Vacinados_Ac);
 		let options = {
 			year: 'numeric',
 			month: 'long',

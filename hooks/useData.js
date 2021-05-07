@@ -564,7 +564,6 @@ export function useData({ regiao }) {
 		getTotalSNSRecebidas: async () => {
 			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
 			let [item] = sns.filter((el) => {
-				console.log(data.dateSnsStartWeirdFormat);
 				return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == data.dateSnsStartWeirdFormat;
 			});
 

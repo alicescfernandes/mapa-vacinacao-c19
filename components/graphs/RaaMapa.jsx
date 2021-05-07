@@ -220,7 +220,6 @@ export function RaaMapa({ statistics, colors }) {
 
 	useEffect(async () => {
 		statistics.getArquipelagoData().then((data) => {
-			console.log(2, data);
 			setGraphData(data[data.length - 1]);
 
 			if (loaded === false) {
