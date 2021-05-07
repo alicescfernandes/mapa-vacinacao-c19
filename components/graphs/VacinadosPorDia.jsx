@@ -37,7 +37,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
-		console.log('totais', values);
 		let datasets = [
 			{
 				label: 'Vacinas diárias - Média movel de 7 dias',
