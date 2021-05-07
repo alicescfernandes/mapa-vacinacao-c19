@@ -18,7 +18,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let { main, tints, shades, complements } = colors;
 
 	let [toggleStats, setToggleStats] = useState({
-		stock: false,
+		stock: true,
 	});
 
 	const canvasRef = useRef(null);
@@ -97,7 +97,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 		];
 
 		if (regiao === REGIOES.PORTUGAL) {
-			/* datasets.push({
+			datasets.push({
 				label: 'Stock de Vacinas - Estimativa',
 				fill: false,
 				lineTension: 0.5,
@@ -118,7 +118,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 				order: 6,
 				hidden: !toggleStats.stock,
 				stack: 'stack2',
-			}); */
+			});
 		}
 		return {
 			labels: labels,
@@ -215,7 +215,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			{/* <div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
+			<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
 				<CustomCheckbox
 					checked={toggleStats.stock}
 					label={'Stock de Vacinas - Estimativa'}
@@ -226,7 +226,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 						});
 					}}
 				/>
-			</div> */}
+			</div>
 			<div>{!loading ? <Bar height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
