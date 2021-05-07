@@ -249,7 +249,6 @@ function VacinadosPorDia({
         canvas.parentNode.style.width = '100%';
       }
     });
-    console.log('totais', values);
     let datasets = [{
       label: 'Vacinas diárias - Média movel de 7 dias',
       fill: false,
@@ -1262,7 +1261,7 @@ function useData({
         labels
       } = statistics.getDiariosInoculacoes();
       let vaccines_stock = Array(totalDiarios.length).fill(0);
-      let vaccines_stock_var = Array(totalDays).fill(0);
+      let vaccines_stock_var = Array(totalDays + 1).fill(0);
       let {
         com,
         mod,
@@ -1301,15 +1300,9 @@ function useData({
       });
       let current_vaccine_stock = 0;
       vaccines_stock_var = vaccines_stock_var.map((el, idx) => {
-        if (vaccines_stock[idx] > 0) {
-          current_vaccine_stock = current_vaccine_stock - totalDiarios[idx] + vaccines_stock[idx];
-        } else {
-          current_vaccine_stock = current_vaccine_stock - totalDiarios[idx];
-        }
-
+        current_vaccine_stock = current_vaccine_stock - (totalDiarios[idx] || 0) + vaccines_stock[idx];
         return current_vaccine_stock;
       });
-      console.log(3, vaccines_stock_var);
       return {
         vaccines_stock_var,
         labels
@@ -1748,7 +1741,8 @@ function useData({
             com: [],
             az: [],
             janss: [],
-            target: 0
+            target: 0,
+            max: 0
           };
 
           if (el['Vaccine'] === 'COM') {
@@ -3568,7 +3562,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620397628939,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-04-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
+module.exports = JSON.parse("{\"date\":1620414410964,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
 
 /***/ }),
 
