@@ -62,11 +62,12 @@ export function useData({ regiao }) {
 			let totalDays = data.week * DAYS_PER_WEEK;
 			let { values: totalDiarios, labels } = statistics.getDiariosInoculacoes();
 			let vaccines_stock = Array(totalDiarios.length).fill(0);
-			let vaccines_stock_var = Array(totalDays).fill(0);
+			let vaccines_stock_var = Array(totalDays + 1).fill(0);
 			let { com, mod, az, labels: labelsEcdc } = await statistics.getReceivedDosesByBrandByWeek();
 			let totais = com.map((el, idx) => {
 				return (mod[idx] ?? 0) + (az[idx] ?? 0) + (com[idx] ?? 0);
 			});
+
 			vaccines_stock = vaccines_stock.map((el, idx) => {
 				let found_date = null;
 				let date = vaccines[idx].Data;
@@ -96,14 +97,9 @@ export function useData({ regiao }) {
 			let current_vaccine_stock = 0;
 
 			vaccines_stock_var = vaccines_stock_var.map((el, idx) => {
-				if (vaccines_stock[idx] > 0) {
-					current_vaccine_stock = current_vaccine_stock - totalDiarios[idx] + vaccines_stock[idx];
-				} else {
-					current_vaccine_stock = current_vaccine_stock - totalDiarios[idx];
-				}
+				current_vaccine_stock = current_vaccine_stock - (totalDiarios[idx] || 0) + vaccines_stock[idx];
 				return current_vaccine_stock;
 			});
-			console.log(3, vaccines_stock_var);
 
 			return { vaccines_stock_var, labels };
 		},
@@ -522,6 +518,7 @@ export function useData({ regiao }) {
 						az: [],
 						janss: [],
 						target: 0,
+						max: 0,
 					};
 
 					if (el['Vaccine'] === 'COM') {
