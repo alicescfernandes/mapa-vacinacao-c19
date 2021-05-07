@@ -518,6 +518,7 @@ export function useData({ regiao }) {
 						az: [],
 						janss: [],
 						target: 0,
+						max: 0,
 					};
 
 					if (el['Vaccine'] === 'COM') {

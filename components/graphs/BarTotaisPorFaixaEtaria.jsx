@@ -103,7 +103,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 							return formatNumber(value, false);
 						},
 					},
-					max: 1000_000,
+					max: 1_200_000,
 				},
 			},
 		};
