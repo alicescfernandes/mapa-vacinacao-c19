@@ -1785,7 +1785,6 @@ function useData({
     getTotalSNSRecebidas: async () => {
       let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "a"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
       let [item] = sns.filter(el => {
-        console.log(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat);
         return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat;
       });
       return item;
@@ -3041,7 +3040,6 @@ function RaaMapa({
 
   Object(external_react_["useEffect"])(async () => {
     statistics.getArquipelagoData().then(data => {
-      console.log(2, data);
       setGraphData(data[data.length - 1]);
 
       if (loaded === false) {
@@ -3562,7 +3560,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620414743262,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
+module.exports = JSON.parse("{\"date\":1620415446833,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
 
 /***/ }),
 
