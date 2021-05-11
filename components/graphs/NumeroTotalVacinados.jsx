@@ -33,7 +33,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	let [foreground, color_1, color_2] = colors;
 	let commonProps = {
 		fill: true,
-		lineTension: 0.5,
+		lineTension: 0.3,
 		lineBorder: 1,
 		borderWidth: 3,
 		borderJoinStyle: 'miter',

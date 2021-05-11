@@ -245,14 +245,14 @@ export default function Home() {
 								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
-						<Row>
+						{/* <Row>
 							<Col>
 								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
 								<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2020 até 11 de Abril de 2021</h3>
 								<hr />
 								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
 							</Col>
-						</Row>
+						</Row> */}
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
@@ -262,16 +262,16 @@ export default function Home() {
 								</Col>
 							</Row>
 						</LazyLoad>
-						{/* 	<LazyLoad height={500} offset={300} once>
+						<LazyLoad height={500} offset={300} once>
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
-									<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2021 até 14 de março de 20210.</h3>
+									<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2020 até 09 de Maio de 2021.</h3>
 									<hr />
 									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
 								</Col>
 							</Row>
-						</LazyLoad> */}
+						</LazyLoad>
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>

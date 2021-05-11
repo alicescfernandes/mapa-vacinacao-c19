@@ -45,7 +45,19 @@ export function RamMapa({ statistics, colors }) {
 
 	const renderMap = async (map) => {
 		const madeira = await fetch('/madeira.geojson').then((r) => r.json());
-		const madeiraMapa = L.map('map');
+		const madeiraMapa = L.map('map', {
+			zoomSnap: 0.1,
+			doubleClickZoom: false,
+			closePopupOnClick: false,
+			dragging: false,
+			zoomSnap: false,
+			zoomDelta: false,
+			trackResize: false,
+			touchZoom: false,
+			scrollWheelZoom: false,
+			zoomControl: false,
+			draggable: false,
+		});
 
 		let layers = L.geoJSON(madeira, {
 			onEachFeature: (feature, shape) => {
@@ -81,8 +93,9 @@ export function RamMapa({ statistics, colors }) {
 			layer.feature.properties.layerID = layer.feature.properties.DICOFRE;
 		});
 
-		//Create legend
 		madeiraMapa.fitBounds(layers.getBounds());
+		madeiraMapa.setZoom(10);
+		/* 	//Create legend
 		var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
@@ -114,7 +127,7 @@ export function RamMapa({ statistics, colors }) {
 		//hammering the click event
 		snapToPoint._container.onclick = function () {
 			madeiraMapa.fitBounds(layers.getBounds());
-		};
+		}; */
 	};
 
 	function renderGraph(el) {
@@ -134,7 +147,7 @@ export function RamMapa({ statistics, colors }) {
 			});
  */
 			const chartData = {
-				labels: [],
+				labels: [''],
 				datasets: [
 					{
 						label: 'Total de vacinas administradas - 1ª Dose',
@@ -167,13 +180,18 @@ export function RamMapa({ statistics, colors }) {
 					datalabels: {
 						display: false,
 					},
+					legend: {
+						position: 'bottom',
+						align: 'start',
+						display: false,
+					},
+					legend: {
+						position: 'bottom',
+						align: 'start',
+						display: false,
+					},
 				},
 				layout: { padding: { left: -12 } },
-				legend: {
-					position: 'bottom',
-					align: 'start',
-					display: false,
-				},
 
 				animation: {
 					duration: 1000,
@@ -225,7 +243,7 @@ export function RamMapa({ statistics, colors }) {
 
 	useEffect(async () => {
 		statistics.getArquipelagoData().then((data) => {
-			setGraphData(data[5]);
+			setGraphData(data[12]);
 
 			if (loaded === false) {
 				setLoaded(true);
