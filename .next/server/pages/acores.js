@@ -339,7 +339,12 @@ function VacinadosPorDia({
   };
 
   const options = () => {
-    const max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
+    let max = Math.max(...values); //alert(max);
+
+    if (regiao == _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL) {
+      max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
+    }
+
     return {
       layout: {
         padding: -5
@@ -420,7 +425,7 @@ function VacinadosPorDia({
   }, [values]);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+    children: [regiao == _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_scrollable].join(' '),
       style: {
         textAlign: 'left'
@@ -836,7 +841,7 @@ function NumeroTotalVacinados({
   let [foreground, color_1, color_2] = colors;
   let commonProps = {
     fill: true,
-    lineTension: 0.5,
+    lineTension: 0.3,
     lineBorder: 1,
     borderWidth: 3,
     borderJoinStyle: 'miter',
@@ -2863,7 +2868,19 @@ function RaaMapa({
 
   const renderMap = async map => {
     const madeira = await fetch('/acores.geojson').then(r => r.json());
-    const madeiraMapa = L.map('map');
+    const madeiraMapa = L.map('map', {
+      zoomSnap: 0.1,
+      doubleClickZoom: false,
+      closePopupOnClick: false,
+      dragging: false,
+      zoomSnap: false,
+      zoomDelta: false,
+      trackResize: false,
+      touchZoom: false,
+      scrollWheelZoom: false,
+      zoomControl: false,
+      draggable: false
+    });
     let layers = L.geoJSON(madeira, {
       onEachFeature: (feature, shape) => {
         let concelho = constants["a" /* ACORES_DICOS */][feature.properties.DicoShort];
@@ -2895,41 +2912,34 @@ function RaaMapa({
     layers.eachLayer(function (layer) {
       layer.feature.properties.layerID = layer.feature.properties.DICOFRE;
     });
-    madeiraMapa.fitBounds(layers.getBounds()); //Create legend
+    madeiraMapa.fitBounds(layers.getBounds());
+    madeiraMapa.setZoom(7.8); //Create legend
 
-    var legend = L.control({
-      position: 'bottomleft'
-    });
-
-    legend.onAdd = function (map) {
-      var div = L.DomUtil.create('div', 'info legend');
-
-      for (var i = 0; i < grades.length; i++) {
-        let grade = grades[i];
-        let grade_pretty = grades_pretty[grade];
-        div.innerHTML += `<p>
-						<i style="background:${getColor(grades[i] + 1)}"></i>${grade_pretty}</p>`;
-      }
-
-      return div;
+    /* 	var legend = L.control({ position: 'bottomleft' });
+    	legend.onAdd = function (map) {
+    	var div = L.DomUtil.create('div', 'info legend');
+    		for (var i = 0; i < grades.length; i++) {
+    		let grade = grades[i];
+    		let grade_pretty = grades_pretty[grade];
+    		div.innerHTML += `<p>
+    				<i style="background:${getColor(grades[i] + 1)}"></i>${grade_pretty}</p>`;
+    	}
+    		return div;
     };
+    	legend.addTo(madeiraMapa);
+    */
 
-    legend.addTo(madeiraMapa);
-    var snapToPoint = L.control({
-      position: 'topleft'
-    });
-
-    snapToPoint.onAdd = function (map) {
-      var div = L.DomUtil.create('div', 'info legend');
-      div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
-      return div;
+    /* var snapToPoint = L.control({ position: 'topleft' });
+    	snapToPoint.onAdd = function (map) {
+    	var div = L.DomUtil.create('div', 'info legend');
+    	div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
+    		return div;
     };
-
-    snapToPoint.addTo(madeiraMapa); //hammering the click event
-
+    	snapToPoint.addTo(madeiraMapa);
+    	//hammering the click event
     snapToPoint._container.onclick = function () {
-      madeiraMapa.fitBounds(layers.getBounds());
-    };
+    	madeiraMapa.fitBounds(layers.getBounds());
+    }; */
   };
 
   function renderGraph(el) {
@@ -3560,7 +3570,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620748505252,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
+module.exports = JSON.parse("{\"date\":1620766762942,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-11\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
 
 /***/ }),
 

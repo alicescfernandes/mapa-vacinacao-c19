@@ -339,7 +339,12 @@ function VacinadosPorDia({
   };
 
   const options = () => {
-    const max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
+    let max = Math.max(...values); //alert(max);
+
+    if (regiao == _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL) {
+      max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
+    }
+
     return {
       layout: {
         padding: -5
@@ -420,7 +425,7 @@ function VacinadosPorDia({
   }, [values]);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
+    children: [regiao == _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_scrollable].join(' '),
       style: {
         textAlign: 'left'
@@ -836,7 +841,7 @@ function NumeroTotalVacinados({
   let [foreground, color_1, color_2] = colors;
   let commonProps = {
     fill: true,
-    lineTension: 0.5,
+    lineTension: 0.3,
     lineBorder: 1,
     borderWidth: 3,
     borderJoinStyle: 'miter',
@@ -2161,7 +2166,7 @@ function RamBarAdministradasPorFaixaEtaria({
   let {
     0: activeDose,
     1: setActiveDose
-  } = Object(external_react_["useState"])(1);
+  } = Object(external_react_["useState"])('dose_1');
   const canvasRef = Object(external_react_["useRef"])(null);
 
   function generateColor(color) {
@@ -2209,151 +2214,62 @@ function RamBarAdministradasPorFaixaEtaria({
         canvas.parentNode.style.width = '100%';
       }
     });
+    console.log(activeDose, groups.map(group => group.e1824[activeDose] || 0));
     return {
       labels: Object.keys(graphData.labels).map(key => {
         let fromDate = new Date(labels[key]);
         return `${Object(utils["c" /* formatNumber */])(fromDate.getDate())}/${Object(utils["c" /* formatNumber */])(fromDate.getMonth() + 1)}`;
       }),
       datasets: [_objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[0])), {}, {
-        label: 'Grupo 18/24 - 2ª Dose',
+        label: 'Grupo 18/24',
         labelGroup: 'Grupo 18/24',
         fill: false,
         backgroundColor: shades[0],
-        data: groups.map(group => group.e1824.dose_2 || 0),
+        data: groups.map(group => group.e1824[activeDose] || 0),
         order: 1,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[0])), {}, {
-        label: 'Grupo 18/24 - 1ª Dose',
-        labelGroup: 'Grupo 18/24',
-        fill: false,
-        backgroundColor: shades[0],
-        data: groups.map(group => group.e1824.dose_1 || 0),
-        order: 2,
-        hidden: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
+        customDose: 2
       }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(tints[1])), {}, {
-        label: 'Grupo 25/49 - 2ª Dose',
+        label: 'Grupo 25/49',
         labelGroup: 'Grupo 25/49',
         fill: false,
         backgroundColor: tints[1],
-        data: groups.map(group => group.e2549.dose_2 || 0),
+        data: groups.map(group => group.e2549[activeDose] || 0),
         order: 3,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(tints[1])), {}, {
-        label: 'Grupo 25/49 - 1ª Dose',
-        labelGroup: 'Grupo 25/49',
-        backgroundColor: tints[1],
-        fill: false,
-        data: groups.map(group => group.e2549.dose_1 || 0),
-        order: 4,
-        hidden: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
+        customDose: 2
       }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(main)), {}, {
-        label: 'Grupo 50/59 - 2ª Dose',
+        label: 'Grupo 50/59',
         labelGroup: 'Grupo 50/59',
         fill: false,
         backgroundColor: main,
-        data: groups.map(group => group.e5059.dose_2 || 0),
+        data: groups.map(group => group.e5059[activeDose] || 0),
         stack: 'stack1',
         order: 5,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(main)), {}, {
-        label: 'Grupo 50/59 - 1ª Dose',
-        labelGroup: 'Grupo 50/59',
-        backgroundColor: main,
-        fill: false,
-        data: groups.map(group => group.e5059.dose_1 || 0),
-        stack: 'stack1',
-        order: 6,
-        hidden: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[2])), {}, {
-        label: 'Grupo 60/69 - 2ª Dose',
-        labelGroup: 'Grupo 60/69',
-        fill: false,
-        backgroundColor: shades[2],
-        data: groups.map(group => group.e6064.dose_2 + group.e6569.dose_2 || 0),
-        yAxisID: 'axis',
-        xAxisID: 'xaxis',
-        order: 7,
-        hidden: true,
-        display: false,
         customDose: 2
       }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[2])), {}, {
-        label: 'Grupo 60/69 - 1ª Dose',
+        label: 'Grupo 60/69',
         labelGroup: 'Grupo 60/69',
-        backgroundColor: shades[2],
-        data: groups.map(group => group.e6064.dose_1 + group.e6569.dose_1 || 0),
-        xAxisID: 'xaxis',
-        order: 8,
-        hidden: false,
         fill: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
+        backgroundColor: shades[2],
+        data: groups.map(group => (group.e6064[activeDose] + group.e6569[activeDose]) / 2 || 0),
+        order: 7,
+        customDose: 2
       }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[2])), {}, {
-        label: 'Grupo 70/79 - 2ª Dose',
+        label: 'Grupo 70/79',
         labelGroup: 'Grupo 70/79',
         fill: false,
         backgroundColor: complements[2],
         data: groups.map(group => group.e7079.dose_2 || 0),
         order: 9,
-        hidden: true,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[2])), {}, {
-        label: 'Grupo 70/79 - 1ª Dose',
-        labelGroup: 'Grupo 70/79',
-        backgroundColor: complements[2],
-        data: groups.map(group => group.e7079.dose_1 || 0),
-        order: 10,
-        hidden: false,
-        fill: false,
-        display: true,
-        customDose: 1,
-        yAxisID: 'axis'
+        customDose: 2
       }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[1])), {}, {
-        label: 'Grupo 80+ - 2ª Dose',
+        label: 'Grupo 80+',
         labelGroup: 'Grupo 80+',
-        xAxisID: 'xaxis',
         backgroundColor: complements[1],
         data: groups.map(group => group.e80.dose_2 || 0),
         order: 11,
-        hidden: true,
         stack: 'stack2',
         fill: false,
-        display: false,
-        customDose: 2,
-        yAxisID: 'axis'
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[1])), {}, {
-        label: 'Grupo 80+ - 1ª Dose',
-        labelGroup: 'Grupo 80+',
-        backgroundColor: complements[1],
-        data: groups.map(group => group.e80.dose_1 || 0),
-        stack: 'stack2',
-        xAxisID: 'xaxis',
-        yAxisID: 'axis',
-        order: 12,
-        hidden: false,
-        fill: false,
-        display: true,
-        customDose: 1
+        customDose: 2
       })]
     };
   };
@@ -2361,11 +2277,9 @@ function RamBarAdministradasPorFaixaEtaria({
   const options = () => {
     let maxValue = 100;
     return {
-      //maintainAspectRatio: false,
       plugins: {
         datalabels: {
-          display: false,
-          color: 'blue'
+          display: false
         },
         legend: {
           position: 'bottom',
@@ -2375,11 +2289,6 @@ function RamBarAdministradasPorFaixaEtaria({
           },
           onLeave: function (event, legend) {
             document.body.classList.remove('mouse-pointer');
-          },
-          labels: {
-            filter: function (item, chart) {
-              return chart.datasets[item.datasetIndex].hidden == false;
-            }
           }
         }
       },
@@ -2407,7 +2316,7 @@ function RamBarAdministradasPorFaixaEtaria({
         })
       },
       scales: {
-        yAxes: [{
+        y: {
           id: 'axis',
           stacked: false,
           ticks: {
@@ -2417,14 +2326,14 @@ function RamBarAdministradasPorFaixaEtaria({
             stepSize: (maxValue / 5).toFixed(0),
             callback: value => Object(utils["c" /* formatNumber */])(value, false) + '%'
           }
-        }],
-        xAxes: [{
+        },
+        x: {
           id: 'xaxis',
           stacked: false,
           ticks: {
             beginAtZero: false
           }
-        }]
+        }
       }
     };
   };
@@ -2433,7 +2342,7 @@ function RamBarAdministradasPorFaixaEtaria({
     statistics.getAdministredDosesByAgeByWeekRam().then(data => {
       setGraphData(data);
       setLoaded(true);
-      setActiveDose(1);
+      setActiveDose('dose_1');
     });
   }, []);
   return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
@@ -2446,18 +2355,18 @@ function RamBarAdministradasPorFaixaEtaria({
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
               className: external_classnames_default()('toggle_button', {
-                active: activeDose === 1
+                active: activeDose === 'dose_1'
               }),
               onClick: () => {
-                setActiveDose(1);
+                setActiveDose('dose_1');
               },
               children: "1\xAA Dose"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
               className: external_classnames_default()('toggle_button', {
-                active: activeDose === 2
+                active: activeDose === 'dose_2'
               }),
               onClick: () => {
-                setActiveDose(2);
+                setActiveDose('dose_2');
               },
               children: "2\xAA Dose"
             })]
@@ -2535,7 +2444,19 @@ function RamMapa({
 
   const renderMap = async map => {
     const madeira = await fetch('/madeira.geojson').then(r => r.json());
-    const madeiraMapa = L.map('map');
+    const madeiraMapa = L.map('map', {
+      zoomSnap: 0.1,
+      doubleClickZoom: false,
+      closePopupOnClick: false,
+      dragging: false,
+      zoomSnap: false,
+      zoomDelta: false,
+      trackResize: false,
+      touchZoom: false,
+      scrollWheelZoom: false,
+      zoomControl: false,
+      draggable: false
+    });
     let layers = L.geoJSON(madeira, {
       onEachFeature: (feature, shape) => {
         let concelho = constants["k" /* MADEIRA_DICOS */][feature.properties.Dico];
@@ -2566,42 +2487,33 @@ function RamMapa({
     }).addTo(madeiraMapa);
     layers.eachLayer(function (layer) {
       layer.feature.properties.layerID = layer.feature.properties.DICOFRE;
-    }); //Create legend
-
+    });
     madeiraMapa.fitBounds(layers.getBounds());
-    var legend = L.control({
-      position: 'bottomleft'
-    });
-
-    legend.onAdd = function (map) {
-      var div = L.DomUtil.create('div', 'info legend');
-
-      for (var i = 0; i < grades.length; i++) {
-        let grade = grades[i];
-        let grade_pretty = grades_pretty[grade];
-        div.innerHTML += `<p>
-						<i style="background:${getColor(grades[i] + 1)}"></i>${grade_pretty}</p>`;
-      }
-
-      return div;
+    madeiraMapa.setZoom(10);
+    /* 	//Create legend
+    var legend = L.control({ position: 'bottomleft' });
+    	legend.onAdd = function (map) {
+    	var div = L.DomUtil.create('div', 'info legend');
+    		for (var i = 0; i < grades.length; i++) {
+    		let grade = grades[i];
+    		let grade_pretty = grades_pretty[grade];
+    		div.innerHTML += `<p>
+    				<i style="background:${getColor(grades[i] + 1)}"></i>${grade_pretty}</p>`;
+    	}
+    		return div;
     };
-
-    legend.addTo(madeiraMapa);
-    var snapToPoint = L.control({
-      position: 'topleft'
-    });
-
-    snapToPoint.onAdd = function (map) {
-      var div = L.DomUtil.create('div', 'info legend');
-      div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
-      return div;
+    	legend.addTo(madeiraMapa);
+    	var snapToPoint = L.control({ position: 'topleft' });
+    	snapToPoint.onAdd = function (map) {
+    	var div = L.DomUtil.create('div', 'info legend');
+    	div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
+    		return div;
     };
-
-    snapToPoint.addTo(madeiraMapa); //hammering the click event
-
+    	snapToPoint.addTo(madeiraMapa);
+    	//hammering the click event
     snapToPoint._container.onclick = function () {
-      madeiraMapa.fitBounds(layers.getBounds());
-    };
+    	madeiraMapa.fitBounds(layers.getBounds());
+    }; */
   };
 
   function renderGraph(el) {
@@ -2621,7 +2533,7 @@ function RamMapa({
       });
       */
       const chartData = {
-        labels: [],
+        labels: [''],
         datasets: [{
           label: 'Total de vacinas administradas - 1ª Dose',
           borderColor: main,
@@ -2649,17 +2561,22 @@ function RamMapa({
         plugins: {
           datalabels: {
             display: false
+          },
+          legend: {
+            position: 'bottom',
+            align: 'start',
+            display: false
+          },
+          legend: {
+            position: 'bottom',
+            align: 'start',
+            display: false
           }
         },
         layout: {
           padding: {
             left: -12
           }
-        },
-        legend: {
-          position: 'bottom',
-          align: 'start',
-          display: false
         },
         animation: {
           duration: 1000
@@ -2713,7 +2630,7 @@ function RamMapa({
 
   Object(external_react_["useEffect"])(async () => {
     statistics.getArquipelagoData().then(data => {
-      setGraphData(data[5]);
+      setGraphData(data[12]);
 
       if (loaded === false) {
         setLoaded(true);
@@ -3050,19 +2967,6 @@ function Home() {
               statistics: statistics
             })]
           })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
-              className: Home_module_default.a.title,
-              children: "Vacina\xE7\xE3o por grupos priorit\xE1rios"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              className: Home_module_default.a.subtitle,
-              children: "Dados acumulados desde 31 de Dezembro de 2020 at\xE9 11 de Abril de 2021"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamGruposPrioritarios, {
-              colors: colors_v2,
-              statistics: statistics
-            })]
-          })
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
           height: 500,
           once: true,
@@ -3072,6 +2976,24 @@ function Home() {
                 className: Home_module_default.a.title,
                 children: "Percentagem da popula\xE7\xE3o vacinada por faixa et\xE1ria"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamBarAdministradasPorFaixaEtaria, {
+                colors: colors_v2,
+                statistics: statistics
+              })]
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
+          height: 500,
+          offset: 300,
+          once: true,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Vacina\xE7\xE3o por regi\xE3o"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+                className: Home_module_default.a.subtitle,
+                children: "Dados acumulados desde 31 de Dezembro de 2020 at\xE9 09 de Maio de 2021."
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamMapa, {
                 colors: colors_v2,
                 statistics: statistics
               })]
@@ -4030,7 +3952,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620748505252,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-02T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-04\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
+module.exports = JSON.parse("{\"date\":1620766762942,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-04\",\"dateAcores\":\"2021-05-11\",\"dateAcoresCases\":\"2021-05-03\",\"week\":18}");
 
 /***/ }),
 
