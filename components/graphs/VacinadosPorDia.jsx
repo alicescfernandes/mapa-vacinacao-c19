@@ -131,7 +131,12 @@ export function VacinadosPorDia({ statistics, colors }) {
 	};
 
 	const options = () => {
-		const max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
+		let max = Math.max(...values);
+		//alert(max);
+		if (regiao == REGIOES.PORTUGAL) {
+			max = Math.max(...(toggleStats.stock === true ? vacinas_stock : values));
+		}
+
 		return {
 			layout: {
 				padding: -5,
@@ -214,18 +219,21 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
-				<CustomCheckbox
-					checked={toggleStats.stock}
-					label={'Stock de Vacinas - Estimativa'}
-					onChange={(checked) => {
-						setToggleStats({
-							...toggleStats,
-							stock: checked,
-						});
-					}}
-				/>
-			</div>
+			{regiao == REGIOES.PORTUGAL && (
+				<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
+					<CustomCheckbox
+						checked={toggleStats.stock}
+						label={'Stock de Vacinas - Estimativa'}
+						onChange={(checked) => {
+							setToggleStats({
+								...toggleStats,
+								stock: checked,
+							});
+						}}
+					/>
+				</div>
+			)}
+
 			<div>{!loading ? <Bar height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);

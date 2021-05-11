@@ -9,7 +9,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades, tints, complements } = colors;
 	let [graphData, setGraphData] = useState({});
-	let [activeDose, setActiveDose] = useState(1);
+	let [activeDose, setActiveDose] = useState('dose_1');
 	const canvasRef = useRef(null);
 
 	function generateColor(color) {
@@ -50,6 +50,11 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				canvas.parentNode.style.width = '100%';
 			}
 		});
+		console.log(
+			activeDose,
+			groups.map((group) => group.e1824[activeDose] || 0)
+		);
+
 		return {
 			labels: Object.keys(graphData.labels).map((key) => {
 				let fromDate = new Date(labels[key]);
@@ -59,136 +64,67 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					...lineChartCommon,
 					...generateColor(shades[0]),
-					label: 'Grupo 18/24 - 2ª Dose',
+					label: 'Grupo 18/24',
 					labelGroup: 'Grupo 18/24',
 					fill: false,
 
 					backgroundColor: shades[0],
-					data: groups.map((group) => group.e1824.dose_2 || 0),
+					data: groups.map((group) => group.e1824[activeDose] || 0),
 
 					order: 1,
-					hidden: true,
-					display: false,
-					customDose: 2,
-					yAxisID: 'axis',
-				},
-				{
-					...lineChartCommon,
-					...generateColor(shades[0]),
-					label: 'Grupo 18/24 - 1ª Dose',
-					labelGroup: 'Grupo 18/24',
-					fill: false,
-					backgroundColor: shades[0],
-					data: groups.map((group) => group.e1824.dose_1 || 0),
 
-					order: 2,
-					hidden: false,
-					display: true,
-					customDose: 1,
-					yAxisID: 'axis',
+					customDose: 2,
 				},
+
 				{
 					...lineChartCommon,
 					...generateColor(tints[1]),
-					label: 'Grupo 25/49 - 2ª Dose',
+					label: 'Grupo 25/49',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
 
 					backgroundColor: tints[1],
-					data: groups.map((group) => group.e2549.dose_2 || 0),
+					data: groups.map((group) => group.e2549[activeDose] || 0),
 
 					order: 3,
-					hidden: true,
-					display: false,
-					customDose: 2,
-					yAxisID: 'axis',
-				},
-				{
-					...lineChartCommon,
-					...generateColor(tints[1]),
-					label: 'Grupo 25/49 - 1ª Dose',
-					labelGroup: 'Grupo 25/49',
-					backgroundColor: tints[1],
-					fill: false,
-					data: groups.map((group) => group.e2549.dose_1 || 0),
 
-					order: 4,
-					hidden: false,
-					display: true,
-					customDose: 1,
-					yAxisID: 'axis',
+					customDose: 2,
 				},
 
 				{
 					...lineChartCommon,
 					...generateColor(main),
-					label: 'Grupo 50/59 - 2ª Dose',
+					label: 'Grupo 50/59',
 					labelGroup: 'Grupo 50/59',
 					fill: false,
 
 					backgroundColor: main,
-					data: groups.map((group) => group.e5059.dose_2 || 0),
+					data: groups.map((group) => group.e5059[activeDose] || 0),
 					stack: 'stack1',
 					order: 5,
-					hidden: true,
-					display: false,
+
 					customDose: 2,
-					yAxisID: 'axis',
-				},
-				{
-					...lineChartCommon,
-					...generateColor(main),
-					label: 'Grupo 50/59 - 1ª Dose',
-					labelGroup: 'Grupo 50/59',
-					backgroundColor: main,
-					fill: false,
-					data: groups.map((group) => group.e5059.dose_1 || 0),
-					stack: 'stack1',
-					order: 6,
-					hidden: false,
-					display: true,
-					customDose: 1,
-					yAxisID: 'axis',
 				},
 
 				{
 					...lineChartCommon,
 					...generateColor(shades[2]),
-					label: 'Grupo 60/69 - 2ª Dose',
+					label: 'Grupo 60/69',
 					labelGroup: 'Grupo 60/69',
 					fill: false,
 
 					backgroundColor: shades[2],
-					data: groups.map((group) => group.e6064.dose_2 + group.e6569.dose_2 || 0),
-					yAxisID: 'axis',
-					xAxisID: 'xaxis',
+					data: groups.map((group) => (group.e6064[activeDose] + group.e6569[activeDose]) / 2 || 0),
 
 					order: 7,
-					hidden: true,
-					display: false,
-					customDose: 2,
-				},
-				{
-					...lineChartCommon,
-					...generateColor(shades[2]),
-					label: 'Grupo 60/69 - 1ª Dose',
-					labelGroup: 'Grupo 60/69',
-					backgroundColor: shades[2],
-					data: groups.map((group) => group.e6064.dose_1 + group.e6569.dose_1 || 0),
-					xAxisID: 'xaxis',
 
-					order: 8,
-					hidden: false,
-					fill: false,
-					display: true,
-					customDose: 1,
-					yAxisID: 'axis',
+					customDose: 2,
 				},
 
 				{
 					...lineChartCommon,
 					...generateColor(complements[2]),
-					label: 'Grupo 70/79 - 2ª Dose',
+					label: 'Grupo 70/79',
 					labelGroup: 'Grupo 70/79',
 					fill: false,
 
@@ -196,60 +132,24 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					data: groups.map((group) => group.e7079.dose_2 || 0),
 
 					order: 9,
-					hidden: true,
-					display: false,
-					customDose: 2,
-					yAxisID: 'axis',
-				},
-				{
-					...lineChartCommon,
-					...generateColor(complements[2]),
-					label: 'Grupo 70/79 - 1ª Dose',
-					labelGroup: 'Grupo 70/79',
-					backgroundColor: complements[2],
-					data: groups.map((group) => group.e7079.dose_1 || 0),
 
-					order: 10,
-					hidden: false,
-					fill: false,
-					display: true,
-					customDose: 1,
-					yAxisID: 'axis',
+					customDose: 2,
 				},
 
 				{
 					...lineChartCommon,
 					...generateColor(complements[1]),
-					label: 'Grupo 80+ - 2ª Dose',
+					label: 'Grupo 80+',
 					labelGroup: 'Grupo 80+',
-					xAxisID: 'xaxis',
 					backgroundColor: complements[1],
 					data: groups.map((group) => group.e80.dose_2 || 0),
 
 					order: 11,
-					hidden: true,
-					stack: 'stack2',
-					fill: false,
-					display: false,
-					customDose: 2,
-					yAxisID: 'axis',
-				},
-				{
-					...lineChartCommon,
-					...generateColor(complements[1]),
-					label: 'Grupo 80+ - 1ª Dose',
-					labelGroup: 'Grupo 80+',
-					backgroundColor: complements[1],
-					data: groups.map((group) => group.e80.dose_1 || 0),
-					stack: 'stack2',
-					xAxisID: 'xaxis',
-					yAxisID: 'axis',
 
-					order: 12,
-					hidden: false,
+					stack: 'stack2',
 					fill: false,
-					display: true,
-					customDose: 1,
+
+					customDose: 2,
 				},
 			],
 		};
@@ -257,12 +157,9 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	const options = () => {
 		let maxValue = 100;
 		return {
-			//maintainAspectRatio: false,
-
 			plugins: {
 				datalabels: {
 					display: false,
-					color: 'blue',
 				},
 				legend: {
 					position: 'bottom',
@@ -272,11 +169,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					},
 					onLeave: function (event, legend) {
 						document.body.classList.remove('mouse-pointer');
-					},
-					labels: {
-						filter: function (item, chart) {
-							return chart.datasets[item.datasetIndex].hidden == false;
-						},
 					},
 				},
 			},
@@ -307,28 +199,25 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 				},
 			},
 			scales: {
-				yAxes: [
-					{
-						id: 'axis',
-						stacked: false,
-						ticks: {
-							beginAtZero: false,
-							min: 0,
-							max: maxValue,
-							stepSize: (maxValue / 5).toFixed(0),
-							callback: (value) => formatNumber(value, false) + '%',
-						},
+				y: {
+					id: 'axis',
+					stacked: false,
+					ticks: {
+						beginAtZero: false,
+						min: 0,
+						max: maxValue,
+						stepSize: (maxValue / 5).toFixed(0),
+						callback: (value) => formatNumber(value, false) + '%',
 					},
-				],
-				xAxes: [
-					{
-						id: 'xaxis',
-						stacked: false,
-						ticks: {
-							beginAtZero: false,
-						},
+				},
+
+				x: {
+					id: 'xaxis',
+					stacked: false,
+					ticks: {
+						beginAtZero: false,
 					},
-				],
+				},
 			},
 		};
 	};
@@ -337,7 +226,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 		statistics.getAdministredDosesByAgeByWeekRam().then((data) => {
 			setGraphData(data);
 			setLoaded(true);
-			setActiveDose(1);
+			setActiveDose('dose_1');
 		});
 	}, []);
 
@@ -350,20 +239,20 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 							<p>
 								<button
 									className={classNames('toggle_button', {
-										active: activeDose === 1,
+										active: activeDose === 'dose_1',
 									})}
 									onClick={() => {
-										setActiveDose(1);
+										setActiveDose('dose_1');
 									}}
 								>
 									1ª Dose
 								</button>
 								<button
 									className={classNames('toggle_button', {
-										active: activeDose === 2,
+										active: activeDose === 'dose_2',
 									})}
 									onClick={() => {
-										setActiveDose(2);
+										setActiveDose('dose_2');
 									}}
 								>
 									2ª Dose

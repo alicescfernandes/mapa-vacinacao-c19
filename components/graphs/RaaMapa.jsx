@@ -45,7 +45,19 @@ export function RaaMapa({ statistics, colors }) {
 
 	const renderMap = async (map) => {
 		const madeira = await fetch('/acores.geojson').then((r) => r.json());
-		const madeiraMapa = L.map('map');
+		const madeiraMapa = L.map('map', {
+			zoomSnap: 0.1,
+			doubleClickZoom: false,
+			closePopupOnClick: false,
+			dragging: false,
+			zoomSnap: false,
+			zoomDelta: false,
+			trackResize: false,
+			touchZoom: false,
+			scrollWheelZoom: false,
+			zoomControl: false,
+			draggable: false,
+		});
 		let layers = L.geoJSON(madeira, {
 			onEachFeature: (feature, shape) => {
 				let concelho = ACORES_DICOS[feature.properties.DicoShort];
@@ -81,8 +93,10 @@ export function RaaMapa({ statistics, colors }) {
 		});
 
 		madeiraMapa.fitBounds(layers.getBounds());
+		madeiraMapa.setZoom(7.8);
+
 		//Create legend
-		var legend = L.control({ position: 'bottomleft' });
+		/* 	var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
 			var div = L.DomUtil.create('div', 'info legend');
@@ -98,8 +112,8 @@ export function RaaMapa({ statistics, colors }) {
 		};
 
 		legend.addTo(madeiraMapa);
-
-		var snapToPoint = L.control({ position: 'topleft' });
+ */
+		/* var snapToPoint = L.control({ position: 'topleft' });
 
 		snapToPoint.onAdd = function (map) {
 			var div = L.DomUtil.create('div', 'info legend');
@@ -113,7 +127,7 @@ export function RaaMapa({ statistics, colors }) {
 		//hammering the click event
 		snapToPoint._container.onclick = function () {
 			madeiraMapa.fitBounds(layers.getBounds());
-		};
+		}; */
 	};
 
 	function renderGraph(el) {
