@@ -1259,7 +1259,7 @@ function useData({
         labels
       } = statistics.getDiariosInoculacoes();
       let vaccines_stock = Array(totalDiarios.length).fill(0);
-      let vaccines_stock_var = Array(totalDays + 1).fill(0);
+      let vaccines_stock_var = Array(totalDays).fill(0);
       let {
         com,
         mod,
@@ -5708,8 +5708,7 @@ function Home() {
     plausible.trackPageview();
     let {
       RECEIVED: sum
-    } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas());
-    sum = 4218420; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/05/Relato%CC%81rio-de-Vacinac%CC%A7a%CC%83o-n.o-12.pdf
+    } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas()); //sum = 4218420; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/05/Relato%CC%81rio-de-Vacinac%CC%A7a%CC%83o-n.o-12.pdf
 
     let item = rawData.filter(el => {
       return Object(external_date_fns_["isSameDay"])(el.Data, new Date(last_update.dateSnsStart));
@@ -7067,7 +7066,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620915004935,\"dateSnsStartWeirdFormat\":\"2021-04-26\",\"dateSnsStart\":\"2021-04-26T00:00:00\",\"dateSns\":\"2021-05-02T00:00:00\",\"dateEcdc\":\"2021-05-02\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-10\",\"dateAcores\":\"2021-05-11\",\"dateAcoresCases\":\"2021-05-11\",\"week\":18}");
+module.exports = JSON.parse("{\"date\":1620944622274,\"dateSnsStartWeirdFormat\":\"03/05/2021\",\"dateSnsStart\":\"2021-03-05\",\"dateSns\":\"2021-05-09\",\"dateEcdc\":\"2021-05-09\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-10\",\"dateAcores\":\"2021-05-11\",\"dateAcoresCases\":\"2021-05-11\",\"week\":19}");
 
 /***/ }),
 
@@ -7250,18 +7249,19 @@ const ARS_MAPPING = {
   'ARS Centro': 'centro'
 };
 const SNS_WEEKS = {
-  '08/02/21': 'De 27/12 a 14/02',
-  '15/02/21': '15/02 a 21/02',
-  '22/02/21': '22/02 a 28/02',
-  '01/03/21': '01/03 a 07/03',
-  '08/03/21': '08/03 a 14/03',
-  '15/03/21': '15/03 a 21/03',
-  '22/03/21': '22/03 a 28/03',
-  '29/03/21': '29/03 a 04/04',
-  '05/04/21': '05/04 a 11/04',
-  '12/04/21': '12/04 a 18/04',
-  '19/04/21': '19/04 a 25/04',
-  '19/04/26': '26/04 a 02/05',
+  '08/02/2021': 'De 27/12 a 14/02',
+  '15/02/2021': '15/02 a 21/02',
+  '22/02/2021': '22/02 a 28/02',
+  '01/03/2021': '01/03 a 07/03',
+  '08/03/2021': '08/03 a 14/03',
+  '15/03/2021': '15/03 a 21/03',
+  '22/03/2021': '22/03 a 28/03',
+  '29/03/2021': '29/03 a 04/04',
+  '05/04/2021': '05/04 a 11/04',
+  '12/04/2021': '12/04 a 18/04',
+  '19/04/2021': '19/04 a 25/04',
+  '26/04/2021': '26/04 a 02/05',
+  '03/05/2021': '03/05 a 09/05',
   '2021-02-08': 'De 27/12 a 14/02',
   '2021-02-15': '15/02 a 21/02',
   '2021-02-22': '22/02 a 28/02',
@@ -7274,7 +7274,8 @@ const SNS_WEEKS = {
   '2021-04-12': '12/04 a 18/04',
   '2021-04-19': '19/04 a 25/04',
   '2021-04-19': '19/04 a 25/04',
-  '2021-04-26': '26/04 a 02/05'
+  '2021-04-26': '26/04 a 02/05',
+  '2021-03-05': '03/05 a 09/05'
 };
 
 /***/ })
