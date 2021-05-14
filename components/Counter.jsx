@@ -29,9 +29,12 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 				</span>
 			) : (
 				<>
-					<CountTo digits={digits} delay={1} from={from || 0} to={to || 0} speed={0}>
+					{/* <CountTo digits={digits} delay={1} from={from || 0} to={to || 0} speed={0}>
 						{fn}
-					</CountTo>
+					</CountTo> */}
+					<span style={{ color: foreground }} className={styles.card_highlight}>
+						{numberFormatter.format(to).replace(/,/gm, ' ')} {suffix ? suffix : ''}
+					</span>
 
 					{Math.abs(to - yesterday) > 0 ? (
 						<>
