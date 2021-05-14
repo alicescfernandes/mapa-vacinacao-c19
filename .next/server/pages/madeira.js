@@ -3206,13 +3206,12 @@ function Counter({
       },
       children: "N/A"
     }) : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_count_to__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        digits: digits,
-        delay: 1,
-        from: from || 0,
-        to: to || 0,
-        speed: 0,
-        children: fn
+      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("span", {
+        style: {
+          color: foreground
+        },
+        className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_highlight,
+        children: [numberFormatter.format(to).replace(/,/gm, ' '), " ", suffix ? suffix : '']
       }), Math.abs(to - yesterday) > 0 ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
           className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.card_subtitle,
@@ -3952,7 +3951,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1620944622274,\"dateSnsStartWeirdFormat\":\"03/05/2021\",\"dateSnsStart\":\"2021-03-05\",\"dateSns\":\"2021-05-09\",\"dateEcdc\":\"2021-05-09\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-10\",\"dateAcores\":\"2021-05-11\",\"dateAcoresCases\":\"2021-05-11\",\"week\":19}");
+module.exports = JSON.parse("{\"date\":1620982784865,\"dateSnsStartWeirdFormat\":\"03/05/2021\",\"dateSnsStart\":\"2021-03-05\",\"dateSns\":\"2021-05-09\",\"dateEcdc\":\"2021-05-09\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-10\",\"dateAcores\":\"2021-05-11\",\"dateAcoresCases\":\"2021-05-11\",\"week\":19}");
 
 /***/ }),
 
