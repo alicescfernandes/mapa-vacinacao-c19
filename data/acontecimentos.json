@@ -77,10 +77,37 @@
     {
         "data": "2021-04-21",
         "mode": "vertical",
-        "color":"#D17615",
+        "color":"#01ae97",
         "display":true,
         "position": 115,
         "marcador": "Inicío da 2ª Fase de Vacinação ",
         "fonte": "https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/"
+    },
+    {
+        "data": "2021-04-23",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 117,
+        "marcador": "Autoagendamento - 65+",
+        "fonte": "https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/"
+    },
+    {
+        "data": "2021-05-09",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 132,
+        "marcador": "Autoagendamento - 60+ ",
+        "fonte": "https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830"
+    },
+    {
+        "data": "2021-05-13",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 136,
+        "marcador": "Autoagendamento - 55+ ",
+        "fonte": "https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html"
     }
 ]
