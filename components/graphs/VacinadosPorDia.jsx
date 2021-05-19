@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { REGIOES, RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber, makeAnnotations } from '../../utils';
+import { calculateDims, formatNumber, makeAnnotations } from '../../utils';
 import { Card } from './../Card';
 import acontecimentos from './../../data/acontecimentos.json';
 import { RegiaoContext } from '../context/regiao';
@@ -16,6 +16,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let { values: values2 } = statistics.getMediaMovelDiaria(7);
 	let [vacinas_stock, setVacinas_stock] = useState([]);
 	let { main, tints, shades, complements } = colors;
+	let [dim, setDim] = useState(calculateDims());
 
 	let [toggleStats, setToggleStats] = useState({
 		stock: true,
@@ -24,18 +25,9 @@ export function VacinadosPorDia({ statistics, colors }) {
 	const canvasRef = useRef(null);
 
 	const data = (canvas) => {
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
-
+		canvas.parentNode.parentNode.scrollLeft = dim.width;
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
+			setDim(calculateDims());
 		});
 		let datasets = [
 			{
@@ -129,6 +121,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let annotations = {
 		annotations: [...horizontalAnnotations],
 	};
+	let aspectRatio = dim.width / dim.height;
 
 	const options = () => {
 		let max = Math.max(...values);
@@ -138,6 +131,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 		}
 
 		return {
+			aspectRatio,
 			layout: {
 				padding: -5,
 			},
@@ -150,7 +144,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 				legend: {
 					position: 'bottom',
-					align: 'start',
+					align: 'end',
 				},
 			},
 
@@ -172,12 +166,14 @@ export function VacinadosPorDia({ statistics, colors }) {
 			},
 			scales: {
 				y: {
+					position: 'right',
+
 					stacked: true,
 					display: true,
 					ticks: {
 						beginAtZero: true,
-						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
 						callback: function (value, index, values) {
 							return formatNumber(value, false);
 						},
@@ -185,11 +181,13 @@ export function VacinadosPorDia({ statistics, colors }) {
 					suggestedMax: max,
 				},
 				axisy2: {
+					position: 'right',
+
 					display: false,
 					ticks: {
 						beginAtZero: true,
-						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
 						callback: function (value, index, values) {
 							return formatNumber(value, false);
 						},
@@ -200,8 +198,8 @@ export function VacinadosPorDia({ statistics, colors }) {
 				x: {
 					ticks: {
 						beginAtZero: true,
-						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 90 : 120,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 90 : 120,
 					},
 				},
 			},
@@ -220,7 +218,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 	return (
 		<Card allowOverflow={true}>
 			{regiao == REGIOES.PORTUGAL && (
-				<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
+				<div className={[styles.card_sticky, styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
 					<CustomCheckbox
 						checked={toggleStats.stock}
 						label={'Stock de Vacinas - Estimativa'}
@@ -234,7 +232,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 				</div>
 			)}
 
-			<div>{!loading ? <Bar height={80} ref={canvasRef} options={options()} data={data} /> : ''}</div>
+			<div style={{ width: dim.width }}>{!loading ? <Bar ref={canvasRef} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

@@ -1,7 +1,7 @@
 import { createRef, useContext, useEffect, useState } from 'react';
 import { Line, Chart } from 'react-chartjs-2';
 import { Card } from './../Card';
-import { formatNumber, hexToRgb, makeAnnotations, perHundred } from '../../utils';
+import { formatNumber, hexToRgb, makeAnnotations, perHundred, calculateDims } from '../../utils';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import datalabelsPlugin from 'chartjs-plugin-datalabels';
 import acontecimentos from './../../data/acontecimentos.json';
@@ -15,10 +15,10 @@ Chart.register([annotationPlugin, datalabelsPlugin]);
 
 export function NumeroTotalVacinados({ colors, statistics }) {
 	let regiao = useContext(RegiaoContext);
-	let [vacinasStockVar, vacinasStockVarUpdate] = useState([1]);
 	let { labels } = statistics.getDailyData();
 	let { values, valuesIn1, valuesIn2 } = statistics.getVacinadosAcum();
 	let casesData = statistics.getCases();
+	let [dim, setDim] = useState(calculateDims());
 
 	let [toggleStats, setToggleStats] = useState({
 		imunidade: false,
@@ -29,7 +29,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	});
 
 	let [loading, setLoading] = useState(true);
-	let [height, setHeight] = useState(400);
 	let [foreground, color_1, color_2] = colors;
 	let commonProps = {
 		fill: true,
@@ -65,7 +64,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 					textAlign: 'left',
 					color: '#0A9DD1',
-					position: 'start',
+					position: 'end',
 					xAdjust: 10,
 					yAdjust: 10,
 					fontSize: '13px',
@@ -116,9 +115,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 					textAlign: 'left',
 					color: '#0A9DD1',
-					position: 'start',
+					position: 'end',
 					xAdjust: 5,
-					yAdjust: -10,
+					yAdjust: 10,
 					fontSize: '13px',
 
 					enabled: true,
@@ -144,9 +143,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 					color: '#D17615',
 					fontSize: '13px',
-					position: 'start',
+					position: 'end',
 					xAdjust: 5,
-					yAdjust: -10,
+					yAdjust: 10,
 					enabled: true,
 					content: 'Imunidade de Grupo (cerca de 7.2 milhões de pessoas)',
 				},
@@ -155,7 +154,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				type: 'line',
 				mode: 'horizontal',
 				scaleID: 'y',
-				value: toggleStats?.imunidade && toggleStats.perHundred ? 75 : null,
 				borderColor: 'transparent',
 				label: {
 					font: {
@@ -167,9 +165,10 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		],
 	};
 	let chartRef = createRef();
+
 	const data = (canvas, cenas) => {
 		const ctx = canvas.getContext('2d');
-		const gradient = ctx.createLinearGradient(0, 0, 0, height);
+		const gradient = ctx.createLinearGradient(0, 0, 0, dim.height);
 		let { r, g, b } = hexToRgb(foreground);
 		try {
 			gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
@@ -179,18 +178,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			gradient.addColorStop(1, '#ffffff');
 		}
 
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
-
+		canvas.parentNode.parentNode.scrollLeft = dim.width;
 		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
+			setDim(calculateDims());
 		});
 
 		const chartData = {
@@ -253,8 +243,10 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		return chartData;
 	};
 
+	let aspectRatio = dim.width / dim.height;
 	const options = () => {
 		return {
+			aspectRatio,
 			plugins: {
 				datalabels: {
 					display: false,
@@ -262,7 +254,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				annotation: regiao == 'portugal' ? annotations : {},
 				legend: {
 					position: 'bottom',
-					align: 'start',
+					align: 'end',
 				},
 			},
 
@@ -283,25 +275,23 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				},
 			},
 			scales: {
-				y: [
-					{
-						ticks: {
-							beginAtZero: false,
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
-							//max: 10000000,
-							callback: (value) => formatNumber(value, false),
-						},
+				y: {
+					position: 'right',
+					ticks: {
+						beginAtZero: false,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
+						//max: 10000000,
+						callback: (value) => formatNumber(value, false),
 					},
-				],
-				x: [
-					{
-						ticks: {
-							maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-							minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 30 : 60,
-						},
+				},
+
+				x: {
+					ticks: {
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 90 : 120,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 90 : 120,
 					},
-				],
+				},
 			},
 		};
 	};
@@ -315,7 +305,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	return (
 		<Card allowOverflow={true}>
 			{regiao === 'portugal' && (
-				<div className={[styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
+				<div className={[styles.card_sticky, styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
 					<CustomCheckbox
 						checked={toggleStats.primeira_fase}
 						label={'1ª Fase'}
@@ -371,7 +361,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				</div>
 			)}
 
-			<div> {!loading ? <Line plugins={[annotationPlugin]} height={100} ref={chartRef} options={options()} data={data} /> : ''}</div>
+			<div style={{ width: dim.width }}>
+				{!loading ? <Line plugins={[annotationPlugin]} ref={chartRef} options={options()} data={data} /> : ''}
+			</div>
 		</Card>
 	);
 }
