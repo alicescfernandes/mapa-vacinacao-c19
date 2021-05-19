@@ -139,7 +139,7 @@ const cors = initMiddleware(cors__WEBPACK_IMPORTED_MODULE_0___default()({
   methods: ['GET']
 }));
 async function handler(req, res) {
-  Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* trackPlausible */ "g"])(req);
+  Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* trackPlausible */ "h"])(req);
   await cors(req, res);
   res.statusCode = 200;
   res.json(_data_sns_json__WEBPACK_IMPORTED_MODULE_1__);
@@ -158,28 +158,31 @@ module.exports = require("date-fns");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchWithLocalCache; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatDateShort; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("4vsW");
 /* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("lN74");
-var _data_generic_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
+/* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lN74");
+var _data_generic_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -250,7 +253,7 @@ function downloadPNG(canvasElement, graphName) {
   link.href = canvasElement.toDataURL();
   link.click();
 }
-function perHundred(total, populacaoTotal = _data_generic_json__WEBPACK_IMPORTED_MODULE_3__["populacao"].valor) {
+function perHundred(total, populacaoTotal = _data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao"].valor) {
   return total / populacaoTotal * 100;
 }
 function fetchWithLocalCache(url, options) {
@@ -301,11 +304,9 @@ function makeAnnotations(annotationsArray) {
       font: {
         style: 'normal'
       },
-      xPadding: 0,
-      yPadding: 0,
-      backgroundColor: 'rgba(255,255,255,0.8)',
+      backgroundColor: 'rgba(255,255,255,0.6)',
       cornerRadius: 0,
-      drawTime: 'afterDatasetsDraw',
+      drawTime: 'afterDraw',
       color: '#0A9DD1',
       rotation: 270,
       xAdjust: 8,
@@ -329,13 +330,26 @@ function makeAnnotations(annotationsArray) {
       label: _objectSpread(_objectSpread({}, annotationBoilerplate.label), {}, {
         content: el.marcador,
         color: el.color,
-        xAdjust: (_el$xAdjust = el.xAdjust) !== null && _el$xAdjust !== void 0 ? _el$xAdjust : 8
+        xAdjust: (_el$xAdjust = el.xAdjust) !== null && _el$xAdjust !== void 0 ? _el$xAdjust : 0
       })
     });
 
     arr.push(annotation);
   });
   return arr;
+}
+function calculateDims() {
+  if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
+    return {
+      width: 3000,
+      height: 350
+    };
+  } else {
+    return {
+      width: 4000,
+      height: 500
+    };
+  }
 }
 /*
 
@@ -414,6 +428,218 @@ module.exports = JSON.parse("[{\"\":1,\"TYPE\":\"REGIONAL\",\"DATE\":\"08/02/202
 /***/ (function(module, exports) {
 
 module.exports = require("date-fns/locale");
+
+/***/ }),
+
+/***/ "xPX6":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return FOREGROUND_COLOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return COLOR_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return COLOR_2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return COLOR_3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return COLOR_4; });
+/* unused harmony export COLOR_5 */
+/* unused harmony export COLOR_6 */
+/* unused harmony export COLOR_7 */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return TINT_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return TINT_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return TINT_30; });
+/* unused harmony export COLOR */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return SHADE_30; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return SHADE_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return SHADE_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return COMPLEMENT_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return COMPLEMENT_3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return RESIZE_TRESHOLD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return lineChartCommon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return lineChartCommon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return REGIOES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return ECDC_MAPPING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return MADEIRA_DICOS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ACORES_DICOS; });
+/* unused harmony export ACORES_DICOS_CONCELHOS */
+/* unused harmony export ARS_MAPPING */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return SNS_WEEKS; });
+let FOREGROUND_COLOR = '#01AE97';
+let COLOR_1 = '#017a6a';
+let COLOR_2 = '#01574c';
+let COLOR_3 = '#00342d';
+let COLOR_4 = '#80d7cb';
+let COLOR_5 = '#AD1413';
+let COLOR_6 = '#0A6CAD';
+let COLOR_7 = '#AD6E13'; // Tints
+
+let TINT_70 = '#b3e7e0';
+let TINT_50 = '#80d7cb';
+let TINT_30 = '#4dc6b6';
+let COLOR = '#01AE97'; // Shades
+
+let SHADE_30 = '#017a6a';
+let SHADE_50 = '#01574c';
+let SHADE_70 = '#00342d'; // Square Complement
+
+let COMPLEMENT_1 = '#0A9DD1';
+let COMPLEMENT_2 = '#D11541';
+let COMPLEMENT_3 = '#D17615';
+let RESIZE_TRESHOLD = 1040;
+let lineChartCommon = {
+  fill: true,
+  lineTension: 0.5,
+  lineBorder: 1,
+  borderWidth: 3,
+  borderJoinStyle: 'miter',
+  pointBorderWidth: 1,
+  pointHoverRadius: 3,
+  pointHoverBorderWidth: 2,
+  pointRadius: 1,
+  pointHitRadius: 10
+};
+let lineChartCommon2 = {
+  fill: false,
+  lineTension: 0.5,
+  lineBorder: 1,
+  borderWidth: 3,
+  borderJoinStyle: 'miter',
+  pointBorderWidth: 0,
+  pointHoverRadius: 0,
+  pointHoverBorderWidth: 0,
+  pointRadius: 0,
+  pointHitRadius: 0
+};
+const REGIOES = {
+  MADEIRA: 'madeira',
+  PORTUGAL: 'portugal',
+  ACORES: 'ACORES'
+};
+const ECDC_MAPPING = {
+  alentejo: 'PTCSR01',
+  algarve: 'PTCSR02',
+  acores: 'PTCSR03',
+  centro: 'PTCSR04',
+  lisboa: 'PTCSR05',
+  madeira: 'PTCSR06',
+  norte: 'PTCSR07',
+  portugal: 'PT',
+  PTCSR01: 'alentejo',
+  PTCSR02: 'algarve',
+  PTCSR03: 'acores',
+  PTCSR04: 'centro',
+  PTCSR05: 'lisboa',
+  PTCSR06: 'madeira',
+  PTCSR07: 'norte',
+  PT: 'portugal'
+};
+const MADEIRA_DICOS = {
+  3101: 'calheta',
+  3102: 'camara_lobos',
+  3108: 'santa_cruz',
+  3201: 'porto_santo',
+  3106: 'porto_moniz',
+  3110: 'svincente',
+  3109: 'santana',
+  3105: 'ponta_sol',
+  3103: 'funchal',
+  3104: 'machico',
+  3107: 'ribeira_brava',
+  calheta: '3101',
+  camara_lobos: '3102',
+  santa_cruz: '3108',
+  porto_santo: '3201',
+  porto_moniz: '3106',
+  svincente: '3110',
+  santana: '3109',
+  ponta_sol: '3105',
+  funchal: '3103',
+  machico: '3104',
+  ribeira_brava: '3107'
+};
+const ACORES_DICOS = {
+  49: 'corvo',
+  48: 'flores',
+  47: 'faial',
+  46: 'pico',
+  45: 'sao_jorge',
+  44: 'graciosa',
+  43: 'terceira',
+  42: 'sao_miguel',
+  41: 'santa_maria',
+  corvo: 49,
+  flores: 48,
+  faial: 47,
+  pico: 46,
+  sao_jorge: 45,
+  graciosa: 44,
+  terceira: 43,
+  sao_miguel: 42,
+  santa_maria: 41
+};
+const ACORES_DICOS_CONCELHOS = {
+  4901: 'corvo',
+  4802: 'flores',
+  4801: 'flores',
+  4701: 'faial',
+  4602: 'pico',
+  4603: 'pico',
+  4601: 'pico',
+  4501: 'sao_jorge',
+  4502: 'sao_jorge',
+  4401: 'graciosa',
+  4301: 'terceira',
+  4302: 'terceira',
+  4201: 'sao_miguel',
+  4202: 'sao_miguel',
+  4203: 'sao_miguel',
+  4204: 'sao_miguel',
+  4205: 'sao_miguel',
+  4206: 'sao_miguel',
+  4101: 'santa_maria'
+};
+const ARS_MAPPING = {
+  alentejo: 'ARS Alentejo',
+  algarve: 'ARS Algarve',
+  lvt: 'ARS Lisboa e Vale do Tejo',
+  norte: 'ARS Norte',
+  centro: 'ARS Centro',
+  'ARS Alentejo': 'alentejo',
+  'ARS Algarve': 'algarve',
+  'ARS Lisboa e Vale do Tejo': 'lvt',
+  'ARS Norte': 'norte',
+  'ARS Centro': 'centro'
+};
+const SNS_WEEKS = {
+  '08/02/2021': 'De 27/12 a 14/02',
+  '15/02/2021': '15/02 a 21/02',
+  '22/02/2021': '22/02 a 28/02',
+  '01/03/2021': '01/03 a 07/03',
+  '08/03/2021': '08/03 a 14/03',
+  '15/03/2021': '15/03 a 21/03',
+  '22/03/2021': '22/03 a 28/03',
+  '29/03/2021': '29/03 a 04/04',
+  '05/04/2021': '05/04 a 11/04',
+  '12/04/2021': '12/04 a 18/04',
+  '19/04/2021': '19/04 a 25/04',
+  '26/04/2021': '26/04 a 02/05',
+  '03/05/2021': '03/05 a 09/05',
+  '10/05/2021': '10/05 a 16/05',
+  '2021-02-08': 'De 27/12 a 14/02',
+  '2021-02-15': '15/02 a 21/02',
+  '2021-02-22': '22/02 a 28/02',
+  '2021-03-01': '01/03 a 07/03',
+  '2021-03-08': '08/03 a 14/03',
+  '2021-03-15': '15/03 a 21/03',
+  '2021-03-22': '22/03 a 28/03',
+  '2021-03-29': '29/03 a 04/04',
+  '2021-04-05': '05/04 a 11/04',
+  '2021-04-12': '12/04 a 18/04',
+  '2021-04-19': '19/04 a 25/04',
+  '2021-04-19': '19/04 a 25/04',
+  '2021-04-26': '26/04 a 02/05',
+  '2021-03-05': '03/05 a 09/05',
+  '2021-03-10': '10/05 a 16/05'
+};
 
 /***/ })
 
