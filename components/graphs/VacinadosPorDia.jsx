@@ -144,7 +144,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 				legend: {
 					position: 'bottom',
-					align: 'start',
+					align: 'end',
 				},
 			},
 
