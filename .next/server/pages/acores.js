@@ -675,20 +675,25 @@ function makeAnnotations(annotationsArray) {
       font: {
         style: 'normal'
       },
-      backgroundColor: 'rgba(255,255,255,0.6)',
+      xPadding: 0,
+      yPadding: 0,
+      backgroundColor: 'rgba(255,255,255,0.8)',
       cornerRadius: 0,
       drawTime: 'afterDatasetsDraw',
       color: '#0A9DD1',
       rotation: 270,
-      xAdjust: -8,
+      xAdjust: 8,
+      //xAdjust: -8,
       yAdjust: 0,
       fontSize: '13px',
       enabled: true,
-      content: 'asdasd'
+      content: ''
     }
   };
   let arr = [];
   annotationsArray.forEach(el => {
+    var _el$xAdjust;
+
     let annotation = _objectSpread(_objectSpread({}, annotationBoilerplate), {}, {
       mode: el.mode,
       scaleID: el.mode === 'horizontal' ? 'y' : 'x',
@@ -697,7 +702,8 @@ function makeAnnotations(annotationsArray) {
       display: el.display,
       label: _objectSpread(_objectSpread({}, annotationBoilerplate.label), {}, {
         content: el.marcador,
-        color: el.color
+        color: el.color,
+        xAdjust: (_el$xAdjust = el.xAdjust) !== null && _el$xAdjust !== void 0 ? _el$xAdjust : 8
       })
     });
 
@@ -2362,7 +2368,7 @@ module.exports = require("react-count-to");
 /***/ "bEWT":
 /***/ (function(module) {
 
-module.exports = JSON.parse("[{\"data\":\"2021-01-06\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":20,\"marcador\":\"Aprovação Moderna\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu\"},{\"data\":\"2021-01-29\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":33,\"marcador\":\"Aprovação AstraZeneca\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu\"},{\"data\":\"2021-03-11\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":74,\"marcador\":\"Aprovação Janssen\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu\"},{\"data\":\"2021-03-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":78,\"marcador\":\"Suspensão AstraZeneca\",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca\"},{\"data\":\"2021-03-18\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":81,\"marcador\":\"Retoma AstraZeneca\",\"fonte\":\"https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao\"},{\"data\":\"2021-04-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":false,\"position\":109,\"marcador\":\"Suspensão AstraZeneca (Grupos etários mais jovens)\",\"fonte\":\"https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569\"},{\"data\":\"2021-04-13\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":107,\"marcador\":\"Adiamento Envio Janssen\",\"fonte\":\"https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/\"},{\"data\":\"2021-04-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":false,\"position\":114,\"marcador\":\"Retoma Envio Janssen\",\"fonte\":\"https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574\"},{\"data\":\"2021-04-21\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":115,\"marcador\":\"Inicío da 2ª Fase de Vacinação \",\"fonte\":\"https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/\"},{\"data\":\"2021-04-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":117,\"marcador\":\"Autoagendamento - 65+\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-05-09\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":132,\"marcador\":\"Autoagendamento - 60+ \",\"fonte\":\"https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830\"},{\"data\":\"2021-05-13\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":136,\"marcador\":\"Autoagendamento - 55+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html\"}]");
+module.exports = JSON.parse("[{\"data\":\"2021-01-06\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":20,\"marcador\":\"Aprovação Moderna\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu\"},{\"data\":\"2021-01-29\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":33,\"marcador\":\"Aprovação AstraZeneca\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu\"},{\"data\":\"2021-03-11\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":74,\"marcador\":\"Aprovação Janssen\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu\"},{\"data\":\"2021-03-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":78,\"marcador\":\"Suspensão AstraZeneca\",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca\"},{\"data\":\"2021-03-18\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":81,\"marcador\":\"Retoma AstraZeneca\",\"fonte\":\"https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao\"},{\"data\":\"2021-04-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":false,\"position\":109,\"marcador\":\"Suspensão AstraZeneca (Grupos etários mais jovens)\",\"fonte\":\"https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569\"},{\"data\":\"2021-04-13\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":107,\"marcador\":\"Adiamento Envio Janssen\",\"fonte\":\"https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/\"},{\"data\":\"2021-04-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":114,\"xAdjust\":-8,\"marcador\":\"Retoma Envio Janssen\",\"fonte\":\"https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574\"},{\"data\":\"2021-04-21\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":115,\"marcador\":\"Inicío da 2ª Fase de Vacinação \",\"fonte\":\"https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/\"},{\"data\":\"2021-04-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":117,\"marcador\":\"Autoagendamento - 65+\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-04-30\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":124,\"marcador\":\"Administração Janssen\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-05-09\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":132,\"marcador\":\"Autoagendamento - 60+ \",\"fonte\":\"https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830\"},{\"data\":\"2021-05-13\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":136,\"marcador\":\"Autoagendamento - 55+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html\"}]");
 
 /***/ }),
 
@@ -3572,7 +3578,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621461097005,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621462033639,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 

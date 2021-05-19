@@ -1361,20 +1361,25 @@ function makeAnnotations(annotationsArray) {
       font: {
         style: 'normal'
       },
-      backgroundColor: 'rgba(255,255,255,0.6)',
+      xPadding: 0,
+      yPadding: 0,
+      backgroundColor: 'rgba(255,255,255,0.8)',
       cornerRadius: 0,
       drawTime: 'afterDatasetsDraw',
       color: '#0A9DD1',
       rotation: 270,
-      xAdjust: -8,
+      xAdjust: 8,
+      //xAdjust: -8,
       yAdjust: 0,
       fontSize: '13px',
       enabled: true,
-      content: 'asdasd'
+      content: ''
     }
   };
   let arr = [];
   annotationsArray.forEach(el => {
+    var _el$xAdjust;
+
     let annotation = _objectSpread(_objectSpread({}, annotationBoilerplate), {}, {
       mode: el.mode,
       scaleID: el.mode === 'horizontal' ? 'y' : 'x',
@@ -1383,7 +1388,8 @@ function makeAnnotations(annotationsArray) {
       display: el.display,
       label: _objectSpread(_objectSpread({}, annotationBoilerplate.label), {}, {
         content: el.marcador,
-        color: el.color
+        color: el.color,
+        xAdjust: (_el$xAdjust = el.xAdjust) !== null && _el$xAdjust !== void 0 ? _el$xAdjust : 8
       })
     });
 
@@ -3883,7 +3889,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621461097005,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621462033639,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 
