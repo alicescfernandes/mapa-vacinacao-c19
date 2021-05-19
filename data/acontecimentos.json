@@ -69,8 +69,10 @@
         "data": "2021-04-20",
         "mode": "vertical",
         "color":"#D17615",
-        "display":false,
+        "display":true,
         "position": 114,
+        "xAdjust":-8,
+
         "marcador": "Retoma Envio Janssen",
         "fonte": "https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574"
     },
@@ -90,6 +92,15 @@
         "display":true,
         "position": 117,
         "marcador": "Autoagendamento - 65+",
+        "fonte": "https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/"
+    },
+    {
+        "data": "2021-04-30",
+        "mode": "vertical",
+        "color":"#01ae97",
+        "display":true,
+        "position": 124,
+        "marcador": "Administração Janssen",
         "fonte": "https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/"
     },
     {
