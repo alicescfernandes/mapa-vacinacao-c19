@@ -7,15 +7,15 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 
 	let vaccines = statistics.getLastVaccineAvaliable();
 	let lastCase = statistics.getLastCaseAvaliable();
-	let { main, shades, complements } = colors;
+	let { main, tints, shades, complements } = colors;
 
 	const data = (canvas) => {
 		return {
-			labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
+			labels: ['Vacinados apenas com uma dose', 'Vacinados com as duas doses', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
 			datasets: [
 				{
-					backgroundColor: [main, complements[0], complements[2], shades[2]],
-					data: [vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos],
+					backgroundColor: [tints[1], main, complements[0], complements[2], shades[2]],
+					data: [Math.abs(vaccines.dose_1 - vaccines.dose_2), vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos],
 				},
 			],
 		};

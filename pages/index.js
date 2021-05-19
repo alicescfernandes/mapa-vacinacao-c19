@@ -621,7 +621,8 @@ export default function Home() {
 							<Row>
 								<Col lg={6} xs={12}>
 									<h2 className={styles.title}>
-										Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos
+										Proporção do número total de vacinas administradas com o número de infectados, <br />
+										recuperados e óbitos <sup className={'new'}>atualizado</sup>
 									</h2>
 									<hr />
 									<PieVacinadosInfectadosRecuperadosObitos
@@ -631,8 +632,8 @@ export default function Home() {
 								</Col>
 								<Col lg={6} xs={12}>
 									<h2 className={styles.title}>
-										Proporção do número total de vacinas administradas com o número de infectados, recuperados e óbitos e
-										população suscetível
+										Proporção do número total de vacinas administradas com o número de infectados, recuperados <br /> óbitos e
+										população suscetível <sup className={'new'}>atualizado</sup>
 									</h2>
 									<hr />
 									<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>
