@@ -2081,16 +2081,17 @@ function PieVacinadosInfectadosRecuperadosObitos({
   let lastCase = statistics.getLastCaseAvaliable();
   let {
     main,
+    tints,
     shades,
     complements
   } = colors;
 
   const data = canvas => {
     return {
-      labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
+      labels: ['Vacinados apenas com uma dose', 'Vacinados com as duas doses', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
       datasets: [{
-        backgroundColor: [main, complements[0], complements[2], shades[2]],
-        data: [vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos]
+        backgroundColor: [tints[1], main, complements[0], complements[2], shades[2]],
+        data: [Math.abs(vaccines.dose_1 - vaccines.dose_2), vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos]
       }]
     };
   };
@@ -3298,13 +3299,13 @@ function CustomBarChart({
         label: '2ª Dose',
         type: 'bar',
         backgroundColor: main,
-        data: [data.mod[1], data.com[1], data.az[1]],
+        data: [data.mod[1], data.com[1], data.az[1], data.janss[1]],
         stack: 'stack1'
       }, {
         label: '1ª Dose',
         type: 'bar',
         backgroundColor: shades[1],
-        data: [data.mod[0], data.com[0], data.az[0]],
+        data: [data.mod[0], data.com[0], data.az[0], data.janss[0]],
         stack: 'stack1'
       }]
     };
@@ -6227,9 +6228,12 @@ function Home() {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               lg: 6,
               xs: 12,
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
                 className: Home_module_default.a.title,
-                children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos"
+                children: ["Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "recuperados e \xF3bitos ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
+                  className: 'new',
+                  children: "atualizado"
+                })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieVacinadosInfectadosRecuperadosObitos["a" /* PieVacinadosInfectadosRecuperadosObitos */], {
                 colors: colors_v2,
                 statistics: statistics
@@ -6237,9 +6241,12 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               lg: 6,
               xs: 12,
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
                 className: Home_module_default.a.title,
-                children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos e popula\xE7\xE3o suscet\xEDvel"
+                children: ["Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), " \xF3bitos e popula\xE7\xE3o suscet\xEDvel ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
+                  className: 'new',
+                  children: "atualizado"
+                })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieSuscetiveisProporcao["a" /* PieSuscetiveisProporcao */], {
                 colors: colors_v2,
                 statistics: statistics
@@ -6548,10 +6555,12 @@ function PieSuscetiveisProporcao({
   let vaccines = statistics.getLastVaccineAvaliable();
   let lastCase = statistics.getLastCaseAvaliable(); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 
-  let populacao_suscetivel = lastCase.populacao - (vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
+  let vacinados_apenas_uma = Math.abs(vaccines.dose_1 - vaccines.dose_2);
+  let populacao_suscetivel = lastCase.populacao - (vacinados_apenas_uma + vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
 
   let {
     main,
+    tints,
     shades,
     complements
   } = colors;
@@ -6559,10 +6568,10 @@ function PieSuscetiveisProporcao({
   const data = canvas => {
     return {
       //labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
-      labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
+      labels: ['Vacinados apenas com uma dose', 'Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
       datasets: [{
-        backgroundColor: [main, complements[0], complements[2], shades[2], complements[1]],
-        data: [vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel] //data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
+        backgroundColor: [tints[1], main, complements[0], complements[2], shades[2], complements[1]],
+        data: [vacinados_apenas_uma, vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel] //data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
 
       }]
     };
@@ -7065,7 +7074,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621431305176,\"dateSnsStartWeirdFormat\":\"03/05/2021\",\"dateSnsStart\":\"2021-03-05\",\"dateSns\":\"2021-05-09\",\"dateEcdc\":\"2021-05-09\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":19}");
+module.exports = JSON.parse("{\"date\":1621459697064,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 
@@ -7261,6 +7270,7 @@ const SNS_WEEKS = {
   '19/04/2021': '19/04 a 25/04',
   '26/04/2021': '26/04 a 02/05',
   '03/05/2021': '03/05 a 09/05',
+  '10/05/2021': '10/05 a 16/05',
   '2021-02-08': 'De 27/12 a 14/02',
   '2021-02-15': '15/02 a 21/02',
   '2021-02-22': '22/02 a 28/02',
@@ -7274,7 +7284,8 @@ const SNS_WEEKS = {
   '2021-04-19': '19/04 a 25/04',
   '2021-04-19': '19/04 a 25/04',
   '2021-04-26': '26/04 a 02/05',
-  '2021-03-05': '03/05 a 09/05'
+  '2021-03-05': '03/05 a 09/05',
+  '2021-03-10': '10/05 a 16/05'
 };
 
 /***/ })
