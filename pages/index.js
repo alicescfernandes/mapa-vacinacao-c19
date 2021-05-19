@@ -201,8 +201,9 @@ export default function Home() {
 		//sum = 4218420; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/05/Relato%CC%81rio-de-Vacinac%CC%A7a%CC%83o-n.o-12.pdf
 
 		let item = rawData.filter((el) => {
-			return isSameDay(el.Data, new Date(json.dateSnsStart));
+			return isSameDay(el.Data, new Date(json.dateSns));
 		});
+
 		setDoses({
 			...doses,
 			recebidas: sum,
@@ -570,7 +571,9 @@ export default function Home() {
 									<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
 								</Col>
 								<Col lg={6} xs={12}>
-									<h2 className={styles.title}>Proporção de doses administradas relativamente às doses recebidas</h2>
+									<h2 className={styles.title}>
+										Proporção de doses administradas relativamente às doses recebidas <sup className={'new'}>atualizado</sup>
+									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 21 de Dezembro de 2021 até{' '}
 										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
