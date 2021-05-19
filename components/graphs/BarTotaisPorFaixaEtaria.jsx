@@ -23,7 +23,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 					label: '2ª Dose',
 					type: 'bar',
 					backgroundColor: main,
-					data: [data.mod[1], data.com[1], data.az[1]],
+					data: [data.mod[1], data.com[1], data.az[1], data.janss[1]],
 					stack: 'stack1',
 				},
 
@@ -31,7 +31,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 					label: '1ª Dose',
 					type: 'bar',
 					backgroundColor: shades[1],
-					data: [data.mod[0], data.com[0], data.az[0]],
+					data: [data.mod[0], data.com[0], data.az[0], data.janss[0]],
 					stack: 'stack1',
 				},
 			],
