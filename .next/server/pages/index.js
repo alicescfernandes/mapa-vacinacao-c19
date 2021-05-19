@@ -5711,7 +5711,7 @@ function Home() {
     } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas()); //sum = 4218420; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/05/Relato%CC%81rio-de-Vacinac%CC%A7a%CC%83o-n.o-12.pdf
 
     let item = rawData.filter(el => {
-      return Object(external_date_fns_["isSameDay"])(el.Data, new Date(last_update.dateSnsStart));
+      return Object(external_date_fns_["isSameDay"])(el.Data, new Date(last_update.dateSns));
     });
     setDoses(pages_objectSpread(pages_objectSpread({}, doses), {}, {
       recebidas: sum,
@@ -6164,9 +6164,12 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               lg: 6,
               xs: 12,
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
                 className: Home_module_default.a.title,
-                children: "Propor\xE7\xE3o de doses administradas relativamente \xE0s doses recebidas"
+                children: ["Propor\xE7\xE3o de doses administradas relativamente \xE0s doses recebidas ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
+                  className: 'new',
+                  children: "atualizado"
+                })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
                 children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -7074,7 +7077,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621459697064,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621460403868,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 
