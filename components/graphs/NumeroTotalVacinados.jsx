@@ -254,7 +254,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				annotation: regiao == 'portugal' ? annotations : {},
 				legend: {
 					position: 'bottom',
-					align: 'start',
+					align: 'end',
 				},
 			},
 
