@@ -133,16 +133,19 @@ export function makeAnnotations(annotationsArray) {
 			font: {
 				style: 'normal',
 			},
-			backgroundColor: 'rgba(255,255,255,0.6)',
+			xPadding: 0,
+			yPadding: 0,
+			backgroundColor: 'rgba(255,255,255,0.8)',
 			cornerRadius: 0,
 			drawTime: 'afterDatasetsDraw',
 			color: '#0A9DD1',
 			rotation: 270,
-			xAdjust: -8,
+			xAdjust: 8,
+			//xAdjust: -8,
 			yAdjust: 0,
 			fontSize: '13px',
 			enabled: true,
-			content: 'asdasd',
+			content: '',
 		},
 	};
 	let arr = [];
@@ -158,6 +161,7 @@ export function makeAnnotations(annotationsArray) {
 				...annotationBoilerplate.label,
 				content: el.marcador,
 				color: el.color,
+				xAdjust: el.xAdjust ?? 8,
 			},
 		};
 		arr.push(annotation);
