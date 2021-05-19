@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import fetchNode from 'node-fetch';
+import { RESIZE_TRESHOLD } from './constants';
 
 export const formatNumber = (number, isDate = true) => {
 	let numberFormatter = new Intl.NumberFormat('pt-PT', {
@@ -133,11 +134,9 @@ export function makeAnnotations(annotationsArray) {
 			font: {
 				style: 'normal',
 			},
-			xPadding: 0,
-			yPadding: 0,
-			backgroundColor: 'rgba(255,255,255,0.8)',
+			backgroundColor: 'rgba(255,255,255,0.6)',
 			cornerRadius: 0,
-			drawTime: 'afterDatasetsDraw',
+			drawTime: 'afterDraw',
 			color: '#0A9DD1',
 			rotation: 270,
 			xAdjust: 8,
@@ -161,13 +160,27 @@ export function makeAnnotations(annotationsArray) {
 				...annotationBoilerplate.label,
 				content: el.marcador,
 				color: el.color,
-				xAdjust: el.xAdjust ?? 8,
+				xAdjust: el.xAdjust ?? 0,
 			},
 		};
 		arr.push(annotation);
 	});
 
 	return arr;
+}
+
+export function calculateDims() {
+	if (window.innerWidth <= RESIZE_TRESHOLD) {
+		return {
+			width: 3500,
+			height: 350,
+		};
+	} else {
+		return {
+			width: 4000,
+			height: 500,
+		};
+	}
 }
 
 /*
