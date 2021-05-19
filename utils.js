@@ -172,7 +172,7 @@ export function makeAnnotations(annotationsArray) {
 export function calculateDims() {
 	if (window.innerWidth <= RESIZE_TRESHOLD) {
 		return {
-			width: 3500,
+			width: 3000,
 			height: 350,
 		};
 	} else {
