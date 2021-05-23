@@ -237,6 +237,13 @@ export default function Home() {
 							<Col>
 								<h2 className={styles.title}>Número de vacinas administradas</h2>
 								<hr />
+								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<h2 className={styles.title}>Número de vacinas administradas</h2>
+								<hr />
 								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
 							</Col>
 						</Row>
