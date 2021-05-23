@@ -148,6 +148,7 @@ export default function Home() {
 					<Col lg={4} xs={6}>
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
+								tempo={formatDateShort(previousItem.data)}
 								colors={colors}
 								title="Doses totais"
 								yesterday={previousItem?.total}
@@ -159,6 +160,7 @@ export default function Home() {
 					<Col lg={4} xs={6}>
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
+								tempo={formatDateShort(previousItem.data)}
 								colors={colors}
 								title="Doses  - 1ª Inoculação"
 								yesterday={previousItem?.dose_1}
@@ -170,6 +172,7 @@ export default function Home() {
 					<Col lg={4} xs={6}>
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
+								tempo={formatDateShort(previousItem.data)}
 								colors={colors}
 								title="Doses - 2ª Inoculação"
 								yesterday={previousItem?.dose_2}
@@ -182,6 +185,7 @@ export default function Home() {
 					<Col id="vacin1d" lg={4} xs={6}>
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
+								tempo={formatDateShort(previousItem.data)}
 								digits={2}
 								suffix={'%'}
 								colors={colors}
@@ -194,6 +198,7 @@ export default function Home() {
 					<Col id="vacin2d" lg={4} xs={6}>
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
+								tempo={formatDateShort(previousItem.data)}
 								digits={2}
 								suffix={'%'}
 								colors={colors}
