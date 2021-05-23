@@ -94,8 +94,6 @@ export function fetchWithLocalCache(url, options) {
 		}
 	}
 
-	useCache = false;
-
 	if (window && localStorage.getItem(url) && useCache === true) {
 		let data = JSON.parse(localStorage.getItem(url));
 		return Promise.resolve(data);
@@ -172,12 +170,12 @@ export function makeAnnotations(annotationsArray) {
 export function calculateDims() {
 	if (window.innerWidth <= RESIZE_TRESHOLD) {
 		return {
-			width: 3000,
+			width: 2000,
 			height: 350,
 		};
 	} else {
 		return {
-			width: 4000,
+			width: 3000,
 			height: 500,
 		};
 	}
