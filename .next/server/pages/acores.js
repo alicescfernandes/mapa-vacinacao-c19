@@ -330,7 +330,7 @@ function VacinadosPorDia({
   };
 
   let numberFormatter = new Intl.NumberFormat();
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
   let annotations = {
     annotations: [...horizontalAnnotations]
   };
@@ -382,10 +382,10 @@ function VacinadosPorDia({
           display: true,
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 20,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 20,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false);
+              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false);
             }
           },
           suggestedMax: max
@@ -395,10 +395,10 @@ function VacinadosPorDia({
           display: false,
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 20,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 20,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false);
+              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false);
             }
           },
           suggestedMax: max
@@ -535,15 +535,15 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
+/* unused harmony export formatDateShort */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
@@ -647,8 +647,6 @@ function fetchWithLocalCache(url, options) {
     }
   }
 
-  useCache = false;
-
   if (window && localStorage.getItem(url) && useCache === true) {
     let data = JSON.parse(localStorage.getItem(url));
     return Promise.resolve(data);
@@ -718,12 +716,12 @@ function makeAnnotations(annotationsArray) {
 function calculateDims() {
   if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
     return {
-      width: 3000,
+      width: 2000,
       height: 350
     };
   } else {
     return {
-      width: 4000,
+      width: 3000,
       height: 500
     };
   }
@@ -871,13 +869,13 @@ function NumeroTotalVacinados({
     pointHitRadius: 10,
     usePointStyle: true
   };
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
   let annotations = {
     annotations: [...horizontalAnnotations, {
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(2700000) : 2700000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(2700000) : 2700000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -923,7 +921,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(950000) : 950000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(950000) : 950000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -945,7 +943,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(10286300 * 0.7) : 10286300 * 0.7 : null,
       borderColor: '#D17615',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -985,7 +983,7 @@ function NumeroTotalVacinados({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(foreground);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "d"])(foreground);
 
     try {
       gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
@@ -1009,7 +1007,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: foreground,
         pointHoverBackgroundColor: foreground,
         pointHoverBorderColor: foreground,
-        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : values
+        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : values
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 1ª Dose',
         fill: false,
@@ -1018,7 +1016,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_1,
         pointHoverBackgroundColor: color_1,
         pointHoverBorderColor: color_1,
-        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn1
+        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn1
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 2ª Dose',
         fill: false,
@@ -1027,7 +1025,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_2,
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
-        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn2
+        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn2
       })]
     };
 
@@ -1042,7 +1040,7 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
       }));
     }
 
@@ -1073,7 +1071,7 @@ function NumeroTotalVacinados({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(tooltipItem.value);
+            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(tooltipItem.value);
           },
           title: (tooltipItem, data) => {
             return 'Dia ' + tooltipItem[0].label;
@@ -1085,10 +1083,10 @@ function NumeroTotalVacinados({
           position: 'right',
           ticks: {
             beginAtZero: false,
-            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 20,
-            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 20,
+            maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
+            minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             //max: 10000000,
-            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false)
+            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false)
           }
         },
         x: {
@@ -2138,7 +2136,7 @@ function PieVacinadosInfectadosRecuperadosObitos({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
           }
         }
       }
@@ -2339,7 +2337,7 @@ function PieSuscetiveisProporcao({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
           }
         }
       }
@@ -2499,7 +2497,7 @@ function LineRt({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(main);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "d"])(main);
 
     try {
       //See if supports transperancy
@@ -2907,8 +2905,8 @@ function RaaMapa({
         let percentagem_2 = data.dose_2 / generic["populacao_residente_raa"][feature.properties.DicoShort].valor * 100;
         shape.bindPopup(`<p>
 						<strong>${feature.properties.ILHA}</strong>
-						<br>1ª Dose: ${Object(utils["d" /* formatNumber */])(data.dose_1)} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(data.dose_2)} (${percentagem_2.toFixed(2)}%)
+						<br>1ª Dose: ${Object(utils["c" /* formatNumber */])(data.dose_1)} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${Object(utils["c" /* formatNumber */])(data.dose_2)} (${percentagem_2.toFixed(2)}%)
 					</p>`);
         shape.on('click', () => {//console.log('click');
         });
@@ -3041,7 +3039,7 @@ function RaaMapa({
             ticks: {
               beginAtZero: true,
               stepSize: Math.round(populacao_residente / 5),
-              callback: value => Object(utils["d" /* formatNumber */])(value, false)
+              callback: value => Object(utils["c" /* formatNumber */])(value, false)
             },
             max: populacao_residente
           }
@@ -3191,6 +3189,9 @@ function Home() {
     },
     percentagem: {
       current: 0
+    },
+    percentagem_1d: {
+      current: 0
     }
   });
 
@@ -3243,6 +3244,9 @@ function Home() {
       },
       percentagem: {
         current: selectedItem.dose_2 / generic.populacao_raa.valor * 100
+      },
+      percentagem_1d: {
+        current: selectedItem.dose_1 / generic.populacao_raa.valor * 100
       }
     };
     setDerivedNumbers(object);
@@ -3262,138 +3266,139 @@ function Home() {
 
     setLoaded(true);
   }, [dataReady]);
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(regiao["a" /* RegiaoContext */].Provider, {
-    value: 'acores',
-    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
-      className: "container-fluid app",
-      children: loaded ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
-        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
-              className: Home_module_default.a.datepicker_static,
-              children: [" ", d, " "]
+
+  let renderCounterGroupV2 = (updating = false) => {
+    let options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    let f = new Intl.DateTimeFormat('pt-PT', options);
+    return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+        className: Home_module_default.a.datepickerRow,
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          style: {
+            textAlign: 'center'
+          },
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+            className: Card_module_default.a.card_subtitle_2,
+            children: ["Atualizado a ", f.format(startDate), " ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {})]
+          })
+        })
+      }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+        className: "counterRow",
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          lg: 4,
+          xs: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+            type: 'counter',
+            isUpdating: updating,
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              colors: colors,
+              title: "Doses totais",
+              yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.total,
+              from: (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.total) * 0.98,
+              to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.total
             })
           })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-          className: "counterRow",
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-            lg: 4,
-            xs: 12,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
-                colors: colors,
-                tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
-                title: "N\xFAmero total de vacinas administradas",
-                yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.total,
-                from: previousItem === null || previousItem === void 0 ? void 0 : previousItem.total,
-                to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.total
-              })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          lg: 4,
+          xs: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+            type: 'counter',
+            isUpdating: updating,
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              colors: colors,
+              title: "Doses  - 1\xAA Inocula\xE7\xE3o",
+              yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_1,
+              from: (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1) * 0.98,
+              to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1
             })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-            lg: 4,
-            xs: 12,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
-                colors: colors,
-                tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
-                title: "N\xFAmero de doses administradas - 1\xAA Dose",
-                yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_1,
-                from: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_1,
-                to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1
-              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
-                style: {
-                  marginTop: '10px'
-                },
-                className: Card_module_default.a.card_subtitle,
-                children: [Object(utils["g" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1, generic.populacao_raa.valor).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["d" /* formatNumber */])((selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1) - (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2)), " pessoas inoculadas com a 1\xAA dose"]
-              })]
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          lg: 4,
+          xs: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+            type: 'counter',
+            isUpdating: updating,
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              colors: colors,
+              title: "Doses - 2\xAA Inocula\xE7\xE3o",
+              yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_2,
+              from: (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2) * 0.98,
+              to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2
             })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-            lg: 4,
-            xs: 12,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
-                colors: colors,
-                tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
-                title: "N\xFAmero de doses administradas - 2\xAA Dose",
-                yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_2,
-                from: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_2,
-                to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2
-              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
-                style: {
-                  marginTop: '10px'
-                },
-                className: Card_module_default.a.card_subtitle,
-                children: [Object(utils["g" /* perHundred */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2, generic.populacao_raa.valor).toFixed(2), " doses administradas por cada 100 pessoas", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), Object(utils["d" /* formatNumber */])(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2), " pessoas inoculadas com a 2\xAA dose"]
-              })]
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          id: "vacin1d",
+          lg: 4,
+          xs: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+            type: 'counter',
+            isUpdating: updating,
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              digits: 2,
+              suffix: '%',
+              colors: colors,
+              title: "Popula\xE7\xE3o vacinada com pelo menos uma dose",
+              from: 0,
+              to: derivedNumbers.percentagem_1d.current
             })
-          })]
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-          className: "counterRow",
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-            lg: 4,
-            xs: 12,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
-                ps: "Percentagem calculada com base no n\xFAmero total de segundas doses administradas",
-                digits: 2,
-                suffix: '%',
-                colors: colors,
-                title: "Percentagem de popula\xE7\xE3o inoculada com a 2\xAA dose ",
-                from: 0,
-                to: derivedNumbers.percentagem.current
-              })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          id: "vacin2d",
+          lg: 4,
+          xs: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
+            type: 'counter',
+            isUpdating: updating,
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              digits: 2,
+              suffix: '%',
+              colors: colors,
+              title: "Popula\xE7\xE3o totalmente vacinada",
+              from: 0,
+              to: derivedNumbers.percentagem.current
             })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-            lg: 4,
-            xs: 12,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
-                ps: `Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`,
-                digits: 2,
-                suffix: '%',
-                colors: colors,
-                title: "Percentagem para atingir imunidade de grupo",
-                from: 0,
-                to: 70 - derivedNumbers.percentagem.current
-              })
-            })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-            lg: 4,
-            xs: 12,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
-                style: {
-                  marginBottom: '10px'
-                },
-                className: Card_module_default.a.card_title,
-                children: "Plano de Vacina\xE7\xE3o"
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-                title: "Consultar notas ou o plano de informa\xE7\xE3o para mais informa\xE7\xE3o",
-                style: {
-                  margin: '5px 0px'
-                },
-                className: Card_module_default.a.card_subtitle,
-                children: "O plano de vacina\xE7\xE3o aplicado pelos A\xE7ores n\xE3o divulga n\xFAmeros a atingir."
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-                target: "_blank",
-                href: 'https://vacinacao-covid19.azores.gov.pt/',
-                className: `${Card_module_default.a.card_subtitle} ${Home_module_default.a.link}`,
-                children: "Consultar plano de vacina\xE7\xE3o"
-              })]
-            })
-          })]
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
+          id: "vacinfase",
+          lg: 4,
+          xs: 6,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
+            type: 'counter',
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
-              className: Home_module_default.a.title,
-              children: "N\xFAmero de vacinas administradas (Acumulado) "
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(NumeroTotalVacinados["a" /* NumeroTotalVacinados */], {
-              statistics: statistics,
-              colors: colors
+              style: {
+                marginBottom: '10px'
+              },
+              className: Card_module_default.a.card_title,
+              children: "Plano de Vacina\xE7\xE3o"
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h1", {
+              title: "Consultar notas ou o plano de informa\xE7\xE3o para mais informa\xE7\xE3o",
+              style: {
+                color: colors[0]
+              },
+              className: Card_module_default.a.card_highlight_2,
+              children: "N/A"
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              target: "_blank",
+              href: 'https://covidmadeira.pt/vacinacao/',
+              className: `${Card_module_default.a.card_subtitle} ${Home_module_default.a.link}`,
+              children: "+ info"
             })]
           })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+        })]
+      })]
+    });
+  };
+
+  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(regiao["a" /* RegiaoContext */].Provider, {
+    value: 'acores',
+    children: loaded ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+      children: [renderCounterGroupV2(), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Container"], {
+        className: "container-fluid app",
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
@@ -3542,16 +3547,16 @@ function Home() {
             })]
           })]
         })]
-      }) : /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-        style: {
-          display: 'block',
-          width: 50,
-          margin: 'auto '
-        },
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_spinners_kit_["GooSpinner"], {
-          size: 50,
-          color: colors_v2.main
-        })
+      })]
+    }) : /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+      style: {
+        display: 'block',
+        width: 50,
+        margin: 'auto '
+      },
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_spinners_kit_["GooSpinner"], {
+        size: 50,
+        color: colors_v2.main
       })
     })
   });
@@ -3588,7 +3593,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621773605151,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-09T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-18\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621801913864,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16T00:00:00\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 
