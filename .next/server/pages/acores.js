@@ -330,7 +330,7 @@ function VacinadosPorDia({
   };
 
   let numberFormatter = new Intl.NumberFormat();
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
   let annotations = {
     annotations: [...horizontalAnnotations]
   };
@@ -385,7 +385,7 @@ function VacinadosPorDia({
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false);
+              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false);
             }
           },
           suggestedMax: max
@@ -398,7 +398,7 @@ function VacinadosPorDia({
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false);
+              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false);
             }
           },
           suggestedMax: max
@@ -535,15 +535,15 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
-/* unused harmony export formatDateShort */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
@@ -869,13 +869,13 @@ function NumeroTotalVacinados({
     pointHitRadius: 10,
     usePointStyle: true
   };
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
   let annotations = {
     annotations: [...horizontalAnnotations, {
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(2700000) : 2700000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(2700000) : 2700000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -921,7 +921,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(950000) : 950000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(950000) : 950000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -943,7 +943,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(10286300 * 0.7) : 10286300 * 0.7 : null,
       borderColor: '#D17615',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -983,7 +983,7 @@ function NumeroTotalVacinados({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "d"])(foreground);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(foreground);
 
     try {
       gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
@@ -1007,7 +1007,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: foreground,
         pointHoverBackgroundColor: foreground,
         pointHoverBorderColor: foreground,
-        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : values
+        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : values
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 1ª Dose',
         fill: false,
@@ -1016,7 +1016,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_1,
         pointHoverBackgroundColor: color_1,
         pointHoverBorderColor: color_1,
-        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn1
+        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn1
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 2ª Dose',
         fill: false,
@@ -1025,7 +1025,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_2,
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
-        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn2
+        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn2
       })]
     };
 
@@ -1040,7 +1040,7 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
       }));
     }
 
@@ -1071,7 +1071,7 @@ function NumeroTotalVacinados({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(tooltipItem.value);
+            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(tooltipItem.value);
           },
           title: (tooltipItem, data) => {
             return 'Dia ' + tooltipItem[0].label;
@@ -1086,7 +1086,7 @@ function NumeroTotalVacinados({
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             //max: 10000000,
-            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false)
+            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false)
           }
         },
         x: {
@@ -2136,7 +2136,7 @@ function PieVacinadosInfectadosRecuperadosObitos({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(data)}`;
           }
         }
       }
@@ -2337,7 +2337,7 @@ function PieSuscetiveisProporcao({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(data)}`;
           }
         }
       }
@@ -2497,7 +2497,7 @@ function LineRt({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "d"])(main);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(main);
 
     try {
       //See if supports transperancy
@@ -2906,8 +2906,8 @@ function RaaMapa({
         let percentagem_2 = data.dose_2 / generic["populacao_residente_raa"][feature.properties.DicoShort].valor * 100;
         shape.bindPopup(`<p>
 						<strong>${feature.properties.ILHA}</strong>
-						<br>1ª Dose: ${Object(utils["c" /* formatNumber */])(data.dose_1)} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${Object(utils["c" /* formatNumber */])(data.dose_2)} (${percentagem_2.toFixed(2)}%)
+						<br>1ª Dose: ${Object(utils["d" /* formatNumber */])(data.dose_1)} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(data.dose_2)} (${percentagem_2.toFixed(2)}%)
 					</p>`);
         shape.on('click', () => {//console.log('click');
         });
@@ -3040,7 +3040,7 @@ function RaaMapa({
             ticks: {
               beginAtZero: true,
               stepSize: Math.round(populacao_residente / 5),
-              callback: value => Object(utils["c" /* formatNumber */])(value, false)
+              callback: value => Object(utils["d" /* formatNumber */])(value, false)
             },
             max: populacao_residente
           }
@@ -3296,6 +3296,7 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
               colors: colors,
               title: "Doses totais",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.total,
@@ -3310,6 +3311,7 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
               colors: colors,
               title: "Doses  - 1\xAA Inocula\xE7\xE3o",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_1,
@@ -3324,6 +3326,7 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
               colors: colors,
               title: "Doses - 2\xAA Inocula\xE7\xE3o",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.dose_2,
@@ -3339,6 +3342,7 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
               digits: 2,
               suffix: '%',
               colors: colors,
@@ -3355,6 +3359,7 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
+              tempo: Object(utils["c" /* formatDateShort */])(previousItem.data),
               digits: 2,
               suffix: '%',
               colors: colors,
@@ -3604,7 +3609,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621805515650,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621807706568,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 

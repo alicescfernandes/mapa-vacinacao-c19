@@ -119,15 +119,15 @@ module.exports = require("date-fns");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
-/* unused harmony export formatDateShort */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
@@ -393,7 +393,7 @@ const cors = initMiddleware(cors__WEBPACK_IMPORTED_MODULE_0___default()({
   methods: ['GET']
 }));
 async function handler(req, res) {
-  Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* trackPlausible */ "g"])(req);
+  Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* trackPlausible */ "h"])(req);
   await cors(req, res);
   res.statusCode = 200;
   res.json(_data_ars_json__WEBPACK_IMPORTED_MODULE_1__);

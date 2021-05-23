@@ -858,7 +858,7 @@ function NextApp({
 NextApp.getInitialProps = async app => {
   var _app$ctx, _app$ctx$req;
 
-  Object(utils["g" /* trackPlausible */])(app.ctx.req);
+  Object(utils["h" /* trackPlausible */])(app.ctx.req);
   let url = (app === null || app === void 0 ? void 0 : (_app$ctx = app.ctx) === null || _app$ctx === void 0 ? void 0 : (_app$ctx$req = _app$ctx.req) === null || _app$ctx$req === void 0 ? void 0 : _app$ctx$req.url.replace('/', '')) || app.ctx.pathname.replace('/', '');
   url = url.split('?')[0];
   let regiao = 'portugal';
@@ -1218,15 +1218,15 @@ function resolveRewrites() {}
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
-/* unused harmony export formatDateShort */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
@@ -3901,7 +3901,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621805515650,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621807706568,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 

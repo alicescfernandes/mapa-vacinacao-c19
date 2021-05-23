@@ -323,7 +323,7 @@ function VacinadosPorDia({
   };
 
   let numberFormatter = new Intl.NumberFormat();
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
   let annotations = {
     annotations: [...horizontalAnnotations]
   };
@@ -378,7 +378,7 @@ function VacinadosPorDia({
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false);
+              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false);
             }
           },
           suggestedMax: max
@@ -391,7 +391,7 @@ function VacinadosPorDia({
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             callback: function (value, index, values) {
-              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false);
+              return Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false);
             }
           },
           suggestedMax: max
@@ -528,15 +528,15 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
-/* unused harmony export formatDateShort */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
@@ -862,13 +862,13 @@ function NumeroTotalVacinados({
     pointHitRadius: 10,
     usePointStyle: true
   };
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "e"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
   let annotations = {
     annotations: [...horizontalAnnotations, {
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(2700000) : 2700000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(2700000) : 2700000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -914,7 +914,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(950000) : 950000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(950000) : 950000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -936,7 +936,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(10286300 * 0.7) : 10286300 * 0.7 : null,
       borderColor: '#D17615',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -976,7 +976,7 @@ function NumeroTotalVacinados({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "d"])(foreground);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(foreground);
 
     try {
       gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
@@ -1000,7 +1000,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: foreground,
         pointHoverBackgroundColor: foreground,
         pointHoverBorderColor: foreground,
-        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : values
+        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : values
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 1ª Dose',
         fill: false,
@@ -1009,7 +1009,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_1,
         pointHoverBackgroundColor: color_1,
         pointHoverBorderColor: color_1,
-        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn1
+        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn1
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 2ª Dose',
         fill: false,
@@ -1018,7 +1018,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_2,
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
-        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el)) : valuesIn2
+        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn2
       })]
     };
 
@@ -1033,7 +1033,7 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "f"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
       }));
     }
 
@@ -1064,7 +1064,7 @@ function NumeroTotalVacinados({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(tooltipItem.value);
+            return label + ': ' + Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(tooltipItem.value);
           },
           title: (tooltipItem, data) => {
             return 'Dia ' + tooltipItem[0].label;
@@ -1079,7 +1079,7 @@ function NumeroTotalVacinados({
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"] ? 10 : 12,
             //max: 10000000,
-            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(value, false)
+            callback: value => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(value, false)
           }
         },
         x: {
@@ -2147,7 +2147,7 @@ function PieVacinadosInfectadosRecuperadosObitos({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(data)}`;
           }
         }
       }
@@ -2488,7 +2488,7 @@ function LineVacinadosInfecoesRecuperados({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
+            return label + ': ' + Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false);
           },
           title: (tooltipItem, data) => {
             return 'Dia ' + tooltipItem[0].label;
@@ -2502,7 +2502,7 @@ function LineVacinadosInfecoesRecuperados({
             maxTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             callback: function (value, index, values) {
-              return Object(utils["c" /* formatNumber */])(value, false);
+              return Object(utils["d" /* formatNumber */])(value, false);
             }
           }
         },
@@ -2622,7 +2622,7 @@ function BarsVacinacaoArs({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
+            return label + ': ' + Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false);
           },
           title: () => {
             return '';
@@ -2638,7 +2638,7 @@ function BarsVacinacaoArs({
             display: true,
             maxTicksLimit: 7,
             minTicksLimit: 7,
-            callback: value => Object(utils["c" /* formatNumber */])(value, false)
+            callback: value => Object(utils["d" /* formatNumber */])(value, false)
           }
         }],
         xAxes: [{
@@ -2731,7 +2731,7 @@ function BarVacinasRecebidaDia({
       }) => {
         let fromDate = new Date(from);
         let toDate = new Date(to);
-        return `De ${Object(utils["c" /* formatNumber */])(fromDate.getDate())}/${Object(utils["c" /* formatNumber */])(fromDate.getMonth() + 1)} a ${Object(utils["c" /* formatNumber */])(toDate.getDate())}/${Object(utils["c" /* formatNumber */])(toDate.getMonth() + 1)}`;
+        return `De ${Object(utils["d" /* formatNumber */])(fromDate.getDate())}/${Object(utils["d" /* formatNumber */])(fromDate.getMonth() + 1)} a ${Object(utils["d" /* formatNumber */])(toDate.getDate())}/${Object(utils["d" /* formatNumber */])(toDate.getMonth() + 1)}`;
       }),
       datasets: [{
         label: 'Comirnaty (Pfizer/BioNTech)',
@@ -2895,7 +2895,7 @@ function BarVacinasRecebidaDia({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + (parseInt(tooltipItem.value) ? Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false) : 0);
+            return label + ': ' + (parseInt(tooltipItem.value) ? Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false) : 0);
           },
           title: (tooltipItem, data) => {
             return tooltipItem[0].label;
@@ -2909,7 +2909,7 @@ function BarVacinasRecebidaDia({
             beginAtZero: true,
             maxTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            callback: value => Object(utils["c" /* formatNumber */])(value, false)
+            callback: value => Object(utils["d" /* formatNumber */])(value, false)
           }
         },
         x: {
@@ -3015,7 +3015,7 @@ function BarAdministradasPorFaixaEtaria({
       labels: Object.keys(graphData.labels).map(key => {
         let fromDate = new Date(labels[key].from);
         let toDate = new Date(labels[key].to);
-        return `De ${Object(utils["c" /* formatNumber */])(fromDate.getDate())}/${Object(utils["c" /* formatNumber */])(fromDate.getMonth() + 1)} a ${Object(utils["c" /* formatNumber */])(toDate.getDate())}/${Object(utils["c" /* formatNumber */])(toDate.getMonth() + 1)}`;
+        return `De ${Object(utils["d" /* formatNumber */])(fromDate.getDate())}/${Object(utils["d" /* formatNumber */])(fromDate.getMonth() + 1)} a ${Object(utils["d" /* formatNumber */])(toDate.getDate())}/${Object(utils["d" /* formatNumber */])(toDate.getMonth() + 1)}`;
       }),
       datasets: [{
         label: 'Grupo 18/24 - 2ª Dose',
@@ -3193,7 +3193,7 @@ function BarAdministradasPorFaixaEtaria({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value, false));
+            return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value, false));
           },
           title: (tooltipItem, data) => {
             //var label = data.datasets[tooltipItem[0].datasetIndex];
@@ -3209,7 +3209,7 @@ function BarAdministradasPorFaixaEtaria({
             min: 0,
             max: maxValue,
             stepSize: (maxValue / 5).toFixed(0),
-            callback: value => Object(utils["c" /* formatNumber */])(value, false)
+            callback: value => Object(utils["d" /* formatNumber */])(value, false)
           }
         }, {
           stacked: false,
@@ -3220,7 +3220,7 @@ function BarAdministradasPorFaixaEtaria({
             min: 0,
             max: maxValue,
             stepSize: (maxValue / 5).toFixed(0),
-            callback: value => Object(utils["c" /* formatNumber */])(value, false)
+            callback: value => Object(utils["d" /* formatNumber */])(value, false)
           }
         }],
         xAxes: [{
@@ -3357,7 +3357,7 @@ function CustomBarChart({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
+            return label + ': ' + Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false);
           },
           title: (tooltipItem, data) => {
             return '';
@@ -3383,7 +3383,7 @@ function CustomBarChart({
             display: true,
             stepSize: 1000000 / 5,
             callback: function (value, index, values) {
-              return Object(utils["c" /* formatNumber */])(value, false);
+              return Object(utils["d" /* formatNumber */])(value, false);
             }
           },
           max: 1200000
@@ -3698,7 +3698,7 @@ function BarArs_CustomBarChart({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false);
+            return label + ': ' + Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false);
           },
           title: () => {
             return '';
@@ -3725,7 +3725,7 @@ function BarArs_CustomBarChart({
             max: 120000,
             stepSize: 100000 / 5,
             callback: function (value, index, values) {
-              return Object(utils["c" /* formatNumber */])(value, false);
+              return Object(utils["d" /* formatNumber */])(value, false);
             }
           }
         }]
@@ -3983,7 +3983,7 @@ function PieRecebidasAdquiridas({
             sum = sum * 100;
 
             if (sum > 10) {
-              return `${Object(utils["c" /* formatNumber */])(value)} ( ${sum.toFixed(2)}% )`;
+              return `${Object(utils["d" /* formatNumber */])(value)} ( ${sum.toFixed(2)}% )`;
             }
 
             return '';
@@ -4013,7 +4013,7 @@ function PieRecebidasAdquiridas({
               data = statistics.encomendadas;
             }
 
-            return `${label}: ${Object(utils["c" /* formatNumber */])(data)}`;
+            return `${label}: ${Object(utils["d" /* formatNumber */])(data)}`;
           }
         }
       }
@@ -4118,7 +4118,7 @@ function PieAdministradasDoses({
               data = statistics.recebidas;
             }
 
-            return `${label}: ${Object(utils["c" /* formatNumber */])(data)}`;
+            return `${label}: ${Object(utils["d" /* formatNumber */])(data)}`;
           }
         }
       }
@@ -4213,7 +4213,7 @@ function BarVacinasRecebidaDiaAcum({
       }) => {
         let fromDate = new Date(from);
         let toDate = new Date(to);
-        return `De ${Object(utils["c" /* formatNumber */])(fromDate.getDate())}/${Object(utils["c" /* formatNumber */])(fromDate.getMonth() + 1)} a ${Object(utils["c" /* formatNumber */])(toDate.getDate())}/${Object(utils["c" /* formatNumber */])(toDate.getMonth() + 1)}`;
+        return `De ${Object(utils["d" /* formatNumber */])(fromDate.getDate())}/${Object(utils["d" /* formatNumber */])(fromDate.getMonth() + 1)} a ${Object(utils["d" /* formatNumber */])(toDate.getDate())}/${Object(utils["d" /* formatNumber */])(toDate.getMonth() + 1)}`;
       }),
       datasets: [{
         label: 'Comirnaty (Pfizer/BioNTech)',
@@ -4362,7 +4362,7 @@ function BarVacinasRecebidaDiaAcum({
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + (parseInt(tooltipItem.value) ? Object(utils["c" /* formatNumber */])(parseInt(tooltipItem.value), false) : 0);
+            return label + ': ' + (parseInt(tooltipItem.value) ? Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false) : 0);
           },
           title: (tooltipItem, data) => {
             return tooltipItem[0].label;
@@ -4376,7 +4376,7 @@ function BarVacinasRecebidaDiaAcum({
             beginAtZero: true,
             maxTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            callback: value => Object(utils["c" /* formatNumber */])(value, false)
+            callback: value => Object(utils["d" /* formatNumber */])(value, false)
           }
         },
         x: {
@@ -4564,7 +4564,7 @@ function LineVacinadosEu({
             beginAtZero: false,
             maxTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            callback: value => Object(utils["c" /* formatNumber */])(value, false)
+            callback: value => Object(utils["d" /* formatNumber */])(value, false)
           }
         }],
         xAxes: [{
@@ -4792,7 +4792,7 @@ function BarVacinadosEu({
             beginAtZero: true,
             maxTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
             minTicksLimit: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 8 : 10,
-            callback: value => Object(utils["c" /* formatNumber */])(value, false)
+            callback: value => Object(utils["d" /* formatNumber */])(value, false)
           }
         }],
         xAxes: [{
@@ -5041,7 +5041,7 @@ function LineAdministradasPorFaixaEtaria({
             beginAtZero: false,
             min: 0,
             stepSize: (maxValue / 5).toFixed(0),
-            callback: value => Object(utils["c" /* formatNumber */])(value, false) + '%'
+            callback: value => Object(utils["d" /* formatNumber */])(value, false) + '%'
           },
           max: maxValue
         },
@@ -5248,8 +5248,8 @@ function ArsMapa({
 
         shape.bindPopup(`<p>
 						<strong>${feature.properties.Nome_Alternativo}</strong>
-						<br>1ª Dose: ${Object(utils["c" /* formatNumber */])(400)} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${Object(utils["c" /* formatNumber */])(200)} (${percentagem_2.toFixed(2)}%)
+						<br>1ª Dose: ${Object(utils["d" /* formatNumber */])(400)} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(200)} (${percentagem_2.toFixed(2)}%)
 					</p>`);
         shape.on('click', () => {//console.log('click');
         });
@@ -5359,7 +5359,7 @@ function ArsMapa({
             ticks: {
               beginAtZero: true,
               stepSize: Math.round(window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? populacao_residente / 3 : populacao_residente / 6),
-              callback: value => Object(utils["c" /* formatNumber */])(value, false)
+              callback: value => Object(utils["d" /* formatNumber */])(value, false)
             },
             max: populacao_residente
           }
@@ -6488,7 +6488,7 @@ function PieSuscetiveisProporcao({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "c"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(data)}`;
           }
         }
       }
@@ -6673,7 +6673,7 @@ function LineRt({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "d"])(main);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(main);
 
     try {
       //See if supports transperancy
@@ -6948,7 +6948,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621805515650,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621807706568,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-17\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-18\",\"week\":20}");
 
 /***/ }),
 
