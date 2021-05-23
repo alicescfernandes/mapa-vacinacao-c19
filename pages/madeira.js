@@ -50,6 +50,9 @@ export default function Home() {
 		percentagem: {
 			current: 0,
 		},
+		percentagem_1d: {
+			current: 0,
+		},
 	});
 
 	function trackScrollEvents(e) {
@@ -100,6 +103,9 @@ export default function Home() {
 			percentagem: {
 				current: (selectedItem.dose_2 / generic.populacao_ram.valor) * 100,
 			},
+			percentagem_1d: {
+				current: (selectedItem.dose_1 / generic.populacao_ram.valor) * 100,
+			},
 		};
 		setDerivedNumbers(object);
 	}, [selectedItem]);
@@ -120,132 +126,116 @@ export default function Home() {
 
 		setLoaded(true);
 	}, [dataReady]);
+
+	//TODO: Share this markup
+	let renderCounterGroupV2 = (updating = false) => {
+		let options = {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		};
+		let f = new Intl.DateTimeFormat('pt-PT', options);
+
+		return (
+			<>
+				<Row className={styles.datepickerRow}>
+					<Col style={{ textAlign: 'center' }}>
+						<p className={cardStyles.card_subtitle_2}>
+							Atualizado a {f.format(startDate)} <br />
+						</p>
+					</Col>
+				</Row>
+				<Row className="counterRow">
+					<Col lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Doses totais"
+								yesterday={previousItem?.total}
+								from={selectedItem?.total * 0.98}
+								to={selectedItem?.total}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Doses  - 1ª Inoculação"
+								yesterday={previousItem?.dose_1}
+								from={selectedItem?.dose_1 * 0.98}
+								to={selectedItem?.dose_1}
+							></Counter>
+						</Card>
+					</Col>
+					<Col lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								colors={colors}
+								title="Doses - 2ª Inoculação"
+								yesterday={previousItem?.dose_2}
+								from={selectedItem?.dose_2 * 0.98}
+								to={selectedItem?.dose_2}
+							></Counter>
+						</Card>
+					</Col>
+
+					<Col id="vacin1d" lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								digits={2}
+								suffix={'%'}
+								colors={colors}
+								title="População vacinada com pelo menos uma dose"
+								from={0}
+								to={derivedNumbers.percentagem_1d.current}
+							></Counter>
+						</Card>
+					</Col>
+					<Col id="vacin2d" lg={4} xs={6}>
+						<Card type={'counter'} isUpdating={updating}>
+							<Counter
+								digits={2}
+								suffix={'%'}
+								colors={colors}
+								title="População totalmente vacinada"
+								from={0}
+								to={derivedNumbers.percentagem.current}
+							></Counter>
+						</Card>
+					</Col>
+
+					<Col id="vacinfase" lg={4} xs={6}>
+						<Card type={'counter'}>
+							<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
+								Plano de Vacinação
+							</h2>
+
+							<h1
+								title="Consultar notas ou o plano de informação para mais informação"
+								style={{ color: colors[0] }}
+								className={cardStyles.card_highlight_2}
+							>
+								N/A
+							</h1>
+
+							<a target="_blank" href={'https://covidmadeira.pt/vacinacao/'} className={`${cardStyles.card_subtitle} ${styles.link}`}>
+								+ info
+							</a>
+						</Card>
+					</Col>
+				</Row>
+			</>
+		);
+	};
+
 	return (
 		<RegiaoContext.Provider value={'madeira'}>
-			<Container className="container-fluid app">
-				{loaded ? (
-					<>
-						<Row>
-							<Col>
-								<h2 className={styles.datepicker_static}> {d} </h2>
-							</Col>
-						</Row>
-						<Row className="counterRow">
-							<Col lg={4} xs={12}>
-								<Card>
-									<Counter
-										colors={colors}
-										tempo={'na semana anterior'}
-										title="Número total de vacinas administradas"
-										yesterday={previousItem?.total}
-										from={previousItem?.total}
-										to={selectedItem?.total}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card>
-									<Counter
-										colors={colors}
-										tempo={'na semana anterior'}
-										title="Número de doses administradas - 1ª Dose"
-										yesterday={previousItem?.dose_1}
-										from={previousItem?.dose_1}
-										to={selectedItem?.dose_1}
-									></Counter>
-									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.dose_1, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
-										pessoas
-										<br />
-										{formatNumber(selectedItem?.dose_1 - selectedItem?.dose_2)} pessoas inoculadas com a 1ª dose
-									</p>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card>
-									<Counter
-										colors={colors}
-										tempo={'na 	semana anterior'}
-										title="Número de doses administradas - 2ª Dose"
-										yesterday={previousItem?.dose_2}
-										from={previousItem?.dose_2}
-										to={selectedItem?.dose_2}
-									></Counter>
+			{loaded ? (
+				<>
+					{renderCounterGroupV2()}
 
-									<p style={{ marginTop: '10px' }} className={cardStyles.card_subtitle}>
-										{perHundred(selectedItem?.dose_2, generic.populacao_ram.valor).toFixed(2)} doses administradas por cada 100
-										pessoas
-										<br />
-										{formatNumber(selectedItem?.dose_2)} pessoas inoculadas com a 2ª dose
-									</p>
-								</Card>
-							</Col>
-						</Row>
-						<Row className="counterRow">
-							<Col lg={4} xs={12}>
-								<Card>
-									<Counter
-										ps="Percentagem calculada com base no número total de segundas doses administradas"
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem de população inoculada com a 2ª dose "
-										from={0}
-										to={derivedNumbers.percentagem.current}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card>
-									<Counter
-										ps={`Ou seja, será preciso vacinar totalmente mais ${derivedNumbers.pessoasAVacinar.current} pessoas para se atingir imuninade de grupo`}
-										digits={2}
-										suffix={'%'}
-										colors={colors}
-										title="Percentagem para atingir imunidade de grupo"
-										from={0}
-										to={70 - derivedNumbers.percentagem.current}
-									></Counter>
-								</Card>
-							</Col>
-							<Col lg={4} xs={12}>
-								<Card>
-									<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
-										Plano de Vacinação
-									</h2>
-									<p
-										title="Consultar notas ou o plano de informação para mais informação"
-										style={{ margin: '5px 0px' }}
-										className={cardStyles.card_subtitle}
-									>
-										O plano de vacinação aplicado pela Madeira não divulga números a atingir.
-									</p>
-
-									<a
-										target="_blank"
-										href={'https://covidmadeira.pt/vacinacao/'}
-										className={`${cardStyles.card_subtitle} ${styles.link}`}
-									>
-										Consultar plano de vacinação
-									</a>
-								</Card>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas</h2>
-								<hr />
-								<NumeroTotalVacinados statistics={statistics} colors={colors}></NumeroTotalVacinados>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<h2 className={styles.title}>Número de vacinas administradas</h2>
-								<hr />
-								<VacinadosPorDia colors={colors_v2} statistics={statistics}></VacinadosPorDia>
-							</Col>
-						</Row>
-						{/* <Row>
+					{/* <Row>
 							<Col>
 								<h2 className={styles.title}>Vacinação por grupos prioritários</h2>
 								<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2020 até 11 de Abril de 2021</h3>
@@ -253,6 +243,7 @@ export default function Home() {
 								<RamGruposPrioritarios colors={colors_v2} statistics={statistics}></RamGruposPrioritarios>
 							</Col>
 						</Row> */}
+					<Container className="container-fluid app">
 						<LazyLoad height={500} once>
 							<Row>
 								<Col>
@@ -419,13 +410,13 @@ export default function Home() {
 								</p>
 							</Col>
 						</Row>
-					</>
-				) : (
-					<div style={{ display: 'block', width: 50, margin: 'auto ' }}>
-						<GooSpinner size={50} color={colors_v2.main} />
-					</div>
-				)}
-			</Container>
+					</Container>
+				</>
+			) : (
+				<div style={{ display: 'block', width: 50, margin: 'auto ' }}>
+					<GooSpinner size={50} color={colors_v2.main} />
+				</div>
+			)}
 		</RegiaoContext.Provider>
 	);
 }

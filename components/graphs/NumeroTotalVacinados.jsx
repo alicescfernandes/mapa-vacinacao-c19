@@ -279,8 +279,8 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					position: 'right',
 					ticks: {
 						beginAtZero: false,
-						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
-						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 20,
+						maxTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 12,
+						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 10 : 12,
 						//max: 10000000,
 						callback: (value) => formatNumber(value, false),
 					},
