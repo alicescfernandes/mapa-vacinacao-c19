@@ -186,6 +186,7 @@ export function LineRt({ statistics, colors, regiao }) {
 						minTicksLimit: window.innerWidth <= RESIZE_TRESHOLD ? 8 : 10,
 						stepSize: max / 4,
 					},
+					min: 0,
 					max: max,
 				},
 
