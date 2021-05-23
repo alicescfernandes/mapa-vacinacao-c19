@@ -221,6 +221,11 @@ schedule.scheduleJob('30 21 * * *', function () {
 	shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/" ');
 });
 
+schedule.scheduleJob('40 21 * * *', function () {
+	console.log('Saving to web archive');
+	shell.exec('waybackpy --save --url "https://web.sesaram.pt/COVID19_INFO" ');
+});
+
 schedule.scheduleJob('00 12 * * *', function () {
 	updateOWID();
 	updateRT();
