@@ -221,7 +221,7 @@ schedule.scheduleJob('23 50 * * *', function () {
 	});
 });
 
-//Update SESARAM
+/* //Update SESARAM
 //Every 5m from 8 through 19
 schedule.scheduleJob('5 8-19 * * *', function () {
 	shell.exec('git checkout develop');
@@ -229,7 +229,7 @@ schedule.scheduleJob('5 8-19 * * *', function () {
 	scrapSesaram(function () {
 		gitCommit('sesaram');
 	});
-});
+}); */
 
 schedule.scheduleJob('20 21 * * *', function () {
 	console.log('Saving to web archive');
