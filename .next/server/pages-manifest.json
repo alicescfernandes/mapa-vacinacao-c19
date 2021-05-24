@@ -15,6 +15,7 @@
   "/api/owid": "pages/api/owid.js",
   "/api/rt/[...regiao]": "pages/api/rt/[...regiao].js",
   "/api/rt": "pages/api/rt.js",
+  "/api/sesaram": "pages/api/sesaram.js",
   "/api/sns": "pages/api/sns.js",
   "/api/vaccines": "pages/api/vaccines.js",
   "/api/vaccinesold": "pages/api/vaccinesold.js",
