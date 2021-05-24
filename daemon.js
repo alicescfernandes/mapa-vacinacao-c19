@@ -212,8 +212,18 @@ schedule.scheduleJob('0-59/5 14-20 * * *', function () {
 	updateJSON();
 });
 
-//Update SESARAM
+//Update SESARAM at midnight again
 schedule.scheduleJob('23 50 * * *', function () {
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
+	scrapSesaram(function () {
+		gitCommit('sesaram');
+	});
+});
+
+//Update SESARAM
+//Every 5m from 8 through 19
+schedule.scheduleJob('5 8-19 * * *', function () {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
 	scrapSesaram(function () {
