@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
 const { exec } = require('child_process');
-const { scrapSesaram } = require('./automation/sesaram');
+const scrapSesaram = require('./automation/sesaram');
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
 	shell.exit(1);
