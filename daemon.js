@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
 const { exec } = require('child_process');
+const { scrapSesaram } = require('./automation/sesaram');
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
 	shell.exit(1);
@@ -209,6 +210,15 @@ schedule.scheduleJob('30/5 13 * * *', function () {
 
 schedule.scheduleJob('0-59/5 14-20 * * *', function () {
 	updateJSON();
+});
+
+//Update SESARAM
+schedule.scheduleJob('23 50 * * *', function () {
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
+	scrapSesaram(function () {
+		gitCommit('sesaram');
+	});
 });
 
 schedule.scheduleJob('20 21 * * *', function () {

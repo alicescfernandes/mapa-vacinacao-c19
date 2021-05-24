@@ -1,4 +1,3 @@
-import CountTo from 'react-count-to';
 import styles from './Card.module.scss';
 import * as React from 'react';
 export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digits, suffix, tempo }) {
@@ -29,9 +28,6 @@ export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digi
 				</span>
 			) : (
 				<>
-					{/* <CountTo digits={digits} delay={1} from={from || 0} to={to || 0} speed={0}>
-						{fn}
-					</CountTo> */}
 					<span style={{ color: foreground }} className={styles.card_highlight}>
 						{numberFormatter.format(to).replace(/,/gm, ' ')} {suffix ? suffix : ''}
 					</span>

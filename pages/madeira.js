@@ -88,10 +88,16 @@ export default function Home() {
 		window.addEventListener('socket_update', onSocketUpdate);
 		window.addEventListener('scroll', trackScrollEvents);
 
+		let timeout = window.setInterval(async () => {
+			let data = await statistics.getSesaram();
+			setSelectedItem(data);
+		}, 60_000);
+
 		return function () {
 			// Unconventional way of doing this
 			window.removeEventListener('socket_update', onSocketUpdate);
 			window.removeEventListener('scroll', trackScrollEvents);
+			window.clearInterval(timeout);
 		};
 	}, []);
 
@@ -114,7 +120,8 @@ export default function Home() {
 		if (dataReady === false) return;
 		let rawData = await statistics.getArquipelagoData();
 		plausible.trackPageview();
-		setSelectedItem(rawData[rawData.length - 1]);
+		let data = await statistics.getSesaram();
+		setSelectedItem(data);
 		setPreviousItem(rawData[rawData.length - 2]);
 
 		/* let { sum } = statistics?.getDosesRecebidasAcum();
@@ -136,12 +143,17 @@ export default function Home() {
 		};
 		let f = new Intl.DateTimeFormat('pt-PT', options);
 
+		let horas = new Intl.DateTimeFormat('pt-PT', {
+			hour: 'numeric',
+			minute: 'numeric',
+		});
+
 		return (
 			<>
 				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>
 						<p className={cardStyles.card_subtitle_2}>
-							Atualizado a {f.format(startDate)} <br />
+							Atualizado a {f.format(new Date(selectedItem.data))} às {horas.format(new Date(selectedItem.data))} <br />
 						</p>
 					</Col>
 				</Row>
@@ -152,9 +164,9 @@ export default function Home() {
 								tempo={'na semana anterior'}
 								colors={colors}
 								title="Doses totais"
-								yesterday={previousItem?.total}
 								from={selectedItem?.total * 0.98}
 								to={selectedItem?.total}
+								yesterday={selectedItem?.total}
 							></Counter>
 						</Card>
 					</Col>
@@ -164,8 +176,8 @@ export default function Home() {
 								tempo={'na semana anterior'}
 								colors={colors}
 								title="Doses  - 1ª Inoculação"
-								yesterday={previousItem?.dose_1}
 								from={selectedItem?.dose_1 * 0.98}
+								yesterday={selectedItem?.dose_1}
 								to={selectedItem?.dose_1}
 							></Counter>
 						</Card>
@@ -176,9 +188,9 @@ export default function Home() {
 								tempo={'na semana anterior'}
 								colors={colors}
 								title="Doses - 2ª Inoculação"
-								yesterday={previousItem?.dose_2}
 								from={selectedItem?.dose_2 * 0.98}
 								to={selectedItem?.dose_2}
+								yesterday={selectedItem?.dose_2}
 							></Counter>
 						</Card>
 					</Col>

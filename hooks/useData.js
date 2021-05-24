@@ -679,6 +679,11 @@ export function useData({ regiao }) {
 			let res = await fetchWithLocalCache(`/api/${regiao}/pontosituacao?${btoa(lastUpdate.dateMadeiraCases)}`);
 			return res;
 		},
+		getSesaram: async () => {
+			let res = await fetch(`/api/sesaram`);
+			let json = res.json();
+			return json;
+		},
 	};
 
 	useEffect(() => {
