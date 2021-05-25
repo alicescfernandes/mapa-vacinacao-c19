@@ -35,6 +35,7 @@ const plausible = Plausible({
 export default function Home() {
 	let { statistics, ready: dataReady } = useData({ regiao: 'madeira' });
 	let [selectedItem, setSelectedItem] = useState({});
+	let [updating, isUpdating] = useState(false);
 	let [previousItem, setPreviousItem] = useState({});
 	let [loaded, setLoaded] = useState(false);
 	let beacons = {
@@ -135,7 +136,7 @@ export default function Home() {
 	}, [dataReady]);
 
 	//TODO: Share this markup
-	let renderCounterGroupV2 = (updating = false) => {
+	let renderCounterGroupV2 = () => {
 		let options = {
 			year: 'numeric',
 			month: 'long',
