@@ -71,7 +71,7 @@ async function parseSesaram() {
 	return body;
 }
 
-export async function scrapSesaram(onUpdate) {
+const scrapSesaram = async function (onUpdate) {
 	let sesaram = [];
 	if (fs.existsSync('./data/sesaram.json')) {
 		sesaram = JSON.parse(fs.readFileSync('./data/sesaram.json')); //do not cache this pls
@@ -96,6 +96,6 @@ export async function scrapSesaram(onUpdate) {
 	}
 
 	fs.writeFileSync('././data/sesaram.json', JSON.stringify(sesaram));
-}
+};
 
-scrapSesaram();
+module.exports = scrapSesaram;
