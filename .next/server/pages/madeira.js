@@ -2751,6 +2751,10 @@ function Home() {
     1: setSelectedItem
   } = Object(external_react_["useState"])({});
   let {
+    0: updating,
+    1: isUpdating
+  } = Object(external_react_["useState"])(false);
+  let {
     0: previousItem,
     1: setPreviousItem
   } = Object(external_react_["useState"])({});
@@ -2857,7 +2861,7 @@ function Home() {
     setLoaded(true);
   }, [dataReady]); //TODO: Share this markup
 
-  let renderCounterGroupV2 = (updating = false) => {
+  let renderCounterGroupV2 = () => {
     let options = {
       year: 'numeric',
       month: 'long',
@@ -4003,7 +4007,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621934125203,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-22\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-23\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621934400179,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-22\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-23\",\"week\":20}");
 
 /***/ }),
 
