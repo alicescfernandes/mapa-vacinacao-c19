@@ -680,7 +680,7 @@ export function useData({ regiao }) {
 			return res;
 		},
 		getSesaram: async () => {
-			let res = await fetch(`/api/sesaram`);
+			let res = await fetch(`/api/sesaram?${btoa(lastUpdate.date)}`);
 			let json = res.json();
 			return json;
 		},
