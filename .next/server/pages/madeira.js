@@ -1896,7 +1896,7 @@ function useData({
       return res;
     },
     getSesaram: async () => {
-      let res = await fetch(`/api/sesaram`);
+      let res = await fetch(`/api/sesaram?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`);
       let json = res.json();
       return json;
     }
@@ -4003,7 +4003,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1621885129821,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-22\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-23\",\"week\":20}");
+module.exports = JSON.parse("{\"date\":1621934125203,\"dateSnsStartWeirdFormat\":\"10/05/2021\",\"dateSnsStart\":\"2021-03-10\",\"dateSns\":\"2021-05-16\",\"dateEcdc\":\"2021-05-16\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-16\",\"dateMadeiraCases\":\"2021-05-22\",\"dateAcores\":\"2021-05-20\",\"dateAcoresCases\":\"2021-05-23\",\"week\":20}");
 
 /***/ }),
 
