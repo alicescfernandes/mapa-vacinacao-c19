@@ -213,7 +213,7 @@ schedule.scheduleJob('0-59/5 14-20 * * *', function () {
 });
 
 //Update SESARAM at midnight again
-schedule.scheduleJob('23 50 * * *', function () {
+schedule.scheduleJob('50 23 * * *', function () {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
 	scrapSesaram(function () {
