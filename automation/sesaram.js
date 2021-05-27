@@ -73,6 +73,8 @@ async function parseSesaram() {
 
 const scrapSesaram = async function (onUpdate) {
 	let sesaram = [];
+	console.log('Updating SESARAM');
+
 	if (fs.existsSync('./data/sesaram.json')) {
 		sesaram = JSON.parse(fs.readFileSync('./data/sesaram.json')); //do not cache this pls
 	}
@@ -87,12 +89,16 @@ const scrapSesaram = async function (onUpdate) {
 		if (data.total > sesaram[idx].total) {
 			sesaram[idx] = data;
 			if (onUpdate) {
-				console.log('Updating SESARAM');
+				console.log('Updated SESARAM');
 				onUpdate();
 			}
 		}
 	} else {
 		sesaram.push(data);
+		if (onUpdate) {
+			console.log('Updated SESARAM');
+			onUpdate();
+		}
 	}
 
 	fs.writeFileSync('././data/sesaram.json', JSON.stringify(sesaram));
