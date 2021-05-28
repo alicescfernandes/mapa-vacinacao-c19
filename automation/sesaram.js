@@ -89,6 +89,7 @@ const scrapSesaram = async function (onUpdate) {
 		if (data.total > sesaram[idx].total) {
 			sesaram[idx] = data;
 			if (onUpdate) {
+				fs.writeFileSync('././data/sesaram.json', JSON.stringify(sesaram));
 				console.log('Updated SESARAM');
 				onUpdate();
 			}
@@ -96,12 +97,11 @@ const scrapSesaram = async function (onUpdate) {
 	} else {
 		sesaram.push(data);
 		if (onUpdate) {
+			fs.writeFileSync('././data/sesaram.json', JSON.stringify(sesaram));
 			console.log('Updated SESARAM');
 			onUpdate();
 		}
 	}
-
-	fs.writeFileSync('././data/sesaram.json', JSON.stringify(sesaram));
 };
 
 module.exports = scrapSesaram;
