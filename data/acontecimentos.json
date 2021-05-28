@@ -120,5 +120,32 @@
         "position": 136,
         "marcador": "Autoagendamento - 55+ ",
         "fonte": "https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html"
+    },
+    {
+        "data": "2021-05-27",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 150,
+        "marcador": "Autoagendamento - 50+ ",
+        "fonte": "https://www.tsf.pt/portugal/sociedade/tem-mais-de-50-anos-ja-pode-agendar-a-vacina-contra-a-covid-19-13777710.html"
+    },
+    {
+        "data": "2021-06-06",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":false,
+        "position": 150,
+        "marcador": "Autoagendamento - 40+ ",
+        "fonte": "https://www.dn.pt/sociedade/auto-agendamento-da-vacinacao-para-pessoas-com-mais-de-50-anos-ja-esta-disponivel-13777746.html"
+    },
+    {
+        "data": "2021-06-20",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":false,
+        "position": 150,
+        "marcador": "Autoagendamento - 30+ ",
+        "fonte": "https://www.dn.pt/sociedade/auto-agendamento-da-vacinacao-para-pessoas-com-mais-de-50-anos-ja-esta-disponivel-13777746.html"
     }
 ]
