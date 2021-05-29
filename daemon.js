@@ -221,11 +221,6 @@ schedule.scheduleJob('50 23 * * *', function () {
 	});
 });
 
-
-scrapSesaram(function () {
-	gitCommit('sesaram');
-});
-
 /* //Update SESARAM
 //Every 5m from 8 through 19
 schedule.scheduleJob('5 8-19 * * *', function () {
