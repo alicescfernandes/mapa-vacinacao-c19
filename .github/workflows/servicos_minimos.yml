@@ -8,6 +8,7 @@ on:
                 default: 'warning'
     schedule:
         - cron: '50 22 * * *'
+#some comment
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
