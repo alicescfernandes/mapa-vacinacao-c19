@@ -16,5 +16,4 @@ jobs:
               run: |
                   pip3 install waybackpy
                   waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/
-                  waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/
                   waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/
