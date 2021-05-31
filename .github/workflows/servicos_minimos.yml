@@ -20,6 +20,4 @@ jobs:
                   npm install
 
             - name: Update SESARAM
-              run: /
-                  git fetch
-                  ./daemon.js --scrap sesaram
+              run: git fetch && ./daemon.js --scrap sesaram
