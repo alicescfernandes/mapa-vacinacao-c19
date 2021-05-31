@@ -216,7 +216,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 		switch (argv.scrap) {
 			case 'sesaram':
 				await scrapSesaram(function () {
-					//gitCommit('sesaram');
+					gitCommit('sesaram');
 				});
 				break;
 			case 'vaccines':
