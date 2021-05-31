@@ -19,8 +19,10 @@ jobs:
                   npm install
 
             - name: Update SESARAM
-              run: |
-                    echo $USER
                 env:
                     email: ${{secrets.EMAIL}}
                     user: ${{secrets.USER}}
+
+              run: |
+                    echo $USER
+               
