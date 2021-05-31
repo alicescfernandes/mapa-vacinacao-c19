@@ -7,7 +7,7 @@ on:
                 required: true
                 default: 'warning'
     schedule:
-        - cron: 50 23 * * *
+        - cron: 50 22 * * *
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
@@ -20,4 +20,6 @@ jobs:
                   npm install
 
             - name: Update SESARAM
-              run: ./daemon.js --scrap sesaram
+              run: /
+                  git fetch
+                  ./daemon.js --scrap sesaram
