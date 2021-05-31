@@ -1,0 +1,12 @@
+name: Serviços Minimos - WaybackPI
+on:
+    schedule:
+        - cron: 00 21 * * *
+jobs:
+    waybackpi:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Wayback PI
+              run: |
+                  waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/
+                  waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/

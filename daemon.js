@@ -7,6 +7,8 @@ const fs = require('fs');
 const Pusher = require('pusher');
 const { exec } = require('child_process');
 const scrapSesaram = require('./automation/sesaram');
+var argv = require('minimist')(process.argv.slice(2));
+
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
 	shell.exit(1);
@@ -203,51 +205,70 @@ async function updateJSON() {
 console.log(new Date().toLocaleString(), 'daemon running');
 // ““At every 5th minute from 0 through 59 past hour 13.”
 // https://crontab.guru/#0-59/5_13_*_*_*
-updateJSON();
-schedule.scheduleJob('30/5 13 * * *', function () {
-	updateJSON();
-});
 
-schedule.scheduleJob('0-59/5 14-20 * * *', function () {
-	updateJSON();
-});
+(async () => {
+	if (argv.scrap) {
+		//Run particular commands
 
-//Update SESARAM at midnight again
-schedule.scheduleJob('50 23 * * *', function () {
-	shell.exec('git checkout develop');
-	shell.exec('git pull --rebase');
-	scrapSesaram(function () {
-		gitCommit('sesaram');
-	});
-});
+		shell.exec('git checkout develop');
+		shell.exec('git pull --rebase');
 
-/* //Update SESARAM
-//Every 5m from 8 through 19
-schedule.scheduleJob('5 8-19 * * *', function () {
-	shell.exec('git checkout develop');
-	shell.exec('git pull --rebase');
-	scrapSesaram(function () {
-		gitCommit('sesaram');
-	});
-}); */
+		switch (argv.scrap) {
+			case 'sesaram':
+				await scrapSesaram(function () {
+					//gitCommit('sesaram');
+				});
+				break;
+			case 'vaccines':
+				await updateJSON();
+				break;
+			case 'owid':
+				updateOWID();
+				updateRT();
+				updatedCasesMadeira();
+				break;
+		}
+		process.exit(0);
+	} else {
+		//Set the schedule
 
-schedule.scheduleJob('20 21 * * *', function () {
-	console.log('Saving to web archive');
-	shell.exec('waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"');
-});
+		updateJSON();
+		schedule.scheduleJob('30/5 13 * * *', function () {
+			updateJSON();
+		});
 
-schedule.scheduleJob('30 21 * * *', function () {
-	console.log('Saving to web archive');
-	shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/" ');
-});
+		schedule.scheduleJob('0-59/5 14-20 * * *', function () {
+			updateJSON();
+		});
 
-schedule.scheduleJob('40 21 * * *', function () {
-	console.log('Saving to web archive');
-	shell.exec('waybackpy --save --url "https://web.sesaram.pt/COVID19_INFO" ');
-});
+		//Update SESARAM at midnight again
+		schedule.scheduleJob('50 23 * * *', function () {
+			shell.exec('git checkout develop');
+			shell.exec('git pull --rebase');
+			scrapSesaram(function () {
+				gitCommit('sesaram');
+			});
+		});
 
-schedule.scheduleJob('00 12 * * *', function () {
-	updateOWID();
-	updateRT();
-	updatedCasesMadeira();
-});
+		schedule.scheduleJob('20 21 * * *', function () {
+			console.log('Saving to web archive');
+			shell.exec('waybackpy --save --url "https://www.sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/"');
+		});
+
+		schedule.scheduleJob('30 21 * * *', function () {
+			console.log('Saving to web archive');
+			shell.exec('waybackpy --save --url "https://vacinacao-covid19.azores.gov.pt/" ');
+		});
+
+		schedule.scheduleJob('40 21 * * *', function () {
+			console.log('Saving to web archive');
+			shell.exec('waybackpy --save --url "https://web.sesaram.pt/COVID19_INFO" ');
+		});
+
+		schedule.scheduleJob('00 12 * * *', function () {
+			updateOWID();
+			updateRT();
+			updatedCasesMadeira();
+		});
+	}
+})();
