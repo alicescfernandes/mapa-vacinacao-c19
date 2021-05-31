@@ -20,10 +20,7 @@ jobs:
 
             - name: Update SESARAM
               run: |
-                  echo $USER
-                  git fetch
-                  git config --global user.name "Alice Fernandes"
-                  git config --global user.email "alicescfernandes@gmail"
+                    echo $USER
                 env:
                     email: ${{secrets.EMAIL}}
                     user: ${{secrets.USER}}
