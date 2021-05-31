@@ -7,7 +7,7 @@ on:
                 required: true
                 default: 'warning'
     schedule:
-        - cron: 00 21 * * *
+        - cron: '00 21 * * *'
 jobs:
     waybackpi:
         runs-on: ubuntu-latest
