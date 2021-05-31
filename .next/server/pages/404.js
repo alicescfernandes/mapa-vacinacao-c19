@@ -709,36 +709,24 @@ function createRouteLoader(assetPrefix) {
       });
     },
 
-    loadRoute(route, prefetch) {
-      return withFuture(route, routes, () => {
-        return resolvePromiseWithTimeout(getFilesForRoute(assetPrefix, route).then(({
-          scripts,
-          css
-        }) => {
-          return Promise.all([entrypoints.has(route) ? [] : Promise.all(scripts.map(maybeExecuteScript)), Promise.all(css.map(fetchStyleSheet))]);
-        }).then(res => {
-          return this.whenEntrypoint(route).then(entrypoint => ({
-            entrypoint,
-            styles: res[1]
-          }));
-        }), MS_MAX_IDLE_DELAY, markAssetError(new Error(`Route did not complete loading: ${route}`))).then(({
-          entrypoint,
-          styles
-        }) => {
+    loadRoute(route) {
+      return withFuture(route, routes, async () => {
+        try {
+          const {
+            scripts,
+            css
+          } = await getFilesForRoute(assetPrefix, route);
+          const [, styles] = await Promise.all([entrypoints.has(route) ? [] : Promise.all(scripts.map(maybeExecuteScript)), Promise.all(css.map(fetchStyleSheet))]);
+          const entrypoint = await resolvePromiseWithTimeout(this.whenEntrypoint(route), MS_MAX_IDLE_DELAY, markAssetError(new Error(`Route did not complete loading: ${route}`)));
           const res = Object.assign({
-            styles: styles
+            styles
           }, entrypoint);
           return 'error' in entrypoint ? entrypoint : res;
-        }).catch(err => {
-          if (prefetch) {
-            // we don't want to cache errors during prefetch
-            throw err;
-          }
-
+        } catch (err) {
           return {
             error: err
           };
-        });
+        }
       });
     },
 
@@ -753,7 +741,7 @@ function createRouteLoader(assetPrefix) {
       }
 
       return getFilesForRoute(assetPrefix, route).then(output => Promise.all(canPrefetch ? output.scripts.map(script => prefetchViaDom(script, 'script')) : [])).then(() => {
-        (0, _requestIdleCallback.requestIdleCallback)(() => this.loadRoute(route, true).catch(() => {}));
+        (0, _requestIdleCallback.requestIdleCallback)(() => this.loadRoute(route));
       }).catch( // swallow prefetch errors
       () => {});
     }
@@ -1056,7 +1044,7 @@ function Link(props) {
 
   const p = props.prefetch !== false;
   const router = (0, _router2.useRouter)();
-  const pathname = router && router.asPath || '/';
+  const pathname = router && router.pathname || '/';
 
   const {
     href,
@@ -1245,7 +1233,9 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     default: obj
   };
-} // tslint:disable:no-console
+}
+/* global __NEXT_DATA__ */
+// tslint:disable:no-console
 
 
 let detectDomainLocale;
@@ -1388,15 +1378,7 @@ function omitParmsFromQuery(query, params) {
 
 function resolveHref(currentPath, href, resolveAs) {
   // we use a dummy base url for relative urls
-  let base;
-
-  try {
-    base = new URL(currentPath, 'http://n');
-  } catch (_) {
-    // fallback to / for invalid asPath values e.g. //
-    base = new URL('/', 'http://n');
-  }
-
+  const base = new URL(currentPath, 'http://n');
   const urlAsString = typeof href === 'string' ? href : (0, _utils.formatWithValidation)(href); // Return because it cannot be routed by the Next.js router
 
   if (!isLocalURL(urlAsString)) {
@@ -1440,14 +1422,14 @@ function stripOrigin(url) {
 function prepareUrlAs(router, url, as) {
   // If url and as provided as an object representation,
   // we'll format them into the string version here.
-  let [resolvedHref, resolvedAs] = resolveHref(router.asPath, url, true);
+  let [resolvedHref, resolvedAs] = resolveHref(router.pathname, url, true);
   const origin = (0, _utils.getLocationOrigin)();
   const hrefHadOrigin = resolvedHref.startsWith(origin);
   const asHadOrigin = resolvedAs && resolvedAs.startsWith(origin);
   resolvedHref = stripOrigin(resolvedHref);
   resolvedAs = resolvedAs ? stripOrigin(resolvedAs) : resolvedAs;
   const preparedUrl = hrefHadOrigin ? resolvedHref : addBasePath(resolvedHref);
-  const preparedAs = as ? stripOrigin(resolveHref(router.asPath, as)) : resolvedAs || resolvedHref;
+  const preparedAs = as ? stripOrigin(resolveHref(router.pathname, as)) : resolvedAs || resolvedHref;
   return {
     url: preparedUrl,
     as: asHadOrigin ? preparedAs : addBasePath(preparedAs)
@@ -1681,7 +1663,7 @@ class Router {
 
     this.isSsr = true;
     this.isFallback = isFallback;
-    this.isReady = !!(self.__NEXT_DATA__.gssp || self.__NEXT_DATA__.gip || !autoExportDynamic && !self.location.search && !false);
+    this.isReady = !!(self.__NEXT_DATA__.gssp || self.__NEXT_DATA__.gip || !autoExportDynamic && !self.location.search);
     this.isPreview = !!isPreview;
     this.isLocaleDomain = false;
 
@@ -1742,10 +1724,9 @@ class Router {
     if (!isLocalURL(url)) {
       window.location.href = url;
       return false;
-    }
-
-    const shouldResolveHref = url === as || options._h; // for static pages with query params in the URL we delay
+    } // for static pages with query params in the URL we delay
     // marking the router ready until after the query is updated
+
 
     if (options._h) {
       this.isReady = true;
@@ -1837,7 +1818,7 @@ class Router {
 
     pathname = pathname ? (0, _normalizeTrailingSlash.removePathTrailingSlash)(delBasePath(pathname)) : pathname;
 
-    if (shouldResolveHref && pathname !== '/_error') {
+    if (pathname !== '/_error') {
       if (false) {} else {
         parsed.pathname = resolveDynamicRoute(pathname, pages);
 
@@ -2092,10 +2073,7 @@ class Router {
       {
         pathname,
         query,
-        asPath: as,
-        locale: this.locale,
-        locales: this.locales,
-        defaultLocale: this.defaultLocale
+        asPath: as
       }));
       routeInfo.props = props;
       this.components[route] = routeInfo;

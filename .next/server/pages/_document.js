@@ -145,6 +145,8 @@ module.exports = __webpack_require__("VDXt");
 "use strict";
 
 
+var _interopRequireWildcard = __webpack_require__("284h");
+
 var _interopRequireDefault = __webpack_require__("TqRt");
 
 exports.__esModule = true;
@@ -155,7 +157,7 @@ var _extends2 = _interopRequireDefault(__webpack_require__("pVnL"));
 
 var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__("8OQS"));
 
-var _react = __webpack_require__("cDcd");
+var _react = _interopRequireWildcard(__webpack_require__("cDcd"));
 
 var _headManagerContext = __webpack_require__("Y8yu");
 
@@ -165,7 +167,7 @@ var _requestIdleCallback = __webpack_require__("0G5g");
 
 const ScriptCache = new Map();
 const LoadCache = new Set();
-const ignoreProps = ['onLoad', 'dangerouslySetInnerHTML', 'children', 'onError', 'strategy'];
+const ignoreProps = ['onLoad', 'dangerouslySetInnerHTML', 'children', 'onError', 'strategy', 'preload'];
 
 const loadScript = props => {
   const {
@@ -233,12 +235,12 @@ const loadScript = props => {
 
 function handleClientScriptLoad(props) {
   const {
-    strategy = 'afterInteractive'
+    strategy = 'defer'
   } = props;
 
-  if (strategy === 'afterInteractive') {
+  if (strategy === 'defer') {
     loadScript(props);
-  } else if (strategy === 'lazyOnload') {
+  } else if (strategy === 'lazy') {
     window.addEventListener('load', () => {
       (0, _requestIdleCallback.requestIdleCallback)(() => loadScript(props));
     });
@@ -263,19 +265,22 @@ function Script(props) {
   const {
     src = '',
     onLoad = () => {},
-    strategy = 'afterInteractive',
-    onError
+    dangerouslySetInnerHTML,
+    children = '',
+    strategy = 'defer',
+    onError,
+    preload = false
   } = props,
-        restProps = (0, _objectWithoutPropertiesLoose2.default)(props, ["src", "onLoad", "dangerouslySetInnerHTML", "strategy", "onError"]); // Context is available only during SSR
+        restProps = (0, _objectWithoutPropertiesLoose2.default)(props, ["src", "onLoad", "dangerouslySetInnerHTML", "children", "strategy", "onError", "preload"]); // Context is available only during SSR
 
   const {
     updateScripts,
     scripts
   } = (0, _react.useContext)(_headManagerContext.HeadManagerContext);
   (0, _react.useEffect)(() => {
-    if (strategy === 'afterInteractive') {
+    if (strategy === 'defer') {
       loadScript(props);
-    } else if (strategy === 'lazyOnload') {
+    } else if (strategy === 'lazy') {
       loadLazyScript(props);
     }
   }, [props, strategy]);
@@ -284,9 +289,39 @@ function Script(props) {
     return null;
   }
 
-  if (strategy === 'beforeInteractive') {
+  if (strategy === 'dangerouslyBlockRendering') {
+    const syncProps = (0, _extends2.default)({}, restProps);
+
+    for (const [k, value] of Object.entries({
+      src,
+      onLoad,
+      onError,
+      dangerouslySetInnerHTML,
+      children
+    })) {
+      if (!value) {
+        continue;
+      }
+
+      if (k === 'children') {
+        syncProps.dangerouslySetInnerHTML = {
+          __html: typeof value === 'string' ? value : Array.isArray(value) ? value.join('') : ''
+        };
+      } else {
+        ;
+        syncProps[k] = value;
+      }
+    }
+
+    return /*#__PURE__*/_react.default.createElement("script", syncProps);
+  } else if (strategy === 'defer') {
+    if (updateScripts && preload) {
+      scripts.defer = (scripts.defer || []).concat([src]);
+      updateScripts(scripts);
+    }
+  } else if (strategy === 'eager') {
     if (updateScripts) {
-      scripts.beforeInteractive = (scripts.beforeInteractive || []).concat([(0, _extends2.default)({
+      scripts.eager = (scripts.eager || []).concat([(0, _extends2.default)({
         src,
         onLoad,
         onError
@@ -300,6 +335,67 @@ function Script(props) {
 
 var _default = Script;
 exports.default = _default;
+
+/***/ }),
+
+/***/ "284h":
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__("cDf5");
+
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+module.exports = _interopRequireWildcard;
 
 /***/ }),
 
@@ -431,13 +527,6 @@ function initHeadManager() {
         updatePromise = null;
         const tags = {};
         head.forEach(h => {
-          if ( // If the font tag is loaded only on client navigation
-          // it won't be inlined. In this case revert to the original behavior
-          h.type === 'link' && h.props['data-optimized-fonts'] && !document.querySelector(`style[data-href="${h.props['data-href']}"]`)) {
-            h.props.href = h.props['data-href'];
-            h.props['data-href'] = undefined;
-          }
-
           const components = tags[h.type] || [];
           components.push(h);
           tags[h.type] = components;
@@ -489,15 +578,15 @@ module.exports = require("next/dist/next-server/lib/constants.js");
 "use strict";
 
 
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 exports.__esModule = true;
 exports.Html = Html;
@@ -527,6 +616,12 @@ var _utils2 = __webpack_require__("ri/Y");
 var _htmlescape = __webpack_require__("AXZJ");
 
 var _experimentalScript = _interopRequireDefault(__webpack_require__("24z6"));
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
 
 function _getRequireWildcardCache() {
   if (typeof WeakMap !== "function") return null;
@@ -580,10 +675,17 @@ function _interopRequireWildcard(obj) {
   return newObj;
 }
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
+function dedupe(bundles) {
+  const files = new Set();
+  const kept = [];
+
+  for (const bundle of bundles) {
+    if (files.has(bundle.file)) continue;
+    files.add(bundle.file);
+    kept.push(bundle);
+  }
+
+  return kept;
 }
 
 function getDocumentFiles(buildManifest, pathname, inAmpMode) {
@@ -594,89 +696,6 @@ function getDocumentFiles(buildManifest, pathname, inAmpMode) {
     pageFiles,
     allFiles: [...new Set([...sharedFiles, ...pageFiles])]
   };
-}
-
-function getPolyfillScripts(context, props) {
-  // polyfills.js has to be rendered as nomodule without async
-  // It also has to be the first script to load
-  const {
-    assetPrefix,
-    buildManifest,
-    devOnlyCacheBusterQueryString,
-    disableOptimizedLoading
-  } = context;
-  return buildManifest.polyfillFiles.filter(polyfill => polyfill.endsWith('.js') && !polyfill.endsWith('.module.js')).map(polyfill => /*#__PURE__*/_react.default.createElement("script", {
-    key: polyfill,
-    defer: !disableOptimizedLoading,
-    nonce: props.nonce,
-    crossOrigin: props.crossOrigin || undefined,
-    noModule: true,
-    src: `${assetPrefix}/_next/${polyfill}${devOnlyCacheBusterQueryString}`
-  }));
-}
-
-function getPreNextScripts(context, props) {
-  const {
-    scriptLoader,
-    disableOptimizedLoading
-  } = context;
-  return (scriptLoader.beforeInteractive || []).map(file => {
-    const {
-      strategy
-    } = file,
-          scriptProps = _objectWithoutProperties(file, ["strategy"]);
-
-    return /*#__PURE__*/_react.default.createElement("script", Object.assign({}, scriptProps, {
-      defer: !disableOptimizedLoading,
-      nonce: props.nonce,
-      crossOrigin: props.crossOrigin || undefined
-    }));
-  });
-}
-
-function getDynamicChunks(context, props, files) {
-  const {
-    dynamicImports,
-    assetPrefix,
-    isDevelopment,
-    devOnlyCacheBusterQueryString,
-    disableOptimizedLoading
-  } = context;
-  return dynamicImports.map(file => {
-    if (!file.endsWith('.js') || files.allFiles.includes(file)) return null;
-    return /*#__PURE__*/_react.default.createElement("script", {
-      async: !isDevelopment && disableOptimizedLoading,
-      defer: !disableOptimizedLoading,
-      key: file,
-      src: `${assetPrefix}/_next/${encodeURI(file)}${devOnlyCacheBusterQueryString}`,
-      nonce: props.nonce,
-      crossOrigin: props.crossOrigin || undefined
-    });
-  });
-}
-
-function getScripts(context, props, files) {
-  var _buildManifest$lowPri;
-
-  const {
-    assetPrefix,
-    buildManifest,
-    isDevelopment,
-    devOnlyCacheBusterQueryString,
-    disableOptimizedLoading
-  } = context;
-  const normalScripts = files.allFiles.filter(file => file.endsWith('.js'));
-  const lowPriorityScripts = (_buildManifest$lowPri = buildManifest.lowPriorityFiles) == null ? void 0 : _buildManifest$lowPri.filter(file => file.endsWith('.js'));
-  return [...normalScripts, ...lowPriorityScripts].map(file => {
-    return /*#__PURE__*/_react.default.createElement("script", {
-      key: file,
-      src: `${assetPrefix}/_next/${encodeURI(file)}${devOnlyCacheBusterQueryString}`,
-      nonce: props.nonce,
-      async: !isDevelopment && disableOptimizedLoading,
-      defer: !disableOptimizedLoading,
-      crossOrigin: props.crossOrigin || undefined
-    });
-  });
 }
 /**
 * `Document` component handles the initial `document` markup and renders only on the server side.
@@ -721,6 +740,7 @@ class Document extends _react.Component {
 }
 
 exports.default = Document;
+Document.headTagsMiddleware =  false ? undefined : () => [];
 
 function Html(props) {
   const {
@@ -753,7 +773,7 @@ class Head extends _react.Component {
     // webpack runtime (`mini-css-extract-plugin`).
 
     let unmangedFiles = new Set([]);
-    let dynamicCssFiles = Array.from(new Set(dynamicImports.filter(file => file.endsWith('.css'))));
+    let dynamicCssFiles = dedupe(dynamicImports.filter(f => f.file.endsWith('.css'))).map(f => f.file);
 
     if (dynamicCssFiles.length) {
       const existing = new Set(cssFiles);
@@ -789,9 +809,7 @@ class Head extends _react.Component {
       }));
     });
 
-    if (true) {
-      cssLinkElements = this.makeStylesheetInert(cssLinkElements);
-    }
+    if (false) {}
 
     return cssLinkElements.length === 0 ? null : cssLinkElements;
   }
@@ -802,15 +820,15 @@ class Head extends _react.Component {
       assetPrefix,
       devOnlyCacheBusterQueryString
     } = this.context;
-    return dynamicImports.map(file => {
-      if (!file.endsWith('.js')) {
+    return dedupe(dynamicImports).map(bundle => {
+      if (!bundle.file.endsWith('.js')) {
         return null;
       }
 
       return /*#__PURE__*/_react.default.createElement("link", {
         rel: "preload",
-        key: file,
-        href: `${assetPrefix}/_next/${encodeURI(file)}${devOnlyCacheBusterQueryString}`,
+        key: bundle.file,
+        href: `${assetPrefix}/_next/${encodeURI(bundle.file)}${devOnlyCacheBusterQueryString}`,
         as: "script",
         nonce: this.props.nonce,
         crossOrigin: this.props.crossOrigin || undefined
@@ -828,7 +846,7 @@ class Head extends _react.Component {
     const preloadFiles = files.allFiles.filter(file => {
       return file.endsWith('.js');
     });
-    return [...(scriptLoader.beforeInteractive || []).map(file => /*#__PURE__*/_react.default.createElement("link", {
+    return [...(scriptLoader.eager || []).map(file => /*#__PURE__*/_react.default.createElement("link", {
       key: file.src,
       nonce: this.props.nonce,
       rel: "preload",
@@ -842,23 +860,14 @@ class Head extends _react.Component {
       href: `${assetPrefix}/_next/${encodeURI(file)}${devOnlyCacheBusterQueryString}`,
       as: "script",
       crossOrigin: this.props.crossOrigin || undefined
+    })), ...(scriptLoader.defer || []).map(file => /*#__PURE__*/_react.default.createElement("link", {
+      key: file,
+      nonce: this.props.nonce,
+      rel: "preload",
+      href: file,
+      as: "script",
+      crossOrigin: this.props.crossOrigin || undefined
     }))];
-  }
-
-  getDynamicChunks(files) {
-    return getDynamicChunks(this.context, this.props, files);
-  }
-
-  getPreNextScripts() {
-    return getPreNextScripts(this.context, this.props);
-  }
-
-  getScripts(files) {
-    return getScripts(this.context, this.props, files);
-  }
-
-  getPolyfillScripts() {
-    return getPolyfillScripts(this.context, this.props);
   }
 
   handleDocumentScriptLoaderItems(children) {
@@ -870,10 +879,10 @@ class Head extends _react.Component {
 
     _react.default.Children.forEach(children, child => {
       if (child.type === _experimentalScript.default) {
-        if (child.props.strategy === 'beforeInteractive') {
-          scriptLoader.beforeInteractive = (scriptLoader.beforeInteractive || []).concat([_objectSpread({}, child.props)]);
+        if (child.props.strategy === 'eager') {
+          scriptLoader.eager = (scriptLoader.eager || []).concat([_objectSpread({}, child.props)]);
           return;
-        } else if (['lazyOnload', 'afterInteractive'].includes(child.props.strategy)) {
+        } else if (['lazy', 'defer'].includes(child.props.strategy)) {
           scriptLoaderItems.push(child.props);
           return;
         }
@@ -915,11 +924,10 @@ class Head extends _react.Component {
       dangerousAsPath,
       headTags,
       unstable_runtimeJS,
-      unstable_JsPreload,
-      disableOptimizedLoading
+      unstable_JsPreload
     } = this.context;
     const disableRuntimeJS = unstable_runtimeJS === false;
-    const disableJsPreload = unstable_JsPreload === false || !disableOptimizedLoading;
+    const disableJsPreload = unstable_JsPreload === false;
     this.context.docComponentsRendered.Head = true;
     let {
       head
@@ -938,14 +946,11 @@ class Head extends _react.Component {
       head = cssPreloads.concat(otherHeadElements);
     }
 
-    let children = _react.default.Children.toArray(this.props.children).filter(Boolean); // show a warning if Head contains <title> (only in development)
-
+    let children = this.props.children; // show a warning if Head contains <title> (only in development)
 
     if (false) {}
 
-    if ( true && !inAmpMode) {
-      children = this.makeStylesheetInert(children);
-    }
+    if (false) {}
 
     if (false) {}
 
@@ -1065,7 +1070,7 @@ class Head extends _react.Component {
       href: canonicalBase + getAmpPath(ampPath, dangerousAsPath)
     }),  true && this.getCssLinks(files),  true && /*#__PURE__*/_react.default.createElement("noscript", {
       "data-n-css": (_this$props$nonce = this.props.nonce) != null ? _this$props$nonce : ''
-    }), !disableRuntimeJS && !disableJsPreload && this.getPreloadDynamicChunks(), !disableRuntimeJS && !disableJsPreload && this.getPreloadMainLinks(files), !disableOptimizedLoading && !disableRuntimeJS && this.getPolyfillScripts(), !disableOptimizedLoading && !disableRuntimeJS && this.getPreNextScripts(), !disableOptimizedLoading && !disableRuntimeJS && this.getDynamicChunks(files), !disableOptimizedLoading && !disableRuntimeJS && this.getScripts(files),  false && false,  false && /*#__PURE__*/false, this.context.isDevelopment &&
+    }), !disableRuntimeJS && !disableJsPreload && this.getPreloadDynamicChunks(), !disableRuntimeJS && !disableJsPreload && this.getPreloadMainLinks(files),  false && false,  false && /*#__PURE__*/false, this.context.isDevelopment &&
     /*#__PURE__*/
     // this element is used to mount development styles so the
     // ordering matches production
@@ -1107,19 +1112,78 @@ class NextScript extends _react.Component {
   }
 
   getDynamicChunks(files) {
-    return getDynamicChunks(this.context, this.props, files);
+    const {
+      dynamicImports,
+      assetPrefix,
+      isDevelopment,
+      devOnlyCacheBusterQueryString
+    } = this.context;
+    return dedupe(dynamicImports).map(bundle => {
+      if (!bundle.file.endsWith('.js') || files.allFiles.includes(bundle.file)) return null;
+      return /*#__PURE__*/_react.default.createElement("script", {
+        async: !isDevelopment,
+        key: bundle.file,
+        src: `${assetPrefix}/_next/${encodeURI(bundle.file)}${devOnlyCacheBusterQueryString}`,
+        nonce: this.props.nonce,
+        crossOrigin: this.props.crossOrigin || undefined
+      });
+    });
   }
 
   getPreNextScripts() {
-    return getPreNextScripts(this.context, this.props);
+    const {
+      scriptLoader
+    } = this.context;
+    return (scriptLoader.eager || []).map(file => {
+      const {
+        strategy
+      } = file,
+            props = _objectWithoutProperties(file, ["strategy"]);
+
+      return /*#__PURE__*/_react.default.createElement("script", Object.assign({}, props, {
+        nonce: this.props.nonce,
+        crossOrigin: this.props.crossOrigin || undefined
+      }));
+    });
   }
 
   getScripts(files) {
-    return getScripts(this.context, this.props, files);
+    var _buildManifest$lowPri;
+
+    const {
+      assetPrefix,
+      buildManifest,
+      isDevelopment,
+      devOnlyCacheBusterQueryString
+    } = this.context;
+    const normalScripts = files.allFiles.filter(file => file.endsWith('.js'));
+    const lowPriorityScripts = (_buildManifest$lowPri = buildManifest.lowPriorityFiles) == null ? void 0 : _buildManifest$lowPri.filter(file => file.endsWith('.js'));
+    return [...normalScripts, ...lowPriorityScripts].map(file => {
+      return /*#__PURE__*/_react.default.createElement("script", {
+        key: file,
+        src: `${assetPrefix}/_next/${encodeURI(file)}${devOnlyCacheBusterQueryString}`,
+        nonce: this.props.nonce,
+        async: !isDevelopment,
+        crossOrigin: this.props.crossOrigin || undefined
+      });
+    });
   }
 
   getPolyfillScripts() {
-    return getPolyfillScripts(this.context, this.props);
+    // polyfills.js has to be rendered as nomodule without async
+    // It also has to be the first script to load
+    const {
+      assetPrefix,
+      buildManifest,
+      devOnlyCacheBusterQueryString
+    } = this.context;
+    return buildManifest.polyfillFiles.filter(polyfill => polyfill.endsWith('.js') && !polyfill.endsWith('.module.js')).map(polyfill => /*#__PURE__*/_react.default.createElement("script", {
+      key: polyfill,
+      nonce: this.props.nonce,
+      crossOrigin: this.props.crossOrigin || undefined,
+      noModule: true,
+      src: `${assetPrefix}/_next/${polyfill}${devOnlyCacheBusterQueryString}`
+    }));
   }
 
   static getInlineScriptSource(documentProps) {
@@ -1146,8 +1210,7 @@ class NextScript extends _react.Component {
       buildManifest,
       unstable_runtimeJS,
       docComponentsRendered,
-      devOnlyCacheBusterQueryString,
-      disableOptimizedLoading
+      devOnlyCacheBusterQueryString
     } = this.context;
     const disableRuntimeJS = unstable_runtimeJS === false;
     docComponentsRendered.NextScript = true;
@@ -1192,7 +1255,7 @@ class NextScript extends _react.Component {
       dangerouslySetInnerHTML: {
         __html: NextScript.getInlineScriptSource(this.context)
       }
-    }), disableOptimizedLoading && !disableRuntimeJS && this.getPolyfillScripts(), disableOptimizedLoading && !disableRuntimeJS && this.getPreNextScripts(), disableOptimizedLoading && !disableRuntimeJS && this.getDynamicChunks(files), disableOptimizedLoading && !disableRuntimeJS && this.getScripts(files));
+    }), !disableRuntimeJS && this.getPolyfillScripts(), !disableRuntimeJS && this.getPreNextScripts(), disableRuntimeJS ? null : this.getDynamicChunks(files), disableRuntimeJS ? null : this.getScripts(files));
   }
 
 }
@@ -1222,6 +1285,29 @@ module.exports = require("next/dist/next-server/lib/head-manager-context.js");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "cDf5":
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
 
 /***/ }),
 
