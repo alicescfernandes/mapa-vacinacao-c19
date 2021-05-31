@@ -19,5 +19,5 @@ jobs:
                   npm install
             - name: Update SESARAM
                env:
-                email: ${{secrets.EMAIL}}
-                user: ${{secrets.USER}}     
+                EMAIL: ${{ secrets.EMAIL }}
+                USER: ${{ secrets.USER }}     
