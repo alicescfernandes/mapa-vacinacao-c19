@@ -24,7 +24,6 @@ jobs:
                   git fetch
                   git config --global user.name "Alice Fernandes"
                   git config --global user.email "alicescfernandes@gmail"
-                  ./daemon.js --scrap sesaram
                 env:
                     email: ${{secrets.EMAIL}}
                     user: ${{secrets.USER}}
