@@ -8,6 +8,7 @@ on:
                 default: 'warning'
     schedule:
         - cron: '50 22 * * *'
+#some comment
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
@@ -20,7 +21,12 @@ jobs:
 
             - name: Update SESARAM
               run: |
-                    echo $USER
-                env:
-                    email: ${{secrets.EMAIL}}
-                    user: ${{secrets.USER}}
+                  echo $USER
+                  git fetch
+                  git config --global user.name "$user"
+                  git config --global user.email "$email"
+                  ./daemon.js --scrap sesaram
+
+              env:
+                  email: ${{secrets.EMAIL}}
+                  user: ${{secrets.USER}}
