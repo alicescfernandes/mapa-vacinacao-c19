@@ -13,11 +13,17 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout 🛎️
-                uses: actions/checkout@v2.3.1
+              uses: actions/checkout@v2.3.1
             - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-                run: |
-                    npm install
+              run: |
+                  npm install
+
             - name: Update SESARAM
-                env:
-                    EMAIL: ${{ secrets.EMAIL }}
-                    USER: ${{ secrets.USER }}     
+              run: |
+                  echo $USER
+                  git fetch
+                  git config --global user.name "Alice Fernandes"
+                  git config --global user.email "alicescfernandes@gmail"
+              env:
+                  email: ${{secrets.EMAIL}}
+                  user: ${{secrets.USER}}
