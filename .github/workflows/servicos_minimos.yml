@@ -7,7 +7,7 @@ on:
                 required: true
                 default: 'warning'
     schedule:
-        - cron: '50 22 * * *'
+        - cron: '00 22 * * *'
 #some comment
 jobs:
     build-and-deploy:
