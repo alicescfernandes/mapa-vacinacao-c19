@@ -7,7 +7,7 @@ on:
                 required: true
                 default: 'warning'
     schedule:
-        - cron: '50 22 * * *'
+        - cron: '00 22 * * *'
 #some comment
 jobs:
     build-and-deploy:
@@ -16,9 +16,11 @@ jobs:
             - name: Checkout 🛎️
               uses: actions/checkout@v2.3.1
             - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-              run: |
-                  npm install
-
+              run: npm install
+            - name: Cache
+              uses: actions/cache@v2.1.6
+              with:
+                path: "node_modules"
             - name: Update SESARAM
               run: |
                   echo $USER
