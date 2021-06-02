@@ -21,6 +21,7 @@ jobs:
               uses: actions/cache@v2.1.6
               with:
                 path: "node_modules"
+                key: "node_modules"
             - name: Update SESARAM
               run: |
                   echo $USER
