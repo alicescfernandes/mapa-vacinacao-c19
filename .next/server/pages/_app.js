@@ -3879,7 +3879,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1622759708721,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-23\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":21}");
+module.exports = JSON.parse("{\"date\":1622761115997,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
 
 /***/ }),
 
@@ -4086,6 +4086,7 @@ const SNS_WEEKS = {
   '03/05/21': '03/05 a 09/05',
   '10/05/21': '10/05 a 16/05',
   '17/05/21': '17/05 a 23/05',
+  '24/05/21': '24/05 a 28/05',
   '2021-02-08': '27/12 a 14/02',
   '2021-02-15': '15/02 a 21/02',
   '2021-02-22': '22/02 a 28/02',
