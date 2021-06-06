@@ -323,7 +323,7 @@ function VacinadosPorDia({
   };
 
   let numberFormatter = new Intl.NumberFormat();
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "g"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
   let annotations = {
     annotations: [...horizontalAnnotations]
   };
@@ -529,15 +529,16 @@ module.exports = {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getColor; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
@@ -719,55 +720,27 @@ function calculateDims() {
     };
   }
 }
-/*
+function getColor(d) {
+  if (d >= 80) {
+    return '#01ae97';
+  }
 
+  if (d >= 60) {
+    return '#4dc6b6';
+  }
 
-export function makeAnnotations(annotationsArray) {
-	let annotationBoilerplate = {
-		type: 'line',
-		mode: 'horizontal',
-		scaleID: 'y-axis-0',
-		value: null,
-		borderColor: '#0A9DD1',
-		borderWidth: 2,
-		borderDash: [5, 5],
+  if (d >= 40) {
+    return '#80d7cb';
+  }
 
-		label: {
-			backgroundColor: 'rgba(0,0,0,0.0)',
+  if (d >= 20) {
+    return '#b3e7e0';
+  }
 
-			drawTime: 'afterDatasetsDraw',
-
-			textAlign: 'left',
-			fontColor: '#0A9DD1',
-			position: 'left',
-			xAdjust: 10,
-			yAdjust: -10,
-			fontSize: '13px',
-			enabled: true,
-			content: '',
-		},
-	};
-	let arr = [];
-	annotationsArray.forEach((el) => {
-		let annotation = {
-			...annotationBoilerplate,
-			mode: el.mode,
-			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
-			borderColor: el.color,
-			value: el.position,
-			label: {
-				...annotationBoilerplate.label,
-				content: el.marcador,
-				fontColor: el.color,
-			},
-		};
-		arr.push(annotation);
-	});
-
-	return arr;
+  if (d >= 0) {
+    return '#e6f7f5';
+  }
 }
-
-*/
 
 /***/ }),
 
@@ -862,13 +835,13 @@ function NumeroTotalVacinados({
     pointHitRadius: 10,
     usePointStyle: true
   };
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "g"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
   let annotations = {
     annotations: [...horizontalAnnotations, {
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(2700000) : 2700000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(2700000) : 2700000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -914,7 +887,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(950000) : 950000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(950000) : 950000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -936,7 +909,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(10286300 * 0.7) : 10286300 * 0.7 : null,
       borderColor: '#D17615',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -976,7 +949,7 @@ function NumeroTotalVacinados({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(foreground);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "f"])(foreground);
 
     try {
       gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
@@ -1000,7 +973,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: foreground,
         pointHoverBackgroundColor: foreground,
         pointHoverBorderColor: foreground,
-        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : values
+        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el)) : values
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 1ª Dose',
         fill: false,
@@ -1009,7 +982,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_1,
         pointHoverBackgroundColor: color_1,
         pointHoverBorderColor: color_1,
-        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn1
+        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el)) : valuesIn1
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 2ª Dose',
         fill: false,
@@ -1018,7 +991,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_2,
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
-        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn2
+        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el)) : valuesIn2
       })]
     };
 
@@ -1033,7 +1006,7 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
       }));
     }
 
@@ -1944,17 +1917,6 @@ function useData({
 
 /***/ }),
 
-/***/ "MA5j":
-/***/ (function(module, exports) {
-
-// Exports
-module.exports = {
-	"datepicker": "DatePickerButton_datepicker__2Fmgf"
-};
-
-
-/***/ }),
-
 /***/ "MCc/":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1972,7 +1934,6 @@ module.exports = {
 
 
 function Counter({
-  from,
   to,
   yesterday,
   title,
@@ -1984,25 +1945,11 @@ function Counter({
   tempo
 }) {
   if (!tempo) tempo = window.innerWidth <= 500 ? 'ontem' : 'no dia anterior';
-
-  if (!digits) {
-    digits = 0;
-  }
-
   let numberFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 2
   });
   let difference = to - yesterday || 0;
   let [foreground] = colors;
-
-  const fn = value => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("span", {
-    style: {
-      color: foreground
-    },
-    className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_highlight,
-    children: [numberFormatter.format(value).replace(/,/gm, ' '), " ", suffix ? suffix : '']
-  });
-
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
     children: [title == '' ? '' : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("h2", {
       className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_title,
@@ -2052,13 +1999,6 @@ function Counter({
 
 /***/ }),
 
-/***/ "NGrp":
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
 /***/ "PWcZ":
 /***/ (function(module, exports) {
 
@@ -2088,10 +2028,6 @@ function PieVacinadosInfectadosRecuperadosObitos({
   statistics,
   colors
 }) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
   let vaccines = statistics.getLastVaccineAvaliable();
   let lastCase = statistics.getLastCaseAvaliable();
   let {
@@ -2159,12 +2095,12 @@ function PieVacinadosInfectadosRecuperadosObitos({
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
         plugins: [],
         height: 350,
         options: options(),
         data: data
-      }) : ''
+      })
     })
   });
 }
@@ -2196,123 +2132,11 @@ var VacinadosPorDia = __webpack_require__("9BaP");
 // EXTERNAL MODULE: ./components/Counter.jsx
 var Counter = __webpack_require__("MCc/");
 
-// EXTERNAL MODULE: external "react-datepicker"
-var external_react_datepicker_ = __webpack_require__("ZTWx");
-var external_react_datepicker_default = /*#__PURE__*/__webpack_require__.n(external_react_datepicker_);
+// EXTERNAL MODULE: ./components/graphs/NumeroTotalVacinados.jsx
+var NumeroTotalVacinados = __webpack_require__("HWxk");
 
 // EXTERNAL MODULE: external "date-fns"
 var external_date_fns_ = __webpack_require__("9BML");
-
-// EXTERNAL MODULE: ./components/DatePickerButton.module.scss
-var DatePickerButton_module = __webpack_require__("MA5j");
-var DatePickerButton_module_default = /*#__PURE__*/__webpack_require__.n(DatePickerButton_module);
-
-// EXTERNAL MODULE: ./assets/arrow.svg
-var arrow = __webpack_require__("aSZT");
-var arrow_default = /*#__PURE__*/__webpack_require__.n(arrow);
-
-// EXTERNAL MODULE: external "date-fns/locale"
-var locale_ = __webpack_require__("tDG4");
-
-// CONCATENATED MODULE: ./components/DatePickerButton.jsx
-
-
-
-
-
-
-
-
-
-function DatePickerButton({
-  minDate,
-  maxDate,
-  onDateSelect,
-  colors
-}) {
-  const {
-    0: startDate,
-    1: setStartDate
-  } = Object(external_react_["useState"])(new Date(maxDate));
-  var [first, ...restDate] = Object(external_date_fns_["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
-    locale: locale_["pt"]
-  }).replace('-feira', '').split('');
-  let d = [first.toUpperCase(), ...restDate].join('');
-  var [first, ...restDate] = Object(external_date_fns_["format"])(startDate, "dd 'de' LLL 'de' yyyy", {
-    locale: locale_["pt"]
-  }).replace('-feira', '').split('');
-  let d2 = [first.toUpperCase(), ...restDate].join('');
-  Object(external_react_["useEffect"])(() => {
-    onDateSelect === null || onDateSelect === void 0 ? void 0 : onDateSelect(new Date(startDate));
-  }, [startDate]);
-  Object(external_react_["useEffect"])(() => {
-    setStartDate(new Date(maxDate));
-  }, [maxDate]);
-
-  class ExampleCustomInput extends external_react_["Component"] {
-    constructor(props) {
-      super(props);
-    }
-
-    render() {
-      let {
-        onClick
-      } = this.props;
-      return /*#__PURE__*/Object(jsx_runtime_["jsx"])(jsx_runtime_["Fragment"], {
-        children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: DatePickerButton_module_default.a.datepicker,
-            disabled: startDate.getTime() <= minDate,
-            onClick: () => {
-              let prevDay = Object(external_date_fns_["subDays"])(startDate, 1);
-              return setStartDate(new Date(prevDay));
-            },
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(arrow_default.a, {
-              className: DatePickerButton_module_default.a.svg
-            })
-          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("button", {
-            style: {
-              width: '60vw',
-              maxWidth: 285
-            },
-            className: DatePickerButton_module_default.a.datepicker,
-            onClick: onClick,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-              className: 'hide_micro_mobile',
-              children: d
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-              className: 'show_micro_mobile',
-              children: d2
-            })]
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("button", {
-            className: DatePickerButton_module_default.a.datepicker,
-            disabled: startDate.getTime() >= maxDate,
-            onClick: () => {
-              let prevDay = startDate.getTime() + 86400 * 1000;
-              return setStartDate(new Date(prevDay));
-            },
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(arrow_default.a, {
-              className: DatePickerButton_module_default.a.svg
-            })
-          })]
-        })
-      });
-    }
-
-  }
-
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_datepicker_default.a, {
-    minDate: minDate,
-    maxDate: maxDate,
-    selected: startDate,
-    onChange: date => {
-      setStartDate(date);
-    },
-    customInput: /*#__PURE__*/Object(jsx_runtime_["jsx"])(ExampleCustomInput, {})
-  });
-}
-// EXTERNAL MODULE: ./components/graphs/NumeroTotalVacinados.jsx
-var NumeroTotalVacinados = __webpack_require__("HWxk");
 
 // EXTERNAL MODULE: external "react-spinners-kit"
 var external_react_spinners_kit_ = __webpack_require__("PWcZ");
@@ -2333,6 +2157,9 @@ var Card_module_default = /*#__PURE__*/__webpack_require__.n(Card_module);
 
 // EXTERNAL MODULE: ./data/last-update.json
 var last_update = __webpack_require__("vga7");
+
+// EXTERNAL MODULE: external "date-fns/locale"
+var locale_ = __webpack_require__("tDG4");
 
 // EXTERNAL MODULE: external "plausible-tracker"
 var external_plausible_tracker_ = __webpack_require__("WUak");
@@ -2537,143 +2364,6 @@ function LineVacinadosInfecoesRecuperados({
 // EXTERNAL MODULE: ./components/graphs/PieVacinadosInfectadosRecuperadosObitos.jsx
 var PieVacinadosInfectadosRecuperadosObitos = __webpack_require__("Q/64");
 
-// CONCATENATED MODULE: ./components/graphs/BarsVacinacaoArs.jsx
-
-
-
-
-
-
-
-function BarsVacinacaoArs({
-  statistics,
-  colors
-}) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(external_react_["useState"])(true);
-  let {
-    main,
-    tints
-  } = colors;
-  const {
-    0: snsData,
-    1: setSNSData
-  } = Object(external_react_["useState"])({});
-
-  const data = canvas => {
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-    } else {
-      canvas.parentNode.style.width = '100%';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
-    return {
-      labels: snsData.filter(el => el.REGION != 'All').map(el => el.REGION.replace('All', 'Nacional')),
-      datasets: [{
-        label: '1ª Dose',
-        backgroundColor: main,
-        data: snsData.filter(el => el.REGION != 'All').map(el => el.CUMUL_VAC_1),
-        fill: false,
-        stack: 'stack1'
-      }, {
-        label: '2ª Dose',
-        backgroundColor: tints[1],
-        data: snsData.filter(el => el.REGION != 'All').map(el => el.CUMUL_VAC_2),
-        stack: 'stack1'
-      }]
-    };
-  };
-
-  const options = () => {
-    return {
-      plugins: {
-        datalabels: {
-          display: false,
-          color: 'white'
-        }
-      },
-      layout: {
-        padding: -5
-      },
-      legend: {
-        display: true,
-        position: 'top',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
-        },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
-        }
-      },
-      animation: {
-        duration: 1000
-      },
-      tooltips: {
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-          label: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false);
-          },
-          title: () => {
-            return '';
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: true
-          },
-          ticks: {
-            display: true,
-            maxTicksLimit: 7,
-            minTicksLimit: 7,
-            callback: value => Object(utils["d" /* formatNumber */])(value, false)
-          }
-        }],
-        xAxes: [{
-          stacked: true,
-          gridLines: {
-            display: true
-          },
-          ticks: {
-            beginAtZero: true,
-            display: true
-          }
-        }]
-      }
-    };
-  };
-
-  Object(external_react_["useEffect"])(async () => {
-    setSNSData(await statistics.getTotalSNS());
-    setLoading(false);
-  }, []);
-  return !loading === true ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-    allowOverflow: true,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(jsx_runtime_["Fragment"], {
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
-          height: 80,
-          options: options(),
-          data: data
-        })
-      }) : ''
-    })
-  }) : '';
-}
 // EXTERNAL MODULE: ./components/graphs/PieSuscetiveisProporcao.jsx
 var PieSuscetiveisProporcao = __webpack_require__("WMh8");
 
@@ -3585,361 +3275,6 @@ function BarTotaisPorFaixaEtaria({
     })
   });
 }
-// CONCATENATED MODULE: ./components/graphs/BarArs.jsx
-
-
-
-
-function BarArs_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function BarArs_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { BarArs_ownKeys(Object(source), true).forEach(function (key) { BarArs_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { BarArs_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function BarArs_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-let BarArs_styles = {
-  'labels-container': {
-    display: 'inline-block',
-    position: 'relative',
-    //width: '15%',
-    width: '0%',
-    height: '126px',
-    overflow: 'hidden',
-    verticalAlign: 'top',
-    padding: '15px 0px'
-  },
-  'labels-label': {
-    textAlign: 'right',
-    fontSize: '12px',
-    marginBottom: '0px',
-    lineHeight: 'calc(100px / 3)'
-  },
-  'graph-container': {
-    display: 'inline-block',
-    lineHeight: '40px',
-    position: 'relative',
-    width: '100%',
-    height: 100,
-    overflow: 'hidden'
-  }
-};
-
-function BarArs_CustomBarChart({
-  type,
-  total,
-  colors,
-  data,
-  showHeading
-}) {
-  let {
-    main,
-    shades,
-    tints
-  } = colors;
-
-  const graphData = canvas => {
-    return {
-      //labels: ['Inoculados', 'Óbitos Novos', 'cenas3'],
-      datasets: [{
-        label: 'Inoculados Totais Novos (Acumulado 7 dias)',
-        type: 'bar',
-        backgroundColor: main,
-        data: [data['TOTAL_VAC_2']],
-        stack: 'stack1'
-      }, {
-        label: 'Casos Novos (Acumulado 7 dias)',
-        type: 'bar',
-        backgroundColor: tints[1],
-        data: [data['casosNovos7Dias']],
-        fill: false,
-        stack: 'stack2'
-      }, {
-        label: 'Óbitos Novos (Acumulado 7 dias)',
-        type: 'bar',
-        backgroundColor: shades[1],
-        data: [data['obitosNovos7Dias']],
-        stack: 'stack3'
-      }]
-    };
-  };
-
-  const options = () => {
-    return {
-      indexAxis: 'y',
-      maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          display: false,
-          color: 'white'
-        }
-      },
-      layout: {
-        padding: -5
-      },
-      legend: {
-        display: false,
-        position: 'top',
-        align: 'start',
-        onHover: function (event, legend) {
-          document.body.classList.add('mouse-pointer');
-        },
-        onLeave: function (event, legend) {
-          document.body.classList.remove('mouse-pointer');
-        }
-      },
-      animation: {
-        duration: 1000
-      },
-      tooltips: {
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-          label: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label + ': ' + Object(utils["d" /* formatNumber */])(parseInt(tooltipItem.value), false);
-          },
-          title: () => {
-            return '';
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: true
-          },
-          ticks: {
-            display: true
-          }
-        }],
-        xAxes: [{
-          stacked: false,
-          gridLines: {
-            display: true
-          },
-          ticks: {
-            beginAtZero: true,
-            display: true,
-            max: 120000,
-            stepSize: 100000 / 5,
-            callback: function (value, index, values) {
-              return Object(utils["d" /* formatNumber */])(value, false);
-            }
-          }
-        }]
-      }
-    };
-  };
-
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
-    children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-      style: BarArs_styles['labels-container'],
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-        style: BarArs_styles['labels-label'],
-        children: "Inoculados"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-        style: BarArs_styles['labels-label'],
-        children: "Casos Novos"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-        style: BarArs_styles['labels-label'],
-        children: "Casos Recuperados"
-      })]
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      style: BarArs_styles['graph-container'],
-      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-        style: {
-          height: '100%'
-        },
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
-          height: 5,
-          options: options(),
-          data: graphData
-        })
-      })
-    })]
-  });
-}
-
-function BarArs({
-  statistics,
-  colors
-}) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(external_react_["useState"])(true);
-  let {
-    main,
-    shades,
-    tints
-  } = colors;
-  const {
-    0: snsData,
-    1: setSNSData
-  } = Object(external_react_["useState"])({});
-  const {
-    0: ars,
-    1: setArs
-  } = Object(external_react_["useState"])({});
-  let graphData = {
-    All: {},
-    'ARS Alentejo': {},
-    'ARS Algarve': {},
-    'ARS Centro': {},
-    'ARS Norte': {},
-    'ARS Lisboa e Vale do Tejo': {},
-    Madeira: {},
-    Açores: {}
-  };
-
-  if (!loading) {
-    //map the data
-    for (let key in graphData) {
-      let obj1 = Object.assign(graphData[key], snsData.filter(el => el.REGION.replace('RA ', '') == key)[0]);
-      let obj2 = ars[key];
-
-      if (key in graphData) {
-        graphData[key] = BarArs_objectSpread(BarArs_objectSpread({}, obj2), obj1);
-      }
-    }
-  }
-
-  Object(external_react_["useEffect"])(async () => {
-    let d = await statistics.getTotalSNS();
-    setSNSData(d);
-    let arsD = await statistics.getTotalARS();
-    setArs(arsD);
-    setLoading(false);
-  }, []);
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-    allowOverflow: true,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: loading === false ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
-        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-          className: 'legends',
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
-              className: 'legend',
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                style: {
-                  backgroundColor: main
-                },
-                className: 'color_sample'
-              }), "Inoculados Novos"]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
-              className: 'legend',
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                style: {
-                  backgroundColor: tints[1]
-                },
-                className: 'color_sample'
-              }), "Casos Novos"]
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
-              className: 'legend',
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                style: {
-                  backgroundColor: shades[1]
-                },
-                className: 'color_sample'
-              }), "\xD3bitos Novos"]
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            xs: 12,
-            lg: 6,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-              className: 'subchart-data',
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-                children: "Nacional"
-              })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs_CustomBarChart, {
-              colors: colors,
-              showHeading: true,
-              total: 400,
-              data: graphData['All']
-            })]
-          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            xs: 12,
-            lg: 6,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-              className: 'subchart-data',
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-                children: graphData['ARS Algarve'].REGION
-              })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs_CustomBarChart, {
-              colors: colors,
-              data: graphData['ARS Algarve'],
-              total: 5000
-            })]
-          })]
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            xs: 12,
-            lg: 6,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-              className: 'subchart-data',
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-                children: graphData['ARS Alentejo'].REGION
-              })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs_CustomBarChart, {
-              colors: colors,
-              showHeading: true,
-              total: 400,
-              data: graphData['ARS Alentejo']
-            })]
-          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            xs: 12,
-            lg: 6,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-              className: 'subchart-data',
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-                children: graphData['ARS Centro'].REGION
-              })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs_CustomBarChart, {
-              colors: colors,
-              data: graphData['ARS Centro'],
-              total: 5000
-            })]
-          })]
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            xs: 12,
-            lg: 6,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-              className: 'subchart-data',
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-                children: graphData['ARS Lisboa e Vale do Tejo'].REGION
-              })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs_CustomBarChart, {
-              colors: colors,
-              showHeading: true,
-              total: 400,
-              data: graphData['ARS Lisboa e Vale do Tejo']
-            })]
-          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            xs: 12,
-            lg: 6,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-              className: 'subchart-data',
-              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-                children: graphData['ARS Norte'].REGION
-              })
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(BarArs_CustomBarChart, {
-              colors: colors,
-              data: graphData['ARS Norte'],
-              total: 5000
-            })]
-          })]
-        })]
-      }) : ''
-    })
-  });
-}
 // CONCATENATED MODULE: ./components/graphs/PieRecebidasAdquiridas.jsx
 
 
@@ -4507,7 +3842,7 @@ function LineVacinadosEu({
     });
     return {
       labels: owidData.labels,
-      datasets: [LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["u" /* lineChartCommon */]), {}, {
+      datasets: [LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["w" /* lineChartCommon */]), {}, {
         label: 'Portugal',
         backgroundColor: main,
         borderColor: main,
@@ -4520,7 +3855,7 @@ function LineVacinadosEu({
 
           return el[doses_map.normal[activeDose]];
         })
-      }), LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["u" /* lineChartCommon */]), {}, {
+      }), LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["w" /* lineChartCommon */]), {}, {
         label: 'União Europeia',
         type: 'line',
         fill: false,
@@ -4904,7 +4239,6 @@ function LineAdministradasPorFaixaEtaria({
   let {
     main,
     shades,
-    tints,
     complements
   } = colors;
   let {
@@ -4948,42 +4282,42 @@ function LineAdministradasPorFaixaEtaria({
     });
     return {
       labels: Object.keys(labels).map(el => constants["q" /* SNS_WEEKS */][el]),
-      datasets: [LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(main)), {}, {
+      datasets: [LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(main)), {}, {
         label: 'Até aos 17 anos',
         labelGroup: 'Grupo 18/24',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '0-17 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
         customDose: 2
-      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[0])), {}, {
+      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[0])), {}, {
         label: 'Entre 18 anos e 24 anos',
         labelGroup: 'Grupo 18/24',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '18-24 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
         customDose: 2
-      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[2])), {}, {
+      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[2])), {}, {
         label: 'Entre 25 anos e 49 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '25-49 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
         customDose: 2
-      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[2])), {}, {
+      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[2])), {}, {
         label: 'Entre 50 anos e 64 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '50-64 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
         customDose: 2
-      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[0])), {}, {
+      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[0])), {}, {
         label: 'Entre 60 e 79 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
         data: graphData.filter(el => el.AGEGROUP == '65-79 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
         order: 1,
         customDose: 2
-      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[1])), {}, {
+      }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[1])), {}, {
         label: '80 ou mais anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
@@ -5027,7 +4361,7 @@ function LineAdministradasPorFaixaEtaria({
       tooltips: {
         mode: 'index',
         intersect: false,
-        callbacks: LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[0])), {}, {
+        callbacks: LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[0])), {}, {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
             return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value).toFixed(2) + '%';
@@ -5125,29 +4459,6 @@ function ArsMapa_defineProperty(obj, key, value) { if (key in obj) { Object.defi
 
 
 
-
-function getColor(d) {
-  if (d >= 80) {
-    return '#01ae97';
-  }
-
-  if (d >= 60) {
-    return '#4dc6b6';
-  }
-
-  if (d >= 40) {
-    return '#80d7cb';
-  }
-
-  if (d >= 20) {
-    return '#b3e7e0';
-  }
-
-  if (d >= 0) {
-    return '#e6f7f5';
-  }
-}
-
 function ArsMapa({
   statistics,
   colors
@@ -5158,8 +4469,7 @@ function ArsMapa({
   } = Object(external_react_["useState"])(false);
   let {
     main,
-    shades,
-    tints
+    shades
   } = colors;
   const {
     0: snsData,
@@ -5195,15 +4505,6 @@ function ArsMapa({
     }
   }
 
-  const grades = [0, 20, 40, 60, 80];
-  const grades_pretty = {
-    0: '0% a 19%',
-    20: '20% a 39%',
-    40: '40% a 59%',
-    60: '60% a 89%',
-    80: '80% a 100%'
-  };
-
   function layerStyle(feature) {
     let ars = feature.properties.ARS;
     let data = graphData[ars];
@@ -5216,7 +4517,7 @@ function ArsMapa({
     layers2.push(feature);
     return {
       fillOpacity: 1,
-      fillColor: getColor(percentagem),
+      fillColor: Object(utils["e" /* getColor */])(percentagem),
       lineJoin: 'round',
       stroke: true,
       weight: 2,
@@ -5231,7 +4532,6 @@ function ArsMapa({
       doubleClickZoom: false,
       closePopupOnClick: false,
       dragging: false,
-      zoomSnap: false,
       zoomDelta: false,
       trackResize: false,
       touchZoom: false,
@@ -5269,11 +4569,11 @@ function ArsMapa({
     legend.onAdd = function (map) {
       var div = L.DomUtil.create('div', 'info legend');
 
-      for (var i = 0; i < grades.length; i++) {
-        let grade = grades[i];
-        let grade_pretty = grades_pretty[grade];
+      for (var i = 0; i < constants["u" /* grades */].length; i++) {
+        let grade = constants["u" /* grades */][i];
+        let grade_pretty = constants["v" /* grades_pretty */][grade];
         div.innerHTML += `<p>
-						<i style="background:${getColor(grades[i] + 1)}"></i>${grade_pretty}</p>`;
+						<i style="background:${Object(utils["e" /* getColor */])(constants["u" /* grades */][i] + 1)}"></i>${grade_pretty}</p>`;
       }
 
       return div;
@@ -5472,9 +4772,6 @@ function ArsMapa({
     })]
   }) : '';
 } //<Row>{renderGraph(graphData.concelhos.ribeira_brava)}</Row>
-// EXTERNAL MODULE: ./components/CounterGroup.jsx
-var CounterGroup = __webpack_require__("NGrp");
-
 // CONCATENATED MODULE: ./pages/index.js
 
 
@@ -5500,21 +4797,18 @@ function pages_defineProperty(obj, key, value) { if (key in obj) { Object.define
 
 
 
-
  //data
 
 
 
 
 
+ // import { BarsVacinacaoArs } from '../components/graphs/BarsVacinacaoArs';
 
 
 
 
-
-
-
-
+ // import { BarArs } from '../components/graphs/BarArs';
 
 
 
@@ -5568,10 +4862,6 @@ function Home() {
     1: setLast
   } = Object(external_react_["useState"])({});
   let {
-    0: first,
-    1: setFirst
-  } = Object(external_react_["useState"])({});
-  let {
     0: loaded,
     1: setLoaded
   } = Object(external_react_["useState"])(false);
@@ -5608,8 +4898,7 @@ function Home() {
   });
   let {
     colors,
-    colors_v2,
-    setColors
+    colors_v2
   } = Object(useColors["a" /* useColors */])();
 
   function onSocketUpdate({
@@ -5719,7 +5008,6 @@ function Home() {
     setLast(rawData[rawData.length - 1]);
     setSelectedItem(rawData[rawData.length - 1]);
     setPreviousItem(rawData[rawData.length - 2]);
-    setFirst(rawData[0]);
     plausible.trackPageview();
     let {
       RECEIVED: sum
@@ -6423,10 +5711,6 @@ function PieSuscetiveisProporcao({
   statistics,
   colors
 }) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
   let vaccines = statistics.getLastVaccineAvaliable();
   let lastCase = statistics.getLastCaseAvaliable(); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 
@@ -6500,12 +5784,12 @@ function PieSuscetiveisProporcao({
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
         plugins: [],
         height: 350,
         options: options(),
         data: data
-      }) : ''
+      })
     })
   });
 }
@@ -6516,31 +5800,6 @@ function PieSuscetiveisProporcao({
 /***/ (function(module, exports) {
 
 module.exports = require("plausible-tracker");
-
-/***/ }),
-
-/***/ "ZTWx":
-/***/ (function(module, exports) {
-
-module.exports = require("react-datepicker");
-
-/***/ }),
-
-/***/ "aSZT":
-/***/ (function(module, exports, __webpack_require__) {
-
-var React = __webpack_require__("cDcd");
-
-function Arrow (props) {
-    return React.createElement("svg",props,React.createElement("path",{"d":"M0 9.155V.439C0 .047.275-.112.614.084l3.775 2.179 3.774 2.179c.339.196.339.514 0 .71L4.389 7.331.614 9.51C.275 9.706 0 9.547 0 9.155z"}));
-}
-
-Arrow.defaultProps = {"style":{"isolation":"isolate"},"viewBox":"0 0 8.418 9.594","width":"11.224","height":"12.792"};
-
-module.exports = Arrow;
-
-Arrow.default = Arrow;
-
 
 /***/ }),
 
@@ -6668,7 +5927,7 @@ function LineRt({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(main);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "f"])(main);
 
     try {
       //See if supports transperancy
@@ -6694,7 +5953,7 @@ function LineRt({
     });
     return {
       labels: rtData.labels,
-      datasets: [_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "v"]), {}, {
+      datasets: [_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "x"]), {}, {
         label: 'R(t) limite superior',
         backgroundColor: color,
         borderColor: 'transparent',
@@ -6703,7 +5962,7 @@ function LineRt({
         //fill until previous dataset
         data: rtData.rt.map(el => el.limite_superior_IC95.toFixed(2)),
         order: 1
-      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon */ "u"]), {}, {
+      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon */ "w"]), {}, {
         label: 'R(t)',
         backgroundColor: main,
         borderColor: main,
@@ -6711,7 +5970,7 @@ function LineRt({
         fill: false,
         data: rtData.rt.map(el => el.rt_numero_de_reproducao.toFixed(2)),
         order: 2
-      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "v"]), {}, {
+      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "x"]), {}, {
         label: 'R(t) limite inferior',
         backgroundColor: 'white',
         borderColor: 'transparent',
@@ -6943,7 +6202,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1622982603437,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
+module.exports = JSON.parse("{\"date\":1622987023983,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
 
 /***/ }),
 
@@ -6970,14 +6229,16 @@ module.exports = JSON.parse("{\"date\":1622982603437,\"dateSnsStartWeirdFormat\"
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return COMPLEMENT_3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return RESIZE_TRESHOLD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return lineChartCommon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return lineChartCommon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return lineChartCommon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return lineChartCommon2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return REGIOES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return ECDC_MAPPING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return MADEIRA_DICOS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ACORES_DICOS; });
 /* unused harmony export ACORES_DICOS_CONCELHOS */
 /* unused harmony export ARS_MAPPING */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return grades; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return grades_pretty; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return SNS_WEEKS; });
 let FOREGROUND_COLOR = '#01AE97';
 let COLOR_1 = '#017a6a';
@@ -7125,6 +6386,14 @@ const ARS_MAPPING = {
   'ARS Norte': 'norte',
   'ARS Centro': 'centro'
 };
+const grades = [0, 20, 40, 60, 80];
+const grades_pretty = {
+  0: '0% a 19%',
+  20: '20% a 39%',
+  40: '40% a 59%',
+  60: '60% a 89%',
+  80: '80% a 100%'
+};
 const SNS_WEEKS = {
   '08/02/21': '27/12 a 14/02',
   '15/02/21': '15/02 a 21/02',
@@ -7152,7 +6421,6 @@ const SNS_WEEKS = {
   '2021-03-29': '29/03 a 04/04',
   '2021-04-05': '05/04 a 11/04',
   '2021-04-12': '12/04 a 18/04',
-  '2021-04-19': '19/04 a 25/04',
   '2021-04-19': '19/04 a 25/04',
   '2021-04-26': '26/04 a 02/05',
   '2021-05-05': '03/05 a 09/05',

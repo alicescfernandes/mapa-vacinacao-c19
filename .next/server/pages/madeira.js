@@ -330,7 +330,7 @@ function VacinadosPorDia({
   };
 
   let numberFormatter = new Intl.NumberFormat();
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "g"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6__);
   let annotations = {
     annotations: [...horizontalAnnotations]
   };
@@ -536,15 +536,16 @@ module.exports = {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getColor; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
@@ -726,55 +727,27 @@ function calculateDims() {
     };
   }
 }
-/*
+function getColor(d) {
+  if (d >= 80) {
+    return '#01ae97';
+  }
 
+  if (d >= 60) {
+    return '#4dc6b6';
+  }
 
-export function makeAnnotations(annotationsArray) {
-	let annotationBoilerplate = {
-		type: 'line',
-		mode: 'horizontal',
-		scaleID: 'y-axis-0',
-		value: null,
-		borderColor: '#0A9DD1',
-		borderWidth: 2,
-		borderDash: [5, 5],
+  if (d >= 40) {
+    return '#80d7cb';
+  }
 
-		label: {
-			backgroundColor: 'rgba(0,0,0,0.0)',
+  if (d >= 20) {
+    return '#b3e7e0';
+  }
 
-			drawTime: 'afterDatasetsDraw',
-
-			textAlign: 'left',
-			fontColor: '#0A9DD1',
-			position: 'left',
-			xAdjust: 10,
-			yAdjust: -10,
-			fontSize: '13px',
-			enabled: true,
-			content: '',
-		},
-	};
-	let arr = [];
-	annotationsArray.forEach((el) => {
-		let annotation = {
-			...annotationBoilerplate,
-			mode: el.mode,
-			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
-			borderColor: el.color,
-			value: el.position,
-			label: {
-				...annotationBoilerplate.label,
-				content: el.marcador,
-				fontColor: el.color,
-			},
-		};
-		arr.push(annotation);
-	});
-
-	return arr;
+  if (d >= 0) {
+    return '#e6f7f5';
+  }
 }
-
-*/
 
 /***/ }),
 
@@ -869,13 +842,13 @@ function NumeroTotalVacinados({
     pointHitRadius: 10,
     usePointStyle: true
   };
-  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "f"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
+  let horizontalAnnotations = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* makeAnnotations */ "g"])(_data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_7__);
   let annotations = {
     annotations: [...horizontalAnnotations, {
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(2700000) : 2700000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.segunda_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(2700000) : 2700000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -921,7 +894,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(950000) : 950000 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.primeira_fase ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(950000) : 950000 : null,
       borderColor: '#0A9DD1',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -943,7 +916,7 @@ function NumeroTotalVacinados({
       type: 'line',
       mode: 'horizontal',
       scaleID: 'y',
-      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(10286300 * 0.7) : 10286300 * 0.7 : null,
+      value: toggleStats !== null && toggleStats !== void 0 && toggleStats.imunidade ? toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(10286300 * 0.7) : 10286300 * 0.7 : null,
       borderColor: '#D17615',
       borderWidth: 2,
       borderDash: [5, 5],
@@ -983,7 +956,7 @@ function NumeroTotalVacinados({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(foreground);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "f"])(foreground);
 
     try {
       gradient.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',15%)');
@@ -1007,7 +980,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: foreground,
         pointHoverBackgroundColor: foreground,
         pointHoverBorderColor: foreground,
-        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : values
+        data: toggleStats.perHundred ? values.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el)) : values
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 1ª Dose',
         fill: false,
@@ -1016,7 +989,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_1,
         pointHoverBackgroundColor: color_1,
         pointHoverBorderColor: color_1,
-        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn1
+        data: toggleStats.perHundred ? valuesIn1.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el)) : valuesIn1
       }), _objectSpread(_objectSpread({}, commonProps), {}, {
         label: 'Total de vacinas administradas - 2ª Dose',
         fill: false,
@@ -1025,7 +998,7 @@ function NumeroTotalVacinados({
         pointBackgroundColor: color_2,
         pointHoverBackgroundColor: color_2,
         pointHoverBorderColor: color_2,
-        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el)) : valuesIn2
+        data: toggleStats.perHundred ? valuesIn2.map(el => Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el)) : valuesIn2
       })]
     };
 
@@ -1040,7 +1013,7 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "g"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
       }));
     }
 
@@ -2024,120 +1997,17 @@ var PieVacinadosInfectadosRecuperadosObitos = __webpack_require__("Q/64");
 // EXTERNAL MODULE: ./components/graphs/PieSuscetiveisProporcao.jsx
 var PieSuscetiveisProporcao = __webpack_require__("WMh8");
 
-// EXTERNAL MODULE: ./utils.js
-var utils = __webpack_require__("GyP+");
-
 // EXTERNAL MODULE: ./components/graphs/LineRt.jsx
 var LineRt = __webpack_require__("m5rz");
 
 // EXTERNAL MODULE: ./components/context/regiao.js
 var regiao = __webpack_require__("uAdN");
 
-// EXTERNAL MODULE: external "react-count-to"
-var external_react_count_to_ = __webpack_require__("Ys+F");
-var external_react_count_to_default = /*#__PURE__*/__webpack_require__.n(external_react_count_to_);
-
-// CONCATENATED MODULE: ./components/graphs/RamGruposPrioritarios.jsx
-
-
-
-
-
-
-
-
-function RamGruposPrioritarios({
-  statistics,
-  colors
-}) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(external_react_["useState"])(true);
-  let {
-    0: graphData,
-    1: setGraphData
-  } = Object(external_react_["useState"])({});
-  Object(external_react_["useEffect"])(() => {
-    statistics.getArquipelagoData().then(data => {
-      setGraphData(data[8]);
-      setLoading(false);
-    });
-  }, []);
-  let numberFormatter = new Intl.NumberFormat('en-US', {
-    maximumFractionDigits: 2
-  });
-
-  const fn = value => /*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
-    children: numberFormatter.format(value).replace(/,/gm, ' ')
-  });
-
-  function renderGrupo(el) {
-    if (!el.nome) return;
-    return /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-      xs: 12,
-      lg: 6,
-      children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
-        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-          xs: 12,
-          lg: 12,
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-            className: Card_module_default.a.ram_subchart,
-            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-              children: el.nome
-            })
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-          xs: 6,
-          lg: 6,
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-            className: Card_module_default.a.ram_subchart,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              children: "1\xBA Dose"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_count_to_default.a, {
-              digits: 0,
-              delay: 1,
-              from: 0,
-              to: el.dose_1,
-              speed: 800,
-              children: fn
-            })]
-          })
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
-          xs: 6,
-          lg: 6,
-          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-            className: Card_module_default.a.ram_subchart,
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
-              children: "2\xBA Dose"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_count_to_default.a, {
-              digits: 0,
-              delay: 1,
-              from: 0,
-              to: el.dose_2,
-              speed: 800,
-              children: fn
-            })]
-          })
-        })]
-      })
-    });
-  }
-
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(Card["a" /* Card */], {
-    allowOverflow: true,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(jsx_runtime_["Fragment"], {
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
-          className: Card_module_default.a.ram,
-          children: Object.values(graphData.grupos).map(renderGrupo)
-        })
-      }) : ''
-    })
-  });
-}
 // EXTERNAL MODULE: external "react-chartjs-2"
 var external_react_chartjs_2_ = __webpack_require__("t3hY");
+
+// EXTERNAL MODULE: ./utils.js
+var utils = __webpack_require__("GyP+");
 
 // EXTERNAL MODULE: external "classnames"
 var external_classnames_ = __webpack_require__("K2gz");
@@ -2238,7 +2108,7 @@ function RamBarAdministradasPorFaixaEtaria({
         let fromDate = new Date(labels[key]);
         return `${Object(utils["d" /* formatNumber */])(fromDate.getDate())}/${Object(utils["d" /* formatNumber */])(fromDate.getMonth() + 1)}`;
       }),
-      datasets: [_objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[0])), {}, {
+      datasets: [_objectSpread(_objectSpread(_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[0])), {}, {
         label: 'Grupo 18/24',
         labelGroup: 'Grupo 18/24',
         fill: false,
@@ -2246,7 +2116,7 @@ function RamBarAdministradasPorFaixaEtaria({
         data: groups.map(group => group.e1824[activeDose] || 0),
         order: 1,
         customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(tints[1])), {}, {
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(tints[1])), {}, {
         label: 'Grupo 25/49',
         labelGroup: 'Grupo 25/49',
         fill: false,
@@ -2254,7 +2124,7 @@ function RamBarAdministradasPorFaixaEtaria({
         data: groups.map(group => group.e2549[activeDose] || 0),
         order: 3,
         customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(main)), {}, {
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(main)), {}, {
         label: 'Grupo 50/59',
         labelGroup: 'Grupo 50/59',
         fill: false,
@@ -2263,7 +2133,7 @@ function RamBarAdministradasPorFaixaEtaria({
         stack: 'stack1',
         order: 5,
         customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[2])), {}, {
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[2])), {}, {
         label: 'Grupo 60/69',
         labelGroup: 'Grupo 60/69',
         fill: false,
@@ -2271,7 +2141,7 @@ function RamBarAdministradasPorFaixaEtaria({
         data: groups.map(group => (group.e6064[activeDose] + group.e6569[activeDose]) / 2 || 0),
         order: 7,
         customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[2])), {}, {
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[2])), {}, {
         label: 'Grupo 70/79',
         labelGroup: 'Grupo 70/79',
         fill: false,
@@ -2279,7 +2149,7 @@ function RamBarAdministradasPorFaixaEtaria({
         data: groups.map(group => group.e7079.dose_2 || 0),
         order: 9,
         customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(complements[1])), {}, {
+      }), _objectSpread(_objectSpread(_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[1])), {}, {
         label: 'Grupo 80+',
         labelGroup: 'Grupo 80+',
         backgroundColor: complements[1],
@@ -2323,7 +2193,7 @@ function RamBarAdministradasPorFaixaEtaria({
       tooltips: {
         mode: 'index',
         intersect: false,
-        callbacks: _objectSpread(_objectSpread(_objectSpread({}, constants["u" /* lineChartCommon */]), generateColor(shades[0])), {}, {
+        callbacks: _objectSpread(_objectSpread(_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[0])), {}, {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
             return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value).toFixed(2) + '%';
@@ -2412,29 +2282,6 @@ function RamBarAdministradasPorFaixaEtaria({
 
 
 
-
-function getColor(d) {
-  if (d >= 80) {
-    return '#01ae97';
-  }
-
-  if (d >= 60) {
-    return '#4dc6b6';
-  }
-
-  if (d >= 40) {
-    return '#80d7cb';
-  }
-
-  if (d >= 20) {
-    return '#b3e7e0';
-  }
-
-  if (d >= 0) {
-    return '#e6f7f5';
-  }
-}
-
 function RamMapa({
   statistics,
   colors
@@ -2451,14 +2298,6 @@ function RamMapa({
     main,
     shades
   } = colors;
-  const grades = [0, 20, 40, 60, 80];
-  const grades_pretty = {
-    0: '0% a 19%',
-    20: '20% a 39%',
-    40: '40% a 59%',
-    60: '60% a 89%',
-    80: '80% a 100%'
-  };
 
   const renderMap = async map => {
     const madeira = await fetch('/madeira.geojson').then(r => r.json());
@@ -2467,7 +2306,6 @@ function RamMapa({
       doubleClickZoom: false,
       closePopupOnClick: false,
       dragging: false,
-      zoomSnap: false,
       zoomDelta: false,
       trackResize: false,
       touchZoom: false,
@@ -2495,7 +2333,7 @@ function RamMapa({
         let percentagem = data.dose_2 / generic["populacao_residente_ram"][feature.properties.Dico].valor * 100;
         return {
           fillOpacity: 1,
-          fillColor: getColor(percentagem),
+          fillColor: Object(utils["e" /* getColor */])(percentagem),
           lineJoin: 'round',
           stroke: true,
           weight: 2,
@@ -2507,31 +2345,26 @@ function RamMapa({
       layer.feature.properties.layerID = layer.feature.properties.DICOFRE;
     });
     madeiraMapa.fitBounds(layers.getBounds());
-    madeiraMapa.setZoom(10);
-    /* 	//Create legend
-    var legend = L.control({ position: 'bottomleft' });
-    	legend.onAdd = function (map) {
-    	var div = L.DomUtil.create('div', 'info legend');
-    		for (var i = 0; i < grades.length; i++) {
-    		let grade = grades[i];
-    		let grade_pretty = grades_pretty[grade];
-    		div.innerHTML += `<p>
-    				<i style="background:${getColor(grades[i] + 1)}"></i>${grade_pretty}</p>`;
-    	}
-    		return div;
+    madeiraMapa.setZoom(10); //Create legend
+
+    var legend = L.control({
+      position: 'bottomleft'
+    });
+
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info legend');
+
+      for (var i = 0; i < constants["u" /* grades */].length; i++) {
+        let grade = constants["u" /* grades */][i];
+        let grade_pretty = constants["v" /* grades_pretty */][grade];
+        div.innerHTML += `<p>
+						<i style="background:${Object(utils["e" /* getColor */])(constants["u" /* grades */][i] + 1)}"></i>${grade_pretty}</p>`;
+      }
+
+      return div;
     };
-    	legend.addTo(madeiraMapa);
-    	var snapToPoint = L.control({ position: 'topleft' });
-    	snapToPoint.onAdd = function (map) {
-    	var div = L.DomUtil.create('div', 'info legend');
-    	div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
-    		return div;
-    };
-    	snapToPoint.addTo(madeiraMapa);
-    	//hammering the click event
-    snapToPoint._container.onclick = function () {
-    	madeiraMapa.fitBounds(layers.getBounds());
-    }; */
+
+    legend.addTo(madeiraMapa);
   };
 
   function renderGraph(el) {
@@ -2578,11 +2411,6 @@ function RamMapa({
         indexAxis: 'y',
         plugins: {
           datalabels: {
-            display: false
-          },
-          legend: {
-            position: 'bottom',
-            align: 'start',
             display: false
           },
           legend: {
@@ -2722,15 +2550,13 @@ var external_react_lazyload_default = /*#__PURE__*/__webpack_require__.n(externa
 
 
 
- //data
 
 
 
 
 
 
-
-
+ // import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
 
 
 
@@ -2754,10 +2580,6 @@ function Home() {
     0: updating,
     1: isUpdating
   } = Object(external_react_["useState"])(false);
-  let {
-    0: previousItem,
-    1: setPreviousItem
-  } = Object(external_react_["useState"])({});
   let {
     0: loaded,
     1: setLoaded
@@ -2805,7 +2627,6 @@ function Home() {
   let [first, ...restDate] = Object(external_date_fns_["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
     locale: locale_["pt"]
   }).replace('-feira', '').split('');
-  let d = [first.toUpperCase(), ...restDate].join('');
 
   function onSocketUpdate() {
     router.push('/');
@@ -2850,7 +2671,6 @@ function Home() {
     plausible.trackPageview();
     let data = await statistics.getSesaram();
     setSelectedItem(data);
-    setPreviousItem(rawData[rawData.length - 2]);
     /* let { sum } = statistics?.getDosesRecebidasAcum();
     sum = sum.reverse()[0];
     let item = rawData.filter((el) => {
@@ -3208,7 +3028,6 @@ function Home() {
 
 
 function Counter({
-  from,
   to,
   yesterday,
   title,
@@ -3220,25 +3039,11 @@ function Counter({
   tempo
 }) {
   if (!tempo) tempo = window.innerWidth <= 500 ? 'ontem' : 'no dia anterior';
-
-  if (!digits) {
-    digits = 0;
-  }
-
   let numberFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 2
   });
   let difference = to - yesterday || 0;
   let [foreground] = colors;
-
-  const fn = value => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("span", {
-    style: {
-      color: foreground
-    },
-    className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_highlight,
-    children: [numberFormatter.format(value).replace(/,/gm, ' '), " ", suffix ? suffix : '']
-  });
-
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
     children: [title == '' ? '' : /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("h2", {
       className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_title,
@@ -3317,10 +3122,6 @@ function PieVacinadosInfectadosRecuperadosObitos({
   statistics,
   colors
 }) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
   let vaccines = statistics.getLastVaccineAvaliable();
   let lastCase = statistics.getLastCaseAvaliable();
   let {
@@ -3388,12 +3189,12 @@ function PieVacinadosInfectadosRecuperadosObitos({
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
         plugins: [],
         height: 350,
         options: options(),
         data: data
-      }) : ''
+      })
     })
   });
 }
@@ -3512,10 +3313,6 @@ function PieSuscetiveisProporcao({
   statistics,
   colors
 }) {
-  let {
-    0: loading,
-    1: setLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
   let vaccines = statistics.getLastVaccineAvaliable();
   let lastCase = statistics.getLastCaseAvaliable(); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 
@@ -3589,12 +3386,12 @@ function PieSuscetiveisProporcao({
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
         plugins: [],
         height: 350,
         options: options(),
         data: data
-      }) : ''
+      })
     })
   });
 }
@@ -3605,13 +3402,6 @@ function PieSuscetiveisProporcao({
 /***/ (function(module, exports) {
 
 module.exports = require("plausible-tracker");
-
-/***/ }),
-
-/***/ "Ys+F":
-/***/ (function(module, exports) {
-
-module.exports = require("react-count-to");
 
 /***/ }),
 
@@ -3739,7 +3529,7 @@ function LineRt({
       r,
       g,
       b
-    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "e"])(main);
+    } = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* hexToRgb */ "f"])(main);
 
     try {
       //See if supports transperancy
@@ -3765,7 +3555,7 @@ function LineRt({
     });
     return {
       labels: rtData.labels,
-      datasets: [_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "v"]), {}, {
+      datasets: [_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "x"]), {}, {
         label: 'R(t) limite superior',
         backgroundColor: color,
         borderColor: 'transparent',
@@ -3774,7 +3564,7 @@ function LineRt({
         //fill until previous dataset
         data: rtData.rt.map(el => el.limite_superior_IC95.toFixed(2)),
         order: 1
-      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon */ "u"]), {}, {
+      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon */ "w"]), {}, {
         label: 'R(t)',
         backgroundColor: main,
         borderColor: main,
@@ -3782,7 +3572,7 @@ function LineRt({
         fill: false,
         data: rtData.rt.map(el => el.rt_numero_de_reproducao.toFixed(2)),
         order: 2
-      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "v"]), {}, {
+      }), _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "x"]), {}, {
         label: 'R(t) limite inferior',
         backgroundColor: 'white',
         borderColor: 'transparent',
@@ -4007,7 +3797,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1622982603437,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
+module.exports = JSON.parse("{\"date\":1622987023983,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
 
 /***/ }),
 
@@ -4034,14 +3824,16 @@ module.exports = JSON.parse("{\"date\":1622982603437,\"dateSnsStartWeirdFormat\"
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return COMPLEMENT_3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return RESIZE_TRESHOLD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return lineChartCommon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return lineChartCommon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return lineChartCommon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return lineChartCommon2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return REGIOES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return ECDC_MAPPING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return MADEIRA_DICOS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ACORES_DICOS; });
 /* unused harmony export ACORES_DICOS_CONCELHOS */
 /* unused harmony export ARS_MAPPING */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return grades; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return grades_pretty; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return SNS_WEEKS; });
 let FOREGROUND_COLOR = '#01AE97';
 let COLOR_1 = '#017a6a';
@@ -4189,6 +3981,14 @@ const ARS_MAPPING = {
   'ARS Norte': 'norte',
   'ARS Centro': 'centro'
 };
+const grades = [0, 20, 40, 60, 80];
+const grades_pretty = {
+  0: '0% a 19%',
+  20: '20% a 39%',
+  40: '40% a 59%',
+  60: '60% a 89%',
+  80: '80% a 100%'
+};
 const SNS_WEEKS = {
   '08/02/21': '27/12 a 14/02',
   '15/02/21': '15/02 a 21/02',
@@ -4216,7 +4016,6 @@ const SNS_WEEKS = {
   '2021-03-29': '29/03 a 04/04',
   '2021-04-05': '05/04 a 11/04',
   '2021-04-12': '12/04 a 18/04',
-  '2021-04-19': '19/04 a 25/04',
   '2021-04-19': '19/04 a 25/04',
   '2021-04-26': '26/04 a 02/05',
   '2021-05-05': '03/05 a 09/05',

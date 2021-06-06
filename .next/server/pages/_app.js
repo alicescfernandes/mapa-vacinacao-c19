@@ -858,7 +858,7 @@ function NextApp({
 NextApp.getInitialProps = async app => {
   var _app$ctx, _app$ctx$req;
 
-  Object(utils["h" /* trackPlausible */])(app.ctx.req);
+  Object(utils["i" /* trackPlausible */])(app.ctx.req);
   let url = (app === null || app === void 0 ? void 0 : (_app$ctx = app.ctx) === null || _app$ctx === void 0 ? void 0 : (_app$ctx$req = _app$ctx.req) === null || _app$ctx$req === void 0 ? void 0 : _app$ctx$req.url.replace('/', '')) || app.ctx.pathname.replace('/', '');
   url = url.split('?')[0];
   let regiao = 'portugal';
@@ -1219,15 +1219,16 @@ function resolveRewrites() {}
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return hexToRgb; });
 /* unused harmony export dateWithoutTimezone */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return trackPlausible; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return trackPlausible; });
 /* unused harmony export downloadPNG */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return perHundred; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return makeAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getColor; });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
@@ -1409,55 +1410,27 @@ function calculateDims() {
     };
   }
 }
-/*
+function getColor(d) {
+  if (d >= 80) {
+    return '#01ae97';
+  }
 
+  if (d >= 60) {
+    return '#4dc6b6';
+  }
 
-export function makeAnnotations(annotationsArray) {
-	let annotationBoilerplate = {
-		type: 'line',
-		mode: 'horizontal',
-		scaleID: 'y-axis-0',
-		value: null,
-		borderColor: '#0A9DD1',
-		borderWidth: 2,
-		borderDash: [5, 5],
+  if (d >= 40) {
+    return '#80d7cb';
+  }
 
-		label: {
-			backgroundColor: 'rgba(0,0,0,0.0)',
+  if (d >= 20) {
+    return '#b3e7e0';
+  }
 
-			drawTime: 'afterDatasetsDraw',
-
-			textAlign: 'left',
-			fontColor: '#0A9DD1',
-			position: 'left',
-			xAdjust: 10,
-			yAdjust: -10,
-			fontSize: '13px',
-			enabled: true,
-			content: '',
-		},
-	};
-	let arr = [];
-	annotationsArray.forEach((el) => {
-		let annotation = {
-			...annotationBoilerplate,
-			mode: el.mode,
-			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
-			borderColor: el.color,
-			value: el.position,
-			label: {
-				...annotationBoilerplate.label,
-				content: el.marcador,
-				fontColor: el.color,
-			},
-		};
-		arr.push(annotation);
-	});
-
-	return arr;
+  if (d >= 0) {
+    return '#e6f7f5';
+  }
 }
-
-*/
 
 /***/ }),
 
@@ -3879,7 +3852,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1622982603437,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
+module.exports = JSON.parse("{\"date\":1622987023983,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
 
 /***/ }),
 
@@ -3915,14 +3888,16 @@ exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denorm
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return COMPLEMENT_3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return RESIZE_TRESHOLD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return lineChartCommon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return lineChartCommon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return lineChartCommon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return lineChartCommon2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return REGIOES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return ECDC_MAPPING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return MADEIRA_DICOS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ACORES_DICOS; });
 /* unused harmony export ACORES_DICOS_CONCELHOS */
 /* unused harmony export ARS_MAPPING */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return grades; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return grades_pretty; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return SNS_WEEKS; });
 let FOREGROUND_COLOR = '#01AE97';
 let COLOR_1 = '#017a6a';
@@ -4070,6 +4045,14 @@ const ARS_MAPPING = {
   'ARS Norte': 'norte',
   'ARS Centro': 'centro'
 };
+const grades = [0, 20, 40, 60, 80];
+const grades_pretty = {
+  0: '0% a 19%',
+  20: '20% a 39%',
+  40: '40% a 59%',
+  60: '60% a 89%',
+  80: '80% a 100%'
+};
 const SNS_WEEKS = {
   '08/02/21': '27/12 a 14/02',
   '15/02/21': '15/02 a 21/02',
@@ -4097,7 +4080,6 @@ const SNS_WEEKS = {
   '2021-03-29': '29/03 a 04/04',
   '2021-04-05': '05/04 a 11/04',
   '2021-04-12': '12/04 a 18/04',
-  '2021-04-19': '19/04 a 25/04',
   '2021-04-19': '19/04 a 25/04',
   '2021-04-26': '26/04 a 02/05',
   '2021-05-05': '03/05 a 09/05',
