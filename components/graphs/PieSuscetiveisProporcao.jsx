@@ -3,7 +3,6 @@ import { Pie } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber } from './../../utils';
 export function PieSuscetiveisProporcao({ statistics, colors }) {
-	let [loading, setLoading] = useState(false);
 	let vaccines = statistics.getLastVaccineAvaliable();
 	let lastCase = statistics.getLastCaseAvaliable();
 	// let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
@@ -75,7 +74,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[]} height={350} options={options()} data={data} /> : ''}</div>
+			<div>{<Pie plugins={[]} height={350} options={options()} data={data} />}</div>
 		</Card>
 	);
 }

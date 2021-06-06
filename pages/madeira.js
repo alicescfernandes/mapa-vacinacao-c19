@@ -14,15 +14,14 @@ import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
 import Plausible from 'plausible-tracker';
 import { useRouter } from 'next/router';
-//data
+
 import generic from './../data/generic.json';
 import { Card } from '../components/Card';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
-import { formatNumber, perHundred } from '../utils';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
-import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
+// import { RamGruposPrioritarios } from '../components/graphs/RamGruposPrioritarios';
 import { RamBarAdministradasPorFaixaEtaria } from '../components/graphs/RamBarAdministradasPorFaixaEtaria';
 import { RamMapa } from '../components/graphs/RamMapa';
 import LazyLoad from 'react-lazyload';
@@ -36,7 +35,6 @@ export default function Home() {
 	let { statistics, ready: dataReady } = useData({ regiao: 'madeira' });
 	let [selectedItem, setSelectedItem] = useState({});
 	let [updating, isUpdating] = useState(false);
-	let [previousItem, setPreviousItem] = useState({});
 	let [loaded, setLoaded] = useState(false);
 	let beacons = {
 		mid_page: false,
@@ -75,8 +73,6 @@ export default function Home() {
 	})
 		.replace('-feira', '')
 		.split('');
-
-	let d = [first.toUpperCase(), ...restDate].join('');
 
 	function onSocketUpdate() {
 		router.push('/');
@@ -123,7 +119,6 @@ export default function Home() {
 		plausible.trackPageview();
 		let data = await statistics.getSesaram();
 		setSelectedItem(data);
-		setPreviousItem(rawData[rawData.length - 2]);
 
 		/* let { sum } = statistics?.getDosesRecebidasAcum();
 		sum = sum.reverse()[0];

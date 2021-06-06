@@ -1,47 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-import { MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber } from '../../utils';
+import { grades, grades_pretty, MADEIRA_DICOS, RESIZE_TRESHOLD } from '../../constants';
+import { formatNumber, getColor } from '../../utils';
 import { Card } from '../Card';
 import { populacao_residente_ram } from './../../data/generic.json';
 import cardStyles from './../Card.module.scss';
-
-function getColor(d) {
-	if (d >= 80) {
-		return '#01ae97';
-	}
-
-	if (d >= 60) {
-		return '#4dc6b6';
-	}
-
-	if (d >= 40) {
-		return '#80d7cb';
-	}
-
-	if (d >= 20) {
-		return '#b3e7e0';
-	}
-
-	if (d >= 0) {
-		return '#e6f7f5';
-	}
-}
 
 export function RamMapa({ statistics, colors }) {
 	let [graphData, setGraphData] = useState();
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades } = colors;
-
-	const grades = [0, 20, 40, 60, 80];
-	const grades_pretty = {
-		0: '0% a 19%',
-		20: '20% a 39%',
-		40: '40% a 59%',
-		60: '60% a 89%',
-		80: '80% a 100%',
-	};
 
 	const renderMap = async (map) => {
 		const madeira = await fetch('/madeira.geojson').then((r) => r.json());
@@ -50,7 +19,6 @@ export function RamMapa({ statistics, colors }) {
 			doubleClickZoom: false,
 			closePopupOnClick: false,
 			dragging: false,
-			zoomSnap: false,
 			zoomDelta: false,
 			trackResize: false,
 			touchZoom: false,
@@ -95,7 +63,7 @@ export function RamMapa({ statistics, colors }) {
 
 		madeiraMapa.fitBounds(layers.getBounds());
 		madeiraMapa.setZoom(10);
-		/* 	//Create legend
+		//Create legend
 		var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
@@ -112,22 +80,6 @@ export function RamMapa({ statistics, colors }) {
 		};
 
 		legend.addTo(madeiraMapa);
-
-		var snapToPoint = L.control({ position: 'topleft' });
-
-		snapToPoint.onAdd = function (map) {
-			var div = L.DomUtil.create('div', 'info legend');
-			div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
-
-			return div;
-		};
-
-		snapToPoint.addTo(madeiraMapa);
-
-		//hammering the click event
-		snapToPoint._container.onclick = function () {
-			madeiraMapa.fitBounds(layers.getBounds());
-		}; */
 	};
 
 	function renderGraph(el) {
@@ -178,11 +130,6 @@ export function RamMapa({ statistics, colors }) {
 				indexAxis: 'y',
 				plugins: {
 					datalabels: {
-						display: false,
-					},
-					legend: {
-						position: 'bottom',
-						align: 'start',
 						display: false,
 					},
 					legend: {

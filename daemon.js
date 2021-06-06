@@ -5,7 +5,6 @@ var shell = require('shelljs');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
-const { exec } = require('child_process');
 const scrapSesaram = require('./automation/sesaram');
 var argv = require('minimist')(process.argv.slice(2));
 

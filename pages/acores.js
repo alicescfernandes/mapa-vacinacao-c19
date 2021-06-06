@@ -19,7 +19,7 @@ import generic from './../data/generic.json';
 import { Card } from '../components/Card';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
-import { formatDateShort, formatNumber, perHundred } from '../utils';
+import { formatDateShort } from '../utils';
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { RaaMapa } from '../components/graphs/RaaMapa';
@@ -73,8 +73,6 @@ export default function Home() {
 	})
 		.replace('-feira', '')
 		.split('');
-
-	let d = [first.toUpperCase(), ...restDate].join('');
 
 	function onSocketUpdate() {
 		router.push('/');
