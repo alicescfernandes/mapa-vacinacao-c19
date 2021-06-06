@@ -1,52 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { Bar, HorizontalBar } from 'react-chartjs-2';
-import { ACORES_DICOS, RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber } from '../../utils';
+import { Bar } from 'react-chartjs-2';
+import { ACORES_DICOS, grades, grades_pretty, RESIZE_TRESHOLD } from '../../constants';
+import { formatNumber, getColor } from '../../utils';
 import { Card } from '../Card';
 import { populacao_residente_raa } from './../../data/generic.json';
 import cardStyles from './../Card.module.scss';
-
-function getColor(d) {
-	if (d >= 80) {
-		return '#01ae97';
-	}
-
-	if (d >= 60) {
-		return '#4dc6b6';
-	}
-
-	if (d >= 40) {
-		return '#80d7cb';
-	}
-
-	if (d >= 20) {
-		return '#b3e7e0';
-	}
-
-	if (d >= 0) {
-		return '#e6f7f5';
-	}
-}
 
 export function RaaMapa({ statistics, colors }) {
 	let [graphData, setGraphData] = useState();
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades } = colors;
 
-	const grades = [0, 20, 40, 60, 80];
-	const grades_pretty = {
-		0: '0% a 19%',
-		20: '20% a 39%',
-		40: '40% a 59%',
-		60: '60% a 89%',
-		80: '80% a 100%',
-	};
-
 	const renderMap = async (map) => {
 		const madeira = await fetch('/acores.geojson').then((r) => r.json());
 		const madeiraMapa = L.map('map', {
-			zoomSnap: 0.1,
 			doubleClickZoom: false,
 			closePopupOnClick: false,
 			dragging: false,
@@ -96,7 +64,7 @@ export function RaaMapa({ statistics, colors }) {
 		madeiraMapa.setZoom(7.8);
 
 		//Create legend
-		/* 	var legend = L.control({ position: 'bottomleft' });
+		var legend = L.control({ position: 'bottomleft' });
 
 		legend.onAdd = function (map) {
 			var div = L.DomUtil.create('div', 'info legend');
@@ -112,40 +80,10 @@ export function RaaMapa({ statistics, colors }) {
 		};
 
 		legend.addTo(madeiraMapa);
- */
-		/* var snapToPoint = L.control({ position: 'topleft' });
-
-		snapToPoint.onAdd = function (map) {
-			var div = L.DomUtil.create('div', 'info legend');
-			div.innerHTML = '<img style="width:20px" src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-location-1.png">';
-
-			return div;
-		};
-
-		snapToPoint.addTo(madeiraMapa);
-
-		//hammering the click event
-		snapToPoint._container.onclick = function () {
-			madeiraMapa.fitBounds(layers.getBounds());
-		}; */
 	};
 
 	function renderGraph(el) {
-		const data = (canvas, cenas) => {
-			/* 	if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			} */
-
-			/* 	window.addEventListener('resize', () => {
-				if (window.innerWidth <= RESIZE_TRESHOLD) {
-					canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-				} else {
-					canvas.parentNode.style.width = '100%';
-				}
-			});
- */
+		const data = () => {
 			const chartData = {
 				labels: [''],
 				datasets: [

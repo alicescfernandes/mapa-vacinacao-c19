@@ -181,52 +181,24 @@ export function calculateDims() {
 	}
 }
 
-/*
+export function getColor(d) {
+	if (d >= 80) {
+		return '#01ae97';
+	}
 
+	if (d >= 60) {
+		return '#4dc6b6';
+	}
 
-export function makeAnnotations(annotationsArray) {
-	let annotationBoilerplate = {
-		type: 'line',
-		mode: 'horizontal',
-		scaleID: 'y-axis-0',
-		value: null,
-		borderColor: '#0A9DD1',
-		borderWidth: 2,
-		borderDash: [5, 5],
+	if (d >= 40) {
+		return '#80d7cb';
+	}
 
-		label: {
-			backgroundColor: 'rgba(0,0,0,0.0)',
+	if (d >= 20) {
+		return '#b3e7e0';
+	}
 
-			drawTime: 'afterDatasetsDraw',
-
-			textAlign: 'left',
-			fontColor: '#0A9DD1',
-			position: 'left',
-			xAdjust: 10,
-			yAdjust: -10,
-			fontSize: '13px',
-			enabled: true,
-			content: '',
-		},
-	};
-	let arr = [];
-	annotationsArray.forEach((el) => {
-		let annotation = {
-			...annotationBoilerplate,
-			mode: el.mode,
-			scaleID: el.mode === 'horizontal' ? 'y-axis-0' : 'x-axis-0',
-			borderColor: el.color,
-			value: el.position,
-			label: {
-				...annotationBoilerplate.label,
-				content: el.marcador,
-				fontColor: el.color,
-			},
-		};
-		arr.push(annotation);
-	});
-
-	return arr;
+	if (d >= 0) {
+		return '#e6f7f5';
+	}
 }
-
-*/

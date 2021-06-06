@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { VacinadosPorDia } from '../components/graphs/VacinadosPorDia';
 import { Counter } from '../components/Counter';
-import { DatePickerButton } from '../components/DatePickerButton';
 import { NumeroTotalVacinados } from '../components/graphs/NumeroTotalVacinados';
 import { isSameDay, format, subDays, compareAsc } from 'date-fns';
 import { GooSpinner } from 'react-spinners-kit';
@@ -21,15 +20,14 @@ import fases from './../data/fases.json';
 import { Card } from '../components/Card';
 import { LineVacinadosInfecoesRecuperados } from '../components/graphs/LineVacinadosInfecoesRecuperados';
 import { PieVacinadosInfectadosRecuperadosObitos } from '../components/graphs/PieVacinadosInfectadosRecuperadosObitos';
-import { BarsVacinacaoArs } from '../components/graphs/BarsVacinacaoArs';
+// import { BarsVacinacaoArs } from '../components/graphs/BarsVacinacaoArs';
 import { PieSuscetiveisProporcao } from '../components/graphs/PieSuscetiveisProporcao';
 import { BarVacinasRecebidaDia } from '../components/graphs/BarVacinasRecebidaDia';
 import { BarAdministradasPorFaixaEtaria } from '../components/graphs/BarAdministradasPorFaixaEtaria';
 import { BarTotaisPorFaixaEtaria } from '../components/graphs/BarTotaisPorFaixaEtaria';
-import { BarArs } from '../components/graphs/BarArs';
+// import { BarArs } from '../components/graphs/BarArs';
 import { PieRecebidasAdquiridas } from '../components/graphs/PieRecebidasAdquiridas';
 import { PieAdministradasDoses } from '../components/graphs/PieAdministradasDoses';
-import { formatNumber, perHundred } from '../utils';
 import { BarVacinasRecebidaDiaAcum } from '../components/graphs/BarVacinasRecebidaDiaAcum';
 import { LineVacinadosEu } from '../components/graphs/LineVacinadosEu';
 import { BarVacinadosEu } from '../components/graphs/BarVacinadosEu';
@@ -37,7 +35,6 @@ import { LineAdministradasPorFaixaEtaria } from '../components/graphs/LineAdmini
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { ArsMapa } from '../components/graphs/ArsMapa';
-import { CounterGroup } from '../components/CounterGroup';
 const plausible = Plausible({
 	domain: 'vacinacaocovid19.pt',
 	trackLocalhost: true,
@@ -56,7 +53,6 @@ export default function Home() {
 	let [currentDate, setCurrentDate] = useState('');
 	let [updating, setUpdating] = useState(false);
 	let [last, setLast] = useState({});
-	let [first, setFirst] = useState({});
 	let [loaded, setLoaded] = useState(false);
 
 	let numberFormatter = new Intl.NumberFormat('pt-PT');
@@ -85,7 +81,7 @@ export default function Home() {
 		dataLong: '',
 	});
 
-	let { colors, colors_v2, setColors } = useColors();
+	let { colors, colors_v2 } = useColors();
 	function onSocketUpdate({ data }) {
 		updateData(data.type, data.data);
 		setUpdating(true);
@@ -194,7 +190,6 @@ export default function Home() {
 		setLast(rawData[rawData.length - 1]);
 		setSelectedItem(rawData[rawData.length - 1]);
 		setPreviousItem(rawData[rawData.length - 2]);
-		setFirst(rawData[0]);
 		plausible.trackPageview();
 
 		let { RECEIVED: sum } = await statistics?.getTotalSNSRecebidas();

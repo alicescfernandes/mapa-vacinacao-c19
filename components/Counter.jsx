@@ -1,21 +1,13 @@
 import styles from './Card.module.scss';
 import * as React from 'react';
-export function Counter({ from, to, yesterday, title, subtitle, ps, colors, digits, suffix, tempo }) {
+export function Counter({ to, yesterday, title, subtitle, ps, colors, digits, suffix, tempo }) {
 	if (!tempo) tempo = window.innerWidth <= 500 ? 'ontem' : 'no dia anterior';
 
-	if (!digits) {
-		digits = 0;
-	}
 	let numberFormatter = new Intl.NumberFormat('en-US', {
 		maximumFractionDigits: 2,
 	});
 	let difference = to - yesterday || 0;
 	let [foreground] = colors;
-	const fn = (value) => (
-		<span style={{ color: foreground }} className={styles.card_highlight}>
-			{numberFormatter.format(value).replace(/,/gm, ' ')} {suffix ? suffix : ''}
-		</span>
-	);
 
 	return (
 		<>

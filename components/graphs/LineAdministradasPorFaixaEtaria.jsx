@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { RESIZE_TRESHOLD, lineChartCommon, SNS_WEEKS } from './../../constants';
 export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
-	let { main, shades, tints, complements } = colors;
+	let { main, shades, complements } = colors;
 	let [graphData, setGraphData] = useState({});
 	let [activeDose, setActiveDose] = useState(1);
 	const canvasRef = useRef(null);

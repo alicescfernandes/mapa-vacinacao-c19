@@ -3,8 +3,6 @@ import { Pie } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber } from '../../utils';
 export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) {
-	let [loading, setLoading] = useState(false);
-
 	let vaccines = statistics.getLastVaccineAvaliable();
 	let lastCase = statistics.getLastCaseAvaliable();
 	let { main, tints, shades, complements } = colors;
@@ -62,7 +60,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 
 	return (
 		<Card allowOverflow={true}>
-			<div>{!loading ? <Pie plugins={[]} height={350} options={options()} data={data} /> : ''}</div>
+			<div>{<Pie plugins={[]} height={350} options={options()} data={data} />}</div>
 		</Card>
 	);
 }

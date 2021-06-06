@@ -1,37 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-import { RESIZE_TRESHOLD } from '../../constants';
-import { formatNumber } from '../../utils';
+import { grades, grades_pretty, RESIZE_TRESHOLD } from '../../constants';
+import { formatNumber, getColor } from '../../utils';
 import { Card } from '../Card';
 import cardStyles from './../Card.module.scss';
 import classNames from 'classnames';
 
-function getColor(d) {
-	if (d >= 80) {
-		return '#01ae97';
-	}
-
-	if (d >= 60) {
-		return '#4dc6b6';
-	}
-
-	if (d >= 40) {
-		return '#80d7cb';
-	}
-
-	if (d >= 20) {
-		return '#b3e7e0';
-	}
-
-	if (d >= 0) {
-		return '#e6f7f5';
-	}
-}
-
 export function ArsMapa({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
-	let { main, shades, tints } = colors;
+	let { main, shades } = colors;
 	const [snsData, setSNSData] = useState({});
 	const [mapLayers, setMapLayers] = useState(0);
 	const [options, setOptions] = useState({
@@ -58,14 +36,6 @@ export function ArsMapa({ statistics, colors }) {
 		}
 	}
 
-	const grades = [0, 20, 40, 60, 80];
-	const grades_pretty = {
-		0: '0% a 19%',
-		20: '20% a 39%',
-		40: '40% a 59%',
-		60: '60% a 89%',
-		80: '80% a 100%',
-	};
 	function layerStyle(feature) {
 		let ars = feature.properties.ARS;
 		let data = graphData[ars];
@@ -84,7 +54,6 @@ export function ArsMapa({ statistics, colors }) {
 			doubleClickZoom: false,
 			closePopupOnClick: false,
 			dragging: false,
-			zoomSnap: false,
 			zoomDelta: false,
 			trackResize: false,
 			touchZoom: false,
