@@ -6202,7 +6202,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1623098545173,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
+module.exports = JSON.parse("{\"date\":1623098775101,\"dateSnsStartWeirdFormat\":\"24/05/21\",\"dateSnsStart\":\"2021-05-24\",\"dateSns\":\"2021-05-28\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-05-28\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
 
 /***/ }),
 
