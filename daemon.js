@@ -239,7 +239,8 @@ console.log(new Date().toLocaleString(), 'daemon running');
 		schedule.scheduleJob('0-59/5 14-20 * * *', function () {
 			updateJSON();
 		});
-
+		/*
+		// This is done by docker 
 		//Update SESARAM at midnight again
 		schedule.scheduleJob('50 23 * * *', function () {
 			shell.exec('git checkout develop');
@@ -262,7 +263,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 		schedule.scheduleJob('40 21 * * *', function () {
 			console.log('Saving to web archive');
 			shell.exec('waybackpy --save --url "https://web.sesaram.pt/COVID19_INFO" ');
-		});
+		}); */
 
 		schedule.scheduleJob('00 12 * * *', function () {
 			updateOWID();
