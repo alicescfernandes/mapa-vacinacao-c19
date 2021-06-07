@@ -16,7 +16,9 @@ jobs:
             - name: Checkout 🛎️
               uses: actions/checkout@v2.3.1
             - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-              run: npm install
+              run: |
+                  npm instal
+                  pip3 install -r requirements.txt
             - name: Cache
               uses: actions/cache@v2.1.6
               with:
@@ -24,7 +26,6 @@ jobs:
                   key: 'node_modules'
             - name: Update OWID, Rt and Cases Ilhas
               run: |
-                  echo $USER
                   git fetch
                   git config --global user.name "$user"
                   git config --global user.email "$email"
