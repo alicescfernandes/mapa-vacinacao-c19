@@ -265,10 +265,10 @@ console.log(new Date().toLocaleString(), 'daemon running');
 			shell.exec('waybackpy --save --url "https://web.sesaram.pt/COVID19_INFO" ');
 		}); */
 
-		schedule.scheduleJob('00 12 * * *', function () {
+		/* schedule.scheduleJob('00 12-30 * * *', function () {
 			updateOWID();
 			updateRT();
 			updatedCasesMadeira();
-		});
+		}); */
 	}
 })();
