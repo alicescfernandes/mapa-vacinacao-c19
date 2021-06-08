@@ -1,4 +1,4 @@
-name: Serviços Minimos
+name: Serviços Minimos - SESARAM & Cases
 on:
     workflow_dispatch:
         inputs:
@@ -20,8 +20,7 @@ jobs:
             - name: Cache
               uses: actions/cache@v2.1.6
               with:
-                path: "node_modules"
-                key: "node_modules"
+                  path: 'node_modules'
             - name: Update SESARAM
               run: |
                   echo $USER
@@ -29,6 +28,7 @@ jobs:
                   git config --global user.name "$user"
                   git config --global user.email "$email"
                   ./daemon.js --scrap sesaram
+                  ./daemon.js --scrap cases
 
               env:
                   email: ${{secrets.EMAIL}}
