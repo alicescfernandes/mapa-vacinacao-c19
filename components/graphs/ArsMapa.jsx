@@ -73,8 +73,8 @@ export function ArsMapa({ statistics, colors }) {
 				shape.bindPopup(
 					`<p>
 						<strong>${feature.properties.Nome_Alternativo}</strong>
-						<br>1ª Dose: ${formatNumber(400)} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${formatNumber(200)} (${percentagem_2.toFixed(2)}%)
+						</br>1ª Dose: ${formatNumber(parseInt(data.TOTAL_VAC_1))} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${formatNumber(parseInt(data.TOTAL_VAC_2))} (${percentagem_2.toFixed(2)}%)
 					</p>`
 				);
 				shape.on('click', () => {
