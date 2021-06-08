@@ -138,6 +138,20 @@ async function updateJSON() {
 	} else {
 		console.log('Not fetching new vaccines');
 	}
+}
+
+async function updateCasesJSON() {
+	//update the repo
+	shell.exec('git checkout develop');
+	shell.exec('git pull --rebase');
+
+	let date = new Date();
+	date.setMinutes(0);
+	date.setMilliseconds(0);
+	date.setSeconds(0);
+	date.setHours(0);
+
+	let dataLocalCases = JSON.parse(fs.readFileSync('./data/cases.json'));
 
 	if (date.getTime() > dataLocalCases[dataLocalCases.length - 1].Data) {
 		let dataCasos = await fetch(
@@ -221,6 +235,9 @@ console.log(new Date().toLocaleString(), 'daemon running');
 			case 'vaccines':
 				await updateJSON();
 				break;
+			case 'cases':
+				await updateCasesJSON();
+				break;
 			case 'owid':
 				updateOWID();
 				updateRT();
@@ -237,7 +254,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 		});
 
 		schedule.scheduleJob('0-59/5 14-20 * * *', function () {
-			updateJSON();
+			updateCasesJSON();
 		});
 		/*
 		// This is done by docker 
