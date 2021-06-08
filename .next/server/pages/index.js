@@ -4550,8 +4550,8 @@ function ArsMapa({
 
         shape.bindPopup(`<p>
 						<strong>${feature.properties.Nome_Alternativo}</strong>
-						<br>1ª Dose: ${Object(utils["d" /* formatNumber */])(400)} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(200)} (${percentagem_2.toFixed(2)}%)
+						</br>1ª Dose: ${Object(utils["d" /* formatNumber */])(parseInt(data.TOTAL_VAC_1))} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(parseInt(data.TOTAL_VAC_2))} (${percentagem_2.toFixed(2)}%)
 					</p>`);
         shape.on('click', () => {//console.log('click');
         });
@@ -6202,7 +6202,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1623189511523,\"dateSnsStartWeirdFormat\":\"31/05/21\",\"dateSnsStart\":\"2021-05-31\",\"dateSns\":\"2021-06-06\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-06-04\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
+module.exports = JSON.parse("{\"date\":1623189718095,\"dateSnsStartWeirdFormat\":\"31/05/21\",\"dateSnsStart\":\"2021-05-31\",\"dateSns\":\"2021-06-06\",\"dateEcdc\":\"2021-05-30\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-06-04\",\"dateAcoresCases\":\"2021-06-01\",\"week\":22}");
 
 /***/ }),
 
