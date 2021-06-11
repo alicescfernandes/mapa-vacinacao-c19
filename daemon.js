@@ -35,7 +35,7 @@ function gitCommit(name) {
 
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
-		shell.exit(1);
+		shell.exit(0); //dont panic please
 	} else {
 		shell.echo('Success: Git commit success');
 	}
@@ -73,7 +73,9 @@ function updateRT() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
 	shell.exec('yarn convert:xls');
-	gitCommit('rt');
+	scrapRt(function () {
+		gitCommit('rt');
+	});
 }
 function publishEvent(type, data) {
 	pusher.trigger('covid19', 'update', {
