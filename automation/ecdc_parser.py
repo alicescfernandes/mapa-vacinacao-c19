@@ -8,8 +8,8 @@ from datetime import datetime
 
 today = datetime.now()
 
-#if(today != 3):
-#    exit()
+if(today != 3):
+    exit()
 
 #open owid file
 owid_file = open("./data/ecdc_filtered.json")
