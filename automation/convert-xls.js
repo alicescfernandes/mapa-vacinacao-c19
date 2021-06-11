@@ -1,17 +1,18 @@
 const excelToJson = require('convert-excel-to-json');
 const { default: fetch } = require('node-fetch');
 const fs = require('fs');
+var shell = require('shelljs');
 const path = require('path');
 let rts = {};
 
-(async () => {
+const scrapRt = async function (onUpdate) {
 	let files = await fetch(
 		'http://www.insa.min-saude.pt/category/areas-de-atuacao/epidemiologia/covid-19-curva-epidemica-e-parametros-de-transmissibilidade/'
 	)
 		.then((res) => res.text())
 		.then((text) => text.match(/http.*xlsx/gm));
 
-	await files.forEach(async (file) => {
+	for await (file of files) {
 		let parsed = path.parse(file);
 		let contents = await fetch(file).then((res) => res.buffer());
 		const result = excelToJson({
@@ -32,7 +33,16 @@ let rts = {};
 			],
 		});
 		rts[parsed.name.toLowerCase()] = result['Sheet 1'];
-		fs.writeFile(`./data/rt/${parsed.name.toLowerCase()}.json`, JSON.stringify(result['Sheet 1']), () => {});
-		fs.writeFile(`./data/rt/rt_todas.json`, JSON.stringify(rts), () => {});
+		fs.writeFileSync(`./data/rt/${parsed.name.toLowerCase()}.json`, JSON.stringify(result['Sheet 1']), () => {});
+	}
+
+	fs.writeFileSync(`./data/rt/rt_todas.json`, JSON.stringify(rts), () => {});
+
+	shell.exec('git status | grep rt_todass.json', { silent: true }, (code, stdout) => {
+		if (code == 0 && onUpdate) {
+			onUpdate();
+		}
 	});
-})();
+};
+
+module.exports = scrapRt;
