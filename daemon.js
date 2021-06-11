@@ -49,8 +49,6 @@ function gitCommit(name) {
 }
 
 function updateOWID() {
-	shell.exec('git checkout develop');
-	shell.exec('git pull --rebase');
 	shell.exec('python3 ./automation/owid_parser.py');
 	gitCommit('owid');
 }
@@ -63,15 +61,12 @@ function updateEDCD() {
 }
 
 function updatedCasesMadeira() {
-	shell.exec('git checkout develop');
-	shell.exec('git pull --rebase');
 	shell.exec('yarn convert:csv');
 	gitCommit('madeira cases');
 }
 
 async function updateRT() {
-	shell.exec('git checkout develop');
-	shell.exec('git pull --rebase');
+	console.log('update rt');
 	shell.exec('yarn convert:xls');
 	await scrapRt(function () {
 		gitCommit('rt');
@@ -224,7 +219,6 @@ console.log(new Date().toLocaleString(), 'daemon running');
 (async () => {
 	if (argv.scrap) {
 		//Run particular commands
-
 		shell.exec('git checkout develop');
 		shell.exec('git pull --rebase');
 
