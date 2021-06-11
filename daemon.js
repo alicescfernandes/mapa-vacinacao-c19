@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
 const scrapSesaram = require('./automation/sesaram');
+const scrapRt = require('./automation/convert-xls');
 var argv = require('minimist')(process.argv.slice(2));
 
 if (!shell.which('git')) {
@@ -32,10 +33,9 @@ const pusher = new Pusher({
 
 function gitCommit(name) {
 	shell.exec('git add data/*');
-
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
-		shell.exit(0); //dont panic please
+		return;
 	} else {
 		shell.echo('Success: Git commit success');
 	}
