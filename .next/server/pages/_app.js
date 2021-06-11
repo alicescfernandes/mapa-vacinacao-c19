@@ -233,7 +233,7 @@ function Footer() {
   let f = new Intl.DateTimeFormat('pt-PT', options);
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
     children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
-      src: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"
+      src: "/leaflet.js"
     }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
       src: "https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js",
       integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
@@ -421,7 +421,7 @@ function Metatags({
         children: title
       }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
         rel: "stylesheet",
-        href: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css"
+        href: "/leaflet.min.css"
       })]
     }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
       className: "hide-except-seo",
@@ -3852,7 +3852,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1623437479467,\"dateSnsStartWeirdFormat\":\"31/05/21\",\"dateSnsStart\":\"2021-05-31\",\"dateSns\":\"2021-06-06\",\"dateEcdc\":\"2021-06-06\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-06-04\",\"dateAcoresCases\":\"2021-06-01\",\"week\":23}");
+module.exports = JSON.parse("{\"date\":1623438541688,\"dateSnsStartWeirdFormat\":\"31/05/21\",\"dateSnsStart\":\"2021-05-31\",\"dateSns\":\"2021-06-06\",\"dateEcdc\":\"2021-06-06\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-05-31\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-06-04\",\"dateAcoresCases\":\"2021-06-01\",\"week\":23}");
 
 /***/ }),
 
