@@ -69,11 +69,11 @@ function updatedCasesMadeira() {
 	gitCommit('madeira cases');
 }
 
-function updateRT() {
+async function updateRT() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
 	shell.exec('yarn convert:xls');
-	scrapRt(function () {
+	await scrapRt(function () {
 		gitCommit('rt');
 	});
 }
@@ -242,7 +242,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 				break;
 			case 'owid':
 				updateOWID();
-				updateRT();
+				await updateRT();
 				updatedCasesMadeira();
 				break;
 		}
