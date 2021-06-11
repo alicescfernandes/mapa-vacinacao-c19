@@ -14,7 +14,7 @@ export function Footer() {
 	let f = new Intl.DateTimeFormat('pt-PT', options);
 	return (
 		<>
-			<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+			<script src="/leaflet.js"></script>
 			<script
 				src="https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js"
 				integrity="sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg=="

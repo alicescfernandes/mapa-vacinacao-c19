@@ -38,7 +38,7 @@ export function Metatags({ isUpdating }) {
 				<meta name="msapplication-TileColor" content="#01AE97" />
 				<meta name="theme-color" content="#01AE97" />
 				<title>{title}</title>
-				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css"></link>
+				<link rel="stylesheet" href="/leaflet.min.css"></link>
 			</Head>
 			<p className="hide-except-seo">{descricao}</p>
 		</>
