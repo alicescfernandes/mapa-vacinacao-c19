@@ -3279,78 +3279,78 @@
             "porto_moniz": {
                 "nome": "Porto Moniz",
                 "chave": "porto_moniz",
-                "dose_1": 1198,
-                "dose_2": 691,
+                "dose_1": 1329,
+                "dose_2": 830,
                 "total": null
             },
             "svincente": {
                 "nome": "São Vincente",
                 "chave": "svincente",
-                "dose_1": 2001,
-                "dose_2": 1164,
+                "dose_1": 2204,
+                "dose_2": 1402,
                 "total": null
             },
             "santana": {
                 "nome": "Santana",
                 "chave": "santana",
-                "dose_1": 3041,
-                "dose_2": 1863,
+                "dose_1": 3324,
+                "dose_2": 2258,
                 "total": null
             },
             "porto_santo": {
                 "nome": "Porto Santo",
                 "chave": "porto_santo",
-                "dose_1": 2875,
-                "dose_2": 1431,
+                "dose_1": 2885,
+                "dose_2": 1453,
                 "total": null
             },
             "machico": {
                 "nome": "Machico",
                 "chave": "machico",
-                "dose_1": 7132,
-                "dose_2": 4037,
+                "dose_1": 7906,
+                "dose_2": 5118,
                 "total": null
             },
             "santa_cruz": {
                 "nome": "Santa Cruz",
                 "chave": "santa_cruz",
-                "dose_1": 13317,
-                "dose_2": 6789,
+                "dose_1": 14564,
+                "dose_2": 8580,
                 "total": null
             },
             "funchal": {
                 "nome": "Funchal",
                 "chave": "funchal",
-                "dose_1": 42999,
-                "dose_2": 22531,
+                "dose_1": 45759,
+                "dose_2": 26929,
                 "total": null
             },
             "camara_lobos": {
                 "nome": "Câmara de Lobos",
                 "chave": "camara_lobos",
-                "dose_1": 8735,
-                "dose_2": 4762,
+                "dose_1": 9592,
+                "dose_2": 6009,
                 "total": null
             },
             "ribeira_brava": {
                 "nome": "Ribeira Brava",
                 "chave": "ribeira_brava",
-                "dose_1": 4696,
-                "dose_2": 2939,
+                "dose_1": 5159,
+                "dose_2": 3481,
                 "total": null
             },
             "ponta_sol": {
                 "nome": "Ponta do Sol",
                 "chave": "ponta_sol",
-                "dose_1": 3327,
-                "dose_2": 1881,
+                "dose_1": 3679,
+                "dose_2": 2369,
                 "total": null
             },
             "calheta": {
                 "nome": "Calheta",
                 "chave": "calheta",
-                "dose_1": 4523,
-                "dose_2": 2577,
+                "dose_1": 4993,
+                "dose_2": 3172,
                 "total": null
             }
         }
