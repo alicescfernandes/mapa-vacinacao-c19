@@ -12,6 +12,9 @@ Todo o código é público (incluindo também os desenhos originais do site), pa
 ## Origem dos dados
 Ver [SOURCES.MD](/_readme/SOURCES.md)
 ## Stack
+![infra](./_readme/asset/infa.png)
+
+
 - ChartJS  
 - React  
 - NextJS  
@@ -23,6 +26,8 @@ Ver [SOURCES.MD](/_readme/SOURCES.md)
 - Github Hooks (para lançar um novo deploy)
 - ~~Vercel~~ Já não estamos na Vercel!
 - Cloudflare
+
+
 
 ## Fazer setup local (com docker)
 ```bash 

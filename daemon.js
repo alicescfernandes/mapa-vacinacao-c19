@@ -8,6 +8,7 @@ const Pusher = require('pusher');
 const scrapSesaram = require('./automation/sesaram');
 const scrapRt = require('./automation/convert-xls');
 var argv = require('minimist')(process.argv.slice(2));
+console.log(process.env.HARDWARE);
 
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
@@ -119,6 +120,11 @@ async function updateJSON() {
 			shell.exec('sleep 180');
 			shell.exec('yarn twitter');
 			shell.exec('yarn onesignal');
+			// bot runs on a raspberry pi
+			if (process.env.HARDWARE == 'raspberry') {
+				shell.exec('sleep 180');
+				shell.exec('sudo poweroff');
+			}
 		} else {
 			console.log(
 				new Date(),
@@ -249,9 +255,19 @@ console.log(new Date().toLocaleString(), 'daemon running');
 			updateJSON();
 		});
 
+		/* 
 		schedule.scheduleJob('0-59/5 14-20 * * *', function () {
 			updateCasesJSON();
-		});
+		}); 
+		*/
+
+		if (process.env.HARDWARE == 'raspberry') {
+			schedule.scheduleJob('10 16 * * *', function () {
+				shell.exec('sleep 180');
+				shell.exec('sudo poweroff');
+			});
+		}
+
 		/*
 		// This is done by docker 
 		//Update SESARAM at midnight again
