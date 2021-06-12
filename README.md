@@ -12,7 +12,7 @@ Todo o código é público (incluindo também os desenhos originais do site), pa
 ## Origem dos dados
 Ver [SOURCES.MD](/_readme/SOURCES.md)
 ## Stack
-![infra](./_readme/asset/infa.png)
+![infra](./_readme/asset/infra.png)
 
 
 - ChartJS  
