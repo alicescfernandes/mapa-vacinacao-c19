@@ -41,6 +41,11 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 		graphData.map((values) => {
 			labels[values.DATE] = '';
 		});
+		console.log(
+			labels,
+			SNS_WEEKS,
+			Object.keys(labels).map((el) => SNS_WEEKS[el] === undefined && console.log(el))
+		);
 		return {
 			labels: Object.keys(labels).map((el) => SNS_WEEKS[el]),
 			datasets: [
