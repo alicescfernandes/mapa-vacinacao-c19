@@ -117,9 +117,9 @@ async function updateJSON() {
 
 			gitCommit('vaccines');
 			//Update twitter
-			shell.exec('sleep 180');
-			shell.exec('yarn twitter');
-			shell.exec('yarn onesignal');
+			//shell.exec('sleep 180');
+			//shell.exec('yarn twitter');
+			//shell.exec('yarn onesignal');
 			// bot runs on a raspberry pi
 			if (process.env.HARDWARE == 'raspberry') {
 				shell.exec('sleep 180');
