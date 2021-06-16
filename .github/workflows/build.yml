@@ -3,6 +3,12 @@ on:
     push:
         branches:
             - master
+    workflow_dispatch:
+        inputs:
+            logLevel:
+                description: 'Log level'
+                required: true
+                default: 'warning'
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
