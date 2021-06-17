@@ -112,14 +112,14 @@ async function updateJSON() {
 			item.Vacinados = item.Vacinados_Ac - dataLocalVacinas[dataLocalVacinas.length - 2].Vacinados_Ac;
 			dataLocalVacinasV2.push(item);
 			fs.writeFileSync('./data/vaccines_v2.json', JSON.stringify(dataLocalVacinasV2));
-			//publishEvent('vacinas', dataVacinas.features[0].attributes);
+			publishEvent('vacinas', dataVacinas.features[0].attributes);
 			updatedVaccines = true;
 
 			gitCommit('vaccines');
 			//Update twitter
-			//shell.exec('sleep 180');
-			//shell.exec('yarn twitter');
-			//shell.exec('yarn onesignal');
+			shell.exec('sleep 180');
+			shell.exec('yarn twitter');
+			shell.exec('yarn onesignal');
 			// bot runs on a raspberry pi
 			if (process.env.HARDWARE == 'raspberry') {
 				shell.exec('sleep 180');
