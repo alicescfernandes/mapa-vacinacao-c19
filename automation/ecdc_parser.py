@@ -7,8 +7,9 @@ from datetime import datetime
 
 
 today = datetime.now()
-print("today is ", today)
-if(today != 3):
+print("ECDC Running", today.weekday())
+print("today is ", today.weekday())
+if(today.weekday() != 3):
     exit()
 
 #open owid file
