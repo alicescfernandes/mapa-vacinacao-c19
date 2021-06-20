@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 today = datetime.now()
-
+print("today is ", today)
 if(today != 3):
     exit()
 

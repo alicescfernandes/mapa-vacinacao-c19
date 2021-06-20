@@ -31,8 +31,8 @@ jobs:
                   git fetch
                   git config --global user.name "$user"
                   git config --global user.email "$email"
-                  ./daemon.js --scrap owid
                   python3 ./automation/ecdc_parser.py
+                  ./daemon.js --scrap owid
 
               env:
                   email: ${{secrets.EMAIL}}
