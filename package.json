@@ -22,7 +22,8 @@
 		"convert": "yarn convert:csv & yarn convert:xls",
 		"delete": "(git reset .next && git checkout .next) & git clean -fd .next",
 		"update:server": "sh run.sh",
-		"bot:start": "HARDWARE=raspberry pm2 start daemon_data --name \"daemon\""
+		"bot:start": "HARDWARE=raspberry pm2 start daemon_data --name \"daemon\"",
+		"casos:ram": "python3 ./automation/madeira_parser.py"
 	},
 	"browser": {
 		"fs": false,
