@@ -4287,42 +4287,42 @@ function LineAdministradasPorFaixaEtaria({
         label: 'Até aos 17 anos',
         labelGroup: 'Grupo 18/24',
         fill: false,
-        data: graphData.filter(el => el.AGEGROUP == '0-17 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+        data: graphData.filter(el => el.AGEGROUP == '0-17 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[0])), {}, {
         label: 'Entre 18 anos e 24 anos',
         labelGroup: 'Grupo 18/24',
         fill: false,
-        data: graphData.filter(el => el.AGEGROUP == '18-24 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+        data: graphData.filter(el => el.AGEGROUP == '18-24 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[2])), {}, {
         label: 'Entre 25 anos e 49 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
-        data: graphData.filter(el => el.AGEGROUP == '25-49 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+        data: graphData.filter(el => el.AGEGROUP == '25-49 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[2])), {}, {
         label: 'Entre 50 anos e 64 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
-        data: graphData.filter(el => el.AGEGROUP == '50-64 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+        data: graphData.filter(el => el.AGEGROUP == '50-64 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[0])), {}, {
         label: 'Entre 60 e 79 anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
-        data: graphData.filter(el => el.AGEGROUP == '65-79 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+        data: graphData.filter(el => el.AGEGROUP == '65-79 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[1])), {}, {
         label: '80 ou mais anos',
         labelGroup: 'Grupo 25/49',
         fill: false,
-        data: graphData.filter(el => el.AGEGROUP == '80 ou mais anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+        data: graphData.filter(el => el.AGEGROUP == '80 ou mais anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       })]
@@ -6203,7 +6203,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1624218943535,\"dateSnsStartWeirdFormat\":\"07/06/2021\",\"dateSnsStart\":\"2021-06-07\",\"dateSns\":\"2021-06-14\",\"dateEcdc\":\"2021-06-13\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-06-14\",\"dateAcoresCases\":\"2021-06-01\",\"week\":24}");
+module.exports = JSON.parse("{\"date\":1624219539100,\"dateSnsStartWeirdFormat\":\"07/06/2021\",\"dateSnsStart\":\"2021-06-07\",\"dateSns\":\"2021-06-14\",\"dateEcdc\":\"2021-06-13\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-05-31\",\"dateAcores\":\"2021-06-14\",\"dateAcoresCases\":\"2021-06-01\",\"week\":24}");
 
 /***/ }),
 
