@@ -58,7 +58,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '0-17 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
 
 					order: 1,
 					customDose: 2,
@@ -72,7 +72,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '18-24 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
 
 					order: 1,
 					customDose: 2,
@@ -86,7 +86,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '25-49 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
 
 					order: 1,
 					customDose: 2,
@@ -100,7 +100,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '50-64 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
 
 					order: 1,
 					customDose: 2,
@@ -114,7 +114,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '65-79 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
 
 					order: 1,
 					customDose: 2,
@@ -128,7 +128,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '80 ou mais anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].replace(',', '.')) * 100),
+						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
 					order: 1,
 					customDose: 2,
 				},
