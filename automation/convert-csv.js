@@ -24,7 +24,7 @@ let json = require('./../data/last-update.json');
 			fs.writeFile('./data/last-update.json', JSON.stringify(json), function () {});
 		});
  */
-	contents = await fetch(
+	let contents = await fetch(
 		'https://docs.google.com/spreadsheets/d/16wucf-R89vxoL_QCmYL2ChYi-iKFVMQyIr7qsV_5kw0/export?format=csv&gid=1371982439'
 	).then((res) => res.buffer());
 

@@ -62,8 +62,9 @@ function updateEDCD() {
 }
 
 function updatedCasesMadeira() {
-	shell.exec('yarn convert:csv');
-	gitCommit('madeira cases');
+	shell.exec('yarn convert:csv'); //update aos acores
+	gitCommit('casos açores');
+	shell.exec('yarn casos:ram'); //update aos casos da madeira
 }
 
 async function updateRT() {
