@@ -63,7 +63,7 @@ if(len(filtered_arr) != total_items):
     output = stream.read()
     if(output):
         os.system('git add .')
-        os.system('git commit -m "covid update - madeira cases - week ' + str(madeira_cases_date)  +  '"')
+        os.system('git commit -m "covid update - madeira cases - ' + str(madeira_cases_date)  +  '"')
         os.system('git push')
         os.system('yarn deploy')
         
