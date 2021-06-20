@@ -8,8 +8,8 @@ from datetime import datetime
 
 today = datetime.now()
 
-if(today != 3):
-    exit()
+#if(today != 3):
+#    exit()
 
 #open owid file
 owid_file = open("./data/ecdc_filtered.json")
@@ -23,7 +23,6 @@ json_res = res.json()
 filtered_arr = []
 
 records = json_res['records']
-
 for k in records:
     if(k['ReportingCountry'] == 'PT'):
         filtered_arr.append(k)
