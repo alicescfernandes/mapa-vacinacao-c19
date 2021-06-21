@@ -256,11 +256,9 @@ console.log(new Date().toLocaleString(), 'daemon running');
 			updateJSON();
 		});
 
-		/* 
-		schedule.scheduleJob('0-59/5 14-20 * * *', function () {
+		schedule.scheduleJob('0-59/5 14-15 * * *', function () {
 			updateCasesJSON();
-		}); 
-		*/
+		});
 
 		if (process.env.HARDWARE == 'raspberry') {
 			schedule.scheduleJob('10 16 * * *', function () {
