@@ -755,7 +755,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 29233	,
+                "dose_1": 29233,
                 "dose_2": 12072,
                 "total": 41305
             },
@@ -788,7 +788,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 4987,
-                "dose_2": 2724	,
+                "dose_2": 2724,
                 "total": 7711
             },
             "faial": {
@@ -837,7 +837,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 29353	,
+                "dose_1": 29353,
                 "dose_2": 14916,
                 "total": 44269
             },
@@ -870,7 +870,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 4987,
-                "dose_2": 2724	,
+                "dose_2": 2724,
                 "total": 7711
             },
             "faial": {
@@ -919,7 +919,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 29353	,
+                "dose_1": 29353,
                 "dose_2": 14916,
                 "total": 44269
             },
@@ -952,7 +952,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 4987,
-                "dose_2": 2724	,
+                "dose_2": 2724,
                 "total": 7711
             },
             "faial": {
@@ -1001,7 +1001,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 30157	,
+                "dose_1": 30157,
                 "dose_2": 16266,
                 "total": 46423
             },
@@ -1034,7 +1034,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 5815,
-                "dose_2": 3444	,
+                "dose_2": 3444,
                 "total": 9259
             },
             "faial": {
@@ -1083,7 +1083,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 31717	,
+                "dose_1": 31717,
                 "dose_2": 20130,
                 "total": 51847
             },
@@ -1116,7 +1116,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 5815,
-                "dose_2": 3444	,
+                "dose_2": 3444,
                 "total": 9259
             },
             "faial": {
@@ -1165,7 +1165,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 35426	,
+                "dose_1": 35426,
                 "dose_2": 24592,
                 "total": 60018
             },
@@ -1198,7 +1198,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 7723,
-                "dose_2": 3804	,
+                "dose_2": 3804,
                 "total": 11527
             },
             "faial": {
@@ -1247,7 +1247,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 45776	,
+                "dose_1": 45776,
                 "dose_2": 30418,
                 "total": 76194
             },
@@ -1280,7 +1280,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 7723,
-                "dose_2": 4134	,
+                "dose_2": 4134,
                 "total": 11857
             },
             "faial": {
@@ -1329,7 +1329,7 @@
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 50132	,
+                "dose_1": 50132,
                 "dose_2": 36297,
                 "total": 86429
             },
@@ -1362,7 +1362,7 @@
                 "chave": "pico",
                 "populacao": 12199,
                 "dose_1": 8575,
-                "dose_2": 5292	,
+                "dose_2": 5292,
                 "total": 13867
             },
             "faial": {
@@ -1392,10 +1392,10 @@
         }
     },
     {
-        "data": "2021-06-14",
-        "total": 187119,
-        "dose_1": 109258,
-        "dose_2": 77861,
+        "data": "2021-06-23",
+        "total": 204508,
+        "dose_1": 114502,
+        "dose_2": 90006,
         "semana": "null",
         "relatorio": "https://vacinacao-covid19.azores.gov.pt/",
         "concelhos": {
@@ -1404,32 +1404,32 @@
                 "chave": "santa_maria",
                 "populacao": 4589,
                 "dose_1": 4293,
-                "dose_2": 1962,
-                "total": 6255
+                "dose_2": 2094,
+                "total": 6387
             },
             "sao_miguel": {
                 "nome": "São Miguel",
                 "chave": "sao_miguel",
                 "populacao": 110731,
-                "dose_1": 54644	,
-                "dose_2": 40137,
-                "total": 94781
+                "dose_1": 57392,
+                "dose_2": 48059,
+                "total": 105451
             },
             "terceira": {
                 "nome": "Terceira",
                 "chave": "terceira",
                 "populacao": 47270,
-                "dose_1": 22497,
-                "dose_2": 15243,
-                "total": 37740
+                "dose_1": 23253,
+                "dose_2": 18586,
+                "total": 41839
             },
             "graciosa": {
                 "nome": "Graciosa",
                 "chave": "graciosa",
                 "populacao": 3741,
-                "dose_1": 3030	,
-                "dose_2": 1878,
-                "total": 4908
+                "dose_1": 3030,
+                "dose_2": 1902,
+                "total": 4932
             },
             "sao_jorge": {
                 "nome": "São Jorge",
@@ -1443,25 +1443,25 @@
                 "nome": "Pico",
                 "chave": "pico",
                 "populacao": 12199,
-                "dose_1": 8575,
-                "dose_2": 7200	,
-                "total": 15775
+                "dose_1": 10303,
+                "dose_2": 7266,
+                "total": 17569
             },
             "faial": {
                 "nome": "Faial",
                 "chave": "faial",
                 "populacao": 12591,
                 "dose_1": 7155,
-                "dose_2": 5414	,
-                "total": 12569
+                "dose_2": 6066,
+                "total": 13221
             },
             "flores": {
                 "nome": "Flores",
                 "chave": "flores",
                 "populacao": 3249,
-                "dose_1": 2323	,
-                "dose_2": 1418	,
-                "total": 3741
+                "dose_1": 2335,
+                "dose_2": 1424,
+                "total": 3759
             },
             "corvo": {
                 "nome": "Corvo",

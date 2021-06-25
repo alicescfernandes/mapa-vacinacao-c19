@@ -563,8 +563,13 @@ export default function Home() {
 								<p className={styles.text}>
 									A percentagem de população vacinada foi calculada com base no número total de segundas doses administradas e com o
 									&nbsp;
-									<a rel="noopener noreferrer" className={styles.link} target="_blank" href="https://www.pordata.pt/Portugal">
-										número de população de Portugal (dados do PORDATA)
+									<a
+										rel="noopener noreferrer"
+										className={styles.link}
+										target="_blank"
+										href="https://www.pordata.pt/Municipios/Popula%C3%A7%C3%A3o+residente+total+e+por+grandes+grupos+et%C3%A1rios-390"
+									>
+										número de população de Portugal Continetal (dados do PORDATA)
 									</a>
 									. De acordo com o&nbsp;
 									<a
