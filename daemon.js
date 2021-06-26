@@ -251,13 +251,12 @@ console.log(new Date().toLocaleString(), 'daemon running');
 	} else {
 		//Set the schedule
 
-		updateJSON();
 		schedule.scheduleJob('30/5 13 * * *', function () {
 			updateJSON();
 		});
 
 		schedule.scheduleJob('0-59/5 14-15 * * *', function () {
-			updateCasesJSON();
+			updateJSON();
 		});
 
 		if (process.env.HARDWARE == 'raspberry') {
