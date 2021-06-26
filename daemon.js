@@ -123,10 +123,8 @@ async function updateJSON() {
 				shell.exec('yarn twitter');
 				shell.exec('yarn onesignal');
 				// bot runs on a raspberry pi
-				if (process.env.HARDWARE == 'raspberry') {
-					shell.exec('sleep 180');
-					shell.exec('sudo poweroff');
-				}
+				shell.exec('sleep 180');
+				shell.exec('sudo poweroff');
 			}
 		} else {
 			console.log(
