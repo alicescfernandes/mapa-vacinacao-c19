@@ -100,7 +100,7 @@ export function LineRt({ statistics, colors, regiao }) {
 					pointBackgroundColor: complements[1],
 					pointHoverBackgroundColor: complements[1],
 					pointHoverBorderColor: complements[1],
-					data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => el.ConfirmadosNovos),
+					data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => el.confirmados_novos),
 					order: 4,
 				}, */
 				/* {

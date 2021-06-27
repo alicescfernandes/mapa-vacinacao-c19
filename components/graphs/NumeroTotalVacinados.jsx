@@ -21,10 +21,10 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	let [dim, setDim] = useState(calculateDims());
 
 	let [toggleStats, setToggleStats] = useState({
-		imunidade: false,
+		imunidade: true,
 		primeira_fase: true,
 		segunda_fase: true,
-		infetados: false,
+		infetados: true,
 		perHundred: false,
 	});
 
@@ -235,10 +235,11 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				pointHoverBorderColor: '#D11541',
 				hidden: toggleStats.infetados === false,
 				data: casesData
-					.filter((el) => el.Data >= 1609070400000)
-					.map((el) => (toggleStats.perHundred ? perHundred(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)),
+					.filter((el) => el.data >= 1609070400000)
+					.map((el) => (toggleStats.perHundred ? perHundred(el.confirmados) : el.confirmados)),
 			});
 		}
+		console.log(casesData);
 
 		return chartData;
 	};

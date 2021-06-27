@@ -5,11 +5,12 @@ import { formatNumber } from './../../utils';
 export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let vaccines = statistics.getLastVaccineAvaliable();
 	let lastCase = statistics.getLastCaseAvaliable();
+	console.log(lastCase);
 	// let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 	let vacinados_apenas_uma = Math.abs(vaccines.dose_1 - vaccines.dose_2);
 	let populacao_suscetivel =
 		lastCase.populacao - (vacinados_apenas_uma + vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos);
-	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
+	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.recuperados + firstItem.obitos);
 	let { main, tints, shades, complements } = colors;
 
 	const data = (canvas) => {
@@ -27,7 +28,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 				{
 					backgroundColor: [tints[1], main, complements[0], complements[2], shades[2], complements[1]],
 					data: [vacinados_apenas_uma, vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel],
-					//data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
+					//data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].ativos, valueCasesDiarios.reverse()[0].recuperados, valueCasesDiarios.reverse()[0].obitos, populacao_suscetivel],
 				},
 			],
 		};

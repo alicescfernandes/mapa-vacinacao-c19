@@ -91,7 +91,7 @@
         "color":"#D17615",
         "display":true,
         "position": 117,
-        "marcador": "Autoagendamento - 65+",
+        "marcador": "Autoagendamento 65+",
         "fonte": "https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/"
     },
     {
@@ -109,7 +109,7 @@
         "color":"#D17615",
         "display":true,
         "position": 132,
-        "marcador": "Autoagendamento - 60+ ",
+        "marcador": "Autoagendamento 60+ ",
         "fonte": "https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830"
     },
     {
@@ -118,7 +118,7 @@
         "color":"#D17615",
         "display":true,
         "position": 136,
-        "marcador": "Autoagendamento - 55+ ",
+        "marcador": "Autoagendamento 55+ ",
         "fonte": "https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html"
     },
     {
@@ -127,25 +127,25 @@
         "color":"#D17615",
         "display":true,
         "position": 150,
-        "marcador": "Autoagendamento - 50+ ",
+        "marcador": "Autoagendamento 50+ ",
         "fonte": "https://www.tsf.pt/portugal/sociedade/tem-mais-de-50-anos-ja-pode-agendar-a-vacina-contra-a-covid-19-13777710.html"
     },
     {
-        "data": "2021-06-06",
+        "data": "2021-06-15",
         "mode": "vertical",
         "color":"#D17615",
-        "display":false,
-        "position": 150,
-        "marcador": "Autoagendamento - 40+ ",
-        "fonte": "https://www.dn.pt/sociedade/auto-agendamento-da-vacinacao-para-pessoas-com-mais-de-50-anos-ja-esta-disponivel-13777746.html"
+        "display":true,
+        "position": 169,
+        "marcador": "Autoagendamento 40+ ",
+        "fonte": "https://covid19.min-saude.pt/marcacao-da-vacinacao-arranca-para-maiores-de-40-anos/"
     },
     {
-        "data": "2021-06-20",
+        "data": "2021-06-21",
         "mode": "vertical",
         "color":"#D17615",
-        "display":false,
-        "position": 150,
-        "marcador": "Autoagendamento - 30+ ",
-        "fonte": "https://www.dn.pt/sociedade/auto-agendamento-da-vacinacao-para-pessoas-com-mais-de-50-anos-ja-esta-disponivel-13777746.html"
+        "display":true,
+        "position": 175,
+        "marcador": "Autoagendamento 37+ ",
+        "fonte": "https://sicnoticias.pt/especiais/vacinar-portugal/a-vacinacao-em-portugal-e-no-mundo/2021-06-21-Covid-19.-Maiores-de-37-anos-ja-podem-fazer-agendamento-para-vacinacao-20869b7b"
     }
 ]

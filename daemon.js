@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+//TODO: Only a single merge to master pls
+
 require('dotenv').config();
 const schedule = require('node-schedule');
 var shell = require('shelljs');
@@ -6,6 +9,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
 const scrapSesaram = require('./automation/sesaram');
+const updateCases = require('./automation/convert-csv:cases');
 const scrapRt = require('./automation/convert-xls');
 var argv = require('minimist')(process.argv.slice(2));
 console.log(process.env.HARDWARE);
@@ -144,7 +148,7 @@ async function updateJSON() {
 	}
 }
 
-async function updateCasesJSON() {
+async function updateCasesJSONOld() {
 	//update the repo
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
@@ -239,7 +243,10 @@ console.log(new Date().toLocaleString(), 'daemon running');
 				await updateJSON();
 				break;
 			case 'cases':
-				await updateCasesJSON();
+				await updateCases(function () {
+					console.log('called');
+					gitCommit('cases-dssgpt');
+				});
 				break;
 			case 'owid':
 				updateOWID();
