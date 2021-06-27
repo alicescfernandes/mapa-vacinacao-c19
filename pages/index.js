@@ -363,9 +363,7 @@ export default function Home() {
 						</Row>
 						<Row>
 							<Col>
-								<h2 className={styles.title}>
-									Número de vacinas administradas por dia - Portugal Continental <sup className={'new'}>atualizado</sup>
-								</h2>
+								<h2 className={styles.title}>Número de vacinas administradas por dia - Portugal Continental</h2>
 								<h3 className={styles.subtitle}>
 									A linha de stock de vacinas apresentada abaixo é uma estimativa com base nos dados do Centro Europeu de Controlo
 									de Doenças. Para calcular este valor, assumimos que todas as entregas são recebidas na Segunda-Feira, mesmo que
@@ -447,9 +445,7 @@ export default function Home() {
 									<PieRecebidasAdquiridas colors={colors_v2} statistics={doses}></PieRecebidasAdquiridas>
 								</Col>
 								<Col lg={6} xs={12}>
-									<h2 className={styles.title}>
-										Proporção de doses administradas relativamente às doses recebidas <sup className={'new'}>atualizado</sup>
-									</h2>
+									<h2 className={styles.title}>Proporção de doses administradas relativamente às doses recebidas</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 21 de Dezembro de 2021 até{' '}
 										{format(new Date(json.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -489,7 +485,7 @@ export default function Home() {
 							<Row>
 								<Col>
 									<h2 className={styles.title}>
-										Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 14 dias
+										Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 30 dias
 									</h2>
 									<hr />
 									<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
@@ -501,7 +497,7 @@ export default function Home() {
 								<Col lg={6} xs={12}>
 									<h2 className={styles.title}>
 										Proporção do número total de vacinas administradas com o número de infectados, <br />
-										recuperados e óbitos <sup className={'new'}>atualizado</sup>
+										recuperados e óbito
 									</h2>
 									<hr />
 									<PieVacinadosInfectadosRecuperadosObitos
@@ -512,7 +508,7 @@ export default function Home() {
 								<Col lg={6} xs={12}>
 									<h2 className={styles.title}>
 										Proporção do número total de vacinas administradas com o número de infectados, recuperados <br /> óbitos e
-										população suscetível <sup className={'new'}>atualizado</sup>
+										população suscetível
 									</h2>
 									<hr />
 									<PieSuscetiveisProporcao colors={colors_v2} statistics={statistics}></PieSuscetiveisProporcao>

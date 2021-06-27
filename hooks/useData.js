@@ -139,12 +139,13 @@ export function useData({ regiao }) {
 				};
 			} else {
 				let lastItem = casesData[casesData.length - 1];
+				console.log(0, lastItem);
 				data = {
-					ativos: lastItem.Activos,
-					recuperados: lastItem.Recuperados,
-					obitos: lastItem.Obitos,
+					ativos: lastItem.ativos,
+					recuperados: lastItem.recuperados,
+					obitos: lastItem.obitos,
 					populacao: populacao.valor,
-					data: lastItem.Data,
+					data: lastItem.data,
 				};
 			}
 
@@ -581,8 +582,8 @@ export function useData({ regiao }) {
 					};
 				}
 
-				data[el.attributes.ARSNome].obitosNovos7Dias += el.attributes.VarObitos;
-				data[el.attributes.ARSNome].casosNovos7Dias += el.attributes.ConfirmadosNovos;
+				data[el.attributes.ARSNome].obitosNovos7Dias += el.attributes.var_obitos;
+				data[el.attributes.ARSNome].casosNovos7Dias += el.attributes.confirmados_novos;
 			});
 			return data;
 		},

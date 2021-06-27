@@ -9,12 +9,14 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
 	let { raw: rawCasos } = statistics.getDiariosCases();
 	let { main, shades, complements } = colors;
+	const numeroDias = 30;
 
-	//map the last 30 days in data
-	//Marry the data pls
+	// map the last {numeroDias} days in data
+	// Marry the data pls
+	// https://www.youtube.com/watch?v=O4IgYxHEAuk
 	if (labels.length > 0) {
-		let datesVaccines = Array.from(rawDiarios).reverse().slice(0, 14);
-		let datesCases = Array.from(rawCasos).reverse().slice(0, 14);
+		let datesVaccines = Array.from(rawDiarios).reverse().slice(0, numeroDias);
+		let datesCases = Array.from(rawCasos).reverse().slice(0, numeroDias);
 		datesVaccines.forEach((element) => {
 			let date = new Date(element.Data);
 			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
@@ -22,7 +24,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		});
 
 		datesCases.forEach((element, i) => {
-			let date = new Date(element.Data);
+			let date = new Date(element.data);
 			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
 			if (marriedData[key] !== undefined) {
 				marriedData[key] = {
@@ -33,7 +35,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		});
 	}
 	marriedData = Object.values(marriedData).reverse();
-
+	console.log(marriedData);
 	const data = (canvas) => {
 		if (window.innerWidth <= RESIZE_TRESHOLD) {
 			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
@@ -50,14 +52,14 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		});
 
 		return {
-			labels: labels.slice(labels.length - 14, labels.length),
+			labels: labels.slice(labels.length - numeroDias, labels.length),
 			datasets: [
 				{
 					label: 'Inoculação - 2ª Dose',
 					fill: false,
 					type: 'bar',
 					backgroundColor: main,
-					data: valuesIn2.slice(valuesIn2.length - 14, valuesIn2.length),
+					data: valuesIn2.slice(valuesIn2.length - numeroDias, valuesIn2.length),
 					stack: 'stack0',
 					order: 1,
 				},
@@ -65,7 +67,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					label: 'Inoculação - 1ª Dose',
 					backgroundColor: shades[0],
 					borderColor: shades[0],
-					data: valuesIn1.slice(valuesIn1.length - 14, valuesIn1.length),
+					data: valuesIn1.slice(valuesIn1.length - numeroDias, valuesIn1.length),
 					stack: 'stack0',
 					order: 2,
 				},
@@ -74,7 +76,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					label: 'Número de infectados diário',
 					type: 'bar',
 					backgroundColor: complements[1],
-					data: marriedData.map((el) => el.ConfirmadosNovos),
+					data: marriedData.map((el) => el.confirmados_novos),
 					stack: 'stack1',
 					order: 4,
 				},
@@ -82,7 +84,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					label: 'Número de recuperados diário',
 					type: 'bar',
 					backgroundColor: complements[2],
-					data: marriedData.map((el) => el.VarRecuperados),
+					data: marriedData.map((el) => el.var_recuperados),
 					stack: 'stack2',
 					order: 5,
 				},

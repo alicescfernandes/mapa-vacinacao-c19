@@ -1,4 +1,4 @@
-import cases from './../../data/cases.json';
+import cases from './../../data/cases_v2.json';
 
 export default async function handler(req, res) {
 	res.statusCode = 200;
