@@ -39,7 +39,6 @@ async function updateCases(cb) {
 				}
 			}
 			fs.writeFile('./data/cases_v2.json', JSON.stringify(jsonArrayObj), () => {});
-
 			json.date = new Date();
 			fs.writeFile('./data/last-update.json', JSON.stringify(json), function () {});
 

@@ -244,6 +244,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 				break;
 			case 'cases':
 				await updateCases(function () {
+					console.log('cb');
 					gitCommit('cases-dssgpt');
 				});
 				break;
