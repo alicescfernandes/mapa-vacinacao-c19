@@ -673,7 +673,7 @@ function makeAnnotations(annotationsArray) {
       font: {
         style: 'normal'
       },
-      backgroundColor: 'rgba(255,255,255,0.6)',
+      backgroundColor: 'rgba(255,255,255,0.8)',
       cornerRadius: 0,
       drawTime: 'afterDraw',
       color: '#0A9DD1',
@@ -811,10 +811,10 @@ function NumeroTotalVacinados({
     0: toggleStats,
     1: setToggleStats
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    imunidade: false,
+    imunidade: true,
     primeira_fase: true,
     segunda_fase: true,
-    infetados: false,
+    infetados: true,
     perHundred: false
   });
   let {
@@ -1006,10 +1006,11 @@ function NumeroTotalVacinados({
         pointHoverBackgroundColor: '#D11541',
         pointHoverBorderColor: '#D11541',
         hidden: toggleStats.infetados === false,
-        data: casesData.filter(el => el.Data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el.ConfirmadosAcumulado) : el.ConfirmadosAcumulado)
+        data: casesData.filter(el => el.data >= 1609070400000).map(el => toggleStats.perHundred ? Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* perHundred */ "h"])(el.confirmados) : el.confirmados)
       }));
     }
 
+    console.log(casesData);
     return chartData;
   };
 
@@ -1329,12 +1330,13 @@ function useData({
         };
       } else {
         let lastItem = casesData[casesData.length - 1];
+        console.log(0, lastItem);
         data = {
-          ativos: lastItem.Activos,
-          recuperados: lastItem.Recuperados,
-          obitos: lastItem.Obitos,
+          ativos: lastItem.ativos,
+          recuperados: lastItem.recuperados,
+          obitos: lastItem.obitos,
           populacao: _data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao"].valor,
-          data: lastItem.Data
+          data: lastItem.data
         };
       }
 
@@ -1786,8 +1788,8 @@ function useData({
           };
         }
 
-        data[el.attributes.ARSNome].obitosNovos7Dias += el.attributes.VarObitos;
-        data[el.attributes.ARSNome].casosNovos7Dias += el.attributes.ConfirmadosNovos;
+        data[el.attributes.ARSNome].obitosNovos7Dias += el.attributes.var_obitos;
+        data[el.attributes.ARSNome].casosNovos7Dias += el.attributes.confirmados_novos;
       });
       return data;
     },
@@ -2224,19 +2226,21 @@ function LineVacinadosInfecoesRecuperados({
     main,
     shades,
     complements
-  } = colors; //map the last 30 days in data
-  //Marry the data pls
+  } = colors;
+  const numeroDias = 30; // map the last {numeroDias} days in data
+  // Marry the data pls
+  // https://www.youtube.com/watch?v=O4IgYxHEAuk
 
   if (labels.length > 0) {
-    let datesVaccines = Array.from(rawDiarios).reverse().slice(0, 14);
-    let datesCases = Array.from(rawCasos).reverse().slice(0, 14);
+    let datesVaccines = Array.from(rawDiarios).reverse().slice(0, numeroDias);
+    let datesCases = Array.from(rawCasos).reverse().slice(0, numeroDias);
     datesVaccines.forEach(element => {
       let date = new Date(element.Data);
       let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
       marriedData[key] = element;
     });
     datesCases.forEach((element, i) => {
-      let date = new Date(element.Data);
+      let date = new Date(element.data);
       let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
 
       if (marriedData[key] !== undefined) {
@@ -2246,6 +2250,7 @@ function LineVacinadosInfecoesRecuperados({
   }
 
   marriedData = Object.values(marriedData).reverse();
+  console.log(marriedData);
 
   const data = canvas => {
     if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
@@ -2262,34 +2267,34 @@ function LineVacinadosInfecoesRecuperados({
       }
     });
     return {
-      labels: labels.slice(labels.length - 14, labels.length),
+      labels: labels.slice(labels.length - numeroDias, labels.length),
       datasets: [{
         label: 'Inoculação - 2ª Dose',
         fill: false,
         type: 'bar',
         backgroundColor: main,
-        data: valuesIn2.slice(valuesIn2.length - 14, valuesIn2.length),
+        data: valuesIn2.slice(valuesIn2.length - numeroDias, valuesIn2.length),
         stack: 'stack0',
         order: 1
       }, {
         label: 'Inoculação - 1ª Dose',
         backgroundColor: shades[0],
         borderColor: shades[0],
-        data: valuesIn1.slice(valuesIn1.length - 14, valuesIn1.length),
+        data: valuesIn1.slice(valuesIn1.length - numeroDias, valuesIn1.length),
         stack: 'stack0',
         order: 2
       }, {
         label: 'Número de infectados diário',
         type: 'bar',
         backgroundColor: complements[1],
-        data: marriedData.map(el => el.ConfirmadosNovos),
+        data: marriedData.map(el => el.confirmados_novos),
         stack: 'stack1',
         order: 4
       }, {
         label: 'Número de recuperados diário',
         type: 'bar',
         backgroundColor: complements[2],
-        data: marriedData.map(el => el.VarRecuperados),
+        data: marriedData.map(el => el.var_recuperados),
         stack: 'stack2',
         order: 5
       }]
@@ -5206,12 +5211,9 @@ function Home() {
           })
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
-              children: ["N\xFAmero de vacinas administradas por dia - Portugal Continental ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                className: 'new',
-                children: "atualizado"
-              })]
+              children: "N\xFAmero de vacinas administradas por dia - Portugal Continental"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
               className: Home_module_default.a.subtitle,
               children: "A linha de stock de vacinas apresentada abaixo \xE9 uma estimativa com base nos dados do Centro Europeu de Controlo de Doen\xE7as. Para calcular este valor, assumimos que todas as entregas s\xE3o recebidas na Segunda-Feira, mesmo que logisticamente n\xE3o se verifique."
@@ -5324,12 +5326,9 @@ function Home() {
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               lg: 6,
               xs: 12,
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
-                children: ["Propor\xE7\xE3o de doses administradas relativamente \xE0s doses recebidas ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                  className: 'new',
-                  children: "atualizado"
-                })]
+                children: "Propor\xE7\xE3o de doses administradas relativamente \xE0s doses recebidas"
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
                 children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
@@ -5377,7 +5376,7 @@ function Home() {
             children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
-                children: "N\xFAmero de vacinas administradas por dia com o n\xFAmero de infectados e de recuperados nos \xFAltimos 14 dias"
+                children: "N\xFAmero de vacinas administradas por dia com o n\xFAmero de infectados e de recuperados nos \xFAltimos 30 dias"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineVacinadosInfecoesRecuperados, {
                 colors: colors_v2,
                 statistics: statistics
@@ -5393,10 +5392,7 @@ function Home() {
               xs: 12,
               children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
                 className: Home_module_default.a.title,
-                children: ["Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "recuperados e \xF3bitos ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                  className: 'new',
-                  children: "atualizado"
-                })]
+                children: ["Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "recuperados e \xF3bito"]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieVacinadosInfectadosRecuperadosObitos["a" /* PieVacinadosInfectadosRecuperadosObitos */], {
                 colors: colors_v2,
                 statistics: statistics
@@ -5406,10 +5402,7 @@ function Home() {
               xs: 12,
               children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h2", {
                 className: Home_module_default.a.title,
-                children: ["Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), " \xF3bitos e popula\xE7\xE3o suscet\xEDvel ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("sup", {
-                  className: 'new',
-                  children: "atualizado"
-                })]
+                children: ["Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), " \xF3bitos e popula\xE7\xE3o suscet\xEDvel"]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieSuscetiveisProporcao["a" /* PieSuscetiveisProporcao */], {
                 colors: colors_v2,
                 statistics: statistics
@@ -5713,10 +5706,11 @@ function PieSuscetiveisProporcao({
   colors
 }) {
   let vaccines = statistics.getLastVaccineAvaliable();
-  let lastCase = statistics.getLastCaseAvaliable(); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
+  let lastCase = statistics.getLastCaseAvaliable();
+  console.log(lastCase); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 
   let vacinados_apenas_uma = Math.abs(vaccines.dose_1 - vaccines.dose_2);
-  let populacao_suscetivel = lastCase.populacao - (vacinados_apenas_uma + vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.Recuperados + firstItem.Obitos);
+  let populacao_suscetivel = lastCase.populacao - (vacinados_apenas_uma + vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.recuperados + firstItem.obitos);
 
   let {
     main,
@@ -5731,7 +5725,7 @@ function PieSuscetiveisProporcao({
       labels: ['Vacinados apenas com uma dose', 'Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
       datasets: [{
         backgroundColor: [tints[1], main, complements[0], complements[2], shades[2], complements[1]],
-        data: [vacinados_apenas_uma, vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel] //data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].Activos, valueCasesDiarios.reverse()[0].Recuperados, valueCasesDiarios.reverse()[0].Obitos, populacao_suscetivel],
+        data: [vacinados_apenas_uma, vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel] //data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].ativos, valueCasesDiarios.reverse()[0].recuperados, valueCasesDiarios.reverse()[0].obitos, populacao_suscetivel],
 
       }]
     };
@@ -5807,7 +5801,7 @@ module.exports = require("plausible-tracker");
 /***/ "bEWT":
 /***/ (function(module) {
 
-module.exports = JSON.parse("[{\"data\":\"2021-01-06\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":20,\"marcador\":\"Aprovação Moderna\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu\"},{\"data\":\"2021-01-29\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":33,\"marcador\":\"Aprovação AstraZeneca\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu\"},{\"data\":\"2021-03-11\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":74,\"marcador\":\"Aprovação Janssen\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu\"},{\"data\":\"2021-03-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":78,\"marcador\":\"Suspensão AstraZeneca\",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca\"},{\"data\":\"2021-03-18\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":81,\"marcador\":\"Retoma AstraZeneca\",\"fonte\":\"https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao\"},{\"data\":\"2021-04-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":false,\"position\":109,\"marcador\":\"Suspensão AstraZeneca (Grupos etários mais jovens)\",\"fonte\":\"https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569\"},{\"data\":\"2021-04-13\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":107,\"marcador\":\"Adiamento Envio Janssen\",\"fonte\":\"https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/\"},{\"data\":\"2021-04-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":114,\"xAdjust\":-8,\"marcador\":\"Retoma Envio Janssen\",\"fonte\":\"https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574\"},{\"data\":\"2021-04-21\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":115,\"marcador\":\"Inicío da 2ª Fase de Vacinação \",\"fonte\":\"https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/\"},{\"data\":\"2021-04-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":117,\"marcador\":\"Autoagendamento - 65+\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-04-30\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":124,\"marcador\":\"Administração Janssen\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-05-09\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":132,\"marcador\":\"Autoagendamento - 60+ \",\"fonte\":\"https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830\"},{\"data\":\"2021-05-13\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":136,\"marcador\":\"Autoagendamento - 55+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html\"},{\"data\":\"2021-05-27\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":150,\"marcador\":\"Autoagendamento - 50+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/tem-mais-de-50-anos-ja-pode-agendar-a-vacina-contra-a-covid-19-13777710.html\"},{\"data\":\"2021-06-06\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":false,\"position\":150,\"marcador\":\"Autoagendamento - 40+ \",\"fonte\":\"https://www.dn.pt/sociedade/auto-agendamento-da-vacinacao-para-pessoas-com-mais-de-50-anos-ja-esta-disponivel-13777746.html\"},{\"data\":\"2021-06-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":false,\"position\":150,\"marcador\":\"Autoagendamento - 30+ \",\"fonte\":\"https://www.dn.pt/sociedade/auto-agendamento-da-vacinacao-para-pessoas-com-mais-de-50-anos-ja-esta-disponivel-13777746.html\"}]");
+module.exports = JSON.parse("[{\"data\":\"2021-01-06\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":20,\"marcador\":\"Aprovação Moderna\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu\"},{\"data\":\"2021-01-29\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":33,\"marcador\":\"Aprovação AstraZeneca\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu\"},{\"data\":\"2021-03-11\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":74,\"marcador\":\"Aprovação Janssen\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu\"},{\"data\":\"2021-03-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":78,\"marcador\":\"Suspensão AstraZeneca\",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca\"},{\"data\":\"2021-03-18\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":81,\"marcador\":\"Retoma AstraZeneca\",\"fonte\":\"https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao\"},{\"data\":\"2021-04-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":false,\"position\":109,\"marcador\":\"Suspensão AstraZeneca (Grupos etários mais jovens)\",\"fonte\":\"https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569\"},{\"data\":\"2021-04-13\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":107,\"marcador\":\"Adiamento Envio Janssen\",\"fonte\":\"https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/\"},{\"data\":\"2021-04-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":114,\"xAdjust\":-8,\"marcador\":\"Retoma Envio Janssen\",\"fonte\":\"https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574\"},{\"data\":\"2021-04-21\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":115,\"marcador\":\"Inicío da 2ª Fase de Vacinação \",\"fonte\":\"https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/\"},{\"data\":\"2021-04-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":117,\"marcador\":\"Autoagendamento 65+\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-04-30\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":124,\"marcador\":\"Administração Janssen\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-05-09\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":132,\"marcador\":\"Autoagendamento 60+ \",\"fonte\":\"https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830\"},{\"data\":\"2021-05-13\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":136,\"marcador\":\"Autoagendamento 55+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html\"},{\"data\":\"2021-05-27\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":150,\"marcador\":\"Autoagendamento 50+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/tem-mais-de-50-anos-ja-pode-agendar-a-vacina-contra-a-covid-19-13777710.html\"},{\"data\":\"2021-06-15\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":169,\"marcador\":\"Autoagendamento 40+ \",\"fonte\":\"https://covid19.min-saude.pt/marcacao-da-vacinacao-arranca-para-maiores-de-40-anos/\"},{\"data\":\"2021-06-21\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":175,\"marcador\":\"Autoagendamento 37+ \",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/a-vacinacao-em-portugal-e-no-mundo/2021-06-21-Covid-19.-Maiores-de-37-anos-ja-podem-fazer-agendamento-para-vacinacao-20869b7b\"}]");
 
 /***/ }),
 
@@ -5990,7 +5984,7 @@ function LineRt({
       	pointBackgroundColor: complements[1],
       	pointHoverBackgroundColor: complements[1],
       	pointHoverBorderColor: complements[1],
-      	data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => el.ConfirmadosNovos),
+      	data: casesData.filter((el) => el.Data >= 1609070400000).map((el) => el.confirmados_novos),
       	order: 4,
       }, */
 
@@ -6203,7 +6197,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1624805767832,\"dateSnsStartWeirdFormat\":\"14/06/2021\",\"dateSnsStart\":\"2021-06-14\",\"dateSns\":\"2021-06-20\",\"dateEcdc\":\"2021-06-20\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-06-26\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":25}");
+module.exports = JSON.parse("{\"date\":1624812721597,\"dateSnsStartWeirdFormat\":\"14/06/2021\",\"dateSnsStart\":\"2021-06-14\",\"dateSns\":\"2021-06-20\",\"dateEcdc\":\"2021-06-20\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":25}");
 
 /***/ }),
 
