@@ -38,10 +38,9 @@ async function updateCases(cb) {
 					item.ativos = 0;
 				}
 			}
-			fs.writeFile('./data/cases_v2.json', JSON.stringify(jsonArrayObj), () => {});
+			fs.writeFileSync('./data/cases_v2.json', JSON.stringify(jsonArrayObj));
 			json.date = new Date();
-			fs.writeFile('./data/last-update.json', JSON.stringify(json), function () {});
-
+			fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
 			if (cb) cb();
 		});
 }
