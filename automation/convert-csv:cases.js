@@ -40,7 +40,7 @@ async function updateCases(cb) {
 	json.date = new Date();
 	fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
 	console.log('cb2', cb);
-	//if (cb) cb();
+	if (cb) cb();
 }
 (async () => {
 	await updateCases();
