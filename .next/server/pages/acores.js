@@ -3503,7 +3503,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1624813781358,\"dateSnsStartWeirdFormat\":\"14/06/2021\",\"dateSnsStart\":\"2021-06-14\",\"dateSns\":\"2021-06-20\",\"dateEcdc\":\"2021-06-20\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":25}");
+module.exports = JSON.parse("{\"date\":1624814112986,\"dateSnsStartWeirdFormat\":\"14/06/2021\",\"dateSnsStart\":\"2021-06-14\",\"dateSns\":\"2021-06-20\",\"dateEcdc\":\"2021-06-20\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-06-27\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":25}");
 
 /***/ }),
 
