@@ -230,8 +230,8 @@ console.log(new Date().toLocaleString(), 'daemon running');
 (async () => {
 	if (argv.scrap) {
 		//Run particular commands
-		shell.exec('git checkout develop');
-		shell.exec('git pull --rebase');
+		//shell.exec('git checkout develop');
+		//shell.exec('git pull --rebase');
 
 		switch (argv.scrap) {
 			case 'sesaram':
@@ -244,6 +244,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 				break;
 			case 'cases':
 				await updateCases(function () {
+					console.log('called');
 					gitCommit('cases-dssgpt');
 				});
 				break;
