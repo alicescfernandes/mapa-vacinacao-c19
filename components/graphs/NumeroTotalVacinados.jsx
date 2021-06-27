@@ -22,8 +22,8 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 
 	let [toggleStats, setToggleStats] = useState({
 		imunidade: true,
-		primeira_fase: true,
-		segunda_fase: true,
+		primeira_fase: false,
+		segunda_fase: false,
 		infetados: true,
 		perHundred: false,
 	});
