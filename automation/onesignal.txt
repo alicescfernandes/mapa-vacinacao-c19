@@ -1,4 +1,4 @@
-Dados da #vacinacao de 🇵🇹 Continental para {{dia}}/{{mes}}/{{ano}}
+Dados da #vacinacao de 🇵🇹 Continental de hoje
 👉 +{{novas_total}} doses (total:{{total_total}})
 👉 +{{novas_in1}} parcialmente vacinados (total:{{total_in1}})
 👉 +{{novas_in2}} total vacinados (total:{{total_in2}})
