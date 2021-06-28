@@ -5,7 +5,7 @@ let json = require('./../data/last-update.json');
 var parse = require('date-fns/parse');
 var format = require('date-fns/format');
 var isAfter = require('date-fns/isAfter');
-var parseIso = require('date-fns/parseIso');
+var parseISO = require('date-fns/parseISO');
 
 async function updateCases(cb) {
 	let contents = await fetch('https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/data.csv').then((res) => res.buffer());
@@ -14,7 +14,7 @@ async function updateCases(cb) {
 		includeColumns: /(data|confirmados|confirmados_novos|obitos|recuperados)\b/,
 	}).fromString(contents.toString());
 
-	let jsonArrayObj = rawJsonArrayObj.filter((item) => isAfter(parse(item.data, 'dd-MM-yyyy', new Date()), parseIso('2020-12-20')));
+	let jsonArrayObj = rawJsonArrayObj.filter((item) => isAfter(parse(item.data, 'dd-MM-yyyy', new Date()), parseISO('2020-12-20')));
 
 	for (var i = 0; i !== jsonArrayObj.length; i++) {
 		let item = jsonArrayObj[i];
