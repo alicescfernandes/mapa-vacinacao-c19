@@ -42,8 +42,8 @@ async function updateCases(cb) {
 	console.log('cb2', cb);
 	if (cb) cb();
 }
-(async () => {
-	await updateCases();
-})();
+//(async () => {
+//	await updateCases();
+//})();
 
 module.exports = updateCases;
