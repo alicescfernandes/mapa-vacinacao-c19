@@ -3852,7 +3852,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1625091218696,\"dateSnsStartWeirdFormat\":\"14/06/2021\",\"dateSnsStart\":\"2021-06-14\",\"dateSns\":\"2021-06-20\",\"dateEcdc\":\"2021-06-20\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-06-29\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":25}");
+module.exports = JSON.parse("{\"date\":1625091365591,\"dateSnsStartWeirdFormat\":\"21/06/2021\",\"dateSnsStart\":\"2021-06-21\",\"dateSns\":\"2021-06-28\",\"dateEcdc\":\"2021-06-20\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-06-29\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":25}");
 
 /***/ }),
 
@@ -4078,7 +4078,8 @@ const SNS_WEEKS = {
   '31/05/2021': '31/05 a 06/06',
   '07/06/2021': '07/06 a 13/06',
   '07/06/2021': '07/06 a 13/06',
-  '14/06/2021': '14/06 a 20/06'
+  '14/06/2021': '14/06 a 20/06',
+  '21/06/2021': '21/06 a 28/06'
 };
 
 /***/ }),
