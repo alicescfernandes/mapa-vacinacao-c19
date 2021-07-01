@@ -2268,17 +2268,16 @@ function LineVacinadosInfecoesRecuperados({
     });
     return {
       labels: labels.slice(labels.length - numeroDias, labels.length),
-      datasets: [
-      /* {
-      	label: 'Inoculação - 2ª Dose',
-      	fill: false,
-      	type: 'bar',
-      	backgroundColor: main,
-      	data: valuesIn2.slice(valuesIn2.length - numeroDias, valuesIn2.length),
-      	stack: 'stack0',
-      	order: 1,
+      datasets: [{
+        label: 'Inoculação - 2ª Dose',
+        fill: false,
+        type: 'bar',
+        backgroundColor: main,
+        data: valuesIn2.slice(valuesIn2.length - numeroDias, valuesIn2.length),
+        stack: 'stack0',
+        order: 1
       },
-      {
+      /*	{
       	label: 'Inoculação - 1ª Dose / Unidpse',
       	backgroundColor: shades[0],
       	borderColor: shades[0],
@@ -2286,14 +2285,16 @@ function LineVacinadosInfecoesRecuperados({
       	stack: 'stack0',
       	order: 2,
       }, */
+
+      /* {
+      	label: 'Vacinas administradas',
+      	backgroundColor: shades[0],
+      	borderColor: shades[0],
+      	data: values.slice(values.length - numeroDias, valuesIn1.length),
+      	stack: 'stack0',
+      	order: 2,
+      }, */
       {
-        label: 'Vacinas administradas',
-        backgroundColor: shades[0],
-        borderColor: shades[0],
-        data: values.slice(values.length - numeroDias, valuesIn1.length),
-        stack: 'stack0',
-        order: 2
-      }, {
         label: 'Número de infectados diário',
         type: 'bar',
         backgroundColor: complements[1],
@@ -5389,7 +5390,7 @@ function Home() {
                 children: "N\xFAmero de vacinas administradas por dia com o n\xFAmero de infectados e de recuperados nos \xFAltimos 30 dias"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
                 className: Home_module_default.a.subtitle,
-                children: "Chegou-nos a informa\xE7\xE3o que a vacina da Janssen \xE9 contada em duplicado. At\xE9 termos mais informa\xE7\xE3o, vamos apenas mostrar as vacinas administradas totais"
+                children: "Chegou-nos a informa\xE7\xE3o que a vacina da Janssen \xE9 contada em duplicado. At\xE9 termos mais informa\xE7\xE3o, vamos apenas mostrar os n\xFAmeros da segunda dose"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineVacinadosInfecoesRecuperados, {
                 colors: colors_v2,
                 statistics: statistics
@@ -6210,7 +6211,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1625171258198,\"dateSnsStartWeirdFormat\":\"21/06/2021\",\"dateSnsStart\":\"2021-06-21\",\"dateSns\":\"2021-06-28\",\"dateEcdc\":\"2021-06-27\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-06-30\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":26}");
+module.exports = JSON.parse("{\"date\":1625171475817,\"dateSnsStartWeirdFormat\":\"21/06/2021\",\"dateSnsStart\":\"2021-06-21\",\"dateSns\":\"2021-06-28\",\"dateEcdc\":\"2021-06-27\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-06-30\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":26}");
 
 /***/ }),
 
