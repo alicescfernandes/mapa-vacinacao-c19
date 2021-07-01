@@ -54,7 +54,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		return {
 			labels: labels.slice(labels.length - numeroDias, labels.length),
 			datasets: [
-				/* {
+				{
 					label: 'Inoculação - 2ª Dose',
 					fill: false,
 					type: 'bar',
@@ -63,7 +63,7 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					stack: 'stack0',
 					order: 1,
 				},
-				{
+				/*	{
 					label: 'Inoculação - 1ª Dose / Unidpse',
 					backgroundColor: shades[0],
 					borderColor: shades[0],
@@ -71,14 +71,14 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					stack: 'stack0',
 					order: 2,
 				}, */
-				{
+				/* {
 					label: 'Vacinas administradas',
 					backgroundColor: shades[0],
 					borderColor: shades[0],
 					data: values.slice(values.length - numeroDias, valuesIn1.length),
 					stack: 'stack0',
 					order: 2,
-				},
+				}, */
 
 				{
 					label: 'Número de infectados diário',
