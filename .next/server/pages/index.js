@@ -5094,7 +5094,7 @@ function Home() {
           },
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
             className: Card_module_default.a.card_subtitle_2,
-            children: ["Atualizado a ", f.format(new Date(last.Data)), " ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "Dados at\xE9 ", currentDate, " para Portugal Continental"]
+            children: ["Atualizado a ", f.format(new Date(last.Data)), " ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "Dados at\xE9 ", currentDate, " para Portugal Continental", /*#__PURE__*/Object(jsx_runtime_["jsx"])("br", {}), "Percentagens calculadas com base na popula\xE7\xE3o de Portugal Continental"]
           })
         })
       }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
@@ -6211,7 +6211,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1625401807980,\"dateSnsStartWeirdFormat\":\"21/06/2021\",\"dateSnsStart\":\"2021-06-21\",\"dateSns\":\"2021-06-28\",\"dateEcdc\":\"2021-06-27\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-07-03\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":26}");
+module.exports = JSON.parse("{\"date\":1625404702728,\"dateSnsStartWeirdFormat\":\"21/06/2021\",\"dateSnsStart\":\"2021-06-21\",\"dateSns\":\"2021-06-28\",\"dateEcdc\":\"2021-06-27\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-06-13\",\"dateMadeiraCases\":\"2021-07-03\",\"dateAcores\":\"2021-06-23\",\"dateAcoresCases\":\"2021-06-01\",\"week\":26}");
 
 /***/ }),
 
