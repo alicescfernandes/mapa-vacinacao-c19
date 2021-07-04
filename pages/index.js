@@ -256,6 +256,8 @@ export default function Home() {
 						<p className={cardStyles.card_subtitle_2}>
 							Atualizado a {f.format(new Date(last.Data))} <br />
 							Dados até {currentDate} para Portugal Continental
+							<br />
+							Percentagens calculadas com base na população de Portugal Continental
 						</p>
 					</Col>
 				</Row>
