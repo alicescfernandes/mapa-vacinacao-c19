@@ -1,5 +1,5 @@
 {
-    "fase_atual": 2,
+    "fase_atual": 3,
     "fases": [
         {
             "nome": "1ª Fase",
@@ -62,6 +62,78 @@
                 }
             ]
         },
+        {
+            "nome": "25 ou mais",
+            "inicio": null,
+            "fim": null,
+            "objetivo":null,
+            "objetivo_formatado": null,
+            "bullet_points": [],
+            "fontes": [
+                {
+                    "nome": "Portal de Autoagendamento",
+                    "permalink": "https://covid19.min-saude.pt/pedido-de-agendamento/"
+                },
+                {
+                    "nome": "SNS",
+                    "permalink": "https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0"
+                }
+            ]
+        },
+        {
+            "nome": "23 ou mais",
+            "inicio": null,
+            "fim": null,
+            "objetivo":null,
+            "objetivo_formatado": null,
+            "bullet_points": [],
+            "fontes": [
+                {
+                    "nome": "Portal de Autoagendamento",
+                    "permalink": "https://covid19.min-saude.pt/pedido-de-agendamento/"
+                },
+                {
+                    "nome": "SNS",
+                    "permalink": "https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0"
+                }
+            ]
+        },
+        {
+            "nome": "20 ou mais",
+            "inicio": null,
+            "fim": null,
+            "objetivo":null,
+            "objetivo_formatado": null,
+            "bullet_points": [],
+            "fontes": [
+                {
+                    "nome": "Portal de Autoagendamento",
+                    "permalink": "https://covid19.min-saude.pt/pedido-de-agendamento/"
+                },
+                {
+                    "nome": "SNS",
+                    "permalink": "https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0"
+                }
+            ]
+        },
+        {
+            "nome": "18 ou mais",
+            "inicio": null,
+            "fim": null,
+            "objetivo":null,
+            "objetivo_formatado": null,
+            "bullet_points": [],
+            "fontes": [
+                {
+                    "nome": "Portal de Autoagendamento",
+                    "permalink": "https://covid19.min-saude.pt/pedido-de-agendamento/"
+                },
+                {
+                    "nome": "SNS",
+                    "permalink": "https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0"
+                }
+            ]
+        },        
         {
             "nome": "3ª Fase",
             "inicio": null,

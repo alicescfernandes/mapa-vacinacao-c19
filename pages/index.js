@@ -277,7 +277,7 @@ export default function Home() {
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
 								colors={colors}
-								title="Doses  - 1ª Inoculação"
+								title="Doses - 1ª Inoculação e Unidose"
 								yesterday={previousItem?.Inoculacao1_Ac}
 								from={previousSelectedItem?.Inoculacao1_Ac || selectedItem?.Inoculacao1_Ac * 0.98}
 								to={selectedItem?.Inoculacao1_Ac}
@@ -324,7 +324,7 @@ export default function Home() {
 					<Col id="vacinfase" lg={4} xs={6}>
 						<Card type={'counter'}>
 							<h2 style={{ marginBottom: '10px' }} className={cardStyles.card_title}>
-								Fase atual de vacinação
+								Autoagendamento (por idade)
 							</h2>
 
 							<h1
@@ -341,7 +341,7 @@ export default function Home() {
 								href={fases.fases[fases.fase_atual].fontes[0].permalink}
 								className={`${cardStyles.card_subtitle} ${styles.link}`}
 							>
-								+ mais info
+								Portal de autoagemento
 							</a>
 						</Card>
 					</Col>
