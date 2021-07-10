@@ -147,5 +147,77 @@
         "position": 175,
         "marcador": "Autoagendamento 37+ ",
         "fonte": "https://sicnoticias.pt/especiais/vacinar-portugal/a-vacinacao-em-portugal-e-no-mundo/2021-06-21-Covid-19.-Maiores-de-37-anos-ja-podem-fazer-agendamento-para-vacinacao-20869b7b"
+    },
+    {
+        "data": "2021-06-23",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 177,
+        "marcador": "Autoagendamento 35+ ",
+        "fonte": ""
+    },
+    {
+        "data": "2021-06-28",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 182,
+        "marcador": "Autoagendamento 33+ ",
+        "fonte": ""
+    },
+    {
+        "data": "2021-06-30",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 184,
+        "marcador": "Autoagendamento 30+ ",
+        "fonte": ""
+    },
+    {
+        "data": "2021-07-05",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 189,
+        "marcador": "Autoagendamento 27+ ",
+        "fonte": ""
+    },
+    {
+        "data": "2021-07-05",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 191,
+        "marcador": "Autoagendamento 25+ ",
+        "fonte": ""
+    },
+    {
+        "data": "2021-07-05",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 196,
+        "marcador": "Autoagendamento 23+ ",
+        "fonte": ""
+    },
+    {
+        "data": "2021-07-05",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 198,
+        "marcador": "Autoagendamento 20+ ",
+        "fonte": ""
+    },
+    {
+        "data": "2021-07-05",
+        "mode": "vertical",
+        "color":"#D17615",
+        "display":true,
+        "position": 203,
+        "marcador": "Autoagendamento 18+ ",
+        "fonte": ""
     }
 ]
