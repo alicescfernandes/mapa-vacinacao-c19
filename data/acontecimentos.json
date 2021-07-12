@@ -197,7 +197,7 @@
         "data": "2021-07-05",
         "mode": "vertical",
         "color":"#D17615",
-        "display":true,
+        "display":false,
         "position": 196,
         "marcador": "Autoagendamento 23+ ",
         "fonte": ""
@@ -206,7 +206,7 @@
         "data": "2021-07-05",
         "mode": "vertical",
         "color":"#D17615",
-        "display":true,
+        "display":false,
         "position": 198,
         "marcador": "Autoagendamento 20+ ",
         "fonte": ""
@@ -215,7 +215,7 @@
         "data": "2021-07-05",
         "mode": "vertical",
         "color":"#D17615",
-        "display":true,
+        "display":false,
         "position": 203,
         "marcador": "Autoagendamento 18+ ",
         "fonte": ""
