@@ -215,7 +215,7 @@
         "data": "2021-07-05",
         "mode": "vertical",
         "color":"#D17615",
-        "display":true,
+        "display":false,
         "position": 203,
         "marcador": "Autoagendamento 18+ ",
         "fonte": ""
