@@ -23,6 +23,7 @@
 		"delete": "(git reset .next && git checkout .next) & git clean -fd .next",
 		"update:server": "sh run.sh",
 		"bot:start": "HARDWARE=raspberry pm2 start daemon_data --name \"daemon\"",
+		"bot:manual": "HARDWARE=raspberry node daemon.js",
 		"casos:ram": "python3 ./automation/madeira_parser.py"
 	},
 	"browser": {
