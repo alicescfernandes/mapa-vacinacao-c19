@@ -2,3 +2,4 @@ requests
 python-dateutil
 firebase-admin
 waybackpy
+rsa>=4.7 # not directly required, pinned by Snyk to avoid a vulnerability
