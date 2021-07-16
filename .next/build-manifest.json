@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/ZLOzlzoqAS-lM6rtBWqbi/_buildManifest.js",
-    "static/ZLOzlzoqAS-lM6rtBWqbi/_ssgManifest.js"
+    "static/w2bLkrLwmcyWrJ-xt7uDH/_buildManifest.js",
+    "static/w2bLkrLwmcyWrJ-xt7uDH/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -16,7 +16,7 @@
       "static/chunks/e596bf43337a4972f111c9f92542f0ff46c40b61.509f2c463dae18f9c041.js",
       "static/chunks/main-e608f7bbfb7970789e38.js",
       "static/chunks/36bcf0ca.853b204c5d55cd4c74f1.js",
-      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.07fb23109bbe51616481.js",
+      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.d2cdae0092595a1cec8c.js",
       "static/chunks/47e14ad6b246a23c5524e03e2377a42218c31800.4172ede3ba7487ab0a7f.js",
       "static/css/d886ddff8151f28b78f4.css",
       "static/chunks/pages/index-631c5b5fb2bf6c10e41d.js"
@@ -37,7 +37,7 @@
       "static/chunks/main-e608f7bbfb7970789e38.js",
       "static/css/143a8139087120e55772.css",
       "static/chunks/b1a128f2.ddce25b62cf34b951439.js",
-      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.07fb23109bbe51616481.js",
+      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.d2cdae0092595a1cec8c.js",
       "static/css/0a324de5bad1d8cf1caa.css",
       "static/chunks/pages/_app-4000849f7447d85066ba.js"
     ],
@@ -56,7 +56,7 @@
       "static/chunks/e596bf43337a4972f111c9f92542f0ff46c40b61.509f2c463dae18f9c041.js",
       "static/chunks/main-e608f7bbfb7970789e38.js",
       "static/chunks/36bcf0ca.853b204c5d55cd4c74f1.js",
-      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.07fb23109bbe51616481.js",
+      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.d2cdae0092595a1cec8c.js",
       "static/chunks/47e14ad6b246a23c5524e03e2377a42218c31800.4172ede3ba7487ab0a7f.js",
       "static/css/d886ddff8151f28b78f4.css",
       "static/chunks/pages/acores-58c02c1b224b39958fd9.js"
@@ -68,7 +68,7 @@
       "static/chunks/e596bf43337a4972f111c9f92542f0ff46c40b61.509f2c463dae18f9c041.js",
       "static/chunks/main-e608f7bbfb7970789e38.js",
       "static/chunks/36bcf0ca.853b204c5d55cd4c74f1.js",
-      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.07fb23109bbe51616481.js",
+      "static/chunks/3733a7b851c447d414858b1af38ebf5979cafaa5.d2cdae0092595a1cec8c.js",
       "static/chunks/47e14ad6b246a23c5524e03e2377a42218c31800.4172ede3ba7487ab0a7f.js",
       "static/css/d886ddff8151f28b78f4.css",
       "static/chunks/pages/madeira-ab4a0a3da49e875cb44e.js"
