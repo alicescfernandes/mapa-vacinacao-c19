@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RESIZE_TRESHOLD } from '../../constants';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
+
 export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let marriedData = {};
-	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
+	let { values, labels, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
 	let { raw: rawCasos } = statistics.getDiariosCases();
-	let { main, shades, complements } = colors;
+	let { main, complements } = colors;
 	const numeroDias = 30;
+
+	let { setCanvasNode } = useCanvasResizer();
 
 	// map the last {numeroDias} days in data
 	// Marry the data pls
@@ -35,21 +39,9 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		});
 	}
 	marriedData = Object.values(marriedData).reverse();
-	console.log(marriedData);
-	const data = (canvas) => {
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = 'auto';
-		}
 
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
+	const data = (canvas) => {
+		setCanvasNode(canvas.parentNode);
 
 		return {
 			labels: labels.slice(labels.length - numeroDias, labels.length),

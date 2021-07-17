@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber } from './../../utils';
 export function PieSuscetiveisProporcao({ statistics, colors }) {
 	let vaccines = statistics.getLastVaccineAvaliable();
 	let lastCase = statistics.getLastCaseAvaliable();
-	console.log(lastCase);
+
 	// let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 	let vacinados_apenas_uma = Math.abs(vaccines.dose_1 - vaccines.dose_2);
 	let populacao_suscetivel =
@@ -13,7 +12,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	//let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.recuperados + firstItem.obitos);
 	let { main, tints, shades, complements } = colors;
 
-	const data = (canvas) => {
+	const data = () => {
 		return {
 			//labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
 			labels: [

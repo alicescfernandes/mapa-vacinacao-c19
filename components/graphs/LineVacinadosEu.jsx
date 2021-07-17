@@ -6,6 +6,7 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 import { CustomCheckbox } from '../CustomCheckbox';
 import styles from './../Card.module.scss';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 
 export function LineVacinadosEu({ statistics, colors }) {
 	const [owidData, setOwidData] = useState({ labels: '', pt: '', eu: '' });
@@ -20,22 +21,12 @@ export function LineVacinadosEu({ statistics, colors }) {
 	let [toggleStats, setToggleStats] = useState({
 		perHundred: true,
 	});
-	const canvasRef = useRef(null);
+
+	let { setCanvasNode } = useCanvasResizer();
 
 	const data = (canvas) => {
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
+		setCanvasNode(canvas.parentNode);
 
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
 		return {
 			labels: owidData.labels,
 			datasets: [
@@ -173,7 +164,7 @@ export function LineVacinadosEu({ statistics, colors }) {
 			</div>
 
 			<div>
-				<Line height={80} ref={canvasRef} options={options()} data={data} />
+				<Line height={80} options={options()} data={data} />
 			</div>
 		</Card>
 	) : (

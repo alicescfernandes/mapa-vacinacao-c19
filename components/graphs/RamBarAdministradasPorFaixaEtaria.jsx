@@ -5,6 +5,7 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 
 import { RESIZE_TRESHOLD, lineChartCommon } from './../../constants';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades, tints, complements } = colors;
@@ -34,26 +35,11 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 		}
 	}, [activeDose]);
 
+	let { setCanvasNode } = useCanvasResizer();
 	const data = (canvas) => {
 		let { labels, groups } = graphData;
 
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = '1000px';
-		} else {
-			canvas.parentNode.style.width = 'auto';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = '1000px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
-		console.log(
-			activeDose,
-			groups.map((group) => group.e1824[activeDose] || 0)
-		);
+		setCanvasNode(canvas.parentNode);
 
 		return {
 			labels: Object.keys(graphData.labels).map((key) => {
@@ -179,7 +165,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					a.canvas.parentNode.style.width = 'auto';
 				}
 			},
-
 			animation: {
 				duration: 1000,
 			},

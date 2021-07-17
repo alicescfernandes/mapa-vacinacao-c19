@@ -86,13 +86,9 @@
 	&_chart {
 		overflow-x: scroll;
 	}
-	&_scrollable {
-		overflow-x: scroll;
-	}
 	&_sticky {
 		position: sticky;
 		left: 0;
-		overflow-x: scroll;
 	}
 }
 

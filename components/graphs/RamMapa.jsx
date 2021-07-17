@@ -84,20 +84,6 @@ export function RamMapa({ statistics, colors }) {
 
 	function renderGraph(el) {
 		const data = (canvas, cenas) => {
-			/* 	if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			} */
-
-			/* 	window.addEventListener('resize', () => {
-				if (window.innerWidth <= RESIZE_TRESHOLD) {
-					canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-				} else {
-					canvas.parentNode.style.width = '100%';
-				}
-			});
- */
 			const chartData = {
 				labels: [''],
 				datasets: [

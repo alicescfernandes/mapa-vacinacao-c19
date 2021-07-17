@@ -6,11 +6,13 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 import { CustomCheckbox } from '../CustomCheckbox';
 import styles from './../Card.module.scss';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 
 export function BarVacinadosEu({ statistics, colors }) {
 	const [owidData, setOwidData] = useState({ labels: '', pt: '', eu: '' });
 	const [loaded, setLoaded] = useState(loaded);
 	let { main, complements } = colors;
+	let { setCanvasNode } = useCanvasResizer();
 
 	let [activeDose, setActiveDose] = useState(0);
 	let doses_map = {
@@ -23,19 +25,8 @@ export function BarVacinadosEu({ statistics, colors }) {
 	const canvasRef = useRef(null);
 
 	const data = (canvas) => {
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
+		setCanvasNode(canvas.parentNode);
 
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
 		let lineChartCommon = {
 			lineTension: 0.0,
 			lineBorder: 0,

@@ -2,27 +2,16 @@ import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
-import { RESIZE_TRESHOLD } from '../../constants';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 
 export function BarsVacinacaoArs({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let { main, tints } = colors;
 	const [snsData, setSNSData] = useState({});
+	let { setCanvasNode } = useCanvasResizer();
 
 	const data = (canvas) => {
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
+		setCanvasNode(canvas.parentNode);
 
 		return {
 			labels: snsData.filter((el) => el.REGION != 'All').map((el) => el.REGION.replace('All', 'Nacional')),

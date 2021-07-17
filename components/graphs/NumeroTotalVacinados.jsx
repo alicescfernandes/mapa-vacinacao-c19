@@ -1,5 +1,5 @@
-import { createRef, useContext, useEffect, useState } from 'react';
-import { Line, Chart } from 'react-chartjs-2';
+import { useContext, useEffect, useState } from 'react';
+import { Line, Chart, defaults } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber, hexToRgb, makeAnnotations, perHundred, calculateDims } from '../../utils';
 import annotationPlugin from 'chartjs-plugin-annotation';
@@ -21,12 +21,17 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	let [dim, setDim] = useState(calculateDims());
 
 	let [toggleStats, setToggleStats] = useState({
-		imunidade: true,
+		imunidade: false,
 		primeira_fase: false,
 		segunda_fase: false,
 		infetados: true,
 		perHundred: false,
 	});
+
+	// Disable animations for mobile devices
+	if (window.innerWidth <= RESIZE_TRESHOLD) {
+		defaults.animation = false;
+	}
 
 	let [loading, setLoading] = useState(true);
 	let [foreground, color_1, color_2] = colors;
@@ -164,9 +169,8 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			},
 		],
 	};
-	let chartRef = createRef();
 
-	const data = (canvas, cenas) => {
+	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, dim.height);
 		let { r, g, b } = hexToRgb(foreground);
@@ -179,9 +183,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		}
 
 		canvas.parentNode.parentNode.scrollLeft = dim.width;
-		window.addEventListener('resize', () => {
-			setDim(calculateDims());
-		});
 
 		const chartData = {
 			labels: labels,
@@ -239,7 +240,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					.map((el) => (toggleStats.perHundred ? perHundred(el.confirmados) : el.confirmados)),
 			});
 		}
-		console.log(casesData);
 
 		return chartData;
 	};
@@ -303,6 +303,18 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		}
 	}, [values]);
 
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setDim(calculateDims());
+		});
+
+		return () => {
+			window.removeEventListener('resize', () => {
+				setDim(calculateDims());
+			});
+		};
+	}, []);
+
 	return (
 		<Card allowOverflow={true}>
 			{regiao === 'portugal' && (
@@ -362,9 +374,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				</div>
 			)}
 
-			<div style={{ width: dim.width }}>
-				{!loading ? <Line plugins={[annotationPlugin]} ref={chartRef} options={options()} data={data} /> : ''}
-			</div>
+			<div style={{ width: dim.width }}>{!loading ? <Line plugins={[annotationPlugin]} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }

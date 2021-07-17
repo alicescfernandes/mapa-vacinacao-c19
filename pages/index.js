@@ -241,7 +241,6 @@ export default function Home() {
 	}, []);
 
 	let renderCounterGroupV2 = () => {
-		console.log(selectedItem?.Vacinados_Ac);
 		let options = {
 			year: 'numeric',
 			month: 'long',
@@ -277,7 +276,7 @@ export default function Home() {
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
 								colors={colors}
-								title="Doses - 1ª Inoculação e Unidose"
+								title="1ª Inoculação e Unidose"
 								yesterday={previousItem?.Inoculacao1_Ac}
 								from={previousSelectedItem?.Inoculacao1_Ac || selectedItem?.Inoculacao1_Ac * 0.98}
 								to={selectedItem?.Inoculacao1_Ac}
@@ -288,7 +287,7 @@ export default function Home() {
 						<Card type={'counter'} isUpdating={updating}>
 							<Counter
 								colors={colors}
-								title="Doses - 2ª Inoculação"
+								title="2ª Inoculação"
 								yesterday={previousItem?.Inoculacao2_Ac}
 								from={previousSelectedItem?.Inoculacao2_Ac || selectedItem?.Inoculacao2_Ac * 0.98}
 								to={selectedItem?.Inoculacao2_Ac}
@@ -332,7 +331,7 @@ export default function Home() {
 								style={{ color: colors[0] }}
 								className={cardStyles.card_highlight_2}
 							>
-								{fases.fases[fases.fase_atual].nome}
+								{fases.fases[fases.fase_atual].nome} <span className={'hide_mobile'}>anos</span>
 							</h1>
 
 							<a
@@ -752,3 +751,5 @@ export default function Home() {
 		</RegiaoContext.Provider>
 	);
 }
+
+Home.whyDidYouRender = true;

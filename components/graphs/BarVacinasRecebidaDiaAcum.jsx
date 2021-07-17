@@ -7,6 +7,7 @@ import generic from '../../data/generic.json';
 import { CustomCheckbox } from '../CustomCheckbox';
 import { RESIZE_TRESHOLD } from '../../constants';
 import styles from './../Card.module.scss';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 
 export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
@@ -17,22 +18,12 @@ export function BarVacinasRecebidaDiaAcum({ statistics, colors }) {
 		dose2: true,
 		dose3: true,
 	});
+	let { setCanvasNode } = useCanvasResizer();
 	const data = (canvas) => {
 		let { labels, mod, com, az, janss } = graphData;
 
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
+		setCanvasNode(canvas.parentNode);
 
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
 		return {
 			labels: labels.map(({ from, to }) => {
 				let fromDate = new Date(from);
