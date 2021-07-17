@@ -165,7 +165,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					a.canvas.parentNode.style.width = 'auto';
 				}
 			},
-
 			animation: {
 				duration: 1000,
 			},

@@ -1,5 +1,5 @@
-import { createRef, useContext, useEffect, useState } from 'react';
-import { Line, Chart } from 'react-chartjs-2';
+import { useContext, useEffect, useState } from 'react';
+import { Line, Chart, defaults } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber, hexToRgb, makeAnnotations, perHundred, calculateDims } from '../../utils';
 import annotationPlugin from 'chartjs-plugin-annotation';
@@ -27,6 +27,11 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		infetados: true,
 		perHundred: false,
 	});
+
+	// Disable animations for mobile devices
+	if (window.innerWidth <= RESIZE_TRESHOLD) {
+		defaults.animation = false;
+	}
 
 	let [loading, setLoading] = useState(true);
 	let [foreground, color_1, color_2] = colors;
@@ -164,9 +169,8 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			},
 		],
 	};
-	let chartRef = createRef();
 
-	const data = (canvas, cenas) => {
+	const data = (canvas) => {
 		const ctx = canvas.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, dim.height);
 		let { r, g, b } = hexToRgb(foreground);
@@ -370,9 +374,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 				</div>
 			)}
 
-			<div style={{ width: dim.width }}>
-				{!loading ? <Line plugins={[annotationPlugin]} ref={chartRef} options={options()} data={data} /> : ''}
-			</div>
+			<div style={{ width: dim.width }}>{!loading ? <Line plugins={[annotationPlugin]} options={options()} data={data} /> : ''}</div>
 		</Card>
 	);
 }
