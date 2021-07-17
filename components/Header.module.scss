@@ -10,15 +10,15 @@
 		display: block;
 		position: fixed;
 		bottom: 0;
-		z-index: 9999;
+		z-index: 3;
 		height: initial;
 		.content {
 			padding: 0px;
 			nav {
+				width: 100vw;
 				* {
 					cursor: pointer;
 				}
-				width: 100%;
 				li {
 					width: 25%;
 					margin: 0;
@@ -61,11 +61,6 @@
 			color: inherit;
 		}
 
-		a.highlight {
-			color: $main;
-			font-weight: 600;
-		}
-
 		li {
 			display: inline-block;
 			margin: 0px 15px;
@@ -86,7 +81,7 @@
 			margin: 0;
 		}
 		p {
-			font-size: 14px;
+			font-size: 12px;
 			font-weight: 500;
 			margin: 0px;
 		}
@@ -103,6 +98,62 @@
 	.content li {
 		font-weight: 500;
 		font-size: 14px;
+	}
+}
+
+.highlight {
+	color: $main;
+	font-weight: 600;
+}
+
+.sidemenu {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(255, 255, 255, 0.95);
+	z-index: 3;
+	box-sizing: border-box;
+	&_visible {
+		display: block;
+	}
+	&_container {
+		padding: 0px 40px;
+		padding-top: 15px;
+		box-sizing: border-box;
+		display: inline-block;
+		width: 100vw;
+	}
+	ul,
+	li {
+		display: block;
+		width: 100%;
+		text-align: center;
+		margin: 0px;
+		padding: 8px 0px;
+		font-size: 16px;
+	}
+	&_close {
+		position: absolute;
+		top: 10px;
+		right: 30px;
+		font-size: 20px;
+	}
+
+	ul {
+		padding-bottom: 40px;
+	}
+
+	h1 {
+		color: $main;
+		font-weight: 900;
+		font-size: 20px;
+		margin: 0;
+		padding: 20px 0px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		text-align: center;
 	}
 }
 

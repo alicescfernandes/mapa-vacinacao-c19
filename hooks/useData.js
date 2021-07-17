@@ -139,7 +139,6 @@ export function useData({ regiao }) {
 				};
 			} else {
 				let lastItem = casesData[casesData.length - 1];
-				console.log(0, lastItem);
 				data = {
 					ativos: lastItem.ativos,
 					recuperados: lastItem.recuperados,

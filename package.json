@@ -72,6 +72,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
 		"@babel/preset-env": "^7.12.16",
+		"@welldone-software/why-did-you-render": "^6.2.0",
 		"convert-excel-to-json": "^1.7.0",
 		"csvtojson": "^2.0.10",
 		"follow-redirects": "^1.13.2",
