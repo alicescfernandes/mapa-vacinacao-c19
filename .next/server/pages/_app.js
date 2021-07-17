@@ -208,6 +208,9 @@ var react_datepicker = __webpack_require__("5Buo");
 // EXTERNAL MODULE: ./styles/globals.scss
 var globals = __webpack_require__("H/sG");
 
+// EXTERNAL MODULE: external "@babel/polyfill"
+var polyfill_ = __webpack_require__("jWA4");
+
 // EXTERNAL MODULE: ./utils.js
 var utils = __webpack_require__("GyP+");
 
@@ -840,6 +843,7 @@ function initSockets(onUpdate) {
 });
  */
 // CONCATENATED MODULE: ./pages/_app.js
+
 
 
 
@@ -3564,6 +3568,13 @@ function parseRelativeUrl(url, base) {
 
 /***/ }),
 
+/***/ "jWA4":
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/polyfill");
+
+/***/ }),
+
 /***/ "lN74":
 /***/ (function(module) {
 
@@ -3867,7 +3878,7 @@ function createObserver(options) {
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1626538107517,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
+module.exports = JSON.parse("{\"date\":1626538375263,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
 
 /***/ }),
 
