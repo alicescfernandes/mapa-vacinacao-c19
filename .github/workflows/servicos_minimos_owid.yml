@@ -20,7 +20,7 @@ jobs:
                   token: ${{ secrets.PAT}}
             - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
               run: |
-                  npm ci
+                  yarn install --frozen-lockfile
                   pip3 install -r requirements.txt
             - name: Cache
               uses: actions/cache@v2.1.6
