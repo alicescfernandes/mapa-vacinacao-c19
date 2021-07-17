@@ -4,6 +4,7 @@ import { Bar } from 'react-chartjs-2';
 import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import { RESIZE_TRESHOLD } from '../../constants';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 
 export function BarVacinasRecebidaDia({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
@@ -14,22 +15,12 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 		dose2: true,
 		dose3: true,
 	}); */
+
+	let { setCanvasNode } = useCanvasResizers();
 	const data = (canvas) => {
 		let { labels, mod, com, az, janss } = graphData;
 
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
+		setCanvasNode(canvas.parentNode);
 
 		return {
 			labels: labels.map(({ from, to }) => {
