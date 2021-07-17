@@ -16,7 +16,7 @@ export function BarVacinasRecebidaDia({ statistics, colors }) {
 		dose3: true,
 	}); */
 
-	let { setCanvasNode } = useCanvasResizers();
+	let { setCanvasNode } = useCanvasResizer();
 	const data = (canvas) => {
 		let { labels, mod, com, az, janss } = graphData;
 
