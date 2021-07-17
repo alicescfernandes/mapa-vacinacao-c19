@@ -236,9 +236,6 @@ function VacinadosPorDia({
 
   const data = canvas => {
     canvas.parentNode.parentNode.scrollLeft = dim.width;
-    window.addEventListener('resize', () => {
-      setDim(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* calculateDims */ "a"])());
-    });
     let datasets = [{
       label: 'Vacinas diárias - Média movel de 7 dias',
       fill: false,
@@ -417,6 +414,16 @@ function VacinadosPorDia({
       });
     }
   }, [values]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    window.addEventListener('resize', () => {
+      setDim(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* calculateDims */ "a"])());
+    });
+    return () => {
+      window.removeEventListener('resize', () => {
+        setDim(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* calculateDims */ "a"])());
+      });
+    };
+  }, []);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
     children: [regiao == _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
@@ -495,6 +502,62 @@ function useColors() {
 /***/ (function(module, exports) {
 
 module.exports = require("react-lazyload");
+
+/***/ }),
+
+/***/ "EbCy":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useCanvasResizer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("xPX6");
+//  import { useEffect, useState } from 'react';
+
+
+function useCanvasResizer() {
+  let canvasLoaded = false;
+  let {
+    0: canvasNode,
+    1: setCanvasNode
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  function attatchResizer(canvasNode) {
+    if (canvasLoaded === false && canvasNode !== false) {
+      canvasLoaded = true;
+
+      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_1__[/* RESIZE_TRESHOLD */ "m"]) {
+        canvasNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_1__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+      } else {
+        canvasNode.style.width = 'auto';
+      }
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_1__[/* RESIZE_TRESHOLD */ "m"]) {
+          canvasNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_1__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+        } else {
+          canvasNode.style.width = '100%';
+        }
+      });
+      return () => {
+        window.removeEventListener('resize', () => {
+          if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_1__[/* RESIZE_TRESHOLD */ "m"]) {
+            canvasNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_1__[/* RESIZE_TRESHOLD */ "m"] + 'px';
+          } else {
+            canvasNode.style.width = '100%';
+          }
+        });
+      };
+    }
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => attatchResizer(canvasNode), [canvasNode]);
+  return {
+    canvasNode,
+    setCanvasNode
+  };
+}
 
 /***/ }),
 
@@ -811,12 +874,17 @@ function NumeroTotalVacinados({
     0: toggleStats,
     1: setToggleStats
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    imunidade: true,
+    imunidade: false,
     primeira_fase: false,
     segunda_fase: false,
     infetados: true,
     perHundred: false
-  });
+  }); // Disable animations for mobile devices
+
+  if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_9__[/* RESIZE_TRESHOLD */ "m"]) {
+    react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["defaults"].animation = false;
+  }
+
   let {
     0: loading,
     1: setLoading
@@ -940,9 +1008,8 @@ function NumeroTotalVacinados({
       }
     }]
   };
-  let chartRef = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["createRef"])();
 
-  const data = (canvas, cenas) => {
+  const data = canvas => {
     const ctx = canvas.getContext('2d');
     const gradient = ctx.createLinearGradient(0, 0, 0, dim.height);
     let {
@@ -960,9 +1027,6 @@ function NumeroTotalVacinados({
     }
 
     canvas.parentNode.parentNode.scrollLeft = dim.width;
-    window.addEventListener('resize', () => {
-      setDim(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* calculateDims */ "a"])());
-    });
     const chartData = {
       labels: labels,
       datasets: [_objectSpread(_objectSpread({}, commonProps), {}, {
@@ -1010,7 +1074,6 @@ function NumeroTotalVacinados({
       }));
     }
 
-    console.log(casesData);
     return chartData;
   };
 
@@ -1071,6 +1134,16 @@ function NumeroTotalVacinados({
       setLoading(false);
     }
   }, [values]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    window.addEventListener('resize', () => {
+      setDim(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* calculateDims */ "a"])());
+    });
+    return () => {
+      window.removeEventListener('resize', () => {
+        setDim(Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* calculateDims */ "a"])());
+      });
+    };
+  }, []);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
     children: [regiao === 'portugal' && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
@@ -1117,7 +1190,6 @@ function NumeroTotalVacinados({
       },
       children: !loading ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Line"], {
         plugins: [chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_5___default.a],
-        ref: chartRef,
         options: options(),
         data: data
       }) : ''
@@ -1330,7 +1402,6 @@ function useData({
         };
       } else {
         let lastItem = casesData[casesData.length - 1];
-        console.log(0, lastItem);
         data = {
           ativos: lastItem.ativos,
           recuperados: lastItem.recuperados,
@@ -2189,6 +2260,9 @@ var constants = __webpack_require__("xPX6");
 // EXTERNAL MODULE: ./utils.js
 var utils = __webpack_require__("GyP+");
 
+// EXTERNAL MODULE: ./hooks/useCanvasResizer.js
+var useCanvasResizer = __webpack_require__("EbCy");
+
 // CONCATENATED MODULE: ./components/graphs/LineVacinadosInfecoesRecuperados.jsx
 
 
@@ -2197,6 +2271,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2215,7 +2290,6 @@ function LineVacinadosInfecoesRecuperados({
   let {
     values,
     labels,
-    valuesIn1,
     valuesIn2,
     raw: rawDiarios
   } = statistics.getDiariosInoculacoes();
@@ -2224,10 +2298,12 @@ function LineVacinadosInfecoesRecuperados({
   } = statistics.getDiariosCases();
   let {
     main,
-    shades,
     complements
   } = colors;
-  const numeroDias = 30; // map the last {numeroDias} days in data
+  const numeroDias = 30;
+  let {
+    setCanvasNode
+  } = Object(useCanvasResizer["a" /* useCanvasResizer */])(); // map the last {numeroDias} days in data
   // Marry the data pls
   // https://www.youtube.com/watch?v=O4IgYxHEAuk
 
@@ -2250,22 +2326,9 @@ function LineVacinadosInfecoesRecuperados({
   }
 
   marriedData = Object.values(marriedData).reverse();
-  console.log(marriedData);
 
   const data = canvas => {
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-    } else {
-      canvas.parentNode.style.width = 'auto';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+    setCanvasNode(canvas.parentNode);
     return {
       labels: labels.slice(labels.length - numeroDias, labels.length),
       datasets: [{
@@ -2661,6 +2724,7 @@ var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_cl
 
 
 
+
 function BarAdministradasPorFaixaEtaria({
   statistics,
   colors
@@ -2684,6 +2748,9 @@ function BarAdministradasPorFaixaEtaria({
     1: setActiveDose
   } = Object(external_react_["useState"])(1);
   const canvasRef = Object(external_react_["useRef"])(null);
+  let {
+    setCanvasNode
+  } = Object(useCanvasResizer["a" /* useCanvasResizer */])();
   Object(external_react_["useEffect"])(() => {
     var _canvasRef$current;
 
@@ -2705,20 +2772,7 @@ function BarAdministradasPorFaixaEtaria({
       labels,
       groups
     } = graphData;
-
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = '1000px';
-    } else {
-      canvas.parentNode.style.width = 'auto';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = '1000px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+    setCanvasNode(canvas.parentNode);
     return {
       labels: Object.keys(graphData.labels).map(key => {
         let fromDate = new Date(labels[key].from);
@@ -3515,6 +3569,7 @@ function BarVacinasRecebidaDiaAcum_defineProperty(obj, key, value) { if (key in 
 
 
 
+
 function BarVacinasRecebidaDiaAcum({
   statistics,
   colors
@@ -3536,6 +3591,9 @@ function BarVacinasRecebidaDiaAcum({
     dose2: true,
     dose3: true
   });
+  let {
+    setCanvasNode
+  } = Object(useCanvasResizer["a" /* useCanvasResizer */])();
 
   const data = canvas => {
     let {
@@ -3545,20 +3603,7 @@ function BarVacinasRecebidaDiaAcum({
       az,
       janss
     } = graphData;
-
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-    } else {
-      canvas.parentNode.style.width = '100%';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+    setCanvasNode(canvas.parentNode);
     return {
       labels: labels.map(({
         from,
@@ -3806,6 +3851,7 @@ function LineVacinadosEu_defineProperty(obj, key, value) { if (key in obj) { Obj
 
 
 
+
 function LineVacinadosEu({
   statistics,
   colors
@@ -3840,22 +3886,12 @@ function LineVacinadosEu({
   } = Object(external_react_["useState"])({
     perHundred: true
   });
-  const canvasRef = Object(external_react_["useRef"])(null);
+  let {
+    setCanvasNode
+  } = Object(useCanvasResizer["a" /* useCanvasResizer */])();
 
   const data = canvas => {
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-    } else {
-      canvas.parentNode.style.width = '100%';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+    setCanvasNode(canvas.parentNode);
     return {
       labels: owidData.labels,
       datasets: [LineVacinadosEu_objectSpread(LineVacinadosEu_objectSpread({}, constants["w" /* lineChartCommon */]), {}, {
@@ -3992,7 +4028,6 @@ function LineVacinadosEu({
     }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
       children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Line"], {
         height: 80,
-        ref: canvasRef,
         options: options(),
         data: data
       })
@@ -4008,6 +4043,7 @@ function BarVacinadosEu_ownKeys(object, enumerableOnly) { var keys = Object.keys
 function BarVacinadosEu_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { BarVacinadosEu_ownKeys(Object(source), true).forEach(function (key) { BarVacinadosEu_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { BarVacinadosEu_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function BarVacinadosEu_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -4038,6 +4074,9 @@ function BarVacinadosEu({
     complements
   } = colors;
   let {
+    setCanvasNode
+  } = Object(useCanvasResizer["a" /* useCanvasResizer */])();
+  let {
     0: activeDose,
     1: setActiveDose
   } = Object(external_react_["useState"])(0);
@@ -4054,19 +4093,7 @@ function BarVacinadosEu({
   const canvasRef = Object(external_react_["useRef"])(null);
 
   const data = canvas => {
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-    } else {
-      canvas.parentNode.style.width = '100%';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+    setCanvasNode(canvas.parentNode);
     let lineChartCommon = {
       lineTension: 0.0,
       lineBorder: 0,
@@ -4244,6 +4271,7 @@ function LineAdministradasPorFaixaEtaria_defineProperty(obj, key, value) { if (k
 
 
 
+
 function LineAdministradasPorFaixaEtaria({
   statistics,
   colors
@@ -4278,25 +4306,16 @@ function LineAdministradasPorFaixaEtaria({
     };
   }
 
-  const data = canvas => {
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = '1000px';
-    } else {
-      canvas.parentNode.style.width = 'auto';
-    }
+  let {
+    setCanvasNode
+  } = Object(useCanvasResizer["a" /* useCanvasResizer */])();
 
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = '1000px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+  const data = canvas => {
+    setCanvasNode(canvas.parentNode);
     let labels = {};
     graphData.map(values => {
       labels[values.DATE] = '';
     });
-    console.log(labels, constants["q" /* SNS_WEEKS */], Object.keys(labels).map(el => constants["q" /* SNS_WEEKS */][el] === undefined && console.log(el)));
     return {
       labels: Object.keys(labels).map(el => constants["q" /* SNS_WEEKS */][el]),
       datasets: [LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(main)), {}, {
@@ -4601,20 +4620,6 @@ function ArsMapa({
 
   function renderGraph(el) {
     const data = (canvas, cenas) => {
-      /* 	if (window.innerWidth <= RESIZE_TRESHOLD) {
-      	canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-      } else {
-      	canvas.parentNode.style.width = '100%';
-      } */
-
-      /* 	window.addEventListener('resize', () => {
-      	if (window.innerWidth <= RESIZE_TRESHOLD) {
-      		canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-      	} else {
-      		canvas.parentNode.style.width = '100%';
-      	}
-      });
-      */
       const chartData = {
         labels: [''],
         datasets: [{
@@ -5078,7 +5083,6 @@ function Home() {
   }, []);
 
   let renderCounterGroupV2 = () => {
-    console.log(selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Vacinados_Ac);
     let options = {
       year: 'numeric',
       month: 'long',
@@ -5121,7 +5125,7 @@ function Home() {
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
               colors: colors,
-              title: "Doses - 1\xAA Inocula\xE7\xE3o e Unidose",
+              title: "1\xAA Inocula\xE7\xE3o e Unidose",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao1_Ac,
               from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao1_Ac) || (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac) * 0.98,
               to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao1_Ac
@@ -5135,7 +5139,7 @@ function Home() {
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
               colors: colors,
-              title: "Doses - 2\xAA Inocula\xE7\xE3o",
+              title: "2\xAA Inocula\xE7\xE3o",
               yesterday: previousItem === null || previousItem === void 0 ? void 0 : previousItem.Inoculacao2_Ac,
               from: (previousSelectedItem === null || previousSelectedItem === void 0 ? void 0 : previousSelectedItem.Inoculacao2_Ac) || (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac) * 0.98,
               to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.Inoculacao2_Ac
@@ -5185,13 +5189,16 @@ function Home() {
               },
               className: Card_module_default.a.card_title,
               children: "Autoagendamento (por idade)"
-            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h1", {
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h1", {
               title: "Consultar notas ou o plano de informa\xE7\xE3o para mais informa\xE7\xE3o",
               style: {
                 color: colors[0]
               },
               className: Card_module_default.a.card_highlight_2,
-              children: fases.fases[fases.fase_atual].nome
+              children: [fases.fases[fases.fase_atual].nome, " ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                className: 'hide_mobile',
+                children: "anos"
+              })]
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
               rel: "noopener noreferrer",
               target: "_blank",
@@ -5604,6 +5611,7 @@ function Home() {
     })
   });
 }
+Home.whyDidYouRender = true;
 
 /***/ }),
 
@@ -5686,8 +5694,8 @@ module.exports = {
 	"card_subtitle": "Card_card_subtitle__3invo",
 	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
 	"card_chart": "Card_card_chart__37hzo",
-	"card_scrollable": "Card_card_scrollable__1Eiau",
 	"card_sticky": "Card_card_sticky__2cnJF",
+	"card_scrollable": "Card_card_scrollable__1Eiau",
 	"text_left": "Card_text_left__1G5SI",
 	"ram_subchart": "Card_ram_subchart__36M-A",
 	"ram_subchart_bar": "Card_ram_subchart_bar__hmsNC",
@@ -5704,13 +5712,10 @@ module.exports = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PieSuscetiveisProporcao; });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("t3hY");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("5PhN");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("GyP+");
-
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("t3hY");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("5PhN");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("GyP+");
 
 
 
@@ -5720,8 +5725,7 @@ function PieSuscetiveisProporcao({
   colors
 }) {
   let vaccines = statistics.getLastVaccineAvaliable();
-  let lastCase = statistics.getLastCaseAvaliable();
-  console.log(lastCase); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
+  let lastCase = statistics.getLastCaseAvaliable(); // let infetadosVacinados = vaccines.dose_2 - lastCase.confirmados;
 
   let vacinados_apenas_uma = Math.abs(vaccines.dose_1 - vaccines.dose_2);
   let populacao_suscetivel = lastCase.populacao - (vacinados_apenas_uma + vaccines.dose_2 + lastCase.ativos + lastCase.recuperados + lastCase.obitos); //let populacao_suscetivel = 10286300 - (vaccines[vaccines.length - 1].Inoculacao2_Ac + infetadosVacinados + firstItem.recuperados + firstItem.obitos);
@@ -5733,7 +5737,7 @@ function PieSuscetiveisProporcao({
     complements
   } = colors;
 
-  const data = canvas => {
+  const data = () => {
     return {
       //labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
       labels: ['Vacinados apenas com uma dose', 'Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
@@ -5783,17 +5787,17 @@ function PieSuscetiveisProporcao({
           }) {
             let label = labels[index];
             let data = datasets[0].data[index];
-            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_4__[/* formatNumber */ "d"])(data)}`;
+            return `${label}: ${Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* formatNumber */ "d"])(data)}`;
           }
         }
       }
     };
   };
 
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_2__[/* Card */ "a"], {
     allowOverflow: true,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Pie"], {
         plugins: [],
         height: 350,
         options: options(),
@@ -5879,6 +5883,7 @@ module.exports = JSON.parse("{\"populacao\":{\"valor\":9800494,\"legenda\":\"9,8
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("UG6H");
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _hooks_useCanvasResizer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("EbCy");
 
 
 
@@ -5896,6 +5901,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 function LineRt({
   statistics,
   colors,
@@ -5905,6 +5911,9 @@ function LineRt({
     0: loaded,
     1: setLoaded
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
+  let {
+    setCanvasNode
+  } = Object(_hooks_useCanvasResizer__WEBPACK_IMPORTED_MODULE_8__[/* useCanvasResizer */ "a"])();
   let {
     main
   } = colors;
@@ -5947,19 +5956,7 @@ function LineRt({
       color = '#d9f3ef';
     }
 
-    if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
-      canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] + 'px';
-    } else {
-      canvas.parentNode.style.width = '100%';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
-        canvas.parentNode.style.width = _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+    setCanvasNode(canvas.parentNode);
     return {
       labels: rtData.labels,
       datasets: [_objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_3__[/* lineChartCommon2 */ "x"]), {}, {
@@ -6211,7 +6208,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1626526810843,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
+module.exports = JSON.parse("{\"date\":1626538107517,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
 
 /***/ }),
 
