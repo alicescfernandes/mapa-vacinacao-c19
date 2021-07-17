@@ -83,9 +83,11 @@
 		}
 	}
 
-	&_chart {
+	&_fixed_scroll,
+	&_dynamic_scroll {
 		overflow-x: scroll;
 	}
+
 	&_sticky {
 		position: sticky;
 		left: 0;
@@ -98,8 +100,8 @@
 
 @media (max-width: 992px) {
 	.card {
-		&_scrollable {
-			min-width: 1000px;
+		&_dynamic_scroll {
+			//min-width: 1000px;
 		}
 	}
 }
@@ -114,9 +116,8 @@
 
 @media screen and (min-width: 1040px) {
 	.card {
-		&_chart,
-		&_scrollable {
-			//overflow-x: hidden;
+		&_dynamic_scroll {
+			overflow-x: hidden;
 		}
 	}
 }

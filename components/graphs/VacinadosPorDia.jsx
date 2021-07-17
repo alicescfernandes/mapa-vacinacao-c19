@@ -224,9 +224,9 @@ export function VacinadosPorDia({ statistics, colors }) {
 	}, []);
 
 	return (
-		<Card allowOverflow={true}>
+		<Card allowOverflow={true} is_fixed_scroll={true}>
 			{regiao == REGIOES.PORTUGAL && (
-				<div className={[styles.card_sticky, styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
+				<div className={[styles.card_sticky, styles.card_checkboxes, styles.card_dynamic_scroll].join(' ')} style={{ textAlign: 'left' }}>
 					<CustomCheckbox
 						checked={toggleStats.stock}
 						label={'Stock de Vacinas - Estimativa'}

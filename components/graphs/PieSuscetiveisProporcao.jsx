@@ -73,7 +73,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	};
 
 	return (
-		<Card allowOverflow={true}>
+		<Card allowOverflow={true} is_dynamic_scroll={false}>
 			<div>{<Pie plugins={[]} height={350} options={options()} data={data} />}</div>
 		</Card>
 	);
