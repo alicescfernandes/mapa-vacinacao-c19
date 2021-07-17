@@ -26,9 +26,6 @@ export function VacinadosPorDia({ statistics, colors }) {
 
 	const data = (canvas) => {
 		canvas.parentNode.parentNode.scrollLeft = dim.width;
-		window.addEventListener('resize', () => {
-			setDim(calculateDims());
-		});
 		let datasets = [
 			{
 				label: 'Vacinas diárias - Média movel de 7 dias',
@@ -214,6 +211,17 @@ export function VacinadosPorDia({ statistics, colors }) {
 			});
 		}
 	}, [values]);
+
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setDim(calculateDims());
+		});
+		return () => {
+			window.removeEventListener('resize', () => {
+				setDim(calculateDims());
+			});
+		};
+	}, []);
 
 	return (
 		<Card allowOverflow={true}>

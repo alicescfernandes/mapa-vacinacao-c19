@@ -5,9 +5,11 @@ import { hexToRgb } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
 import styles from './../Card.module.scss';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 
 export function LineRt({ statistics, colors, regiao }) {
 	let [loaded, setLoaded] = useState(false);
+	let { setCanvasNode } = useCanvasResizer();
 
 	let { main } = colors;
 	let [currentRegiao, setCurrentRegiao] = useState(regiao ?? 'continente');
@@ -41,19 +43,8 @@ export function LineRt({ statistics, colors, regiao }) {
 			color = '#d9f3ef';
 		}
 
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-		} else {
-			canvas.parentNode.style.width = '100%';
-		}
+		setCanvasNode(canvas.parentNode);
 
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = RESIZE_TRESHOLD + 'px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
 		return {
 			labels: rtData.labels,
 			datasets: [

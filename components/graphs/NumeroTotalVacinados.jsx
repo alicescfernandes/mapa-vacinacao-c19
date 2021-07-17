@@ -21,7 +21,7 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	let [dim, setDim] = useState(calculateDims());
 
 	let [toggleStats, setToggleStats] = useState({
-		imunidade: true,
+		imunidade: false,
 		primeira_fase: false,
 		segunda_fase: false,
 		infetados: true,
@@ -179,9 +179,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 		}
 
 		canvas.parentNode.parentNode.scrollLeft = dim.width;
-		window.addEventListener('resize', () => {
-			setDim(calculateDims());
-		});
 
 		const chartData = {
 			labels: labels,
@@ -239,7 +236,6 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 					.map((el) => (toggleStats.perHundred ? perHundred(el.confirmados) : el.confirmados)),
 			});
 		}
-		console.log(casesData);
 
 		return chartData;
 	};
@@ -302,6 +298,18 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 			setLoading(false);
 		}
 	}, [values]);
+
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setDim(calculateDims());
+		});
+
+		return () => {
+			window.removeEventListener('resize', () => {
+				setDim(calculateDims());
+			});
+		};
+	}, []);
 
 	return (
 		<Card allowOverflow={true}>

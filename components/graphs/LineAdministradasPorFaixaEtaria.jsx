@@ -5,6 +5,7 @@ import { Card } from './../Card';
 import classNames from 'classnames';
 
 import { RESIZE_TRESHOLD, lineChartCommon, SNS_WEEKS } from './../../constants';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades, complements } = colors;
@@ -22,21 +23,11 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 			backgroundColor: color,
 		};
 	}
+	let { setCanvasNode } = useCanvasResizer();
 
 	const data = (canvas) => {
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = '1000px';
-		} else {
-			canvas.parentNode.style.width = 'auto';
-		}
+		setCanvasNode(canvas.parentNode);
 
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = '1000px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
 		let labels = {};
 		graphData.map((values) => {
 			labels[values.DATE] = '';

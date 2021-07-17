@@ -10,7 +10,7 @@ import Plus from '../assets/plus.svg';
 
 export function Header() {
 	let [supportsNotifications, setSupportsNotifications] = useState(false);
-	let [isSidebarOpen, setIsSidebarOpen] = useState(true);
+	let [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	let regiao = useContext(RegiaoContext);
 	let regioes = {
 		portugal: {

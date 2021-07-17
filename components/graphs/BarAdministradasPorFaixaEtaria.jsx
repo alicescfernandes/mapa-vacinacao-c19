@@ -4,12 +4,15 @@ import { formatNumber } from '../../utils';
 import { Card } from './../Card';
 import classNames from 'classnames';
 import { RESIZE_TRESHOLD } from './../../constants';
+import { useCanvasResizer } from '../../hooks/useCanvasResizer';
+
 export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades, tints, complements } = colors;
 	let [graphData, setGraphData] = useState({});
 	let [activeDose, setActiveDose] = useState(1);
 	const canvasRef = useRef(null);
+	let { setCanvasNode } = useCanvasResizer();
 
 	useEffect(() => {
 		if (canvasRef?.current?.chartInstance) {
@@ -27,19 +30,7 @@ export function BarAdministradasPorFaixaEtaria({ statistics, colors }) {
 	const data = (canvas) => {
 		let { labels, groups } = graphData;
 
-		if (window.innerWidth <= RESIZE_TRESHOLD) {
-			canvas.parentNode.style.width = '1000px';
-		} else {
-			canvas.parentNode.style.width = 'auto';
-		}
-
-		window.addEventListener('resize', () => {
-			if (window.innerWidth <= RESIZE_TRESHOLD) {
-				canvas.parentNode.style.width = '1000px';
-			} else {
-				canvas.parentNode.style.width = '100%';
-			}
-		});
+		setCanvasNode(canvas.parentNode);
 
 		return {
 			labels: Object.keys(graphData.labels).map((key) => {
