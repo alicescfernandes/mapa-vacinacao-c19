@@ -136,7 +136,9 @@ function Card({
   isUpdating,
   textLeft,
   classes,
-  sticky
+  sticky,
+  is_dynamic_scroll = true,
+  is_fixed_scroll
 }) {
   let styles2 = {};
   styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_align_left] = textLeft;
@@ -144,6 +146,8 @@ function Card({
   styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_chart] = allowOverflow;
   styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_sticky] = sticky;
   styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_counter] = type === 'counter';
+  styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_fixed_scroll] = is_fixed_scroll && type !== 'counter';
+  styles2[_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_dynamic_scroll] = is_dynamic_scroll && !is_fixed_scroll && type !== 'counter';
   let className = classnames__WEBPACK_IMPORTED_MODULE_2___default()(_Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.card_graph, styles2);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
     className: _Card_module_scss__WEBPACK_IMPORTED_MODULE_1___default.a.container,
@@ -433,8 +437,9 @@ function VacinadosPorDia({
   }, []);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_5__[/* Card */ "a"], {
     allowOverflow: true,
+    is_fixed_scroll: true,
     children: [regiao == _constants__WEBPACK_IMPORTED_MODULE_3__[/* REGIOES */ "l"].PORTUGAL && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_sticky, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_scrollable].join(' '),
+      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_sticky, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default.a.card_dynamic_scroll].join(' '),
       style: {
         textAlign: 'left'
       },
@@ -1153,8 +1158,9 @@ function NumeroTotalVacinados({
   }, []);
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
+    is_fixed_scroll: true,
     children: [regiao === 'portugal' && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
-      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_sticky, _Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_scrollable].join(' '),
+      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_sticky, _Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_checkboxes, _Card_module_scss__WEBPACK_IMPORTED_MODULE_10___default.a.card_dynamic_scroll].join(' '),
       style: {
         textAlign: 'left'
       },
@@ -2174,6 +2180,7 @@ function PieVacinadosInfectadosRecuperadosObitos({
 
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_3__[/* Card */ "a"], {
     allowOverflow: true,
+    is_dynamic_scroll: false,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
         plugins: [],
@@ -2265,9 +2272,9 @@ module.exports = {
 	"card_subtitle_2": "Card_card_subtitle_2__p7--G",
 	"card_subtitle": "Card_card_subtitle__3invo",
 	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
-	"card_chart": "Card_card_chart__37hzo",
+	"card_fixed_scroll": "Card_card_fixed_scroll__395I5",
+	"card_dynamic_scroll": "Card_card_dynamic_scroll__1E6W_",
 	"card_sticky": "Card_card_sticky__2cnJF",
-	"card_scrollable": "Card_card_scrollable__1Eiau",
 	"text_left": "Card_text_left__1G5SI",
 	"ram_subchart": "Card_ram_subchart__36M-A",
 	"ram_subchart_bar": "Card_ram_subchart_bar__hmsNC",
@@ -2368,6 +2375,7 @@ function PieSuscetiveisProporcao({
 
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_Card__WEBPACK_IMPORTED_MODULE_2__[/* Card */ "a"], {
     allowOverflow: true,
+    is_dynamic_scroll: false,
     children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
       children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__["Pie"], {
         plugins: [],
@@ -2668,7 +2676,7 @@ function LineRt({
     textLeft: true,
     allowOverflow: true,
     children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default.a.card_scrollable].join(' '),
+      className: [_Card_module_scss__WEBPACK_IMPORTED_MODULE_7___default.a.card_dynamic_scroll].join(' '),
       children: regiao === undefined ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
         className: 'toggle_buttons',
         children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("p", {
@@ -3563,7 +3571,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1626538525209,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
+module.exports = JSON.parse("{\"date\":1626540689943,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
 
 /***/ }),
 
