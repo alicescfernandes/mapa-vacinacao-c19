@@ -41,11 +41,6 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 		setCanvasNode(canvas.parentNode);
 
-		console.log(
-			activeDose,
-			groups.map((group) => group.e1824[activeDose] || 0)
-		);
-
 		return {
 			labels: Object.keys(graphData.labels).map((key) => {
 				let fromDate = new Date(labels[key]);
