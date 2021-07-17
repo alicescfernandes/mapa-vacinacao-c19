@@ -46,7 +46,7 @@
 		"chartjs-plugin-annotation": "^1.0.0",
 		"chartjs-plugin-datalabels": "^2.0.0-beta.1",
 		"classnames": "^2.2.6",
-		"core-js": "2",
+		"core-js": "3",
 		"cors": "^2.8.5",
 		"date-fns": "^2.17.0",
 		"dotenv": "^8.2.0",
