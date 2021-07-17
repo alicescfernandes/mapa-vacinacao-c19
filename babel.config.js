@@ -12,8 +12,9 @@ module.exports = function (api) {
 				},
 				'preset-env': {
 					targets: {
-						browsers: ['last 10 versions', '> 0.05%', 'ie>9'],
+						browsers: ['last 10 versions', '> 0.05%', 'ie>11'],
 					},
+					corejs: '3.0.0',
 					useBuiltIns: 'entry',
 				},
 			},
