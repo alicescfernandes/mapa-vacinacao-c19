@@ -2461,6 +2461,7 @@ var PieSuscetiveisProporcao = __webpack_require__("WMh8");
 
 
 
+
 function BarVacinasRecebidaDia({
   statistics,
   colors
@@ -2480,6 +2481,10 @@ function BarVacinasRecebidaDia({
   	dose3: true,
   }); */
 
+  let {
+    setCanvasNode
+  } = useCanvasResizers();
+
   const data = canvas => {
     let {
       labels,
@@ -2488,20 +2493,7 @@ function BarVacinasRecebidaDia({
       az,
       janss
     } = graphData;
-
-    if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-      canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-    } else {
-      canvas.parentNode.style.width = '100%';
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */]) {
-        canvas.parentNode.style.width = constants["m" /* RESIZE_TRESHOLD */] + 'px';
-      } else {
-        canvas.parentNode.style.width = '100%';
-      }
-    });
+    setCanvasNode(canvas.parentNode);
     return {
       labels: labels.map(({
         from,
@@ -6220,7 +6212,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1626540689943,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
+module.exports = JSON.parse("{\"date\":1626540782143,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-11\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-05\",\"dateMadeiraCases\":\"2021-07-16\",\"dateAcores\":\"2021-06-30\",\"dateAcoresCases\":\"2021-06-01\",\"week\":27}");
 
 /***/ }),
 
