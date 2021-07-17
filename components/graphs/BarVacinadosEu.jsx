@@ -133,7 +133,7 @@ export function BarVacinadosEu({ statistics, colors }) {
 
 	return loaded === true ? (
 		<Card textLeft={true} allowOverflow={true}>
-			<div className={[styles.card_scrollable].join(' ')}>
+			<div className={[styles.card_dynamic_scroll].join(' ')}>
 				<div className={'toggle_buttons'}>
 					<p>
 						<button

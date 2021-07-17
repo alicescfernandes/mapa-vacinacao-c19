@@ -103,7 +103,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 							return formatNumber(value, false);
 						},
 					},
-					max: 1_200_000,
+					max: 3_000_000,
 				},
 			},
 		};
@@ -142,7 +142,7 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 	}, []);
 
 	return (
-		<Card allowOverflow={true}>
+		<Card allowOverflow={true} is_dynamic_scroll={false}>
 			<div>
 				{!loading ? (
 					<>

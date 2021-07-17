@@ -206,7 +206,7 @@ export function ArsMapa({ statistics, colors }) {
 		if (mapLayers) mapLayers.setStyle(layerStyle);
 	}, [options.current_dose]);
 	return loaded === true ? (
-		<Card>
+		<Card is_dynamic_scroll={false}>
 			<Row>
 				<div className={'toggle_buttons hide_mobile'}>
 					<p>

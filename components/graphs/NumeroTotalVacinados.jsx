@@ -316,9 +316,9 @@ export function NumeroTotalVacinados({ colors, statistics }) {
 	}, []);
 
 	return (
-		<Card allowOverflow={true}>
+		<Card allowOverflow={true} is_fixed_scroll={true}>
 			{regiao === 'portugal' && (
-				<div className={[styles.card_sticky, styles.card_checkboxes, styles.card_scrollable].join(' ')} style={{ textAlign: 'left' }}>
+				<div className={[styles.card_sticky, styles.card_checkboxes, styles.card_dynamic_scroll].join(' ')} style={{ textAlign: 'left' }}>
 					<CustomCheckbox
 						checked={toggleStats.primeira_fase}
 						label={'1ª Fase'}

@@ -192,7 +192,7 @@ export function LineRt({ statistics, colors, regiao }) {
 	};
 	return (
 		<Card textLeft={true} allowOverflow={true}>
-			<div className={[styles.card_scrollable].join(' ')}>
+			<div className={[styles.card_dynamic_scroll].join(' ')}>
 				{regiao === undefined ? (
 					<div className={'toggle_buttons'}>
 						<p>
