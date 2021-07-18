@@ -35,7 +35,7 @@ function verifyPostData(req, res) {
 			let json_string = decodeURIComponent(req.rawBody).split('payload=')[1];
 			let json = JSON.parse(json_string);
 
-			resolve(json.ref === 'refs/heads/gh-pages' ? true : false);
+			resolve(json.ref === 'refs/heads/master' ? true : false);
 		}
 	});
 }
