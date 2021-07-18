@@ -85,3 +85,5 @@ pm2 logs daemon # Ler logs do processo
 pm2 list # Ver todos os processos geridos pelo pm2
 pm2 monit # Ver status de todos os processos geridos pelo pm2
 ```
+
+

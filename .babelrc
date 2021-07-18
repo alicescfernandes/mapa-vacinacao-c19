@@ -1,0 +1,19 @@
+{
+    "presets": [
+		[
+			"next/babel",
+			{
+				"preset-env": {
+					"targets": {
+						"browsers": [
+                            "last 10 versions", "> 0.05%" ,"ie>9"
+
+						]
+					},
+                    "corejs": "3.0.0",
+					"useBuiltIns": "entry"
+				}
+			}
+		]
+	]
+  }
