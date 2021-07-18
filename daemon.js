@@ -125,7 +125,7 @@ async function updateJSON() {
 				shell.exec('sleep 180');
 				publishEvent('vacinas', dataVacinas.features[0].attributes);
 				shell.exec('yarn twitter');
-				shell.exec('yarn onesignal');
+				shell.exec('yarn notification:push');
 				// bot runs on a raspberry pi
 				shell.exec('sleep 180');
 				shell.exec('sudo poweroff');
