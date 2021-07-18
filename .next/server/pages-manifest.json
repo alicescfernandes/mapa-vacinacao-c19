@@ -22,6 +22,7 @@
   "/api/weeks": "pages/api/weeks.js",
   "/": "pages/index.js",
   "/madeira": "pages/madeira.js",
+  "/test": "pages/test.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js"
 }
