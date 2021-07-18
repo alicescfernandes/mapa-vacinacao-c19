@@ -8,6 +8,7 @@
 		"update": "node automation/update.js && git add data/last-update.json",
 		"no-commit-to-master": "if [ \"$(git rev-parse --abbrev-ref HEAD)\" = 'master' ]; then echo 'You cant commit directly to master branch';exit 1; fi;",
 		"dev": "next dev -p 5500",
+		"v": "next -v",
 		"build": "next build",
 		"start": "next start",
 		"export": "next build && next export -o out2",
