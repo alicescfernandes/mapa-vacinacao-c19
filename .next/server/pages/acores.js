@@ -3571,7 +3571,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1627390810585,\"dateSnsStartWeirdFormat\":\"28/06/21\",\"dateSnsStart\":\"2021-06-28\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-18\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-11\",\"dateMadeiraCases\":\"2021-07-26\",\"dateAcores\":\"2021-07-08\",\"dateAcoresCases\":\"2021-06-01\",\"week\":28}");
+module.exports = JSON.parse("{\"date\":1627414002664,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-18\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-18\",\"dateMadeiraCases\":\"2021-07-26\",\"dateAcores\":\"2021-07-08\",\"dateAcoresCases\":\"2021-06-01\",\"week\":28}");
 
 /***/ }),
 
@@ -3790,7 +3790,10 @@ const SNS_WEEKS = {
   '07/06/21': '07/06 a 13/06',
   '14/06/21': '14/06 a 20/06',
   '21/06/21': '21/06 a 27/06',
-  '28/06/21': '21/06 a 04/07'
+  '28/06/21': '28/06 a 04/07',
+  '05/07/21': '05/07 a 11/07',
+  '12/07/21': '12/07 a 16/07',
+  '19/07/21': '19/07 a 25/07'
 };
 
 /***/ })
