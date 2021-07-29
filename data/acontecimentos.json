@@ -185,7 +185,7 @@
         "fonte": ""
     },
     {
-        "data": "2021-07-05",
+        "data": "2021-07-07",
         "mode": "vertical",
         "color":"#D17615",
         "display":true,
@@ -194,7 +194,7 @@
         "fonte": ""
     },
     {
-        "data": "2021-07-05",
+        "data": "2021-07-12",
         "mode": "vertical",
         "color":"#D17615",
         "display":true,
@@ -203,21 +203,12 @@
         "fonte": ""
     },
     {
-        "data": "2021-07-05",
+        "data": "2021-07-28",
         "mode": "vertical",
         "color":"#D17615",
         "display":true,
-        "position": 198,
-        "marcador": "Autoagendamento 20+ ",
-        "fonte": ""
-    },
-    {
-        "data": "2021-07-05",
-        "mode": "vertical",
-        "color":"#D17615",
-        "display":false,
-        "position": 203,
-        "marcador": "Autoagendamento 18+ ",
+        "position": 212,
+        "marcador": "Autoagendamento 18+",
         "fonte": ""
     }
 ]
