@@ -206,7 +206,7 @@
         "data": "2021-07-05",
         "mode": "vertical",
         "color":"#D17615",
-        "display":false,
+        "display":true,
         "position": 198,
         "marcador": "Autoagendamento 20+ ",
         "fonte": ""
