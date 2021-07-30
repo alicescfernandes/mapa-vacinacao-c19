@@ -18,6 +18,7 @@ export function LineRt({ statistics, colors, regiao }) {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
+		console.log('set regioao');
 		if (!loaded) return;
 		statistics.getRtRegiao(currentRegiao).then((data) => setRtData(data));
 	}, [currentRegiao]);
