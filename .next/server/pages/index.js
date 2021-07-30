@@ -3049,7 +3049,7 @@ let styles = {
   'vaccine-label': {
     textAlign: 'right',
     fontSize: '12px',
-    lineHeight: '32px',
+    lineHeight: '25px',
     margin: '0px'
   }
 };
@@ -3072,14 +3072,16 @@ function CustomBarChart({
       datasets: [{
         label: '2ª Dose',
         type: 'bar',
-        backgroundColor: main,
+        backgroundColor: shades[1],
+        data_actual: [data.mod[1], data.com[1], data.az[1], data.janss[1]],
         data: [data.mod[1], data.com[1], data.az[1], data.janss[1]],
         stack: 'stack1'
       }, {
         label: '1ª Dose',
         type: 'bar',
-        backgroundColor: shades[1],
-        data: [data.mod[0], data.com[0], data.az[0], data.janss[0]],
+        backgroundColor: main,
+        data_actual: [data.mod[0], data.com[0], data.az[0], data.janss[0]],
+        data: [data.mod[0] - data.mod[1], data.com[0] - data.com[1], data.az[0] - data.az[1], data.janss[0] - data.janss[1]],
         stack: 'stack1'
       }]
     };
@@ -3090,6 +3092,16 @@ function CustomBarChart({
       indexAxis: 'y',
       maintainAspectRatio: false,
       plugins: {
+        tooltip: {
+          mode: 'index',
+          intersect: true,
+          callbacks: {
+            label: (tooltipItem, b) => {
+              let data = tooltipItem.dataset.data_actual[tooltipItem.dataIndex];
+              return `${tooltipItem.dataset.label}: ${Object(utils["d" /* formatNumber */])(data, false)}`;
+            }
+          }
+        },
         datalabels: {
           display: false,
           color: 'white'
@@ -3147,7 +3159,7 @@ function CustomBarChart({
               return Object(utils["d" /* formatNumber */])(value, false);
             }
           },
-          max: 3000000
+          max: 2000000
         }
       }
     };
@@ -3233,7 +3245,7 @@ function BarTotaisPorFaixaEtaria({
               className: 'legend',
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                 style: {
-                  backgroundColor: shades[1]
+                  backgroundColor: main
                 },
                 className: 'color_sample'
               }), "1\xAA Dose"]
@@ -3241,7 +3253,7 @@ function BarTotaisPorFaixaEtaria({
               className: 'legend',
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                 style: {
-                  backgroundColor: main
+                  backgroundColor: shades[1]
                 },
                 className: 'color_sample'
               }), "2\xAA Dose"]
@@ -3355,6 +3367,7 @@ function PieRecebidasAdquiridas({
   statistics,
   colors
 }) {
+  console.log(statistics);
   let {
     0: loading,
     1: setLoading
@@ -4497,6 +4510,7 @@ function ArsMapa_defineProperty(obj, key, value) { if (key in obj) { Object.defi
 
 
 
+
 function ArsMapa({
   statistics,
   colors
@@ -4630,11 +4644,15 @@ function ArsMapa({
           backgroundColor: main,
           stack: 'stack0',
           order: 2,
-          data: [el.CUMUL_VAC_1]
+          data_actual: el.CUMUL_VAC_1,
+          data_cover: Math.floor(parseFloat(el.COVER_1_VAC.replace(',', '.')) * 100),
+          data: [el.CUMUL_VAC_1 - el.CUMUL_VAC_2]
         }, {
           label: 'Total de vacinas administradas - 2ª Dose',
           borderColor: shades[1],
           backgroundColor: shades[1],
+          data_actual: el.CUMUL_VAC_2,
+          data_cover: Math.floor(parseFloat(el.COVER.replace(',', '.')) * 100),
           data: [el.CUMUL_VAC_2],
           stack: 'stack0',
           order: 1
@@ -4648,6 +4666,16 @@ function ArsMapa({
       return {
         indexAxis: 'y',
         plugins: {
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            callbacks: {
+              label: (tooltipItem, b) => {
+                let data = tooltipItem.dataset.data_actual;
+                return `${tooltipItem.dataset.label}: ${Object(utils["d" /* formatNumber */])(data, false)} (${tooltipItem.dataset.data_cover}%)`;
+              }
+            }
+          },
           datalabels: {
             display: false
           },
@@ -4665,23 +4693,16 @@ function ArsMapa({
         animation: {
           duration: 1000
         },
-        tooltips: {
-          mode: 'index',
-          intersect: false,
-          callbacks: {
-            title: (tooltipItem, data) => {
-              return '';
-            }
-          }
-        },
         scales: {
           y: {
+            stacked: true,
             ticks: {
               beginAtZero: true
             },
             max: populacao_residente
           },
           x: {
+            stacked: true,
             ticks: {
               beginAtZero: true,
               stepSize: Math.round(window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? populacao_residente / 3 : populacao_residente / 6),
@@ -5036,7 +5057,8 @@ function Home() {
     plausible.trackPageview();
     let {
       RECEIVED: sum
-    } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas()); //sum = 4218420; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/05/Relato%CC%81rio-de-Vacinac%CC%A7a%CC%83o-n.o-12.pdf
+    } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas());
+    sum = 12886770; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/07/Relato%CC%81rio-Vacinac%CC%A7a%CC%83o-n.o-24.pdf
 
     let item = rawData.filter(el => {
       return Object(external_date_fns_["isSameDay"])(el.Data, new Date(last_update.dateSns));
@@ -5823,7 +5845,7 @@ module.exports = require("plausible-tracker");
 /***/ "bEWT":
 /***/ (function(module) {
 
-module.exports = JSON.parse("[{\"data\":\"2021-01-06\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":20,\"marcador\":\"Aprovação Moderna\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu\"},{\"data\":\"2021-01-29\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":33,\"marcador\":\"Aprovação AstraZeneca\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu\"},{\"data\":\"2021-03-11\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":74,\"marcador\":\"Aprovação Janssen\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu\"},{\"data\":\"2021-03-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":78,\"marcador\":\"Suspensão AstraZeneca\",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca\"},{\"data\":\"2021-03-18\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":81,\"marcador\":\"Retoma AstraZeneca\",\"fonte\":\"https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao\"},{\"data\":\"2021-04-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":false,\"position\":109,\"marcador\":\"Suspensão AstraZeneca (Grupos etários mais jovens)\",\"fonte\":\"https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569\"},{\"data\":\"2021-04-13\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":107,\"marcador\":\"Adiamento Envio Janssen\",\"fonte\":\"https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/\"},{\"data\":\"2021-04-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":114,\"xAdjust\":-8,\"marcador\":\"Retoma Envio Janssen\",\"fonte\":\"https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574\"},{\"data\":\"2021-04-21\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":115,\"marcador\":\"Inicío da 2ª Fase de Vacinação \",\"fonte\":\"https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/\"},{\"data\":\"2021-04-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":117,\"marcador\":\"Autoagendamento 65+\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-04-30\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":124,\"marcador\":\"Administração Janssen\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-05-09\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":132,\"marcador\":\"Autoagendamento 60+ \",\"fonte\":\"https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830\"},{\"data\":\"2021-05-13\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":136,\"marcador\":\"Autoagendamento 55+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html\"},{\"data\":\"2021-05-27\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":150,\"marcador\":\"Autoagendamento 50+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/tem-mais-de-50-anos-ja-pode-agendar-a-vacina-contra-a-covid-19-13777710.html\"},{\"data\":\"2021-06-15\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":169,\"marcador\":\"Autoagendamento 40+ \",\"fonte\":\"https://covid19.min-saude.pt/marcacao-da-vacinacao-arranca-para-maiores-de-40-anos/\"},{\"data\":\"2021-06-21\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":175,\"marcador\":\"Autoagendamento 37+ \",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/a-vacinacao-em-portugal-e-no-mundo/2021-06-21-Covid-19.-Maiores-de-37-anos-ja-podem-fazer-agendamento-para-vacinacao-20869b7b\"},{\"data\":\"2021-06-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":177,\"marcador\":\"Autoagendamento 35+ \",\"fonte\":\"\"},{\"data\":\"2021-06-28\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":182,\"marcador\":\"Autoagendamento 33+ \",\"fonte\":\"\"},{\"data\":\"2021-06-30\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":184,\"marcador\":\"Autoagendamento 30+ \",\"fonte\":\"\"},{\"data\":\"2021-07-05\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":189,\"marcador\":\"Autoagendamento 27+ \",\"fonte\":\"\"},{\"data\":\"2021-07-05\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":191,\"marcador\":\"Autoagendamento 25+ \",\"fonte\":\"\"},{\"data\":\"2021-07-05\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":false,\"position\":196,\"marcador\":\"Autoagendamento 23+ \",\"fonte\":\"\"},{\"data\":\"2021-07-05\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":198,\"marcador\":\"Autoagendamento 20+ \",\"fonte\":\"\"},{\"data\":\"2021-07-05\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":false,\"position\":203,\"marcador\":\"Autoagendamento 18+ \",\"fonte\":\"\"}]");
+module.exports = JSON.parse("[{\"data\":\"2021-01-06\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":20,\"marcador\":\"Aprovação Moderna\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-moderna-authorisation-eu\"},{\"data\":\"2021-01-29\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":33,\"marcador\":\"Aprovação AstraZeneca\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-astrazeneca-authorisation-eu\"},{\"data\":\"2021-03-11\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":74,\"marcador\":\"Aprovação Janssen\",\"fonte\":\"https://www.ema.europa.eu/en/news/ema-recommends-covid-19-vaccine-janssen-authorisation-eu\"},{\"data\":\"2021-03-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":78,\"marcador\":\"Suspensão AstraZeneca\",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/2021-03-15-Portugal-suspende-administracao-da-vacina-da-AstraZeneca\"},{\"data\":\"2021-03-18\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":81,\"marcador\":\"Retoma AstraZeneca\",\"fonte\":\"https://tvi24.iol.pt/sociedade/31-03-2021/covid-19-portugal-retoma-vacinacao-com-astrazeneca-tres-depois-de-suspensao\"},{\"data\":\"2021-04-15\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":false,\"position\":109,\"marcador\":\"Suspensão AstraZeneca (Grupos etários mais jovens)\",\"fonte\":\"https://www.publico.pt./2021/03/15/sociedade/noticia/suspensao-vacina-astrazeneca-adia-abril-imunizacao-professores-1954569\"},{\"data\":\"2021-04-13\",\"mode\":\"vertical\",\"color\":\"#D11541\",\"display\":true,\"position\":107,\"marcador\":\"Adiamento Envio Janssen\",\"fonte\":\"https://eco.sapo.pt/2021/04/13/chegada-da-vacina-da-janssen-a-portugal-foi-adiada-confirma-infarmed/\"},{\"data\":\"2021-04-20\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":114,\"xAdjust\":-8,\"marcador\":\"Retoma Envio Janssen\",\"fonte\":\"https://www.irishtimes.com/news/health/johnson-johnson-to-resume-deliveries-of-covid-19-vaccine-to-eu-1.4542574\"},{\"data\":\"2021-04-21\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":115,\"marcador\":\"Inicío da 2ª Fase de Vacinação \",\"fonte\":\"https://www.sns.gov.pt/noticias/2021/04/21/plano-de-vacinacao-2/\"},{\"data\":\"2021-04-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":117,\"marcador\":\"Autoagendamento 65+\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-04-30\",\"mode\":\"vertical\",\"color\":\"#01ae97\",\"display\":true,\"position\":124,\"marcador\":\"Administração Janssen\",\"fonte\":\"https://covid19.min-saude.pt/utentes-com-mais-de-65-anos-podem-agendar-a-vacinacao-a-partir-de-hoje/\"},{\"data\":\"2021-05-09\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":132,\"marcador\":\"Autoagendamento 60+ \",\"fonte\":\"https://www.publico.pt/2021/05/09/sociedade/noticia/autoagendamento-vacinacao-anticovid-pessoas-partir-60-anos-ja-disponivel-1961830\"},{\"data\":\"2021-05-13\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":136,\"marcador\":\"Autoagendamento 55+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/agendamento-automatico-para-a-vacinacao-ja-esta-aberto-as-pessoas-com-mais-de-55-anos-13716509.html\"},{\"data\":\"2021-05-27\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":150,\"marcador\":\"Autoagendamento 50+ \",\"fonte\":\"https://www.tsf.pt/portugal/sociedade/tem-mais-de-50-anos-ja-pode-agendar-a-vacina-contra-a-covid-19-13777710.html\"},{\"data\":\"2021-06-15\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":169,\"marcador\":\"Autoagendamento 40+ \",\"fonte\":\"https://covid19.min-saude.pt/marcacao-da-vacinacao-arranca-para-maiores-de-40-anos/\"},{\"data\":\"2021-06-21\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":175,\"marcador\":\"Autoagendamento 37+ \",\"fonte\":\"https://sicnoticias.pt/especiais/vacinar-portugal/a-vacinacao-em-portugal-e-no-mundo/2021-06-21-Covid-19.-Maiores-de-37-anos-ja-podem-fazer-agendamento-para-vacinacao-20869b7b\"},{\"data\":\"2021-06-23\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":177,\"marcador\":\"Autoagendamento 35+ \",\"fonte\":\"\"},{\"data\":\"2021-06-28\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":182,\"marcador\":\"Autoagendamento 33+ \",\"fonte\":\"\"},{\"data\":\"2021-06-30\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":184,\"marcador\":\"Autoagendamento 30+ \",\"fonte\":\"\"},{\"data\":\"2021-07-05\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":189,\"marcador\":\"Autoagendamento 27+ \",\"fonte\":\"\"},{\"data\":\"2021-07-07\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":191,\"marcador\":\"Autoagendamento 25+ \",\"fonte\":\"\"},{\"data\":\"2021-07-12\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":false,\"position\":196,\"marcador\":\"Autoagendamento 23+ \",\"fonte\":\"\"},{\"data\":\"2021-07-28\",\"mode\":\"vertical\",\"color\":\"#D17615\",\"display\":true,\"position\":212,\"marcador\":\"Autoagendamento 18+\",\"fonte\":\"\"}]");
 
 /***/ }),
 
@@ -6212,7 +6234,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1627596908922,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-18\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-08\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1627604433184,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-04\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-18\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-08\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
