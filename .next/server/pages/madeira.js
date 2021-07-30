@@ -2534,7 +2534,7 @@ function RamMapa({
 
   Object(external_react_["useEffect"])(async () => {
     statistics.getArquipelagoData().then(data => {
-      setGraphData(data[12]);
+      setGraphData(data[data.length - 1]);
 
       if (loaded === false) {
         setLoaded(true);
@@ -2922,9 +2922,11 @@ function Home() {
               children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
                 className: Home_module_default.a.title,
                 children: "Vacina\xE7\xE3o por regi\xE3o"
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h3", {
+              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
-                children: "Dados acumulados desde 31 de Dezembro de 2020 at\xE9 09 de Maio de 2021."
+                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                  locale: locale_["pt"]
+                }), "1."]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamMapa, {
                 colors: colors_v2,
                 statistics: statistics
@@ -2962,9 +2964,9 @@ function Home() {
                 children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos"
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
-                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
+                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
-                }), ", \xE0 exce\xE7\xE3o das doses administradas, cujo os ultimos dados dispon\xEDveis s\xE3o de", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
+                }), ", \xE0 exce\xE7\xE3o das doses administradas, cujo os ultimos dados dispon\xEDveis s\xE3o de", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
                 })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieVacinadosInfectadosRecuperadosObitos["a" /* PieVacinadosInfectadosRecuperadosObitos */], {
@@ -2979,9 +2981,9 @@ function Home() {
                 children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos e popula\xE7\xE3o suscet\xEDvel"
               }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("h3", {
                 className: Home_module_default.a.subtitle,
-                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
-                }), ", \xE0 exce\xE7\xE3o das doses administradas, cujo os ultimos dados dispon\xEDveis s\xE3o de", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+                }), ", \xE0 exce\xE7\xE3o das doses administradas, cujo os ultimos dados dispon\xEDveis s\xE3o de", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
                 })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieSuscetiveisProporcao["a" /* PieSuscetiveisProporcao */], {
@@ -3848,7 +3850,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1627604943017,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-18\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-08\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1627606172461,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-25\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
