@@ -289,7 +289,7 @@ export default function Home() {
 										{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
-										1.
+										.
 									</h3>
 									<hr />
 									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
