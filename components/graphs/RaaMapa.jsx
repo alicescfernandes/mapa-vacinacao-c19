@@ -93,12 +93,14 @@ export function RaaMapa({ statistics, colors }) {
 						backgroundColor: main,
 						stack: 'stack0',
 						order: 2,
-						data: [el.dose_1],
+						data_actual: el.dose_1,
+						data: [el.dose_1 - el.dose_2],
 					},
 					{
 						label: 'Total de vacinas administradas - 2ª Dose',
 						borderColor: shades[0],
 						backgroundColor: shades[0],
+						data_actual: el.dose_2,
 						data: [el.dose_2],
 						stack: 'stack0',
 						order: 1,
@@ -115,6 +117,16 @@ export function RaaMapa({ statistics, colors }) {
 			return {
 				indexAxis: 'y',
 				plugins: {
+					tooltip: {
+						mode: 'index',
+						intersect: true,
+						callbacks: {
+							label: (tooltipItem, b) => {
+								let data = tooltipItem.dataset.data_actual;
+								return `${tooltipItem.dataset.label}: ${formatNumber(data, false)}`;
+							},
+						},
+					},
 					datalabels: {
 						display: false,
 					},
@@ -148,7 +160,7 @@ export function RaaMapa({ statistics, colors }) {
 					},
 
 					x: {
-						stacked: false,
+						stacked: true,
 						ticks: {
 							beginAtZero: true,
 							stepSize: Math.round(populacao_residente / 5),
