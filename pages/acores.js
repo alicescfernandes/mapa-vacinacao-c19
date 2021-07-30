@@ -254,7 +254,13 @@ export default function Home() {
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
-									<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2021 até 14 de março de 20210.</h3>
+									<h3 className={styles.subtitle}>
+										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
+										{format(new Date(json.dateAcores).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+										.
+									</h3>
 									<hr />
 									<RaaMapa colors={colors_v2} statistics={statistics}></RaaMapa>
 								</Col>
@@ -292,11 +298,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateAcoresCases), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcores), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateAcores), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcoresCases), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
@@ -313,11 +319,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2021 até{' '}
-										{format(new Date(json.dateAcoresCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcores).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateAcores).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateAcoresCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
