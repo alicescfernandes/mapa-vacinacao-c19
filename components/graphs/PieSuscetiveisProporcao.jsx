@@ -15,14 +15,7 @@ export function PieSuscetiveisProporcao({ statistics, colors }) {
 	const data = () => {
 		return {
 			//labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
-			labels: [
-				'Vacinados apenas com uma dose',
-				'Vacinados (com as duas doses)',
-				'Casos Ativos',
-				'Casos Recuperados',
-				'Óbitos',
-				'População suscetível',
-			],
+			labels: ['Vacinação Iniciada', 'Vacinação Completa', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
 			datasets: [
 				{
 					backgroundColor: [tints[1], main, complements[0], complements[2], shades[2], complements[1]],

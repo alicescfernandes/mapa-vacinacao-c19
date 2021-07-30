@@ -9,7 +9,7 @@ export function PieVacinadosInfectadosRecuperadosObitos({ statistics, colors }) 
 
 	const data = (canvas) => {
 		return {
-			labels: ['Vacinados apenas com uma dose', 'Vacinados com as duas doses', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
+			labels: ['Vacinação Iniciada', 'Vacinação Completa', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
 			datasets: [
 				{
 					backgroundColor: [tints[1], main, complements[0], complements[2], shades[2]],
