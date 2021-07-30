@@ -362,8 +362,13 @@ export function useData({ regiao }) {
 					if (vals[prevDay] == null || val == null) {
 						return null;
 					}
-					return val - vals[prevDay];
+					let total_today = raw[idx].dose_2 + raw[idx].dose_1;
+					let total_prev = raw[prevDay].dose_2 + raw[prevDay].dose_1;
+					return total_today - total_prev;
+					//return val - vals[prevDay];
 				});
+
+				console.log(in2);
 			} else {
 				let { labels: labelsCont, values } = parseData(vaccines);
 				labels = labelsCont;
