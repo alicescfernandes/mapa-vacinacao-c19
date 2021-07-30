@@ -114,6 +114,7 @@ export function RamMapa({ statistics, colors }) {
 		const options = () => {
 			let dico = MADEIRA_DICOS[el.chave];
 			let populacao_residente = populacao_residente_ram[dico].valor;
+			console.log(1, populacao_residente);
 			return {
 				indexAxis: 'y',
 				plugins: {
@@ -152,26 +153,23 @@ export function RamMapa({ statistics, colors }) {
 					},
 				},
 				scales: {
-					yAxes: [
-						{
-							stacked: true,
-							id: 'y-axis',
-							ticks: {
-								beginAtZero: true,
-							},
+					y: {
+						stacked: true,
+						id: 'y-axis',
+						ticks: {
+							beginAtZero: true,
 						},
-					],
-					xAxes: [
-						{
-							stacked: false,
-							ticks: {
-								beginAtZero: true,
-								max: populacao_residente,
-								stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),
-								callback: (value) => formatNumber(value, false),
-							},
+					},
+
+					x: {
+						stacked: true,
+						ticks: {
+							beginAtZero: true,
+							max: populacao_residente,
+							stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),
+							callback: (value) => formatNumber(value, false),
 						},
-					],
+					},
 				},
 			};
 		};
