@@ -3,6 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import { Card } from './../Card';
 import { formatNumber } from './../../utils';
 export function PieRecebidasAdquiridas({ statistics, colors }) {
+	console.log(statistics);
 	let [loading, setLoading] = useState(true);
 	let { main } = colors;
 

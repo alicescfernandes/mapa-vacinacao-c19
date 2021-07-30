@@ -8,7 +8,7 @@ let styles = {
 	'vaccine-label': {
 		textAlign: 'right',
 		fontSize: '12px',
-		lineHeight: '32px',
+		lineHeight: '25px',
 		margin: '0px',
 	},
 };
@@ -22,7 +22,8 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				{
 					label: '2ª Dose',
 					type: 'bar',
-					backgroundColor: main,
+					backgroundColor: shades[1],
+					data_actual: [data.mod[1], data.com[1], data.az[1], data.janss[1]],
 					data: [data.mod[1], data.com[1], data.az[1], data.janss[1]],
 					stack: 'stack1',
 				},
@@ -30,8 +31,9 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 				{
 					label: '1ª Dose',
 					type: 'bar',
-					backgroundColor: shades[1],
-					data: [data.mod[0], data.com[0], data.az[0], data.janss[0]],
+					backgroundColor: main,
+					data_actual: [data.mod[0], data.com[0], data.az[0], data.janss[0]],
+					data: [data.mod[0] - data.mod[1], data.com[0] - data.com[1], data.az[0] - data.az[1], data.janss[0] - data.janss[1]],
 					stack: 'stack1',
 				},
 			],
@@ -43,6 +45,16 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 			indexAxis: 'y',
 			maintainAspectRatio: false,
 			plugins: {
+				tooltip: {
+					mode: 'index',
+					intersect: true,
+					callbacks: {
+						label: (tooltipItem, b) => {
+							let data = tooltipItem.dataset.data_actual[tooltipItem.dataIndex];
+							return `${tooltipItem.dataset.label}: ${formatNumber(data, false)}`;
+						},
+					},
+				},
 				datalabels: {
 					display: false,
 					color: 'white',
@@ -103,7 +115,7 @@ function CustomBarChart({ type, total, colors, data, showHeading }) {
 							return formatNumber(value, false);
 						},
 					},
-					max: 3_000_000,
+					max: 2_000_000,
 				},
 			},
 		};
@@ -149,10 +161,10 @@ export function BarTotaisPorFaixaEtaria({ statistics, colors }) {
 						<div className={'legends'}>
 							<p>
 								<span className={'legend'}>
-									<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>1ª Dose
+									<span style={{ backgroundColor: main }} className={'color_sample'}></span>1ª Dose
 								</span>
 								<span className={'legend'}>
-									<span style={{ backgroundColor: main }} className={'color_sample'}></span>2ª Dose
+									<span style={{ backgroundColor: shades[1] }} className={'color_sample'}></span>2ª Dose
 								</span>
 								{/*<span>
 									<span></span>População-Alvo

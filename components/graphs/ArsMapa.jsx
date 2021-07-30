@@ -6,6 +6,7 @@ import { formatNumber, getColor } from '../../utils';
 import { Card } from '../Card';
 import cardStyles from './../Card.module.scss';
 import classNames from 'classnames';
+import { da } from 'date-fns/locale';
 
 export function ArsMapa({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
@@ -117,12 +118,16 @@ export function ArsMapa({ statistics, colors }) {
 						backgroundColor: main,
 						stack: 'stack0',
 						order: 2,
-						data: [el.CUMUL_VAC_1],
+						data_actual: el.CUMUL_VAC_1,
+						data_cover: Math.floor(parseFloat(el.COVER_1_VAC.replace(',', '.')) * 100),
+						data: [el.CUMUL_VAC_1 - el.CUMUL_VAC_2],
 					},
 					{
 						label: 'Total de vacinas administradas - 2ª Dose',
 						borderColor: shades[1],
 						backgroundColor: shades[1],
+						data_actual: el.CUMUL_VAC_2,
+						data_cover: Math.floor(parseFloat(el.COVER.replace(',', '.')) * 100),
 						data: [el.CUMUL_VAC_2],
 						stack: 'stack0',
 						order: 1,
@@ -138,6 +143,16 @@ export function ArsMapa({ statistics, colors }) {
 			return {
 				indexAxis: 'y',
 				plugins: {
+					tooltip: {
+						mode: 'index',
+						intersect: false,
+						callbacks: {
+							label: (tooltipItem, b) => {
+								let data = tooltipItem.dataset.data_actual;
+								return `${tooltipItem.dataset.label}: ${formatNumber(data, false)} (${tooltipItem.dataset.data_cover}%)`;
+							},
+						},
+					},
 					datalabels: {
 						display: false,
 					},
@@ -152,18 +167,10 @@ export function ArsMapa({ statistics, colors }) {
 				animation: {
 					duration: 1000,
 				},
-				tooltips: {
-					mode: 'index',
-					intersect: false,
 
-					callbacks: {
-						title: (tooltipItem, data) => {
-							return '';
-						},
-					},
-				},
 				scales: {
 					y: {
+						stacked: true,
 						ticks: {
 							beginAtZero: true,
 						},
@@ -171,6 +178,7 @@ export function ArsMapa({ statistics, colors }) {
 					},
 
 					x: {
+						stacked: true,
 						ticks: {
 							beginAtZero: true,
 							stepSize: Math.round(window.innerWidth <= RESIZE_TRESHOLD ? populacao_residente / 3 : populacao_residente / 6),

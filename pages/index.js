@@ -193,7 +193,7 @@ export default function Home() {
 		plausible.trackPageview();
 
 		let { RECEIVED: sum } = await statistics?.getTotalSNSRecebidas();
-		//sum = 4218420; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/05/Relato%CC%81rio-de-Vacinac%CC%A7a%CC%83o-n.o-12.pdf
+		sum = 12886770; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/07/Relato%CC%81rio-Vacinac%CC%A7a%CC%83o-n.o-24.pdf
 
 		let item = rawData.filter((el) => {
 			return isSameDay(el.Data, new Date(json.dateSns));
