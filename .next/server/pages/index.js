@@ -3367,7 +3367,6 @@ function PieRecebidasAdquiridas({
   statistics,
   colors
 }) {
-  console.log(statistics);
   let {
     0: loading,
     1: setLoading
@@ -5953,6 +5952,7 @@ function LineRt({
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({});
   const canvasRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    console.log('set regioao');
     if (!loaded) return;
     statistics.getRtRegiao(currentRegiao).then(data => setRtData(data));
   }, [currentRegiao]);
@@ -6234,7 +6234,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1627604664988,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-18\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-08\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1627604858412,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-18\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-08\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
