@@ -197,7 +197,8 @@
         "data": "2021-07-12",
         "mode": "vertical",
         "color":"#D17615",
-        "display":false,
+        "display":true,
+        "asd":"asd",
         "position": 196,
         "marcador": "Autoagendamento 23+ ",
         "fonte": ""
