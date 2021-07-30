@@ -284,7 +284,13 @@ export default function Home() {
 							<Row>
 								<Col>
 									<h2 className={styles.title}>Vacinação por região</h2>
-									<h3 className={styles.subtitle}>Dados acumulados desde 31 de Dezembro de 2020 até 09 de Maio de 2021.</h3>
+									<h3 className={styles.subtitle}>
+										Dados acumulados desde 31 de Dezembro de 2020 até{' '}
+										{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+											locale: pt,
+										})}
+										1.
+									</h3>
 									<hr />
 									<RamMapa colors={colors_v2} statistics={statistics}></RamMapa>
 								</Col>
@@ -322,11 +328,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2020 até{' '}
-										{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateMadeira), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateMadeiraCases), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>
@@ -343,11 +349,11 @@ export default function Home() {
 									</h2>
 									<h3 className={styles.subtitle}>
 										Dados acumulados desde 31 de Dezembro de 2020 até{' '}
-										{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 										, à exceção das doses administradas, cujo os ultimos dados disponíveis são de{' '}
-										{format(new Date(json.dateMadeira).getTime(), "dd 'de' LLLL 'de' yyyy", {
+										{format(new Date(json.dateMadeiraCases).getTime(), "dd 'de' LLLL 'de' yyyy", {
 											locale: pt,
 										})}
 									</h3>

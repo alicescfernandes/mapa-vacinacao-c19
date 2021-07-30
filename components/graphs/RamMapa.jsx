@@ -176,7 +176,7 @@ export function RamMapa({ statistics, colors }) {
 
 	useEffect(async () => {
 		statistics.getArquipelagoData().then((data) => {
-			setGraphData(data[12]);
+			setGraphData(data[data.length - 1]);
 
 			if (loaded === false) {
 				setLoaded(true);
