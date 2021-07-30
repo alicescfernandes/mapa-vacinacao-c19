@@ -2470,6 +2470,7 @@ function RamMapa({
     const options = () => {
       let dico = constants["k" /* MADEIRA_DICOS */][el.chave];
       let populacao_residente = generic["populacao_residente_ram"][dico].valor;
+      console.log(1, populacao_residente);
       return {
         indexAxis: 'y',
         plugins: {
@@ -2510,22 +2511,22 @@ function RamMapa({
           }
         },
         scales: {
-          yAxes: [{
+          y: {
             stacked: true,
             id: 'y-axis',
             ticks: {
               beginAtZero: true
             }
-          }],
-          xAxes: [{
-            stacked: false,
+          },
+          x: {
+            stacked: true,
             ticks: {
               beginAtZero: true,
               max: populacao_residente,
               stepSize: Math.round(window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? populacao_residente / 3 : populacao_residente / 6),
               callback: value => Object(utils["d" /* formatNumber */])(value, false)
             }
-          }]
+          }
         }
       };
     };
@@ -3865,7 +3866,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1627638105034,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-25\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1627638698028,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-25\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
