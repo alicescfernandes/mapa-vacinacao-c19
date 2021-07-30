@@ -2452,12 +2452,14 @@ function RamMapa({
           backgroundColor: main,
           stack: 'stack0',
           order: 2,
-          data: [el.dose_1]
+          data_actual: el.dose_1,
+          data: [el.dose_1 - el.dose_2]
         }, {
           label: 'Total de vacinas administradas - 2ª Dose',
           borderColor: shades[0],
           backgroundColor: shades[0],
           data: [el.dose_2],
+          data_actual: el.dose_2,
           stack: 'stack0',
           order: 1
         }]
@@ -2471,6 +2473,16 @@ function RamMapa({
       return {
         indexAxis: 'y',
         plugins: {
+          tooltip: {
+            mode: 'index',
+            intersect: true,
+            callbacks: {
+              label: (tooltipItem, b) => {
+                let data = tooltipItem.dataset.data_actual;
+                return `${tooltipItem.dataset.label}: ${Object(utils["d" /* formatNumber */])(data, false)}`;
+              }
+            }
+          },
           datalabels: {
             display: false
           },
@@ -3853,7 +3865,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1627606765345,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-25\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1627638105034,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-25\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
