@@ -49,7 +49,7 @@
 		"core-js": "3",
 		"cors": "^2.8.5",
 		"date-fns": "^2.17.0",
-		"dotenv": "^8.2.0",
+		"dotenv": "^8.6.0",
 		"firebase-admin": "^9.6.0",
 		"minimist": "^1.2.5",
 		"mongodb": "^3.6.5",
