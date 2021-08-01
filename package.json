@@ -48,7 +48,7 @@
 		"classnames": "^2.2.6",
 		"core-js": "3",
 		"cors": "^2.8.5",
-		"date-fns": "^2.17.0",
+		"date-fns": "^2.22.1",
 		"dotenv": "^8.2.0",
 		"firebase-admin": "^9.6.0",
 		"minimist": "^1.2.5",
