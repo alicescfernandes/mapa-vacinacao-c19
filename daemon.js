@@ -259,7 +259,7 @@ console.log(new Date().toLocaleString(), 'daemon running');
 		//Set the schedule
 
 		//Try publish after 14h
-		schedule.scheduleJob('*/5 14 * * *', function () {
+		schedule.scheduleJob('*/5 14-18 * * *', function () {
 			updateJSON();
 		});
 
