@@ -340,7 +340,7 @@ export default function Home() {
 								href={fases.fases[fases.fase_atual].fontes[0].permalink}
 								className={`${cardStyles.card_subtitle} ${styles.link}`}
 							>
-								Portal de autoagemento
+								Portal de autoagendamento
 							</a>
 						</Card>
 					</Col>
