@@ -2128,7 +2128,7 @@ function PieVacinadosInfectadosRecuperadosObitos({
 
   const data = canvas => {
     return {
-      labels: ['Vacinados apenas com uma dose', 'Vacinados com as duas doses', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
+      labels: ['Vacinação Iniciada', 'Vacinação Completa', 'Casos Ativos', 'Casos Recuperados', 'Óbitos'],
       datasets: [{
         backgroundColor: [tints[1], main, complements[0], complements[2], shades[2]],
         data: [Math.abs(vaccines.dose_1 - vaccines.dose_2), vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos]
@@ -2322,7 +2322,7 @@ function PieSuscetiveisProporcao({
   const data = () => {
     return {
       //labels: ['Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
-      labels: ['Vacinados apenas com uma dose', 'Vacinados (com as duas doses)', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
+      labels: ['Vacinação Iniciada', 'Vacinação Completa', 'Casos Ativos', 'Casos Recuperados', 'Óbitos', 'População suscetível'],
       datasets: [{
         backgroundColor: [tints[1], main, complements[0], complements[2], shades[2], complements[1]],
         data: [vacinados_apenas_uma, vaccines.dose_2, lastCase.ativos, lastCase.recuperados, lastCase.obitos, populacao_suscetivel] //data: [vaccines.dose_2 , valueCasesDiarios.reverse()[0].ativos, valueCasesDiarios.reverse()[0].recuperados, valueCasesDiarios.reverse()[0].obitos, populacao_suscetivel],
@@ -3589,7 +3589,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1627638698028,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-25\",\"dateMadeiraCases\":\"2021-07-29\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1627769623254,\"dateSnsStartWeirdFormat\":\"19/07/21\",\"dateSnsStart\":\"2021-07-19\",\"dateSns\":\"2021-07-19\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-07-25\",\"dateMadeiraCases\":\"2021-07-30\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
