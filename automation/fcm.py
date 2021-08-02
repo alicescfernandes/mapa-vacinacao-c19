@@ -27,7 +27,7 @@ if(current_time.date() > last_update.date()):
     vaccines = open('./data/vaccines.json', 'r')
     parsed =  json.load(vaccines)
     last_vaccine = parsed[-1]
-    prev_last_vaccine2 =parsed[-2]
+    prev_last_vaccine2 =parsed[-3]
 
     text = text.replace("{{total_total}}", format_number(last_vaccine['Vacinados_Ac']))
     text = text.replace("{{total_in1}}", format_number(last_vaccine['Inoculacao1_Ac']))

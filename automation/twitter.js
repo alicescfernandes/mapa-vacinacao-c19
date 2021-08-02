@@ -10,12 +10,6 @@ if (fs.existsSync('./twitter-conf.json')) {
 	twitterLastUpdate = JSON.parse(fs.readFileSync('./twitter-conf.json')); //do not cache this pls
 }
 
-let todayDate = new Date();
-todayDate.setMinutes(0);
-todayDate.setMilliseconds(0);
-todayDate.setSeconds(0);
-todayDate.setHours(0);
-
 let Twitter = require('twitter');
 
 var client = new Twitter({
@@ -27,9 +21,16 @@ var client = new Twitter({
 
 if (data[data.length - 1].Data > twitterLastUpdate.last_update) {
 	let yesterday = data[data.length - 2];
+	console.log(new Date(yesterday.Data));
 	let today = data[data.length - 1];
 	twitterLastUpdate.last_update = today.Data;
 	fs.writeFileSync('./twitter-conf.json', JSON.stringify(twitterLastUpdate));
+
+	let todayDate = new Date(today.Data);
+	todayDate.setMinutes(0);
+	todayDate.setMilliseconds(0);
+	todayDate.setSeconds(0);
+	todayDate.setHours(0);
 
 	let postVariables = {
 		'{{novas_total}}': numberFormatter.format(today.Vacinados_Ac - yesterday.Vacinados_Ac).replace(/,/gm, ' '),
@@ -51,6 +52,7 @@ if (data[data.length - 1].Data > twitterLastUpdate.last_update) {
 	for (let key of Object.keys(postVariables)) {
 		post = post.replace(key, postVariables[key]);
 	}
+	console.log(post);
 	/* client.post('account/update_profile', {
 		description: `Sabia que até dia ${postVariables['{{dia}}']}/${postVariables['{{mes}}']} foram administradas ${postVariables['{{total_total}}']} vacinas? Veja aqui mais info sobre plano de vacinação contra a covid 19. Não somos um site do governo`,
 	});
