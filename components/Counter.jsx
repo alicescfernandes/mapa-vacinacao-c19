@@ -23,8 +23,7 @@ export function Counter({ to, yesterday, title, subtitle, ps, colors, digits, su
 					<span style={{ color: foreground }} className={styles.card_highlight}>
 						{numberFormatter.format(to).replace(/,/gm, ' ')} {suffix ? suffix : ''}
 					</span>
-
-					{Math.abs(to - yesterday) > 0 ? (
+					{yesterday && Math.abs(to - yesterday) > 0 ? (
 						<>
 							<p className={styles.card_subtitle}>
 								<span style={{ color: foreground }} className={styles.card_subtitle_highlight}>
