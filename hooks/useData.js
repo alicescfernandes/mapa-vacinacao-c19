@@ -59,7 +59,7 @@ export function useData({ regiao }) {
 		},
 		getEstimativaStock: async () => {
 			let DAYS_PER_WEEK = 7;
-			let totalDays = data.week * DAYS_PER_WEEK;
+			let totalDays = (data.week + 1) * DAYS_PER_WEEK;
 			let { values: totalDiarios, labels } = statistics.getDiariosInoculacoes();
 			let vaccines_stock = Array(totalDiarios.length).fill(0);
 			let vaccines_stock_var = Array(totalDays).fill(0);
