@@ -53,6 +53,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 18/24',
 					labelGroup: 'Grupo 18/24',
 					fill: false,
+					lineTension: 0.3,
 
 					backgroundColor: shades[0],
 					data: groups.map((group) => group.e1824[activeDose] || 0),
@@ -68,6 +69,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 25/49',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
+					lineTension: 0.3,
 
 					backgroundColor: tints[1],
 					data: groups.map((group) => group.e2549[activeDose] || 0),
@@ -83,6 +85,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 50/59',
 					labelGroup: 'Grupo 50/59',
 					fill: false,
+					lineTension: 0.3,
 
 					backgroundColor: main,
 					data: groups.map((group) => group.e5059[activeDose] || 0),
@@ -98,6 +101,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 60/69',
 					labelGroup: 'Grupo 60/69',
 					fill: false,
+					lineTension: 0.3,
 
 					backgroundColor: shades[2],
 					data: groups.map((group) => (group.e6064[activeDose] + group.e6569[activeDose]) / 2 || 0),
@@ -113,6 +117,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Grupo 70/79',
 					labelGroup: 'Grupo 70/79',
 					fill: false,
+					lineTension: 0.3,
 
 					backgroundColor: complements[2],
 					data: groups.map((group) => group.e7079.dose_2 || 0),
@@ -134,6 +139,7 @@ export function RamBarAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 					stack: 'stack2',
 					fill: false,
+					lineTension: 0.3,
 
 					customDose: 2,
 				},

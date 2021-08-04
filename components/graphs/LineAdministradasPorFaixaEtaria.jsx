@@ -42,6 +42,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Até aos 17 anos',
 					labelGroup: 'Grupo 18/24',
 					fill: false,
+					lineTension: 0.3,
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '0-17 anos')
@@ -56,6 +57,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Entre 18 anos e 24 anos',
 					labelGroup: 'Grupo 18/24',
 					fill: false,
+					lineTension: 0.3,
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '18-24 anos')
@@ -70,6 +72,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Entre 25 anos e 49 anos',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
+					lineTension: 0.3,
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '25-49 anos')
@@ -84,6 +87,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Entre 50 anos e 64 anos',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
+					lineTension: 0.3,
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '50-64 anos')
@@ -98,6 +102,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: 'Entre 60 e 79 anos',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
+					lineTension: 0.3,
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '65-79 anos')
@@ -112,6 +117,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					label: '80 ou mais anos',
 					labelGroup: 'Grupo 25/49',
 					fill: false,
+					lineTension: 0.3,
 
 					data: graphData
 						.filter((el) => el.AGEGROUP == '80 ou mais anos')
