@@ -1318,7 +1318,7 @@ function useData({
     },
     getEstimativaStock: async () => {
       let DAYS_PER_WEEK = 7;
-      let totalDays = _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.week * DAYS_PER_WEEK;
+      let totalDays = (_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.week + 1) * DAYS_PER_WEEK;
       let {
         values: totalDiarios,
         labels
@@ -5388,9 +5388,9 @@ function Home() {
                 children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
                 })]
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieAdministradasDoses, {
-                colors: colors_v2,
-                statistics: doses
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
+                className: Home_module_default.a.title,
+                children: "Devido \xE0 falta de dados das vacinas de dia 1 de Agosto, n\xE3o podemos apresentar este gr\xE1fico"
               })]
             })]
           })
@@ -6246,7 +6246,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1628112802791,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-03\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1628114376594,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-03\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
