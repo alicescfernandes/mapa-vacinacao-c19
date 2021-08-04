@@ -455,8 +455,10 @@ export default function Home() {
 										})}
 									</h3>
 									<hr />
-
-									<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>
+									<h2 className={styles.title}>
+										Devido à falta de dados das vacinas de dia 1 de Agosto, não podemos apresentar este gráfico
+									</h2>
+									{/*<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>*/}
 								</Col>
 							</Row>
 						</LazyLoad>
