@@ -491,10 +491,6 @@ export default function Home() {
 									<h2 className={styles.title}>
 										Número de vacinas administradas por dia com o número de infectados e de recuperados nos últimos 30 dias
 									</h2>
-									<h3 className={styles.subtitle}>
-										Chegou-nos a informação que a vacina da Janssen é contada em duplicado. Até termos mais informação, vamos
-										apenas mostrar os números da segunda dose
-									</h3>
 									<hr />
 									<LineVacinadosInfecoesRecuperados colors={colors_v2} statistics={statistics}></LineVacinadosInfecoesRecuperados>
 								</Col>
