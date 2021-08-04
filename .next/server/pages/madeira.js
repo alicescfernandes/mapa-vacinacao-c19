@@ -2187,6 +2187,7 @@ function RamBarAdministradasPorFaixaEtaria({
         label: 'Grupo 18/24',
         labelGroup: 'Grupo 18/24',
         fill: false,
+        lineTension: 0.3,
         backgroundColor: shades[0],
         data: groups.map(group => group.e1824[activeDose] || 0),
         order: 1,
@@ -2195,6 +2196,7 @@ function RamBarAdministradasPorFaixaEtaria({
         label: 'Grupo 25/49',
         labelGroup: 'Grupo 25/49',
         fill: false,
+        lineTension: 0.3,
         backgroundColor: tints[1],
         data: groups.map(group => group.e2549[activeDose] || 0),
         order: 3,
@@ -2203,6 +2205,7 @@ function RamBarAdministradasPorFaixaEtaria({
         label: 'Grupo 50/59',
         labelGroup: 'Grupo 50/59',
         fill: false,
+        lineTension: 0.3,
         backgroundColor: main,
         data: groups.map(group => group.e5059[activeDose] || 0),
         stack: 'stack1',
@@ -2212,6 +2215,7 @@ function RamBarAdministradasPorFaixaEtaria({
         label: 'Grupo 60/69',
         labelGroup: 'Grupo 60/69',
         fill: false,
+        lineTension: 0.3,
         backgroundColor: shades[2],
         data: groups.map(group => (group.e6064[activeDose] + group.e6569[activeDose]) / 2 || 0),
         order: 7,
@@ -2220,6 +2224,7 @@ function RamBarAdministradasPorFaixaEtaria({
         label: 'Grupo 70/79',
         labelGroup: 'Grupo 70/79',
         fill: false,
+        lineTension: 0.3,
         backgroundColor: complements[2],
         data: groups.map(group => group.e7079.dose_2 || 0),
         order: 9,
@@ -2232,6 +2237,7 @@ function RamBarAdministradasPorFaixaEtaria({
         order: 11,
         stack: 'stack2',
         fill: false,
+        lineTension: 0.3,
         customDose: 2
       })]
     };
@@ -3866,7 +3872,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1628112196357,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-03\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
+module.exports = JSON.parse("{\"date\":1628112802791,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-07-25\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-03\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":29}");
 
 /***/ }),
 
