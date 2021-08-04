@@ -156,6 +156,7 @@ sup.new {
 .leaflet-container {
 	background-color: #62c3ff;
 	border-radius: 5px;
+	z-index: -1;
 }
 
 .leaflet-control-attribution {
