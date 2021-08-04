@@ -8,9 +8,9 @@ import { useCanvasResizer } from '../../hooks/useCanvasResizer';
 export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 	let [loading, setLoading] = useState(true);
 	let marriedData = {};
-	let { values, labels, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
+	let { values, labels, valuesIn1, valuesIn2, raw: rawDiarios } = statistics.getDiariosInoculacoes();
 	let { raw: rawCasos } = statistics.getDiariosCases();
-	let { main, complements } = colors;
+	let { main, shades, complements } = colors;
 	const numeroDias = 30;
 
 	let { setCanvasNode } = useCanvasResizer();
@@ -55,22 +55,22 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 					stack: 'stack0',
 					order: 1,
 				},
-				/*	{
+				{
 					label: 'Inoculação - 1ª Dose / Unidpse',
 					backgroundColor: shades[0],
 					borderColor: shades[0],
 					data: valuesIn1.slice(valuesIn1.length - numeroDias, valuesIn1.length),
 					stack: 'stack0',
 					order: 2,
-				}, */
-				/* {
+				},
+				{
 					label: 'Vacinas administradas',
 					backgroundColor: shades[0],
 					borderColor: shades[0],
 					data: values.slice(values.length - numeroDias, valuesIn1.length),
 					stack: 'stack0',
 					order: 2,
-				}, */
+				},
 
 				{
 					label: 'Número de infectados diário',
