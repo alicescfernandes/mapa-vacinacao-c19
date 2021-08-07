@@ -5119,7 +5119,76 @@ function Home() {
     };
     let f = new Intl.DateTimeFormat('pt-PT', options);
     return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
+      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
+        className: "hide_mobile container-fluid",
+        style: {
+          margin: '15px auto',
+          display: 'block'
+        },
+        children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Casos (DSSG-PT)"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f.format(new Date(last_update.dateCases))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Vacinas"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f.format(new Date(last.Data))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Relat\xF3rios de Vacina\xE7\xE3o"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f.format(new Date(last_update.dateSns))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Dados RT"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f.format(new Date(last_update.dateRt))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Relat\xF3rios ECDC"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f.format(new Date(last_update.dateEcdc))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Dados OWID"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f.format(new Date(last_update.dateOwid))]
+            })]
+          })]
+        })
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
         className: Home_module_default.a.datepickerRow,
         children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
           style: {
@@ -6236,7 +6305,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1628361768397,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-01\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":30}");
+module.exports = JSON.parse("{\"date\":1628363336546,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-01\",\"dateOwid\":\"2021-08-06\",\"dateCases\":1628208000000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":30}");
 
 /***/ }),
 
