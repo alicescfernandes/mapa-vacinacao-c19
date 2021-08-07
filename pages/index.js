@@ -371,8 +371,7 @@ export default function Home() {
 								style={{ color: colors[0] }}
 								className={cardStyles.card_highlight_2}
 							>
-								<span className={'hide_mobile'}>Entre </span>&nbsp;
-								{fases.fases[fases.fase_atual].nome} <span className={'hide_mobile'}>anos (inc)</span>
+								{fases.fases[fases.fase_atual].nome} <span className={'hide_mobile'}>anos</span>
 							</h1>
 
 							<a
