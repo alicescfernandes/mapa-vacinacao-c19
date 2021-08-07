@@ -1,8 +1,9 @@
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import styles from './Footer.module.scss';
 import json from './../data/last-update.json';
+import cardStyles from '../components/Card.module.scss';
 
-export function Footer() {
+export function Footer({ last }) {
 	let options = {
 		year: 'numeric',
 		month: 'long',
@@ -12,8 +13,57 @@ export function Footer() {
 		second: 'numeric',
 	};
 	let f = new Intl.DateTimeFormat('pt-PT', options);
+	let options2 = {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	};
+	let f2 = new Intl.DateTimeFormat('pt-PT', options2);
 	return (
 		<>
+			<div className={`${styles.footer} hide_mobile card-shadow`}>
+				<Container className={`hide_mobile`} style={{ padding: '15px', display: 'block' }}>
+					<Row>
+						<Col>
+							<p className={cardStyles.card_subtitle}>
+								<strong>Casos (DSSG-PT)</strong>
+							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateCases))}</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle}>
+								<strong>Vacinas</strong>
+							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateVaccines))}</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle}>
+								<strong>Relatórios de Vacinação</strong>
+							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateSns))}</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle}>
+								<strong>Dados RT</strong>
+							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateRt))}</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle}>
+								<strong>Relatórios ECDC</strong>
+							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateEcdc))}</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle}>
+								<strong>Dados OWID</strong>
+							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateOwid))}</p>
+						</Col>
+					</Row>
+				</Container>
+			</div>
+
 			<script src="/leaflet.js"></script>
 			<script
 				src="https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js"
