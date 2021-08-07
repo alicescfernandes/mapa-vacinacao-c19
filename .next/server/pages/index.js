@@ -3480,7 +3480,7 @@ function PieAdministradasDoses({
       labels: ['Vacinação Iniciada', 'Vacinação Completa', 'Doses por administrar'],
       datasets: [{
         backgroundColor: [main, shades[0], shades[1]],
-        data: [statistics.primeiras, statistics.segundas, statistics.recebidas - statistics.administradas]
+        data: [statistics.iniciada, statistics.completa, statistics.recebidas - statistics.administradas]
       }]
     };
   };
@@ -5062,18 +5062,16 @@ function Home() {
     setPreviousItem(rawData[rawData.length - 2]);
     plausible.trackPageview();
     let {
-      RECEIVED: sum
+      RECEIVED: sum,
+      CUMUL_VAC_LEAST: least,
+      CUMUL_VAC_COMPLETE: complete,
+      CUMUL: total
     } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas());
-    sum = 12886770; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/07/Relato%CC%81rio-Vacinac%CC%A7a%CC%83o-n.o-24.pdf
-
-    let item = rawData.filter(el => {
-      return Object(external_date_fns_["isSameDay"])(el.Data, new Date(last_update.dateSns));
-    });
     setDoses(pages_objectSpread(pages_objectSpread({}, doses), {}, {
       recebidas: sum,
-      administradas: item[0].Vacinados_Ac,
-      primeiras: item[0].Inoculacao1_Ac,
-      segundas: item[0].Inoculacao2_Ac,
+      administradas: total,
+      iniciada: least,
+      completa: complete,
       data: Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), 'dd/LL/yyyy', {
         locale: locale_["pt"]
       }),
@@ -5226,12 +5224,9 @@ function Home() {
                 color: colors[0]
               },
               className: Card_module_default.a.card_highlight_2,
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+              children: [fases.fases[fases.fase_atual].nome, " ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
                 className: 'hide_mobile',
-                children: "Entre "
-              }), "\xA0", fases.fases[fases.fase_atual].nome, " ", /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                className: 'hide_mobile',
-                children: "anos (inc)"
+                children: "anos"
               })]
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
               rel: "noopener noreferrer",
@@ -5386,9 +5381,9 @@ function Home() {
                 children: ["Dados acumulados desde 21 de Dezembro de 2021 at\xE9", ' ', Object(external_date_fns_["format"])(new Date(last_update.dateSns).getTime(), "dd 'de' LLLL 'de' yyyy", {
                   locale: locale_["pt"]
                 })]
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
-                className: Home_module_default.a.title,
-                children: "Devido \xE0 falta de dados das vacinas de dia 1 de Agosto, n\xE3o podemos apresentar este gr\xE1fico"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieAdministradasDoses, {
+                colors: colors_v2,
+                statistics: doses
               })]
             })]
           })
@@ -6208,7 +6203,7 @@ function LineRt({
 /***/ "paFH":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"fase_atual\":6,\"fases\":[{\"nome\":\"1ª Fase\",\"inicio\":1609027200000,\"objetivo_formatado\":\"950 mil pessoas\",\"fim\":null,\"objetivo\":950000,\"bullet_points\":[\"Profissionais de saúde envolvidos na prestação de cuidados a doentes\",\"Profissionais das forças armadas, forças de segurança e serviços críticos\",\"Profissionais e residentes em Estruturas Residenciais para Pessoas Idosas (ERPI) e instituições similares\",\"Profissionais e utentes da Rede Nacional de Cuidados Continuados Integrados (RNCCI).\"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"1ª Fase\",\"inicio\":1580515200000,\"fim\":null,\"objetivo\":950000,\"objetivo_formatado\":\"950 mil pessoas\",\"bullet_points\":[\"Pessoas com 80 ou mais anos de idade\",\"Pessoas com 50 ou mais anos de idade, que sofram de infsuficiência cardíaca, doença coronária, insuficiência renal (TFG < 60ml/min) ou doença respiratória crónicas \"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://covid19.min-saude.pt/vacinacao/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"2ª Fase\",\"inicio\":1585699200000,\"fim\":null,\"objetivo\":2700000,\"objetivo_formatado\":\"2.7 milhões de pessoas\",\"bullet_points\":[\"Pessoas com 65 anos ou mais que não tenham sido vacinadas previamente\",\"Pessoas entre os 50 e os 64 anos de idade que sofram de diabetes, neoplasia maligna ativa, doença renal crónica, insuficiência hepática, hipertensão arterial ou obesidade\"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://covid19.min-saude.pt/vacinacao/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"25 ou mais\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"23 ou mais\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"18 ou mais\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"16 e 17\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"3ª Fase\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":\"950 mil pessoas\",\"bullet_points\":[\"TBA\"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://covid19.min-saude.pt/vacinacao/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]}]}");
+module.exports = JSON.parse("{\"fase_atual\":5,\"fases\":[{\"nome\":\"1ª Fase\",\"inicio\":1609027200000,\"objetivo_formatado\":\"950 mil pessoas\",\"fim\":null,\"objetivo\":950000,\"bullet_points\":[\"Profissionais de saúde envolvidos na prestação de cuidados a doentes\",\"Profissionais das forças armadas, forças de segurança e serviços críticos\",\"Profissionais e residentes em Estruturas Residenciais para Pessoas Idosas (ERPI) e instituições similares\",\"Profissionais e utentes da Rede Nacional de Cuidados Continuados Integrados (RNCCI).\"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"1ª Fase\",\"inicio\":1580515200000,\"fim\":null,\"objetivo\":950000,\"objetivo_formatado\":\"950 mil pessoas\",\"bullet_points\":[\"Pessoas com 80 ou mais anos de idade\",\"Pessoas com 50 ou mais anos de idade, que sofram de infsuficiência cardíaca, doença coronária, insuficiência renal (TFG < 60ml/min) ou doença respiratória crónicas \"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://covid19.min-saude.pt/vacinacao/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"2ª Fase\",\"inicio\":1585699200000,\"fim\":null,\"objetivo\":2700000,\"objetivo_formatado\":\"2.7 milhões de pessoas\",\"bullet_points\":[\"Pessoas com 65 anos ou mais que não tenham sido vacinadas previamente\",\"Pessoas entre os 50 e os 64 anos de idade que sofram de diabetes, neoplasia maligna ativa, doença renal crónica, insuficiência hepática, hipertensão arterial ou obesidade\"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://covid19.min-saude.pt/vacinacao/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"25 ou mais\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"23 ou mais\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"18 ou mais\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"16 e 17\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":null,\"bullet_points\":[],\"fontes\":[{\"nome\":\"Portal de Autoagendamento\",\"permalink\":\"https://covid19.min-saude.pt/pedido-de-agendamento/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]},{\"nome\":\"3ª Fase\",\"inicio\":null,\"fim\":null,\"objetivo\":null,\"objetivo_formatado\":\"950 mil pessoas\",\"bullet_points\":[\"TBA\"],\"fontes\":[{\"nome\":\"SNS\",\"permalink\":\"https://covid19.min-saude.pt/vacinacao/\"},{\"nome\":\"SNS\",\"permalink\":\"https://www.sns24.gov.pt/tema/doencas-infecciosas/covid-19/vacina-covid-19/#sec-0\"}]}]}");
 
 /***/ }),
 
@@ -6241,7 +6236,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1628341208092,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-01\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":30}");
+module.exports = JSON.parse("{\"date\":1628361768397,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-01\",\"dateRt\":\"20210-03-28\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":30}");
 
 /***/ }),
 
