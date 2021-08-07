@@ -38,6 +38,7 @@ async function updateCases(cb) {
 	}
 	fs.writeFileSync('./data/cases_v2.json', JSON.stringify(jsonArrayObj));
 	json.date = new Date();
+	json.dateCases = jsonArrayObj.reverse()[0].data;
 	fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
 	console.log('cb2', cb);
 	if (cb) cb();

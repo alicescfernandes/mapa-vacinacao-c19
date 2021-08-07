@@ -244,52 +244,46 @@ export default function Home() {
 
 		return (
 			<>
-				{/* <Container className="hide_mobile container-fluid" style={{ margin: '50px auto', display: 'block' }}>
+				<Container className="hide_mobile container-fluid" style={{ margin: '15px auto', display: 'block' }}>
 					<Row>
 						<Col>
-							<p className={cardStyles.card_subtitle_2}>
+							<p className={cardStyles.card_subtitle}>
 								<strong>Casos (DSSG-PT)</strong>
-								<br />
-								Atualizado a {f.format(new Date(last.Data))}
 							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateCases))}</p>
 						</Col>
 						<Col>
-							<p className={cardStyles.card_subtitle_2}>
+							<p className={cardStyles.card_subtitle}>
 								<strong>Vacinas</strong>
-								<br />
-								Atualizado a {f.format(new Date(last.Data))}
 							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(last.Data))}</p>
 						</Col>
 						<Col>
-							<p className={cardStyles.card_subtitle_2}>
-								<strong>Relatórios SNS</strong>
-								<br />
-								Atualizado a {f.format(new Date(last.Data))}
+							<p className={cardStyles.card_subtitle}>
+								<strong>Relatórios de Vacinação</strong>
 							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateSns))}</p>
 						</Col>
 						<Col>
-							<p className={cardStyles.card_subtitle_2}>
+							<p className={cardStyles.card_subtitle}>
 								<strong>Dados RT</strong>
-								<br />
-								Atualizado a {f.format(new Date(last.Data))}
 							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateRt))}</p>
 						</Col>
 						<Col>
-							<p className={cardStyles.card_subtitle_2}>
+							<p className={cardStyles.card_subtitle}>
 								<strong>Relatórios ECDC</strong>
-								<br />
-								Atualizado a {f.format(new Date(last.Data))}
 							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateEcdc))}</p>
 						</Col>
 						<Col>
-							<p className={cardStyles.card_subtitle_2}>
+							<p className={cardStyles.card_subtitle}>
 								<strong>Dados OWID</strong>
-								<br />
-								Atualizado a {f.format(new Date(last.Data))}
 							</p>
+							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateOwid))}</p>
 						</Col>
 					</Row>
-				</Container> */}
+				</Container>
 				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>
 						<p className={cardStyles.card_subtitle_2}>

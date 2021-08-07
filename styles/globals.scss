@@ -215,15 +215,18 @@ sup.new {
 	padding: 0px;
 }
 
-.hide_mobile {
-	display: none !important;
-}
-
 @media (min-width: 1090px) {
 	.hide_mobile {
-		display: inline-block !important;
+		display: inline-block;
 	}
 }
+
+@media (max-width: 1090px) {
+	.hide_mobile {
+		display: none !important;
+	}
+}
+
 .show_mobile {
 	display: none !important;
 }

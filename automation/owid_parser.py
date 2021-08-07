@@ -2,6 +2,7 @@ import requests
 import json
 from dateutil.parser import parse
 from dateutil.relativedelta import *
+from datetime import datetime
 
 start_date = parse("2020-12-27")
 start_date2 = parse("2020-12-28")
@@ -117,6 +118,14 @@ for k in json_res:
             json_res[k]['data'], json_res[k]['population'])
         data['eun'] = json_res[k]
 
+
+now = datetime.now()
+json_file = open('./data/last-update.json', 'r+')
+json_datas = json.load(json_file)
+json_datas['dateOwid'] = now.strftime('%Y-%m-%d')
+json_file.seek(0)
+json_file.write(json.dumps(json_datas))
+json_file.close()
 
 owid_file = open("./data/owid_filter.json", "w")
 owid_file.write(json.dumps(data))
