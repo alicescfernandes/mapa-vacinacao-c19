@@ -13,6 +13,7 @@ const updateCases = require('./automation/convert-csv:cases');
 const scrapRt = require('./automation/convert-xls');
 var argv = require('minimist')(process.argv.slice(2));
 console.log(process.env.HARDWARE);
+let json = require('./../data/last-update.json');
 
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
@@ -118,6 +119,10 @@ async function updateJSON() {
 			dataLocalVacinasV2.push(item);
 			fs.writeFileSync('./data/vaccines_v2.json', JSON.stringify(dataLocalVacinasV2));
 			updatedVaccines = true;
+
+			json.date = new Date();
+			json.dateVaccines = sourceData.Data;
+			fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
 
 			gitCommit('vaccines');
 			//Update twitter

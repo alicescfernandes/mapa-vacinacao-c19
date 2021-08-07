@@ -244,46 +244,6 @@ export default function Home() {
 
 		return (
 			<>
-				<Container className="hide_mobile container-fluid" style={{ margin: '15px auto', display: 'block' }}>
-					<Row>
-						<Col>
-							<p className={cardStyles.card_subtitle}>
-								<strong>Casos (DSSG-PT)</strong>
-							</p>
-							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateCases))}</p>
-						</Col>
-						<Col>
-							<p className={cardStyles.card_subtitle}>
-								<strong>Vacinas</strong>
-							</p>
-							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(last.Data))}</p>
-						</Col>
-						<Col>
-							<p className={cardStyles.card_subtitle}>
-								<strong>Relatórios de Vacinação</strong>
-							</p>
-							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateSns))}</p>
-						</Col>
-						<Col>
-							<p className={cardStyles.card_subtitle}>
-								<strong>Dados RT</strong>
-							</p>
-							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateRt))}</p>
-						</Col>
-						<Col>
-							<p className={cardStyles.card_subtitle}>
-								<strong>Relatórios ECDC</strong>
-							</p>
-							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateEcdc))}</p>
-						</Col>
-						<Col>
-							<p className={cardStyles.card_subtitle}>
-								<strong>Dados OWID</strong>
-							</p>
-							<p className={cardStyles.card_subtitle}>Dados até {f.format(new Date(json.dateOwid))}</p>
-						</Col>
-					</Row>
-				</Container>
 				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>
 						<p className={cardStyles.card_subtitle_2}>
