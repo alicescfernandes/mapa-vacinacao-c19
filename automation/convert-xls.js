@@ -4,6 +4,7 @@ const fs = require('fs');
 var shell = require('shelljs');
 const path = require('path');
 let rts = {};
+let json = require('./../data/last-update.json');
 
 const scrapRt = async function (onUpdate) {
 	let files = await fetch(
@@ -37,6 +38,9 @@ const scrapRt = async function (onUpdate) {
 	}
 
 	fs.writeFileSync(`./data/rt/rt_todas.json`, JSON.stringify(rts), () => {});
+
+	json.dateRt = rts.rt_nacional.reverse().Data;
+	fs.writeFileSync('./data/last-update.json', JSON.stringify(rt));
 
 	shell.exec('git status | grep rt_todass.json', { silent: true }, (code, stdout) => {
 		if (code == 0 && onUpdate) {
