@@ -571,7 +571,6 @@ export function useData({ regiao }) {
 			let [item] = sns.filter((el) => {
 				return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == data.dateSnsStartWeirdFormat;
 			});
-
 			return item;
 		},
 		getTotalARS: async () => {

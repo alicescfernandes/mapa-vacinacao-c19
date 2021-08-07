@@ -192,19 +192,13 @@ export default function Home() {
 		setPreviousItem(rawData[rawData.length - 2]);
 		plausible.trackPageview();
 
-		let { RECEIVED: sum } = await statistics?.getTotalSNSRecebidas();
-		sum = 12886770; //TODO: Remove this after SNS updates the CSV. https://covid19.min-saude.pt/wp-content/uploads/2021/07/Relato%CC%81rio-Vacinac%CC%A7a%CC%83o-n.o-24.pdf
-
-		let item = rawData.filter((el) => {
-			return isSameDay(el.Data, new Date(json.dateSns));
-		});
-
+		let { RECEIVED: sum, CUMUL_VAC_LEAST: least, CUMUL_VAC_COMPLETE: complete, CUMUL: total } = await statistics?.getTotalSNSRecebidas();
 		setDoses({
 			...doses,
 			recebidas: sum,
-			administradas: item[0].Vacinados_Ac,
-			primeiras: item[0].Inoculacao1_Ac,
-			segundas: item[0].Inoculacao2_Ac,
+			administradas: total,
+			iniciada: least,
+			completa: complete,
 			data: format(new Date(json.dateSns).getTime(), 'dd/LL/yyyy', {
 				locale: pt,
 			}),
@@ -250,6 +244,52 @@ export default function Home() {
 
 		return (
 			<>
+				{/* <Container className="hide_mobile container-fluid" style={{ margin: '50px auto', display: 'block' }}>
+					<Row>
+						<Col>
+							<p className={cardStyles.card_subtitle_2}>
+								<strong>Casos (DSSG-PT)</strong>
+								<br />
+								Atualizado a {f.format(new Date(last.Data))}
+							</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle_2}>
+								<strong>Vacinas</strong>
+								<br />
+								Atualizado a {f.format(new Date(last.Data))}
+							</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle_2}>
+								<strong>Relatórios SNS</strong>
+								<br />
+								Atualizado a {f.format(new Date(last.Data))}
+							</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle_2}>
+								<strong>Dados RT</strong>
+								<br />
+								Atualizado a {f.format(new Date(last.Data))}
+							</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle_2}>
+								<strong>Relatórios ECDC</strong>
+								<br />
+								Atualizado a {f.format(new Date(last.Data))}
+							</p>
+						</Col>
+						<Col>
+							<p className={cardStyles.card_subtitle_2}>
+								<strong>Dados OWID</strong>
+								<br />
+								Atualizado a {f.format(new Date(last.Data))}
+							</p>
+						</Col>
+					</Row>
+				</Container> */}
 				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>
 						<p className={cardStyles.card_subtitle_2}>
@@ -331,8 +371,7 @@ export default function Home() {
 								style={{ color: colors[0] }}
 								className={cardStyles.card_highlight_2}
 							>
-								<span className={'hide_mobile'}>Entre </span>&nbsp;
-								{fases.fases[fases.fase_atual].nome} <span className={'hide_mobile'}>anos (inc)</span>
+								{fases.fases[fases.fase_atual].nome} <span className={'hide_mobile'}>anos</span>
 							</h1>
 
 							<a
@@ -455,10 +494,7 @@ export default function Home() {
 										})}
 									</h3>
 									<hr />
-									<h2 className={styles.title}>
-										Devido à falta de dados das vacinas de dia 1 de Agosto, não podemos apresentar este gráfico
-									</h2>
-									{/*<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>*/}
+									<PieAdministradasDoses colors={colors_v2} statistics={doses}></PieAdministradasDoses>
 								</Col>
 							</Row>
 						</LazyLoad>
