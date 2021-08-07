@@ -13,7 +13,7 @@ export function PieAdministradasDoses({ statistics, colors }) {
 			datasets: [
 				{
 					backgroundColor: [main, shades[0], shades[1]],
-					data: [statistics.primeiras, statistics.segundas, statistics.recebidas - statistics.administradas],
+					data: [statistics.iniciada, statistics.completa, statistics.recebidas - statistics.administradas],
 				},
 			],
 		};
