@@ -13,7 +13,7 @@ const updateCases = require('./automation/convert-csv:cases');
 const scrapRt = require('./automation/convert-xls');
 var argv = require('minimist')(process.argv.slice(2));
 console.log(process.env.HARDWARE);
-let json = require('./../data/last-update.json');
+let json = require('./data/last-update');
 
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
@@ -38,6 +38,7 @@ const pusher = new Pusher({
 });
 
 function gitCommit(name) {
+	return;
 	shell.exec('git add data/*');
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
