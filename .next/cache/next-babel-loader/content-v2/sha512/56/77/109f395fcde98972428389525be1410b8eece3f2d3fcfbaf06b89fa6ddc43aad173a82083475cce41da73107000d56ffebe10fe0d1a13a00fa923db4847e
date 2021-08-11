@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nexport default function Home() {\n  return /*#__PURE__*/_jsx(\"p\", {\n    children: \"it's alive\"\n  });\n}","map":null,"metadata":{},"sourceType":"module"}

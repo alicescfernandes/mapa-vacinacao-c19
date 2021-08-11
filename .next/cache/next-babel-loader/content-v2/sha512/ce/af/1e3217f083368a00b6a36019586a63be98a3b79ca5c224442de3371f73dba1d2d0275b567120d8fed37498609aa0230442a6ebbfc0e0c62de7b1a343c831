@@ -1,1 +1,0 @@
-{"ast":null,"code":"import weeks from './../../data/weeks.json';\nexport default async function handler(req, res) {\n  res.statusCode = 200;\n  res.json(weeks);\n}","map":null,"metadata":{},"sourceType":"module"}

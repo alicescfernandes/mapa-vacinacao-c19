@@ -1,1 +1,0 @@
-{"ast":null,"code":"import owid from './../../data/owid_filter.json';\nexport default async function handler(req, res) {\n  res.statusCode = 200;\n  res.json(owid);\n}","map":null,"metadata":{},"sourceType":"module"}

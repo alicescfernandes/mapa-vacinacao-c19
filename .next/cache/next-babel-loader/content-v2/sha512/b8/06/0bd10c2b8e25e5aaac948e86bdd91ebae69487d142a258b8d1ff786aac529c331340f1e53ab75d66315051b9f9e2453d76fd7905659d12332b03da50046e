@@ -1,1 +1,0 @@
-{"ast":null,"code":"import vaccines from './../../data/vaccines.json';\nexport default async function handler(req, res) {\n  res.statusCode = 200;\n  res.json(vaccines);\n}","map":null,"metadata":{},"sourceType":"module"}
