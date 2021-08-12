@@ -184,6 +184,10 @@ function trackPlausible(req) {
     ip = ip.substr(7);
   }
 
+  if (userAgent.matches('UptimeRobot')) {
+    return;
+  }
+
   let headers = {
     'user-agent': userAgent,
     'x-forwarded-for': ip,
