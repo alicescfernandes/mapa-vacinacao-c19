@@ -171,15 +171,14 @@ async function handler(req, res) {
   const data = await webhookPayloadParser(req);
   req.rawBody = data;
   let allowed = await verifyPostData(req, res);
-  console.log('hook received');
-
-  if (allowed) {
-    shell.exec('echo "working" & yarn update:server &');
-  } //set out to execute the command
-
+  console.log('hook received'); //set out to execute the command
 
   res.statusCode = 200;
   res.json({});
+
+  if (allowed) {
+    shell.exec('echo "working" & yarn update:server &');
+  }
 }
 
 /***/ }),
