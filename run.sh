@@ -13,7 +13,7 @@ echo 1
 git checkout compiled -f
 git pull
 yarn
-yarn build
+# yarn build
 #pm2 stop next
 pm2 restart next
 #pm2 start yarn --name "next" -x -- start
