@@ -1,26 +1,3 @@
-<<<<<<< Updated upstream
-(function() {
-var exports = {};
-exports.id = 820;
-exports.ids = [820];
-exports.modules = {
-
-/***/ 5318:
-/***/ (function(module) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-
-module.exports = _interopRequireDefault;
-
-/***/ }),
-
-/***/ 3359:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-=======
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -118,29 +95,18 @@ module.exports =
 
 /***/ "/a9y":
 /***/ (function(module, exports, __webpack_require__) {
->>>>>>> Stashed changes
 
 "use strict";
 
 
-<<<<<<< Updated upstream
-var _interopRequireDefault = __webpack_require__(5318);
-=======
 var _interopRequireDefault = __webpack_require__("TqRt");
->>>>>>> Stashed changes
 
 exports.__esModule = true;
 exports.default = void 0;
 
-<<<<<<< Updated upstream
-var _react = _interopRequireDefault(__webpack_require__(9297));
-
-var _head = _interopRequireDefault(__webpack_require__(5273));
-=======
 var _react = _interopRequireDefault(__webpack_require__("cDcd"));
 
 var _head = _interopRequireDefault(__webpack_require__("UlpK"));
->>>>>>> Stashed changes
 
 const statusCodes = {
   400: 'Bad Request',
@@ -232,35 +198,6 @@ const styles = {
 
 /***/ }),
 
-<<<<<<< Updated upstream
-/***/ 5273:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/dist/next-server/lib/head.js");;
-
-/***/ }),
-
-/***/ 9297:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react");;
-
-/***/ })
-
-};
-;
-
-// load runtime
-var __webpack_require__ = require("../webpack-runtime.js");
-__webpack_require__.C(exports);
-var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = (__webpack_exec__(3359));
-module.exports = __webpack_exports__;
-
-})();
-=======
 /***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -297,4 +234,3 @@ module.exports = require("react");
 /***/ })
 
 /******/ });
->>>>>>> Stashed changes

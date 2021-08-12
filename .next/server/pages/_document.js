@@ -1,200 +1,3 @@
-<<<<<<< Updated upstream
-(function() {
-var exports = {};
-exports.id = 660;
-exports.ids = [660];
-exports.modules = {
-
-/***/ 7154:
-/***/ (function(module) {
-
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-
-/***/ }),
-
-/***/ 5318:
-/***/ (function(module) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-
-module.exports = _interopRequireDefault;
-
-/***/ }),
-
-/***/ 7316:
-/***/ (function(module) {
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-module.exports = _objectWithoutPropertiesLoose;
-
-/***/ }),
-
-/***/ 6792:
-/***/ (function(__unused_webpack_module, exports) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = initHeadManager;
-exports.DOMAttributeNames = void 0;
-const DOMAttributeNames = {
-  acceptCharset: 'accept-charset',
-  className: 'class',
-  htmlFor: 'for',
-  httpEquiv: 'http-equiv',
-  noModule: 'noModule'
-};
-exports.DOMAttributeNames = DOMAttributeNames;
-
-function reactElementToDOM({
-  type,
-  props
-}) {
-  const el = document.createElement(type);
-
-  for (const p in props) {
-    if (!props.hasOwnProperty(p)) continue;
-    if (p === 'children' || p === 'dangerouslySetInnerHTML') continue; // we don't render undefined props to the DOM
-
-    if (props[p] === undefined) continue;
-    const attr = DOMAttributeNames[p] || p.toLowerCase();
-
-    if (type === 'script' && (attr === 'async' || attr === 'defer' || attr === 'noModule')) {
-      ;
-      el[attr] = !!props[p];
-    } else {
-      el.setAttribute(attr, props[p]);
-    }
-  }
-
-  const {
-    children,
-    dangerouslySetInnerHTML
-  } = props;
-
-  if (dangerouslySetInnerHTML) {
-    el.innerHTML = dangerouslySetInnerHTML.__html || '';
-  } else if (children) {
-    el.textContent = typeof children === 'string' ? children : Array.isArray(children) ? children.join('') : '';
-  }
-
-  return el;
-}
-
-function updateElements(type, components) {
-  const headEl = document.getElementsByTagName('head')[0];
-  const headCountEl = headEl.querySelector('meta[name=next-head-count]');
-
-  if (false) {}
-
-  const headCount = Number(headCountEl.content);
-  const oldTags = [];
-
-  for (let i = 0, j = headCountEl.previousElementSibling; i < headCount; i++, j = j.previousElementSibling) {
-    if (j.tagName.toLowerCase() === type) {
-      oldTags.push(j);
-    }
-  }
-
-  const newTags = components.map(reactElementToDOM).filter(newTag => {
-    for (let k = 0, len = oldTags.length; k < len; k++) {
-      const oldTag = oldTags[k];
-
-      if (oldTag.isEqualNode(newTag)) {
-        oldTags.splice(k, 1);
-        return false;
-      }
-    }
-
-    return true;
-  });
-  oldTags.forEach(t => t.parentNode.removeChild(t));
-  newTags.forEach(t => headEl.insertBefore(t, headCountEl));
-  headCountEl.content = (headCount - oldTags.length + newTags.length).toString();
-}
-
-function initHeadManager() {
-  let updatePromise = null;
-  return {
-    mountedInstances: new Set(),
-    updateHead: head => {
-      const promise = updatePromise = Promise.resolve().then(() => {
-        if (promise !== updatePromise) return;
-        updatePromise = null;
-        const tags = {};
-        head.forEach(h => {
-          if ( // If the font tag is loaded only on client navigation
-          // it won't be inlined. In this case revert to the original behavior
-          h.type === 'link' && h.props['data-optimized-fonts'] && !document.querySelector(`style[data-href="${h.props['data-href']}"]`)) {
-            h.props.href = h.props['data-href'];
-            h.props['data-href'] = undefined;
-          }
-
-          const components = tags[h.type] || [];
-          components.push(h);
-          tags[h.type] = components;
-        });
-        const titleComponent = tags.title ? tags.title[0] : null;
-        let title = '';
-
-        if (titleComponent) {
-          const {
-            children
-          } = titleComponent.props;
-          title = typeof children === 'string' ? children : Array.isArray(children) ? children.join('') : '';
-        }
-
-        if (title !== document.title) document.title = title;
-        ['meta', 'base', 'link', 'style', 'script'].forEach(type => {
-          updateElements(type, tags[type] || []);
-        });
-      });
-    }
-  };
-}
-
-/***/ }),
-
-/***/ 3447:
-/***/ (function(__unused_webpack_module, exports) {
-=======
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -292,7 +95,6 @@ module.exports =
 
 /***/ "0G5g":
 /***/ (function(module, exports, __webpack_require__) {
->>>>>>> Stashed changes
 
 "use strict";
 
@@ -322,10 +124,6 @@ exports.cancelIdleCallback = cancelIdleCallback;
 
 /***/ }),
 
-<<<<<<< Updated upstream
-/***/ 7926:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-=======
 /***/ "2+G7":
 /***/ (function(module, exports) {
 
@@ -343,34 +141,16 @@ module.exports = __webpack_require__("VDXt");
 
 /***/ "85TV":
 /***/ (function(module, exports, __webpack_require__) {
->>>>>>> Stashed changes
 
 "use strict";
 
 
-<<<<<<< Updated upstream
-var _interopRequireDefault = __webpack_require__(5318);
-=======
 var _interopRequireDefault = __webpack_require__("TqRt");
->>>>>>> Stashed changes
 
 exports.__esModule = true;
 exports.initScriptLoader = initScriptLoader;
 exports.default = void 0;
 
-<<<<<<< Updated upstream
-var _extends2 = _interopRequireDefault(__webpack_require__(7154));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(7316));
-
-var _react = __webpack_require__(9297);
-
-var _headManagerContext = __webpack_require__(816);
-
-var _headManager = __webpack_require__(6792);
-
-var _requestIdleCallback = __webpack_require__(3447);
-=======
 var _extends2 = _interopRequireDefault(__webpack_require__("pVnL"));
 
 var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__("8OQS"));
@@ -382,7 +162,6 @@ var _headManagerContext = __webpack_require__("Y8yu");
 var _headManager = __webpack_require__("DqTX");
 
 var _requestIdleCallback = __webpack_require__("0G5g");
->>>>>>> Stashed changes
 
 const ScriptCache = new Map();
 const LoadCache = new Set();
@@ -520,10 +299,6 @@ exports.default = _default;
 
 /***/ }),
 
-<<<<<<< Updated upstream
-/***/ 8881:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-=======
 /***/ "8OQS":
 /***/ (function(module, exports) {
 
@@ -706,7 +481,6 @@ module.exports = require("next/dist/next-server/lib/constants.js");
 
 /***/ "VDXt":
 /***/ (function(module, exports, __webpack_require__) {
->>>>>>> Stashed changes
 
 "use strict";
 
@@ -726,19 +500,6 @@ exports.Html = Html;
 exports.Main = Main;
 exports.NextScript = exports.Head = exports.default = void 0;
 
-<<<<<<< Updated upstream
-var _propTypes = _interopRequireDefault(__webpack_require__(4229));
-
-var _react = _interopRequireWildcard(__webpack_require__(9297));
-
-var _server = _interopRequireDefault(__webpack_require__(1168));
-
-var _constants = __webpack_require__(227);
-
-var _documentContext = __webpack_require__(3932);
-
-var _utils = __webpack_require__(7579);
-=======
 var _propTypes = _interopRequireDefault(__webpack_require__("rf6O"));
 
 var _react = _interopRequireWildcard(__webpack_require__("cDcd"));
@@ -750,21 +511,11 @@ var _constants = __webpack_require__("UJjI");
 var _documentContext = __webpack_require__("nMq/");
 
 var _utils = __webpack_require__("kYf9");
->>>>>>> Stashed changes
 
 exports.DocumentContext = _utils.DocumentContext;
 exports.DocumentInitialProps = _utils.DocumentInitialProps;
 exports.DocumentProps = _utils.DocumentProps;
 
-<<<<<<< Updated upstream
-var _getPageFiles = __webpack_require__(6171);
-
-var _utils2 = __webpack_require__(5105);
-
-var _htmlescape = __webpack_require__(9630);
-
-var _script = _interopRequireDefault(__webpack_require__(7926));
-=======
 var _getPageFiles = __webpack_require__("vHio");
 
 var _utils2 = __webpack_require__("ri/Y");
@@ -772,7 +523,6 @@ var _utils2 = __webpack_require__("ri/Y");
 var _htmlescape = __webpack_require__("AXZJ");
 
 var _script = _interopRequireDefault(__webpack_require__("85TV"));
->>>>>>> Stashed changes
 
 function _getRequireWildcardCache() {
   if (typeof WeakMap !== "function") return null;
@@ -1272,11 +1022,7 @@ class Head extends _react.Component {
       dangerouslySetInnerHTML: {
         __html: `body{display:block}`
       }
-<<<<<<< Updated upstream
-    }))), children,  false && /*#__PURE__*/0, head, /*#__PURE__*/_react.default.createElement("meta", {
-=======
     }))), children,  false && /*#__PURE__*/false, head, /*#__PURE__*/_react.default.createElement("meta", {
->>>>>>> Stashed changes
       name: "next-head-count",
       content: _react.default.Children.count(head || []).toString()
     }), inAmpMode && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("meta", {
@@ -1312,11 +1058,7 @@ class Head extends _react.Component {
       href: canonicalBase + getAmpPath(ampPath, dangerousAsPath)
     }),  true && this.getCssLinks(files),  true && /*#__PURE__*/_react.default.createElement("noscript", {
       "data-n-css": (_this$props$nonce = this.props.nonce) != null ? _this$props$nonce : ''
-<<<<<<< Updated upstream
-    }),  false && /*#__PURE__*/0, !disableRuntimeJS && !disableJsPreload && this.getPreloadDynamicChunks(), !disableRuntimeJS && !disableJsPreload && this.getPreloadMainLinks(files), !disableOptimizedLoading && !disableRuntimeJS && this.getPolyfillScripts(), !disableOptimizedLoading && !disableRuntimeJS && this.getPreNextScripts(), !disableOptimizedLoading && !disableRuntimeJS && this.getDynamicChunks(files), !disableOptimizedLoading && !disableRuntimeJS && this.getScripts(files),  false && 0,  false && /*#__PURE__*/0, this.context.isDevelopment &&
-=======
     }),  false && /*#__PURE__*/false, !disableRuntimeJS && !disableJsPreload && this.getPreloadDynamicChunks(), !disableRuntimeJS && !disableJsPreload && this.getPreloadMainLinks(files), !disableOptimizedLoading && !disableRuntimeJS && this.getPolyfillScripts(), !disableOptimizedLoading && !disableRuntimeJS && this.getPreNextScripts(), !disableOptimizedLoading && !disableRuntimeJS && this.getDynamicChunks(files), !disableOptimizedLoading && !disableRuntimeJS && this.getScripts(files),  false && false,  false && /*#__PURE__*/false, this.context.isDevelopment &&
->>>>>>> Stashed changes
     /*#__PURE__*/
     // this element is used to mount development styles so the
     // ordering matches production
@@ -1462,102 +1204,6 @@ function getAmpPath(ampPath, asPath) {
 
 /***/ }),
 
-<<<<<<< Updated upstream
-/***/ 9630:
-/***/ (function(__unused_webpack_module, exports) {
-
-"use strict";
-exports.__esModule=true;exports.htmlEscapeJsonString=htmlEscapeJsonString;// This utility is based on https://github.com/zertosh/htmlescape
-// License: https://github.com/zertosh/htmlescape/blob/0527ca7156a524d256101bb310a9f970f63078ad/LICENSE
-const ESCAPE_LOOKUP={'&':'\\u0026','>':'\\u003e','<':'\\u003c','\u2028':'\\u2028','\u2029':'\\u2029'};const ESCAPE_REGEX=/[&><\u2028\u2029]/g;function htmlEscapeJsonString(str){return str.replace(ESCAPE_REGEX,match=>ESCAPE_LOOKUP[match]);}
-//# sourceMappingURL=htmlescape.js.map
-
-/***/ }),
-
-/***/ 227:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/dist/next-server/lib/constants.js");;
-
-/***/ }),
-
-/***/ 3932:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/dist/next-server/lib/document-context.js");;
-
-/***/ }),
-
-/***/ 816:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/dist/next-server/lib/head-manager-context.js");;
-
-/***/ }),
-
-/***/ 7579:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/dist/next-server/lib/utils.js");;
-
-/***/ }),
-
-/***/ 6171:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/dist/next-server/server/get-page-files.js");;
-
-/***/ }),
-
-/***/ 5105:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/dist/next-server/server/utils.js");;
-
-/***/ }),
-
-/***/ 4229:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("prop-types");;
-
-/***/ }),
-
-/***/ 9297:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react");;
-
-/***/ }),
-
-/***/ 1168:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("styled-jsx/server");;
-
-/***/ })
-
-};
-;
-
-// load runtime
-var __webpack_require__ = require("../webpack-runtime.js");
-__webpack_require__.C(exports);
-var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = (__webpack_exec__(8881));
-module.exports = __webpack_exports__;
-
-})();
-=======
 /***/ "Y8yu":
 /***/ (function(module, exports) {
 
@@ -1633,4 +1279,3 @@ module.exports = require("next/dist/next-server/server/get-page-files.js");
 /***/ })
 
 /******/ });
->>>>>>> Stashed changes

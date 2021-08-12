@@ -1,20 +1,3 @@
-<<<<<<< Updated upstream
-(function() {
-var exports = {};
-exports.id = 605;
-exports.ids = [605];
-exports.modules = {
-
-/***/ 7442:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ handler; }
-/* harmony export */ });
-const fetch = __webpack_require__(6786);
-=======
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -132,7 +115,6 @@ module.exports = require("node-fetch");
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return handler; });
 const fetch = __webpack_require__("4vsW");
->>>>>>> Stashed changes
 
 async function handler(req, res) {
   let resSesaram = await fetch('https://web.sesaram.pt/COVID19_INFO', {
@@ -187,30 +169,6 @@ async function handler(req, res) {
   res.json(body);
 }
 
-<<<<<<< Updated upstream
-/***/ }),
-
-/***/ 6786:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("node-fetch");;
-
-/***/ })
-
-};
-;
-
-// load runtime
-var __webpack_require__ = require("../../webpack-runtime.js");
-__webpack_require__.C(exports);
-var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = (__webpack_exec__(7442));
-module.exports = __webpack_exports__;
-
-})();
-=======
 /***/ })
 
 /******/ });
->>>>>>> Stashed changes

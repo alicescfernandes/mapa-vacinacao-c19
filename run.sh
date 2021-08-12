@@ -10,10 +10,10 @@ echo 1
 #pm2 start yarn --name "next" -x -- start
 
 
-git checkout compiled -f
+git checkout master -f
 git pull
-yarn
-# yarn build
+yarn install --frozen-lockfile
+yarn build
 #pm2 stop next
 pm2 restart next
 #pm2 start yarn --name "next" -x -- start

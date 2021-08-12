@@ -1,83 +1,3 @@
-<<<<<<< Updated upstream
-(function() {
-var exports = {};
-exports.id = 498;
-exports.ids = [498];
-exports.modules = {
-
-/***/ 755:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": function() { return /* binding */ Home; }
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(5282);
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(9297);
-// EXTERNAL MODULE: external "react-bootstrap"
-var external_react_bootstrap_ = __webpack_require__(9226);
-// EXTERNAL MODULE: ./components/graphs/VacinadosPorDia.jsx
-var VacinadosPorDia = __webpack_require__(6292);
-// EXTERNAL MODULE: ./components/Counter.jsx
-var Counter = __webpack_require__(1745);
-// EXTERNAL MODULE: ./components/graphs/NumeroTotalVacinados.jsx
-var NumeroTotalVacinados = __webpack_require__(1516);
-// EXTERNAL MODULE: external "date-fns"
-var external_date_fns_ = __webpack_require__(3879);
-// EXTERNAL MODULE: external "react-spinners-kit"
-var external_react_spinners_kit_ = __webpack_require__(1047);
-// EXTERNAL MODULE: ./hooks/useData.js
-var useData = __webpack_require__(1410);
-// EXTERNAL MODULE: ./styles/Home.module.scss
-var Home_module = __webpack_require__(2870);
-var Home_module_default = /*#__PURE__*/__webpack_require__.n(Home_module);
-// EXTERNAL MODULE: ./hooks/useColors.js
-var useColors = __webpack_require__(5681);
-// EXTERNAL MODULE: ./components/Card.module.scss
-var Card_module = __webpack_require__(1547);
-var Card_module_default = /*#__PURE__*/__webpack_require__.n(Card_module);
-// EXTERNAL MODULE: ./data/last-update.json
-var last_update = __webpack_require__(4520);
-// EXTERNAL MODULE: external "date-fns/locale"
-var locale_ = __webpack_require__(5931);
-// EXTERNAL MODULE: external "plausible-tracker"
-var external_plausible_tracker_ = __webpack_require__(6987);
-var external_plausible_tracker_default = /*#__PURE__*/__webpack_require__.n(external_plausible_tracker_);
-// EXTERNAL MODULE: external "next/router"
-var router_ = __webpack_require__(6731);
-// EXTERNAL MODULE: ./data/generic.json
-var generic = __webpack_require__(3574);
-// EXTERNAL MODULE: ./components/Card.jsx
-var Card = __webpack_require__(6806);
-// EXTERNAL MODULE: ./components/graphs/PieVacinadosInfectadosRecuperadosObitos.jsx
-var PieVacinadosInfectadosRecuperadosObitos = __webpack_require__(9299);
-// EXTERNAL MODULE: ./components/graphs/PieSuscetiveisProporcao.jsx
-var PieSuscetiveisProporcao = __webpack_require__(5268);
-// EXTERNAL MODULE: ./components/graphs/LineRt.jsx
-var LineRt = __webpack_require__(5476);
-// EXTERNAL MODULE: ./components/context/regiao.js
-var regiao = __webpack_require__(2642);
-// EXTERNAL MODULE: external "react-chartjs-2"
-var external_react_chartjs_2_ = __webpack_require__(8182);
-// EXTERNAL MODULE: ./utils.js
-var utils = __webpack_require__(2859);
-// EXTERNAL MODULE: external "classnames"
-var external_classnames_ = __webpack_require__(4058);
-var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_classnames_);
-// EXTERNAL MODULE: ./constants.js
-var constants = __webpack_require__(3254);
-// EXTERNAL MODULE: ./hooks/useCanvasResizer.js
-var useCanvasResizer = __webpack_require__(3972);
-;// CONCATENATED MODULE: ./components/graphs/RamBarAdministradasPorFaixaEtaria.jsx
-
-=======
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -267,7 +187,6 @@ var _data_acontecimentos_json__WEBPACK_IMPORTED_MODULE_6___namespace = /*#__PURE
 /* harmony import */ var _CustomCheckbox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("SSzp");
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("UG6H");
 /* harmony import */ var _Card_module_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_Card_module_scss__WEBPACK_IMPORTED_MODULE_9__);
->>>>>>> Stashed changes
 
 
 
@@ -284,155 +203,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-<<<<<<< Updated upstream
-function RamBarAdministradasPorFaixaEtaria({
-  statistics,
-  colors
-}) {
-  let {
-    0: loaded,
-    1: setLoaded
-  } = (0,external_react_.useState)(false);
-  let {
-    main,
-    shades,
-    tints,
-    complements
-  } = colors;
-  let {
-    0: graphData,
-    1: setGraphData
-  } = (0,external_react_.useState)({});
-  let {
-    0: activeDose,
-    1: setActiveDose
-  } = (0,external_react_.useState)('dose_1');
-  const canvasRef = (0,external_react_.useRef)(null);
-
-  function generateColor(color) {
-    return {
-      borderColor: color,
-      pointBorderColor: color,
-      pointBackgroundColor: color,
-      pointHoverBackgroundColor: color,
-      pointHoverBorderColor: color
-    };
-  }
-
-  (0,external_react_.useEffect)(() => {
-    var _canvasRef$current;
-
-    if (canvasRef !== null && canvasRef !== void 0 && (_canvasRef$current = canvasRef.current) !== null && _canvasRef$current !== void 0 && _canvasRef$current.chartInstance) {
-      canvasRef.current.chartInstance.data.datasets.forEach(dataset => {
-        if (dataset.customDose == activeDose) {
-          dataset.hidden = false;
-        } else {
-          dataset.hidden = true;
-        }
-
-        canvasRef.current.chartInstance.update();
-      });
-    }
-  }, [activeDose]);
-  let {
-    setCanvasNode
-  } = (0,useCanvasResizer/* useCanvasResizer */.z)();
-
-  const data = canvas => {
-    let {
-      labels,
-      groups
-    } = graphData;
-    setCanvasNode(canvas.parentNode);
-    return {
-      labels: Object.keys(graphData.labels).map(key => {
-        let fromDate = new Date(labels[key]);
-        return `${(0,utils/* formatNumber */.uf)(fromDate.getDate())}/${(0,utils/* formatNumber */.uf)(fromDate.getMonth() + 1)}`;
-      }),
-      datasets: [_objectSpread(_objectSpread(_objectSpread({}, constants/* lineChartCommon */.jF), generateColor(shades[0])), {}, {
-        label: 'Grupo 18/24',
-        labelGroup: 'Grupo 18/24',
-        fill: false,
-        lineTension: 0.3,
-        backgroundColor: shades[0],
-        data: groups.map(group => group.e1824[activeDose] || 0),
-        order: 1,
-        customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants/* lineChartCommon */.jF), generateColor(tints[1])), {}, {
-        label: 'Grupo 25/49',
-        labelGroup: 'Grupo 25/49',
-        fill: false,
-        lineTension: 0.3,
-        backgroundColor: tints[1],
-        data: groups.map(group => group.e2549[activeDose] || 0),
-        order: 3,
-        customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants/* lineChartCommon */.jF), generateColor(main)), {}, {
-        label: 'Grupo 50/59',
-        labelGroup: 'Grupo 50/59',
-        fill: false,
-        lineTension: 0.3,
-        backgroundColor: main,
-        data: groups.map(group => group.e5059[activeDose] || 0),
-        stack: 'stack1',
-        order: 5,
-        customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants/* lineChartCommon */.jF), generateColor(shades[2])), {}, {
-        label: 'Grupo 60/69',
-        labelGroup: 'Grupo 60/69',
-        fill: false,
-        lineTension: 0.3,
-        backgroundColor: shades[2],
-        data: groups.map(group => (group.e6064[activeDose] + group.e6569[activeDose]) / 2 || 0),
-        order: 7,
-        customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants/* lineChartCommon */.jF), generateColor(complements[2])), {}, {
-        label: 'Grupo 70/79',
-        labelGroup: 'Grupo 70/79',
-        fill: false,
-        lineTension: 0.3,
-        backgroundColor: complements[2],
-        data: groups.map(group => group.e7079.dose_2 || 0),
-        order: 9,
-        customDose: 2
-      }), _objectSpread(_objectSpread(_objectSpread({}, constants/* lineChartCommon */.jF), generateColor(complements[1])), {}, {
-        label: 'Grupo 80+',
-        labelGroup: 'Grupo 80+',
-        backgroundColor: complements[1],
-        data: groups.map(group => group.e80.dose_2 || 0),
-        order: 11,
-        stack: 'stack2',
-        fill: false,
-        lineTension: 0.3,
-        customDose: 2
-      })]
-    };
-  };
-
-  const options = () => {
-    let maxValue = 100;
-    return {
-      plugins: {
-        datalabels: {
-          display: false
-        },
-        legend: {
-          position: 'bottom',
-          align: 'start',
-          onHover: function (event, legend) {
-            document.body.classList.add('mouse-pointer');
-          },
-          onLeave: function (event, legend) {
-            document.body.classList.remove('mouse-pointer');
-          }
-        }
-      },
-      onResize: (a, b, c) => {
-        if (window.innerWidth <= constants/* RESIZE_TRESHOLD */.WT) {
-          a.canvas.parentNode.style.width = '1000px';
-        } else {
-          a.canvas.parentNode.style.width = 'auto';
-=======
 
 
 function VacinadosPorDia({
@@ -588,7 +358,6 @@ function VacinadosPorDia({
         legend: {
           position: 'bottom',
           align: 'end'
->>>>>>> Stashed changes
         }
       },
       animation: {
@@ -597,35 +366,6 @@ function VacinadosPorDia({
       tooltips: {
         mode: 'index',
         intersect: false,
-<<<<<<< Updated upstream
-        callbacks: _objectSpread(_objectSpread(_objectSpread({}, constants/* lineChartCommon */.jF), generateColor(shades[0])), {}, {
-          label: (tooltipItem, data) => {
-            var label = data.datasets[tooltipItem.datasetIndex].label;
-            return label.replace('- 1ª Dose', '').replace('- 2ª Dose', '') + ': ' + parseFloat(tooltipItem.value).toFixed(2) + '%';
-          },
-          title: (tooltipItem, data) => {
-            return tooltipItem[0].label;
-          }
-        })
-      },
-      scales: {
-        y: {
-          id: 'axis',
-          stacked: false,
-          ticks: {
-            beginAtZero: false,
-            min: 0,
-            max: maxValue,
-            stepSize: (maxValue / 5).toFixed(0),
-            callback: value => (0,utils/* formatNumber */.uf)(value, false) + '%'
-          }
-        },
-        x: {
-          id: 'xaxis',
-          stacked: false,
-          ticks: {
-            beginAtZero: false
-=======
         callbacks: {
           label: (tooltipItem, data) => {
             var label = data.datasets[tooltipItem.datasetIndex].label;
@@ -669,83 +409,12 @@ function VacinadosPorDia({
             beginAtZero: true,
             maxTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 90 : 120,
             minTicksLimit: window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"] ? 90 : 120
->>>>>>> Stashed changes
           }
         }
       }
     };
   };
 
-<<<<<<< Updated upstream
-  (0,external_react_.useEffect)(() => {
-    statistics.getAdministredDosesByAgeByWeekRam().then(data => {
-      setGraphData(data);
-      setLoaded(true);
-      setActiveDose('dose_1');
-    });
-  }, []);
-  return /*#__PURE__*/(0,jsx_runtime_.jsx)(Card/* Card */.Z, {
-    textLeft: true,
-    allowOverflow: true,
-    children: /*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
-      children: loaded === true ? /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
-        children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
-          className: 'toggle_buttons',
-          children: /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("button", {
-              className: external_classnames_default()('toggle_button', {
-                active: activeDose === 'dose_1'
-              }),
-              onClick: () => {
-                setActiveDose('dose_1');
-              },
-              children: "1\xAA Dose"
-            }), /*#__PURE__*/(0,jsx_runtime_.jsx)("button", {
-              className: external_classnames_default()('toggle_button', {
-                active: activeDose === 'dose_2'
-              }),
-              onClick: () => {
-                setActiveDose('dose_2');
-              },
-              children: "2\xAA Dose"
-            })]
-          })
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_chartjs_2_.Line, {
-            height: 80,
-            ref: canvasRef,
-            options: options(),
-            data: data
-          })
-        })]
-      }) : ''
-    })
-  });
-}
-;// CONCATENATED MODULE: ./components/graphs/RamMapa.jsx
-
-
-
-
-
-
-
-
-
-
-function RamMapa({
-  statistics,
-  colors
-}) {
-  let {
-    0: graphData,
-    1: setGraphData
-  } = (0,external_react_.useState)();
-  let {
-    0: loaded,
-    1: setLoaded
-  } = (0,external_react_.useState)(false);
-=======
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     if (values.length && loading === true) {
       statistics.getEstimativaStock().then(({
@@ -2706,7 +2375,6 @@ function RamMapa({
     0: loaded,
     1: setLoaded
   } = Object(external_react_["useState"])(false);
->>>>>>> Stashed changes
   let {
     main,
     shades
@@ -2728,16 +2396,6 @@ function RamMapa({
     });
     let layers = L.geoJSON(madeira, {
       onEachFeature: (feature, shape) => {
-<<<<<<< Updated upstream
-        let concelho = constants/* MADEIRA_DICOS */.de[feature.properties.Dico];
-        let data = graphData.concelhos[concelho];
-        let percentagem_1 = data.dose_1 / generic/* populacao_residente_ram */.dU[feature.properties.Dico].valor * 100;
-        let percentagem_2 = data.dose_2 / generic/* populacao_residente_ram */.dU[feature.properties.Dico].valor * 100;
-        shape.bindPopup(`<p>
-						<strong>${feature.properties.Municipio}</strong>
-						<br>1ª Dose: ${(0,utils/* formatNumber */.uf)(data.dose_1)} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${(0,utils/* formatNumber */.uf)(data.dose_2)} (${percentagem_2.toFixed(2)}%)
-=======
         let concelho = constants["k" /* MADEIRA_DICOS */][feature.properties.Dico];
         let data = graphData.concelhos[concelho];
         let percentagem_1 = data.dose_1 / generic["populacao_residente_ram"][feature.properties.Dico].valor * 100;
@@ -2746,27 +2404,17 @@ function RamMapa({
 						<strong>${feature.properties.Municipio}</strong>
 						<br>1ª Dose: ${Object(utils["d" /* formatNumber */])(data.dose_1)} (${percentagem_1.toFixed(2)}%)
 						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(data.dose_2)} (${percentagem_2.toFixed(2)}%)
->>>>>>> Stashed changes
 					</p>`);
         shape.on('click', () => {//console.log('click');
         });
       },
       style: function (feature) {
-<<<<<<< Updated upstream
-        let concelho = constants/* MADEIRA_DICOS */.de[feature.properties.Dico];
-        let data = graphData.concelhos[concelho];
-        let percentagem = data.dose_2 / generic/* populacao_residente_ram */.dU[feature.properties.Dico].valor * 100;
-        return {
-          fillOpacity: 1,
-          fillColor: (0,utils/* getColor */.Lq)(percentagem),
-=======
         let concelho = constants["k" /* MADEIRA_DICOS */][feature.properties.Dico];
         let data = graphData.concelhos[concelho];
         let percentagem = data.dose_2 / generic["populacao_residente_ram"][feature.properties.Dico].valor * 100;
         return {
           fillOpacity: 1,
           fillColor: Object(utils["e" /* getColor */])(percentagem),
->>>>>>> Stashed changes
           lineJoin: 'round',
           stroke: true,
           weight: 2,
@@ -2787,19 +2435,11 @@ function RamMapa({
     legend.onAdd = function (map) {
       var div = L.DomUtil.create('div', 'info legend');
 
-<<<<<<< Updated upstream
-      for (var i = 0; i < constants/* grades.length */.Tb.length; i++) {
-        let grade = constants/* grades */.Tb[i];
-        let grade_pretty = constants/* grades_pretty */.XS[grade];
-        div.innerHTML += `<p>
-						<i style="background:${(0,utils/* getColor */.Lq)(constants/* grades */.Tb[i] + 1)}"></i>${grade_pretty}</p>`;
-=======
       for (var i = 0; i < constants["u" /* grades */].length; i++) {
         let grade = constants["u" /* grades */][i];
         let grade_pretty = constants["v" /* grades_pretty */][grade];
         div.innerHTML += `<p>
 						<i style="background:${Object(utils["e" /* getColor */])(constants["u" /* grades */][i] + 1)}"></i>${grade_pretty}</p>`;
->>>>>>> Stashed changes
       }
 
       return div;
@@ -2834,13 +2474,8 @@ function RamMapa({
     };
 
     const options = () => {
-<<<<<<< Updated upstream
-      let dico = constants/* MADEIRA_DICOS */.de[el.chave];
-      let populacao_residente = generic/* populacao_residente_ram */.dU[dico].valor;
-=======
       let dico = constants["k" /* MADEIRA_DICOS */][el.chave];
       let populacao_residente = generic["populacao_residente_ram"][dico].valor;
->>>>>>> Stashed changes
       console.log(1, populacao_residente);
       return {
         indexAxis: 'y',
@@ -2851,11 +2486,7 @@ function RamMapa({
             callbacks: {
               label: (tooltipItem, b) => {
                 let data = tooltipItem.dataset.data_actual;
-<<<<<<< Updated upstream
-                return `${tooltipItem.dataset.label}: ${(0,utils/* formatNumber */.uf)(data, false)}`;
-=======
                 return `${tooltipItem.dataset.label}: ${Object(utils["d" /* formatNumber */])(data, false)}`;
->>>>>>> Stashed changes
               }
             }
           },
@@ -2898,31 +2529,14 @@ function RamMapa({
             ticks: {
               beginAtZero: true,
               max: populacao_residente,
-<<<<<<< Updated upstream
-              stepSize: Math.round(window.innerWidth <= constants/* RESIZE_TRESHOLD */.WT ? populacao_residente / 3 : populacao_residente / 6),
-              callback: value => (0,utils/* formatNumber */.uf)(value, false)
-=======
               stepSize: Math.round(window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? populacao_residente / 3 : populacao_residente / 6),
               callback: value => Object(utils["d" /* formatNumber */])(value, false)
->>>>>>> Stashed changes
             }
           }
         }
       };
     };
 
-<<<<<<< Updated upstream
-    return /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-      xs: 12,
-      lg: 4,
-      children: /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
-        className: (Card_module_default()).ram_subchart_bar,
-        children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-          className: (Card_module_default()).text_left,
-          children: el.nome
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_chartjs_2_.Bar, {
-          height: window.innerWidth <= constants/* RESIZE_TRESHOLD */.WT ? 60 : 60,
-=======
     return /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
       xs: 12,
       lg: 4,
@@ -2933,7 +2547,6 @@ function RamMapa({
           children: el.nome
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
           height: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 60 : 60,
->>>>>>> Stashed changes
           options: options(),
           data: data
         })]
@@ -2941,11 +2554,7 @@ function RamMapa({
     });
   }
 
-<<<<<<< Updated upstream
-  (0,external_react_.useEffect)(async () => {
-=======
   Object(external_react_["useEffect"])(async () => {
->>>>>>> Stashed changes
     statistics.getArquipelagoData().then(data => {
       setGraphData(data[data.length - 1]);
 
@@ -2958,41 +2567,21 @@ function RamMapa({
       }
     });
   }, [loaded]);
-<<<<<<< Updated upstream
-  return loaded === true ? /*#__PURE__*/(0,jsx_runtime_.jsxs)(Card/* Card */.Z, {
-    children: [/*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-      children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-        children: /*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
-=======
   return loaded === true ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(Card["a" /* Card */], {
     children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
       children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
         children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
->>>>>>> Stashed changes
           id: "map",
           style: {
             height: '350px'
           }
         })
       })
-<<<<<<< Updated upstream
-    }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-=======
     }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
->>>>>>> Stashed changes
       style: {
         marginTop: 15
       },
       children: Object.values(graphData.concelhos).map(renderGraph)
-<<<<<<< Updated upstream
-    }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-      children: /*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
-        className: 'legends',
-        children: /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
-          children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
-            className: 'legend',
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("span", {
-=======
     }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
       children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
         className: 'legends',
@@ -3000,21 +2589,14 @@ function RamMapa({
           children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
             className: 'legend',
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
->>>>>>> Stashed changes
               style: {
                 backgroundColor: main
               },
               className: 'color_sample'
             }), "1\xAA Dose"]
-<<<<<<< Updated upstream
-          }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
-            className: 'legend',
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("span", {
-=======
           }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
             className: 'legend',
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
->>>>>>> Stashed changes
               style: {
                 backgroundColor: shades[1]
               },
@@ -3027,16 +2609,10 @@ function RamMapa({
   }) : '';
 } //<Row>{renderGraph(graphData.concelhos.ribeira_brava)}</Row>
 // EXTERNAL MODULE: external "react-lazyload"
-<<<<<<< Updated upstream
-var external_react_lazyload_ = __webpack_require__(6873);
-var external_react_lazyload_default = /*#__PURE__*/__webpack_require__.n(external_react_lazyload_);
-;// CONCATENATED MODULE: ./pages/madeira.js
-=======
 var external_react_lazyload_ = __webpack_require__("E4SY");
 var external_react_lazyload_default = /*#__PURE__*/__webpack_require__.n(external_react_lazyload_);
 
 // CONCATENATED MODULE: ./pages/madeira.js
->>>>>>> Stashed changes
 
 
 
@@ -3073,27 +2649,12 @@ function Home() {
   let {
     statistics,
     ready: dataReady
-<<<<<<< Updated upstream
-  } = (0,useData/* useData */.e)({
-=======
   } = Object(useData["a" /* useData */])({
->>>>>>> Stashed changes
     regiao: 'madeira'
   });
   let {
     0: selectedItem,
     1: setSelectedItem
-<<<<<<< Updated upstream
-  } = (0,external_react_.useState)({});
-  let {
-    0: updating,
-    1: isUpdating
-  } = (0,external_react_.useState)(false);
-  let {
-    0: loaded,
-    1: setLoaded
-  } = (0,external_react_.useState)(false);
-=======
   } = Object(external_react_["useState"])({});
   let {
     0: updating,
@@ -3103,25 +2664,16 @@ function Home() {
     0: loaded,
     1: setLoaded
   } = Object(external_react_["useState"])(false);
->>>>>>> Stashed changes
   let beacons = {
     mid_page: false,
     end_page: false
   };
-<<<<<<< Updated upstream
-  const router = (0,router_.useRouter)();
-=======
   const router = Object(router_["useRouter"])();
->>>>>>> Stashed changes
   let numberFormatter = new Intl.NumberFormat('pt-PT');
   let {
     0: derivedNumbers,
     1: setDerivedNumbers
-<<<<<<< Updated upstream
-  } = (0,external_react_.useState)({
-=======
   } = Object(external_react_["useState"])({
->>>>>>> Stashed changes
     pessoasAVacinar: {
       current: 0
     },
@@ -3151,15 +2703,9 @@ function Home() {
     }
   }
 
-<<<<<<< Updated upstream
-  let startDate = new Date(last_update/* dateMadeira */.Vi);
-  let [first, ...restDate] = (0,external_date_fns_.format)(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
-    locale: locale_.pt
-=======
   let startDate = new Date(last_update.dateMadeira);
   let [first, ...restDate] = Object(external_date_fns_["format"])(startDate, "eeee, dd 'de' LLLL 'de' yyyy", {
     locale: locale_["pt"]
->>>>>>> Stashed changes
   }).replace('-feira', '').split('');
 
   function onSocketUpdate() {
@@ -3169,13 +2715,8 @@ function Home() {
   let {
     colors,
     colors_v2
-<<<<<<< Updated upstream
-  } = (0,useColors/* useColors */.c)();
-  (0,external_react_.useEffect)(() => {
-=======
   } = Object(useColors["a" /* useColors */])();
   Object(external_react_["useEffect"])(() => {
->>>>>>> Stashed changes
     // Unconventional way of doing this
     window.addEventListener('socket_update', onSocketUpdate);
     window.addEventListener('scroll', trackScrollEvents);
@@ -3190,18 +2731,6 @@ function Home() {
       window.clearInterval(timeout);
     };
   }, []);
-<<<<<<< Updated upstream
-  (0,external_react_.useEffect)(() => {
-    let object = {
-      pessoasAVacinar: {
-        current: numberFormatter.format(generic/* populacao_ram.valor */.mI.IK * 0.7 - selectedItem.dose_2)
-      },
-      percentagem: {
-        current: selectedItem.dose_2 / generic/* populacao_ram.valor */.mI.IK * 100
-      },
-      percentagem_1d: {
-        current: selectedItem.dose_1 / generic/* populacao_ram.valor */.mI.IK * 100
-=======
   Object(external_react_["useEffect"])(() => {
     let object = {
       pessoasAVacinar: {
@@ -3212,16 +2741,11 @@ function Home() {
       },
       percentagem_1d: {
         current: selectedItem.dose_1 / generic.populacao_ram.valor * 100
->>>>>>> Stashed changes
       }
     };
     setDerivedNumbers(object);
   }, [selectedItem]);
-<<<<<<< Updated upstream
-  (0,external_react_.useEffect)(async () => {
-=======
   Object(external_react_["useEffect"])(async () => {
->>>>>>> Stashed changes
     if (dataReady === false) return;
     let rawData = await statistics.getArquipelagoData();
     plausible.trackPageview();
@@ -3248,29 +2772,6 @@ function Home() {
       hour: 'numeric',
       minute: 'numeric'
     });
-<<<<<<< Updated upstream
-    return /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
-      children: [/*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-        className: (Home_module_default()).datepickerRow,
-        children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-          style: {
-            textAlign: 'center'
-          },
-          children: /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
-            className: (Card_module_default()).card_subtitle_2,
-            children: ["Atualizado a ", f.format(new Date(selectedItem.data)), " \xE0s ", horas.format(new Date(selectedItem.data)), " ", /*#__PURE__*/(0,jsx_runtime_.jsx)("br", {})]
-          })
-        })
-      }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Row, {
-        className: "counterRow",
-        children: [/*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-          lg: 4,
-          xs: 6,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Card/* Card */.Z, {
-            type: 'counter',
-            isUpdating: updating,
-            children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Counter/* Counter */.A, {
-=======
     return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
       children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
         className: Home_module_default.a.datepickerRow,
@@ -3292,7 +2793,6 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
->>>>>>> Stashed changes
               tempo: 'na semana anterior',
               colors: colors,
               title: "Doses totais",
@@ -3301,15 +2801,6 @@ function Home() {
               yesterday: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.total
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-          lg: 4,
-          xs: 6,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Card/* Card */.Z, {
-            type: 'counter',
-            isUpdating: updating,
-            children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Counter/* Counter */.A, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
           lg: 4,
           xs: 6,
@@ -3317,7 +2808,6 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
->>>>>>> Stashed changes
               tempo: 'na semana anterior',
               colors: colors,
               title: "Doses  - 1\xAA Inocula\xE7\xE3o",
@@ -3326,15 +2816,6 @@ function Home() {
               to: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_1
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-          lg: 4,
-          xs: 6,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Card/* Card */.Z, {
-            type: 'counter',
-            isUpdating: updating,
-            children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Counter/* Counter */.A, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
           lg: 4,
           xs: 6,
@@ -3342,7 +2823,6 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
->>>>>>> Stashed changes
               tempo: 'na semana anterior',
               colors: colors,
               title: "Doses - 2\xAA Inocula\xE7\xE3o",
@@ -3351,16 +2831,6 @@ function Home() {
               yesterday: selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.dose_2
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-          id: "vacin1d",
-          lg: 4,
-          xs: 6,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Card/* Card */.Z, {
-            type: 'counter',
-            isUpdating: updating,
-            children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Counter/* Counter */.A, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
           id: "vacin1d",
           lg: 4,
@@ -3369,7 +2839,6 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
->>>>>>> Stashed changes
               tempo: 'na semana anterior',
               digits: 2,
               suffix: '%',
@@ -3379,16 +2848,6 @@ function Home() {
               to: derivedNumbers.percentagem_1d.current
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-          id: "vacin2d",
-          lg: 4,
-          xs: 6,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Card/* Card */.Z, {
-            type: 'counter',
-            isUpdating: updating,
-            children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Counter/* Counter */.A, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
           id: "vacin2d",
           lg: 4,
@@ -3397,7 +2856,6 @@ function Home() {
             type: 'counter',
             isUpdating: updating,
             children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Counter["a" /* Counter */], {
->>>>>>> Stashed changes
               tempo: 'na semana anterior',
               digits: 2,
               suffix: '%',
@@ -3407,21 +2865,6 @@ function Home() {
               to: derivedNumbers.percentagem.current
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Col, {
-          id: "vacinfase",
-          lg: 4,
-          xs: 6,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(Card/* Card */.Z, {
-            type: 'counter',
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-              style: {
-                marginBottom: '10px'
-              },
-              className: (Card_module_default()).card_title,
-              children: "Plano de Vacina\xE7\xE3o"
-            }), /*#__PURE__*/(0,jsx_runtime_.jsx)("h1", {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Col"], {
           id: "vacinfase",
           lg: 4,
@@ -3435,26 +2878,16 @@ function Home() {
               className: Card_module_default.a.card_title,
               children: "Plano de Vacina\xE7\xE3o"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h1", {
->>>>>>> Stashed changes
               title: "Consultar notas ou o plano de informa\xE7\xE3o para mais informa\xE7\xE3o",
               style: {
                 color: colors[0]
               },
-<<<<<<< Updated upstream
-              className: (Card_module_default()).card_highlight_2,
-              children: "N/A"
-            }), /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
-              target: "_blank",
-              href: 'https://covidmadeira.pt/vacinacao/',
-              className: `${(Card_module_default()).card_subtitle} ${(Home_module_default()).link}`,
-=======
               className: Card_module_default.a.card_highlight_2,
               children: "N/A"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
               target: "_blank",
               href: 'https://covidmadeira.pt/vacinacao/',
               className: `${Card_module_default.a.card_subtitle} ${Home_module_default.a.link}`,
->>>>>>> Stashed changes
               children: "+ info"
             })]
           })
@@ -3463,19 +2896,6 @@ function Home() {
     });
   };
 
-<<<<<<< Updated upstream
-  return /*#__PURE__*/(0,jsx_runtime_.jsx)(regiao/* RegiaoContext.Provider */.B.Provider, {
-    value: 'madeira',
-    children: loaded ? /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
-      children: [renderCounterGroupV2(), /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Container, {
-        className: "container-fluid app",
-        children: [/*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-          children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-              className: (Home_module_default()).title,
-              children: "N\xFAmero de vacinas administradas"
-            }), /*#__PURE__*/(0,jsx_runtime_.jsx)("hr", {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(NumeroTotalVacinados/* NumeroTotalVacinados */.R, {
-=======
   return /*#__PURE__*/Object(jsx_runtime_["jsx"])(regiao["a" /* RegiaoContext */].Provider, {
     value: 'madeira',
     children: loaded ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
@@ -3487,41 +2907,20 @@ function Home() {
               className: Home_module_default.a.title,
               children: "N\xFAmero de vacinas administradas"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(NumeroTotalVacinados["a" /* NumeroTotalVacinados */], {
->>>>>>> Stashed changes
               statistics: statistics,
               colors: colors
             })]
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-          children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-              className: (Home_module_default()).title,
-              children: "N\xFAmero de vacinas administradas por Semana"
-            }), /*#__PURE__*/(0,jsx_runtime_.jsx)("hr", {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(VacinadosPorDia/* VacinadosPorDia */.Z, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Row"], {
           children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
               className: Home_module_default.a.title,
               children: "N\xFAmero de vacinas administradas por Semana"
             }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(VacinadosPorDia["a" /* VacinadosPorDia */], {
->>>>>>> Stashed changes
               colors: colors_v2,
               statistics: statistics
             })]
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)((external_react_lazyload_default()), {
-          height: 500,
-          once: true,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-            children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-              children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-                className: (Home_module_default()).title,
-                children: "Percentagem da popula\xE7\xE3o vacinada por faixa et\xE1ria"
-              }), /*#__PURE__*/(0,jsx_runtime_.jsx)("hr", {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(RamBarAdministradasPorFaixaEtaria, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
           height: 500,
           once: true,
@@ -3531,29 +2930,11 @@ function Home() {
                 className: Home_module_default.a.title,
                 children: "Percentagem da popula\xE7\xE3o vacinada por faixa et\xE1ria"
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamBarAdministradasPorFaixaEtaria, {
->>>>>>> Stashed changes
                 colors: colors_v2,
                 statistics: statistics
               })]
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)((external_react_lazyload_default()), {
-          height: 500,
-          offset: 300,
-          once: true,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-            children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-              children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-                className: (Home_module_default()).title,
-                children: "Vacina\xE7\xE3o por regi\xE3o"
-              }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("h3", {
-                className: (Home_module_default()).subtitle,
-                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', (0,external_date_fns_.format)(new Date(last_update/* dateMadeira */.Vi).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                  locale: locale_.pt
-                }), "."]
-              }), /*#__PURE__*/(0,jsx_runtime_.jsx)("hr", {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(RamMapa, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
           height: 500,
           offset: 300,
@@ -3569,27 +2950,11 @@ function Home() {
                   locale: locale_["pt"]
                 }), "."]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(RamMapa, {
->>>>>>> Stashed changes
                 colors: colors_v2,
                 statistics: statistics
               })]
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)((external_react_lazyload_default()), {
-          height: 500,
-          once: true,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Row, {
-            children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-              children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("h2", {
-                className: (Home_module_default()).title,
-                children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("em", {
-                  children: ["R", /*#__PURE__*/(0,jsx_runtime_.jsx)("sub", {
-                    children: "t"
-                  })]
-                }), ' ', "na Regi\xE3o Aut\xF3noma da Madeira (desde 01/01/2021)"]
-              }), /*#__PURE__*/(0,jsx_runtime_.jsx)("hr", {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(LineRt/* LineRt */.g, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
           height: 500,
           once: true,
@@ -3603,50 +2968,12 @@ function Home() {
                   })]
                 }), ' ', "na Regi\xE3o Aut\xF3noma da Madeira (desde 01/01/2021)"]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(LineRt["a" /* LineRt */], {
->>>>>>> Stashed changes
                 regiao: 'madeira',
                 colors: colors_v2,
                 statistics: statistics
               })]
             })
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsx)((external_react_lazyload_default()), {
-          height: 500,
-          once: true,
-          children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Row, {
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-              lg: 6,
-              xs: 12,
-              children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-                className: (Home_module_default()).title,
-                children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos"
-              }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("h3", {
-                className: (Home_module_default()).subtitle,
-                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', (0,external_date_fns_.format)(new Date(last_update/* dateMadeira */.Vi), "dd 'de' LLLL 'de' yyyy", {
-                  locale: locale_.pt
-                }), ", \xE0 exce\xE7\xE3o das doses administradas, cujo os ultimos dados dispon\xEDveis s\xE3o de", ' ', (0,external_date_fns_.format)(new Date(last_update/* dateMadeiraCases */.cY), "dd 'de' LLLL 'de' yyyy", {
-                  locale: locale_.pt
-                })]
-              }), /*#__PURE__*/(0,jsx_runtime_.jsx)("hr", {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(PieVacinadosInfectadosRecuperadosObitos/* PieVacinadosInfectadosRecuperadosObitos */.G, {
-                colors: colors_v2,
-                statistics: statistics
-              })]
-            }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-              lg: 6,
-              xs: 12,
-              children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-                className: (Home_module_default()).title,
-                children: "Propor\xE7\xE3o do n\xFAmero total de vacinas administradas com o n\xFAmero de infectados, recuperados e \xF3bitos e popula\xE7\xE3o suscet\xEDvel"
-              }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("h3", {
-                className: (Home_module_default()).subtitle,
-                children: ["Dados acumulados desde 31 de Dezembro de 2020 at\xE9", ' ', (0,external_date_fns_.format)(new Date(last_update/* dateMadeira */.Vi).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                  locale: locale_.pt
-                }), ", \xE0 exce\xE7\xE3o das doses administradas, cujo os ultimos dados dispon\xEDveis s\xE3o de", ' ', (0,external_date_fns_.format)(new Date(last_update/* dateMadeiraCases */.cY).getTime(), "dd 'de' LLLL 'de' yyyy", {
-                  locale: locale_.pt
-                })]
-              }), /*#__PURE__*/(0,jsx_runtime_.jsx)("hr", {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(PieSuscetiveisProporcao/* PieSuscetiveisProporcao */.o, {
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_lazyload_default.a, {
           height: 500,
           once: true,
@@ -3682,38 +3009,11 @@ function Home() {
                   locale: locale_["pt"]
                 })]
               }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("hr", {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(PieSuscetiveisProporcao["a" /* PieSuscetiveisProporcao */], {
->>>>>>> Stashed changes
                 colors: colors_v2,
                 statistics: statistics
               })]
             })]
           })
-<<<<<<< Updated upstream
-        }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Row, {
-          children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-            xs: 12,
-            className: (Home_module_default()).sources_block,
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-              className: (Home_module_default()).title,
-              children: "Notas"
-            }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
-              className: (Home_module_default()).text,
-              children: ["A percentagem de popula\xE7\xE3o vacinada foi calculada com base no n\xFAmero total de segundas doses administradas e com o \xA0", /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
-                rel: "noopener noreferrer",
-                className: (Home_module_default()).link,
-                target: "_blank",
-                href: "https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html",
-                children: "n\xFAmero de popula\xE7\xE3o da Regi\xE3o Aut\xF3noma da Madeira (dados da Dire\xE7\xE3o Regional de Estat\xEDstica da Madeira)"
-              }), ". Os", ' ', /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
-                rel: "noopener noreferrer",
-                className: (Home_module_default()).link,
-                target: "_blank",
-                href: "https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120",
-                children: "dados de cada regi\xE3o da Madeira"
-              }), ' ', "s\xE3o dados provis\xF3rios de at\xE9 31/12 e foram retirados do PORDATA De acordo com o\xA0", /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
-                rel: "noopener noreferrer",
-                className: (Home_module_default()).link,
-=======
         }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
           children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             xs: 12,
@@ -3738,48 +3038,20 @@ function Home() {
               }), ' ', "s\xE3o dados provis\xF3rios de at\xE9 31/12 e foram retirados do PORDATA De acordo com o\xA0", /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                 rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
->>>>>>> Stashed changes
                 target: "_blank",
                 href: "https://rr.sapo.pt/2020/08/24/pais/coronavirus-70-das-pessoas-imunizadas-sera-suficiente-para-criar-imunidade-de-grupo/noticia/204533/",
                 children: "Instituto Ricardo Jorge, ser\xE1 preciso imunizar entre 60% a 70% da popula\xE7\xE3o para se atingir a imunidade de grupo."
               }), ' ', "Os valores apresentados aqui foram calculados com uma percentagem de 70%."]
-<<<<<<< Updated upstream
-            }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
-              className: (Home_module_default()).text,
-              children: ["A popula\xE7\xE3o suscet\xEDvel a infe\xE7\xE3o foi calculada com base na popula\xE7\xE3o total menos a soma do n\xFAmero de \xF3bitos, casos ativos, popula\xE7\xE3o infectada, vacinada e recuperada assumindo que casos de reinfe\xE7\xF5es s\xE3o raros.", ' ', /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
-                rel: "noopener noreferrer",
-                className: (Home_module_default()).link,
-=======
             }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
               className: Home_module_default.a.text,
               children: ["A popula\xE7\xE3o suscet\xEDvel a infe\xE7\xE3o foi calculada com base na popula\xE7\xE3o total menos a soma do n\xFAmero de \xF3bitos, casos ativos, popula\xE7\xE3o infectada, vacinada e recuperada assumindo que casos de reinfe\xE7\xF5es s\xE3o raros.", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                 rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
->>>>>>> Stashed changes
                 href: "https://bnonews.com/index.php/2020/08/covid-19-reinfection-tracker/",
                 target: ":blank",
                 children: "At\xE9 25/02 foram confirmados 57 casos de reinfec\xE7\xE3o com o novo coronav\xEDrus."
               })]
             })]
-<<<<<<< Updated upstream
-          }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
-            xs: 12,
-            className: (Home_module_default()).sources_block,
-            children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("h2", {
-              className: (Home_module_default()).title,
-              children: "Fontes"
-            }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
-              className: (Home_module_default()).text,
-              children: ["Os dados apresentados s\xE3o retirados dos boletins publicados pela\xA0", /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
-                rel: "noopener noreferrer",
-                className: (Home_module_default()).link,
-                target: "_blank",
-                href: "https://covidmadeira.pt/boletim-vacinacao-covid-19/",
-                children: "Dire\xE7\xE3o Regional de Sa\xFAde"
-              }), ". A atualiza\xE7\xE3o destes dados \xE9 semanal. Os dados relativos aos casos confirmados pelo o novo coronavirus s\xE3o retirados dos", ' ', /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
-                rel: "noopener noreferrer",
-                className: (Home_module_default()).link,
-=======
           }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
             xs: 12,
             className: Home_module_default.a.sources_block,
@@ -3797,7 +3069,6 @@ function Home() {
               }), ". A atualiza\xE7\xE3o destes dados \xE9 semanal. Os dados relativos aos casos confirmados pelo o novo coronavirus s\xE3o retirados dos", ' ', /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                 rel: "noopener noreferrer",
                 className: Home_module_default.a.link,
->>>>>>> Stashed changes
                 target: "_blank",
                 href: "https://covidmadeira.pt/ponto-de-situacao/",
                 children: "pontos de situa\xE7\xE3o"
@@ -3806,21 +3077,12 @@ function Home() {
           })]
         })]
       })]
-<<<<<<< Updated upstream
-    }) : /*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
-=======
     }) : /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
->>>>>>> Stashed changes
       style: {
         display: 'block',
         width: 50,
         margin: 'auto '
       },
-<<<<<<< Updated upstream
-      children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_spinners_kit_.GooSpinner, {
-        size: 50,
-        color: colors_v2.main
-=======
       children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_spinners_kit_["GooSpinner"], {
         size: 50,
         color: colors_v2.main
@@ -4015,7 +3277,6 @@ function PieVacinadosInfectadosRecuperadosObitos({
         height: 350,
         options: options(),
         data: data
->>>>>>> Stashed changes
       })
     })
   });
@@ -4023,131 +3284,6 @@ function PieVacinadosInfectadosRecuperadosObitos({
 
 /***/ }),
 
-<<<<<<< Updated upstream
-/***/ 9950:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("chartjs-plugin-annotation");;
-
-/***/ }),
-
-/***/ 9942:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("chartjs-plugin-datalabels");;
-
-/***/ }),
-
-/***/ 4058:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("classnames");;
-
-/***/ }),
-
-/***/ 3879:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("date-fns");;
-
-/***/ }),
-
-/***/ 5931:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("date-fns/locale");;
-
-/***/ }),
-
-/***/ 6731:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("next/router");;
-
-/***/ }),
-
-/***/ 6786:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("node-fetch");;
-
-/***/ }),
-
-/***/ 6987:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("plausible-tracker");;
-
-/***/ }),
-
-/***/ 9297:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react");;
-
-/***/ }),
-
-/***/ 9226:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react-bootstrap");;
-
-/***/ }),
-
-/***/ 8182:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react-chartjs-2");;
-
-/***/ }),
-
-/***/ 6873:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react-lazyload");;
-
-/***/ }),
-
-/***/ 1047:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react-spinners-kit");;
-
-/***/ }),
-
-/***/ 5282:
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("react/jsx-runtime");;
-
-/***/ })
-
-};
-;
-
-// load runtime
-var __webpack_require__ = require("../webpack-runtime.js");
-__webpack_require__.C(exports);
-var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = __webpack_require__.X(0, [859,872,358], function() { return __webpack_exec__(755); });
-module.exports = __webpack_exports__;
-
-})();
-=======
 /***/ "SSzp":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4736,7 +3872,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1628798427484,\"dateVaccines\":1628722800000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-12\",\"dateCases\":1628640000000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
+module.exports = JSON.parse("{\"date\":1628801431192,\"dateVaccines\":1628722800000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-12\",\"dateCases\":1628640000000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
 
 /***/ }),
 
@@ -4965,4 +4101,3 @@ const SNS_WEEKS = {
 /***/ })
 
 /******/ });
->>>>>>> Stashed changes
