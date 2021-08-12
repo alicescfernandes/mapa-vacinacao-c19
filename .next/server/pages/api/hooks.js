@@ -53,7 +53,7 @@ function verifyPostData(req, res) {
     } else {
       let json_string = decodeURIComponent(req.rawBody).split('payload=')[1];
       let json = JSON.parse(json_string);
-      resolve(json.ref === 'refs/heads/master' ? true : false);
+      resolve(json.ref === 'refs/heads/develop' ? true : false);
     }
   });
 }
@@ -65,7 +65,7 @@ async function handler(req, res) {
   console.log('hook received');
 
   if (allowed) {
-    shell.exec('echo "working" & yarn update:server');
+    shell.exec('echo "working" & yarn update:server &');
   } //set out to execute the command
 
 
