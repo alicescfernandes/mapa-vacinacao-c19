@@ -12,7 +12,7 @@ echo 1
 
 git checkout master -f
 git pull
-yarn
+yarn install --frozen-lockfile
 yarn build
 #pm2 stop next
 pm2 restart next

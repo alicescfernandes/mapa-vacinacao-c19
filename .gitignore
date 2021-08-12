@@ -21,7 +21,6 @@ firebase_account.json
 
 .env_keys.json
 # next.js
-/.next/
 /.next_dev/
 /out/
 
