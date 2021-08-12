@@ -39,7 +39,7 @@ export function trackPlausible(req) {
 	if (ip.substr(0, 7) == '::ffff:') {
 		ip = ip.substr(7);
 	}
-	if (userAgent.match('UptimeRobot')) {
+	if (userAgent.match('UptimeRobot') || userAgent.match('NetSystemsResearch') || userAgent.match('Expanse')) {
 		return;
 	}
 
