@@ -184,7 +184,7 @@ function trackPlausible(req) {
     ip = ip.substr(7);
   }
 
-  if (userAgent.matches('UptimeRobot')) {
+  if (userAgent.match('UptimeRobot')) {
     return;
   }
 
