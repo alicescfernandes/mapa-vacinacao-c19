@@ -10,7 +10,7 @@ echo 1
 #pm2 start yarn --name "next" -x -- start
 
 
-git checkout master -f
+git checkout compiled -f
 git pull
 yarn
 yarn build

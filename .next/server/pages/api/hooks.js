@@ -53,7 +53,7 @@ function verifyPostData(req, res) {
     } else {
       let json_string = decodeURIComponent(req.rawBody).split('payload=')[1];
       let json = JSON.parse(json_string);
-      resolve(json.ref === 'refs/heads/develop' ? true : false);
+      resolve(json.ref === 'refs/heads/compiled' ? true : false);
     }
   });
 }
