@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 (function() {
 var exports = {};
 exports.id = 888;
@@ -6,11 +7,200 @@ exports.modules = {
 
 /***/ 1941:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+=======
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = require('../ssr-module-cache.js');
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		var threw = true;
+/******/ 		try {
+/******/ 			modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 			threw = false;
+/******/ 		} finally {
+/******/ 			if(threw) delete installedModules[moduleId];
+/******/ 		}
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/_next/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "/jkW":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.isDynamicRoute = isDynamicRoute; // Identify /[param]/ in route string
+
+const TEST_ROUTE = /\/\[[^/]+?\](?=\/|$)/;
+
+function isDynamicRoute(route) {
+  return TEST_ROUTE.test(route);
+}
+
+/***/ }),
+
+/***/ "0Bsm":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("TqRt");
+
+exports.__esModule = true;
+exports.default = withRouter;
+
+var _react = _interopRequireDefault(__webpack_require__("cDcd"));
+
+var _router = __webpack_require__("nOHt");
+
+function withRouter(ComposedComponent) {
+  function WithRouterWrapper(props) {
+    return /*#__PURE__*/_react.default.createElement(ComposedComponent, Object.assign({
+      router: (0, _router.useRouter)()
+    }, props));
+  }
+
+  WithRouterWrapper.getInitialProps = ComposedComponent.getInitialProps // This is needed to allow checking for custom getInitialProps in _app
+  ;
+  WithRouterWrapper.origGetInitialProps = ComposedComponent.origGetInitialProps;
+
+  if (false) {}
+
+  return WithRouterWrapper;
+}
+
+/***/ }),
+
+/***/ "0G5g":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.cancelIdleCallback = exports.requestIdleCallback = void 0;
+
+const requestIdleCallback = typeof self !== 'undefined' && self.requestIdleCallback || function (cb) {
+  let start = Date.now();
+  return setTimeout(function () {
+    cb({
+      didTimeout: false,
+      timeRemaining: function () {
+        return Math.max(0, 50 - (Date.now() - start));
+      }
+    });
+  }, 1);
+};
+
+exports.requestIdleCallback = requestIdleCallback;
+
+const cancelIdleCallback = typeof self !== 'undefined' && self.cancelIdleCallback || function (id) {
+  return clearTimeout(id);
+};
+
+exports.cancelIdleCallback = cancelIdleCallback;
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("1TCz");
+
+
+/***/ }),
+
+/***/ "1TCz":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> Stashed changes
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
+<<<<<<< Updated upstream
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
   "default": function() { return /* binding */ _app; }
@@ -41,6 +231,48 @@ var last_update = __webpack_require__(4520);
 var Card_module = __webpack_require__(1547);
 var Card_module_default = /*#__PURE__*/__webpack_require__.n(Card_module);
 ;// CONCATENATED MODULE: ./components/Footer.jsx
+=======
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__("F5FC");
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+
+// CONCATENATED MODULE: ./wydr.js
+
+
+if (false) {}
+// EXTERNAL MODULE: ./node_modules/bootstrap/dist/css/bootstrap.min.css
+var bootstrap_min = __webpack_require__("q4sD");
+
+// EXTERNAL MODULE: ./node_modules/react-datepicker/dist/react-datepicker.css
+var react_datepicker = __webpack_require__("5Buo");
+
+// EXTERNAL MODULE: ./styles/globals.scss
+var globals = __webpack_require__("H/sG");
+
+// EXTERNAL MODULE: external "@babel/polyfill"
+var polyfill_ = __webpack_require__("jWA4");
+
+// EXTERNAL MODULE: ./utils.js
+var utils = __webpack_require__("GyP+");
+
+// EXTERNAL MODULE: external "react-bootstrap"
+var external_react_bootstrap_ = __webpack_require__("IZS3");
+
+// EXTERNAL MODULE: ./components/Footer.module.scss
+var Footer_module = __webpack_require__("3Nti");
+var Footer_module_default = /*#__PURE__*/__webpack_require__.n(Footer_module);
+
+// EXTERNAL MODULE: ./data/last-update.json
+var last_update = __webpack_require__("vga7");
+
+// EXTERNAL MODULE: ./components/Card.module.scss
+var Card_module = __webpack_require__("UG6H");
+var Card_module_default = /*#__PURE__*/__webpack_require__.n(Card_module);
+
+// CONCATENATED MODULE: ./components/Footer.jsx
+>>>>>>> Stashed changes
 
 
 
@@ -66,15 +298,23 @@ function Footer({
     day: 'numeric'
   };
   let f2 = new Intl.DateTimeFormat('pt-PT', options2);
+<<<<<<< Updated upstream
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
     children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
       className: `${(Footer_module_default()).footer} hide_mobile card-shadow`,
       children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Container, {
+=======
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+      className: `${Footer_module_default.a.footer} hide_mobile card-shadow`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
+>>>>>>> Stashed changes
         className: `hide_mobile`,
         style: {
           padding: '15px',
           display: 'block'
         },
+<<<<<<< Updated upstream
         children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Row, {
           children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Col, {
             children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("p", {
@@ -135,10 +375,73 @@ function Footer({
             }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
               className: (Card_module_default()).card_subtitle,
               children: ["Dados at\xE9 ", f2.format(new Date(last_update/* dateOwid */.jh))]
+=======
+        children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Row"], {
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Casos (DSSG-PT)"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f2.format(new Date(last_update.dateCases))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Vacinas"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f2.format(new Date(last_update.dateVaccines))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Relat\xF3rios de Vacina\xE7\xE3o"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f2.format(new Date(last_update.dateSns))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Dados RT"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f2.format(new Date(last_update.dateRt))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Relat\xF3rios ECDC"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f2.format(new Date(last_update.dateEcdc))]
+            })]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Col"], {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+                children: "Dados OWID"
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+              className: Card_module_default.a.card_subtitle,
+              children: ["Dados at\xE9 ", f2.format(new Date(last_update.dateOwid))]
+>>>>>>> Stashed changes
             })]
           })]
         })
       })
+<<<<<<< Updated upstream
     }), /*#__PURE__*/(0,jsx_runtime_.jsx)("script", {
       src: "/leaflet.js"
     }), /*#__PURE__*/(0,jsx_runtime_.jsx)("script", {
@@ -156,28 +459,63 @@ function Footer({
         children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("ul", {
           children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
             children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "/leaflet.js"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js",
+      integrity: "sha512-XVnzJolpkbYuMeISFQk6sQIkn3iYUbMX3f0STFUvT6f4+MZR6RJvlM5JFA2ritAN3hn+C0Bkckx2/+lCoJl3yg==",
+      crossOrigin: "anonymous"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("script", {
+      src: "https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("footer", {
+      className: `${Footer_module_default.a.footer} card-shadow`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Container"], {
+        className: Footer_module_default.a.content,
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
               target: "_blank",
               href: "https://twitter.com/vacinacaocovid1",
               children: "Twitter"
             })
+<<<<<<< Updated upstream
           }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
             children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
               target: "_blank",
               href: "/api/vaccines",
               children: "API"
             })
+<<<<<<< Updated upstream
           }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
             children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
               target: "_blank",
               href: "https://github.com/alicescfernandes/mapa-vacinacao-c19#embeds",
               children: "Embeds"
             })
+<<<<<<< Updated upstream
           }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
             children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
               target: "_blank",
               href: "https://github.com/alicescfernandes/mapa-vacinacao-c19",
               children: "C\xF3digo-Fonte"
             })
+<<<<<<< Updated upstream
           }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
             children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
               href: "mailto:alicescfernandes+mapa@gmail.com",
@@ -185,23 +523,46 @@ function Footer({
             })
           }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
             children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+              href: "mailto:alicescfernandes+mapa@gmail.com",
+              children: "Contacto"
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
               target: "_blank",
               href: "https://plausible.io/vacinacaocovid19.pt",
               children: "Analytics"
             })
           })]
+<<<<<<< Updated upstream
         }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
           className: (Footer_module_default()).update,
           children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(last_update/* date */.hT))]
+=======
+        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("p", {
+          className: Footer_module_default.a.update,
+          children: ["\xDAltima Atualiza\xE7\xE3o: ", f.format(new Date(last_update.date))]
+>>>>>>> Stashed changes
         })]
       })
     })]
   }); //
 }
+<<<<<<< Updated upstream
 ;// CONCATENATED MODULE: external "next/head"
 var head_namespaceObject = require("next/head");;
 var head_default = /*#__PURE__*/__webpack_require__.n(head_namespaceObject);
 ;// CONCATENATED MODULE: ./components/MetaTags.jsx
+=======
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
+// CONCATENATED MODULE: ./components/MetaTags.jsx
+>>>>>>> Stashed changes
 
 
 
@@ -211,6 +572,7 @@ function Metatags({
 }) {
   let title = 'Vacinação COVID-19 - Dashboard sobre os dados da campanha de vacinação contra a COVID-19 em Portugal e Arquipélagos';
   let descricao = `Site informativo sobre a administração das vacinas em Portugal. É atualizado sempre que possível, assim que os dados forem sendo atualizados. Contamos com dados da Direção-Geral da Saúde, Our World in Data, Centro Europeu de Controlo de Doenças e informação do Governo de Portugal, temos gráficos sobre as vacinas administradas por dia e desde o início da campanha de vacinação, compradas, a faixa etária dos inoculados, infeções, óbitos, entre outros e temos números relacionados com a imunidade de grupo entre outros. Todo o nosso código é open-source, e pode ser consultado no github onde está alojado. Temos ainda uma conta no twitter onde pode seguir as últimas atualizações em relação aos números da campanha de vacinação da COVID-19.`;
+<<<<<<< Updated upstream
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
     children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)((head_default()), {
       children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("meta", {
@@ -289,25 +651,118 @@ function Metatags({
         sizes: "180x180",
         href: "/apple-icon-180x180.png"
       }), /*#__PURE__*/(0,jsx_runtime_.jsx)("link", {
+=======
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(head_default.a, {
+      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        name: "viewport",
+        content: "initial-scale=1.0, width=device-width"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        name: "title",
+        content: title
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        name: "description",
+        content: descricao
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "og:type",
+        content: "website"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "og:url",
+        content: "https://vacinacaocovid19.pt/"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "og:title",
+        content: "Vacina\xE7\xE3o - COVID 19"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "og:description",
+        content: descricao
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "og:image",
+        content: "https://vacinacaocovid19.pt/imagem.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "twitter:card",
+        content: "summary_large_image"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "twitter:url",
+        content: "https://vacinacaocovid19.pt/"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "twitter:title",
+        content: "Vacina\xE7\xE3o - COVID 19"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "twitter:description",
+        content: descricao
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        property: "twitter:image",
+        content: "https://vacinacaocovid19.pt/imagem.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "57x57",
+        href: "/apple-icon-57x57.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "60x60",
+        href: "/apple-icon-60x60.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "72x72",
+        href: "/apple-icon-72x72.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "76x76",
+        href: "/apple-icon-76x76.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "114x114",
+        href: "/apple-icon-114x114.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "120x120",
+        href: "/apple-icon-120x120.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "144x144",
+        href: "/apple-icon-144x144.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "152x152",
+        href: "/apple-icon-152x152.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-icon-180x180.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+>>>>>>> Stashed changes
         rel: "icon",
         type: "image/png",
         sizes: "192x192",
         href: "/android-icon-192x192.png"
+<<<<<<< Updated upstream
       }), /*#__PURE__*/(0,jsx_runtime_.jsx)("link", {
+=======
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+>>>>>>> Stashed changes
         rel: "icon",
         type: "image/png",
         sizes: "32x32",
         href: "/favicon-32x32.png"
+<<<<<<< Updated upstream
       }), /*#__PURE__*/(0,jsx_runtime_.jsx)("link", {
+=======
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+>>>>>>> Stashed changes
         rel: "icon",
         type: "image/png",
         sizes: "96x96",
         href: "/favicon-96x96.png"
+<<<<<<< Updated upstream
       }), /*#__PURE__*/(0,jsx_runtime_.jsx)("link", {
+=======
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+>>>>>>> Stashed changes
         rel: "icon",
         type: "image/png",
         sizes: "16x16",
         href: "/favicon-16x16.png"
+<<<<<<< Updated upstream
       }), /*#__PURE__*/(0,jsx_runtime_.jsx)("link", {
         rel: "manifest",
         href: "/manifest.json"
@@ -330,12 +785,37 @@ function Metatags({
         href: "/leaflet.min.css"
       })]
     }), /*#__PURE__*/(0,jsx_runtime_.jsx)("p", {
+=======
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "manifest",
+        href: "/manifest.json"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        name: "msapplication-TileColor",
+        content: "#01AE97"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        name: "msapplication-TileImage",
+        content: "/ms-icon-144x144.png"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        name: "msapplication-TileColor",
+        content: "#01AE97"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("meta", {
+        name: "theme-color",
+        content: "#01AE97"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("title", {
+        children: title
+      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("link", {
+        rel: "stylesheet",
+        href: "/leaflet.min.css"
+      })]
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+>>>>>>> Stashed changes
       className: "hide-except-seo",
       children: descricao
     })]
   });
 }
 // EXTERNAL MODULE: ./node_modules/next/link.js
+<<<<<<< Updated upstream
 var next_link = __webpack_require__(1664);
 // EXTERNAL MODULE: ./components/context/regiao.js
 var context_regiao = __webpack_require__(2642);
@@ -346,6 +826,23 @@ var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
 var external_plausible_tracker_ = __webpack_require__(6987);
 var external_plausible_tracker_default = /*#__PURE__*/__webpack_require__.n(external_plausible_tracker_);
 ;// CONCATENATED MODULE: ./components/Notifications.jsx
+=======
+var next_link = __webpack_require__("YFqc");
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
+
+// EXTERNAL MODULE: ./components/context/regiao.js
+var context_regiao = __webpack_require__("uAdN");
+
+// EXTERNAL MODULE: ./components/Header.module.scss
+var Header_module = __webpack_require__("OXQD");
+var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
+
+// EXTERNAL MODULE: external "plausible-tracker"
+var external_plausible_tracker_ = __webpack_require__("WUak");
+var external_plausible_tracker_default = /*#__PURE__*/__webpack_require__.n(external_plausible_tracker_);
+
+// CONCATENATED MODULE: ./components/Notifications.jsx
+>>>>>>> Stashed changes
 
 
 
@@ -422,17 +919,26 @@ function Notifications({
     });
   }
 
+<<<<<<< Updated upstream
   (0,external_react_.useEffect)(function () {
+=======
+  Object(external_react_["useEffect"])(function () {
+>>>>>>> Stashed changes
     if (Notification.permission === 'granted') {
       registerOnFirebase();
     }
   }, []);
+<<<<<<< Updated upstream
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
+=======
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
+>>>>>>> Stashed changes
     onClick: allowNotifications,
     children: [children, " "]
   });
 }
 // EXTERNAL MODULE: ./assets/bell.svg
+<<<<<<< Updated upstream
 var bell = __webpack_require__(8967);
 var bell_default = /*#__PURE__*/__webpack_require__.n(bell);
 // EXTERNAL MODULE: ./assets/twitter.svg
@@ -442,6 +948,20 @@ var twitter_default = /*#__PURE__*/__webpack_require__.n(twitter);
 var plus = __webpack_require__(6231);
 var plus_default = /*#__PURE__*/__webpack_require__.n(plus);
 ;// CONCATENATED MODULE: ./components/Header.jsx
+=======
+var bell = __webpack_require__("RQMA");
+var bell_default = /*#__PURE__*/__webpack_require__.n(bell);
+
+// EXTERNAL MODULE: ./assets/twitter.svg
+var twitter = __webpack_require__("WAYG");
+var twitter_default = /*#__PURE__*/__webpack_require__.n(twitter);
+
+// EXTERNAL MODULE: ./assets/plus.svg
+var plus = __webpack_require__("tiMs");
+var plus_default = /*#__PURE__*/__webpack_require__.n(plus);
+
+// CONCATENATED MODULE: ./components/Header.jsx
+>>>>>>> Stashed changes
 
 
 
@@ -458,12 +978,21 @@ function Header() {
   let {
     0: supportsNotifications,
     1: setSupportsNotifications
+<<<<<<< Updated upstream
   } = (0,external_react_.useState)(false);
   let {
     0: isSidebarOpen,
     1: setIsSidebarOpen
   } = (0,external_react_.useState)(false);
   let regiao = (0,external_react_.useContext)(context_regiao/* RegiaoContext */.B);
+=======
+  } = Object(external_react_["useState"])(false);
+  let {
+    0: isSidebarOpen,
+    1: setIsSidebarOpen
+  } = Object(external_react_["useState"])(false);
+  let regiao = Object(external_react_["useContext"])(context_regiao["a" /* RegiaoContext */]);
+>>>>>>> Stashed changes
   let regioes = {
     portugal: {
       nome: '',
@@ -478,11 +1007,16 @@ function Header() {
       tagline: 'Dados atualizados semanalmente'
     }
   };
+<<<<<<< Updated upstream
   (0,external_react_.useEffect)(() => {
+=======
+  Object(external_react_["useEffect"])(() => {
+>>>>>>> Stashed changes
     setSupportsNotifications('Notification' in window);
   }, []);
 
   function renderLocalInfo() {
+<<<<<<< Updated upstream
     return /*#__PURE__*/(0,jsx_runtime_.jsxs)("ul", {
       children: [regiao === 'portugal' && /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
         children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
@@ -511,40 +1045,97 @@ function Header() {
           })
         }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
           children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+    return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+      children: [regiao === 'portugal' && /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+            target: "_blank",
+            href: "https://covid19.min-saude.pt/vacinacao/",
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+              children: "Quando posso ser vacinado?"
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+            target: "_blank",
+            href: "https://pandemiaclara.sapo.pt/",
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+              children: "Medidas de Desconfinamento"
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+            target: "_blank",
+            href: "https://quadradinhodocosta.pt/",
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("strong", {
+              children: "Matriz de Risco"
+            })
+          })
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
             target: "_blank",
             href: "https://covid19.min-saude.pt/relatorio-de-vacinacao/",
             children: "Relat\xF3rios de Vacina\xE7\xE3o"
           })
+<<<<<<< Updated upstream
         }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
           children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
             target: "_blank",
             href: "https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/",
             children: "Ponto de Situa\xE7\xE3o"
           })
         })]
+<<<<<<< Updated upstream
       }), regiao === 'madeira' && /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
         children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
           children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+      }), regiao === 'madeira' && /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
             target: "_blank",
             href: "https://covidmadeira.pt/",
             children: "Sit\xEDo oficial - Dire\xE7\xE3o Regional de Sa\xFAde"
           })
+<<<<<<< Updated upstream
         }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
           children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
             target: "_blank",
             href: "https://covidmadeira.pt/ponto-de-situacao/",
             children: "Ponto de Situa\xE7\xE3o"
           })
         })]
+<<<<<<< Updated upstream
       }), regiao === 'acores' && /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
         children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
           children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+      }), regiao === 'acores' && /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
             target: "_blank",
             href: "https://destinoseguro.azores.gov.pt/",
             children: "Portal COVID-19 - Governo dos A\xE7ores"
           })
+<<<<<<< Updated upstream
         }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
           children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
             target: "_blank",
             href: "https://vacinacao-covid19.azores.gov.pt/",
             children: "Portal Vacina\xE7\xE3o - Governo dos A\xE7ores"
@@ -554,6 +1145,7 @@ function Header() {
     });
   }
 
+<<<<<<< Updated upstream
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
     children: [/*#__PURE__*/(0,jsx_runtime_.jsx)("header", {
       className: `${(Header_module_default()).header} card-shadow`,
@@ -596,12 +1188,61 @@ function Header() {
             }), supportsNotifications && /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
               children: /*#__PURE__*/(0,jsx_runtime_.jsx)(Notifications, {
                 children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("header", {
+      className: `${Header_module_default.a.header} card-shadow`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(external_react_bootstrap_["Container"], {
+        className: Header_module_default.a.content,
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
+          className: Header_module_default.a.logo,
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("h1", {
+            children: ["vacina\xE7\xE3o COVID 19 ", regioes[regiao].nome, " "]
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
+            children: regioes[regiao].tagline
+          })]
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("nav", {
+          className: `${Header_module_default.a.nav} ${Header_module_default.a.hide_mobile}`,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  className: regiao === 'portugal' ? Header_module_default.a.highlight : '',
+                  children: "Portugal"
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/madeira",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  className: regiao === 'madeira' ? Header_module_default.a.highlight : '',
+                  children: "Madeira"
+                })
+              })
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                href: "/acores",
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  className: regiao === 'acores' ? Header_module_default.a.highlight : '',
+                  children: "A\xE7ores"
+                })
+              })
+            }), supportsNotifications && /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Notifications, {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
                   href: "#",
                   children: "Notifica\xE7\xF5es"
                 })
               })
+<<<<<<< Updated upstream
             }), /*#__PURE__*/(0,jsx_runtime_.jsx)("li", {
               children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
+=======
+            }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+>>>>>>> Stashed changes
                 target: "_blank",
                 href: "https://twitter.com/vacinacaocovid1",
                 children: "Twitter"
@@ -610,6 +1251,7 @@ function Header() {
           })
         })]
       })
+<<<<<<< Updated upstream
     }), /*#__PURE__*/(0,jsx_runtime_.jsx)("header", {
       className: `${(Header_module_default()).header} ${(Header_module_default()).header_mobile} card-shadow`,
       children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Container, {
@@ -634,11 +1276,38 @@ function Header() {
                 children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
                   children: /*#__PURE__*/(0,jsx_runtime_.jsx)("span", {
                     children: /*#__PURE__*/(0,jsx_runtime_.jsx)((bell_default()), {
+=======
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("header", {
+      className: `${Header_module_default.a.header} ${Header_module_default.a.header_mobile} card-shadow`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
+        className: Header_module_default.a.content,
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("nav", {
+          className: `${Header_module_default.a.nav}  ${Header_module_default.a.hide_mobile}`,
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+              children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
+                onClick: () => {
+                  setIsSidebarOpen(true);
+                },
+                children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(plus_default.a, {
+                  width: 25,
+                  height: 25
+                }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                  children: "Mais"
+                })]
+              })
+            }), supportsNotifications && /*#__PURE__*/Object(jsx_runtime_["jsxs"])("li", {
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Notifications, {
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                  children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                    children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(bell_default.a, {
+>>>>>>> Stashed changes
                       width: 21,
                       height: 21
                     })
                   })
                 })
+<<<<<<< Updated upstream
               }), /*#__PURE__*/(0,jsx_runtime_.jsx)("span", {
                 children: "Notifica\xE7\xF5es"
               })]
@@ -648,6 +1317,17 @@ function Header() {
                   width: 25,
                   height: 25
                 }), /*#__PURE__*/(0,jsx_runtime_.jsx)("span", {
+=======
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                children: "Notifica\xE7\xF5es"
+              })]
+            }), ' ', /*#__PURE__*/Object(jsx_runtime_["jsxs"])("li", {
+              children: [' ', /*#__PURE__*/Object(jsx_runtime_["jsxs"])("span", {
+                children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(twitter_default.a, {
+                  width: 25,
+                  height: 25
+                }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+>>>>>>> Stashed changes
                   children: "Twitter"
                 })]
               })]
@@ -655,6 +1335,7 @@ function Header() {
           })
         })
       })
+<<<<<<< Updated upstream
     }), /*#__PURE__*/(0,jsx_runtime_.jsx)("div", {
       className: `${(Header_module_default()).submenu}`,
       children: /*#__PURE__*/(0,jsx_runtime_.jsx)(external_react_bootstrap_.Container, {
@@ -698,18 +1379,71 @@ function Header() {
               href: "/acores",
               children: /*#__PURE__*/(0,jsx_runtime_.jsx)("a", {
                 className: regiao === 'acores' ? (Header_module_default()).highlight : '',
+=======
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+      className: `${Header_module_default.a.submenu}`,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_bootstrap_["Container"], {
+        className: Header_module_default.a.content,
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("nav", {
+          className: Header_module_default.a.nav,
+          children: renderLocalInfo()
+        })
+      })
+    }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("aside", {
+      onClick: () => {
+        setIsSidebarOpen(false);
+      },
+      className: `${Header_module_default.a.sidemenu} ${isSidebarOpen ? Header_module_default.a.sidemenu_visible : ''}`,
+      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+        className: Header_module_default.a.sidemenu_close,
+        children: "\u2715"
+      }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
+        className: Header_module_default.a.sidemenu_container,
+        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h1", {
+          children: "Mais dados"
+        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
+          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+              href: "/",
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                className: regiao === 'portugal' ? Header_module_default.a.highlight : '',
+                children: "Portugal"
+              })
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+              href: "/madeira",
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                className: regiao === 'madeira' ? Header_module_default.a.highlight : '',
+                children: "Madeira"
+              })
+            })
+          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
+            children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+              href: "/acores",
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
+                className: regiao === 'acores' ? Header_module_default.a.highlight : '',
+>>>>>>> Stashed changes
                 children: "A\xE7ores"
               })
             })
           })]
+<<<<<<< Updated upstream
         }), /*#__PURE__*/(0,jsx_runtime_.jsx)("h1", {
+=======
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("h1", {
+>>>>>>> Stashed changes
           children: "Mais informa\xE7\xE3o"
         }), renderLocalInfo()]
       })]
     })]
   });
 }
+<<<<<<< Updated upstream
 ;// CONCATENATED MODULE: ./hooks/initSockets.js
+=======
+// CONCATENATED MODULE: ./hooks/initSockets.js
+>>>>>>> Stashed changes
 //TODO: Turn this into a hook
 function initSockets(onUpdate) {
   if (!window.pusher) {
@@ -730,7 +1464,11 @@ function initSockets(onUpdate) {
 	}, 1000);
 });
  */
+<<<<<<< Updated upstream
 ;// CONCATENATED MODULE: ./pages/_app.js
+=======
+// CONCATENATED MODULE: ./pages/_app.js
+>>>>>>> Stashed changes
 
 
 
@@ -752,7 +1490,11 @@ function NextApp({
   props
 }) {
   // Unconventional way of not having multiple sockets connected between pages
+<<<<<<< Updated upstream
   (0,external_react_.useEffect)(() => {
+=======
+  Object(external_react_["useEffect"])(() => {
+>>>>>>> Stashed changes
     initSockets(function (data) {
       let event = new Event('socket_update');
       event.data = data;
@@ -770,16 +1512,26 @@ function NextApp({
     } else {//not supported
     }
   }, []);
+<<<<<<< Updated upstream
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)(context_regiao/* RegiaoContext.Provider */.B.Provider, {
     value: props.regiao || 'portugal',
     children: [/*#__PURE__*/(0,jsx_runtime_.jsx)(Metatags, {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(Header, {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(Component, {}), /*#__PURE__*/(0,jsx_runtime_.jsx)(Footer, {})]
+=======
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(context_regiao["a" /* RegiaoContext */].Provider, {
+    value: props.regiao || 'portugal',
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(Metatags, {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(Header, {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(Component, {}), /*#__PURE__*/Object(jsx_runtime_["jsx"])(Footer, {})]
+>>>>>>> Stashed changes
   });
 }
 
 NextApp.getInitialProps = async app => {
   var _app$ctx, _app$ctx$req;
 
+<<<<<<< Updated upstream
   (0,utils/* trackPlausible */.DG)(app.ctx.req);
+=======
+  Object(utils["i" /* trackPlausible */])(app.ctx.req);
+>>>>>>> Stashed changes
   let url = (app === null || app === void 0 ? void 0 : (_app$ctx = app.ctx) === null || _app$ctx === void 0 ? void 0 : (_app$ctx$req = _app$ctx.req) === null || _app$ctx$req === void 0 ? void 0 : _app$ctx$req.url.replace('/', '')) || app.ctx.pathname.replace('/', '');
   url = url.split('?')[0];
   let regiao = 'portugal';
@@ -797,12 +1549,82 @@ NextApp.getInitialProps = async app => {
   };
 };
 
+<<<<<<< Updated upstream
 /* harmony default export */ var _app = (NextApp);
 
 /***/ }),
 
 /***/ 2761:
 /***/ (function(module) {
+=======
+/* harmony default export */ var _app = __webpack_exports__["default"] = (NextApp);
+
+/***/ }),
+
+/***/ "284h":
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__("cDf5");
+
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+module.exports = _interopRequireWildcard;
+
+/***/ }),
+
+/***/ "3Nti":
+/***/ (function(module, exports) {
+>>>>>>> Stashed changes
 
 // Exports
 module.exports = {
@@ -815,6 +1637,7 @@ module.exports = {
 
 /***/ }),
 
+<<<<<<< Updated upstream
 /***/ 451:
 /***/ (function(module) {
 
@@ -858,10 +1681,110 @@ Bell.defaultProps = {"style":{"isolation":"isolate"},"viewBox":"1790 93.071 158 
 module.exports = Bell;
 
 Bell.default = Bell;
+=======
+/***/ "3WeD":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.searchParamsToUrlQuery = searchParamsToUrlQuery;
+exports.urlQueryToSearchParams = urlQueryToSearchParams;
+exports.assign = assign;
+
+function searchParamsToUrlQuery(searchParams) {
+  const query = {};
+  searchParams.forEach((value, key) => {
+    if (typeof query[key] === 'undefined') {
+      query[key] = value;
+    } else if (Array.isArray(query[key])) {
+      ;
+      query[key].push(value);
+    } else {
+      query[key] = [query[key], value];
+    }
+  });
+  return query;
+}
+
+function stringifyUrlQueryParam(param) {
+  if (typeof param === 'string' || typeof param === 'number' && !isNaN(param) || typeof param === 'boolean') {
+    return String(param);
+  } else {
+    return '';
+  }
+}
+
+function urlQueryToSearchParams(urlQuery) {
+  const result = new URLSearchParams();
+  Object.entries(urlQuery).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach(item => result.append(key, stringifyUrlQueryParam(item)));
+    } else {
+      result.set(key, stringifyUrlQueryParam(value));
+    }
+  });
+  return result;
+}
+
+function assign(target, ...searchParamsList) {
+  searchParamsList.forEach(searchParams => {
+    Array.from(searchParams.keys()).forEach(key => target.delete(key));
+    searchParams.forEach((value, key) => target.append(key, value));
+  });
+  return target;
+}
+
+/***/ }),
+
+/***/ "3wub":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.normalizeLocalePath = normalizeLocalePath;
+
+function normalizeLocalePath(pathname, locales) {
+  let detectedLocale; // first item will be empty string from splitting at first char
+
+  const pathnameParts = pathname.split('/');
+  (locales || []).some(locale => {
+    if (pathnameParts[1].toLowerCase() === locale.toLowerCase()) {
+      detectedLocale = locale;
+      pathnameParts.splice(1, 1);
+      pathname = pathnameParts.join('/') || '/';
+      return true;
+    }
+
+    return false;
+  });
+  return {
+    pathname,
+    detectedLocale
+  };
+}
+
+/***/ }),
+
+/***/ "4vsW":
+/***/ (function(module, exports) {
+
+module.exports = require("node-fetch");
+
+/***/ }),
+
+/***/ "5Buo":
+/***/ (function(module, exports) {
+
+>>>>>>> Stashed changes
 
 
 /***/ }),
 
+<<<<<<< Updated upstream
 /***/ 6231:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -988,3 +1911,3093 @@ var __webpack_exports__ = __webpack_require__.X(0, [664,859,872], function() { r
 module.exports = __webpack_exports__;
 
 })();
+=======
+/***/ "6D7l":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.formatUrl = formatUrl;
+
+var querystring = _interopRequireWildcard(__webpack_require__("3WeD"));
+
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function () {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
+    return {
+      default: obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj.default = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+} // Format function modified from nodejs
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+const slashedProtocols = /https?|ftp|gopher|file/;
+
+function formatUrl(urlObj) {
+  let {
+    auth,
+    hostname
+  } = urlObj;
+  let protocol = urlObj.protocol || '';
+  let pathname = urlObj.pathname || '';
+  let hash = urlObj.hash || '';
+  let query = urlObj.query || '';
+  let host = false;
+  auth = auth ? encodeURIComponent(auth).replace(/%3A/i, ':') + '@' : '';
+
+  if (urlObj.host) {
+    host = auth + urlObj.host;
+  } else if (hostname) {
+    host = auth + (~hostname.indexOf(':') ? `[${hostname}]` : hostname);
+
+    if (urlObj.port) {
+      host += ':' + urlObj.port;
+    }
+  }
+
+  if (query && typeof query === 'object') {
+    query = String(querystring.urlQueryToSearchParams(query));
+  }
+
+  let search = urlObj.search || query && `?${query}` || '';
+  if (protocol && protocol.substr(-1) !== ':') protocol += ':';
+
+  if (urlObj.slashes || (!protocol || slashedProtocols.test(protocol)) && host !== false) {
+    host = '//' + (host || '');
+    if (pathname && pathname[0] !== '/') pathname = '/' + pathname;
+  } else if (!host) {
+    host = '';
+  }
+
+  if (hash && hash[0] !== '#') hash = '#' + hash;
+  if (search && search[0] !== '?') search = '?' + search;
+  pathname = pathname.replace(/[?#]/g, encodeURIComponent);
+  search = search.replace('#', '%23');
+  return `${protocol}${host}${pathname}${search}${hash}`;
+}
+
+/***/ }),
+
+/***/ "9BML":
+/***/ (function(module, exports) {
+
+module.exports = require("date-fns");
+
+/***/ }),
+
+/***/ "F5FC":
+/***/ (function(module, exports) {
+
+module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
+/***/ "GXs3":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = resolveRewrites;
+
+function resolveRewrites() {}
+
+/***/ }),
+
+/***/ "GyP+":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return hexToRgb; });
+/* unused harmony export dateWithoutTimezone */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return trackPlausible; });
+/* unused harmony export downloadPNG */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return perHundred; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithLocalCache; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatDateShort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return makeAnnotations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculateDims; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getColor; });
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9BML");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("tDG4");
+/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("4vsW");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("xPX6");
+/* harmony import */ var _data_generic_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("lN74");
+var _data_generic_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t("lN74", 1);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+const formatNumber = (number, isDate = true) => {
+  let numberFormatter = new Intl.NumberFormat('pt-PT', {
+    minimumIntegerDigits: isDate ? 2 : 1
+  });
+  return numberFormatter.format(number).replace(/,/gm, ' ');
+};
+ //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+function dateWithoutTimezone(unix) {
+  const dt = new Date(unix);
+  return new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+}
+function trackPlausible(req) {
+  var _req$headers;
+
+  if (req === undefined) return;
+  if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
+  let host = req.headers.host;
+  let url = req.url;
+  let userAgent = req.headers['user-agent'];
+  let referer = ((_req$headers = req.headers) === null || _req$headers === void 0 ? void 0 : _req$headers.referer) || '';
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+  if (ip.substr(0, 7) == '::ffff:') {
+    ip = ip.substr(7);
+  }
+
+  let headers = {
+    'user-agent': userAgent,
+    'x-forwarded-for': ip,
+    referer: referer
+  };
+  let data = {
+    name: 'pageview',
+    url: 'https://www.vacinacaocovid19.pt' + url,
+    domain: 'vacinacaocovid19.pt',
+    referrer: referer,
+    screen_width: null
+  };
+  if (host.match('localhost')) return;
+  if (req.headers['x-request-self'] === 'true') return;
+  console.log('track', headers, JSON.stringify(data));
+  node_fetch__WEBPACK_IMPORTED_MODULE_2___default()('https://plausible.io/api/event', {
+    method: 'post',
+    headers,
+    body: JSON.stringify(data)
+  }).then(() => {
+    console.log('request', 'post', JSON.stringify(data), headers);
+  }).catch(() => {
+    console.log('err');
+  });
+}
+function downloadPNG(canvasElement, graphName) {
+  var link = document.createElement('a');
+  link.download = 'filename.png';
+  link.href = canvasElement.toDataURL();
+  link.click();
+}
+function perHundred(total, populacaoTotal = _data_generic_json__WEBPACK_IMPORTED_MODULE_4__["populacao"].valor) {
+  return total / populacaoTotal * 100;
+}
+function fetchWithLocalCache(url, options) {
+  let useCache = true;
+  let [path, cacheBuster] = url.split('?');
+  let items = JSON.parse(JSON.stringify(localStorage));
+
+  for (var k in items) {
+    let [lsPath, lsCacheBuster] = k.split('?');
+
+    if (lsPath === path && lsCacheBuster !== cacheBuster) {
+      useCache = false;
+      localStorage.removeItem(k);
+    }
+  }
+
+  if (window && localStorage.getItem(url) && useCache === true) {
+    let data = JSON.parse(localStorage.getItem(url));
+    return Promise.resolve(data);
+  } else {
+    return fetch(url, _objectSpread(_objectSpread({}, options), {}, {
+      headers: {
+        'X-Request-Self': true
+      }
+    })).then(res => res.json()).then(data => {
+      localStorage.setItem(url, JSON.stringify(data));
+      return data;
+    });
+  }
+}
+function formatDateShort(date) {
+  return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["format"])(new Date(date), "dd'/'MM'/'yyyy", {
+    locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_1__["pt"]
+  });
+}
+function makeAnnotations(annotationsArray) {
+  let annotationBoilerplate = {
+    type: 'line',
+    mode: 'horizontal',
+    scaleID: 'y',
+    value: null,
+    borderColor: '#0A9DD1',
+    borderWidth: 1,
+    borderDash: [5, 5],
+    label: {
+      font: {
+        style: 'normal'
+      },
+      backgroundColor: 'rgba(255,255,255,0.8)',
+      cornerRadius: 0,
+      drawTime: 'afterDraw',
+      color: '#0A9DD1',
+      rotation: 270,
+      xAdjust: 8,
+      //xAdjust: -8,
+      yAdjust: 0,
+      fontSize: '13px',
+      enabled: true,
+      content: ''
+    }
+  };
+  let arr = [];
+  annotationsArray.forEach(el => {
+    var _el$xAdjust;
+
+    let annotation = _objectSpread(_objectSpread({}, annotationBoilerplate), {}, {
+      mode: el.mode,
+      scaleID: el.mode === 'horizontal' ? 'y' : 'x',
+      borderColor: el.color,
+      value: el.position,
+      display: el.display,
+      label: _objectSpread(_objectSpread({}, annotationBoilerplate.label), {}, {
+        content: el.marcador,
+        color: el.color,
+        xAdjust: (_el$xAdjust = el.xAdjust) !== null && _el$xAdjust !== void 0 ? _el$xAdjust : 0
+      })
+    });
+
+    arr.push(annotation);
+  });
+  return arr;
+}
+function calculateDims() {
+  if (window.innerWidth <= _constants__WEBPACK_IMPORTED_MODULE_3__[/* RESIZE_TRESHOLD */ "m"]) {
+    return {
+      width: 2000,
+      height: 350
+    };
+  } else {
+    return {
+      width: 3000,
+      height: 500
+    };
+  }
+}
+function getColor(d) {
+  if (d >= 80) {
+    return '#01ae97';
+  }
+
+  if (d >= 60) {
+    return '#4dc6b6';
+  }
+
+  if (d >= 40) {
+    return '#80d7cb';
+  }
+
+  if (d >= 20) {
+    return '#b3e7e0';
+  }
+
+  if (d >= 0) {
+    return '#e6f7f5';
+  }
+}
+
+/***/ }),
+
+/***/ "H/sG":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "IZS3":
+/***/ (function(module, exports) {
+
+module.exports = require("react-bootstrap");
+
+/***/ }),
+
+/***/ "Nh2W":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("TqRt");
+
+exports.__esModule = true;
+exports.markAssetError = markAssetError;
+exports.isAssetError = isAssetError;
+exports.getClientBuildManifest = getClientBuildManifest;
+exports.default = void 0;
+
+var _getAssetPathFromRoute = _interopRequireDefault(__webpack_require__("UhrY"));
+
+var _requestIdleCallback = __webpack_require__("0G5g"); // 3.8s was arbitrarily chosen as it's what https://web.dev/interactive
+// considers as "Good" time-to-interactive. We must assume something went
+// wrong beyond this point, and then fall-back to a full page transition to
+// show the user something of value.
+
+
+const MS_MAX_IDLE_DELAY = 3800;
+
+function withFuture(key, map, generator) {
+  let entry = map.get(key);
+
+  if (entry) {
+    if ('future' in entry) {
+      return entry.future;
+    }
+
+    return Promise.resolve(entry);
+  }
+
+  let resolver;
+  const prom = new Promise(resolve => {
+    resolver = resolve;
+  });
+  map.set(key, entry = {
+    resolve: resolver,
+    future: prom
+  });
+  return generator ? // eslint-disable-next-line no-sequences
+  generator().then(value => (resolver(value), value)) : prom;
+}
+
+function hasPrefetch(link) {
+  try {
+    link = document.createElement('link');
+    return (// detect IE11 since it supports prefetch but isn't detected
+      // with relList.support
+      !!window.MSInputMethodContext && !!document.documentMode || link.relList.supports('prefetch')
+    );
+  } catch (_unused) {
+    return false;
+  }
+}
+
+const canPrefetch = hasPrefetch();
+
+function prefetchViaDom(href, as, link) {
+  return new Promise((res, rej) => {
+    if (document.querySelector(`link[rel="prefetch"][href^="${href}"]`)) {
+      return res();
+    }
+
+    link = document.createElement('link'); // The order of property assignment here is intentional:
+
+    if (as) link.as = as;
+    link.rel = `prefetch`;
+    link.crossOrigin = undefined;
+    link.onload = res;
+    link.onerror = rej; // `href` should always be last:
+
+    link.href = href;
+    document.head.appendChild(link);
+  });
+}
+
+const ASSET_LOAD_ERROR = Symbol('ASSET_LOAD_ERROR'); // TODO: unexport
+
+function markAssetError(err) {
+  return Object.defineProperty(err, ASSET_LOAD_ERROR, {});
+}
+
+function isAssetError(err) {
+  return err && ASSET_LOAD_ERROR in err;
+}
+
+function appendScript(src, script) {
+  return new Promise((resolve, reject) => {
+    script = document.createElement('script'); // The order of property assignment here is intentional.
+    // 1. Setup success/failure hooks in case the browser synchronously
+    //    executes when `src` is set.
+
+    script.onload = resolve;
+
+    script.onerror = () => reject(markAssetError(new Error(`Failed to load script: ${src}`))); // 2. Configure the cross-origin attribute before setting `src` in case the
+    //    browser begins to fetch.
+
+
+    script.crossOrigin = undefined; // 3. Finally, set the source and inject into the DOM in case the child
+    //    must be appended for fetching to start.
+
+    script.src = src;
+    document.body.appendChild(script);
+  });
+} // Resolve a promise that times out after given amount of milliseconds.
+
+
+function resolvePromiseWithTimeout(p, ms, err) {
+  return new Promise((resolve, reject) => {
+    let cancelled = false;
+    p.then(r => {
+      // Resolved, cancel the timeout
+      cancelled = true;
+      resolve(r);
+    }).catch(reject);
+    (0, _requestIdleCallback.requestIdleCallback)(() => setTimeout(() => {
+      if (!cancelled) {
+        reject(err);
+      }
+    }, ms));
+  });
+} // TODO: stop exporting or cache the failure
+// It'd be best to stop exporting this. It's an implementation detail. We're
+// only exporting it for backwards compatibilty with the `page-loader`.
+// Only cache this response as a last resort if we cannot eliminate all other
+// code branches that use the Build Manifest Callback and push them through
+// the Route Loader interface.
+
+
+function getClientBuildManifest() {
+  if (self.__BUILD_MANIFEST) {
+    return Promise.resolve(self.__BUILD_MANIFEST);
+  }
+
+  const onBuildManifest = new Promise(resolve => {
+    // Mandatory because this is not concurrent safe:
+    const cb = self.__BUILD_MANIFEST_CB;
+
+    self.__BUILD_MANIFEST_CB = () => {
+      resolve(self.__BUILD_MANIFEST);
+      cb && cb();
+    };
+  });
+  return resolvePromiseWithTimeout(onBuildManifest, MS_MAX_IDLE_DELAY, markAssetError(new Error('Failed to load client build manifest')));
+}
+
+function getFilesForRoute(assetPrefix, route) {
+  if (false) {}
+
+  return getClientBuildManifest().then(manifest => {
+    if (!(route in manifest)) {
+      throw markAssetError(new Error(`Failed to lookup route: ${route}`));
+    }
+
+    const allFiles = manifest[route].map(entry => assetPrefix + '/_next/' + encodeURI(entry));
+    return {
+      scripts: allFiles.filter(v => v.endsWith('.js')),
+      css: allFiles.filter(v => v.endsWith('.css'))
+    };
+  });
+}
+
+function createRouteLoader(assetPrefix) {
+  const entrypoints = new Map();
+  const loadedScripts = new Map();
+  const styleSheets = new Map();
+  const routes = new Map();
+
+  function maybeExecuteScript(src) {
+    let prom = loadedScripts.get(src);
+
+    if (prom) {
+      return prom;
+    } // Skip executing script if it's already in the DOM:
+
+
+    if (document.querySelector(`script[src^="${src}"]`)) {
+      return Promise.resolve();
+    }
+
+    loadedScripts.set(src, prom = appendScript(src));
+    return prom;
+  }
+
+  function fetchStyleSheet(href) {
+    let prom = styleSheets.get(href);
+
+    if (prom) {
+      return prom;
+    }
+
+    styleSheets.set(href, prom = fetch(href).then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to load stylesheet: ${href}`);
+      }
+
+      return res.text().then(text => ({
+        href: href,
+        content: text
+      }));
+    }).catch(err => {
+      throw markAssetError(err);
+    }));
+    return prom;
+  }
+
+  return {
+    whenEntrypoint(route) {
+      return withFuture(route, entrypoints);
+    },
+
+    onEntrypoint(route, execute) {
+      Promise.resolve(execute).then(fn => fn()).then(exports => ({
+        component: exports && exports.default || exports,
+        exports: exports
+      }), err => ({
+        error: err
+      })).then(input => {
+        const old = entrypoints.get(route);
+        entrypoints.set(route, input);
+        if (old && 'resolve' in old) old.resolve(input);
+      });
+    },
+
+    loadRoute(route, prefetch) {
+      return withFuture(route, routes, () => {
+        return resolvePromiseWithTimeout(getFilesForRoute(assetPrefix, route).then(({
+          scripts,
+          css
+        }) => {
+          return Promise.all([entrypoints.has(route) ? [] : Promise.all(scripts.map(maybeExecuteScript)), Promise.all(css.map(fetchStyleSheet))]);
+        }).then(res => {
+          return this.whenEntrypoint(route).then(entrypoint => ({
+            entrypoint,
+            styles: res[1]
+          }));
+        }), MS_MAX_IDLE_DELAY, markAssetError(new Error(`Route did not complete loading: ${route}`))).then(({
+          entrypoint,
+          styles
+        }) => {
+          const res = Object.assign({
+            styles: styles
+          }, entrypoint);
+          return 'error' in entrypoint ? entrypoint : res;
+        }).catch(err => {
+          if (prefetch) {
+            // we don't want to cache errors during prefetch
+            throw err;
+          }
+
+          return {
+            error: err
+          };
+        });
+      });
+    },
+
+    prefetch(route) {
+      // https://github.com/GoogleChromeLabs/quicklink/blob/453a661fa1fa940e2d2e044452398e38c67a98fb/src/index.mjs#L115-L118
+      // License: Apache 2.0
+      let cn;
+
+      if (cn = navigator.connection) {
+        // Don't prefetch if using 2G or if Save-Data is enabled.
+        if (cn.saveData || /2g/.test(cn.effectiveType)) return Promise.resolve();
+      }
+
+      return getFilesForRoute(assetPrefix, route).then(output => Promise.all(canPrefetch ? output.scripts.map(script => prefetchViaDom(script, 'script')) : [])).then(() => {
+        (0, _requestIdleCallback.requestIdleCallback)(() => this.loadRoute(route, true).catch(() => {}));
+      }).catch( // swallow prefetch errors
+      () => {});
+    }
+
+  };
+}
+
+var _default = createRouteLoader;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "OXQD":
+/***/ (function(module, exports) {
+
+// Exports
+module.exports = {
+	"header": "Header_header__3Z-q0",
+	"submenu": "Header_submenu__y6vbr",
+	"header_mobile": "Header_header_mobile__3F0A4",
+	"submenu_mobile": "Header_submenu_mobile__2NpLk",
+	"content": "Header_content__3--fg",
+	"logo": "Header_logo__2UB2g",
+	"highlight": "Header_highlight__Drolj",
+	"sidemenu": "Header_sidemenu__3ITQW",
+	"sidemenu_visible": "Header_sidemenu_visible__38qgO",
+	"sidemenu_container": "Header_sidemenu_container__350uV",
+	"sidemenu_close": "Header_sidemenu_close__zRbMz",
+	"hide_mobile": "Header_hide_mobile__2Rzv1"
+};
+
+
+/***/ }),
+
+/***/ "Osoz":
+/***/ (function(module, exports) {
+
+module.exports = require("next/dist/next-server/lib/router-context.js");
+
+/***/ }),
+
+/***/ "RQMA":
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__("cDcd");
+
+function Bell (props) {
+    return React.createElement("svg",props,React.createElement("g",null,[React.createElement("path",{"d":" M 1943.094 226.684 C 1931.149 216.588 1924.3 201.83 1924.3 186.196 L 1924.3 164.171 C 1924.3 136.371 1903.649 113.358 1876.9 109.503 L 1876.9 100.971 C 1876.9 96.602 1873.361 93.071 1869 93.071 C 1864.639 93.071 1861.1 96.602 1861.1 100.971 L 1861.1 109.503 C 1834.343 113.358 1813.7 136.371 1813.7 164.171 L 1813.7 186.196 C 1813.7 201.83 1806.851 216.588 1794.835 226.747 C 1791.762 229.378 1790 233.201 1790 237.246 C 1790 244.87 1796.202 251.071 1803.825 251.071 L 1934.175 251.071 C 1941.799 251.071 1948 244.87 1948 237.246 C 1948 233.201 1946.238 229.378 1943.094 226.684 Z ","fill":"rgb(1,174,151)","key":0}),React.createElement("path",{"d":" M 1869 282.671 C 1883.307 282.671 1895.275 272.472 1898.025 258.971 L 1839.975 258.971 C 1842.725 272.472 1854.693 282.671 1869 282.671 Z ","fill":"rgb(1,174,151)","key":1})]));
+}
+
+Bell.defaultProps = {"style":{"isolation":"isolate"},"viewBox":"1790 93.071 158 189.6","width":"158pt","height":"189.6pt"};
+
+module.exports = Bell;
+
+Bell.default = Bell;
+
+
+/***/ }),
+
+/***/ "TqRt":
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+
+/***/ }),
+
+/***/ "UG6H":
+/***/ (function(module, exports) {
+
+// Exports
+module.exports = {
+	"card": "Card_card__uZ6RZ",
+	"container": "Card_container__o0EtH",
+	"collapsed": "Card_collapsed__3u7lu",
+	"card_graph": "Card_card_graph__3Ytwc",
+	"card_counter": "Card_card_counter__2AlBw",
+	"card_checkboxes": "Card_card_checkboxes__phAHc",
+	"card_align_left": "Card_card_align_left__GpzsC",
+	"card_graph_updated": "Card_card_graph_updated__3qvEq",
+	"card_highlight": "Card_card_highlight__3nHgE",
+	"card_highlight_2": "Card_card_highlight_2__pGhlA",
+	"card_title": "Card_card_title__23exo",
+	"card_title_2": "Card_card_title_2__1gfN_",
+	"card_subtitle_2": "Card_card_subtitle_2__p7--G",
+	"card_subtitle": "Card_card_subtitle__3invo",
+	"card_subtitle_highlight": "Card_card_subtitle_highlight__2aNt8",
+	"card_fixed_scroll": "Card_card_fixed_scroll__395I5",
+	"card_dynamic_scroll": "Card_card_dynamic_scroll__1E6W_",
+	"card_sticky": "Card_card_sticky__2cnJF",
+	"text_left": "Card_text_left__1G5SI",
+	"ram_subchart": "Card_ram_subchart__36M-A",
+	"ram_subchart_bar": "Card_ram_subchart_bar__hmsNC",
+	"ram": "Card_ram__1OaS2"
+};
+
+
+/***/ }),
+
+/***/ "UhrY":
+/***/ (function(module, exports) {
+
+module.exports = require("next/dist/next-server/lib/router/utils/get-asset-path-from-route.js");
+
+/***/ }),
+
+/***/ "WAYG":
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__("cDcd");
+
+function Twitter (props) {
+    return React.createElement("svg",props,React.createElement("path",{"fill":"rgb(1,174,151)","d":"M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"}));
+}
+
+Twitter.defaultProps = {"width":"24","height":"24","viewBox":"0 0 24 24"};
+
+module.exports = Twitter;
+
+Twitter.default = Twitter;
+
+
+/***/ }),
+
+/***/ "WUak":
+/***/ (function(module, exports) {
+
+module.exports = require("plausible-tracker");
+
+/***/ }),
+
+/***/ "X24+":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.removePathTrailingSlash = removePathTrailingSlash;
+exports.normalizePathTrailingSlash = void 0;
+/**
+* Removes the trailing slash of a path if there is one. Preserves the root path `/`.
+*/
+
+function removePathTrailingSlash(path) {
+  return path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+}
+/**
+* Normalizes the trailing slash of a path according to the `trailingSlash` option
+* in `next.config.js`.
+*/
+
+
+const normalizePathTrailingSlash =  false ? undefined : removePathTrailingSlash;
+exports.normalizePathTrailingSlash = normalizePathTrailingSlash;
+
+/***/ }),
+
+/***/ "YFqc":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("cTJO")
+
+
+/***/ }),
+
+/***/ "YTqd":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.getRouteRegex = getRouteRegex; // this isn't importing the escape-string-regex module
+// to reduce bytes
+
+function escapeRegex(str) {
+  return str.replace(/[|\\{}()[\]^$+*?.-]/g, '\\$&');
+}
+
+function parseParameter(param) {
+  const optional = param.startsWith('[') && param.endsWith(']');
+
+  if (optional) {
+    param = param.slice(1, -1);
+  }
+
+  const repeat = param.startsWith('...');
+
+  if (repeat) {
+    param = param.slice(3);
+  }
+
+  return {
+    key: param,
+    repeat,
+    optional
+  };
+}
+
+function getRouteRegex(normalizedRoute) {
+  const segments = (normalizedRoute.replace(/\/$/, '') || '/').slice(1).split('/');
+  const groups = {};
+  let groupIndex = 1;
+  const parameterizedRoute = segments.map(segment => {
+    if (segment.startsWith('[') && segment.endsWith(']')) {
+      const {
+        key,
+        optional,
+        repeat
+      } = parseParameter(segment.slice(1, -1));
+      groups[key] = {
+        pos: groupIndex++,
+        repeat,
+        optional
+      };
+      return repeat ? optional ? '(?:/(.+?))?' : '/(.+?)' : '/([^/]+?)';
+    } else {
+      return `/${escapeRegex(segment)}`;
+    }
+  }).join(''); // dead code eliminate for browser since it's only needed
+  // while generating routes-manifest
+
+  if (true) {
+    let routeKeyCharCode = 97;
+    let routeKeyCharLength = 1; // builds a minimal routeKey using only a-z and minimal number of characters
+
+    const getSafeRouteKey = () => {
+      let routeKey = '';
+
+      for (let i = 0; i < routeKeyCharLength; i++) {
+        routeKey += String.fromCharCode(routeKeyCharCode);
+        routeKeyCharCode++;
+
+        if (routeKeyCharCode > 122) {
+          routeKeyCharLength++;
+          routeKeyCharCode = 97;
+        }
+      }
+
+      return routeKey;
+    };
+
+    const routeKeys = {};
+    let namedParameterizedRoute = segments.map(segment => {
+      if (segment.startsWith('[') && segment.endsWith(']')) {
+        const {
+          key,
+          optional,
+          repeat
+        } = parseParameter(segment.slice(1, -1)); // replace any non-word characters since they can break
+        // the named regex
+
+        let cleanedKey = key.replace(/\W/g, '');
+        let invalidKey = false; // check if the key is still invalid and fallback to using a known
+        // safe key
+
+        if (cleanedKey.length === 0 || cleanedKey.length > 30) {
+          invalidKey = true;
+        }
+
+        if (!isNaN(parseInt(cleanedKey.substr(0, 1)))) {
+          invalidKey = true;
+        }
+
+        if (invalidKey) {
+          cleanedKey = getSafeRouteKey();
+        }
+
+        routeKeys[cleanedKey] = key;
+        return repeat ? optional ? `(?:/(?<${cleanedKey}>.+?))?` : `/(?<${cleanedKey}>.+?)` : `/(?<${cleanedKey}>[^/]+?)`;
+      } else {
+        return `/${escapeRegex(segment)}`;
+      }
+    }).join('');
+    return {
+      re: new RegExp(`^${parameterizedRoute}(?:/)?$`),
+      groups,
+      routeKeys,
+      namedRegex: `^${namedParameterizedRoute}(?:/)?$`
+    };
+  }
+
+  return {
+    re: new RegExp(`^${parameterizedRoute}(?:/)?$`),
+    groups
+  };
+}
+
+/***/ }),
+
+/***/ "cDcd":
+/***/ (function(module, exports) {
+
+module.exports = require("react");
+
+/***/ }),
+
+/***/ "cDf5":
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+
+/***/ "cTJO":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__("284h");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__("cDcd"));
+
+var _router = __webpack_require__("elyg");
+
+var _router2 = __webpack_require__("nOHt");
+
+var _useIntersection = __webpack_require__("vNVm");
+
+const prefetched = {};
+
+function prefetch(router, href, as, options) {
+  if (true) return;
+  if (!(0, _router.isLocalURL)(href)) return; // Prefetch the JSON page if asked (only in the client)
+  // We need to handle a prefetch error here since we may be
+  // loading with priority which can reject but we don't
+  // want to force navigation since this is only a prefetch
+
+  router.prefetch(href, as, options).catch(err => {
+    if (false) {}
+  });
+  const curLocale = options && typeof options.locale !== 'undefined' ? options.locale : router && router.locale; // Join on an invalid URI character
+
+  prefetched[href + '%' + as + (curLocale ? '%' + curLocale : '')] = true;
+}
+
+function isModifiedEvent(event) {
+  const {
+    target
+  } = event.currentTarget;
+  return target && target !== '_self' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || // triggers resource download
+  event.nativeEvent && event.nativeEvent.which === 2;
+}
+
+function linkClicked(e, router, href, as, replace, shallow, scroll, locale) {
+  const {
+    nodeName
+  } = e.currentTarget;
+
+  if (nodeName === 'A' && (isModifiedEvent(e) || !(0, _router.isLocalURL)(href))) {
+    // ignore click for browser’s default behavior
+    return;
+  }
+
+  e.preventDefault(); //  avoid scroll for urls with anchor refs
+
+  if (scroll == null && as.indexOf('#') >= 0) {
+    scroll = false;
+  } // replace state instead of push if prop is present
+
+
+  router[replace ? 'replace' : 'push'](href, as, {
+    shallow,
+    locale,
+    scroll
+  });
+}
+
+function Link(props) {
+  if (false) {}
+
+  const p = props.prefetch !== false;
+  const router = (0, _router2.useRouter)();
+
+  const {
+    href,
+    as
+  } = _react.default.useMemo(() => {
+    const [resolvedHref, resolvedAs] = (0, _router.resolveHref)(router, props.href, true);
+    return {
+      href: resolvedHref,
+      as: props.as ? (0, _router.resolveHref)(router, props.as) : resolvedAs || resolvedHref
+    };
+  }, [router, props.href, props.as]);
+
+  let {
+    children,
+    replace,
+    shallow,
+    scroll,
+    locale
+  } = props; // Deprecated. Warning shown by propType check. If the children provided is a string (<Link>example</Link>) we wrap it in an <a> tag
+
+  if (typeof children === 'string') {
+    children = /*#__PURE__*/_react.default.createElement("a", null, children);
+  } // This will return the first child, if multiple are provided it will throw an error
+
+
+  let child;
+
+  if (false) {} else {
+    child = _react.Children.only(children);
+  }
+
+  const childRef = child && typeof child === 'object' && child.ref;
+  const [setIntersectionRef, isVisible] = (0, _useIntersection.useIntersection)({
+    rootMargin: '200px'
+  });
+
+  const setRef = _react.default.useCallback(el => {
+    setIntersectionRef(el);
+
+    if (childRef) {
+      if (typeof childRef === 'function') childRef(el);else if (typeof childRef === 'object') {
+        childRef.current = el;
+      }
+    }
+  }, [childRef, setIntersectionRef]);
+
+  (0, _react.useEffect)(() => {
+    const shouldPrefetch = isVisible && p && (0, _router.isLocalURL)(href);
+    const curLocale = typeof locale !== 'undefined' ? locale : router && router.locale;
+    const isPrefetched = prefetched[href + '%' + as + (curLocale ? '%' + curLocale : '')];
+
+    if (shouldPrefetch && !isPrefetched) {
+      prefetch(router, href, as, {
+        locale: curLocale
+      });
+    }
+  }, [as, href, isVisible, locale, p, router]);
+  const childProps = {
+    ref: setRef,
+    onClick: e => {
+      if (child.props && typeof child.props.onClick === 'function') {
+        child.props.onClick(e);
+      }
+
+      if (!e.defaultPrevented) {
+        linkClicked(e, router, href, as, replace, shallow, scroll, locale);
+      }
+    }
+  };
+
+  childProps.onMouseEnter = e => {
+    if (!(0, _router.isLocalURL)(href)) return;
+
+    if (child.props && typeof child.props.onMouseEnter === 'function') {
+      child.props.onMouseEnter(e);
+    }
+
+    prefetch(router, href, as, {
+      priority: true
+    });
+  }; // If child is an <a> tag and doesn't have a href attribute, or if the 'passHref' property is
+  // defined, we specify the current 'href', so that repetition is not needed by the user
+
+
+  if (props.passHref || child.type === 'a' && !('href' in child.props)) {
+    const curLocale = typeof locale !== 'undefined' ? locale : router && router.locale; // we only render domain locales if we are currently on a domain locale
+    // so that locale links are still visitable in development/preview envs
+
+    const localeDomain = router && router.isLocaleDomain && (0, _router.getDomainLocale)(as, curLocale, router && router.locales, router && router.domainLocales);
+    childProps.href = localeDomain || (0, _router.addBasePath)((0, _router.addLocale)(as, curLocale, router && router.defaultLocale));
+  }
+
+  return /*#__PURE__*/_react.default.cloneElement(child, childProps);
+}
+
+var _default = Link;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "dZ6Y":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = mitt;
+/*
+MIT License
+Copyright (c) Jason Miller (https://jasonformat.com/)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+// This file is based on https://github.com/developit/mitt/blob/v1.1.3/src/index.js
+// It's been edited for the needs of this script
+// See the LICENSE at the top of the file
+
+function mitt() {
+  const all = Object.create(null);
+  return {
+    on(type, handler) {
+      ;
+      (all[type] || (all[type] = [])).push(handler);
+    },
+
+    off(type, handler) {
+      if (all[type]) {
+        all[type].splice(all[type].indexOf(handler) >>> 0, 1);
+      }
+    },
+
+    emit(type, ...evts) {
+      // eslint-disable-next-line array-callback-return
+      ;
+      (all[type] || []).slice().map(handler => {
+        handler(...evts);
+      });
+    }
+
+  };
+}
+
+/***/ }),
+
+/***/ "elyg":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.getDomainLocale = getDomainLocale;
+exports.addLocale = addLocale;
+exports.delLocale = delLocale;
+exports.hasBasePath = hasBasePath;
+exports.addBasePath = addBasePath;
+exports.delBasePath = delBasePath;
+exports.isLocalURL = isLocalURL;
+exports.interpolateAs = interpolateAs;
+exports.resolveHref = resolveHref;
+exports.default = void 0;
+
+var _normalizeTrailingSlash = __webpack_require__("X24+");
+
+var _routeLoader = __webpack_require__("Nh2W");
+
+var _denormalizePagePath = __webpack_require__("wkBG");
+
+var _normalizeLocalePath = __webpack_require__("3wub");
+
+var _mitt = _interopRequireDefault(__webpack_require__("dZ6Y"));
+
+var _utils = __webpack_require__("g/15");
+
+var _isDynamic = __webpack_require__("/jkW");
+
+var _parseRelativeUrl = __webpack_require__("hS4m");
+
+var _querystring = __webpack_require__("3WeD");
+
+var _resolveRewrites = _interopRequireDefault(__webpack_require__("GXs3"));
+
+var _routeMatcher = __webpack_require__("gguc");
+
+var _routeRegex = __webpack_require__("YTqd");
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+} // tslint:disable:no-console
+
+
+let detectDomainLocale;
+
+if (false) {}
+
+const basePath =  false || '';
+
+function buildCancellationError() {
+  return Object.assign(new Error('Route Cancelled'), {
+    cancelled: true
+  });
+}
+
+function addPathPrefix(path, prefix) {
+  return prefix && path.startsWith('/') ? path === '/' ? (0, _normalizeTrailingSlash.normalizePathTrailingSlash)(prefix) : `${prefix}${pathNoQueryHash(path) === '/' ? path.substring(1) : path}` : path;
+}
+
+function getDomainLocale(path, locale, locales, domainLocales) {
+  if (false) {}
+
+  return false;
+}
+
+function addLocale(path, locale, defaultLocale) {
+  if (false) {}
+
+  return path;
+}
+
+function delLocale(path, locale) {
+  if (false) {}
+
+  return path;
+}
+
+function pathNoQueryHash(path) {
+  const queryIndex = path.indexOf('?');
+  const hashIndex = path.indexOf('#');
+
+  if (queryIndex > -1 || hashIndex > -1) {
+    path = path.substring(0, queryIndex > -1 ? queryIndex : hashIndex);
+  }
+
+  return path;
+}
+
+function hasBasePath(path) {
+  path = pathNoQueryHash(path);
+  return path === basePath || path.startsWith(basePath + '/');
+}
+
+function addBasePath(path) {
+  // we only add the basepath on relative urls
+  return addPathPrefix(path, basePath);
+}
+
+function delBasePath(path) {
+  path = path.slice(basePath.length);
+  if (!path.startsWith('/')) path = `/${path}`;
+  return path;
+}
+/**
+* Detects whether a given url is routable by the Next.js router (browser only).
+*/
+
+
+function isLocalURL(url) {
+  // prevent a hydration mismatch on href for url with anchor refs
+  if (url.startsWith('/') || url.startsWith('#') || url.startsWith('?')) return true;
+
+  try {
+    // absolute urls can be local if they are on the same origin
+    const locationOrigin = (0, _utils.getLocationOrigin)();
+    const resolved = new URL(url, locationOrigin);
+    return resolved.origin === locationOrigin && hasBasePath(resolved.pathname);
+  } catch (_) {
+    return false;
+  }
+}
+
+function interpolateAs(route, asPathname, query) {
+  let interpolatedRoute = '';
+  const dynamicRegex = (0, _routeRegex.getRouteRegex)(route);
+  const dynamicGroups = dynamicRegex.groups;
+  const dynamicMatches = // Try to match the dynamic route against the asPath
+  (asPathname !== route ? (0, _routeMatcher.getRouteMatcher)(dynamicRegex)(asPathname) : '') || // Fall back to reading the values from the href
+  // TODO: should this take priority; also need to change in the router.
+  query;
+  interpolatedRoute = route;
+  const params = Object.keys(dynamicGroups);
+
+  if (!params.every(param => {
+    let value = dynamicMatches[param] || '';
+    const {
+      repeat,
+      optional
+    } = dynamicGroups[param]; // support single-level catch-all
+    // TODO: more robust handling for user-error (passing `/`)
+
+    let replaced = `[${repeat ? '...' : ''}${param}]`;
+
+    if (optional) {
+      replaced = `${!value ? '/' : ''}[${replaced}]`;
+    }
+
+    if (repeat && !Array.isArray(value)) value = [value];
+    return (optional || param in dynamicMatches) && ( // Interpolate group into data URL if present
+    interpolatedRoute = interpolatedRoute.replace(replaced, repeat ? value.map( // these values should be fully encoded instead of just
+    // path delimiter escaped since they are being inserted
+    // into the URL and we expect URL encoded segments
+    // when parsing dynamic route params
+    segment => encodeURIComponent(segment)).join('/') : encodeURIComponent(value)) || '/');
+  })) {
+    interpolatedRoute = ''; // did not satisfy all requirements
+    // n.b. We ignore this error because we handle warning for this case in
+    // development in the `<Link>` component directly.
+  }
+
+  return {
+    params,
+    result: interpolatedRoute
+  };
+}
+
+function omitParmsFromQuery(query, params) {
+  const filteredQuery = {};
+  Object.keys(query).forEach(key => {
+    if (!params.includes(key)) {
+      filteredQuery[key] = query[key];
+    }
+  });
+  return filteredQuery;
+}
+/**
+* Resolves a given hyperlink with a certain router state (basePath not included).
+* Preserves absolute urls.
+*/
+
+
+function resolveHref(router, href, resolveAs) {
+  // we use a dummy base url for relative urls
+  let base;
+  const urlAsString = typeof href === 'string' ? href : (0, _utils.formatWithValidation)(href);
+
+  try {
+    base = new URL(urlAsString.startsWith('#') ? router.asPath : router.pathname, 'http://n');
+  } catch (_) {
+    // fallback to / for invalid asPath values e.g. //
+    base = new URL('/', 'http://n');
+  } // Return because it cannot be routed by the Next.js router
+
+
+  if (!isLocalURL(urlAsString)) {
+    return resolveAs ? [urlAsString] : urlAsString;
+  }
+
+  try {
+    const finalUrl = new URL(urlAsString, base);
+    finalUrl.pathname = (0, _normalizeTrailingSlash.normalizePathTrailingSlash)(finalUrl.pathname);
+    let interpolatedAs = '';
+
+    if ((0, _isDynamic.isDynamicRoute)(finalUrl.pathname) && finalUrl.searchParams && resolveAs) {
+      const query = (0, _querystring.searchParamsToUrlQuery)(finalUrl.searchParams);
+      const {
+        result,
+        params
+      } = interpolateAs(finalUrl.pathname, finalUrl.pathname, query);
+
+      if (result) {
+        interpolatedAs = (0, _utils.formatWithValidation)({
+          pathname: result,
+          hash: finalUrl.hash,
+          query: omitParmsFromQuery(query, params)
+        });
+      }
+    } // if the origin didn't change, it means we received a relative href
+
+
+    const resolvedHref = finalUrl.origin === base.origin ? finalUrl.href.slice(finalUrl.origin.length) : finalUrl.href;
+    return resolveAs ? [resolvedHref, interpolatedAs || resolvedHref] : resolvedHref;
+  } catch (_) {
+    return resolveAs ? [urlAsString] : urlAsString;
+  }
+}
+
+function stripOrigin(url) {
+  const origin = (0, _utils.getLocationOrigin)();
+  return url.startsWith(origin) ? url.substring(origin.length) : url;
+}
+
+function prepareUrlAs(router, url, as) {
+  // If url and as provided as an object representation,
+  // we'll format them into the string version here.
+  let [resolvedHref, resolvedAs] = resolveHref(router, url, true);
+  const origin = (0, _utils.getLocationOrigin)();
+  const hrefHadOrigin = resolvedHref.startsWith(origin);
+  const asHadOrigin = resolvedAs && resolvedAs.startsWith(origin);
+  resolvedHref = stripOrigin(resolvedHref);
+  resolvedAs = resolvedAs ? stripOrigin(resolvedAs) : resolvedAs;
+  const preparedUrl = hrefHadOrigin ? resolvedHref : addBasePath(resolvedHref);
+  const preparedAs = as ? stripOrigin(resolveHref(router, as)) : resolvedAs || resolvedHref;
+  return {
+    url: preparedUrl,
+    as: asHadOrigin ? preparedAs : addBasePath(preparedAs)
+  };
+}
+
+function resolveDynamicRoute(pathname, pages) {
+  const cleanPathname = (0, _normalizeTrailingSlash.removePathTrailingSlash)((0, _denormalizePagePath.denormalizePagePath)(pathname));
+
+  if (cleanPathname === '/404' || cleanPathname === '/_error') {
+    return pathname;
+  } // handle resolving href for dynamic routes
+
+
+  if (!pages.includes(cleanPathname)) {
+    // eslint-disable-next-line array-callback-return
+    pages.some(page => {
+      if ((0, _isDynamic.isDynamicRoute)(page) && (0, _routeRegex.getRouteRegex)(page).re.test(cleanPathname)) {
+        pathname = page;
+        return true;
+      }
+    });
+  }
+
+  return (0, _normalizeTrailingSlash.removePathTrailingSlash)(pathname);
+}
+
+const manualScrollRestoration =  false && false;
+const SSG_DATA_NOT_FOUND = Symbol('SSG_DATA_NOT_FOUND');
+
+function fetchRetry(url, attempts) {
+  return fetch(url, {
+    // Cookies are required to be present for Next.js' SSG "Preview Mode".
+    // Cookies may also be required for `getServerSideProps`.
+    //
+    // > `fetch` won’t send cookies, unless you set the credentials init
+    // > option.
+    // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    //
+    // > For maximum browser compatibility when it comes to sending &
+    // > receiving cookies, always supply the `credentials: 'same-origin'`
+    // > option instead of relying on the default.
+    // https://github.com/github/fetch#caveats
+    credentials: 'same-origin'
+  }).then(res => {
+    if (!res.ok) {
+      if (attempts > 1 && res.status >= 500) {
+        return fetchRetry(url, attempts - 1);
+      }
+
+      if (res.status === 404) {
+        return res.json().then(data => {
+          if (data.notFound) {
+            return {
+              notFound: SSG_DATA_NOT_FOUND
+            };
+          }
+
+          throw new Error(`Failed to load static props`);
+        });
+      }
+
+      throw new Error(`Failed to load static props`);
+    }
+
+    return res.json();
+  });
+}
+
+function fetchNextData(dataHref, isServerRender) {
+  return fetchRetry(dataHref, isServerRender ? 3 : 1).catch(err => {
+    // We should only trigger a server-side transition if this was caused
+    // on a client-side transition. Otherwise, we'd get into an infinite
+    // loop.
+    if (!isServerRender) {
+      (0, _routeLoader.markAssetError)(err);
+    }
+
+    throw err;
+  });
+}
+
+class Router {
+  /**
+  * Map of all components loaded in `Router`
+  */
+  // Static Data Cache
+  // In-flight Server Data Requests, for deduping
+  constructor(_pathname, _query, _as, {
+    initialProps,
+    pageLoader,
+    App,
+    wrapApp,
+    Component,
+    err,
+    subscription,
+    isFallback,
+    locale,
+    locales,
+    defaultLocale,
+    domainLocales,
+    isPreview
+  }) {
+    this.route = void 0;
+    this.pathname = void 0;
+    this.query = void 0;
+    this.asPath = void 0;
+    this.basePath = void 0;
+    this.components = void 0;
+    this.sdc = {};
+    this.sdr = {};
+    this.sub = void 0;
+    this.clc = void 0;
+    this.pageLoader = void 0;
+    this._bps = void 0;
+    this.events = void 0;
+    this._wrapApp = void 0;
+    this.isSsr = void 0;
+    this.isFallback = void 0;
+    this._inFlightRoute = void 0;
+    this._shallow = void 0;
+    this.locale = void 0;
+    this.locales = void 0;
+    this.defaultLocale = void 0;
+    this.domainLocales = void 0;
+    this.isReady = void 0;
+    this.isPreview = void 0;
+    this.isLocaleDomain = void 0;
+    this._idx = 0;
+
+    this.onPopState = e => {
+      const state = e.state;
+
+      if (!state) {
+        // We get state as undefined for two reasons.
+        //  1. With older safari (< 8) and older chrome (< 34)
+        //  2. When the URL changed with #
+        //
+        // In the both cases, we don't need to proceed and change the route.
+        // (as it's already changed)
+        // But we can simply replace the state with the new changes.
+        // Actually, for (1) we don't need to nothing. But it's hard to detect that event.
+        // So, doing the following for (1) does no harm.
+        const {
+          pathname,
+          query
+        } = this;
+        this.changeState('replaceState', (0, _utils.formatWithValidation)({
+          pathname: addBasePath(pathname),
+          query
+        }), (0, _utils.getURL)());
+        return;
+      }
+
+      if (!state.__N) {
+        return;
+      }
+
+      let forcedScroll;
+      const {
+        url,
+        as,
+        options,
+        idx
+      } = state;
+
+      if (false) {}
+
+      this._idx = idx;
+      const {
+        pathname
+      } = (0, _parseRelativeUrl.parseRelativeUrl)(url); // Make sure we don't re-render on initial load,
+      // can be caused by navigating back from an external site
+
+      if (this.isSsr && as === this.asPath && pathname === this.pathname) {
+        return;
+      } // If the downstream application returns falsy, return.
+      // They will then be responsible for handling the event.
+
+
+      if (this._bps && !this._bps(state)) {
+        return;
+      }
+
+      this.change('replaceState', url, as, Object.assign({}, options, {
+        shallow: options.shallow && this._shallow,
+        locale: options.locale || this.defaultLocale
+      }), forcedScroll);
+    }; // represents the current component key
+
+
+    this.route = (0, _normalizeTrailingSlash.removePathTrailingSlash)(_pathname); // set up the component cache (by route keys)
+
+    this.components = {}; // We should not keep the cache, if there's an error
+    // Otherwise, this cause issues when when going back and
+    // come again to the errored page.
+
+    if (_pathname !== '/_error') {
+      this.components[this.route] = {
+        Component,
+        initial: true,
+        props: initialProps,
+        err,
+        __N_SSG: initialProps && initialProps.__N_SSG,
+        __N_SSP: initialProps && initialProps.__N_SSP
+      };
+    }
+
+    this.components['/_app'] = {
+      Component: App,
+      styleSheets: [
+        /* /_app does not need its stylesheets managed */
+      ]
+    }; // Backwards compat for Router.router.events
+    // TODO: Should be remove the following major version as it was never documented
+
+    this.events = Router.events;
+    this.pageLoader = pageLoader;
+    this.pathname = _pathname;
+    this.query = _query; // if auto prerendered and dynamic route wait to update asPath
+    // until after mount to prevent hydration mismatch
+
+    const autoExportDynamic = (0, _isDynamic.isDynamicRoute)(_pathname) && self.__NEXT_DATA__.autoExport;
+
+    this.asPath = autoExportDynamic ? _pathname : _as;
+    this.basePath = basePath;
+    this.sub = subscription;
+    this.clc = null;
+    this._wrapApp = wrapApp; // make sure to ignore extra popState in safari on navigating
+    // back from external site
+
+    this.isSsr = true;
+    this.isFallback = isFallback;
+    this.isReady = !!(self.__NEXT_DATA__.gssp || self.__NEXT_DATA__.gip || !autoExportDynamic && !self.location.search && !false);
+    this.isPreview = !!isPreview;
+    this.isLocaleDomain = false;
+
+    if (false) {}
+
+    if (false) {}
+  }
+
+  reload() {
+    window.location.reload();
+  }
+  /**
+  * Go back in history
+  */
+
+
+  back() {
+    window.history.back();
+  }
+  /**
+  * Performs a `pushState` with arguments
+  * @param url of the route
+  * @param as masks `url` for the browser
+  * @param options object you can define `shallow` and other options
+  */
+
+
+  push(url, as, options = {}) {
+    if (false) {}
+
+    ;
+    ({
+      url,
+      as
+    } = prepareUrlAs(this, url, as));
+    return this.change('pushState', url, as, options);
+  }
+  /**
+  * Performs a `replaceState` with arguments
+  * @param url of the route
+  * @param as masks `url` for the browser
+  * @param options object you can define `shallow` and other options
+  */
+
+
+  replace(url, as, options = {}) {
+    ;
+    ({
+      url,
+      as
+    } = prepareUrlAs(this, url, as));
+    return this.change('replaceState', url, as, options);
+  }
+
+  async change(method, url, as, options, forcedScroll) {
+    if (!isLocalURL(url)) {
+      window.location.href = url;
+      return false;
+    }
+
+    const shouldResolveHref = url === as || options._h || options._shouldResolveHref; // for static pages with query params in the URL we delay
+    // marking the router ready until after the query is updated
+
+    if (options._h) {
+      this.isReady = true;
+    }
+
+    let localeChange = options.locale !== this.locale;
+
+    if (false) { var _this$locales; }
+
+    if (!options._h) {
+      this.isSsr = false;
+    } // marking route changes as a navigation start entry
+
+
+    if (_utils.ST) {
+      performance.mark('routeChange');
+    }
+
+    const {
+      shallow = false
+    } = options;
+    const routeProps = {
+      shallow
+    };
+
+    if (this._inFlightRoute) {
+      this.abortComponentLoad(this._inFlightRoute, routeProps);
+    }
+
+    as = addBasePath(addLocale(hasBasePath(as) ? delBasePath(as) : as, options.locale, this.defaultLocale));
+    const cleanedAs = delLocale(hasBasePath(as) ? delBasePath(as) : as, this.locale);
+    this._inFlightRoute = as; // If the url change is only related to a hash change
+    // We should not proceed. We should only change the state.
+    // WARNING: `_h` is an internal option for handing Next.js client-side
+    // hydration. Your app should _never_ use this property. It may change at
+    // any time without notice.
+
+    if (!options._h && this.onlyAHashChange(cleanedAs)) {
+      this.asPath = cleanedAs;
+      Router.events.emit('hashChangeStart', as, routeProps); // TODO: do we need the resolved href when only a hash change?
+
+      this.changeState(method, url, as, options);
+      this.scrollToHash(cleanedAs);
+      this.notify(this.components[this.route], null);
+      Router.events.emit('hashChangeComplete', as, routeProps);
+      return true;
+    }
+
+    let parsed = (0, _parseRelativeUrl.parseRelativeUrl)(url);
+    let {
+      pathname,
+      query
+    } = parsed; // The build manifest needs to be loaded before auto-static dynamic pages
+    // get their query parameters to allow ensuring they can be parsed properly
+    // when rewritten to
+
+    let pages, rewrites;
+
+    try {
+      pages = await this.pageLoader.getPageList();
+      ({
+        __rewrites: rewrites
+      } = await (0, _routeLoader.getClientBuildManifest)());
+    } catch (err) {
+      // If we fail to resolve the page list or client-build manifest, we must
+      // do a server-side transition:
+      window.location.href = as;
+      return false;
+    } // If asked to change the current URL we should reload the current page
+    // (not location.reload() but reload getInitialProps and other Next.js stuffs)
+    // We also need to set the method = replaceState always
+    // as this should not go into the history (That's how browsers work)
+    // We should compare the new asPath to the current asPath, not the url
+
+
+    if (!this.urlIsNew(cleanedAs) && !localeChange) {
+      method = 'replaceState';
+    } // we need to resolve the as value using rewrites for dynamic SSG
+    // pages to allow building the data URL correctly
+
+
+    let resolvedAs = as; // url and as should always be prefixed with basePath by this
+    // point by either next/link or router.push/replace so strip the
+    // basePath from the pathname to match the pages dir 1-to-1
+
+    pathname = pathname ? (0, _normalizeTrailingSlash.removePathTrailingSlash)(delBasePath(pathname)) : pathname;
+
+    if (shouldResolveHref && pathname !== '/_error') {
+      ;
+      options._shouldResolveHref = true;
+
+      if (false) {} else {
+        parsed.pathname = resolveDynamicRoute(pathname, pages);
+
+        if (parsed.pathname !== pathname) {
+          pathname = parsed.pathname;
+          parsed.pathname = addBasePath(pathname);
+          url = (0, _utils.formatWithValidation)(parsed);
+        }
+      }
+    }
+
+    const route = (0, _normalizeTrailingSlash.removePathTrailingSlash)(pathname);
+
+    if (!isLocalURL(as)) {
+      if (false) {}
+
+      window.location.href = as;
+      return false;
+    }
+
+    resolvedAs = delLocale(delBasePath(resolvedAs), this.locale);
+
+    if ((0, _isDynamic.isDynamicRoute)(route)) {
+      const parsedAs = (0, _parseRelativeUrl.parseRelativeUrl)(resolvedAs);
+      const asPathname = parsedAs.pathname;
+      const routeRegex = (0, _routeRegex.getRouteRegex)(route);
+      const routeMatch = (0, _routeMatcher.getRouteMatcher)(routeRegex)(asPathname);
+      const shouldInterpolate = route === asPathname;
+      const interpolatedAs = shouldInterpolate ? interpolateAs(route, asPathname, query) : {};
+
+      if (!routeMatch || shouldInterpolate && !interpolatedAs.result) {
+        const missingParams = Object.keys(routeRegex.groups).filter(param => !query[param]);
+
+        if (missingParams.length > 0) {
+          if (false) {}
+
+          throw new Error((shouldInterpolate ? `The provided \`href\` (${url}) value is missing query values (${missingParams.join(', ')}) to be interpolated properly. ` : `The provided \`as\` value (${asPathname}) is incompatible with the \`href\` value (${route}). `) + `Read more: https://nextjs.org/docs/messages/${shouldInterpolate ? 'href-interpolation-failed' : 'incompatible-href-as'}`);
+        }
+      } else if (shouldInterpolate) {
+        as = (0, _utils.formatWithValidation)(Object.assign({}, parsedAs, {
+          pathname: interpolatedAs.result,
+          query: omitParmsFromQuery(query, interpolatedAs.params)
+        }));
+      } else {
+        // Merge params into `query`, overwriting any specified in search
+        Object.assign(query, routeMatch);
+      }
+    }
+
+    Router.events.emit('routeChangeStart', as, routeProps);
+
+    try {
+      var _self$__NEXT_DATA__$p, _self$__NEXT_DATA__$p2, _options$scroll;
+
+      let routeInfo = await this.getRouteInfo(route, pathname, query, as, resolvedAs, routeProps);
+      let {
+        error,
+        props,
+        __N_SSG,
+        __N_SSP
+      } = routeInfo; // handle redirect on client-transition
+
+      if ((__N_SSG || __N_SSP) && props) {
+        if (props.pageProps && props.pageProps.__N_REDIRECT) {
+          const destination = props.pageProps.__N_REDIRECT; // check if destination is internal (resolves to a page) and attempt
+          // client-navigation if it is falling back to hard navigation if
+          // it's not
+
+          if (destination.startsWith('/')) {
+            const parsedHref = (0, _parseRelativeUrl.parseRelativeUrl)(destination);
+            parsedHref.pathname = resolveDynamicRoute(parsedHref.pathname, pages);
+            const {
+              url: newUrl,
+              as: newAs
+            } = prepareUrlAs(this, destination, destination);
+            return this.change(method, newUrl, newAs, options);
+          }
+
+          window.location.href = destination;
+          return new Promise(() => {});
+        }
+
+        this.isPreview = !!props.__N_PREVIEW; // handle SSG data 404
+
+        if (props.notFound === SSG_DATA_NOT_FOUND) {
+          let notFoundRoute;
+
+          try {
+            await this.fetchComponent('/404');
+            notFoundRoute = '/404';
+          } catch (_) {
+            notFoundRoute = '/_error';
+          }
+
+          routeInfo = await this.getRouteInfo(notFoundRoute, notFoundRoute, query, as, resolvedAs, {
+            shallow: false
+          });
+        }
+      }
+
+      Router.events.emit('beforeHistoryChange', as, routeProps);
+      this.changeState(method, url, as, options);
+
+      if (false) {}
+
+      if (options._h && pathname === '/_error' && ((_self$__NEXT_DATA__$p = self.__NEXT_DATA__.props) == null ? void 0 : (_self$__NEXT_DATA__$p2 = _self$__NEXT_DATA__$p.pageProps) == null ? void 0 : _self$__NEXT_DATA__$p2.statusCode) === 500 && props != null && props.pageProps) {
+        // ensure statusCode is still correct for static 500 page
+        // when updating query information
+        props.pageProps.statusCode = 500;
+      } // shallow routing is only allowed for same page URL changes.
+
+
+      const isValidShallowRoute = options.shallow && this.route === route;
+      const shouldScroll = (_options$scroll = options.scroll) != null ? _options$scroll : !isValidShallowRoute;
+      const resetScroll = shouldScroll ? {
+        x: 0,
+        y: 0
+      } : null;
+      await this.set(route, pathname, query, cleanedAs, routeInfo, forcedScroll != null ? forcedScroll : resetScroll).catch(e => {
+        if (e.cancelled) error = error || e;else throw e;
+      });
+
+      if (error) {
+        Router.events.emit('routeChangeError', error, cleanedAs, routeProps);
+        throw error;
+      }
+
+      if (false) {}
+
+      Router.events.emit('routeChangeComplete', as, routeProps);
+      return true;
+    } catch (err) {
+      if (err.cancelled) {
+        return false;
+      }
+
+      throw err;
+    }
+  }
+
+  changeState(method, url, as, options = {}) {
+    if (false) {}
+
+    if (method !== 'pushState' || (0, _utils.getURL)() !== as) {
+      this._shallow = options.shallow;
+      window.history[method]({
+        url,
+        as,
+        options,
+        __N: true,
+        idx: this._idx = method !== 'pushState' ? this._idx : this._idx + 1
+      }, // Most browsers currently ignores this parameter, although they may use it in the future.
+      // Passing the empty string here should be safe against future changes to the method.
+      // https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
+      '', as);
+    }
+  }
+
+  async handleRouteInfoError(err, pathname, query, as, routeProps, loadErrorFail) {
+    if (err.cancelled) {
+      // bubble up cancellation errors
+      throw err;
+    }
+
+    if ((0, _routeLoader.isAssetError)(err) || loadErrorFail) {
+      Router.events.emit('routeChangeError', err, as, routeProps); // If we can't load the page it could be one of following reasons
+      //  1. Page doesn't exists
+      //  2. Page does exist in a different zone
+      //  3. Internal error while loading the page
+      // So, doing a hard reload is the proper way to deal with this.
+
+      window.location.href = as; // Changing the URL doesn't block executing the current code path.
+      // So let's throw a cancellation error stop the routing logic.
+
+      throw buildCancellationError();
+    }
+
+    try {
+      let Component;
+      let styleSheets;
+      let props;
+
+      if (typeof Component === 'undefined' || typeof styleSheets === 'undefined') {
+        ;
+        ({
+          page: Component,
+          styleSheets
+        } = await this.fetchComponent('/_error'));
+      }
+
+      const routeInfo = {
+        props,
+        Component,
+        styleSheets,
+        err,
+        error: err
+      };
+
+      if (!routeInfo.props) {
+        try {
+          routeInfo.props = await this.getInitialProps(Component, {
+            err,
+            pathname,
+            query
+          });
+        } catch (gipErr) {
+          console.error('Error in error page `getInitialProps`: ', gipErr);
+          routeInfo.props = {};
+        }
+      }
+
+      return routeInfo;
+    } catch (routeInfoErr) {
+      return this.handleRouteInfoError(routeInfoErr, pathname, query, as, routeProps, true);
+    }
+  }
+
+  async getRouteInfo(route, pathname, query, as, resolvedAs, routeProps) {
+    try {
+      const existingRouteInfo = this.components[route];
+
+      if (routeProps.shallow && existingRouteInfo && this.route === route) {
+        return existingRouteInfo;
+      }
+
+      const cachedRouteInfo = existingRouteInfo && 'initial' in existingRouteInfo ? undefined : existingRouteInfo;
+      const routeInfo = cachedRouteInfo ? cachedRouteInfo : await this.fetchComponent(route).then(res => ({
+        Component: res.page,
+        styleSheets: res.styleSheets,
+        __N_SSG: res.mod.__N_SSG,
+        __N_SSP: res.mod.__N_SSP
+      }));
+      const {
+        Component,
+        __N_SSG,
+        __N_SSP
+      } = routeInfo;
+
+      if (false) {}
+
+      let dataHref;
+
+      if (__N_SSG || __N_SSP) {
+        dataHref = this.pageLoader.getDataHref((0, _utils.formatWithValidation)({
+          pathname,
+          query
+        }), resolvedAs, __N_SSG, this.locale);
+      }
+
+      const props = await this._getData(() => __N_SSG ? this._getStaticData(dataHref) : __N_SSP ? this._getServerData(dataHref) : this.getInitialProps(Component, // we provide AppTree later so this needs to be `any`
+      {
+        pathname,
+        query,
+        asPath: as,
+        locale: this.locale,
+        locales: this.locales,
+        defaultLocale: this.defaultLocale
+      }));
+      routeInfo.props = props;
+      this.components[route] = routeInfo;
+      return routeInfo;
+    } catch (err) {
+      return this.handleRouteInfoError(err, pathname, query, as, routeProps);
+    }
+  }
+
+  set(route, pathname, query, as, data, resetScroll) {
+    this.isFallback = false;
+    this.route = route;
+    this.pathname = pathname;
+    this.query = query;
+    this.asPath = as;
+    return this.notify(data, resetScroll);
+  }
+  /**
+  * Callback to execute before replacing router state
+  * @param cb callback to be executed
+  */
+
+
+  beforePopState(cb) {
+    this._bps = cb;
+  }
+
+  onlyAHashChange(as) {
+    if (!this.asPath) return false;
+    const [oldUrlNoHash, oldHash] = this.asPath.split('#');
+    const [newUrlNoHash, newHash] = as.split('#'); // Makes sure we scroll to the provided hash if the url/hash are the same
+
+    if (newHash && oldUrlNoHash === newUrlNoHash && oldHash === newHash) {
+      return true;
+    } // If the urls are change, there's more than a hash change
+
+
+    if (oldUrlNoHash !== newUrlNoHash) {
+      return false;
+    } // If the hash has changed, then it's a hash only change.
+    // This check is necessary to handle both the enter and
+    // leave hash === '' cases. The identity case falls through
+    // and is treated as a next reload.
+
+
+    return oldHash !== newHash;
+  }
+
+  scrollToHash(as) {
+    const [, hash] = as.split('#'); // Scroll to top if the hash is just `#` with no value or `#top`
+    // To mirror browsers
+
+    if (hash === '' || hash === 'top') {
+      window.scrollTo(0, 0);
+      return;
+    } // First we check if the element by id is found
+
+
+    const idEl = document.getElementById(hash);
+
+    if (idEl) {
+      idEl.scrollIntoView();
+      return;
+    } // If there's no element with the id, we check the `name` property
+    // To mirror browsers
+
+
+    const nameEl = document.getElementsByName(hash)[0];
+
+    if (nameEl) {
+      nameEl.scrollIntoView();
+    }
+  }
+
+  urlIsNew(asPath) {
+    return this.asPath !== asPath;
+  }
+  /**
+  * Prefetch page code, you may wait for the data during page rendering.
+  * This feature only works in production!
+  * @param url the href of prefetched page
+  * @param asPath the as path of the prefetched page
+  */
+
+
+  async prefetch(url, asPath = url, options = {}) {
+    let parsed = (0, _parseRelativeUrl.parseRelativeUrl)(url);
+    let {
+      pathname
+    } = parsed;
+
+    if (false) {}
+
+    const pages = await this.pageLoader.getPageList();
+    let resolvedAs = asPath;
+
+    if (false) {} else {
+      parsed.pathname = resolveDynamicRoute(parsed.pathname, pages);
+
+      if (parsed.pathname !== pathname) {
+        pathname = parsed.pathname;
+        parsed.pathname = pathname;
+        url = (0, _utils.formatWithValidation)(parsed);
+      }
+    }
+
+    const route = (0, _normalizeTrailingSlash.removePathTrailingSlash)(pathname); // Prefetch is not supported in development mode because it would trigger on-demand-entries
+
+    if (false) {}
+
+    await Promise.all([this.pageLoader._isSsg(route).then(isSsg => {
+      return isSsg ? this._getStaticData(this.pageLoader.getDataHref(url, resolvedAs, true, typeof options.locale !== 'undefined' ? options.locale : this.locale)) : false;
+    }), this.pageLoader[options.priority ? 'loadPage' : 'prefetch'](route)]);
+  }
+
+  async fetchComponent(route) {
+    let cancelled = false;
+
+    const cancel = this.clc = () => {
+      cancelled = true;
+    };
+
+    const componentResult = await this.pageLoader.loadPage(route);
+
+    if (cancelled) {
+      const error = new Error(`Abort fetching component for route: "${route}"`);
+      error.cancelled = true;
+      throw error;
+    }
+
+    if (cancel === this.clc) {
+      this.clc = null;
+    }
+
+    return componentResult;
+  }
+
+  _getData(fn) {
+    let cancelled = false;
+
+    const cancel = () => {
+      cancelled = true;
+    };
+
+    this.clc = cancel;
+    return fn().then(data => {
+      if (cancel === this.clc) {
+        this.clc = null;
+      }
+
+      if (cancelled) {
+        const err = new Error('Loading initial props cancelled');
+        err.cancelled = true;
+        throw err;
+      }
+
+      return data;
+    });
+  }
+
+  _getStaticData(dataHref) {
+    const {
+      href: cacheKey
+    } = new URL(dataHref, window.location.href);
+
+    if ( true && !this.isPreview && this.sdc[cacheKey]) {
+      return Promise.resolve(this.sdc[cacheKey]);
+    }
+
+    return fetchNextData(dataHref, this.isSsr).then(data => {
+      this.sdc[cacheKey] = data;
+      return data;
+    });
+  }
+
+  _getServerData(dataHref) {
+    const {
+      href: resourceKey
+    } = new URL(dataHref, window.location.href);
+
+    if (this.sdr[resourceKey]) {
+      return this.sdr[resourceKey];
+    }
+
+    return this.sdr[resourceKey] = fetchNextData(dataHref, this.isSsr).then(data => {
+      delete this.sdr[resourceKey];
+      return data;
+    }).catch(err => {
+      delete this.sdr[resourceKey];
+      throw err;
+    });
+  }
+
+  getInitialProps(Component, ctx) {
+    const {
+      Component: App
+    } = this.components['/_app'];
+
+    const AppTree = this._wrapApp(App);
+
+    ctx.AppTree = AppTree;
+    return (0, _utils.loadGetInitialProps)(App, {
+      AppTree,
+      Component,
+      router: this,
+      ctx
+    });
+  }
+
+  abortComponentLoad(as, routeProps) {
+    if (this.clc) {
+      Router.events.emit('routeChangeError', buildCancellationError(), as, routeProps);
+      this.clc();
+      this.clc = null;
+    }
+  }
+
+  notify(data, resetScroll) {
+    return this.sub(data, this.components['/_app'].Component, resetScroll);
+  }
+
+}
+
+exports.default = Router;
+Router.events = (0, _mitt.default)();
+
+/***/ }),
+
+/***/ "g/15":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.execOnce = execOnce;
+exports.getLocationOrigin = getLocationOrigin;
+exports.getURL = getURL;
+exports.getDisplayName = getDisplayName;
+exports.isResSent = isResSent;
+exports.loadGetInitialProps = loadGetInitialProps;
+exports.formatWithValidation = formatWithValidation;
+exports.ST = exports.SP = exports.urlObjectKeys = void 0;
+
+var _formatUrl = __webpack_require__("6D7l");
+/**
+* Utils
+*/
+
+
+function execOnce(fn) {
+  let used = false;
+  let result;
+  return (...args) => {
+    if (!used) {
+      used = true;
+      result = fn(...args);
+    }
+
+    return result;
+  };
+}
+
+function getLocationOrigin() {
+  const {
+    protocol,
+    hostname,
+    port
+  } = window.location;
+  return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+}
+
+function getURL() {
+  const {
+    href
+  } = window.location;
+  const origin = getLocationOrigin();
+  return href.substring(origin.length);
+}
+
+function getDisplayName(Component) {
+  return typeof Component === 'string' ? Component : Component.displayName || Component.name || 'Unknown';
+}
+
+function isResSent(res) {
+  return res.finished || res.headersSent;
+}
+
+async function loadGetInitialProps(App, ctx) {
+  if (false) { var _App$prototype; } // when called from _app `ctx` is nested in `ctx`
+
+
+  const res = ctx.res || ctx.ctx && ctx.ctx.res;
+
+  if (!App.getInitialProps) {
+    if (ctx.ctx && ctx.Component) {
+      // @ts-ignore pageProps default
+      return {
+        pageProps: await loadGetInitialProps(ctx.Component, ctx.ctx)
+      };
+    }
+
+    return {};
+  }
+
+  const props = await App.getInitialProps(ctx);
+
+  if (res && isResSent(res)) {
+    return props;
+  }
+
+  if (!props) {
+    const message = `"${getDisplayName(App)}.getInitialProps()" should resolve to an object. But found "${props}" instead.`;
+    throw new Error(message);
+  }
+
+  if (false) {}
+
+  return props;
+}
+
+const urlObjectKeys = ['auth', 'hash', 'host', 'hostname', 'href', 'path', 'pathname', 'port', 'protocol', 'query', 'search', 'slashes'];
+exports.urlObjectKeys = urlObjectKeys;
+
+function formatWithValidation(url) {
+  if (false) {}
+
+  return (0, _formatUrl.formatUrl)(url);
+}
+
+const SP = typeof performance !== 'undefined';
+exports.SP = SP;
+const ST = SP && typeof performance.mark === 'function' && typeof performance.measure === 'function';
+exports.ST = ST;
+
+/***/ }),
+
+/***/ "gguc":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.getRouteMatcher = getRouteMatcher;
+
+function getRouteMatcher(routeRegex) {
+  const {
+    re,
+    groups
+  } = routeRegex;
+  return pathname => {
+    const routeMatch = re.exec(pathname);
+
+    if (!routeMatch) {
+      return false;
+    }
+
+    const decode = param => {
+      try {
+        return decodeURIComponent(param);
+      } catch (_) {
+        const err = new Error('failed to decode param');
+        err.code = 'DECODE_FAILED';
+        throw err;
+      }
+    };
+
+    const params = {};
+    Object.keys(groups).forEach(slugName => {
+      const g = groups[slugName];
+      const m = routeMatch[g.pos];
+
+      if (m !== undefined) {
+        params[slugName] = ~m.indexOf('/') ? m.split('/').map(entry => decode(entry)) : g.repeat ? [decode(m)] : decode(m);
+      }
+    });
+    return params;
+  };
+}
+
+/***/ }),
+
+/***/ "hS4m":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.parseRelativeUrl = parseRelativeUrl;
+
+var _utils = __webpack_require__("g/15");
+
+var _querystring = __webpack_require__("3WeD");
+/**
+* Parses path-relative urls (e.g. `/hello/world?foo=bar`). If url isn't path-relative
+* (e.g. `./hello`) then at least base must be.
+* Absolute urls are rejected with one exception, in the browser, absolute urls that are on
+* the current origin will be parsed as relative
+*/
+
+
+function parseRelativeUrl(url, base) {
+  const globalBase = new URL(true ? 'http://n' : undefined);
+  const resolvedBase = base ? new URL(base, globalBase) : globalBase;
+  const {
+    pathname,
+    searchParams,
+    search,
+    hash,
+    href,
+    origin
+  } = new URL(url, resolvedBase);
+
+  if (origin !== globalBase.origin) {
+    throw new Error(`invariant: invalid relative URL, router received ${url}`);
+  }
+
+  return {
+    pathname,
+    query: (0, _querystring.searchParamsToUrlQuery)(searchParams),
+    search,
+    hash,
+    href: href.slice(globalBase.origin.length)
+  };
+}
+
+/***/ }),
+
+/***/ "jWA4":
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/polyfill");
+
+/***/ }),
+
+/***/ "lN74":
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"populacao\":{\"valor\":9800494,\"legenda\":\"9,87 milhões (2020, Portugal Continental)\",\"fonte\":{\"nome\":\"PORDATA\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%C3%A7%C3%A3o+residente+total+e+por+grandes+grupos+et%C3%A1rios-390\"}},\"populacao_ram\":{\"valor\":254254,\"legenda\":\"254 mil 254 pessoas\",\"fonte\":{\"nome\":\"Direção Regional de Estatística da Madeira\",\"permalink\":\"https://estatistica.madeira.gov.pt/download-now/social/popcondsoc-pt/demografia-pt/demografia-emfoco-pt/send/61-demografia-emfoco/12815-em-foco-2019.html\"}},\"populacao_raa\":{\"valor\":202572,\"legenda\":\"202 mil 575 pessoas\",\"fonte\":{\"nome\":\"PORDATA\",\"permalink\":\"https://www.facebook.com/DirecaoSaudeAcores/photos/a.228768877313421/1596814803842148/?type=3&theater\"}},\"populacao_residente_ram\":{\"3101\":{\"dico\":3101,\"concelho\":\"calheta\",\"valor\":10867,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3102\":{\"dico\":3102,\"concelho\":\"camara_lobos\",\"valor\":33675,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3103\":{\"dico\":3103,\"concelho\":\"funchal\",\"valor\":104024,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3104\":{\"dico\":3104,\"concelho\":\"machico\",\"valor\":19981,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3105\":{\"dico\":3105,\"concelho\":\"ponta_sol\",\"valor\":8593,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3106\":{\"dico\":3106,\"concelho\":\"porto_moniz\",\"valor\":2342,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3107\":{\"dico\":3107,\"concelho\":\"ribeira_brava\",\"valor\":12435,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3108\":{\"dico\":3108,\"concelho\":\"santa_cruz\",\"valor\":45281,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3109\":{\"dico\":3109,\"concelho\":\"santana\",\"valor\":6711,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3110\":{\"dico\":3110,\"concelho\":\"svicente\",\"valor\":5143,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3201\":{\"dico\":3201,\"concelho\":\"porto_santo\",\"valor\":5202,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}}},\"populacao_residente_raa\":{\"41\":{\"dico\":41,\"concelho\":\"santa_maria\",\"valor\":4589,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"42\":{\"dico\":42,\"concelho\":\"sao_miguel\",\"valor\":110731,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"43\":{\"dico\":43,\"concelho\":\"terceira\",\"valor\":47270,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"44\":{\"dico\":44,\"concelho\":\"graciosa\",\"valor\":3741,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"45\":{\"dico\":45,\"concelho\":\"sao_jorge\",\"valor\":7836,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"46\":{\"dico\":46,\"concelho\":\"pico\",\"valor\":12199,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"47\":{\"dico\":47,\"concelho\":\"faial\",\"valor\":12591,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"48\":{\"dico\":48,\"concelho\":\"flores\",\"valor\":3249,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"49\":{\"dico\":49,\"concelho\":\"corvo\",\"valor\":369,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}},\"3201\":{\"dico\":3201,\"concelho\":\"porto_santo\",\"valor\":5202,\"fonte\":{\"nome\":\"PORDATA - Estimativas até 31/12\",\"permalink\":\"https://www.pordata.pt/Municipios/Popula%c3%a7%c3%a3o+residente++estimativas+a+31+de+Dezembro-120\"}}},\"doses\":{\"valor\":38000000,\"legenda\":\"38 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.rtp.pt/noticias/pais/portugal-vai-comprar-38-milhoes-de-vacinas-contra-a-covid-19_a1300900#:~:text=Portugal%20vai%20comprar%2038%20milh%C3%B5es%20de%20vacinas%20contra%20a%20Covid-19\"}},\"doses3\":{\"valor\":31000000,\"legenda\":\"mais do que 31 milhões de doses\",\"fonte\":{\"nome\":\"Governo de Portugal\",\"permalink\":\"https://www.portugal.gov.pt/pt/gc22/comunicacao/comunicado?i=esclarecimento-sobre-compra-de-vacinas-contra-a-covid-19#:~:text=Neste%20momento%2C%20Portugal%20j%C3%A1%20conseguiu%20assegurar%20mais%20de%2031%20milh%C3%B5es%20de%20doses%20de%20vacinas%2C\"}},\"doses2\":{\"valor\":22000000,\"legenda\":\"cerca de 22 milhões de doses\",\"fonte\":{\"nome\":\"Direção-Geral da Saúde\",\"permalink\":\"https://www.sns.gov.pt/noticias/2020/12/04/plano-de-vacinacao-contra-a-covid-19/\"}},\"populacao_grupos\":{\"18_24\":544575,\"25_49\":3373178,\"50_59\":1482121,\"60_69\":1293301,\"70_79\":973123,\"80_plus\":668660,\"fonte\":{\"nome\":\"PORDATA (2019)\",\"permalink\":\"https://www.pordata.pt/Portugal/Popula%c3%a7%c3%a3o+residente++m%c3%a9dia+anual+total+e+por+grupo+et%c3%a1rio-10-1126\"}}}");
+
+/***/ }),
+
+/***/ "nOHt":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__("284h");
+
+var _interopRequireDefault = __webpack_require__("TqRt");
+
+exports.__esModule = true;
+exports.useRouter = useRouter;
+exports.makePublicRouterInstance = makePublicRouterInstance;
+exports.createRouter = exports.withRouter = exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__("cDcd"));
+
+var _router2 = _interopRequireWildcard(__webpack_require__("elyg"));
+
+exports.Router = _router2.default;
+exports.NextRouter = _router2.NextRouter;
+
+var _routerContext = __webpack_require__("Osoz");
+
+var _withRouter = _interopRequireDefault(__webpack_require__("0Bsm"));
+
+exports.withRouter = _withRouter.default;
+/* global window */
+
+const singletonRouter = {
+  router: null,
+  // holds the actual router instance
+  readyCallbacks: [],
+
+  ready(cb) {
+    if (this.router) return cb();
+
+    if (false) {}
+  }
+
+}; // Create public properties and methods of the router in the singletonRouter
+
+const urlPropertyFields = ['pathname', 'route', 'query', 'asPath', 'components', 'isFallback', 'basePath', 'locale', 'locales', 'defaultLocale', 'isReady', 'isPreview', 'isLocaleDomain', 'domainLocales'];
+const routerEvents = ['routeChangeStart', 'beforeHistoryChange', 'routeChangeComplete', 'routeChangeError', 'hashChangeStart', 'hashChangeComplete'];
+const coreMethodFields = ['push', 'replace', 'reload', 'back', 'prefetch', 'beforePopState']; // Events is a static property on the router, the router doesn't have to be initialized to use it
+
+Object.defineProperty(singletonRouter, 'events', {
+  get() {
+    return _router2.default.events;
+  }
+
+});
+urlPropertyFields.forEach(field => {
+  // Here we need to use Object.defineProperty because we need to return
+  // the property assigned to the actual router
+  // The value might get changed as we change routes and this is the
+  // proper way to access it
+  Object.defineProperty(singletonRouter, field, {
+    get() {
+      const router = getRouter();
+      return router[field];
+    }
+
+  });
+});
+coreMethodFields.forEach(field => {
+  // We don't really know the types here, so we add them later instead
+  ;
+
+  singletonRouter[field] = (...args) => {
+    const router = getRouter();
+    return router[field](...args);
+  };
+});
+routerEvents.forEach(event => {
+  singletonRouter.ready(() => {
+    _router2.default.events.on(event, (...args) => {
+      const eventField = `on${event.charAt(0).toUpperCase()}${event.substring(1)}`;
+      const _singletonRouter = singletonRouter;
+
+      if (_singletonRouter[eventField]) {
+        try {
+          _singletonRouter[eventField](...args);
+        } catch (err) {
+          console.error(`Error when running the Router event: ${eventField}`);
+          console.error(`${err.message}\n${err.stack}`);
+        }
+      }
+    });
+  });
+});
+
+function getRouter() {
+  if (!singletonRouter.router) {
+    const message = 'No router instance found.\n' + 'You should only use "next/router" on the client side of your app.\n';
+    throw new Error(message);
+  }
+
+  return singletonRouter.router;
+} // Export the singletonRouter and this is the public API.
+
+
+var _default = singletonRouter; // Reexport the withRoute HOC
+
+exports.default = _default;
+
+function useRouter() {
+  return _react.default.useContext(_routerContext.RouterContext);
+} // INTERNAL APIS
+// -------------
+// (do not use following exports inside the app)
+// Create a router and assign it as the singleton instance.
+// This is used in client side when we are initilizing the app.
+// This should **not** be used inside the server.
+
+
+const createRouter = (...args) => {
+  singletonRouter.router = new _router2.default(...args);
+  singletonRouter.readyCallbacks.forEach(cb => cb());
+  singletonRouter.readyCallbacks = [];
+  return singletonRouter.router;
+}; // This function is used to create the `withRouter` router instance
+
+
+exports.createRouter = createRouter;
+
+function makePublicRouterInstance(router) {
+  const _router = router;
+  const instance = {};
+
+  for (const property of urlPropertyFields) {
+    if (typeof _router[property] === 'object') {
+      instance[property] = Object.assign(Array.isArray(_router[property]) ? [] : {}, _router[property]); // makes sure query is not stateful
+
+      continue;
+    }
+
+    instance[property] = _router[property];
+  } // Events is a static property on the router, the router doesn't have to be initialized to use it
+
+
+  instance.events = _router2.default.events;
+  coreMethodFields.forEach(field => {
+    instance[field] = (...args) => {
+      return _router[field](...args);
+    };
+  });
+  return instance;
+}
+
+/***/ }),
+
+/***/ "q4sD":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "tDG4":
+/***/ (function(module, exports) {
+
+module.exports = require("date-fns/locale");
+
+/***/ }),
+
+/***/ "tiMs":
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__("cDcd");
+
+function Plus (props) {
+    return React.createElement("svg",props,React.createElement("g",null,React.createElement("path",{"fill":"rgb(1,174,151)","d":"M 1408,800 V 608 q 0,-40 -28,-68 -28,-28 -68,-28 H 896 V 96 Q 896,56 868,28 840,0 800,0 H 608 Q 568,0 540,28 512,56 512,96 V 512 H 96 Q 56,512 28,540 0,568 0,608 v 192 q 0,40 28,68 28,28 68,28 h 416 v 416 q 0,40 28,68 28,28 68,28 h 192 q 40,0 68,-28 28,-28 28,-68 V 896 h 416 q 40,0 68,-28 28,-28 28,-68 z","id":"path3017"})));
+}
+
+Plus.defaultProps = {"viewBox":"0 -256 1792 1792","width":"100%","height":"100%"};
+
+module.exports = Plus;
+
+Plus.default = Plus;
+
+
+/***/ }),
+
+/***/ "uAdN":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegiaoContext; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext('portugal');
+
+/***/ }),
+
+/***/ "vNVm":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.useIntersection = useIntersection;
+
+var _react = __webpack_require__("cDcd");
+
+var _requestIdleCallback = __webpack_require__("0G5g");
+
+const hasIntersectionObserver = typeof IntersectionObserver !== 'undefined';
+
+function useIntersection({
+  rootMargin,
+  disabled
+}) {
+  const isDisabled = disabled || !hasIntersectionObserver;
+  const unobserve = (0, _react.useRef)();
+  const [visible, setVisible] = (0, _react.useState)(false);
+  const setRef = (0, _react.useCallback)(el => {
+    if (unobserve.current) {
+      unobserve.current();
+      unobserve.current = undefined;
+    }
+
+    if (isDisabled || visible) return;
+
+    if (el && el.tagName) {
+      unobserve.current = observe(el, isVisible => isVisible && setVisible(isVisible), {
+        rootMargin
+      });
+    }
+  }, [isDisabled, rootMargin, visible]);
+  (0, _react.useEffect)(() => {
+    if (!hasIntersectionObserver) {
+      if (!visible) {
+        const idleCallback = (0, _requestIdleCallback.requestIdleCallback)(() => setVisible(true));
+        return () => (0, _requestIdleCallback.cancelIdleCallback)(idleCallback);
+      }
+    }
+  }, [visible]);
+  return [setRef, visible];
+}
+
+function observe(element, callback, options) {
+  const {
+    id,
+    observer,
+    elements
+  } = createObserver(options);
+  elements.set(element, callback);
+  observer.observe(element);
+  return function unobserve() {
+    elements.delete(element);
+    observer.unobserve(element); // Destroy observer when there's nothing left to watch:
+
+    if (elements.size === 0) {
+      observer.disconnect();
+      observers.delete(id);
+    }
+  };
+}
+
+const observers = new Map();
+
+function createObserver(options) {
+  const id = options.rootMargin || '';
+  let instance = observers.get(id);
+
+  if (instance) {
+    return instance;
+  }
+
+  const elements = new Map();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const callback = elements.get(entry.target);
+      const isVisible = entry.isIntersecting || entry.intersectionRatio > 0;
+
+      if (callback && isVisible) {
+        callback(isVisible);
+      }
+    });
+  }, options);
+  observers.set(id, instance = {
+    id,
+    observer,
+    elements
+  });
+  return instance;
+}
+
+/***/ }),
+
+/***/ "vga7":
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"date\":1628798427484,\"dateVaccines\":1628722800000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-12\",\"dateCases\":1628640000000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
+
+/***/ }),
+
+/***/ "wkBG":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denormalizePagePath=denormalizePagePath;function normalizePathSep(path){return path.replace(/\\/g,'/');}function denormalizePagePath(page){page=normalizePathSep(page);if(page.startsWith('/index/')){page=page.slice(6);}else if(page==='/index'){page='/';}return page;}
+//# sourceMappingURL=denormalize-page-path.js.map
+
+/***/ }),
+
+/***/ "xPX6":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return FOREGROUND_COLOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return COLOR_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return COLOR_2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return COLOR_3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return COLOR_4; });
+/* unused harmony export COLOR_5 */
+/* unused harmony export COLOR_6 */
+/* unused harmony export COLOR_7 */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return TINT_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return TINT_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return TINT_30; });
+/* unused harmony export COLOR */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return SHADE_30; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return SHADE_50; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return SHADE_70; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return COMPLEMENT_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return COMPLEMENT_2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return COMPLEMENT_3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return RESIZE_TRESHOLD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return lineChartCommon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return lineChartCommon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return REGIOES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return ECDC_MAPPING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return MADEIRA_DICOS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ACORES_DICOS; });
+/* unused harmony export ACORES_DICOS_CONCELHOS */
+/* unused harmony export ARS_MAPPING */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return grades; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return grades_pretty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return SNS_WEEKS; });
+let FOREGROUND_COLOR = '#01AE97';
+let COLOR_1 = '#017a6a';
+let COLOR_2 = '#01574c';
+let COLOR_3 = '#00342d';
+let COLOR_4 = '#80d7cb';
+let COLOR_5 = '#AD1413';
+let COLOR_6 = '#0A6CAD';
+let COLOR_7 = '#AD6E13'; // Tints
+
+let TINT_70 = '#b3e7e0';
+let TINT_50 = '#80d7cb';
+let TINT_30 = '#4dc6b6';
+let COLOR = '#01AE97'; // Shades
+
+let SHADE_30 = '#017a6a';
+let SHADE_50 = '#01574c';
+let SHADE_70 = '#00342d'; // Square Complement
+
+let COMPLEMENT_1 = '#0A9DD1';
+let COMPLEMENT_2 = '#D11541';
+let COMPLEMENT_3 = '#D17615';
+let RESIZE_TRESHOLD = 1040;
+let lineChartCommon = {
+  fill: true,
+  lineTension: 0.5,
+  lineBorder: 1,
+  borderWidth: 3,
+  borderJoinStyle: 'miter',
+  pointBorderWidth: 1,
+  pointHoverRadius: 3,
+  pointHoverBorderWidth: 2,
+  pointRadius: 1,
+  pointHitRadius: 10
+};
+let lineChartCommon2 = {
+  fill: false,
+  lineTension: 0.5,
+  lineBorder: 1,
+  borderWidth: 3,
+  borderJoinStyle: 'miter',
+  pointBorderWidth: 0,
+  pointHoverRadius: 0,
+  pointHoverBorderWidth: 0,
+  pointRadius: 0,
+  pointHitRadius: 0
+};
+const REGIOES = {
+  MADEIRA: 'madeira',
+  PORTUGAL: 'portugal',
+  ACORES: 'ACORES'
+};
+const ECDC_MAPPING = {
+  alentejo: 'PTCSR01',
+  algarve: 'PTCSR02',
+  acores: 'PTCSR03',
+  centro: 'PTCSR04',
+  lisboa: 'PTCSR05',
+  madeira: 'PTCSR06',
+  norte: 'PTCSR07',
+  portugal: 'PT',
+  PTCSR01: 'alentejo',
+  PTCSR02: 'algarve',
+  PTCSR03: 'acores',
+  PTCSR04: 'centro',
+  PTCSR05: 'lisboa',
+  PTCSR06: 'madeira',
+  PTCSR07: 'norte',
+  PT: 'portugal'
+};
+const MADEIRA_DICOS = {
+  3101: 'calheta',
+  3102: 'camara_lobos',
+  3108: 'santa_cruz',
+  3201: 'porto_santo',
+  3106: 'porto_moniz',
+  3110: 'svincente',
+  3109: 'santana',
+  3105: 'ponta_sol',
+  3103: 'funchal',
+  3104: 'machico',
+  3107: 'ribeira_brava',
+  calheta: '3101',
+  camara_lobos: '3102',
+  santa_cruz: '3108',
+  porto_santo: '3201',
+  porto_moniz: '3106',
+  svincente: '3110',
+  santana: '3109',
+  ponta_sol: '3105',
+  funchal: '3103',
+  machico: '3104',
+  ribeira_brava: '3107'
+};
+const ACORES_DICOS = {
+  49: 'corvo',
+  48: 'flores',
+  47: 'faial',
+  46: 'pico',
+  45: 'sao_jorge',
+  44: 'graciosa',
+  43: 'terceira',
+  42: 'sao_miguel',
+  41: 'santa_maria',
+  corvo: 49,
+  flores: 48,
+  faial: 47,
+  pico: 46,
+  sao_jorge: 45,
+  graciosa: 44,
+  terceira: 43,
+  sao_miguel: 42,
+  santa_maria: 41
+};
+const ACORES_DICOS_CONCELHOS = {
+  4901: 'corvo',
+  4802: 'flores',
+  4801: 'flores',
+  4701: 'faial',
+  4602: 'pico',
+  4603: 'pico',
+  4601: 'pico',
+  4501: 'sao_jorge',
+  4502: 'sao_jorge',
+  4401: 'graciosa',
+  4301: 'terceira',
+  4302: 'terceira',
+  4201: 'sao_miguel',
+  4202: 'sao_miguel',
+  4203: 'sao_miguel',
+  4204: 'sao_miguel',
+  4205: 'sao_miguel',
+  4206: 'sao_miguel',
+  4101: 'santa_maria'
+};
+const ARS_MAPPING = {
+  alentejo: 'ARS Alentejo',
+  algarve: 'ARS Algarve',
+  lvt: 'ARS Lisboa e Vale do Tejo',
+  norte: 'ARS Norte',
+  centro: 'ARS Centro',
+  'ARS Alentejo': 'alentejo',
+  'ARS Algarve': 'algarve',
+  'ARS Lisboa e Vale do Tejo': 'lvt',
+  'ARS Norte': 'norte',
+  'ARS Centro': 'centro'
+};
+const grades = [0, 20, 40, 60, 80];
+const grades_pretty = {
+  0: '0% a 19%',
+  20: '20% a 39%',
+  40: '40% a 59%',
+  60: '60% a 89%',
+  80: '80% a 100%'
+};
+const SNS_WEEKS = {
+  '04/01/21': '27/12 a 10/01',
+  '11/01/21': '11/01 a 17/01',
+  '18/01/21': '18/01 a 24/01',
+  '25/01/21': '25/01 a 31/01',
+  '01/02/21': '01/02 a 07/02',
+  '08/02/21': '08/02 a 14/02',
+  '15/02/21': '15/02 a 21/02',
+  '22/02/21': '22/02 a 28/02',
+  '01/03/21': '01/03 a 07/03',
+  '08/03/21': '08/03 a 14/03',
+  '15/03/21': '15/03 a 21/03',
+  '22/03/21': '22/03 a 28/03',
+  '29/03/21': '29/03 a 04/04',
+  '05/04/21': '05/04 a 11/04',
+  '12/04/21': '12/04 a 18/04',
+  '19/04/21': '19/04 a 25/04',
+  '26/04/21': '26/04 a 02/05',
+  '03/05/21': '03/05 a 09/05',
+  '10/05/21': '10/05 a 16/05',
+  '17/05/21': '17/05 a 23/05',
+  '24/05/21': '24/05 a 28/05',
+  '31/05/21': '31/05 a 06/06',
+  '07/06/21': '07/06 a 13/06',
+  '07/06/21': '07/06 a 13/06',
+  '14/06/21': '14/06 a 20/06',
+  '21/06/21': '21/06 a 27/06',
+  '28/06/21': '28/06 a 04/07',
+  '05/07/21': '05/07 a 11/07',
+  '12/07/21': '12/07 a 16/07',
+  '19/07/21': '19/07 a 25/07',
+  '26/07/21': '26/07 a 01/08'
+};
+
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
+
+/***/ })
+
+/******/ });
+>>>>>>> Stashed changes

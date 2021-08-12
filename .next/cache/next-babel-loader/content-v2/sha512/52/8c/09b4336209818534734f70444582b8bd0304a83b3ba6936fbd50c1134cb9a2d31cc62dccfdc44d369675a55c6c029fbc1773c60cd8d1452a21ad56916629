@@ -1,0 +1,1 @@
+{"ast":null,"code":"import acores_pds from './../../../data/acores_pds.json';\nexport default async function handler(req, res) {\n  res.statusCode = 200;\n  res.json(acores_pds);\n}","map":null,"metadata":{},"sourceType":"module"}
