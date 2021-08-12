@@ -1,0 +1,83 @@
+{
+	"name": "c19-app",
+	"version": "0.1.0",
+	"private": true,
+	"browserslist": "last 10 versions and > 0.05% or ie>9",
+	"scripts": {
+		"deploy": "git checkout master && git pull --rebase && git merge develop --strategy-option theirs --no-ff --no-edit && git push",
+		"update": "node automation/update.js && git add data/last-update.json",
+		"no-commit-to-master": "if [ \"$(git rev-parse --abbrev-ref HEAD)\" = 'master' ]; then echo 'You cant commit directly to master branch';exit 1; fi;",
+		"dev": "next dev -p 5500",
+		"v": "next -v",
+		"build": "next build",
+		"start": "next start",
+		"export": "next build && next export -o out2",
+		"image": "cd automation/ && node instagram.js && cd - && git add automation",
+		"twitter": "cd automation/ && node twitter.js && cd - ",
+		"socket:refresh": "cd automation/ && node pusher.js && cd - ",
+		"notification:push": "python3 automation/fcm.py",
+		"deploy:manual": "yarn deploy && (yarn twitter & yarn pusher & yarn notification:push)",
+		"convert:csv": "node automation/convert-csv.js",
+		"convert:xls": "node automation/convert-xls.js",
+		"convert": "yarn convert:csv & yarn convert:xls",
+		"delete": "(git reset .next && git checkout .next) & git clean -fd .next",
+		"update:server": "sh run.sh",
+		"bot:start": "HARDWARE=raspberry pm2 start daemon_data --name \"daemon\"",
+		"bot:manual": "HARDWARE=raspberry node daemon.js",
+		"casos:ram": "python3 ./automation/madeira_parser.py"
+	},
+	"browser": {
+		"fs": false,
+		"path": false,
+		"os": false
+	},
+	"bin": {
+		"daemon_data": "./daemon.js"
+	},
+	"pre-commit": [
+		"delete",
+		"no-commit-to-master",
+		"update"
+	],
+	"dependencies": {
+		"@babel/polyfill": "^7.12.1",
+		"bootstrap": "^5.1.0",
+		"chart.js": "^3.0.0",
+		"chartjs-plugin-annotation": "^1.0.0",
+		"chartjs-plugin-datalabels": "^2.0.0-beta.1",
+		"classnames": "^2.2.6",
+		"core-js": "3",
+		"cors": "^2.8.5",
+		"date-fns": "^2.17.0",
+		"dotenv": "^10.0.0",
+		"firebase-admin": "^9.6.0",
+		"minimist": "^1.2.5",
+		"mongodb": "^4.1.0",
+		"next": "^11.0.1",
+		"next-react-svg": "^1.1.2",
+		"node-fetch": "^2.6.1",
+		"plausible-tracker": "^0.3.1",
+		"pusher": "^5.0.0",
+		"react": "17.0.2",
+		"react-bootstrap": "^1.4.3",
+		"react-chartjs-2": "^3.0.2",
+		"react-count-to": "^0.12.0",
+		"react-datepicker": "^4.2.0",
+		"react-dom": "17.0.2",
+		"react-lazyload": "^3.2.0",
+		"react-spinners-kit": "^1.9.1",
+		"sass": "^1.32.5",
+		"shelljs": "^0.8.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.16",
+		"@babel/preset-env": "^7.12.16",
+		"@welldone-software/why-did-you-render": "^6.2.0",
+		"convert-excel-to-json": "^1.7.0",
+		"csvtojson": "^2.0.10",
+		"follow-redirects": "^1.13.2",
+		"node-schedule": "^2.0.0",
+		"pre-commit": "^1.2.2",
+		"twitter": "^1.7.1"
+	}
+}
