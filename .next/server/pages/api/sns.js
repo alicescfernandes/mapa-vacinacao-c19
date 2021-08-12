@@ -223,7 +223,7 @@ function trackPlausible(req) {
     ip = ip.substr(7);
   }
 
-  if (userAgent.match('UptimeRobot')) {
+  if (userAgent.match('UptimeRobot') || userAgent.match('NetSystemsResearch') || userAgent.match('Expanse')) {
     return;
   }
 
