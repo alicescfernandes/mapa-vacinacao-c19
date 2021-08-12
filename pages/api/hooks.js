@@ -45,10 +45,12 @@ export default async function handler(req, res) {
 	req.rawBody = data;
 	let allowed = await verifyPostData(req, res);
 	console.log('hook received');
-	if (allowed) {
-		shell.exec('echo "working" & yarn update:server &');
-	}
+
 	//set out to execute the command
 	res.statusCode = 200;
 	res.json({});
+
+	if (allowed) {
+		shell.exec('echo "working" & yarn update:server &');
+	}
 }
