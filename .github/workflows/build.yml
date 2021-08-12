@@ -35,6 +35,7 @@ jobs:
               run: |
                   mkdir output
                   cp package.json output/package.json
+                  cp next.config.js output/next.config.js
                   cp .gitignore output/.gitignore
                   cp run.sh output/run.sh
                   cp -r public output/public
@@ -43,5 +44,5 @@ jobs:
             - name: Deploy 🚀
               uses: JamesIves/github-pages-deploy-action@4.1.0
               with:
-                  branch: gh-pages # The branch the action should deploy to.
+                  branch: compiled # The branch the action should deploy to.
                   folder: output # The folder the action should deploy.
