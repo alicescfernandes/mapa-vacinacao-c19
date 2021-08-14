@@ -3588,7 +3588,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1628962962708,\"dateVaccines\":1628895600000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"Mon Aug 02 2021\",\"dateSns\":\"Sun Aug 08 2021\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-14\",\"dateCases\":1628640000000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
+module.exports = JSON.parse("{\"date\":1628979576011,\"dateVaccines\":1628895600000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"Mon Aug 02 2021\",\"dateSns\":\"Sun Aug 08 2021\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-14\",\"dateCases\":1628899200000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
 
 /***/ }),
 
