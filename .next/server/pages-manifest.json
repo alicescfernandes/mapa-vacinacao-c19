@@ -17,6 +17,7 @@
   "/api/rt": "pages/api/rt.js",
   "/api/sesaram": "pages/api/sesaram.js",
   "/api/sns": "pages/api/sns.js",
+  "/api/sns2": "pages/api/sns2.js",
   "/api/vaccines": "pages/api/vaccines.js",
   "/api/vaccinesold": "pages/api/vaccinesold.js",
   "/api/weeks": "pages/api/weeks.js",

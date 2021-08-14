@@ -88,12 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 21:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("RNiq");
@@ -1841,23 +1841,18 @@ function useData({
       return groups;
     },
     getTotalSNS: async () => {
-      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "b"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
+      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "b"])(`/api/sns2?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`, false);
       return sns.filter(el => {
         return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat;
       });
     },
     getTotalSNSIdade: async () => {
-      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "b"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
-      return sns.filter(el => {
-        return el.TYPE === 'AGES';
-      });
+      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "b"])(`/api/sns2?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`, false);
+      return sns;
     },
     getTotalSNSRecebidas: async () => {
-      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "b"])(`/api/sns?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
-      let [item] = sns.filter(el => {
-        return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == _data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat;
-      });
-      return item;
+      let sns = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "b"])(`/api/sns2?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.date)}`, false);
+      return sns.reverse()[0];
     },
     getTotalARS: async () => {
       let ars = await Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* fetchWithLocalCache */ "b"])(`/api/ars?${btoa(_data_last_update_json__WEBPACK_IMPORTED_MODULE_3__.dateSnsStartWeirdFormat)}`, false);
@@ -4291,6 +4286,7 @@ function LineAdministradasPorFaixaEtaria_defineProperty(obj, key, value) { if (k
 
 
 
+
 function LineAdministradasPorFaixaEtaria({
   statistics,
   colors
@@ -4333,16 +4329,31 @@ function LineAdministradasPorFaixaEtaria({
     setCanvasNode(canvas.parentNode);
     let labels = {};
     graphData.map(values => {
-      labels[values.DATE] = '';
+      labels[values.data] = '';
     });
+    console.log(Object.keys(labels).map(el => {
+      let parseDate = Object(external_date_fns_["parse"])(el, 'dd-MM-yyyy', new Date());
+      let data = Object(external_date_fns_["sub"])(parseDate, {
+        days: 7
+      });
+      el = Object(external_date_fns_["format"])(data, 'dd-LL-yyyy');
+      return constants["q" /* SNS_WEEKS */][el];
+    }));
     return {
-      labels: Object.keys(labels).map(el => constants["q" /* SNS_WEEKS */][el]),
+      labels: Object.keys(labels).map(el => {
+        let parseDate = Object(external_date_fns_["parse"])(el, 'dd-MM-yyyy', new Date());
+        let data = Object(external_date_fns_["sub"])(parseDate, {
+          days: 7
+        });
+        el = Object(external_date_fns_["format"])(data, 'dd-LL-yyyy');
+        return constants["q" /* SNS_WEEKS */][el];
+      }),
       datasets: [LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(main)), {}, {
         label: 'Até aos 17 anos',
         labelGroup: 'Grupo 18/24',
         fill: false,
         lineTension: 0.3,
-        data: graphData.filter(el => el.AGEGROUP == '0-17 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+        data: graphData.map(el => parseFloat(el[activeDose === 1 ? 'doses1_perc_0_17' : 'doses2_perc_0_17'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[0])), {}, {
@@ -4350,7 +4361,7 @@ function LineAdministradasPorFaixaEtaria({
         labelGroup: 'Grupo 18/24',
         fill: false,
         lineTension: 0.3,
-        data: graphData.filter(el => el.AGEGROUP == '18-24 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+        data: graphData.map(el => parseFloat(el[activeDose === 1 ? 'doses1_perc_18_24' : 'doses2_perc_18_24'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[2])), {}, {
@@ -4358,7 +4369,7 @@ function LineAdministradasPorFaixaEtaria({
         labelGroup: 'Grupo 25/49',
         fill: false,
         lineTension: 0.3,
-        data: graphData.filter(el => el.AGEGROUP == '25-49 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+        data: graphData.map(el => parseFloat(el[activeDose === 1 ? 'doses1_perc_25_49' : 'doses2_perc_25_49'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(shades[2])), {}, {
@@ -4366,7 +4377,7 @@ function LineAdministradasPorFaixaEtaria({
         labelGroup: 'Grupo 25/49',
         fill: false,
         lineTension: 0.3,
-        data: graphData.filter(el => el.AGEGROUP == '50-64 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+        data: graphData.map(el => parseFloat(el[activeDose === 1 ? 'doses1_perc_50_64' : 'doses2_perc_50_64'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[0])), {}, {
@@ -4374,7 +4385,7 @@ function LineAdministradasPorFaixaEtaria({
         labelGroup: 'Grupo 25/49',
         fill: false,
         lineTension: 0.3,
-        data: graphData.filter(el => el.AGEGROUP == '65-79 anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+        data: graphData.map(el => parseFloat(el[activeDose === 1 ? 'doses1_perc_65_79' : 'doses2_perc_65_79'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       }), LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread(LineAdministradasPorFaixaEtaria_objectSpread({}, constants["w" /* lineChartCommon */]), generateColor(complements[1])), {}, {
@@ -4382,7 +4393,7 @@ function LineAdministradasPorFaixaEtaria({
         labelGroup: 'Grupo 25/49',
         fill: false,
         lineTension: 0.3,
-        data: graphData.filter(el => el.AGEGROUP == '80 ou mais anos').map(el => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+        data: graphData.map(el => parseFloat(el[activeDose === 1 ? 'doses1_perc_80+' : 'doses2_perc_80+'].toString().replace(',', '.')) * 100),
         order: 1,
         customDose: 2
       })]
@@ -4555,14 +4566,29 @@ function ArsMapa({
     'ARS Norte': {},
     'ARS Lisboa e Vale do Tejo': {}
   };
+  let regioes = {
+    'ARS Alentejo': 'arsalentejo',
+    'ARS Algarve': 'arsalgarve',
+    'ARS Centro': 'arscentro',
+    'ARS Norte': 'arsnorte',
+    'ARS Lisboa e Vale do Tejo': 'arslvt'
+  };
 
   if (loaded) {
     //map the data
+    let data = {};
+
     for (let key in graphData) {
-      let obj1 = Object.assign(graphData[key], snsData.filter(el => el.REGION.replace('RA ', '') == key)[0]); //let obj2 = ars[key];
+      let dssg_key = regioes[key];
+      let dssg_data = {};
+      dssg_data['nome'] = key;
+      dssg_data['dose1'] = snsData[`doses1_${dssg_key}`];
+      dssg_data['dose2'] = snsData[`doses2_${dssg_key}`];
+      dssg_data['dose1_perc'] = snsData[`doses1_perc_${dssg_key}`];
+      dssg_data['dose2_perc'] = snsData[`doses2_perc_${dssg_key}`];
 
       if (key in graphData) {
-        graphData[key] = ArsMapa_objectSpread({}, obj1);
+        graphData[key] = ArsMapa_objectSpread({}, dssg_data);
       }
     }
   }
@@ -4570,10 +4596,10 @@ function ArsMapa({
   function layerStyle(feature) {
     let ars = feature.properties.ARS;
     let data = graphData[ars];
-    let percentagem = parseFloat(data.COVER_1_VAC.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+    let percentagem = parseFloat(data.dose1_perc) * 1000; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 
     if (options.current_dose === 2) {
-      percentagem = parseFloat(data.COVER.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+      percentagem = parseFloat(data.dose2_perc) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
     }
 
     layers2.push(feature);
@@ -4606,14 +4632,14 @@ function ArsMapa({
       onEachFeature: (feature, shape) => {
         let ars = feature.properties.ARS;
         let data = graphData[ars];
-        let percentagem_1 = parseFloat(data.COVER_1_VAC.replace(',', '.')) * 100; //(data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+        let percentagem_1 = parseFloat(data.dose1_perc) * 100; //(data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 
-        let percentagem_2 = parseFloat(data.COVER.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+        let percentagem_2 = parseFloat(data.dose2_perc) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 
         shape.bindPopup(`<p>
 						<strong>${feature.properties.Nome_Alternativo}</strong>
-						</br>1ª Dose: ${Object(utils["d" /* formatNumber */])(parseInt(data.TOTAL_VAC_1))} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(parseInt(data.TOTAL_VAC_2))} (${percentagem_2.toFixed(2)}%)
+						</br>1ª Dose: ${Object(utils["d" /* formatNumber */])(parseInt(data.dose1))} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${Object(utils["d" /* formatNumber */])(parseInt(data.dose2))} (${percentagem_2.toFixed(2)}%)
 					</p>`);
         shape.on('click', () => {//console.log('click');
         });
@@ -4654,25 +4680,26 @@ function ArsMapa({
           backgroundColor: main,
           stack: 'stack0',
           order: 2,
-          data_actual: el.CUMUL_VAC_1,
-          data_cover: Math.floor(parseFloat(el.COVER_1_VAC.replace(',', '.')) * 100),
-          data: [el.CUMUL_VAC_1 - el.CUMUL_VAC_2]
+          data_actual: el.dose1,
+          data_cover: Math.floor(parseFloat(el.dose1_perc) * 100),
+          data: [Math.abs(el.dose1 - el.dose2)]
         }, {
           label: 'Total de vacinas administradas - 2ª Dose',
           borderColor: shades[1],
           backgroundColor: shades[1],
-          data_actual: el.CUMUL_VAC_2,
-          data_cover: Math.floor(parseFloat(el.COVER.replace(',', '.')) * 100),
-          data: [el.CUMUL_VAC_2],
+          data_actual: el.dose2,
+          data_cover: Math.floor(parseFloat(el.dose2_perc) * 100),
+          data: [el.dose2],
           stack: 'stack0',
           order: 1
         }]
       };
+      console.log(chartData);
       return chartData;
     };
 
     const options = () => {
-      let populacao_residente = Math.floor(el.CUMUL_VAC_2 / parseFloat(el.COVER.replace(',', '.'))) || 100000;
+      let populacao_residente = Math.floor(parseInt(el.dose2) / parseFloat(el.dose2_perc)) || 100000;
       return {
         indexAxis: 'y',
         plugins: {
@@ -4731,7 +4758,7 @@ function ArsMapa({
         className: Card_module_default.a.ram_subchart_bar,
         children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("h2", {
           className: Card_module_default.a.text_left,
-          children: el.REGION
+          children: el.nome
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_chartjs_2_["Bar"], {
           height: window.innerWidth <= constants["m" /* RESIZE_TRESHOLD */] ? 40 : 55,
           options: options(),
@@ -4743,7 +4770,7 @@ function ArsMapa({
 
   Object(external_react_["useEffect"])(async () => {
     if (loaded === false) {
-      setSNSData(await statistics.getTotalSNS());
+      setSNSData(await statistics.getTotalSNSRecebidas());
       setLoaded(true);
     }
 
@@ -5066,11 +5093,17 @@ function Home() {
     setPreviousItem(rawData[rawData.length - 2]);
     plausible.trackPageview();
     let {
-      RECEIVED: sum,
-      CUMUL_VAC_LEAST: least,
-      CUMUL_VAC_COMPLETE: complete,
-      CUMUL: total
+      recebidas: sum,
+      pessoas_vacinadas_parcialmente: least,
+      pessoas_vacinadas_completamente: complete,
+      doses: total
     } = await (statistics === null || statistics === void 0 ? void 0 : statistics.getTotalSNSRecebidas());
+    console.log({
+      recebidas: sum,
+      administradas: total,
+      iniciada: least,
+      completa: complete
+    });
     setDoses(pages_objectSpread(pages_objectSpread({}, doses), {}, {
       recebidas: sum,
       administradas: total,
@@ -6240,7 +6273,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1628946030445,\"dateVaccines\":1628895600000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"2021-07-26\",\"dateSns\":\"2021-08-01\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-12\",\"dateCases\":1628640000000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
+module.exports = JSON.parse("{\"date\":1628960604608,\"dateVaccines\":1628895600000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"Mon Aug 02 2021\",\"dateSns\":\"Sun Aug 08 2021\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-12\",\"dateCases\":1628640000000,\"dateRt\":\"2021-08-01T00:00:00.000Z\",\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
 
 /***/ }),
 
@@ -6433,37 +6466,39 @@ const grades_pretty = {
   80: '80% a 100%'
 };
 const SNS_WEEKS = {
-  '04/01/21': '27/12 a 10/01',
-  '11/01/21': '11/01 a 17/01',
-  '18/01/21': '18/01 a 24/01',
-  '25/01/21': '25/01 a 31/01',
-  '01/02/21': '01/02 a 07/02',
-  '08/02/21': '08/02 a 14/02',
-  '15/02/21': '15/02 a 21/02',
-  '22/02/21': '22/02 a 28/02',
-  '01/03/21': '01/03 a 07/03',
-  '08/03/21': '08/03 a 14/03',
-  '15/03/21': '15/03 a 21/03',
-  '22/03/21': '22/03 a 28/03',
-  '29/03/21': '29/03 a 04/04',
-  '05/04/21': '05/04 a 11/04',
-  '12/04/21': '12/04 a 18/04',
-  '19/04/21': '19/04 a 25/04',
-  '26/04/21': '26/04 a 02/05',
-  '03/05/21': '03/05 a 09/05',
-  '10/05/21': '10/05 a 16/05',
-  '17/05/21': '17/05 a 23/05',
-  '24/05/21': '24/05 a 28/05',
-  '31/05/21': '31/05 a 06/06',
-  '07/06/21': '07/06 a 13/06',
-  '07/06/21': '07/06 a 13/06',
-  '14/06/21': '14/06 a 20/06',
-  '21/06/21': '21/06 a 27/06',
-  '28/06/21': '28/06 a 04/07',
-  '05/07/21': '05/07 a 11/07',
-  '12/07/21': '12/07 a 16/07',
-  '19/07/21': '19/07 a 25/07',
-  '26/07/21': '26/07 a 01/08'
+  '04-01-2021': '27/12 a 10/01',
+  '11-01-2021': '11/12 a 17/01',
+  '18-01-2021': '18/01 a 24/01',
+  '25-01-2021': '25/01 a 31/01',
+  '01-02-2021': '01/02 a 07/02',
+  '08-02-2021': '08/02 a 14/02',
+  '15-02-2021': '15/02 a 21/02',
+  '22-02-2021': '22/02 a 28/02',
+  '01-03-2021': '01/03 a 07/03',
+  '08-03-2021': '08/03 a 14/03',
+  '15-03-2021': '15/03 a 21/03',
+  '22-03-2021': '22/03 a 28/03',
+  '29-03-2021': '29/03 a 04/04',
+  '05-04-2021': '05/04 a 11/04',
+  '12-04-2021': '12/04 a 18/04',
+  '19-04-2021': '19/04 a 25/04',
+  '26-04-2021': '26/04 a 02/05',
+  '03-05-2021': '03/05 a 09/05',
+  '10-05-2021': '10/05 a 16/05',
+  '17-05-2021': '17/05 a 23/05',
+  '24-05-2021': '24/05 a 28/05',
+  '31-05-2021': '31/05 a 06/06',
+  '07-06-2021': '07/06 a 13/06',
+  '07-06-2021': '07/06 a 13/06',
+  '14-06-2021': '14/06 a 20/06',
+  '21-06-2021': '21/06 a 27/06',
+  '28-06-2021': '28/06 a 04/07',
+  '05-07-2021': '05/07 a 11/07',
+  '12-07-2021': '12/07 a 16/07',
+  '19-07-2021': '19/07 a 25/07',
+  '26-07-2021': '26/07 a 01/08',
+  '02-08-2021': '02/08 a 08/08',
+  '09-08-2021': '09/08 a 15/08'
 };
 
 /***/ })
