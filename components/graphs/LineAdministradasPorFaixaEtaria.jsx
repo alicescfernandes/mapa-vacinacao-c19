@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { RESIZE_TRESHOLD, lineChartCommon, SNS_WEEKS } from './../../constants';
 import { useCanvasResizer } from '../../hooks/useCanvasResizer';
+import { sub, parse, format } from 'date-fns';
 export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
 	let { main, shades, complements } = colors;
@@ -30,11 +31,23 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 
 		let labels = {};
 		graphData.map((values) => {
-			labels[values.DATE] = '';
+			labels[values.data] = '';
 		});
-
+		console.log(
+			Object.keys(labels).map((el) => {
+				let parseDate = parse(el, 'dd-MM-yyyy', new Date());
+				let data = sub(parseDate, { days: 7 });
+				el = format(data, 'dd-LL-yyyy');
+				return SNS_WEEKS[el];
+			})
+		);
 		return {
-			labels: Object.keys(labels).map((el) => SNS_WEEKS[el]),
+			labels: Object.keys(labels).map((el) => {
+				let parseDate = parse(el, 'dd-MM-yyyy', new Date());
+				let data = sub(parseDate, { days: 7 });
+				el = format(data, 'dd-LL-yyyy');
+				return SNS_WEEKS[el];
+			}),
 			datasets: [
 				{
 					...lineChartCommon,
@@ -44,9 +57,9 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					fill: false,
 					lineTension: 0.3,
 
-					data: graphData
-						.filter((el) => el.AGEGROUP == '0-17 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+					data: graphData.map(
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_0_17' : 'doses2_perc_0_17'].toString().replace(',', '.')) * 100
+					),
 
 					order: 1,
 					customDose: 2,
@@ -59,9 +72,9 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					fill: false,
 					lineTension: 0.3,
 
-					data: graphData
-						.filter((el) => el.AGEGROUP == '18-24 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+					data: graphData.map(
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_18_24' : 'doses2_perc_18_24'].toString().replace(',', '.')) * 100
+					),
 
 					order: 1,
 					customDose: 2,
@@ -74,9 +87,9 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					fill: false,
 					lineTension: 0.3,
 
-					data: graphData
-						.filter((el) => el.AGEGROUP == '25-49 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+					data: graphData.map(
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_25_49' : 'doses2_perc_25_49'].toString().replace(',', '.')) * 100
+					),
 
 					order: 1,
 					customDose: 2,
@@ -89,9 +102,9 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					fill: false,
 					lineTension: 0.3,
 
-					data: graphData
-						.filter((el) => el.AGEGROUP == '50-64 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+					data: graphData.map(
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_50_64' : 'doses2_perc_50_64'].toString().replace(',', '.')) * 100
+					),
 
 					order: 1,
 					customDose: 2,
@@ -104,10 +117,9 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					fill: false,
 					lineTension: 0.3,
 
-					data: graphData
-						.filter((el) => el.AGEGROUP == '65-79 anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
-
+					data: graphData.map(
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_65_79' : 'doses2_perc_65_79'].toString().replace(',', '.')) * 100
+					),
 					order: 1,
 					customDose: 2,
 				},
@@ -119,9 +131,9 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					fill: false,
 					lineTension: 0.3,
 
-					data: graphData
-						.filter((el) => el.AGEGROUP == '80 ou mais anos')
-						.map((el) => parseFloat(el[activeDose === 1 ? 'COVER_1_VAC' : 'COVER'].toString().replace(',', '.')) * 100),
+					data: graphData.map(
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_80+' : 'doses2_perc_80+'].toString().replace(',', '.')) * 100
+					),
 					order: 1,
 					customDose: 2,
 				},

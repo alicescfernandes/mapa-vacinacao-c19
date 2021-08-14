@@ -553,25 +553,19 @@ export function useData({ regiao }) {
 			return groups;
 		},
 		getTotalSNS: async () => {
-			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
+			let sns = await fetchWithLocalCache(`/api/sns2?${btoa(lastUpdate.date)}`, false);
 
 			return sns.filter((el) => {
 				return (el.TYPE === 'REGIONAL' || el.TYPE === 'GENERAL') && el.DATE == data.dateSnsStartWeirdFormat;
 			});
 		},
 		getTotalSNSIdade: async () => {
-			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
-
-			return sns.filter((el) => {
-				return el.TYPE === 'AGES';
-			});
+			let sns = await fetchWithLocalCache(`/api/sns2?${btoa(lastUpdate.date)}`, false);
+			return sns;
 		},
 		getTotalSNSRecebidas: async () => {
-			let sns = await fetchWithLocalCache(`/api/sns?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);
-			let [item] = sns.filter((el) => {
-				return el.TYPE === 'GENERAL' && el.RECEIVED !== 'NA' && el.DATE == data.dateSnsStartWeirdFormat;
-			});
-			return item;
+			let sns = await fetchWithLocalCache(`/api/sns2?${btoa(lastUpdate.date)}`, false);
+			return sns.reverse()[0];
 		},
 		getTotalARS: async () => {
 			let ars = await fetchWithLocalCache(`/api/ars?${btoa(lastUpdate.dateSnsStartWeirdFormat)}`, false);

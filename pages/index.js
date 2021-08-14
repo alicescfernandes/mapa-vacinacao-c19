@@ -192,7 +192,15 @@ export default function Home() {
 		setPreviousItem(rawData[rawData.length - 2]);
 		plausible.trackPageview();
 
-		let { RECEIVED: sum, CUMUL_VAC_LEAST: least, CUMUL_VAC_COMPLETE: complete, CUMUL: total } = await statistics?.getTotalSNSRecebidas();
+		let {
+			recebidas: sum,
+			pessoas_vacinadas_parcialmente: least,
+			pessoas_vacinadas_completamente: complete,
+			doses: total,
+		} = await statistics?.getTotalSNSRecebidas();
+
+		console.log({ recebidas: sum, administradas: total, iniciada: least, completa: complete });
+
 		setDoses({
 			...doses,
 			recebidas: sum,
