@@ -25,14 +25,29 @@ export function ArsMapa({ statistics, colors }) {
 		'ARS Lisboa e Vale do Tejo': {},
 	};
 
+	let regioes = {
+		'ARS Alentejo': 'arsalentejo',
+		'ARS Algarve': 'arsalgarve',
+		'ARS Centro': 'arscentro',
+		'ARS Norte': 'arsnorte',
+		'ARS Lisboa e Vale do Tejo': 'arslvt',
+	};
+
 	if (loaded) {
 		//map the data
+		let data = {};
+
 		for (let key in graphData) {
-			let obj1 = Object.assign(graphData[key], snsData.filter((el) => el.REGION.replace('RA ', '') == key)[0]);
-			//let obj2 = ars[key];
+			let dssg_key = regioes[key];
+			let dssg_data = {};
+			dssg_data['nome'] = key;
+			dssg_data['dose1'] = snsData[`doses1_${dssg_key}`];
+			dssg_data['dose2'] = snsData[`doses2_${dssg_key}`];
+			dssg_data['dose1_perc'] = snsData[`doses1_perc_${dssg_key}`];
+			dssg_data['dose2_perc'] = snsData[`doses2_perc_${dssg_key}`];
 
 			if (key in graphData) {
-				graphData[key] = { ...obj1 };
+				graphData[key] = { ...dssg_data };
 			}
 		}
 	}
@@ -41,9 +56,9 @@ export function ArsMapa({ statistics, colors }) {
 		let ars = feature.properties.ARS;
 		let data = graphData[ars];
 
-		let percentagem = parseFloat(data.COVER_1_VAC.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+		let percentagem = parseFloat(data.dose1_perc) * 1000; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 		if (options.current_dose === 2) {
-			percentagem = parseFloat(data.COVER.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+			percentagem = parseFloat(data.dose2_perc) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 		}
 		layers2.push(feature);
 		return { fillOpacity: 1, fillColor: getColor(percentagem), lineJoin: 'round', stroke: true, weight: 2, color: '#018b79' };
@@ -68,14 +83,14 @@ export function ArsMapa({ statistics, colors }) {
 				let ars = feature.properties.ARS;
 				let data = graphData[ars];
 
-				let percentagem_1 = parseFloat(data.COVER_1_VAC.replace(',', '.')) * 100; //(data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
-				let percentagem_2 = parseFloat(data.COVER.replace(',', '.')) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_1 = parseFloat(data.dose1_perc) * 100; //(data.dose_1 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
+				let percentagem_2 = parseFloat(data.dose2_perc) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 
 				shape.bindPopup(
 					`<p>
 						<strong>${feature.properties.Nome_Alternativo}</strong>
-						</br>1ª Dose: ${formatNumber(parseInt(data.TOTAL_VAC_1))} (${percentagem_1.toFixed(2)}%)
-						</br>2ª Dose: ${formatNumber(parseInt(data.TOTAL_VAC_2))} (${percentagem_2.toFixed(2)}%)
+						</br>1ª Dose: ${formatNumber(parseInt(data.dose1))} (${percentagem_1.toFixed(2)}%)
+						</br>2ª Dose: ${formatNumber(parseInt(data.dose2))} (${percentagem_2.toFixed(2)}%)
 					</p>`
 				);
 				shape.on('click', () => {
@@ -118,28 +133,28 @@ export function ArsMapa({ statistics, colors }) {
 						backgroundColor: main,
 						stack: 'stack0',
 						order: 2,
-						data_actual: el.CUMUL_VAC_1,
-						data_cover: Math.floor(parseFloat(el.COVER_1_VAC.replace(',', '.')) * 100),
-						data: [el.CUMUL_VAC_1 - el.CUMUL_VAC_2],
+						data_actual: el.dose1,
+						data_cover: Math.floor(parseFloat(el.dose1_perc) * 100),
+						data: [Math.abs(el.dose1 - el.dose2)],
 					},
 					{
 						label: 'Total de vacinas administradas - 2ª Dose',
 						borderColor: shades[1],
 						backgroundColor: shades[1],
-						data_actual: el.CUMUL_VAC_2,
-						data_cover: Math.floor(parseFloat(el.COVER.replace(',', '.')) * 100),
-						data: [el.CUMUL_VAC_2],
+						data_actual: el.dose2,
+						data_cover: Math.floor(parseFloat(el.dose2_perc) * 100),
+						data: [el.dose2],
 						stack: 'stack0',
 						order: 1,
 					},
 				],
 			};
-
+			console.log(chartData);
 			return chartData;
 		};
 
 		const options = () => {
-			let populacao_residente = Math.floor(el.CUMUL_VAC_2 / parseFloat(el.COVER.replace(',', '.'))) || 100_000;
+			let populacao_residente = Math.floor(parseInt(el.dose2) / parseFloat(el.dose2_perc)) || 100_000;
 			return {
 				indexAxis: 'y',
 				plugins: {
@@ -193,7 +208,7 @@ export function ArsMapa({ statistics, colors }) {
 		return (
 			<Col xs={12} lg={6}>
 				<div className={cardStyles.ram_subchart_bar}>
-					<h2 className={cardStyles.text_left}>{el.REGION}</h2>
+					<h2 className={cardStyles.text_left}>{el.nome}</h2>
 					<Bar height={window.innerWidth <= RESIZE_TRESHOLD ? 40 : 55} options={options()} data={data} />
 				</div>
 			</Col>
@@ -202,7 +217,7 @@ export function ArsMapa({ statistics, colors }) {
 
 	useEffect(async () => {
 		if (loaded === false) {
-			setSNSData(await statistics.getTotalSNS());
+			setSNSData(await statistics.getTotalSNSRecebidas());
 			setLoaded(true);
 		}
 
