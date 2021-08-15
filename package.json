@@ -67,14 +67,15 @@
 		"react-lazyload": "^3.2.0",
 		"react-spinners-kit": "^1.9.1",
 		"sass": "^1.32.5",
-		"shelljs": "^0.8.4"
+		"shelljs": "^0.8.4",
+		"csvtojson": "^2.0.10"
+
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
 		"@babel/preset-env": "^7.12.16",
 		"@welldone-software/why-did-you-render": "^6.2.0",
 		"convert-excel-to-json": "^1.7.0",
-		"csvtojson": "^2.0.10",
 		"follow-redirects": "^1.13.2",
 		"node-schedule": "^2.0.0",
 		"pre-commit": "^1.2.2",
