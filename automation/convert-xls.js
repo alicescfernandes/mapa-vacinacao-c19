@@ -45,7 +45,7 @@ const scrapRt = async function (onUpdate) {
 
 	shell.exec('git status | grep rt_todass.json', { silent: true }, (code, stdout) => {
 		if (code == 0 && onUpdate) {
-			//onUpdate();
+			onUpdate();
 		}
 	});
 };
