@@ -74,7 +74,6 @@ function updatedCasesMadeira() {
 
 async function updateRT() {
 	console.log('update rt');
-	shell.exec('yarn convert:xls');
 	await scrapRt(function () {
 		gitCommit('rt');
 	});
