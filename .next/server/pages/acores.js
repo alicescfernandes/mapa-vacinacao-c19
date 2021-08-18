@@ -3588,7 +3588,7 @@ const RegiaoContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.
 /***/ "vga7":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"date\":1629317770544,\"dateVaccines\":1629241200000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"Mon Aug 09 2021\",\"dateSns\":\"Sun Aug 15 2021\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-18\",\"dateCases\":1629158400000,\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-06\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
+module.exports = JSON.parse("{\"date\":1629317774919,\"dateVaccines\":1629241200000,\"dateSnsStartWeirdFormat\":\"26/07/21\",\"dateSnsStart\":\"Mon Aug 09 2021\",\"dateSns\":\"Sun Aug 15 2021\",\"dateEcdc\":\"2021-08-08\",\"dateOwid\":\"2021-08-18\",\"dateCases\":1629158400000,\"dateMadeira\":\"2021-08-01\",\"dateMadeiraCases\":\"2021-08-18\",\"dateAcores\":\"2021-07-29\",\"dateAcoresCases\":\"2021-06-01\",\"week\":31}");
 
 /***/ }),
 
