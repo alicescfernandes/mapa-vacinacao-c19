@@ -43,8 +43,8 @@ export function ArsMapa({ statistics, colors }) {
 			dssg_data['nome'] = key;
 			dssg_data['dose1'] = snsData[`doses1_${dssg_key}`];
 			dssg_data['dose2'] = snsData[`doses2_${dssg_key}`];
-			dssg_data['dose1_perc'] = snsData[`pessoas_vacinadas_parcialmente_${dssg_key}`];
-			dssg_data['dose2_perc'] = snsData[`pessoas_vacinadas_completamente_perc_${dssg_key}`];
+			dssg_data['dose1_perc'] = snsData[`doses1_perc_${dssg_key}`];
+			dssg_data['dose2_perc'] = snsData[`doses2_perc_${dssg_key}`];
 			dssg_data['populacao'] = snsData[`populacao1_${dssg_key}`];
 
 			if (key in graphData) {
