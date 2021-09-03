@@ -52,13 +52,13 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 				{
 					...lineChartCommon,
 					...generateColor(main),
-					label: 'Até aos 17 anos',
+					label: 'Entre os 12 e os 17 anos',
 					labelGroup: 'Grupo 18/24',
 					fill: false,
 					lineTension: 0.3,
 
 					data: graphData.map(
-						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_0_17' : 'doses2_perc_0_17'].toString().replace(',', '.')) * 100
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_12_17' : 'doses2_perc_12_17'].toString().replace(',', '.')) * 100
 					),
 
 					order: 1,
