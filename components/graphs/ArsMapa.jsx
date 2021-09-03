@@ -45,6 +45,7 @@ export function ArsMapa({ statistics, colors }) {
 			dssg_data['dose2'] = snsData[`doses2_${dssg_key}`];
 			dssg_data['dose1_perc'] = snsData[`doses1_perc_${dssg_key}`];
 			dssg_data['dose2_perc'] = snsData[`doses2_perc_${dssg_key}`];
+			dssg_data['populacao'] = snsData[`populacao1_${dssg_key}`];
 
 			if (key in graphData) {
 				graphData[key] = { ...dssg_data };
@@ -154,7 +155,8 @@ export function ArsMapa({ statistics, colors }) {
 		};
 
 		const options = () => {
-			let populacao_residente = Math.floor(parseInt(el.dose2) / parseFloat(el.dose2_perc)) || 100_000;
+			//let populacao_residente = Math.floor(parseInt(el.dose2) / parseFloat(el.dose2_perc)) || 100_000;
+			let populacao_residente = parseInt(el.populacao);
 			return {
 				indexAxis: 'y',
 				plugins: {
