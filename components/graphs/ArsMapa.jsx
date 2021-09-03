@@ -43,8 +43,9 @@ export function ArsMapa({ statistics, colors }) {
 			dssg_data['nome'] = key;
 			dssg_data['dose1'] = snsData[`doses1_${dssg_key}`];
 			dssg_data['dose2'] = snsData[`doses2_${dssg_key}`];
-			dssg_data['dose1_perc'] = snsData[`doses1_perc_${dssg_key}`];
-			dssg_data['dose2_perc'] = snsData[`doses2_perc_${dssg_key}`];
+			dssg_data['dose1_perc'] = snsData[`pessoas_vacinadas_parcialmente_${dssg_key}`];
+			dssg_data['dose2_perc'] = snsData[`pessoas_vacinadas_completamente_perc_${dssg_key}`];
+			dssg_data['populacao'] = snsData[`populacao1_${dssg_key}`];
 
 			if (key in graphData) {
 				graphData[key] = { ...dssg_data };
@@ -58,6 +59,7 @@ export function ArsMapa({ statistics, colors }) {
 
 		let percentagem = parseFloat(data.dose1_perc) * 1000; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 		if (options.current_dose === 2) {
+			debugger;
 			percentagem = parseFloat(data.dose2_perc) * 100; //(data.dose_2 / populacao_residente_ram[feature.properties.Dico].valor) * 100;
 		}
 		layers2.push(feature);
@@ -154,7 +156,8 @@ export function ArsMapa({ statistics, colors }) {
 		};
 
 		const options = () => {
-			let populacao_residente = Math.floor(parseInt(el.dose2) / parseFloat(el.dose2_perc)) || 100_000;
+			//let populacao_residente = Math.floor(parseInt(el.dose2) / parseFloat(el.dose2_perc)) || 100_000;
+			let populacao_residente = parseInt(el.populacao);
 			return {
 				indexAxis: 'y',
 				plugins: {
