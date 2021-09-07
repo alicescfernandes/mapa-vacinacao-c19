@@ -19,7 +19,7 @@ export function VacinadosPorDia({ statistics, colors }) {
 	let [dim, setDim] = useState(calculateDims());
 
 	let [toggleStats, setToggleStats] = useState({
-		stock: false,
+		stock: true,
 	});
 
 	const canvasRef = useRef(null);

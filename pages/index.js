@@ -117,7 +117,7 @@ export default function Home() {
 	}
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
-			if (isSameDay(el.data_vac_iso, d.getTime())) {
+			if (isSameDay(el.Data, d.getTime())) {
 				if (elIdx - 1 >= 0) {
 					setPreviousItem(rawData[elIdx - 1]);
 				} else {
@@ -126,7 +126,7 @@ export default function Home() {
 				return true;
 			}
 		});
-		if (item.length > 0 && selectedItem.data_vac_iso != item[0].data_vac_iso) {
+		if (item.length > 0 && selectedItem.Data != item[0].Data) {
 			setPreviousSelectedItem(selectedItem);
 			setSelectedItem(item[0]);
 		}
@@ -156,8 +156,8 @@ export default function Home() {
 	}
 	useEffect(() => {
 		let rawData = statistics.getRaw();
-		if (rawData[rawData.length - 1]?.data_vac_iso != last.data_vac_iso) {
-			onDateSelect(new Date(rawData[rawData.length - 1].data_vac_iso));
+		if (rawData[rawData.length - 1]?.Data != last.Data) {
+			onDateSelect(new Date(rawData[rawData.length - 1].Data));
 			setLast(rawData[rawData.length - 1]);
 			setPreviousItem(rawData[rawData.length - 2]);
 		}
@@ -167,20 +167,20 @@ export default function Home() {
 		let object = {
 			pessoasAVacinar: {
 				prev: derivedNumbers.pessoasAVacinar.current,
-				current: numberFormatter.format(generic.populacao.valor * 0.7 - selectedItem.doses2),
+				current: numberFormatter.format(generic.populacao.valor * 0.7 - selectedItem.Inoculacao2_Ac),
 			},
 			percentagem: {
 				prev: derivedNumbers.percentagem.current,
-				current: (selectedItem.pessoas_vacinadas_completamente / generic.populacao.valor) * 100,
+				current: (selectedItem.Inoculacao2_Ac / generic.populacao.valor) * 100,
 			},
 			percentagem_1d: {
 				prev: derivedNumbers.percentagem.current,
-				current: (selectedItem.doses1 / generic.populacao.valor) * 100,
+				current: (selectedItem.Inoculacao1_Ac / generic.populacao.valor) * 100,
 			},
 		};
 		setDerivedNumbers(object);
-		if (selectedItem.data_vac_iso) {
-			updateCurrentDate(new Date(selectedItem.data_vac_iso));
+		if (selectedItem.Data) {
+			updateCurrentDate(new Date(selectedItem.Data));
 		}
 	}, [selectedItem]);
 
@@ -255,8 +255,10 @@ export default function Home() {
 				<Row className={styles.datepickerRow}>
 					<Col style={{ textAlign: 'center' }}>
 						<p className={cardStyles.card_subtitle_2}>
-							Atualizado a {f.format(new Date(last.data_vac_iso))} <br />
+							Atualizado a {f.format(new Date(last.Data))} <br />
 							Dados até {currentDate} para Portugal Continental
+							<br />
+							Percentagens calculadas com base na população de Portugal Continental
 						</p>
 					</Col>
 				</Row>
@@ -266,9 +268,9 @@ export default function Home() {
 							<Counter
 								colors={colors}
 								title="Doses totais"
-								yesterday={previousItem?.doses}
-								from={previousSelectedItem?.doses || selectedItem?.doses * 0.98}
-								to={selectedItem?.doses}
+								yesterday={previousItem?.Vacinados_Ac}
+								from={previousSelectedItem?.Vacinados_Ac || selectedItem?.Vacinados_Ac * 0.98}
+								to={selectedItem?.Vacinados_Ac}
 							></Counter>
 						</Card>
 					</Col>
@@ -277,9 +279,9 @@ export default function Home() {
 							<Counter
 								colors={colors}
 								title="1ª Inoculação e Unidose"
-								yesterday={previousItem?.doses1}
-								from={previousSelectedItem?.doses1 || selectedItem?.doses1 * 0.98}
-								to={selectedItem?.doses1}
+								yesterday={previousItem?.Inoculacao1_Ac}
+								from={previousSelectedItem?.Inoculacao1_Ac || selectedItem?.Inoculacao1_Ac * 0.98}
+								to={selectedItem?.Inoculacao1_Ac}
 							></Counter>
 						</Card>
 					</Col>
@@ -288,9 +290,9 @@ export default function Home() {
 							<Counter
 								colors={colors}
 								title="2ª Inoculação"
-								yesterday={previousItem?.doses2}
-								from={previousSelectedItem?.doses2 || selectedItem?.doses2 * 0.98}
-								to={selectedItem?.doses2}
+								yesterday={previousItem?.Inoculacao2_Ac}
+								from={previousSelectedItem?.Inoculacao2_Ac || selectedItem?.Inoculacao2_Ac * 0.98}
+								to={selectedItem?.Inoculacao2_Ac}
 							></Counter>
 						</Card>
 					</Col>
