@@ -25,7 +25,7 @@ const scrapRt = async function (onUpdate) {
 						rows: 1,
 					},
 					columnToKey: {
-						A: 'Data',
+						A: 'data_rt',
 						B: 'rt_numero_de_reproducao',
 						C: 'limite_inferior_IC95',
 						D: 'limite_superior_IC95',
@@ -48,5 +48,5 @@ const scrapRt = async function (onUpdate) {
 		}
 	});
 };
-
+scrapRt();
 module.exports = scrapRt;
