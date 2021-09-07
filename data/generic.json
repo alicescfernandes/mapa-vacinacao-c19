@@ -1,10 +1,10 @@
 {
     "populacao": {
-        "valor":9800494,
-        "legenda": "9,87 milhões (2020, Portugal Continental)",
+        "valor": 10286300,
+        "legenda": "10,28 milhões (2019)",
         "fonte": {
             "nome": "PORDATA",
-            "permalink": "https://www.pordata.pt/Municipios/Popula%C3%A7%C3%A3o+residente+total+e+por+grandes+grupos+et%C3%A1rios-390"
+            "permalink": "https://www.pordata.pt/Portugal"
         }
     },
     "populacao_ram": {

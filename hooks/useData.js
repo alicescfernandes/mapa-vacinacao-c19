@@ -43,8 +43,8 @@ export function useData({ regiao }) {
 		let values = [];
 		let labels = [];
 		data.forEach((el) => {
-			labels.push(f.format(new Date(el.Data)));
-			values.push(el.Vacinados_Ac);
+			labels.push(f.format(new Date(el.data_vac_iso)));
+			values.push(el.doses);
 		});
 
 		return {
@@ -70,7 +70,7 @@ export function useData({ regiao }) {
 
 			vaccines_stock = vaccines_stock.map((el, idx) => {
 				let found_date = null;
-				let date = vaccines[idx].Data;
+				let date = vaccines[idx].data_vac_iso;
 
 				//Try to find if that date had vaccines
 				labelsEcdc.filter((el, date_idx) => {
@@ -117,9 +117,9 @@ export function useData({ regiao }) {
 				let lastItem = vaccines[vaccines.length - 1];
 
 				data = {
-					dose_2: lastItem.Inoculacao2_Ac,
-					dose_1: lastItem.Inoculacao1_Ac,
-					total: lastItem.Vacinados_Ac,
+					dose_2: lastItem.doses2,
+					dose_1: lastItem.doses1,
+					total: lastItem.doses,
 				};
 			}
 
@@ -196,30 +196,30 @@ export function useData({ regiao }) {
 				return responseRt;
 			});
 			let date = new Date('2021-01-01').getTime();
-			let returnRt = data2.filter((el) => new Date(el.Data).getTime() >= date);
+			let returnRt = data2.filter((el) => new Date(el.data_vac_iso).getTime() >= date);
 			//let returnRt = data2;
-			return { labels: returnRt.map((el) => f.format(new Date(el.Data))), rt: returnRt };
+			return { labels: returnRt.map((el) => f.format(new Date(el.data_vac_iso))), rt: returnRt };
 		},
 		getRtRegioes: async () => {
 			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(lastUpdate.date)}`).then((responseRt) => {
 				return responseRt;
 			});
-			let dates = data.rt_continente.map((el) => el.Data);
+			let dates = data.rt_continente.map((el) => el.data_vac_iso);
 
 			//get rt for each date
 			let rtData = [];
 
 			dates.forEach((el) => {
 				let tempD = {
-					continente: data.rt_continente.filter((tempEl) => tempEl.Data === el)[0],
-					centro: data.rt_centro.filter((tempEl) => tempEl.Data === el)[0],
-					nacional: data.rt_nacional.filter((tempEl) => tempEl.Data === el)[0],
-					lvt: data.rt_lvt.filter((tempEl) => tempEl.Data === el)[0],
-					alentejo: data.rt_alentejo.filter((tempEl) => tempEl.Data === el)[0],
-					norte: data.rt_norte.filter((tempEl) => tempEl.Data === el)[0],
-					algarve: data.rt_algarve.filter((tempEl) => tempEl.Data === el)[0],
-					ram: data.rt_ram.filter((tempEl) => tempEl.Data === el)[0],
-					raa: data.rt_raa.filter((tempEl) => tempEl.Data === el)[0],
+					continente: data.rt_continente.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					centro: data.rt_centro.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					nacional: data.rt_nacional.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					lvt: data.rt_lvt.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					alentejo: data.rt_alentejo.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					norte: data.rt_norte.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					algarve: data.rt_algarve.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					ram: data.rt_ram.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					raa: data.rt_raa.filter((tempEl) => tempEl.data_vac_iso === el)[0],
 				};
 
 				rtData.push(tempD);
@@ -312,9 +312,9 @@ export function useData({ regiao }) {
 				});
 			} else {
 				values.forEach((val, idx, vals) => {
-					in1.push(vaccines[idx].Inoculacao1_Ac);
-					in2.push(vaccines[idx].Inoculacao2_Ac);
-					total.push(vaccines[idx].Vacinados_Ac);
+					in1.push(vaccines[idx].doses1);
+					in2.push(vaccines[idx].doses2);
+					total.push(vaccines[idx].doses);
 				});
 			}
 
@@ -376,23 +376,23 @@ export function useData({ regiao }) {
 				total = values.map((val, idx, vals) => {
 					//The first one
 					if (idx === 0) {
-						in1.push(vaccines[idx].Inoculacao1_Ac);
-						in2.push(vaccines[idx].Inoculacao2_Ac);
+						in1.push(vaccines[idx].doses1);
+						in2.push(vaccines[idx].doses2);
 						return val;
 					}
 
 					let prevDay = idx - 1;
 
-					if (vaccines[prevDay].Inoculacao1_Ac == null || vaccines[idx].Inoculacao1_Ac == null) {
+					if (vaccines[prevDay].doses1 == null || vaccines[idx].doses1 == null) {
 						in1.push(null);
 					} else {
-						in1.push(vaccines[idx].Inoculacao1_Ac - vaccines[prevDay].Inoculacao1_Ac);
+						in1.push(vaccines[idx].doses1 - vaccines[prevDay].doses1);
 					}
 
-					if (vaccines[prevDay].Inoculacao2_Ac == null || vaccines[idx].Inoculacao2_Ac == null) {
+					if (vaccines[prevDay].doses2 == null || vaccines[idx].doses2 == null) {
 						in2.push(null);
 					} else {
-						in2.push(vaccines[idx].Inoculacao2_Ac - vaccines[prevDay].Inoculacao2_Ac);
+						in2.push(vaccines[idx].doses2 - vaccines[prevDay].doses2);
 					}
 
 					if (vals[prevDay] == null || val == null) {
@@ -414,7 +414,7 @@ export function useData({ regiao }) {
 			let values2 = [];
 
 			casesData.forEach((el) => {
-				labels2.push(new Date(el.Data));
+				labels2.push(new Date(el.data_vac_iso));
 				values2.push(el);
 			});
 
@@ -687,7 +687,7 @@ export function useData({ regiao }) {
 	useEffect(() => {
 		Promise.all([
 			fetchWithLocalCache(`/api/ecdc?${btoa(lastUpdate.dateEcdc)}`, false),
-			fetchWithLocalCache(`/api/vaccinesold?${btoa(lastUpdate.date)}`),
+			fetchWithLocalCache(`/api/vaccinesdssg?${btoa(lastUpdate.date)}`),
 			fetchWithLocalCache(`/api/cases?${btoa(lastUpdate.date)}`),
 			fetchWithLocalCache(`/api/madeira?${btoa(lastUpdate.dateMadeira)}`),
 			fetchWithLocalCache(`/api/madeira/pontosituacao?${btoa(lastUpdate.dateMadeiraCases)}`),
