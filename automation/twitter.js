@@ -1,5 +1,5 @@
 require('dotenv').config({ path: './../.env' });
-let data = require('../data/vaccines.json');
+let data = require('../data/vaccines_dssg.json');
 let fs = require('fs');
 let twitterText = fs.readFileSync('./twitter.txt').toString();
 let numberFormatter = new Intl.NumberFormat();
@@ -25,19 +25,19 @@ var client = new Twitter({
 	access_token_secret: process.env.ACCESS_TOKEN_SECRET,
 });
 
-if (data[data.length - 1].Data > twitterLastUpdate.last_update) {
+if (data[data.length - 1].data_vac_iso != twitterLastUpdate.last_update) {
 	let yesterday = data[data.length - 2];
 	let today = data[data.length - 1];
-	twitterLastUpdate.last_update = today.Data;
+	twitterLastUpdate.last_update = today.data_vac_iso;
 	fs.writeFileSync('./twitter-conf.json', JSON.stringify(twitterLastUpdate));
 
 	let postVariables = {
-		'{{novas_total}}': numberFormatter.format(today.Vacinados_Ac - yesterday.Vacinados_Ac).replace(/,/gm, ' '),
-		'{{total_total}}': numberFormatter.format(today.Vacinados_Ac).replace(/,/gm, ' '),
-		'{{novas_in1}}': numberFormatter.format(today.Inoculacao1_Ac - yesterday.Inoculacao1_Ac).replace(/,/gm, ' '),
-		'{{novas_in2}}': numberFormatter.format(today.Inoculacao2_Ac - yesterday.Inoculacao2_Ac).replace(/,/gm, ' '),
-		'{{total_in1}}': numberFormatter.format(today.Inoculacao1_Ac).replace(/,/gm, ' '),
-		'{{total_in2}}': numberFormatter.format(today.Inoculacao2_Ac).replace(/,/gm, ' '),
+		'{{novas_total}}': numberFormatter.format(today.doses - yesterday.doses).replace(/,/gm, ' '),
+		'{{total_total}}': numberFormatter.format(today.doses).replace(/,/gm, ' '),
+		'{{novas_in1}}': numberFormatter.format(today.doses1 - yesterday.doses1).replace(/,/gm, ' '),
+		'{{novas_in2}}': numberFormatter.format(today.doses2 - yesterday.doses2).replace(/,/gm, ' '),
+		'{{total_in1}}': numberFormatter.format(today.doses1).replace(/,/gm, ' '),
+		'{{total_in2}}': numberFormatter.format(today.doses2).replace(/,/gm, ' '),
 		'{{dia}}': todayDate.getDate().toLocaleString('en-US', {
 			minimumIntegerDigits: 2,
 		}),
@@ -51,10 +51,7 @@ if (data[data.length - 1].Data > twitterLastUpdate.last_update) {
 	for (let key of Object.keys(postVariables)) {
 		post = post.replace(key, postVariables[key]);
 	}
-	/* client.post('account/update_profile', {
-		description: `Sabia que até dia ${postVariables['{{dia}}']}/${postVariables['{{mes}}']} foram administradas ${postVariables['{{total_total}}']} vacinas? Veja aqui mais info sobre plano de vacinação contra a covid 19. Não somos um site do governo`,
-	});
- */
+
 	client.post('statuses/update', { status: post }, function (error, tweet, response) {
 		if (!error) {
 			console.log(post);
