@@ -196,30 +196,30 @@ export function useData({ regiao }) {
 				return responseRt;
 			});
 			let date = new Date('2021-01-01').getTime();
-			let returnRt = data2.filter((el) => new Date(el.data_vac_iso).getTime() >= date);
+			let returnRt = data2.filter((el) => new Date(el.data_rt).getTime() >= date);
 			//let returnRt = data2;
-			return { labels: returnRt.map((el) => f.format(new Date(el.data_vac_iso))), rt: returnRt };
+			return { labels: returnRt.map((el) => f.format(new Date(el.data_rt))), rt: returnRt };
 		},
 		getRtRegioes: async () => {
 			let data = await fetchWithLocalCache(`/api/rt/todas?${btoa(lastUpdate.date)}`).then((responseRt) => {
 				return responseRt;
 			});
-			let dates = data.rt_continente.map((el) => el.data_vac_iso);
+			let dates = data.rt_continente.map((el) => el.data_rt);
 
 			//get rt for each date
 			let rtData = [];
 
 			dates.forEach((el) => {
 				let tempD = {
-					continente: data.rt_continente.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					centro: data.rt_centro.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					nacional: data.rt_nacional.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					lvt: data.rt_lvt.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					alentejo: data.rt_alentejo.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					norte: data.rt_norte.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					algarve: data.rt_algarve.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					ram: data.rt_ram.filter((tempEl) => tempEl.data_vac_iso === el)[0],
-					raa: data.rt_raa.filter((tempEl) => tempEl.data_vac_iso === el)[0],
+					continente: data.rt_continente.filter((tempEl) => tempEl.data_rt === el)[0],
+					centro: data.rt_centro.filter((tempEl) => tempEl.data_rt === el)[0],
+					nacional: data.rt_nacional.filter((tempEl) => tempEl.data_rt === el)[0],
+					lvt: data.rt_lvt.filter((tempEl) => tempEl.data_rt === el)[0],
+					alentejo: data.rt_alentejo.filter((tempEl) => tempEl.data_rt === el)[0],
+					norte: data.rt_norte.filter((tempEl) => tempEl.data_rt === el)[0],
+					algarve: data.rt_algarve.filter((tempEl) => tempEl.data_rt === el)[0],
+					ram: data.rt_ram.filter((tempEl) => tempEl.data_rt === el)[0],
+					raa: data.rt_raa.filter((tempEl) => tempEl.data_rt === el)[0],
 				};
 
 				rtData.push(tempD);
