@@ -208,7 +208,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 			},
 		};
 	};
-
+	//trigger deploy
 	useEffect(() => {
 		statistics.getTotalSNSIdade().then((data) => {
 			setGraphData(data);
