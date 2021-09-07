@@ -39,7 +39,8 @@ const scrapRt = async function (onUpdate) {
 
 	fs.writeFileSync(`./data/rt/rt_todas.json`, JSON.stringify(rts), () => {});
 
-	json.dateRt = rts.rt_nacional.reverse()[0].Data;
+	json.dateRt = rts.rt_nacional.reverse()[0].data_rt;
+
 	fs.writeFileSync('./data/last-update.json', JSON.stringify(json), () => {});
 
 	shell.exec('git status | grep rt_todas.json', { silent: true }, (code, stdout) => {

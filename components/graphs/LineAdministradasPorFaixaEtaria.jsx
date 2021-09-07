@@ -34,6 +34,8 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 			labels[values.data] = '';
 		});
 		console.log(
+			graphData.map((el) => el[activeDose === 1 ? 'doses1_perc_50_64' : 'pessoas_vacinadas_completamente_perc_50_64']),
+
 			Object.keys(labels).map((el) => {
 				let parseDate = parse(el, 'dd-MM-yyyy', new Date());
 				let data = sub(parseDate, { days: 7 });
@@ -58,7 +60,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					lineTension: 0.3,
 
 					data: graphData.map(
-						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_12_17' : 'doses2_perc_12_17'].toString().replace(',', '.')) * 100
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_12_17' : 'pessoas_vacinadas_completamente_perc_12_17']) * 100
 					),
 
 					order: 1,
@@ -73,7 +75,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					lineTension: 0.3,
 
 					data: graphData.map(
-						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_18_24' : 'doses2_perc_18_24'].toString().replace(',', '.')) * 100
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_18_24' : 'pessoas_vacinadas_completamente_perc_18_24']) * 100
 					),
 
 					order: 1,
@@ -88,7 +90,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					lineTension: 0.3,
 
 					data: graphData.map(
-						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_25_49' : 'doses2_perc_25_49'].toString().replace(',', '.')) * 100
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_25_49' : 'pessoas_vacinadas_completamente_perc_25_49']) * 100
 					),
 
 					order: 1,
@@ -103,7 +105,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					lineTension: 0.3,
 
 					data: graphData.map(
-						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_50_64' : 'doses2_perc_50_64'].toString().replace(',', '.')) * 100
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_50_64' : 'pessoas_vacinadas_completamente_perc_50_64']) * 100
 					),
 
 					order: 1,
@@ -118,7 +120,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					lineTension: 0.3,
 
 					data: graphData.map(
-						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_65_79' : 'doses2_perc_65_79'].toString().replace(',', '.')) * 100
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_65_79' : 'pessoas_vacinadas_completamente_perc_65_79']) * 100
 					),
 					order: 1,
 					customDose: 2,
@@ -132,7 +134,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 					lineTension: 0.3,
 
 					data: graphData.map(
-						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_80+' : 'doses2_perc_80+'].toString().replace(',', '.')) * 100
+						(el) => parseFloat(el[activeDose === 1 ? 'doses1_perc_80+' : 'pessoas_vacinadas_completamente_perc_80+']) * 100
 					),
 					order: 1,
 					customDose: 2,
