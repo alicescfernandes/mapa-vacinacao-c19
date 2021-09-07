@@ -155,10 +155,6 @@ async function updateJSON() {
 }
 
 async function updateVaccinesDssg(cb) {
-	//update the repo
-	//shell.exec('git checkout develop');
-	//shell.exec('git pull --rebase');
-
 	let vac_local = JSON.parse(fs.readFileSync('./data/vaccines_dssg.json'));
 	const local_date = new Date(vac_local.reverse()[0].data_vac_iso);
 
@@ -183,8 +179,8 @@ console.log(new Date().toLocaleString(), 'daemon running');
 (async () => {
 	if (argv.scrap) {
 		//Run particular commands
-		//shell.exec('git checkout develop');
-		//shell.exec('git pull --rebase');
+		shell.exec('git checkout develop');
+		shell.exec('git pull --rebase');
 
 		switch (argv.scrap) {
 			case 'sesaram':
@@ -203,11 +199,11 @@ console.log(new Date().toLocaleString(), 'daemon running');
 				break;
 			case 'vaccines':
 				await updateVaccinesDssg(() => {
-					//gitCommit('vaccines-dssgpt');
+					gitCommit('vaccines-dssgpt');
 
 					//Update twitter
 					if (process.env.HARDWARE == 'raspberry') {
-						//shell.exec('sleep 180');
+						shell.exec('sleep 180');
 						shell.exec('yarn twitter');
 						shell.exec('yarn notification:push');
 						// bot runs on a raspberry pi
