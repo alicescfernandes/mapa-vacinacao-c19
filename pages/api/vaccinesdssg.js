@@ -4,6 +4,7 @@ import { trackPlausible } from '../../utils';
 import vaccines from './../../data/vaccines_dssg.json';
 
 function initMiddleware(middleware) {
+	//comment
 	return (req, res) =>
 		new Promise((resolve, reject) => {
 			middleware(req, res, (result) => {
