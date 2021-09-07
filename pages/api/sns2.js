@@ -27,7 +27,24 @@ export default async function handler(req, res) {
 
 	let contents = await fetch(url).then((res) => res.buffer());
 
-	csv()
+	csv({
+		colParser: {
+			doses: 'number',
+			doses_novas: 'number',
+			doses1: 'number',
+			doses1_novas: 'number',
+			doses2: 'number',
+			doses2_novas: 'number',
+			pessoas_vacinadas_completamente: 'number',
+			pessoas_vacinadas_completamente_novas: 'number',
+			pessoas_vacinadas_parcialmente: 'number',
+			pessoas_vacinadas_parcialmente_novas: 'number',
+			pessoas_inoculadas: 'number',
+			pessoas_inoculadas_novas: 'number',
+			vacinas: 'number',
+			vacinas_novas: 'number',
+		},
+	})
 		.fromString(contents.toString())
 		.then(function (jsonArrayObj) {
 			res.json(jsonArrayObj);
