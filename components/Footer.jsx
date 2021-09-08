@@ -32,7 +32,7 @@ export function Footer({ last }) {
 						</Col>
 						<Col>
 							<p className={cardStyles.card_subtitle}>
-								<strong>Vacina (DSSG-PT)s</strong>
+								<strong>Vacinas (DSSG-PT)</strong>
 							</p>
 							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateVaccines))}</p>
 						</Col>
