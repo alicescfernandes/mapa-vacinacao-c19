@@ -32,13 +32,13 @@ export function Footer({ last }) {
 						</Col>
 						<Col>
 							<p className={cardStyles.card_subtitle}>
-								<strong>Vacinas</strong>
+								<strong>Vacina (DSSG-PT)s</strong>
 							</p>
 							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateVaccines))}</p>
 						</Col>
 						<Col>
 							<p className={cardStyles.card_subtitle}>
-								<strong>Relatórios de Vacinação</strong>
+								<strong>Relatórios de Vacinação (DSSG-PT)</strong>
 							</p>
 							<p className={cardStyles.card_subtitle}>Dados até {f2.format(new Date(json.dateSns))}</p>
 						</Col>
