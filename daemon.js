@@ -40,7 +40,6 @@ const pusher = new Pusher({
 });
 
 function gitCommit(name) {
-	return;
 	shell.exec('git add data/*');
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
@@ -180,8 +179,8 @@ console.log(new Date().toLocaleString(), 'daemon running');
 (async () => {
 	if (argv.scrap) {
 		//Run particular commands
-		//shell.exec('git checkout develop');
-		//shell.exec('git pull --rebase');
+		shell.exec('git checkout develop');
+		shell.exec('git pull --rebase');
 
 		switch (argv.scrap) {
 			case 'sesaram':
