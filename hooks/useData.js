@@ -414,7 +414,7 @@ export function useData({ regiao }) {
 			let values2 = [];
 
 			casesData.forEach((el) => {
-				labels2.push(new Date(el.Data));
+				labels2.push(new Date(el.data_cases));
 				values2.push(el);
 			});
 
