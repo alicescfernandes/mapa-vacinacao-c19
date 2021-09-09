@@ -6,7 +6,6 @@ import { formatNumber, getColor } from '../../utils';
 import { Card } from '../Card';
 import cardStyles from './../Card.module.scss';
 import classNames from 'classnames';
-import { da } from 'date-fns/locale';
 
 export function ArsMapa({ statistics, colors }) {
 	let [loaded, setLoaded] = useState(false);
@@ -150,7 +149,6 @@ export function ArsMapa({ statistics, colors }) {
 					},
 				],
 			};
-			console.log(chartData);
 			return chartData;
 		};
 
