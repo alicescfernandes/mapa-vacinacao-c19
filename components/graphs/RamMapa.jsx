@@ -114,7 +114,6 @@ export function RamMapa({ statistics, colors }) {
 		const options = () => {
 			let dico = MADEIRA_DICOS[el.chave];
 			let populacao_residente = populacao_residente_ram[dico].valor;
-			console.log(1, populacao_residente);
 			return {
 				indexAxis: 'y',
 				plugins: {

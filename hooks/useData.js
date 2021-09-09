@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ECDC_MAPPING, REGIOES } from '../constants';
-import { fetchWithLocalCache } from '../utils';
+import { fetchWithLocalCache, isSameDay } from '../utils';
 import data from './../data/last-update.json';
 import { populacao, populacao_ram, populacao_raa } from './../data/generic.json';
 
 import lastUpdate from './../data/last-update.json';
-import { isSameDay } from 'date-fns';
 export function useData({ regiao }) {
 	let [ready, setReady] = useState(false);
 	let [versioning, bumpVersioning] = useState(false);
@@ -82,8 +81,7 @@ export function useData({ regiao }) {
 					if (idx == 1) {
 						return;
 					}
-
-					if (isSameDay(date, new Date(el.from).getTime())) {
+					if (isSameDay(date, el.from)) {
 						found_date = date_idx;
 					}
 				});
@@ -367,8 +365,6 @@ export function useData({ regiao }) {
 					return total_today - total_prev;
 					//return val - vals[prevDay];
 				});
-
-				console.log(in2);
 			} else {
 				let { labels: labelsCont, values } = parseData(vaccines);
 				labels = labelsCont;

@@ -33,16 +33,7 @@ export function LineAdministradasPorFaixaEtaria({ statistics, colors }) {
 		graphData.map((values) => {
 			labels[values.data] = '';
 		});
-		console.log(
-			graphData.map((el) => el[activeDose === 1 ? 'doses1_perc_50_64' : 'pessoas_vacinadas_completamente_perc_50_64']),
 
-			Object.keys(labels).map((el) => {
-				let parseDate = parse(el, 'dd-MM-yyyy', new Date());
-				let data = sub(parseDate, { days: 7 });
-				el = format(data, 'dd-LL-yyyy');
-				return SNS_WEEKS[el];
-			})
-		);
 		return {
 			labels: Object.keys(labels).map((el) => {
 				let parseDate = parse(el, 'dd-MM-yyyy', new Date());

@@ -83,6 +83,13 @@ export function perHundred(total, populacaoTotal = populacao.valor) {
 	return (total / populacaoTotal) * 100;
 }
 
+export function isSameDay(dateA, dateB) {
+	let parsedDateA = new Date(dateA);
+	let parsedDateB = new Date(dateB);
+	let isSame = parsedDateA.toLocaleDateString() === parsedDateB.toLocaleDateString();
+	return isSame;
+}
+
 export function fetchWithLocalCache(url, options) {
 	let useCache = true;
 	let [path, cacheBuster] = url.split('?');

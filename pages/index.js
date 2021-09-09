@@ -199,8 +199,6 @@ export default function Home() {
 			doses: total,
 		} = await statistics?.getTotalSNSRecebidas();
 
-		console.log({ recebidas: sum, administradas: total, iniciada: least, completa: complete });
-
 		setDoses({
 			...doses,
 			recebidas: sum,
