@@ -22,13 +22,13 @@ export function LineVacinadosInfecoesRecuperados({ statistics, colors }) {
 		let datesVaccines = Array.from(rawDiarios).reverse().slice(0, numeroDias);
 		let datesCases = Array.from(rawCasos).reverse().slice(0, numeroDias);
 		datesVaccines.forEach((element) => {
-			let date = new Date(element.Data);
+			let date = new Date(element.data_vac_iso);
 			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
 			marriedData[key] = element;
 		});
 
 		datesCases.forEach((element, i) => {
-			let date = new Date(element.data);
+			let date = new Date(element.data_cases);
 			let key = `${date.getUTCFullYear()}_${date.getMonth()}_${date.getDate()}`;
 			if (marriedData[key] !== undefined) {
 				marriedData[key] = {

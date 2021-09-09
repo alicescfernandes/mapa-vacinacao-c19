@@ -9,7 +9,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const Pusher = require('pusher');
 const scrapSesaram = require('./automation/sesaram');
-const updateCases = require('./automation/convert-csv:cases');
+const convertCases = require('./automation/convert-csv:cases');
 const scrapRt = require('./automation/convert-xls');
 var argv = require('minimist')(process.argv.slice(2));
 console.log(process.env.HARDWARE);
@@ -61,12 +61,13 @@ function updateOWID() {
 	gitCommit('owid');
 }
 
-function updateEDCD() {
+// Called .py directly from the workflows
+/* function updateEDCD() {
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
 	shell.exec('python3 ./automation/ecdc_parser.py');
 	gitCommit('ecdc');
-}
+} */
 
 function updatedCasesMadeira() {
 	shell.exec('yarn convert:csv'); //update aos acores
@@ -80,6 +81,7 @@ async function updateRT() {
 		gitCommit('rt');
 	});
 }
+/*
 function publishEvent(type, data) {
 	pusher.trigger('covid19', 'update', {
 		type,
@@ -87,7 +89,7 @@ function publishEvent(type, data) {
 	});
 }
 
-async function updateJSON() {
+ async function updateJSON() {
 	//update the repo
 	shell.exec('git checkout develop');
 	shell.exec('git pull --rebase');
@@ -153,8 +155,8 @@ async function updateJSON() {
 		console.log('Not fetching new vaccines');
 	}
 }
-
-async function updateVaccinesDssg(cb) {
+ */
+async function updateVaccinesDssg(cb = null) {
 	let vac_local = JSON.parse(fs.readFileSync('./data/vaccines_dssg.json'));
 	const local_date = new Date(vac_local.reverse()[0].data_vac_iso);
 
@@ -167,9 +169,31 @@ async function updateVaccinesDssg(cb) {
 			json.date = new Date();
 			json.dateVaccines = remote_date;
 			fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
+
+			gitCommit('vaccines-dssgpt');
+
+			//Update twitter
+			if (process.env.HARDWARE == 'raspberry') {
+				shell.exec('sleep 180');
+				shell.exec('yarn twitter');
+				shell.exec('yarn notification:push');
+				// bot runs on a raspberry pi
+				shell.exec('sleep 180');
+				shell.exec('sudo poweroff');
+			}
 			if (cb) cb();
 		}
 	});
+}
+
+async function updateCasesDssg(cb = null) {
+	const jsonArrayObj = await convertCases();
+	fs.writeFileSync('./data/cases_v2.json', JSON.stringify(jsonArrayObj));
+	json.date = new Date();
+	json.dateCases = jsonArrayObj.reverse()[0].data;
+	fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
+
+	gitCommit('cases-dssgpt');
 }
 
 console.log(new Date().toLocaleString(), 'daemon running');
@@ -188,29 +212,14 @@ console.log(new Date().toLocaleString(), 'daemon running');
 					gitCommit('sesaram');
 				});
 				break;
-			case 'vaccines-sns':
+			/* case 'vaccines-sns':
 				await updateJSON();
-				break;
+				break; */
 			case 'cases':
-				await updateCases(function () {
-					console.log('called');
-					gitCommit('cases-dssgpt');
-				});
+				await updateCasesDssg();
 				break;
 			case 'vaccines':
-				await updateVaccinesDssg(() => {
-					gitCommit('vaccines-dssgpt');
-
-					//Update twitter
-					if (process.env.HARDWARE == 'raspberry') {
-						shell.exec('sleep 180');
-						shell.exec('yarn twitter');
-						shell.exec('yarn notification:push');
-						// bot runs on a raspberry pi
-						shell.exec('sleep 180');
-						shell.exec('sudo poweroff');
-					}
-				});
+				await updateVaccinesDssg();
 				break;
 			case 'owid':
 				updateOWID();
@@ -224,13 +233,13 @@ console.log(new Date().toLocaleString(), 'daemon running');
 
 		//Try publish after 14h
 		schedule.scheduleJob('0-59/5 14-15 * * *', function () {
-			updateJSON();
+			updateVaccinesDssg();
 		});
 
 		//If its running after 16h is because the data wasn't updated
 
 		schedule.scheduleJob('*/20 16-18 * * *', function () {
-			updateJSON();
+			updateVaccinesDssg();
 		});
 
 		if (process.env.HARDWARE == 'raspberry') {
