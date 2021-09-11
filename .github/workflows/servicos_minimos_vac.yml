@@ -27,7 +27,7 @@ jobs:
                   key: 'node_modules'
             - name: Update Vaccines
               run: |
-                  curl -s $env --output test.env
+                  curl -s $env --output .env
                   git fetch
                   git config --global user.name "$user"
                   git config --global user.email "$email"
