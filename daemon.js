@@ -39,7 +39,7 @@ const pusher = new Pusher({
 	useTLS: true,
 });
 
-function gitCommit(name) {
+function gitCommit(name, merge=true) {
 	shell.exec('git add data/*');
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
@@ -49,11 +49,14 @@ function gitCommit(name) {
 	}
 
 	shell.exec('git push');
-	shell.exec('git checkout master');
-	shell.exec('git pull --rebase');
-	shell.exec('git merge develop --no-ff --no-edit');
-	shell.exec('git push');
-	shell.exec('git checkout develop');
+
+	if(merge){
+		shell.exec('git checkout master');
+		shell.exec('git pull --rebase');
+		shell.exec('git merge develop --no-ff --no-edit');
+		shell.exec('git push');
+		shell.exec('git checkout develop');
+	}
 }
 
 function updateOWID() {
@@ -177,6 +180,8 @@ async function updateVaccinesDssg(cb = null) {
 				shell.exec('sleep 180');
 				shell.exec('yarn twitter');
 				shell.exec('yarn notification:push');
+				gitCommit('update-dates-locks', false);
+
 				// bot runs on a raspberry pi
 				shell.exec('sleep 180');
 				shell.exec('sudo poweroff');
