@@ -9,24 +9,30 @@ locale.setlocale(locale.LC_ALL, '')
 
 
 def format_number(n):
-   return "{:,d}".format(n).replace(',', ' ')
+    return "{:,d}".format(n).replace(',', ' ')
+
 def pad(n):
     return str(n).zfill(2)
-current_time = datetime.datetime.now()
+
 try:
     json_file = open('./automation/fcm-conf.json', 'r+')
     json_datas = json.load(json_file)
 except:
     json_datas = json.loads('{"last_update":0}')
 
-last_update = datetime.datetime.fromtimestamp(json_datas['last_update'])
+last_update = datetime.datetime.fromisoformat(json_datas['last_update'])
 
-if(current_time.date() > last_update.date()):
+# Get the last vaccination date and convert to a format that python understands
+vaccines = open('./data/vaccines_dssg.json', 'r')
+parsed =  json.load(vaccines)
+last_vaccine = parsed[-1]
+last_vaccine_date = last_vaccine['data_vac_iso'].replace('Z','')
+last_vaccine_date = datetime.datetime.fromisoformat(last_vaccine_date)
+
+
+if(last_update.date() != last_vaccine_date.date()):
     text = open('./automation/onesignal.txt', 'r')
     text = text.read()
-    vaccines = open('./data/vaccines_dssg.json', 'r')
-    parsed =  json.load(vaccines)
-    last_vaccine = parsed[-1]
     prev_last_vaccine2 =parsed[-2]
 
     text = text.replace("{{total_total}}", format_number(last_vaccine['doses']))
@@ -44,7 +50,7 @@ if(current_time.date() > last_update.date()):
     topic = 'covid19'
     message = messaging.Message(
         notification=messaging.Notification(
-            title="Os dados da vacinação de {0}/{1}/{2}".format(pad(current_time.day),pad(current_time.month),current_time.year),
+            title="Os dados da vacinação de {0}/{1}/{2}".format(pad(last_vaccine_date.day),pad(last_vaccine_date.month),last_vaccine_date.year),
             body=text,
         ),
         topic=topic,
@@ -53,7 +59,7 @@ if(current_time.date() > last_update.date()):
     response = messaging.send(message)
     print(text)
 
-    json_datas['last_update'] = datetime.datetime.now().timestamp()
+    json_datas['last_update'] = str(last_vaccine_date.date())
     json_file = open('./automation/fcm-conf.json', 'w')
     json_file.write(json.dumps(json_datas))
     json_file.close()

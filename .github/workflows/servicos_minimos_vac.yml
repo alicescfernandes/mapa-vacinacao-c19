@@ -27,12 +27,13 @@ jobs:
                   key: 'node_modules'
             - name: Update Vaccines
               run: |
-                  echo $USER
+                  curl -s $env --output .env
                   git fetch
                   git config --global user.name "$user"
                   git config --global user.email "$email"
-                  ./daemon.js --scrap vaccines
+                  HARDWARE=raspberry ./daemon.js --scrap vaccines
 
               env:
                   email: ${{secrets.EMAIL}}
                   user: ${{secrets.USER}}
+                  env: ${{secrets.ENV_FILE}}

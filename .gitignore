@@ -9,9 +9,9 @@
 
 .history/*
 
-automation/twitter-conf.json
+#automation/twitter-conf.json
 automation/onesignal-conf.json
-automation/fcm-conf.json
+#automation/fcm-conf.json
 automation/hootsuite-conf.json
 # testing
 /coverage
