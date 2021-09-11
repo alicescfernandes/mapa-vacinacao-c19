@@ -1,5 +1,4 @@
 name: Serviços Minimos - Vacinas & Casos
-on: workflow_dispatch
 on:
     workflow_dispatch:
         inputs:
