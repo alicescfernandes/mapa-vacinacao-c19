@@ -28,6 +28,7 @@ jobs:
             - name: Update Vaccines
               run: |
                   curl -s $env --output .env
+                  pip3 install firebase_admin
                   git fetch
                   git config --global user.name "$user"
                   git config --global user.email "$email"
