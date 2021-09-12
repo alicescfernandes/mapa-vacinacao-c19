@@ -27,7 +27,7 @@ jobs:
                   key: 'node_modules'
             - name: Update Vaccines
               run: |
-                  curl -s $env --output .env
+                  curl -Ls $env --output .env
                   pip3 install firebase_admin
                   git fetch
                   git config --global user.name "$user"
