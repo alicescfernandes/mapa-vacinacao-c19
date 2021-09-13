@@ -16,6 +16,7 @@ console.log(process.env.HARDWARE);
 let json = require('./data/last-update');
 const convertVaccines = require('./automation/convert-csv:vaccines');
 const { isAfter } = require('date-fns');
+const { exit } = require('process');
 
 if (!shell.which('git')) {
 	shell.echo('Sorry, this script requires git');
@@ -40,7 +41,7 @@ const pusher = new Pusher({
 });
 
 function gitCommit(name, merge=true) {
-	shell.exec('git add data/*');
+	shell.exec('git add *');
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
 		return;
@@ -50,6 +51,7 @@ function gitCommit(name, merge=true) {
 
 	shell.exec('git push');
 
+
 	if(merge){
 		shell.exec('git checkout master');
 		shell.exec('git pull --rebase');
@@ -57,6 +59,7 @@ function gitCommit(name, merge=true) {
 		shell.exec('git push');
 		shell.exec('git checkout develop');
 	}
+
 }
 
 function updateOWID() {
@@ -177,13 +180,13 @@ async function updateVaccinesDssg(cb = null) {
 
 			//Update twitter
 			if (process.env.HARDWARE == 'raspberry') {
-				shell.exec('sleep 180');
+				//shell.exec('sleep 180');
 				shell.exec('yarn twitter');
 				shell.exec('yarn notification:push');
 				gitCommit('update-dates-locks', false);
-
+				
 				// bot runs on a raspberry pi
-				shell.exec('sleep 180');
+				//shell.exec('sleep 180');
 				shell.exec('sudo poweroff');
 			}
 			if (cb) cb();
