@@ -28,6 +28,7 @@ jobs:
             - name: Update Vaccines
               run: |
                   curl -Ls $env --output .env
+                  curl -Ls $json_url --output $json_file
                   pip3 install firebase_admin python-dateutil
                   git fetch
                   git config --global user.name "$user"
@@ -38,3 +39,5 @@ jobs:
                   email: ${{secrets.EMAIL}}
                   user: ${{secrets.USER}}
                   env: ${{secrets.ENV_FILE}}
+                  json_url: ${{secrets.JSON_URL}}
+                  json_file: ${{secrets.JSON_FILE}}
