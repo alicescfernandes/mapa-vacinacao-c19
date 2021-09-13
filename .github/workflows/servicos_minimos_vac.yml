@@ -33,7 +33,7 @@ jobs:
                   git fetch
                   git config --global user.name "$user"
                   git config --global user.email "$email"
-                  HARDWARE=raspberry ./daemon.js --scrap vaccines
+                  HARDWARE=ci ./daemon.js --scrap vaccines
 
               env:
                   email: ${{secrets.EMAIL}}
