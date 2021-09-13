@@ -179,16 +179,18 @@ async function updateVaccinesDssg(cb = null) {
 			gitCommit('vaccines-dssgpt');
 
 			//Update twitter
-			if (process.env.HARDWARE == 'raspberry') {
+			if (process.env.HARDWARE == 'raspberry' || process.env.HARDWARE == 'ci') {
 				//shell.exec('sleep 180');
 				shell.exec('yarn twitter');
 				shell.exec('yarn notification:push');
 				gitCommit('update-dates-locks', false);
-				
-				// bot runs on a raspberry pi
-				//shell.exec('sleep 180');
+			}
+			
+			if (process.env.HARDWARE == 'raspberry') {
+				shell.exec('sleep 180');
 				shell.exec('sudo poweroff');
 			}
+
 			if (cb) cb();
 		}
 	});
