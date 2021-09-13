@@ -52,9 +52,9 @@ if (data[data.length - 1].data_vac_iso != twitterLastUpdate.last_update) {
 		post = post.replace(key, postVariables[key]);
 	}
 
-	client.post('statuses/update', { status: post }, function (error, tweet, response) {
+	/* client.post('statuses/update', { status: post }, function (error, tweet, response) {
 		if (!error) {
 			console.log(post);
 		}
-	});
+	}); */
 }
