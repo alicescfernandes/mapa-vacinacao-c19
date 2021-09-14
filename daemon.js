@@ -200,7 +200,7 @@ async function updateCasesDssg(cb = null) {
 	const jsonArrayObj = await convertCases();
 	fs.writeFileSync('./data/cases_v2.json', JSON.stringify(jsonArrayObj));
 	json.date = new Date();
-	json.dateCases = jsonArrayObj.reverse()[0].data;
+	json.dateCases = jsonArrayObj.reverse()[0].data_cases;
 	fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
 
 	gitCommit('cases-dssgpt');
