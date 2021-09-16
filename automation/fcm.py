@@ -56,8 +56,8 @@ if(last_update.date() != last_vaccine_date.date()):
         topic=topic,
     )
 
-    #response = messaging.send(message)
-    #print(text)
+    response = messaging.send(message)
+    print(text)
 
     json_datas['last_update'] = str(last_vaccine_date.date())
     json_file = open('./automation/fcm-conf.json', 'w')

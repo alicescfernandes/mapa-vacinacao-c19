@@ -63,7 +63,10 @@ async function convertVaccines(cb = null, write = false, error_cb = null) {
 		if (cb) cb(jsonArrayObj);
 		return jsonArrayObj;
 	} catch (e) {
+		let filedir = process.cwd() + '/data/vaccines_dssg.json';
+		data = JSON.parse(fs.readFileSync(filedir)); //fallback to the stored data
 		if (error_cb) error_cb();
+		return data
 	}
 }
 //(async () => {
