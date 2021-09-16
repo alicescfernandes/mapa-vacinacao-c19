@@ -25,12 +25,10 @@ const cors = initMiddleware(
 export default async function handler(req, res) {
 	await cors(req, res);
 	let data = {};
-	try {
-		data = await convertVaccines();
-	} catch (e) {
-		let filedir = process.cwd() + '/data/vaccines_dssg.json';
-		data = JSON.parse(fs.readFileSync(filedir)); //fallback to the stored data
-	}
+	console.log(1)
+
+	data = await convertVaccines();
+	
 	res.statusCode = 200;
 	res.json(data); //get data directly from the enpoint
 }

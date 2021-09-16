@@ -4,12 +4,17 @@ let fs = require('fs');
 let json = require('./../data/last-update.json');
 var parse = require('date-fns/parse');
 
+const fetch_remote = false;
 const { zonedTimeToUtc, utcToZonedTime } = require('date-fns-tz');
 
 const timeZone = 'Europe/London';
 
 async function convertVaccines(cb = null, write = false, error_cb = null) {
 	try {
+
+		if(fetch_remote === false){
+			throw new Error('fetch local')
+		}
 		let contents = await fetch('https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/vacinas.csv').then((res) => res.buffer());
 
 		let rawJsonArrayObj = await csv({
@@ -58,7 +63,10 @@ async function convertVaccines(cb = null, write = false, error_cb = null) {
 		if (cb) cb(jsonArrayObj);
 		return jsonArrayObj;
 	} catch (e) {
+		let filedir = process.cwd() + '/data/vaccines_dssg.json';
+		data = JSON.parse(fs.readFileSync(filedir)); //fallback to the stored data
 		if (error_cb) error_cb();
+		return data
 	}
 }
 //(async () => {
