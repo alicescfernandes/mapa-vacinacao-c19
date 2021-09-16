@@ -165,12 +165,10 @@ function publishEvent(type, data) {
 async function updateVaccinesDssg(cb = null) {
 	let vac_local = JSON.parse(fs.readFileSync('./data/vaccines_dssg.json'));
 	const local_date = new Date(vac_local.reverse()[0].data_vac_iso);
-
 	await convertVaccines((vac_remote) => {
 		const remote_date = new Date(vac_remote.reverse()[0].data_vac_iso);
 		const updated = remote_date.getTime() > local_date.getTime();
-		if (updated) {
-			console.log('updated');
+		if (updated && vac_remote[0].doses) {
 			fs.writeFileSync('./data/vaccines_dssg.json', JSON.stringify(vac_remote.reverse()));
 			json.date = new Date();
 			json.dateVaccines = remote_date;
@@ -192,8 +190,11 @@ async function updateVaccinesDssg(cb = null) {
 			}
 
 			if (cb) cb();
+		}else{
+			console.log("not updated")
+			console.log(vac_remote[0])
 		}
-	});
+	}, true, undefined, true);
 }
 
 async function updateCasesDssg(cb = null) {
@@ -213,8 +214,8 @@ console.log(new Date().toLocaleString(), 'daemon running');
 (async () => {
 	if (argv.scrap) {
 		//Run particular commands
-		shell.exec('git checkout develop');
-		shell.exec('git pull --rebase');
+		//shell.exec('git checkout develop');
+		//shell.exec('git pull --rebase');
 
 		switch (argv.scrap) {
 			case 'sesaram':
