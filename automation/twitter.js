@@ -29,7 +29,10 @@ if (data[data.length - 1].data_vac_iso != twitterLastUpdate.last_update) {
 	let yesterday = data[data.length - 2];
 	let today = data[data.length - 1];
 	twitterLastUpdate.last_update = today.data_vac_iso;
-	fs.writeFileSync('./twitter-conf.json', JSON.stringify(twitterLastUpdate));
+	if (yesterday.doses == null) {
+		twitterText = fs.readFileSync('./twitter_no_daily.txt').toString();
+	}
+	//fs.writeFileSync('./twitter-conf.json', JSON.stringify(twitterLastUpdate));
 	let postVariables = {
 		'{{novas_total}}': numberFormatter.format(today.doses - yesterday.doses).replace(/,/gm, ' '),
 		'{{total_total}}': numberFormatter.format(today.doses).replace(/,/gm, ' '),
