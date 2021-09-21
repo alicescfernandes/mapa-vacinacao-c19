@@ -40,7 +40,7 @@ const pusher = new Pusher({
 	useTLS: true,
 });
 
-function gitCommit(name, merge=true) {
+function gitCommit(name, merge = true) {
 	shell.exec('git add *');
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');
@@ -51,15 +51,13 @@ function gitCommit(name, merge=true) {
 
 	shell.exec('git push');
 
-
-	if(merge){
+	if (merge) {
 		shell.exec('git checkout master');
 		shell.exec('git pull --rebase');
 		shell.exec('git merge develop --no-ff --no-edit');
 		shell.exec('git push');
 		shell.exec('git checkout develop');
 	}
-
 }
 
 function updateOWID() {
@@ -165,36 +163,41 @@ function publishEvent(type, data) {
 async function updateVaccinesDssg(cb = null) {
 	let vac_local = JSON.parse(fs.readFileSync('./data/vaccines_dssg.json'));
 	const local_date = new Date(vac_local.reverse()[0].data_vac_iso);
-	await convertVaccines((vac_remote) => {
-		const remote_date = new Date(vac_remote.reverse()[0].data_vac_iso);
-		const updated = remote_date.getTime() > local_date.getTime();
-		if (updated && vac_remote[0].doses) {
-			fs.writeFileSync('./data/vaccines_dssg.json', JSON.stringify(vac_remote.reverse()));
-			json.date = new Date();
-			json.dateVaccines = remote_date;
-			fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
+	await convertVaccines(
+		(vac_remote) => {
+			const remote_date = new Date(vac_remote.reverse()[0].data_vac_iso);
+			const updated = remote_date.getTime() > local_date.getTime();
+			if (updated && vac_remote[0].vacinas) {
+				fs.writeFileSync('./data/vaccines_dssg.json', JSON.stringify(vac_remote.reverse()));
+				json.date = new Date();
+				json.dateVaccines = remote_date;
+				fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
 
-			gitCommit('vaccines-dssgpt');
+				gitCommit('vaccines-dssgpt');
 
-			//Update twitter
-			if (process.env.HARDWARE == 'raspberry' || process.env.HARDWARE == 'ci') {
-				//shell.exec('sleep 180');
-				shell.exec('yarn twitter');
-				shell.exec('yarn notification:push');
-				gitCommit('update-dates-locks', false);
+				//Update twitter
+				if (process.env.HARDWARE == 'raspberry' || process.env.HARDWARE == 'ci') {
+					//shell.exec('sleep 180');
+					shell.exec('yarn twitter');
+					shell.exec('yarn notification:push');
+					gitCommit('update-dates-locks', false);
+				}
+
+				if (process.env.HARDWARE == 'raspberry') {
+					shell.exec('sleep 180');
+					shell.exec('sudo poweroff');
+				}
+
+				if (cb) cb();
+			} else {
+				console.log('not updated');
+				console.log(vac_remote[0]);
 			}
-			
-			if (process.env.HARDWARE == 'raspberry') {
-				shell.exec('sleep 180');
-				shell.exec('sudo poweroff');
-			}
-
-			if (cb) cb();
-		}else{
-			console.log("not updated")
-			console.log(vac_remote[0])
-		}
-	}, true, undefined, true);
+		},
+		true,
+		undefined,
+		true
+	);
 }
 
 async function updateCasesDssg(cb = null) {

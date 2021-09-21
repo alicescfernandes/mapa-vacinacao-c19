@@ -1,0 +1,9 @@
+Dados da #vacinacao de 🇵🇹 Continental para {{dia}}/{{mes}}/{{ano}}
+👉  Total:{{total_total}}
+👉  Total 1ª Dose:{{total_in1}})
+👉  Total vacinados {{total_in2}}
+
+➕ info
+covid19.min-saude.pt/vacinacao/
+sns.gov.pt/monitorizacao-do-sns/vacinas-covid-19/
+bit.ly/3kI7Ddo
