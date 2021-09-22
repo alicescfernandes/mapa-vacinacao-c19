@@ -9,7 +9,7 @@ const { tr } = require('date-fns/locale');
 
 const timeZone = 'Europe/London';
 
-async function convertVaccines(cb = null, write = false, error_cb = null, fetch_remote = false) {
+async function convertVaccines(cb = null, write = false, error_cb = null, fetch_remote = true) {
 	try {
 		if (fetch_remote === false) {
 			throw new Error('fetch local');
