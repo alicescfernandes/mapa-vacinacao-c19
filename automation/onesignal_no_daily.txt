@@ -1,0 +1,6 @@
+Dados da #vacinacao de 🇵🇹 Continental de hoje
+
+👉  Total:{{total_total}}
+👉  Total 1ª Dose:{{total_in1}})
+👉  Total vacinados {{total_in2}}
+
