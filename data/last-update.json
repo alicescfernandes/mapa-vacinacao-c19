@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"date":1632671595155,"dateVaccines":"2021-09-26T00:00:00.000Z","dateSnsStartWeirdFormat":"26/07/21","dateSnsStart":"Mon Sep 13 2021","dateSns":"Sun Sep 19 2021","dateEcdc":"2021-09-19","dateOwid":"2021-08-12","dateCases":1632528000000,"dateMadeira":"2021-08-01","dateMadeiraCases":"2021-09-25","dateAcores":"2021-07-29","dateAcoresCases":"2021-06-01","week":35,"dateRt":"2021-09-19T00:00:00.000Z"}
+=======
+{"date":1632671765815,"dateVaccines":"2021-09-26T00:00:00.000Z","dateSnsStartWeirdFormat":"26/07/21","dateSnsStart":"Mon Sep 13 2021","dateSns":"Sun Sep 19 2021","dateEcdc":"2021-09-19","dateOwid":"2021-08-12","dateCases":1632528000000,"dateMadeira":"2021-08-01","dateMadeiraCases":"2021-09-25","dateAcores":"2021-07-29","dateAcoresCases":"2021-06-01","week":35,"dateRt":"2021-09-19T00:00:00.000Z"}
+>>>>>>> develop
