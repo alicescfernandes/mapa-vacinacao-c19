@@ -41,6 +41,7 @@ const pusher = new Pusher({
 });
 
 function gitCommit(name, merge = true) {
+	return;
 	shell.exec('git add *');
 	if (shell.exec(`git commit -m  "covid update - ${name} - ${formatted}"`).code !== 0) {
 		shell.echo('Error: Git commit failed');

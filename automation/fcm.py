@@ -34,14 +34,21 @@ if(last_update.date() != last_vaccine_date.date()):
     text = open('./automation/onesignal.txt', 'r')
     text = text.read()
     prev_last_vaccine2 =parsed[-2]
+    
+    if prev_last_vaccine2['doses'] == None:
+        text = open('./automation/onesignal_no_daily.txt', 'r')
+        text = text.read()
+        text = text.replace("{{total_total}}", format_number(last_vaccine['doses']))
+        text = text.replace("{{total_in1}}", format_number(last_vaccine['doses1']))
+        text = text.replace("{{total_in2}}", format_number(last_vaccine['doses2']))
+    else:
+        text = text.replace("{{total_total}}", format_number(last_vaccine['doses']))
+        text = text.replace("{{total_in1}}", format_number(last_vaccine['doses1']))
+        text = text.replace("{{total_in2}}", format_number(last_vaccine['doses2']))
 
-    text = text.replace("{{total_total}}", format_number(last_vaccine['doses']))
-    text = text.replace("{{total_in1}}", format_number(last_vaccine['doses1']))
-    text = text.replace("{{total_in2}}", format_number(last_vaccine['doses2']))
-  
-    text = text.replace("{{novas_total}}", format_number(last_vaccine['doses'] - prev_last_vaccine2['doses']))
-    text = text.replace("{{novas_in1}}", format_number(last_vaccine['doses1'] - prev_last_vaccine2['doses1']))
-    text = text.replace("{{novas_in2}}", format_number(last_vaccine['doses2'] - prev_last_vaccine2['doses2']))
+        text = text.replace("{{novas_total}}", format_number(last_vaccine['doses'] - prev_last_vaccine2['doses']))
+        text = text.replace("{{novas_in1}}", format_number(last_vaccine['doses1'] - prev_last_vaccine2['doses1']))
+        text = text.replace("{{novas_in2}}", format_number(last_vaccine['doses2'] - prev_last_vaccine2['doses2']))
 
     cred  = credentials.Certificate("./firebase_account.json")
     firebase_admin.initialize_app(cred)

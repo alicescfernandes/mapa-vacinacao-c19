@@ -68,13 +68,5 @@ async function convertVaccines(cb = null, write = false, error_cb = null, fetch_
 		return data;
 	}
 }
-(async () => {
-	console.log(1);
-	let vac_remote = await convertVaccines(null, true, null, true);
-	fs.writeFileSync('./data/vaccines_dssg.json', JSON.stringify(vac_remote));
-	json.date = new Date();
-	json.dateVaccines = remote_date;
-	fs.writeFileSync('./data/last-update.json', JSON.stringify(json));
-})();
 
 module.exports = convertVaccines;
