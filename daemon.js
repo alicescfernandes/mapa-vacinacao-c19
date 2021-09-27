@@ -180,6 +180,10 @@ async function updateVaccinesDssg(cb = null) {
 					//shell.exec('sleep 180');
 					shell.exec('yarn twitter');
 					shell.exec('yarn notification:push');
+
+					shell.exec('git checkout develop');
+					shell.exec('git pull --rebase');
+
 					gitCommit('update-dates-locks', false);
 				}
 
