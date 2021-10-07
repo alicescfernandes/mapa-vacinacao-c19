@@ -168,7 +168,6 @@ async function updateVaccinesDssg(cb = null) {
 			const vac_reverse = vac_remote.reverse();
 			const remote_date = new Date(vac_reverse[0].data_vac_iso);
 			const updated = remote_date.getTime() > local_date.getTime();
-			console.group;
 			if (updated) {
 				fs.writeFileSync('./data/vaccines_dssg.json', JSON.stringify(vac_remote.reverse()));
 				json.date = new Date();
