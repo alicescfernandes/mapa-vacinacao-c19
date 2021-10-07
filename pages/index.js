@@ -115,6 +115,20 @@ export default function Home() {
 			);
 		}
 	}
+
+	function getLastAvailable(data) {
+		let copy = Array.from(data);
+		copy.reverse();
+		for (let k = 0; k < copy.length; k++) {
+			if (copy[k].doses !== null && copy[k].doses2 !== null) {
+				return {
+					current: copy[k],
+					previous: copy[k - 1],
+				};
+			}
+		}
+	}
+
 	function onDateSelect(d) {
 		let item = rawData.filter((el, elIdx) => {
 			if (isSameDay(el.data_vac_iso, d.getTime())) {
@@ -186,10 +200,11 @@ export default function Home() {
 
 	useEffect(async () => {
 		if (dataReady === false) return;
-		let rawData = statistics.getRaw();
-		setLast(rawData[rawData.length - 1]);
-		setSelectedItem(rawData[rawData.length - 1]);
-		setPreviousItem(rawData[rawData.length - 2]);
+		let raw = statistics.getRaw();
+		let lastAvab = getLastAvailable(statistics.getRaw());
+		setLast(raw[raw.length - 1]);
+		setSelectedItem(lastAvab.current);
+		setPreviousItem(lastAvab.previous);
 		plausible.trackPageview();
 
 		let {
@@ -198,7 +213,6 @@ export default function Home() {
 			pessoas_vacinadas_completamente: complete,
 			doses: total,
 		} = await statistics?.getTotalSNSRecebidas();
-
 		setDoses({
 			...doses,
 			recebidas: sum,
