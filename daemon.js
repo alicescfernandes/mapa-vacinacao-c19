@@ -165,9 +165,11 @@ async function updateVaccinesDssg(cb = null) {
 	const local_date = new Date(vac_local.reverse()[0].data_vac_iso);
 	await convertVaccines(
 		(vac_remote) => {
-			const remote_date = new Date(vac_remote.reverse()[0].data_vac_iso);
+			const vac_reverse = vac_remote.reverse();
+			const remote_date = new Date(vac_reverse[0].data_vac_iso);
 			const updated = remote_date.getTime() > local_date.getTime();
-			if (updated && vac_remote[0].vacinas) {
+			console.group;
+			if (updated) {
 				fs.writeFileSync('./data/vaccines_dssg.json', JSON.stringify(vac_remote.reverse()));
 				json.date = new Date();
 				json.dateVaccines = remote_date;
@@ -176,7 +178,7 @@ async function updateVaccinesDssg(cb = null) {
 				gitCommit('vaccines-dssgpt');
 
 				//Update twitter
-				if (process.env.HARDWARE == 'raspberry' || process.env.HARDWARE == 'ci') {
+				if (vac_reverse[0].vacinas && (process.env.HARDWARE == 'raspberry' || process.env.HARDWARE == 'ci')) {
 					//shell.exec('sleep 180');
 					shell.exec('yarn twitter');
 					shell.exec('yarn notification:push');
