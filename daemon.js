@@ -178,7 +178,11 @@ async function updateVaccinesDssg(cb = null) {
 				gitCommit('vaccines-dssgpt');
 
 				//Update twitter
-				if (vac_reverse[0].vacinas && (process.env.HARDWARE == 'raspberry' || process.env.HARDWARE == 'ci')) {
+				if (
+					vac_reverse[0].doses !== null &&
+					vac_reverse[0].doses2 !== null &&
+					(process.env.HARDWARE == 'raspberry' || process.env.HARDWARE == 'ci')
+				) {
 					//shell.exec('sleep 180');
 					shell.exec('yarn twitter');
 					shell.exec('yarn notification:push');
