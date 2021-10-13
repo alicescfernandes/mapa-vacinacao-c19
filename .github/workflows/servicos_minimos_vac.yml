@@ -7,7 +7,7 @@ on:
                 required: true
                 default: 'warning'
     schedule:
-        - cron: '10 16-22 * * *'
+        - cron: '0/20 13-22 * * *'
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
