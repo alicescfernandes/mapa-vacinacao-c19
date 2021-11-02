@@ -28,50 +28,6 @@ export function dateWithoutTimezone(unix) {
 	return new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
 }
 
-export function trackPlausible(req) {
-	if (req === undefined) return;
-	if (req.url !== '/' && req.url !== '/madeira' && !req.url.match('/api/')) return;
-	let host = req.headers.host;
-	let url = req.url;
-	let userAgent = req.headers['user-agent'];
-	let referer = req.headers?.referer || '';
-	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-	if (ip.substr(0, 7) == '::ffff:') {
-		ip = ip.substr(7);
-	}
-	if (userAgent.match('UptimeRobot') || userAgent.match('NetSystemsResearch') || userAgent.match('Expanse')) {
-		return;
-	}
-
-	let headers = {
-		'user-agent': userAgent,
-		'x-forwarded-for': ip,
-		referer: referer,
-	};
-	let data = {
-		name: 'pageview',
-		url: 'https://www.vacinacaocovid19.pt' + url,
-		domain: 'vacinacaocovid19.pt',
-		referrer: referer,
-		screen_width: null,
-	};
-
-	if (host.match('localhost')) return;
-	if (req.headers['x-request-self'] === 'true') return;
-	console.log('track', headers, JSON.stringify(data));
-	fetchNode('https://plausible.io/api/event', {
-		method: 'post',
-		headers,
-		body: JSON.stringify(data),
-	})
-		.then(() => {
-			console.log('request', 'post', JSON.stringify(data), headers);
-		})
-		.catch(() => {
-			console.log('err');
-		});
-}
-
 export function downloadPNG(canvasElement, graphName) {
 	var link = document.createElement('a');
 	link.download = 'filename.png';

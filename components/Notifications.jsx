@@ -1,4 +1,3 @@
-import Plausible from 'plausible-tracker';
 import { useEffect } from 'react';
 
 var firebaseConfig = {
@@ -12,11 +11,6 @@ var firebaseConfig = {
 };
 
 export function Notifications({ children }) {
-	const plausible = Plausible({
-		domain: 'vacinacaocovid19.pt',
-		trackLocalhost: true,
-	});
-
 	function registerOnFirebase(callback) {
 		if (firebase.apps.length === 0) {
 			firebase.initializeApp(firebaseConfig);
@@ -31,7 +25,6 @@ export function Notifications({ children }) {
 						body: JSON.stringify({ fcm_token: currentToken }),
 						headers: { 'content-type': 'application/json' },
 					}).then((res) => {
-						plausible.trackEvent('notifications', { type: 'granted' });
 						callback?.();
 					});
 				} else {

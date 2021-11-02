@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/globals.scss';
 import '@babel/polyfill';
-import { trackPlausible } from '../utils';
 import { Footer } from '../components/Footer';
 import { Metatags } from '../components/MetaTags';
 import { Header } from '../components/Header';
@@ -44,7 +43,6 @@ function NextApp({ Component, props }) {
 }
 
 NextApp.getInitialProps = async (app) => {
-	trackPlausible(app.ctx.req);
 	let url = app?.ctx?.req?.url.replace('/', '') || app.ctx.pathname.replace('/', '');
 	url = url.split('?')[0];
 	let regiao = 'portugal';

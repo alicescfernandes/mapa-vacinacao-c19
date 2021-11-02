@@ -12,7 +12,6 @@ import { useColors } from '../hooks/useColors';
 import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
-import Plausible from 'plausible-tracker';
 import LazyLoad from 'react-lazyload';
 //data
 import generic from './../data/generic.json';
@@ -35,10 +34,6 @@ import { LineAdministradasPorFaixaEtaria } from '../components/graphs/LineAdmini
 import { LineRt } from '../components/graphs/LineRt';
 import { RegiaoContext } from '../components/context/regiao';
 import { ArsMapa } from '../components/graphs/ArsMapa';
-const plausible = Plausible({
-	domain: 'vacinacaocovid19.pt',
-	trackLocalhost: true,
-});
 
 export default function Home() {
 	let { statistics, update: updateData, ready: dataReady, versioning } = useData({ regiao: 'portugal' });
@@ -205,7 +200,6 @@ export default function Home() {
 		setLast(raw[raw.length - 1]);
 		setSelectedItem(lastAvab.current);
 		setPreviousItem(lastAvab.previous);
-		plausible.trackPageview();
 
 		let {
 			recebidas: sum,
@@ -232,12 +226,10 @@ export default function Home() {
 	function trackScrollEvents(e) {
 		if (window.scrollY > 5580 && beacons.end_page === false) {
 			beacons.end_page = true;
-			plausible.trackEvent('end_page', { page: 'index' });
 			return;
 		}
 		if (window.scrollY > 1657 && beacons.mid_page === false) {
 			beacons.mid_page = true;
-			plausible.trackEvent('mid_page', { page: 'index' });
 			return;
 		}
 	}
