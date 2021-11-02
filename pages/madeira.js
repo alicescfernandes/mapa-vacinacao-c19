@@ -12,7 +12,6 @@ import { useColors } from '../hooks/useColors';
 import cardStyles from '../components/Card.module.scss';
 import json from './../data/last-update.json';
 import { pt } from 'date-fns/locale';
-import Plausible from 'plausible-tracker';
 import { useRouter } from 'next/router';
 
 import generic from './../data/generic.json';
@@ -25,11 +24,6 @@ import { RegiaoContext } from '../components/context/regiao';
 import { RamBarAdministradasPorFaixaEtaria } from '../components/graphs/RamBarAdministradasPorFaixaEtaria';
 import { RamMapa } from '../components/graphs/RamMapa';
 import LazyLoad from 'react-lazyload';
-
-const plausible = Plausible({
-	domain: 'vacinacaocovid19.pt',
-	trackLocalhost: true,
-});
 
 export default function Home() {
 	let { statistics, ready: dataReady } = useData({ regiao: 'madeira' });
@@ -57,12 +51,10 @@ export default function Home() {
 	function trackScrollEvents(e) {
 		if (window.scrollY > 3576 && beacons.end_page === false) {
 			beacons.end_page = true;
-			plausible.trackEvent('end_page', { page: 'madeira' });
 			return;
 		}
 		if (window.scrollY > 1657 && beacons.mid_page === false) {
 			beacons.mid_page = true;
-			plausible.trackEvent('mid_page', { page: 'madeira' });
 			return;
 		}
 	}
@@ -116,7 +108,6 @@ export default function Home() {
 	useEffect(async () => {
 		if (dataReady === false) return;
 		let rawData = await statistics.getArquipelagoData();
-		plausible.trackPageview();
 		let data = await statistics.getSesaram();
 		setSelectedItem(data);
 

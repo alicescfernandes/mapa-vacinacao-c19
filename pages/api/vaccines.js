@@ -1,6 +1,5 @@
 import Cors from 'cors';
 import vaccines from './../../data/vaccines_v2.json';
-import { trackPlausible } from '../../utils';
 function initMiddleware(middleware) {
 	return (req, res) =>
 		new Promise((resolve, reject) => {
@@ -20,7 +19,6 @@ const cors = initMiddleware(
 );
 
 export default async function handler(req, res) {
-	trackPlausible(req);
 	await cors(req, res);
 	res.statusCode = 200;
 	res.json(vaccines);

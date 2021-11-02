@@ -1,5 +1,4 @@
 import Cors from 'cors';
-import { trackPlausible } from '../../utils';
 import ecdc from './../../data/ecdc_filtered.json';
 
 function initMiddleware(middleware) {
@@ -21,7 +20,6 @@ const cors = initMiddleware(
 );
 
 export default async function handler(req, res) {
-	trackPlausible(req);
 	await cors(req, res);
 	res.statusCode = 200;
 	res.json(ecdc);

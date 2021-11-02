@@ -1,6 +1,5 @@
 import Cors from 'cors';
 import convertVaccines from '../../automation/convert-csv:vaccines';
-import { trackPlausible } from '../../utils';
 import * as fs from 'fs';
 
 function initMiddleware(middleware) {
@@ -25,10 +24,10 @@ const cors = initMiddleware(
 export default async function handler(req, res) {
 	await cors(req, res);
 	let data = {};
-	console.log(1)
+	console.log(1);
 
 	data = await convertVaccines();
-	
+
 	res.statusCode = 200;
 	res.json(data); //get data directly from the enpoint
 }
