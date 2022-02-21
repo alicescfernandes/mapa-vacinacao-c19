@@ -101,117 +101,12 @@ export function Header() {
 			<header className={`${styles.header} card-shadow`}>
 				<Container className={styles.content}>
 					<div className={styles.logo}>
-						<h1>vacinação COVID 19 {regioes[regiao].nome} </h1>
-						<p>{regioes[regiao].tagline}</p>
+						<h1>vacinação COVID 19</h1>
+						<p></p>
 					</div>
-					<nav className={`${styles.nav} ${styles.hide_mobile}`}>
-						<ul>
-							<li>
-								<Link href="/">
-									<a className={regiao === 'portugal' ? styles.highlight : ''}>Portugal</a>
-								</Link>
-							</li>
-							<li>
-								<Link href="/madeira">
-									<a className={regiao === 'madeira' ? styles.highlight : ''}>Madeira</a>
-								</Link>
-							</li>
-							<li>
-								<Link href="/acores">
-									<a className={regiao === 'acores' ? styles.highlight : ''}>Açores</a>
-								</Link>
-							</li>
-
-							{supportsNotifications && (
-								<li>
-									<Notifications>
-										<a href="#">Notificações</a>
-									</Notifications>
-								</li>
-							)}
-							<li>
-								<a target="_blank" href="https://twitter.com/vacinacaocovid1">
-									Twitter
-								</a>
-							</li>
-						</ul>
-					</nav>
 				</Container>
 			</header>
-			<header className={`${styles.header} ${styles.header_mobile} card-shadow`}>
-				<Container className={styles.content}>
-					<nav className={`${styles.nav}  ${styles.hide_mobile}`}>
-						<ul>
-							<li>
-								<span
-									onClick={() => {
-										setIsSidebarOpen(true);
-									}}
-								>
-									<Plus width={25} height={25}></Plus>
-									<span>Mais</span>
-								</span>
-							</li>
-							{supportsNotifications && (
-								<li>
-									<Notifications>
-										<a>
-											<span>
-												<Bell width={21} height={21}></Bell>
-											</span>
-										</a>
-									</Notifications>
-									<span>Notificações</span>
-								</li>
-							)}{' '}
-							<li>
-								{' '}
-								<span>
-									<Twitter width={25} height={25}></Twitter>
-									<span>Twitter</span>
-								</span>
-							</li>
-						</ul>
-					</nav>
-				</Container>
-			</header>
-
-			<div className={`${styles.submenu}`}>
-				<Container className={styles.content}>
-					<nav className={styles.nav}>{renderLocalInfo()}</nav>
-				</Container>
-			</div>
-			<aside
-				onClick={() => {
-					setIsSidebarOpen(false);
-				}}
-				className={`${styles.sidemenu} ${isSidebarOpen ? styles.sidemenu_visible : ''}`}
-			>
-				<span className={styles.sidemenu_close}>✕</span>
-				<div className={styles.sidemenu_container}>
-					<h1>Mais dados</h1>
-					<ul>
-						<li>
-							<Link href="/">
-								<a className={regiao === 'portugal' ? styles.highlight : ''}>Portugal</a>
-							</Link>
-						</li>
-						<li>
-							<Link href="/madeira">
-								<a className={regiao === 'madeira' ? styles.highlight : ''}>Madeira</a>
-							</Link>
-						</li>
-
-						<li>
-							<Link href="/acores">
-								<a className={regiao === 'acores' ? styles.highlight : ''}>Açores</a>
-							</Link>
-						</li>
-					</ul>
-					<h1>Mais informação</h1>
-					{renderLocalInfo()}
-				</div>
-			</aside>
+			<header className={`${styles.header} ${styles.header_mobile} card-shadow`}></header>
 		</>
 	);
 }
