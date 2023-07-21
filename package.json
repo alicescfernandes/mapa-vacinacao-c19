@@ -52,7 +52,7 @@
 		"date-fns": "^2.17.0",
 		"date-fns-tz": "^1.1.6",
 		"dotenv": "^10.0.0",
-		"firebase-admin": "^9.6.0",
+		"firebase-admin": "^9.11.1",
 		"minimist": "^1.2.5",
 		"mongodb": "^4.1.0",
 		"next": "^11.0.1",
